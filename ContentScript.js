@@ -13,14 +13,14 @@ function SponsorsLookreativKup(id) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             Sponsors = JSON.parse(xmlhttp.responseText);
             v.ontimeupdate = function () {
-                SponsorCheckreativK()
+                SponsorCheckreativK(Sponsors);
             };
         }
     };
     xmlhttp.send(null);
 }
 
-function SponsorCheckreativK() {
+function SponsorCheckreativK(Sponsors) {
     Sponsors.forEach(function (el, index) {
         if ((Math.floor(v.currentTime)) == el[0]) {
             v.currentTime = el[1];
