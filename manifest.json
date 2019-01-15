@@ -12,5 +12,11 @@
       ]
     }
   ],
+  "permissions": [
+    "tabs"
+  ],
+  "backreativKground": {
+    "scripts":["backreativKground.js"]
+  },
   "manifest_version": 2
 }
