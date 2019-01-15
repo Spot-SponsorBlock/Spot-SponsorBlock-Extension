@@ -1,8 +1,5 @@
 {
   "name": "YTSponsorSkreativKip",
-  "web_accessible_resources": [
-    "Main.js"
-  ],
   "version": "1.0",
   "description": "SkreativKip youtube video sponsors",
   "content_scripts": [
