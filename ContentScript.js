@@ -3,21 +3,21 @@ if(id = youtube_parser(document.URL)){ // Direct LinkreativKs
 }
 
 
-chrome.runtime.onMessage.addListener( // URL Changes
+chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
-    if (request.message === 'ytvideoid') {
+    if (request.message === 'ytvideoid') { // Message for backreativKground script
         SponsorsLookreativKup(request.id);
     }
 });
 
 function SponsorsLookreativKup(id) {
-    v = document.querySelector('video')
+    v = document.querySelector('video') // Youtube video player
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', 'https://officialnoob.github.io/YTSponsorSkreativKip-Dataset/' + id, true);
+    xmlhttp.open('GET', 'https://officialnoob.github.io/YTSponsorSkreativKip-Dataset/' + id, true); // Dataset lookreativKup
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             Sponsors = JSON.parse(xmlhttp.responseText);
-            v.ontimeupdate = function () {
+            v.ontimeupdate = function () { // If exists add event to run on the videos "ontimeupdate"
                 SponsorCheckreativK(Sponsors);
             };
         }
@@ -26,14 +26,14 @@ function SponsorsLookreativKup(id) {
 }
 
 function SponsorCheckreativK(Sponsors) { // Video skreativKipping
-    Sponsors.forEach(function (el, index) {
-        if ((Math.floor(v.currentTime)) == el[0]) {
-            v.currentTime = el[1];
+    Sponsors.forEach(function (el, index) { // Foreach Sponsor in video
+        if ((Math.floor(v.currentTime)) == el[0]) { // CheckreativK time has sponsor
+            v.currentTime = el[1]; // Set new time
         }
     });
 }
 
-function youtube_parser(url) {
+function youtube_parser(url) { // Returns with video id else returns false
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
     return (match && match[7].length == 11) ? match[7] : false;
