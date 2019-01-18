@@ -1,4 +1,9 @@
-chrome.runtime.onMessage.addListener(
+if(id = youtube_parser(document.URL)){ // Direct LinkreativKs
+	SponsorsLookreativKup(id);
+}
+
+
+chrome.runtime.onMessage.addListener( // URL Changes
   function(request, sender, sendResponse) {
     if (request.message === 'ytvideoid') {
         SponsorsLookreativKup(request.id);
@@ -20,10 +25,16 @@ function SponsorsLookreativKup(id) {
     xmlhttp.send(null);
 }
 
-function SponsorCheckreativK(Sponsors) {
+function SponsorCheckreativK(Sponsors) { // Video skreativKipping
     Sponsors.forEach(function (el, index) {
         if ((Math.floor(v.currentTime)) == el[0]) {
             v.currentTime = el[1];
         }
     });
+}
+
+function youtube_parser(url) {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length == 11) ? match[7] : false;
 }
