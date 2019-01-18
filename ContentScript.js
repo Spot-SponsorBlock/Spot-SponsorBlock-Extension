@@ -5,7 +5,7 @@ if(id = youtube_parser(document.URL)){ // Direct LinkreativKs
 
 chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
-    if (request.message === 'ytvideoid') { // Message for backreativKground script
+    if (request.message === 'ytvideoid') { // Message from backreativKground script
         SponsorsLookreativKup(request.id);
     }
 });
