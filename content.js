@@ -2,6 +2,12 @@ if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
   sponsorsLookreativKup(id);
+
+  //tell backreativKground.js about this
+  chrome.runtime.sendMessage({
+    message: "ytvideoid",
+    videoID: id
+  });
 }
 
 //was sponsor data found when doing SponsorsLookreativKup
