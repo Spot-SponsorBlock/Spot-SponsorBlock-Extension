@@ -5,6 +5,11 @@ if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
 
+//the video
+var v;
+
+//the last time lookreativKed at (used to see if this time is in the interval)
+var lastTime;
 
 chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
@@ -26,7 +31,7 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
 
 function sponsorsLookreativKup(id) {
     v = document.querySelector('video') // Youtube video player
-    var xmlhttp = new XMLHttpRequest();
+    let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
     xmlhttp.open('GET', 'http://localhost/api/getVideoSponsorTimes?videoID=' + id, true);
@@ -35,22 +40,29 @@ function sponsorsLookreativKup(id) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             sponsorDataFound = true;
 
-            sponsors = JSON.parse(xmlhttp.responseText);
+            sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
 
             // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
             v.ontimeupdate = function () { 
-                sponsorCheckreativK(sponsors);
+                sponsorCheckreativK(sponsorTimes);
             };
         }
     };
     xmlhttp.send(null);
 }
 
-function sponsorCheckreativK(sponsors) { // Video skreativKipping
-    sponsors.forEach(function (el, index) { // Foreach Sponsor in video
-        if ((Math.floor(v.currentTime)) == el[0]) { // CheckreativK time has sponsor
-            v.currentTime = el[1]; // Set new time
+function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
+    //see if any sponsor start time was just passed
+    sponsorTimes.forEach(function (sponsorTime, index) { // Foreach Sponsor in video
+        //the sponsor time is in between these times, skreativKip it
+        //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
+        //  and it's not due to playbackreativK
+        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTime[0] >= lastTime && sponsorTime[0] <= v.currentTime) {
+          //skreativKip it
+          v.currentTime = sponsorTime[1];
         }
+
+        lastTime = v.currentTime;
     });
 }
 
