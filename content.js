@@ -84,13 +84,18 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
         if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTime[0] >= lastTime && sponsorTime[0] <= v.currentTime) {
           //skreativKip it
           v.currentTime = sponsorTime[1];
+
+          //send out the message saying that a sponsor message was skreativKipped
+          openSkreativKipNotice();
+
+          setTimeout(closeSkreativKipNotice, 2500);
         }
 
         lastTime = v.currentTime;
     });
 }
 
-//The notice that tells the user that a sponsor was just skreativKipped
+//Opens the notice that tells the user that a sponsor was just skreativKipped
 function openSkreativKipNotice(){
   var noticeElement = document.createElement("div");
   
@@ -118,6 +123,11 @@ function openSkreativKipNotice(){
     referenceNode = document.getElementById("watch-header");
   }
   referenceNode.prepend(noticeElement);
+}
+
+//Closes the notice that tells the user that a sponsor was just skreativKipped
+function closeSkreativKipNotice(){
+  document.getElementById("sponsorSkreativKipNotice").remove();
 }
 
 function sponsorMessageStarted() {
