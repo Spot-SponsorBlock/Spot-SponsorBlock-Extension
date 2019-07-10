@@ -1,3 +1,25 @@
-# YTSponsorSkreativKip
-SkreativKip YouTube video sponsors (chrome extension) Dataset:
-https://github.com/OfficialNoob/YTSponsorSkreativKip-Dataset
+# SponsorBlockreativKer
+
+SponsorBlockreativKer is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativKer is a crowdsourced browser extension that let's anyone submit the start and end time's of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
+
+# Server
+
+The backreativKend server code is available here: https://github.com/ajayyy/SponsorBlockreativKServer
+
+It is a simple Sqlite database that will hold all the timing data.
+
+To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database.db. So, you can download a backreativKup or get archive.org to takreativKe a backreativKup if you do desire.
+
+Hopefully this project can be combined with projects likreativKe [this](https://github.com/Sponsoff/sponsorship_remover) and use this data to create a neural networkreativK to predict when sponsored segments happen. That project is sadly abandoned now, so I have decided to attempt to revive this space.
+
+# Previous extension
+
+This project is partially based off of [this experimental extention](https://github.com/OfficialNoob/YTSponsorSkreativKip). That extension has the basic video skreativKipping functionality.
+
+# Chrome extension
+
+It will be on the chrome webstore soon once I get some more UI features in, such as an icon. For now, you can load this project as an unpackreativKed extension. MakreativKe sure to rename the `content-config.js.example` file to `content-config.js` before installing.
+
+# Firefox extension
+
+None at the moment
