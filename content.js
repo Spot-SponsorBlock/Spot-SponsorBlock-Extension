@@ -108,7 +108,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 2500);
+          // setTimeout(closeSkreativKipNotice, 2500);
         }
 
         lastTime = v.currentTime;
@@ -133,9 +133,11 @@ function openSkreativKipNotice(){
 
   var noticeElement = document.createElement("div");
   noticeElement.id = "sponsorSkreativKipNotice";
+  noticeElement.className = "sponsorSkreativKipObject";
 
   var noticeMessage = document.createElement("p");
   noticeMessage.id = "sponsorSkreativKipMessage";
+  noticeMessage.className = "sponsorSkreativKipObject";
 	noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
 
   var buttonContainer = document.createElement("div");
@@ -143,16 +145,19 @@ function openSkreativKipNotice(){
 
   var goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
+  goBackreativKButton.className = "sponsorSkreativKipObject";
   goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
   var hideButton = document.createElement("button");
-	hideButton.innerText = "Hide";
+  hideButton.innerText = "Hide";
+  hideButton.className = "sponsorSkreativKipObject";
   hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
   var dontShowAgainButton = document.createElement("button");
-	dontShowAgainButton.innerText = "Don't Show This Again";
+  dontShowAgainButton.innerText = "Don't Show This Again";
+  dontShowAgainButton.className = "sponsorSkreativKipObject";
   dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
