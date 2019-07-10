@@ -136,11 +136,18 @@ function openSkreativKipNotice(){
 	goBackreativKButton.innerText = "Go backreativK";
   goBackreativKButton.style.fontSize = "13px";
   goBackreativKButton.style.color = "#000000";
-  goBackreativKButton.setAttribute("align", "center");
   goBackreativKButton.style.marginTop = "5px";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
+  var hideButton = document.createElement("button");
+	hideButton.innerText = "Hide";
+  hideButton.style.fontSize = "13px";
+  hideButton.style.color = "#000000";
+  hideButton.style.marginTop = "5px";
+  hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
+
   buttonContainer.appendChild(goBackreativKButton);
+  buttonContainer.appendChild(hideButton);
 
   noticeElement.appendChild(noticeMessage);
   noticeElement.appendChild(buttonContainer);
