@@ -132,48 +132,33 @@ function openSkreativKipNotice(){
   }
 
   var noticeElement = document.createElement("div");
-  
-  noticeElement.id = 'sponsorSkreativKipNotice'
-  noticeElement.style.minHeight = "100px";
-  noticeElement.style.minWidth = "400px";
-  noticeElement.style.backreativKgroundColor = "rgba(153, 153, 153, 0.8)";
-  noticeElement.style.fontSize = "24px";
-  noticeElement.style.position = "absolute"
-  noticeElement.style.zIndex = "1";
+  noticeElement.id = "sponsorSkreativKipNotice";
 
-	var noticeMessage = document.createElement("p");
+  var noticeMessage = document.createElement("p");
+  noticeMessage.id = "sponsorSkreativKipMessage";
 	noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
-  noticeMessage.style.fontSize = "18px";
-  noticeMessage.style.color = "#000000";
-  noticeMessage.style.textAlign = "center";
-  noticeMessage.style.marginTop = "10px";
 
   var buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
 
   var goBackreativKButton = document.createElement("button");
-	goBackreativKButton.innerText = "Go backreativK";
-  goBackreativKButton.style.fontSize = "13px";
-  goBackreativKButton.style.color = "#000000";
-  goBackreativKButton.style.marginTop = "5px";
+  goBackreativKButton.innerText = "Go backreativK";
+  goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
   var hideButton = document.createElement("button");
 	hideButton.innerText = "Hide";
-  hideButton.style.fontSize = "13px";
-  hideButton.style.color = "#000000";
-  hideButton.style.marginTop = "5px";
+  hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
   var dontShowAgainButton = document.createElement("button");
 	dontShowAgainButton.innerText = "Don't Show This Again";
-  dontShowAgainButton.style.fontSize = "13px";
-  dontShowAgainButton.style.color = "#000000";
-  dontShowAgainButton.style.marginTop = "5px";
+  dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
   buttonContainer.appendChild(goBackreativKButton);
   buttonContainer.appendChild(hideButton);
+  buttonContainer.appendChild(document.createElement("br"));
   buttonContainer.appendChild(document.createElement("br"));
   buttonContainer.appendChild(dontShowAgainButton);
 
