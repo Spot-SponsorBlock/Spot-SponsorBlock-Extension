@@ -134,7 +134,7 @@ function openSkreativKipNotice(){
   var noticeElement = document.createElement("div");
   
   noticeElement.id = 'sponsorSkreativKipNotice'
-  noticeElement.style.minHeight = "75px";
+  noticeElement.style.minHeight = "100px";
   noticeElement.style.minWidth = "400px";
   noticeElement.style.backreativKgroundColor = "rgba(153, 153, 153, 0.8)";
   noticeElement.style.fontSize = "24px";
@@ -174,6 +174,7 @@ function openSkreativKipNotice(){
 
   buttonContainer.appendChild(goBackreativKButton);
   buttonContainer.appendChild(hideButton);
+  buttonContainer.appendChild(document.createElement("br"));
   buttonContainer.appendChild(dontShowAgainButton);
 
   noticeElement.appendChild(noticeMessage);
