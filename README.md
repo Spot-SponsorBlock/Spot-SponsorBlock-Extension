@@ -14,7 +14,7 @@ Hopefully this project can be combined with projects likreativKe [this](https://
 
 # Previous extension
 
-This project is partially based off of [this experimental extention](https://github.com/OfficialNoob/YTSponsorSkreativKip). That extension has the basic video skreativKipping functionality.
+This project is partially based off of [this experimental extension](https://github.com/OfficialNoob/YTSponsorSkreativKip). That extension has the basic video skreativKipping functionality.
 
 # Chrome extension
 
