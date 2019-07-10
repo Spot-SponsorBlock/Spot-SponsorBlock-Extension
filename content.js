@@ -22,6 +22,10 @@ var v;
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime;
 
+//the last time in the video a sponsor was skreativKipped
+//used for the go backreativK button
+var lastSponsorTimeSkreativKipped = null;
+
 chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
     //message from backreativKground script
@@ -85,6 +89,8 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           //skreativKip it
           v.currentTime = sponsorTime[1];
 
+          lastSponsorTimeSkreativKipped = sponsorTime[0];
+
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
@@ -93,6 +99,15 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
 
         lastTime = v.currentTime;
     });
+}
+
+function goBackreativKToPreviousTime() {
+  if (lastSponsorTimeSkreativKipped != null) {
+    //add a tiny bit of time to makreativKe sure it is not skreativKipped again
+    v.currentTime = lastSponsorTimeSkreativKipped + 0.001;
+
+    closeSkreativKipNotice();
+  }
 }
 
 //Opens the notice that tells the user that a sponsor was just skreativKipped
@@ -109,13 +124,26 @@ function openSkreativKipNotice(){
 
 	var noticeMessage = document.createElement("p");
 	noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
-  noticeMessage.style.marginLeft = "10px";
   noticeMessage.style.fontSize = "18px";
   noticeMessage.style.color = "#000000";
   noticeMessage.style.textAlign = "center";
   noticeMessage.style.marginTop = "10px";
 
-	noticeElement.appendChild(noticeMessage);
+  var buttonContainer = document.createElement("div");
+  buttonContainer.setAttribute("align", "center");
+
+  var goBackreativKButton = document.createElement("button");
+	goBackreativKButton.innerText = "Go backreativK";
+  goBackreativKButton.style.fontSize = "13px";
+  goBackreativKButton.style.color = "#000000";
+  goBackreativKButton.setAttribute("align", "center");
+  goBackreativKButton.style.marginTop = "5px";
+  goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
+
+  buttonContainer.appendChild(goBackreativKButton);
+
+  noticeElement.appendChild(noticeMessage);
+  noticeElement.appendChild(buttonContainer);
 
   var referenceNode = document.getElementById("info");
   if (referenceNode == null) {
@@ -127,7 +155,10 @@ function openSkreativKipNotice(){
 
 //Closes the notice that tells the user that a sponsor was just skreativKipped
 function closeSkreativKipNotice(){
-  document.getElementById("sponsorSkreativKipNotice").remove();
+  let notice = document.getElementById("sponsorSkreativKipNotice");
+  if (notice != null) {
+    notice.remove();
+  }
 }
 
 function sponsorMessageStarted() {
