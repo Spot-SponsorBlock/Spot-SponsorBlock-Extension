@@ -1,5 +1,5 @@
 ![Logo](icons/LogoSponsorBlockreativKer256px.png)
-<sub>Logo by @munadikreativKieh</sub>
+<br/><sub>Logo by [@munadikreativKieh](https://github.com/munadikreativKieh)</sub>
 
 # SponsorBlockreativKer
 
