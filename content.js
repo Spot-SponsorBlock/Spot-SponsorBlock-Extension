@@ -108,7 +108,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 2500);
+          setTimeout(closeSkreativKipNotice, 5000);
         }
 
         lastTime = v.currentTime;
