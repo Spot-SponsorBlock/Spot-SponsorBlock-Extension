@@ -135,6 +135,10 @@ function openSkreativKipNotice(){
   noticeElement.id = "sponsorSkreativKipNotice";
   noticeElement.className = "sponsorSkreativKipObject";
 
+  var logoElement = document.createElement("img");
+  logoElement.id = "sponsorSkreativKipLogo";
+  logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+
   var noticeMessage = document.createElement("p");
   noticeMessage.id = "sponsorSkreativKipMessage";
   noticeMessage.className = "sponsorSkreativKipObject";
@@ -167,6 +171,7 @@ function openSkreativKipNotice(){
   buttonContainer.appendChild(document.createElement("br"));
   buttonContainer.appendChild(dontShowAgainButton);
 
+  noticeElement.appendChild(logoElement);
   noticeElement.appendChild(noticeMessage);
   noticeElement.appendChild(buttonContainer);
 

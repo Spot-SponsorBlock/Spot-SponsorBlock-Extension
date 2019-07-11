@@ -17,6 +17,9 @@
       ]
     }
   ],
+  "web_accessible_resources": [
+    "icons/LogoSponsorBlockreativKer256px.png"
+  ],
   "permissions": [
     "tabs",
     "storage",
@@ -28,6 +31,13 @@
   }, 
   "backreativKground": {
     "scripts":["backreativKground.js"]
+  },
+  "icons": {
+    "16": "icons/IconSponsorBlockreativKer16px.png",
+    "32": "icons/IconSponsorBlockreativKer32px.png",
+    "64": "icons/LogoSponsorBlockreativKer64px.png",
+    "128": "icons/LogoSponsorBlockreativKer128px.png",
+    "256": "icons/LogoSponsorBlockreativKer256px.png"
   },
   "manifest_version": 2
 }
