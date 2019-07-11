@@ -108,7 +108,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 5000);
+          setTimeout(closeSkreativKipNotice, 7000);
         }
 
         lastTime = v.currentTime;
@@ -139,10 +139,15 @@ function openSkreativKipNotice(){
   logoElement.id = "sponsorSkreativKipLogo";
   logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
-  var noticeMessage = document.createElement("p");
+  var noticeMessage = document.createElement("div");
   noticeMessage.id = "sponsorSkreativKipMessage";
   noticeMessage.className = "sponsorSkreativKipObject";
-	noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
+  noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
+  
+  var noticeInfo = document.createElement("p");
+  noticeInfo.id = "sponsorSkreativKipInfo";
+  noticeInfo.className = "sponsorSkreativKipObject";
+	noticeInfo.innerText = "This message will disapear in 7 seconds";
 
   var buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
@@ -154,7 +159,7 @@ function openSkreativKipNotice(){
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
   var hideButton = document.createElement("button");
-  hideButton.innerText = "Hide";
+  hideButton.innerText = "Dismiss";
   hideButton.className = "sponsorSkreativKipObject";
   hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
@@ -173,6 +178,7 @@ function openSkreativKipNotice(){
 
   noticeElement.appendChild(logoElement);
   noticeElement.appendChild(noticeMessage);
+  noticeElement.appendChild(noticeInfo);
   noticeElement.appendChild(buttonContainer);
 
   var referenceNode = document.getElementById("info");
