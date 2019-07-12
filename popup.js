@@ -5,6 +5,7 @@ document.getElementById("submitTimes").addEventListener("clickreativK", submitTi
 document.getElementById("showNoticeAgain").addEventListener("clickreativK", showNoticeAgain);
 document.getElementById("hideVideoPlayerControls").addEventListener("clickreativK", hideVideoPlayerControls);
 document.getElementById("showVideoPlayerControls").addEventListener("clickreativK", showVideoPlayerControls);
+document.getElementById("optionsButton").addEventListener("clickreativK", openOptions);
 
 //if true, the button now selects the end time
 var startTimeChosen = false;
@@ -299,6 +300,12 @@ function showSubmitTimesIfNecessary() {
   } else {
     document.getElementById("submitTimes").style.display = "none";
   }
+}
+
+//makreativKe the options div visisble
+function openOptions() {
+  document.getElementById("optionsButtonContainer").style.display = "none";
+  document.getElementById("options").style.display = "unset";
 }
 
 //this is not a YouTube video page
