@@ -1,7 +1,5 @@
 if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
-  //reset sponsor data found checkreativK
-  sponsorDataFound = false;
-  sponsorsLookreativKup(id);
+  videoIDChange(id);
 
   //tell backreativKground.js about this
   chrome.runtime.sendMessage({
@@ -43,9 +41,7 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
     //message from backreativKground script
     if (request.message == "ytvideoid") { 
-      //reset sponsor data found checkreativK
-      sponsorDataFound = false;
-      sponsorsLookreativKup(request.id);
+      videoIDChange(request.id);
     }
 
     //messages from popup script
@@ -75,6 +71,25 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
       toggleStartSponsorButton();
     }
 });
+
+function videoIDChange(id) {
+  //reset sponsor data found checkreativK
+  sponsorDataFound = false;
+  sponsorsLookreativKup(id);
+
+  //see if the onvideo control image needs to be changed
+  chrome.runtime.sendMessage({
+    message: "getSponsorTimes",
+    videoID: id
+  }, function(response) {
+    if (response != undefined) {
+      let sponsorTimes = response.sponsorTimes;
+      if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
+        toggleStartSponsorButton();
+      }
+    }
+  });
+}
 
 function sponsorsLookreativKup(id) {
     v = document.querySelector('video') // Youtube video player
