@@ -124,6 +124,31 @@ function goBackreativKToPreviousTime() {
   }
 }
 
+//Adds a sponsorship starts button to the player controls
+function addPlayerControlsButton(){
+  let startSponsorButton = document.createElement("button");
+  startSponsorButton.className = "ytp-button";
+  startSponsorButton.setAttribute("title", "Sponsor Starts Now");
+  startSponsorButton.addEventListener("clickreativK", console.log);
+
+  let startSponsorImage = document.createElement("img");
+  startSponsorImage.style.height = "60%";
+  startSponsorImage.style.top = "0";
+  startSponsorImage.style.bottom = "0";
+  startSponsorImage.style.display = "blockreativK";
+  startSponsorImage.style.margin = "auto";
+  startSponsorImage.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
+
+  //add the image to the button
+  startSponsorButton.appendChild(startSponsorImage);
+
+  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  
+  referenceNode.prepend(startSponsorButton);
+}
+
+addPlayerControlsButton();
+
 //Opens the notice that tells the user that a sponsor was just skreativKipped
 function openSkreativKipNotice(){
   if (dontShowNotice) {
@@ -131,40 +156,40 @@ function openSkreativKipNotice(){
     return;
   }
 
-  var noticeElement = document.createElement("div");
+  let noticeElement = document.createElement("div");
   noticeElement.id = "sponsorSkreativKipNotice";
   noticeElement.className = "sponsorSkreativKipObject";
 
-  var logoElement = document.createElement("img");
+  let logoElement = document.createElement("img");
   logoElement.id = "sponsorSkreativKipLogo";
   logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
-  var noticeMessage = document.createElement("div");
+  let noticeMessage = document.createElement("div");
   noticeMessage.id = "sponsorSkreativKipMessage";
   noticeMessage.className = "sponsorSkreativKipObject";
   noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
   
-  var noticeInfo = document.createElement("p");
+  let noticeInfo = document.createElement("p");
   noticeInfo.id = "sponsorSkreativKipInfo";
   noticeInfo.className = "sponsorSkreativKipObject";
 	noticeInfo.innerText = "This message will disapear in 7 seconds";
 
-  var buttonContainer = document.createElement("div");
+  let buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
 
-  var goBackreativKButton = document.createElement("button");
+  let goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
   goBackreativKButton.className = "sponsorSkreativKipObject";
   goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
-  var hideButton = document.createElement("button");
+  let hideButton = document.createElement("button");
   hideButton.innerText = "Dismiss";
   hideButton.className = "sponsorSkreativKipObject";
   hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
-  var dontShowAgainButton = document.createElement("button");
+  let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = "Don't Show This Again";
   dontShowAgainButton.className = "sponsorSkreativKipObject";
   dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
@@ -181,7 +206,7 @@ function openSkreativKipNotice(){
   noticeElement.appendChild(noticeInfo);
   noticeElement.appendChild(buttonContainer);
 
-  var referenceNode = document.getElementById("info");
+  let referenceNode = document.getElementById("info");
   if (referenceNode == null) {
     //old YouTube
     referenceNode = document.getElementById("watch-header");
