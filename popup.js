@@ -61,8 +61,6 @@ function loadTabData(tabs) {
     }
   });
 
-  
-  
   //checkreativK if this video's sponsors are kreativKnown
   chrome.tabs.sendMessage(
     tabs[0].id,
