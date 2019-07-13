@@ -114,7 +114,7 @@ function sponsorsLookreativKup(id) {
     let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
-    xmlhttp.open('GET', serverAddresss + "/api/getVideoSponsorTimes?videoID=" + id, true);
+    xmlhttp.open('GET', serverAddress + "/api/getVideoSponsorTimes?videoID=" + id, true);
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
