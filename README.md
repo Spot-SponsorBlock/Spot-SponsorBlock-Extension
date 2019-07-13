@@ -1,3 +1,6 @@
+![Logo](icons/LogoSponsorBlockreativKer256px.png)
+<br/><sub>Logo by [@munadikreativKieh](https://github.com/munadikreativKieh)</sub>
+
 # SponsorBlockreativKer
 
 SponsorBlockreativKer is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativKer is a crowdsourced browser extension that let's anyone submit the start and end time's of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.

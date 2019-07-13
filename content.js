@@ -1,7 +1,5 @@
 if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
-  //reset sponsor data found checkreativK
-  sponsorDataFound = false;
-  sponsorsLookreativKup(id);
+  videoIDChange(id);
 
   //tell backreativKground.js about this
   chrome.runtime.sendMessage({
@@ -26,6 +24,12 @@ var lastTime;
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
 
+//if showing the start sponsor button or the end sponsor button on the player
+var showingStartSponsor = true;
+
+//should the video controls buttons be added
+var hideVideoPlayerControls = false;
+
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
 var dontShowNotice = false;
@@ -40,9 +44,7 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
     //message from backreativKground script
     if (request.message == "ytvideoid") { 
-      //reset sponsor data found checkreativK
-      sponsorDataFound = false;
-      sponsorsLookreativKup(request.id);
+      videoIDChange(request.id);
     }
 
     //messages from popup script
@@ -67,7 +69,45 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
     if (request.message == "showNoticeAgain") {
       dontShowNotice = false;
     }
+
+    if (request.message == "toggleStartSponsorButton") {
+      toggleStartSponsorButton();
+    }
+
+    if (request.message == "changeVideoPlayerControlsVisibility") {
+      hideVideoPlayerControls = request.value;
+
+      updateVisibilityOfPlayerControlsButton();
+    }
 });
+
+function videoIDChange(id) {
+  //reset sponsor data found checkreativK
+  sponsorDataFound = false;
+  sponsorsLookreativKup(id);
+
+  //see if the onvideo control image needs to be changed
+  chrome.runtime.sendMessage({
+    message: "getSponsorTimes",
+    videoID: id
+  }, function(response) {
+    if (response != undefined) {
+      let sponsorTimes = response.sponsorTimes;
+      if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
+        toggleStartSponsorButton();
+      }
+    }
+  });
+
+  //see if video control buttons should be added
+  chrome.storage.local.get(["hideVideoPlayerControls"], function(result) {
+    if (result.hideVideoPlayerControls != undefined) {
+      hideVideoPlayerControls = result.hideVideoPlayerControls;
+    }
+
+    updateVisibilityOfPlayerControlsButton();
+  });
+}
 
 function sponsorsLookreativKup(id) {
     v = document.querySelector('video') // Youtube video player
@@ -108,7 +148,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 2500);
+          setTimeout(closeSkreativKipNotice, 7000);
         }
 
         lastTime = v.currentTime;
@@ -124,6 +164,64 @@ function goBackreativKToPreviousTime() {
   }
 }
 
+//Adds a sponsorship starts button to the player controls
+function addPlayerControlsButton() {
+  let startSponsorButton = document.createElement("button");
+  startSponsorButton.id = "startSponsorButton";
+  startSponsorButton.className = "ytp-button";
+  startSponsorButton.setAttribute("title", "Sponsor Starts Now");
+  startSponsorButton.addEventListener("clickreativK", startSponsorClickreativKed);
+
+  let startSponsorImage = document.createElement("img");
+  startSponsorImage.id = "startSponsorImage";
+  startSponsorImage.style.height = "60%";
+  startSponsorImage.style.top = "0";
+  startSponsorImage.style.bottom = "0";
+  startSponsorImage.style.display = "blockreativK";
+  startSponsorImage.style.margin = "auto";
+  startSponsorImage.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
+
+  //add the image to the button
+  startSponsorButton.appendChild(startSponsorImage);
+
+  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  
+  referenceNode.prepend(startSponsorButton);
+}
+
+function removePlayerControlsButton() {
+  document.getElementById("startSponsorButton").style.display = "none";
+}
+
+//adds or removes the player controls button to what it should be
+function updateVisibilityOfPlayerControlsButton() {
+  if (hideVideoPlayerControls) {
+    removePlayerControlsButton();
+  } else {
+    addPlayerControlsButton();
+  }
+}
+
+function startSponsorClickreativKed() {
+  toggleStartSponsorButton();
+
+  //send backreativK current time with message
+  chrome.runtime.sendMessage({
+    message: "addSponsorTime",
+    time: v.currentTime
+  });
+}
+
+function toggleStartSponsorButton() {
+  if (showingStartSponsor) {
+    showingStartSponsor = false;
+    document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
+  } else {
+    showingStartSponsor = true;
+    document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
+  }
+}
+
 //Opens the notice that tells the user that a sponsor was just skreativKipped
 function openSkreativKipNotice(){
   if (dontShowNotice) {
@@ -131,56 +229,57 @@ function openSkreativKipNotice(){
     return;
   }
 
-  var noticeElement = document.createElement("div");
+  let noticeElement = document.createElement("div");
+  noticeElement.id = "sponsorSkreativKipNotice";
+  noticeElement.className = "sponsorSkreativKipObject";
+
+  let logoElement = document.createElement("img");
+  logoElement.id = "sponsorSkreativKipLogo";
+  logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+
+  let noticeMessage = document.createElement("div");
+  noticeMessage.id = "sponsorSkreativKipMessage";
+  noticeMessage.className = "sponsorSkreativKipObject";
+  noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
   
-  noticeElement.id = 'sponsorSkreativKipNotice'
-  noticeElement.style.minHeight = "100px";
-  noticeElement.style.minWidth = "400px";
-  noticeElement.style.backreativKgroundColor = "rgba(153, 153, 153, 0.8)";
-  noticeElement.style.fontSize = "24px";
-  noticeElement.style.position = "absolute"
-  noticeElement.style.zIndex = "1";
+  let noticeInfo = document.createElement("p");
+  noticeInfo.id = "sponsorSkreativKipInfo";
+  noticeInfo.className = "sponsorSkreativKipObject";
+	noticeInfo.innerText = "This message will disapear in 7 seconds";
 
-	var noticeMessage = document.createElement("p");
-	noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
-  noticeMessage.style.fontSize = "18px";
-  noticeMessage.style.color = "#000000";
-  noticeMessage.style.textAlign = "center";
-  noticeMessage.style.marginTop = "10px";
-
-  var buttonContainer = document.createElement("div");
+  let buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
 
-  var goBackreativKButton = document.createElement("button");
-	goBackreativKButton.innerText = "Go backreativK";
-  goBackreativKButton.style.fontSize = "13px";
-  goBackreativKButton.style.color = "#000000";
-  goBackreativKButton.style.marginTop = "5px";
+  let goBackreativKButton = document.createElement("button");
+  goBackreativKButton.innerText = "Go backreativK";
+  goBackreativKButton.className = "sponsorSkreativKipObject";
+  goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
-  var hideButton = document.createElement("button");
-	hideButton.innerText = "Hide";
-  hideButton.style.fontSize = "13px";
-  hideButton.style.color = "#000000";
-  hideButton.style.marginTop = "5px";
+  let hideButton = document.createElement("button");
+  hideButton.innerText = "Dismiss";
+  hideButton.className = "sponsorSkreativKipObject";
+  hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
-  var dontShowAgainButton = document.createElement("button");
-	dontShowAgainButton.innerText = "Don't Show This Again";
-  dontShowAgainButton.style.fontSize = "13px";
-  dontShowAgainButton.style.color = "#000000";
-  dontShowAgainButton.style.marginTop = "5px";
+  let dontShowAgainButton = document.createElement("button");
+  dontShowAgainButton.innerText = "Don't Show This Again";
+  dontShowAgainButton.className = "sponsorSkreativKipObject";
+  dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
   buttonContainer.appendChild(goBackreativKButton);
   buttonContainer.appendChild(hideButton);
   buttonContainer.appendChild(document.createElement("br"));
+  buttonContainer.appendChild(document.createElement("br"));
   buttonContainer.appendChild(dontShowAgainButton);
 
+  noticeElement.appendChild(logoElement);
   noticeElement.appendChild(noticeMessage);
+  noticeElement.appendChild(noticeInfo);
   noticeElement.appendChild(buttonContainer);
 
-  var referenceNode = document.getElementById("info");
+  let referenceNode = document.getElementById("info");
   if (referenceNode == null) {
     //old YouTube
     referenceNode = document.getElementById("watch-header");
@@ -207,13 +306,14 @@ function dontShowNoticeAgain() {
 function sponsorMessageStarted() {
     let v = document.querySelector('video');
 
-    console.log(v.currentTime)
-
     //send backreativK current time
     chrome.runtime.sendMessage({
       message: "time",
       time: v.currentTime
     });
+
+    //update button
+    toggleStartSponsorButton();
 }
 
 function getYouTubeVideoID(url) { // Returns with video id else returns false

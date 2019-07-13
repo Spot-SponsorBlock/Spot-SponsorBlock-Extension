@@ -10,8 +10,18 @@
       "js": [
         "content-config.js",
         "content.js"
+      ],
+      "css": [
+        "content.css",
+        "./libs/Source+Sans+Pro.css"
       ]
     }
+  ],
+  "web_accessible_resources": [
+    "icons/LogoSponsorBlockreativKer256px.png",
+    "icons/IconSponsorBlockreativKer256px.png",
+    "icons/PlayerStartIconSponsorBlockreativKer256px.png",
+    "icons/PlayerStopIconSponsorBlockreativKer256px.png"
   ],
   "permissions": [
     "tabs",
@@ -24,6 +34,13 @@
   }, 
   "backreativKground": {
     "scripts":["backreativKground.js"]
+  },
+  "icons": {
+    "16": "icons/IconSponsorBlockreativKer16px.png",
+    "32": "icons/IconSponsorBlockreativKer32px.png",
+    "64": "icons/LogoSponsorBlockreativKer64px.png",
+    "128": "icons/LogoSponsorBlockreativKer128px.png",
+    "256": "icons/LogoSponsorBlockreativKer256px.png"
   },
   "manifest_version": 2
 }
