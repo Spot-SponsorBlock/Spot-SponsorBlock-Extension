@@ -250,26 +250,39 @@ function openSkreativKipNotice(){
   let noticeInfo = document.createElement("p");
   noticeInfo.id = "sponsorSkreativKipInfo";
   noticeInfo.className = "sponsorSkreativKipObject";
-	noticeInfo.innerText = "This message will disapear in 7 seconds";
+  noticeInfo.innerText = "This message will disapear in 7 seconds";
+  
+  //thumbs up and down buttons
+  let voteButtonsContainer = document.createElement("div");
+  voteButtonsContainer.setAttribute("align", "center");
+
+  let upvoteButton = document.createElement("img");
+  upvoteButton.className = "sponsorSkreativKipObject voteButton";
+  upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
+
+  let downvoteButton = document.createElement("img");
+  downvoteButton.className = "sponsorSkreativKipObject voteButton";
+  downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
+
+  //add thumbs up and down buttons to the container
+  voteButtonsContainer.appendChild(upvoteButton);
+  voteButtonsContainer.appendChild(downvoteButton);
 
   let buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
 
   let goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
-  goBackreativKButton.className = "sponsorSkreativKipObject";
   goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
   let hideButton = document.createElement("button");
   hideButton.innerText = "Dismiss";
-  hideButton.className = "sponsorSkreativKipObject";
   hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = "Don't Show This Again";
-  dontShowAgainButton.className = "sponsorSkreativKipObject";
   dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
@@ -282,6 +295,7 @@ function openSkreativKipNotice(){
   noticeElement.appendChild(logoElement);
   noticeElement.appendChild(noticeMessage);
   noticeElement.appendChild(noticeInfo);
+  noticeElement.appendChild(voteButtonsContainer);
   noticeElement.appendChild(buttonContainer);
 
   let referenceNode = document.getElementById("info");

@@ -21,7 +21,9 @@
     "icons/LogoSponsorBlockreativKer256px.png",
     "icons/IconSponsorBlockreativKer256px.png",
     "icons/PlayerStartIconSponsorBlockreativKer256px.png",
-    "icons/PlayerStopIconSponsorBlockreativKer256px.png"
+    "icons/PlayerStopIconSponsorBlockreativKer256px.png",
+    "icons/upvote.png",
+    "icons/downvote.png"
   ],
   "permissions": [
     "tabs",
