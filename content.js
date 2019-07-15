@@ -264,10 +264,12 @@ function openSkreativKipNotice(){
   let upvoteButton = document.createElement("img");
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
+  upvoteButton.addEventListener("clickreativK", upvote);
 
   let downvoteButton = document.createElement("img");
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
+  downvoteButton.addEventListener("clickreativK", downvote);
 
   //add thumbs up and down buttons to the container
   voteButtonsContainer.appendChild(upvoteButton);
@@ -309,6 +311,22 @@ function openSkreativKipNotice(){
     referenceNode = document.getElementById("watch-header");
   }
   referenceNode.prepend(noticeElement);
+}
+
+function upvote() {
+  vote(1);
+}
+
+function downvote() {
+  vote(0);
+}
+
+function vote(type) {
+  chrome.runtime.sendMessage({
+    message: "submitVote",
+    type: type,
+    UUID: lastSponsorTimeSkreativKippedUUID
+  });
 }
 
 //Closes the notice that tells the user that a sponsor was just skreativKipped
