@@ -11,8 +11,9 @@ if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
 
-//the actual sponsorTimes if loaded
+//the actual sponsorTimes if loaded and UUIDs associated with them
 var sponsorTimes = undefined;
+var UUIDs = undefined;
 
 //the video
 var v;
@@ -23,6 +24,8 @@ var lastTime;
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
+//used for ratings
+var lastSponsorTimeSkreativKippedUUID = null;
 
 //if showing the start sponsor button or the end sponsor button on the player
 var showingStartSponsor = true;
@@ -121,6 +124,7 @@ function sponsorsLookreativKup(id) {
           sponsorDataFound = true;
 
           sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
+          UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
 
           // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
           v.ontimeupdate = function () { 
@@ -135,15 +139,16 @@ function sponsorsLookreativKup(id) {
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
     //see if any sponsor start time was just passed
-    sponsorTimes.forEach(function (sponsorTime, index) { // Foreach Sponsor in video
+    for (let i = 0; i < sponsorTimes.length; i++) {
         //the sponsor time is in between these times, skreativKip it
         //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
         //  and it's not due to playbackreativK
-        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTime[0] >= lastTime && sponsorTime[0] <= v.currentTime) {
+        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
           //skreativKip it
-          v.currentTime = sponsorTime[1];
+          v.currentTime = sponsorTimes[i][1];
 
-          lastSponsorTimeSkreativKipped = sponsorTime[0];
+          lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
+          lastSponsorTimeSkreativKippedUUID = UUIDs[i]; 
 
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
@@ -152,7 +157,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
         }
 
         lastTime = v.currentTime;
-    });
+    }
 }
 
 function goBackreativKToPreviousTime() {
