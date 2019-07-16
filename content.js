@@ -259,14 +259,17 @@ function openSkreativKipNotice(){
   
   //thumbs up and down buttons
   let voteButtonsContainer = document.createElement("div");
+  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer";
   voteButtonsContainer.setAttribute("align", "center");
 
   let upvoteButton = document.createElement("img");
+  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer"
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
   upvoteButton.addEventListener("clickreativK", upvote);
 
   let downvoteButton = document.createElement("img");
+  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer"
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
   downvoteButton.addEventListener("clickreativK", downvote);
@@ -315,10 +318,31 @@ function openSkreativKipNotice(){
 
 function upvote() {
   vote(1);
+
+  closeSkreativKipNotice();
 }
 
 function downvote() {
   vote(0);
+
+  //change text to say thankreativKs for voting
+  //remove buttons
+  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer"));
+  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer"));
+
+  //add thankreativKs for voting text
+  let thankreativKsForVotingText = document.createElement("p");
+  thankreativKsForVotingText.id = "sponsorTimesThankreativKsForVotingText";
+  thankreativKsForVotingText.innerText = "ThankreativKs for voting!"
+
+  //add extra info for voting
+  let thankreativKsForVotingInfoText = document.createElement("p");
+  thankreativKsForVotingInfoText.id = "sponsorTimesThankreativKsForVotingInfoText";
+  thankreativKsForVotingInfoText.innerText = "Hit go backreativK to get to where you came from."
+
+  //add element to div
+  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingText);
+  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingInfoText);
 }
 
 function vote(type) {
