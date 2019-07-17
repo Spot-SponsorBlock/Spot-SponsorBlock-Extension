@@ -11,8 +11,9 @@ if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
 
-//the actual sponsorTimes if loaded
+//the actual sponsorTimes if loaded and UUIDs associated with them
 var sponsorTimes = undefined;
+var UUIDs = undefined;
 
 //the video
 var v;
@@ -23,6 +24,8 @@ var lastTime;
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
+//used for ratings
+var lastSponsorTimeSkreativKippedUUID = null;
 
 //if showing the start sponsor button or the end sponsor button on the player
 var showingStartSponsor = true;
@@ -114,13 +117,14 @@ function sponsorsLookreativKup(id) {
     let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
-    xmlhttp.open('GET', serverAddresss + "/api/getVideoSponsorTimes?videoID=" + id, true);
+    xmlhttp.open('GET', serverAddress + "/api/getVideoSponsorTimes?videoID=" + id, true);
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
           sponsorDataFound = true;
 
           sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
+          UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
 
           // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
           v.ontimeupdate = function () { 
@@ -135,15 +139,16 @@ function sponsorsLookreativKup(id) {
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
     //see if any sponsor start time was just passed
-    sponsorTimes.forEach(function (sponsorTime, index) { // Foreach Sponsor in video
+    for (let i = 0; i < sponsorTimes.length; i++) {
         //the sponsor time is in between these times, skreativKip it
         //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
         //  and it's not due to playbackreativK
-        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTime[0] >= lastTime && sponsorTime[0] <= v.currentTime) {
+        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
           //skreativKip it
-          v.currentTime = sponsorTime[1];
+          v.currentTime = sponsorTimes[i][1];
 
-          lastSponsorTimeSkreativKipped = sponsorTime[0];
+          lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
+          lastSponsorTimeSkreativKippedUUID = UUIDs[i]; 
 
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
@@ -152,7 +157,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
         }
 
         lastTime = v.currentTime;
-    });
+    }
 }
 
 function goBackreativKToPreviousTime() {
@@ -166,6 +171,11 @@ function goBackreativKToPreviousTime() {
 
 //Adds a sponsorship starts button to the player controls
 function addPlayerControlsButton() {
+  if (document.getElementById("startSponsorButton") != null) {
+    //it's already added
+    return;
+  }
+
   let startSponsorButton = document.createElement("button");
   startSponsorButton.id = "startSponsorButton";
   startSponsorButton.className = "ytp-button";
@@ -245,26 +255,44 @@ function openSkreativKipNotice(){
   let noticeInfo = document.createElement("p");
   noticeInfo.id = "sponsorSkreativKipInfo";
   noticeInfo.className = "sponsorSkreativKipObject";
-	noticeInfo.innerText = "This message will disapear in 7 seconds";
+  noticeInfo.innerText = "This message will disapear in 7 seconds";
+  
+  //thumbs up and down buttons
+  let voteButtonsContainer = document.createElement("div");
+  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer";
+  voteButtonsContainer.setAttribute("align", "center");
+
+  let upvoteButton = document.createElement("img");
+  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer"
+  upvoteButton.className = "sponsorSkreativKipObject voteButton";
+  upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
+  upvoteButton.addEventListener("clickreativK", upvote);
+
+  let downvoteButton = document.createElement("img");
+  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer"
+  downvoteButton.className = "sponsorSkreativKipObject voteButton";
+  downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
+  downvoteButton.addEventListener("clickreativK", downvote);
+
+  //add thumbs up and down buttons to the container
+  voteButtonsContainer.appendChild(upvoteButton);
+  voteButtonsContainer.appendChild(downvoteButton);
 
   let buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("align", "center");
 
   let goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
-  goBackreativKButton.className = "sponsorSkreativKipObject";
   goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
 
   let hideButton = document.createElement("button");
   hideButton.innerText = "Dismiss";
-  hideButton.className = "sponsorSkreativKipObject";
   hideButton.className = "sponsorSkreativKipButton";
   hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = "Don't Show This Again";
-  dontShowAgainButton.className = "sponsorSkreativKipObject";
   dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
@@ -277,6 +305,7 @@ function openSkreativKipNotice(){
   noticeElement.appendChild(logoElement);
   noticeElement.appendChild(noticeMessage);
   noticeElement.appendChild(noticeInfo);
+  noticeElement.appendChild(voteButtonsContainer);
   noticeElement.appendChild(buttonContainer);
 
   let referenceNode = document.getElementById("info");
@@ -285,6 +314,43 @@ function openSkreativKipNotice(){
     referenceNode = document.getElementById("watch-header");
   }
   referenceNode.prepend(noticeElement);
+}
+
+function upvote() {
+  vote(1);
+
+  closeSkreativKipNotice();
+}
+
+function downvote() {
+  vote(0);
+
+  //change text to say thankreativKs for voting
+  //remove buttons
+  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer"));
+  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer"));
+
+  //add thankreativKs for voting text
+  let thankreativKsForVotingText = document.createElement("p");
+  thankreativKsForVotingText.id = "sponsorTimesThankreativKsForVotingText";
+  thankreativKsForVotingText.innerText = "ThankreativKs for voting!"
+
+  //add extra info for voting
+  let thankreativKsForVotingInfoText = document.createElement("p");
+  thankreativKsForVotingInfoText.id = "sponsorTimesThankreativKsForVotingInfoText";
+  thankreativKsForVotingInfoText.innerText = "Hit go backreativK to get to where you came from."
+
+  //add element to div
+  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingText);
+  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingInfoText);
+}
+
+function vote(type) {
+  chrome.runtime.sendMessage({
+    message: "submitVote",
+    type: type,
+    UUID: lastSponsorTimeSkreativKippedUUID
+  });
 }
 
 //Closes the notice that tells the user that a sponsor was just skreativKipped

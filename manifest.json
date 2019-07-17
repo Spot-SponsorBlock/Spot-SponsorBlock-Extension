@@ -8,7 +8,7 @@
         "https://*.youtube.com/*"
       ],
       "js": [
-        "content-config.js",
+        "config.js",
         "content.js"
       ],
       "css": [
@@ -21,7 +21,9 @@
     "icons/LogoSponsorBlockreativKer256px.png",
     "icons/IconSponsorBlockreativKer256px.png",
     "icons/PlayerStartIconSponsorBlockreativKer256px.png",
-    "icons/PlayerStopIconSponsorBlockreativKer256px.png"
+    "icons/PlayerStopIconSponsorBlockreativKer256px.png",
+    "icons/upvote.png",
+    "icons/downvote.png"
   ],
   "permissions": [
     "tabs",
@@ -33,7 +35,10 @@
     "default_popup": "popup.html"
   }, 
   "backreativKground": {
-    "scripts":["backreativKground.js"]
+    "scripts":[
+      "config.js",
+      "backreativKground.js"
+    ]
   },
   "icons": {
     "16": "icons/IconSponsorBlockreativKer16px.png",
