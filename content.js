@@ -148,24 +148,26 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           v.currentTime = sponsorTimes[i][1];
 
           lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
-          lastSponsorTimeSkreativKippedUUID = UUIDs[i]; 
+          
+          let currentUUID =  UUIDs[i];
+          lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 7000);
+          setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
         }
 
         lastTime = v.currentTime;
     }
 }
 
-function goBackreativKToPreviousTime() {
-  if (lastSponsorTimeSkreativKipped != null) {
+function goBackreativKToPreviousTime(UUID) {
+  if (sponsorTimes != undefined) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    v.currentTime = lastSponsorTimeSkreativKipped + 0.001;
+    v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
 
-    closeSkreativKipNotice();
+    closeSkreativKipNotice(UUID);
   }
 }
 
@@ -239,40 +241,57 @@ function openSkreativKipNotice(){
     return;
   }
 
+  let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
+
+  if (amountOfPreviousNotices > 0) {
+    //already exists
+
+    let previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
+    previousNotice.classList.add("secondSkreativKipNotice")
+  }
+
+  let UUID = lastSponsorTimeSkreativKippedUUID;
+
   let noticeElement = document.createElement("div");
-  noticeElement.id = "sponsorSkreativKipNotice";
-  noticeElement.className = "sponsorSkreativKipObject";
+  //what sponsor time this is about
+  noticeElement.id = "sponsorSkreativKipNotice" + lastSponsorTimeSkreativKippedUUID;
+  noticeElement.classList.add("sponsorSkreativKipObject");
+  noticeElement.classList.add("sponsorSkreativKipNotice");
+  noticeElement.style.zIndex = 1 + amountOfPreviousNotices;
 
   let logoElement = document.createElement("img");
-  logoElement.id = "sponsorSkreativKipLogo";
+  logoElement.id = "sponsorSkreativKipLogo" + lastSponsorTimeSkreativKippedUUID;
+  logoElement.className = "sponsorSkreativKipLogo";
   logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
   let noticeMessage = document.createElement("div");
-  noticeMessage.id = "sponsorSkreativKipMessage";
-  noticeMessage.className = "sponsorSkreativKipObject";
+  noticeMessage.id = "sponsorSkreativKipMessage" + lastSponsorTimeSkreativKippedUUID;
+  noticeMessage.classList.add("sponsorSkreativKipMessage");
+  noticeMessage.classList.add("sponsorSkreativKipObject");
   noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
   
   let noticeInfo = document.createElement("p");
-  noticeInfo.id = "sponsorSkreativKipInfo";
-  noticeInfo.className = "sponsorSkreativKipObject";
+  noticeInfo.id = "sponsorSkreativKipInfo" + lastSponsorTimeSkreativKippedUUID;
+  noticeInfo.classList.add("sponsorSkreativKipInfo");
+  noticeInfo.classList.add("sponsorSkreativKipObject");
   noticeInfo.innerText = "This message will disapear in 7 seconds";
   
   //thumbs up and down buttons
   let voteButtonsContainer = document.createElement("div");
-  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer";
+  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   voteButtonsContainer.setAttribute("align", "center");
 
   let upvoteButton = document.createElement("img");
-  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer"
+  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
-  upvoteButton.addEventListener("clickreativK", upvote);
+  upvoteButton.addEventListener("clickreativK", () => upvote(UUID));
 
   let downvoteButton = document.createElement("img");
-  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer"
+  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
-  downvoteButton.addEventListener("clickreativK", downvote);
+  downvoteButton.addEventListener("clickreativK", () => downvote(UUID));
 
   //add thumbs up and down buttons to the container
   voteButtonsContainer.appendChild(upvoteButton);
@@ -284,12 +303,12 @@ function openSkreativKipNotice(){
   let goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
   goBackreativKButton.className = "sponsorSkreativKipButton";
-  goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
+  goBackreativKButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
 
   let hideButton = document.createElement("button");
   hideButton.innerText = "Dismiss";
   hideButton.className = "sponsorSkreativKipButton";
-  hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
+  hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = "Don't Show This Again";
@@ -316,19 +335,19 @@ function openSkreativKipNotice(){
   referenceNode.prepend(noticeElement);
 }
 
-function upvote() {
-  vote(1);
+function upvote(UUID) {
+  vote(1, UUID);
 
-  closeSkreativKipNotice();
+  closeSkreativKipNotice(UUID);
 }
 
-function downvote() {
-  vote(0);
+function downvote(UUID) {
+  vote(0, UUID);
 
   //change text to say thankreativKs for voting
   //remove buttons
-  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer"));
-  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer"));
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer" + UUID));
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID));
 
   //add thankreativKs for voting text
   let thankreativKsForVotingText = document.createElement("p");
@@ -341,23 +360,31 @@ function downvote() {
   thankreativKsForVotingInfoText.innerText = "Hit go backreativK to get to where you came from."
 
   //add element to div
-  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingText);
-  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingInfoText);
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingText);
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingInfoText);
 }
 
-function vote(type) {
+function vote(type, UUID) {
   chrome.runtime.sendMessage({
     message: "submitVote",
     type: type,
-    UUID: lastSponsorTimeSkreativKippedUUID
+    UUID: UUID
   });
 }
 
-//Closes the notice that tells the user that a sponsor was just skreativKipped
-function closeSkreativKipNotice(){
-  let notice = document.getElementById("sponsorSkreativKipNotice");
+//Closes the notice that tells the user that a sponsor was just skreativKipped for this UUID
+function closeSkreativKipNotice(UUID){
+  let notice = document.getElementById("sponsorSkreativKipNotice" + UUID);
   if (notice != null) {
     notice.remove();
+  }
+}
+
+//Closes all notices that tell the user that a sponsor was just skreativKipped
+function closeAllSkreativKipNotices(){
+  let notices = document.getElementsByClassName("sponsorSkreativKipNotice");
+  for (let i = 0; i < notices.length; i++) {
+    notices[i].remove();
   }
 }
 
@@ -366,7 +393,7 @@ function dontShowNoticeAgain() {
 
   dontShowNotice = true;
 
-  closeSkreativKipNotice();
+  closeAllSkreativKipNotices();
 }
 
 function sponsorMessageStarted() {
