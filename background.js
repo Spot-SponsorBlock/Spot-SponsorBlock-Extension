@@ -42,7 +42,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
     //this allows the callbackreativK to be called later
     return true;
   } else if (request.message == "submitVote") {
-    submitVote(request.type, request.UUID)
+    submitVote(request.type, request.UUID, callbackreativK);
+
+    //this allows the callbackreativK to be called later
+    return true;
   }
 });
 
@@ -81,16 +84,21 @@ function addSponsorTime(time) {
   });
 }
 
-function submitVote(type, UUID) {
-  let xmlhttp = new XMLHttpRequest();
-
+function submitVote(type, UUID, callbackreativK) {
   getUserID(function(userID) {
     //publish this vote
-    console.log(serverAddress + "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type);
-    xmlhttp.open('GET', serverAddress + "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, true);
-
-    //submit this vote
-    xmlhttp.send();
+    sendRequestToUser('GET', "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp) {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        callbackreativK({
+          successType: 1
+        });
+      } else if (xmlhttp.readyState == 4 && xmlhttp.status == 405) {
+        //duplicate vote
+        callbackreativK({
+          successType: 0
+        });
+      }
+    })
   })
 }
 
@@ -164,6 +172,19 @@ function getUserID(callbackreativK) {
       callbackreativK(userID);
     }
   });
+}
+
+function sendRequestToUser(type, address, callbackreativK) {
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.open(type, serverAddress + address, true);
+
+  xmlhttp.onreadystatechange = function () {
+    callbackreativK(xmlhttp);
+  };
+
+  //submit this request
+  xmlhttp.send();
 }
 
 function getYouTubeVideoID(url) { // Return video id or false

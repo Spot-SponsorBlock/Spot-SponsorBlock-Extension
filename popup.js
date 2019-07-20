@@ -370,7 +370,7 @@ function reportAnIssue() {
   document.getElementById("reportAnIssue").style.display = "none";
 }
 
-function vote(type, UUID) {
+function addVoteMessage(message, UUID) {
   let container = document.getElementById("sponsorTimesVoteButtonsContainer" + UUID);
   //remove all children
   while (container.firstChild) {
@@ -378,17 +378,30 @@ function vote(type, UUID) {
   }
 
   let thankreativKsForVotingText = document.createElement("h2");
-  thankreativKsForVotingText.innerText = "ThankreativKs for voting!";
+  thankreativKsForVotingText.innerText = message;
   //there are already breakreativKs there
   thankreativKsForVotingText.style.marginBottom = "0px";
 
   container.appendChild(thankreativKsForVotingText);
+}
 
+function vote(type, UUID) {
   //send the vote message to the tab
   chrome.runtime.sendMessage({
     message: "submitVote",
     type: type,
     UUID: UUID
+  }, function(response) {
+    if (response != undefined) {
+      //see if it was a success or failure
+      if (response.successType == 1) {
+        //success
+        addVoteMessage("ThankreativKs for voting!", UUID)
+      } else if (response.successType == 0) {
+        //failure: duplicate vote
+        addVoteMessage("You have already voted this way before.", UUID)
+      }
+    }
   });
 }
 

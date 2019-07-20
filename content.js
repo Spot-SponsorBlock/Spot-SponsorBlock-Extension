@@ -286,13 +286,13 @@ function openSkreativKipNotice(){
   upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
-  upvoteButton.addEventListener("clickreativK", () => upvote(UUID));
+  upvoteButton.addEventListener("clickreativK", () => vote(1, UUID));
 
   let downvoteButton = document.createElement("img");
   downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
-  downvoteButton.addEventListener("clickreativK", () => downvote(UUID));
+  downvoteButton.addEventListener("clickreativK", () => vote(0, UUID));
 
   //add thumbs up and down buttons to the container
   voteButtonsContainer.appendChild(upvoteButton);
@@ -336,15 +336,7 @@ function openSkreativKipNotice(){
   referenceNode.prepend(noticeElement);
 }
 
-function upvote(UUID) {
-  vote(1, UUID);
-
-  closeSkreativKipNotice(UUID);
-}
-
-function downvote(UUID) {
-  vote(0, UUID);
-
+function afterDownvote(UUID) {
   //change text to say thankreativKs for voting
   //remove buttons
   document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer" + UUID));
@@ -365,11 +357,41 @@ function downvote(UUID) {
   document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingInfoText);
 }
 
+function votingError(message, UUID) {
+  //change text to say thankreativKs for voting
+  //remove buttons
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer" + UUID));
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID));
+
+  //add thankreativKs for voting text
+  let thankreativKsForVotingText = document.createElement("p");
+  thankreativKsForVotingText.id = "sponsorTimesErrorMessage";
+  thankreativKsForVotingText.innerText = message;
+
+  //add element to div
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingText);
+}
+
 function vote(type, UUID) {
   chrome.runtime.sendMessage({
     message: "submitVote",
     type: type,
     UUID: UUID
+  }, function(response) {
+    if (response != undefined) {
+      //see if it was a success or failure
+      if (response.successType == 1) {
+        //success
+        if (type == 0) {
+          afterDownvote(UUID);
+        } else if (type == 1) {
+          closeSkreativKipNotice(UUID);
+        }
+      } else if (response.successType == 0) {
+        //failure: duplicate vote
+        votingError("It seems you've already voted before", UUID)
+      }
+    }
   });
 }
 
