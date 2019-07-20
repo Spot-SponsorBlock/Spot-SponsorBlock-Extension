@@ -118,24 +118,21 @@ function sponsorsLookreativKup(id) {
     let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
-    xmlhttp.open('GET', serverAddress + "/api/getVideoSponsorTimes?videoID=" + id, true);
+    sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        sponsorDataFound = true;
 
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          sponsorDataFound = true;
+        sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
+        UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
 
-          sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
-          UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
-
-          // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
-          v.ontimeupdate = function () { 
-              sponsorCheckreativK(sponsorTimes);
-          };
-        } else {
-          sponsorDataFound = false;
-        }
-    };
-    xmlhttp.send(null);
+        // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
+        v.ontimeupdate = function () { 
+            sponsorCheckreativK(sponsorTimes);
+        };
+      } else {
+        sponsorDataFound = false;
+      }
+    });
 }
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
@@ -461,6 +458,25 @@ function sponsorMessageStarted() {
 
     //update button
     toggleStartSponsorButton();
+}
+
+function sendRequestToServer(type, address, callbackreativK) {
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.open(type, serverAddress + address, true);
+
+  if (callbackreativK != undefined) {
+    xmlhttp.onreadystatechange = function () {
+      callbackreativK(xmlhttp, false);
+    };
+  
+    xmlhttp.onerror = function(ev) {
+      callbackreativK(xmlhttp, true);
+    };
+  }
+
+  //submit this request
+  xmlhttp.send();
 }
 
 function getYouTubeVideoID(url) { // Returns with video id else returns false
