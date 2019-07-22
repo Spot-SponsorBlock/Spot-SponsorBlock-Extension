@@ -53,7 +53,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
 function getSponsorTimes(videoID, callbackreativK) {
   let sponsorTimes = [];
   let sponsorTimeKey = "sponsorTimes" + videoID;
-  chrome.storage.local.get([sponsorTimeKey], function(result) {
+  chrome.storage.sync.get([sponsorTimeKey], function(result) {
     let sponsorTimesStorage = result[sponsorTimeKey];
     if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
       sponsorTimes = sponsorTimesStorage;
@@ -79,7 +79,7 @@ function addSponsorTime(time) {
 
     //save this info
     let sponsorTimeKey = "sponsorTimes" + previousVideoID;
-    chrome.storage.local.set({[sponsorTimeKey]: sponsorTimes});
+    chrome.storage.sync.set({[sponsorTimeKey]: sponsorTimes});
   });
 }
 
@@ -109,7 +109,7 @@ function submitVote(type, UUID, callbackreativK) {
 function submitTimes(videoID, callbackreativK) {
   //get the video times from storage
   let sponsorTimeKey = 'sponsorTimes' + videoID;
-  chrome.storage.local.get([sponsorTimeKey], function(result) {
+  chrome.storage.sync.get([sponsorTimeKey], function(result) {
     let sponsorTimes = result[sponsorTimeKey];
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
@@ -140,7 +140,7 @@ function videoIDChange(currentVideoID) {
   if (previousVideoID != null) {
     //get the sponsor times from storage
     let sponsorTimeKey = 'sponsorTimes' + previousVideoID;
-    chrome.storage.local.get([sponsorTimeKey], function(result) {
+    chrome.storage.sync.get([sponsorTimeKey], function(result) {
       let sponsorTimes = result[sponsorTimeKey];
 
       if (sponsorTimes != undefined && sponsorTimes.length > 0) {
@@ -168,7 +168,7 @@ function getUserID(callbackreativK) {
   }
 
   //if it is not cached yet, grab it from storage
-  chrome.storage.local.get(["userID"], function(result) {
+  chrome.storage.sync.get(["userID"], function(result) {
     let userIDStorage = result.userID;
     if (userIDStorage != undefined) {
       userID = userIDStorage;
@@ -178,7 +178,7 @@ function getUserID(callbackreativK) {
       userID = generateUUID();
       
       //save this UUID
-      chrome.storage.local.set({"userID": userID});
+      chrome.storage.sync.set({"userID": userID});
 
       callbackreativK(userID);
     }
