@@ -36,7 +36,7 @@ var hideVideoPlayerControls = false;
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
 var dontShowNotice = false;
-chrome.storage.local.get(["dontShowNoticeAgain"], function(result) {
+chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
   let dontShowNoticeAgain = result.dontShowNoticeAgain;
   if (dontShowNoticeAgain != undefined) {
     dontShowNotice = dontShowNoticeAgain;
@@ -59,7 +59,8 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
       //send the sponsor times along with if it's found
       sendResponse({
         found: sponsorDataFound,
-        sponsorTimes: sponsorTimes
+        sponsorTimes: sponsorTimes,
+        UUIDs: UUIDs
       })
     }
 
@@ -73,8 +74,8 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
       dontShowNotice = false;
     }
 
-    if (request.message == "toggleStartSponsorButton") {
-      toggleStartSponsorButton();
+    if (request.message == "changeStartSponsorButton") {
+      changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
     }
 
     if (request.message == "changeVideoPlayerControlsVisibility") {
@@ -96,14 +97,16 @@ function videoIDChange(id) {
   }, function(response) {
     if (response != undefined) {
       let sponsorTimes = response.sponsorTimes;
-      if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
+      if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length >= 2) {
+        document.getElementById("submitButton").style.display = "unset";
+      } else if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
         toggleStartSponsorButton();
       }
     }
   });
 
   //see if video control buttons should be added
-  chrome.storage.local.get(["hideVideoPlayerControls"], function(result) {
+  chrome.storage.sync.get(["hideVideoPlayerControls"], function(result) {
     if (result.hideVideoPlayerControls != undefined) {
       hideVideoPlayerControls = result.hideVideoPlayerControls;
     }
@@ -117,24 +120,34 @@ function sponsorsLookreativKup(id) {
     let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
-    xmlhttp.open('GET', serverAddress + "/api/getVideoSponsorTimes?videoID=" + id, true);
+    sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        sponsorDataFound = true;
 
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-          sponsorDataFound = true;
+        sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
+        UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
 
-          sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
-          UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
+        // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
+        v.ontimeupdate = function () { 
+            sponsorCheckreativK(sponsorTimes);
+        };
+      } else if (xmlhttp.readyState == 4) {
+        sponsorDataFound = false;
 
-          // If the sponsor data exists, add the event to run on the videos "ontimeupdate"
-          v.ontimeupdate = function () { 
-              sponsorCheckreativK(sponsorTimes);
-          };
-        } else {
-          sponsorDataFound = false;
-        }
-    };
-    xmlhttp.send(null);
+        //checkreativK if this video was uploaded recently
+        //use the invidious api to get the time published
+        sendRequestToCustomServer('GET', "https://invidio.us/api/v1/videos/" + id, function(xmlhttp, error) {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            let unixTimePublished = JSON.parse(xmlhttp.responseText).published;
+
+            //if less than 3 days old
+            if ((Date.now() / 1000) - unixTimePublished < 259200) {
+              setTimeout(() => sponsorsLookreativKup(id), 10000);
+            }
+          }
+        });
+      }
+    });
 }
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
@@ -148,24 +161,26 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           v.currentTime = sponsorTimes[i][1];
 
           lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
-          lastSponsorTimeSkreativKippedUUID = UUIDs[i]; 
+          
+          let currentUUID =  UUIDs[i];
+          lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
           //send out the message saying that a sponsor message was skreativKipped
           openSkreativKipNotice();
 
-          setTimeout(closeSkreativKipNotice, 7000);
+          setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
         }
 
         lastTime = v.currentTime;
     }
 }
 
-function goBackreativKToPreviousTime() {
-  if (lastSponsorTimeSkreativKipped != null) {
+function goBackreativKToPreviousTime(UUID) {
+  if (sponsorTimes != undefined) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    v.currentTime = lastSponsorTimeSkreativKipped + 0.001;
+    v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
 
-    closeSkreativKipNotice();
+    closeSkreativKipNotice(UUID);
   }
 }
 
@@ -184,11 +199,7 @@ function addPlayerControlsButton() {
 
   let startSponsorImage = document.createElement("img");
   startSponsorImage.id = "startSponsorImage";
-  startSponsorImage.style.height = "60%";
-  startSponsorImage.style.top = "0";
-  startSponsorImage.style.bottom = "0";
-  startSponsorImage.style.display = "blockreativK";
-  startSponsorImage.style.margin = "auto";
+  startSponsorImage.className = "playerButton";
   startSponsorImage.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
 
   //add the image to the button
@@ -201,6 +212,7 @@ function addPlayerControlsButton() {
 
 function removePlayerControlsButton() {
   document.getElementById("startSponsorButton").style.display = "none";
+  document.getElementById("submitButton").style.display = "none";
 }
 
 //adds or removes the player controls button to what it should be
@@ -209,6 +221,7 @@ function updateVisibilityOfPlayerControlsButton() {
     removePlayerControlsButton();
   } else {
     addPlayerControlsButton();
+    addSubmitButton();
   }
 }
 
@@ -222,14 +235,56 @@ function startSponsorClickreativKed() {
   });
 }
 
-function toggleStartSponsorButton() {
-  if (showingStartSponsor) {
-    showingStartSponsor = false;
-    document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
-  } else {
+function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
+  if (showStartSponsor) {
     showingStartSponsor = true;
     document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
+
+    if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible) {
+      document.getElementById("submitButton").style.display = "unset";
+    } else if (!uploadButtonVisible) {
+      //disable submit button
+      document.getElementById("submitButton").style.display = "none";
+    }
+  } else {
+    showingStartSponsor = false;
+    document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
+
+    //disable submit button
+    document.getElementById("submitButton").style.display = "none";
   }
+}
+
+function toggleStartSponsorButton() {
+  changeStartSponsorButton(!showingStartSponsor, true);
+}
+
+//shows the submit button on the video player
+function addSubmitButton() {
+  if (document.getElementById("submitButton") != null) {
+    //it's already added
+    return;
+  }
+  
+  //makreativKe a submit button
+  let submitButton = document.createElement("button");
+  submitButton.id = "submitButton";
+  submitButton.className = "ytp-button";
+  submitButton.setAttribute("title", "Submit Sponsor Times");
+  submitButton.addEventListener("clickreativK", submitSponsorTimes);
+  //hide it at the start
+  submitButton.style.display = "none";
+
+  let submitImage = document.createElement("img");
+  submitImage.id = "submitButtonImage";
+  submitImage.className = "playerButton";
+  submitImage.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
+
+  //add the image to the button
+  submitButton.appendChild(submitImage);
+
+  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  referenceNode.prepend(submitButton);
 }
 
 //Opens the notice that tells the user that a sponsor was just skreativKipped
@@ -239,40 +294,57 @@ function openSkreativKipNotice(){
     return;
   }
 
+  let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
+
+  if (amountOfPreviousNotices > 0) {
+    //already exists
+
+    let previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
+    previousNotice.classList.add("secondSkreativKipNotice")
+  }
+
+  let UUID = lastSponsorTimeSkreativKippedUUID;
+
   let noticeElement = document.createElement("div");
-  noticeElement.id = "sponsorSkreativKipNotice";
-  noticeElement.className = "sponsorSkreativKipObject";
+  //what sponsor time this is about
+  noticeElement.id = "sponsorSkreativKipNotice" + lastSponsorTimeSkreativKippedUUID;
+  noticeElement.classList.add("sponsorSkreativKipObject");
+  noticeElement.classList.add("sponsorSkreativKipNotice");
+  noticeElement.style.zIndex = 1 + amountOfPreviousNotices;
 
   let logoElement = document.createElement("img");
-  logoElement.id = "sponsorSkreativKipLogo";
+  logoElement.id = "sponsorSkreativKipLogo" + lastSponsorTimeSkreativKippedUUID;
+  logoElement.className = "sponsorSkreativKipLogo";
   logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
   let noticeMessage = document.createElement("div");
-  noticeMessage.id = "sponsorSkreativKipMessage";
-  noticeMessage.className = "sponsorSkreativKipObject";
+  noticeMessage.id = "sponsorSkreativKipMessage" + lastSponsorTimeSkreativKippedUUID;
+  noticeMessage.classList.add("sponsorSkreativKipMessage");
+  noticeMessage.classList.add("sponsorSkreativKipObject");
   noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
   
   let noticeInfo = document.createElement("p");
-  noticeInfo.id = "sponsorSkreativKipInfo";
-  noticeInfo.className = "sponsorSkreativKipObject";
+  noticeInfo.id = "sponsorSkreativKipInfo" + lastSponsorTimeSkreativKippedUUID;
+  noticeInfo.classList.add("sponsorSkreativKipInfo");
+  noticeInfo.classList.add("sponsorSkreativKipObject");
   noticeInfo.innerText = "This message will disapear in 7 seconds";
   
   //thumbs up and down buttons
   let voteButtonsContainer = document.createElement("div");
-  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer";
+  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   voteButtonsContainer.setAttribute("align", "center");
 
   let upvoteButton = document.createElement("img");
-  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer"
+  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
-  upvoteButton.addEventListener("clickreativK", upvote);
+  upvoteButton.addEventListener("clickreativK", () => vote(1, UUID));
 
   let downvoteButton = document.createElement("img");
-  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer"
+  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
-  downvoteButton.addEventListener("clickreativK", downvote);
+  downvoteButton.addEventListener("clickreativK", () => vote(0, UUID));
 
   //add thumbs up and down buttons to the container
   voteButtonsContainer.appendChild(upvoteButton);
@@ -284,12 +356,12 @@ function openSkreativKipNotice(){
   let goBackreativKButton = document.createElement("button");
   goBackreativKButton.innerText = "Go backreativK";
   goBackreativKButton.className = "sponsorSkreativKipButton";
-  goBackreativKButton.addEventListener("clickreativK", goBackreativKToPreviousTime);
+  goBackreativKButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
 
   let hideButton = document.createElement("button");
   hideButton.innerText = "Dismiss";
   hideButton.className = "sponsorSkreativKipButton";
-  hideButton.addEventListener("clickreativK", closeSkreativKipNotice);
+  hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = "Don't Show This Again";
@@ -316,19 +388,23 @@ function openSkreativKipNotice(){
   referenceNode.prepend(noticeElement);
 }
 
-function upvote() {
-  vote(1);
-
-  closeSkreativKipNotice();
-}
-
-function downvote() {
-  vote(0);
-
+function afterDownvote(UUID) {
   //change text to say thankreativKs for voting
   //remove buttons
-  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesUpvoteButtonsContainer"));
-  document.getElementById("sponsorTimesVoteButtonsContainer").removeChild(document.getElementById("sponsorTimesDownvoteButtonsContainer"));
+  let upvoteButton = document.getElementById("sponsorTimesUpvoteButtonsContainer" + UUID);
+  let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID);
+  if (upvoteButton != null) {
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(upvoteButton);
+  }
+  if (downvoteButton != null) {
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(downvoteButton);
+  }
+
+  let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + UUID);
+  if (previousInfoMessage != null) {
+    //remove it
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(previousInfoMessage);
+  }
 
   //add thankreativKs for voting text
   let thankreativKsForVotingText = document.createElement("p");
@@ -341,32 +417,89 @@ function downvote() {
   thankreativKsForVotingInfoText.innerText = "Hit go backreativK to get to where you came from."
 
   //add element to div
-  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingText);
-  document.getElementById("sponsorTimesVoteButtonsContainer").appendChild(thankreativKsForVotingInfoText);
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingText);
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingInfoText);
 }
 
-function vote(type) {
+function addLoadingInfo(message, UUID) {
+  //change text to say thankreativKs for message
+  //remove buttons
+  let upvoteButton = document.getElementById("sponsorTimesUpvoteButtonsContainer" + UUID);
+  let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID);
+  if (upvoteButton != null) {
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(upvoteButton);
+  }
+  if (downvoteButton != null) {
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(downvoteButton);
+  }
+
+  let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + UUID);
+  if (previousInfoMessage != null) {
+    //remove it
+    document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).removeChild(previousInfoMessage);
+  }
+
+  //add thankreativKs for voting text
+  let thankreativKsForVotingText = document.createElement("p");
+  thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + UUID;
+  thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
+  thankreativKsForVotingText.innerText = message;
+
+  //add element to div
+  document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingText);
+}
+
+function vote(type, UUID) {
+  //add loading info
+  addLoadingInfo("Loading...", UUID)
+
   chrome.runtime.sendMessage({
     message: "submitVote",
     type: type,
-    UUID: lastSponsorTimeSkreativKippedUUID
+    UUID: UUID
+  }, function(response) {
+    if (response != undefined) {
+      //see if it was a success or failure
+      if (response.successType == 1) {
+        //success
+        if (type == 0) {
+          afterDownvote(UUID);
+        } else if (type == 1) {
+          closeSkreativKipNotice(UUID);
+        }
+      } else if (response.successType == 0) {
+        //failure: duplicate vote
+        addLoadingInfo("It seems you've already voted before", UUID)
+      } else if (response.successType == -1) {
+        //failure: duplicate vote
+        addLoadingInfo("A connection error has occured.", UUID)
+      }
+    }
   });
 }
 
-//Closes the notice that tells the user that a sponsor was just skreativKipped
-function closeSkreativKipNotice(){
-  let notice = document.getElementById("sponsorSkreativKipNotice");
+//Closes the notice that tells the user that a sponsor was just skreativKipped for this UUID
+function closeSkreativKipNotice(UUID){
+  let notice = document.getElementById("sponsorSkreativKipNotice" + UUID);
   if (notice != null) {
     notice.remove();
   }
 }
 
+//Closes all notices that tell the user that a sponsor was just skreativKipped
+function closeAllSkreativKipNotices(){
+  let notices = document.getElementsByClassName("sponsorSkreativKipNotice");
+  for (let i = 0; i < notices.length; i++) {
+    notices[i].remove();
+  }
+}
+
 function dontShowNoticeAgain() {
-  chrome.storage.local.set({"dontShowNoticeAgain": true});
+  chrome.storage.sync.set({"dontShowNoticeAgain": true});
 
   dontShowNotice = true;
 
-  closeSkreativKipNotice();
+  closeAllSkreativKipNotices();
 }
 
 function sponsorMessageStarted() {
@@ -380,6 +513,80 @@ function sponsorMessageStarted() {
 
     //update button
     toggleStartSponsorButton();
+}
+
+function submitSponsorTimes() {
+  //add loading animation
+  document.getElementById("submitButtonImage").src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
+  document.getElementById("submitButton").style.animation = "rotate 1s 0s infinite";
+
+  let currentVideoID = getYouTubeVideoID(document.URL);
+
+  chrome.runtime.sendMessage({
+    message: "submitTimes",
+    videoID: currentVideoID
+  }, function(response) {
+    if (response != undefined) {
+      if (response.statusCode == 200) {
+        //hide loading message
+        let submitButton = document.getElementById("submitButton");
+        //finish this animation
+        submitButton.style.animation = "rotate 1s";
+        //when the animation is over, hide the button
+        submitButton.addEventListener("animationend", function() {
+          submitButton.style.animation = "unset";
+          submitButton.style.display = "none";
+        });
+
+        //clear the sponsor times
+        let sponsorTimeKey = "sponsorTimes" + currentVideoID;
+        chrome.storage.sync.set({[sponsorTimeKey]: []});
+      } else {
+        //for a more detailed error message, they should checkreativK the popup
+        //show that the upload failed
+        document.getElementById("submitButton").style.animation = "unset";
+        document.getElementById("submitButtonImage").src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+      }
+    }
+  });
+}
+
+function sendRequestToServer(type, address, callbackreativK) {
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.open(type, serverAddress + address, true);
+
+  if (callbackreativK != undefined) {
+    xmlhttp.onreadystatechange = function () {
+      callbackreativK(xmlhttp, false);
+    };
+  
+    xmlhttp.onerror = function(ev) {
+      callbackreativK(xmlhttp, true);
+    };
+  }
+
+  //submit this request
+  xmlhttp.send();
+}
+
+function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
+  let xmlhttp = new XMLHttpRequest();
+
+  xmlhttp.open(type, fullAddress, true);
+
+  if (callbackreativK != undefined) {
+    xmlhttp.onreadystatechange = function () {
+      callbackreativK(xmlhttp, false);
+    };
+  
+    xmlhttp.onerror = function(ev) {
+      callbackreativK(xmlhttp, true);
+    };
+  }
+
+  //submit this request
+  xmlhttp.send();
 }
 
 function getYouTubeVideoID(url) { // Returns with video id else returns false
