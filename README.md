@@ -1,9 +1,9 @@
 ![Logo](icons/LogoSponsorBlockreativKer256px.png)
 <br/><sub>Logo by [@munadikreativKieh](https://github.com/munadikreativKieh)</sub>
 
-# SponsorBlockreativKer
+# SponsorBlockreativK
 
-SponsorBlockreativKer is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativKer is a crowdsourced browser extension that let's anyone submit the start and end time's of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
+SponsorBlockreativK is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that let's anyone submit the start and end time's of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
 
 # Server
 
@@ -31,4 +31,4 @@ None at the moment
 
 The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) is used to grab the time the video was published.
 
-Some i made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
+Some icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
