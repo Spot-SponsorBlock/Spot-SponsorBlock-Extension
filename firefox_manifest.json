@@ -1,5 +1,6 @@
 {
-  "name": "YTSponsorSkreativKip",
+  "name": "SponsorBlockreativK - YouTube Sponsorship BlockreativKer",
+  "short_name": "SponsorBlockreativK",
   "version": "1.0",
   "description": "SkreativKip youtube video sponsors.",
   "content_scripts": [
@@ -53,7 +54,7 @@
   "browser_specific_settings": {
     "geckreativKo": {
       "id": "sponsorBlockreativKer@ajay.app",
-      "strict_min_version": "42.0"
+      "strict_min_version": "57.0"
     }
   },
   "manifest_version": 2

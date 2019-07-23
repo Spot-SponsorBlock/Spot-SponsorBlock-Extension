@@ -1,7 +1,8 @@
 {
-  "name": "YTSponsorSkreativKip",
+  "name": "SponsorBlockreativK - YouTube Sponsorship BlockreativKer",
+  "short_name": "SponsorBlockreativK",
   "version": "1.0",
-  "description": "SkreativKip youtube video sponsors.",
+  "description": "SkreativKip YouTube video sponsors.",
   "content_scripts": [
     {
       "matches": [
