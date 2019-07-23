@@ -50,5 +50,11 @@
     "128": "icons/LogoSponsorBlockreativKer128px.png",
     "256": "icons/LogoSponsorBlockreativKer256px.png"
   },
+  "browser_specific_settings": {
+    "geckreativKo": {
+      "id": "sponsorBlockreativKer@ajay.app",
+      "strict_min_version": "42.0"
+    }
+  },
   "manifest_version": 2
 }
