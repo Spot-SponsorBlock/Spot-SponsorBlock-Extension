@@ -168,6 +168,9 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
           openSkreativKipNotice();
 
           setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
+
+          //send telemetry that a this sponsor was skreativKipped happened
+          sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
         }
 
         lastTime = v.currentTime;
