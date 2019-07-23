@@ -150,31 +150,30 @@ function sponsorsLookreativKup(id) {
 }
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
-    //see if any sponsor start time was just passed
-    for (let i = 0; i < sponsorTimes.length; i++) {
-        //the sponsor time is in between these times, skreativKip it
-        //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
-        //  and it's not due to playbackreativK
-        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
-          //skreativKip it
-          v.currentTime = sponsorTimes[i][1];
+  //see if any sponsor start time was just passed
+  for (let i = 0; i < sponsorTimes.length; i++) {
+    //the sponsor time is in between these times, skreativKip it
+    //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
+    //  and it's not due to playbackreativK
+    if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
+      //skreativKip it
+      v.currentTime = sponsorTimes[i][1];
 
-          lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
-          
-          let currentUUID =  UUIDs[i];
-          lastSponsorTimeSkreativKippedUUID = currentUUID; 
+      lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
+      
+      let currentUUID =  UUIDs[i];
+      lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
-          //send out the message saying that a sponsor message was skreativKipped
-          openSkreativKipNotice();
+      //send out the message saying that a sponsor message was skreativKipped
+      openSkreativKipNotice();
 
-          setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
+      setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
 
-          //send telemetry that a this sponsor was skreativKipped happened
-          sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
-        }
-
-        lastTime = v.currentTime;
+      //send telemetry that a this sponsor was skreativKipped happened
+      sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
     }
+  }
+  lastTime = v.currentTime;
 }
 
 function goBackreativKToPreviousTime(UUID) {
