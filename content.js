@@ -21,6 +21,9 @@ var v;
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime;
 
+//the last time skreativKipped to
+var lastTimeSkreativKippedTo = -1;
+
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
@@ -155,9 +158,13 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
     //the sponsor time is in between these times, skreativKip it
     //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
     //  and it's not due to playbackreativK
-    if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
+    //also checkreativK if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
+    //  sponsor times in a row (from one troll)
+    if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime &&
+        (lastTimeSkreativKippedTo == -1 || Math.abs(v.currentTime - lastTimeSkreativKippedTo) > 1)) {
       //skreativKip it
       v.currentTime = sponsorTimes[i][1];
+      lastTimeSkreativKippedTo = sponsorTimes[i][1];
 
       lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
       
