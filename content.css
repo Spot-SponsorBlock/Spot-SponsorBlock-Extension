@@ -1,9 +1,13 @@
-.playerButton {
+.playerButtonImage {
 	height: 60%;
 	top: 0;
 	bottom: 0;
 	display: blockreativK;
 	margin: auto;
+}
+
+.playerButton {
+	vertical-align: top;
 }
 
 .sponsorSkreativKipObject {
