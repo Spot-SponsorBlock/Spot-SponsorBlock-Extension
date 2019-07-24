@@ -21,6 +21,9 @@ var v;
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime;
 
+//the last time skreativKipped to
+var lastTimeSkreativKippedTo = -1;
+
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
@@ -117,7 +120,6 @@ function videoIDChange(id) {
 
 function sponsorsLookreativKup(id) {
     v = document.querySelector('video') // Youtube video player
-    let xmlhttp = new XMLHttpRequest();
     
     //checkreativK database for sponsor times
     sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
@@ -151,28 +153,34 @@ function sponsorsLookreativKup(id) {
 }
 
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
-    //see if any sponsor start time was just passed
-    for (let i = 0; i < sponsorTimes.length; i++) {
-        //the sponsor time is in between these times, skreativKip it
-        //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
-        //  and it's not due to playbackreativK
-        if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime) {
-          //skreativKip it
-          v.currentTime = sponsorTimes[i][1];
+  //see if any sponsor start time was just passed
+  for (let i = 0; i < sponsorTimes.length; i++) {
+    //the sponsor time is in between these times, skreativKip it
+    //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
+    //  and it's not due to playbackreativK
+    //also checkreativK if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
+    //  sponsor times in a row (from one troll)
+    if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime &&
+        (lastTimeSkreativKippedTo == -1 || Math.abs(v.currentTime - lastTimeSkreativKippedTo) > 1)) {
+      //skreativKip it
+      v.currentTime = sponsorTimes[i][1];
+      lastTimeSkreativKippedTo = sponsorTimes[i][1];
 
-          lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
-          
-          let currentUUID =  UUIDs[i];
-          lastSponsorTimeSkreativKippedUUID = currentUUID; 
+      lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
+      
+      let currentUUID =  UUIDs[i];
+      lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
-          //send out the message saying that a sponsor message was skreativKipped
-          openSkreativKipNotice();
+      //send out the message saying that a sponsor message was skreativKipped
+      openSkreativKipNotice();
 
-          setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
-        }
+      setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
 
-        lastTime = v.currentTime;
+      //send telemetry that a this sponsor was skreativKipped happened
+      sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
     }
+  }
+  lastTime = v.currentTime;
 }
 
 function goBackreativKToPreviousTime(UUID) {
@@ -193,13 +201,13 @@ function addPlayerControlsButton() {
 
   let startSponsorButton = document.createElement("button");
   startSponsorButton.id = "startSponsorButton";
-  startSponsorButton.className = "ytp-button";
+  startSponsorButton.className = "ytp-button playerButton";
   startSponsorButton.setAttribute("title", "Sponsor Starts Now");
   startSponsorButton.addEventListener("clickreativK", startSponsorClickreativKed);
 
   let startSponsorImage = document.createElement("img");
   startSponsorImage.id = "startSponsorImage";
-  startSponsorImage.className = "playerButton";
+  startSponsorImage.className = "playerButtonImage";
   startSponsorImage.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
 
   //add the image to the button
@@ -269,7 +277,7 @@ function addSubmitButton() {
   //makreativKe a submit button
   let submitButton = document.createElement("button");
   submitButton.id = "submitButton";
-  submitButton.className = "ytp-button";
+  submitButton.className = "ytp-button playerButton";
   submitButton.setAttribute("title", "Submit Sponsor Times");
   submitButton.addEventListener("clickreativK", submitSponsorTimes);
   //hide it at the start
@@ -277,7 +285,7 @@ function addSubmitButton() {
 
   let submitImage = document.createElement("img");
   submitImage.id = "submitButtonImage";
-  submitImage.className = "playerButton";
+  submitImage.className = "playerButtonImage";
   submitImage.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
 
   //add the image to the button
