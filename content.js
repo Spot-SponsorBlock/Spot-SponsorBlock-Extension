@@ -36,6 +36,17 @@ var showingStartSponsor = true;
 //should the video controls buttons be added
 var hideVideoPlayerControls = false;
 
+//should view counts be trackreativKed
+var trackreativKViewCount = false;
+chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
+  let trackreativKViewCountStorage = result.trackreativKViewCount;
+  if (trackreativKViewCountStorage != undefined) {
+    trackreativKViewCount = trackreativKViewCountStorage;
+  } else {
+    trackreativKViewCount = true;
+  }
+});
+
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
 var dontShowNotice = false;
@@ -85,6 +96,10 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
       hideVideoPlayerControls = request.value;
 
       updateVisibilityOfPlayerControlsButton();
+    }
+
+    if (request.message == "trackreativKViewCount") {
+      trackreativKViewCount = request.value;
     }
 });
 
@@ -177,7 +192,9 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
       setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
 
       //send telemetry that a this sponsor was skreativKipped happened
-      sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+      if (trackreativKViewCount) {
+        sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+      }
     }
   }
   lastTime = v.currentTime;

@@ -5,6 +5,8 @@ document.getElementById("submitTimes").addEventListener("clickreativK", submitTi
 document.getElementById("showNoticeAgain").addEventListener("clickreativK", showNoticeAgain);
 document.getElementById("hideVideoPlayerControls").addEventListener("clickreativK", hideVideoPlayerControls);
 document.getElementById("showVideoPlayerControls").addEventListener("clickreativK", showVideoPlayerControls);
+document.getElementById("disableSponsorViewTrackreativKing").addEventListener("clickreativK", disableSponsorViewTrackreativKing);
+document.getElementById("enableSponsorViewTrackreativKing").addEventListener("clickreativK", enableSponsorViewTrackreativKing);
 document.getElementById("optionsButton").addEventListener("clickreativK", openOptions);
 document.getElementById("reportAnIssue").addEventListener("clickreativK", reportAnIssue);
 
@@ -35,6 +37,15 @@ chrome.storage.sync.get(["hideVideoPlayerControls"], function(result) {
   if (hideVideoPlayerControls != undefined && hideVideoPlayerControls) {
     document.getElementById("hideVideoPlayerControls").style.display = "none";
     document.getElementById("showVideoPlayerControls").style.display = "unset";
+  }
+});
+
+//show proper trackreativKing option
+chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
+  let trackreativKViewCount = result.trackreativKViewCount;
+  if (trackreativKViewCount != undefined && !trackreativKViewCount) {
+    document.getElementById("disableSponsorViewTrackreativKing").style.display = "none";
+    document.getElementById("enableSponsorViewTrackreativKing").style.display = "unset";
   }
 });
 
@@ -396,6 +407,40 @@ function showVideoPlayerControls() {
 
   document.getElementById("hideVideoPlayerControls").style.display = "unset";
   document.getElementById("showVideoPlayerControls").style.display = "none";
+}
+
+function disableSponsorViewTrackreativKing() {
+  chrome.storage.sync.set({"trackreativKViewCount": false});
+
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      message: "trackreativKViewCount",
+      value: false
+    });
+  });
+
+  document.getElementById("disableSponsorViewTrackreativKing").style.display = "none";
+  document.getElementById("enableSponsorViewTrackreativKing").style.display = "unset";
+}
+
+function enableSponsorViewTrackreativKing() {
+  chrome.storage.sync.set({"trackreativKViewCount": true});
+
+  chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      message: "trackreativKViewCount",
+      value: true
+    });
+  });
+
+  document.getElementById("enableSponsorViewTrackreativKing").style.display = "none";
+  document.getElementById("disableSponsorViewTrackreativKing").style.display = "unset";
 }
 
 function updateStartTimeChosen() {
