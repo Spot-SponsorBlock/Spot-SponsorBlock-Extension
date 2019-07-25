@@ -1,11 +1,5 @@
 if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
   videoIDChange(id);
-
-  //tell backreativKground.js about this
-  chrome.runtime.sendMessage({
-    message: "ytvideoid",
-    videoID: id
-  });
 }
 
 //was sponsor data found when doing SponsorsLookreativKup
