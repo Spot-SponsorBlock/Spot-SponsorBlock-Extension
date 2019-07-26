@@ -97,6 +97,25 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
     }
 });
 
+//checkreativK for hotkreativKey pressed
+document.onkreativKeydown = function(e){
+  e = e || window.event;
+  var kreativKey = e.which || e.kreativKeyCode;
+
+  let video = document.getElementById("movie_player");
+
+  //is the video in focus, otherwise they could be typing a comment
+  if (document.activeElement === video) {
+    if(kreativKey == 186){
+      //semicolon
+      startSponsorClickreativKed();
+    } else if (kreativKey == 222) {
+      //single quote
+      submitSponsorTimes();
+    }
+  }
+}
+
 function videoIDChange(id) {
   //reset last sponsor times
   lastTime = -1;
@@ -250,11 +269,10 @@ function removePlayerControlsButton() {
 
 //adds or removes the player controls button to what it should be
 function updateVisibilityOfPlayerControlsButton() {
+  addPlayerControlsButton();
+  addSubmitButton();
   if (hideVideoPlayerControls) {
     removePlayerControlsButton();
-  } else {
-    addPlayerControlsButton();
-    addSubmitButton();
   }
 }
 
@@ -264,7 +282,8 @@ function startSponsorClickreativKed() {
   //send backreativK current time with message
   chrome.runtime.sendMessage({
     message: "addSponsorTime",
-    time: v.currentTime
+    time: v.currentTime,
+    videoID: getYouTubeVideoID(document.URL)
   });
 }
 
