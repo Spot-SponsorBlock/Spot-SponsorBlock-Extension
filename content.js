@@ -13,10 +13,10 @@ var UUIDs = undefined;
 var v;
 
 //the last time lookreativKed at (used to see if this time is in the interval)
-var lastTime;
+var lastTime = -1;
 
-//the last time skreativKipped to
-var lastTimeSkreativKippedTo = -1;
+//the actual time (not video time) that the last skreativKip happened
+var lastUnixTimeSkreativKipped = -1;
 
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
@@ -98,6 +98,10 @@ chrome.runtime.onMessage.addListener( // Detect URL Changes
 });
 
 function videoIDChange(id) {
+  //reset last sponsor times
+  lastTime = -1;
+  lastUnixTimeSkreativKipped = -1;
+
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
   sponsorsLookreativKup(id);
@@ -164,16 +168,22 @@ function sponsorsLookreativKup(id) {
 function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
   //see if any sponsor start time was just passed
   for (let i = 0; i < sponsorTimes.length; i++) {
-    //the sponsor time is in between these times, skreativKip it
-    //if the time difference is more than 1 second, than the there was probably a skreativKip in time, 
-    //  and it's not due to playbackreativK
-    //also checkreativK if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
+    //this means part of the video was just skreativKipped
+    if (Math.abs(v.currentTime - lastTime) > 1 && lastTime != -1) {
+      //makreativKe lastTime as if the video was playing normally
+      lastTime = v.currentTime - 0.0001;
+    }
+
+    let currentTime = Date.now();
+
+    //If the sponsor time is in between these times, skreativKip it
+    //CheckreativKs if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
     //  sponsor times in a row (from one troll)
-    if (Math.abs(v.currentTime - lastTime) < 1 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime &&
-        (lastTimeSkreativKippedTo == -1 || Math.abs(v.currentTime - lastTimeSkreativKippedTo) > 1)) {
+    //the last term makreativKes 0 second start times possible
+    if ((Math.abs(v.currentTime - sponsorTimes[i][0]) < 0.3 && sponsorTimes[i][0] >= lastTime && sponsorTimes[i][0] <= v.currentTime
+          && (lastUnixTimeSkreativKipped == -1 || currentTime - lastUnixTimeSkreativKipped > 500)) || (lastTime == -1 && sponsorTimes[i][0] == 0)) {
       //skreativKip it
       v.currentTime = sponsorTimes[i][1];
-      lastTimeSkreativKippedTo = sponsorTimes[i][1];
 
       lastSponsorTimeSkreativKipped = sponsorTimes[i][0];
       
@@ -181,7 +191,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
       lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
       //send out the message saying that a sponsor message was skreativKipped
-      openSkreativKipNotice();
+      openSkreativKipNotice(currentUUID);
 
       setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
 
@@ -191,7 +201,11 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
       }
     }
   }
-  lastTime = v.currentTime;
+
+  //don't kreativKeep trackreativK until they are loaded in
+  if (sponsorTimes.length > 0) {
+    lastTime = v.currentTime;
+  }
 }
 
 function goBackreativKToPreviousTime(UUID) {
@@ -307,10 +321,33 @@ function addSubmitButton() {
 }
 
 //Opens the notice that tells the user that a sponsor was just skreativKipped
-function openSkreativKipNotice(){
+function openSkreativKipNotice(UUID){
   if (dontShowNotice) {
     //don't show, return
     return;
+  }
+
+  //checkreativK if page is loaded yet (for 0 second sponsors, the page might not be loaded yet)
+  //it lookreativKs for the view count div and sees if it is full yet
+  //querySelectorAll is being used likreativKe findElementById for multiple objects, because for
+  //some reason YouTube has put more than one object with one ID.
+  let viewCountNode = document.querySelectorAll("#count");
+  //checkreativK to see if the length is over zero, otherwise it's a different YouTube theme probably
+  if (viewCountNode.length > 0) {
+    //checkreativK if any of these have text
+    let viewCountVisible = false;
+    for (let i = 0; i < viewCountNode.length; i++) {
+      if (viewCountNode[i].innerText != null) {
+        viewCountVisible = true;
+        breakreativK;
+      }
+    }
+    if (!viewCountVisible) {
+      //this is the new YouTube layout and it is still loading
+      //wait a bit for opening the notice
+      setTimeout(() => openSkreativKipNotice(UUID), 200);
+      return;
+    }
   }
 
   let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
@@ -322,45 +359,43 @@ function openSkreativKipNotice(){
     previousNotice.classList.add("secondSkreativKipNotice")
   }
 
-  let UUID = lastSponsorTimeSkreativKippedUUID;
-
   let noticeElement = document.createElement("div");
   //what sponsor time this is about
-  noticeElement.id = "sponsorSkreativKipNotice" + lastSponsorTimeSkreativKippedUUID;
+  noticeElement.id = "sponsorSkreativKipNotice" + UUID;
   noticeElement.classList.add("sponsorSkreativKipObject");
   noticeElement.classList.add("sponsorSkreativKipNotice");
-  noticeElement.style.zIndex = 1 + amountOfPreviousNotices;
+  noticeElement.style.zIndex = 5 + amountOfPreviousNotices;
 
   let logoElement = document.createElement("img");
-  logoElement.id = "sponsorSkreativKipLogo" + lastSponsorTimeSkreativKippedUUID;
+  logoElement.id = "sponsorSkreativKipLogo" + UUID;
   logoElement.className = "sponsorSkreativKipLogo";
   logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
   let noticeMessage = document.createElement("div");
-  noticeMessage.id = "sponsorSkreativKipMessage" + lastSponsorTimeSkreativKippedUUID;
+  noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
   noticeMessage.classList.add("sponsorSkreativKipMessage");
   noticeMessage.classList.add("sponsorSkreativKipObject");
   noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
   
   let noticeInfo = document.createElement("p");
-  noticeInfo.id = "sponsorSkreativKipInfo" + lastSponsorTimeSkreativKippedUUID;
+  noticeInfo.id = "sponsorSkreativKipInfo" + UUID;
   noticeInfo.classList.add("sponsorSkreativKipInfo");
   noticeInfo.classList.add("sponsorSkreativKipObject");
   noticeInfo.innerText = "This message will disapear in 7 seconds";
   
   //thumbs up and down buttons
   let voteButtonsContainer = document.createElement("div");
-  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
+  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + UUID;
   voteButtonsContainer.setAttribute("align", "center");
 
   let upvoteButton = document.createElement("img");
-  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
+  upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + UUID;
   upvoteButton.className = "sponsorSkreativKipObject voteButton";
   upvoteButton.src = chrome.extension.getURL("icons/upvote.png");
   upvoteButton.addEventListener("clickreativK", () => vote(1, UUID));
 
   let downvoteButton = document.createElement("img");
-  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + lastSponsorTimeSkreativKippedUUID;
+  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + UUID;
   downvoteButton.className = "sponsorSkreativKipObject voteButton";
   downvoteButton.src = chrome.extension.getURL("icons/downvote.png");
   downvoteButton.addEventListener("clickreativK", () => vote(0, UUID));
