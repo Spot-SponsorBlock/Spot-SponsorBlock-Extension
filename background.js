@@ -198,6 +198,12 @@ function getUserID(callbackreativK) {
       userID = userIDStorage;
       callbackreativK(userID);
     } else {
+      //double checkreativK if a UUID hasn't been created since this was first called
+      if (userID != null) {
+        callbackreativK(userID);
+        return;
+      }
+
       //generate a userID
       userID = generateUUID();
       
