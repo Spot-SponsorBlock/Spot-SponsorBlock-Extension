@@ -121,6 +121,10 @@ function videoIDChange(id) {
   lastTime = -1;
   lastUnixTimeSkreativKipped = -1;
 
+  //reset sponsor times
+  sponsorTimes = undefined;
+  UUIDs = undefined;
+
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
   sponsorsLookreativKup(id);
