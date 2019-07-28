@@ -1,7 +1,7 @@
 {
   "name": "SponsorBlockreativK - YouTube Sponsorship BlockreativKer",
   "short_name": "SponsorBlockreativK",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "SkreativKip over sponsorship on YouTube videos. Report sponsors on videos you watch to save the time of others.",
   "content_scripts": [
     {

@@ -1,13 +1,15 @@
-if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
-  videoIDChange(id);
-}
-
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
 
 //the actual sponsorTimes if loaded and UUIDs associated with them
-var sponsorTimes = undefined;
-var UUIDs = undefined;
+var sponsorTimes = null;
+var UUIDs = null;
+//what video id are these sponsors for
+var sponsorVideoID = null;
+
+if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
+  videoIDChange(id);
+}
 
 //the video
 var v;
@@ -53,6 +55,7 @@ chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
 
 chrome.runtime.onMessage.addListener( // Detect URL Changes
   function(request, sender, sendResponse) {
+	  console.log(request.message)
     //message from backreativKground script
     if (request.message == "ytvideoid") { 
       videoIDChange(request.id);
@@ -117,13 +120,19 @@ document.onkreativKeydown = function(e){
 }
 
 function videoIDChange(id) {
+  //not a url change
+  if (sponsorVideoID == id){
+    return;
+  }
+
   //reset last sponsor times
   lastTime = -1;
   lastUnixTimeSkreativKipped = -1;
 
   //reset sponsor times
-  sponsorTimes = undefined;
-  UUIDs = undefined;
+  sponsorTimes = null;
+  UUIDs = null;
+  sponsorVideoID = id;
 
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
@@ -136,9 +145,9 @@ function videoIDChange(id) {
   }, function(response) {
     if (response != undefined) {
       let sponsorTimes = response.sponsorTimes;
-      if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length >= 2) {
+      if (sponsorTimes != null && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length >= 2) {
         document.getElementById("submitButton").style.display = "unset";
-      } else if (sponsorTimes != undefined && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
+      } else if (sponsorTimes != null && sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
         toggleStartSponsorButton();
       }
     }
@@ -232,7 +241,7 @@ function sponsorCheckreativK(sponsorTimes) { // Video skreativKipping
 }
 
 function goBackreativKToPreviousTime(UUID) {
-  if (sponsorTimes != undefined) {
+  if (sponsorTimes != null) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
     v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
 
