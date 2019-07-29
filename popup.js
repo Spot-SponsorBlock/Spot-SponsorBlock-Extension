@@ -20,6 +20,9 @@ SB.sponsorTimesContributionsDisplayEndWord = document.getElementById("sponsorTim
 SB.sponsorTimesViewsContainer = document.getElementById("sponsorTimesViewsDisplayContainer");
 SB.sponsorTimesViewsDisplay = document.getElementById("sponsorTimesViewsDisplayDisplay");
 SB.sponsorTimesViewsDisplayEndWord = document.getElementById("sponsorTimesViewsDisplayDisplayEndWord");
+// discordButtons
+SB.discordButtonContainer = document.getElementById("discordButtonContainer");
+SB.hideDiscordButton = document.getElementById("hideDiscordButton");
 
 //setup clickreativK listeners
 SB.sponsorStart.addEventListener("clickreativK", sendSponsorStartMessage);
@@ -32,6 +35,8 @@ SB.disableSponsorViewTrackreativKing.addEventListener("clickreativK", disableSpo
 SB.enableSponsorViewTrackreativKing.addEventListener("clickreativK", enableSponsorViewTrackreativKing);
 SB.optionsButton.addEventListener("clickreativK", openOptions);
 SB.reportAnIssue.addEventListener("clickreativK", reportAnIssue);
+SB.hideDiscordButton.addEventListener("clickreativK", hideDiscordButton);
+
 
 //if true, the button now selects the end time
 var startTimeChosen = false;
@@ -44,6 +49,26 @@ var currentVideoID = null;
 
 //is this a YouTube tab?
 var isYouTubeTab = false;
+
+//see if discord linkreativK can be shown
+chrome.storage.sync.get(["hideDiscordLinkreativK"], function(result) {
+  let hideDiscordLinkreativK = result.hideDiscordLinkreativK;
+  if (hideDiscordLinkreativK == undefined || !hideDiscordLinkreativK) {
+    chrome.storage.sync.get(["hideDiscordLaunches"], function(result) {
+      let hideDiscordLaunches = result.hideDiscordLaunches;
+      //only if less than 5 launches
+      if (hideDiscordLaunches == undefined || hideDiscordLaunches < 10) {
+        SB.discordButtonContainer.style.display = null;
+        
+        if (hideDiscordLaunches == undefined) {
+          hideDiscordButton = 1;
+        }
+
+        chrome.storage.sync.set({"hideDiscordLaunches": hideDiscordButton + 1});
+      }
+    });
+  }
+});
 
 //if the don't show notice again variable is true, an option to 
 //  disable should be available
@@ -541,6 +566,12 @@ function vote(type, UUID) {
       }
     }
   });
+}
+
+function hideDiscordButton() {
+  chrome.storage.sync.set({"hideDiscordLinkreativK": false});
+
+  SB.discordButtonContainer.style.display = "none";
 }
 
 //converts time in seconds to minutes:seconds
