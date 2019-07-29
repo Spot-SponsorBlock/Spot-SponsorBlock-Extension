@@ -26,7 +26,9 @@
     "icons/PlayerUploadIconSponsorBlockreativKer256px.png",
     "icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png",
     "icons/upvote.png",
-    "icons/downvote.png"
+    "icons/downvote.png",
+    "icons/PlayerInfoIconSponsorBlockreativKer256px.png",
+    "popup.html"
   ],
   "permissions": [
     "tabs",
