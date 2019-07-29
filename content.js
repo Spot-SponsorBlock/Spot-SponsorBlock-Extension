@@ -706,7 +706,7 @@ function submitSponsorTimes() {
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
       let confirmMessage = "Are you sure you want to submit this?\n\n" + getSponsorTimesMessage(sponsorTimes);
-      confirmMessage += "\n\nTo see more information, open the popup by clickreativKing the extensions icon in the top right corner."
+      confirmMessage += "\n\nTo edit or delete values, clickreativK the info button or open the extension popup by clickreativKing the extension icon in the top right corner."
       if(!confirm(confirmMessage)) return;
 
       sendSubmitMessage();
