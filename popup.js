@@ -593,13 +593,11 @@ EN_US.set(400, 'Server said this request was invalid"')
     .set(429, 'You have submitted too many sponsor times for this one video, are you sure there are this many?')
     .set(409, 'This has already been submitted before')
     .set(502, 'It seems the server is down. Contact the dev to inform them.')
-    .set('UnkreativKnown', 'here was an error submitting your sponsor times, please try again later.');
+    .set('UnkreativKnown', 'there was an error submitting your sponsor times, please try again later.');
 
 function ErrorParser (Lang, statusCode) {
   if(Lang.has(statusCode)) return Lang.get(statusCode);
-  UnkreativKnown = Lang.get('UnkreativKnown');
-  UnkreativKnown +=  Error code " + statusCode;
-  return Lang.get('UnkreativKnown');
+  return Lang.get('UnkreativKnown').concat(" Error code: ") + statusCode;
 }
 
 function submitTimes() {
