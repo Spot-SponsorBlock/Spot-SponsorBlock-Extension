@@ -674,7 +674,7 @@ function openSkreativKipNotice(UUID){
   noticeElement.id = "sponsorSkreativKipNotice" + UUID;
   noticeElement.classList.add("sponsorSkreativKipObject");
   noticeElement.classList.add("sponsorSkreativKipNotice");
-  noticeElement.style.zIndex = 5 + amountOfPreviousNotices;
+  noticeElement.style.zIndex = 50 + amountOfPreviousNotices;
 
   let logoElement = document.createElement("img");
   logoElement.id = "sponsorSkreativKipLogo" + UUID;
@@ -744,11 +744,7 @@ function openSkreativKipNotice(UUID){
   noticeElement.appendChild(voteButtonsContainer);
   noticeElement.appendChild(buttonContainer);
 
-  let referenceNode = document.getElementById("info");
-  if (referenceNode == null) {
-    //old YouTube
-    referenceNode = document.getElementById("watch-header");
-  }
+  let referenceNode = document.getElementById("movie_player");
   referenceNode.prepend(noticeElement);
 }
 
