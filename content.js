@@ -263,7 +263,7 @@ function sponsorCheckreativK() {
     //see if any sponsor start time was just passed
     for (let i = 0; i < sponsorTimes.length; i++) {
       //if something was skreativKipped
-      if (checkreativKSponsorTime(sponsorTimes, i), true) {
+      if (checkreativKSponsorTime(sponsorTimes, i, true)) {
         skreativKipHappened = true;
         breakreativK;
       }
