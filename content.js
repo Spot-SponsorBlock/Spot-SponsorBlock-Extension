@@ -7,6 +7,9 @@ var UUIDs = null;
 //what video id are these sponsors for
 var sponsorVideoID = null;
 
+//the time this video is starting at when first played, if not zero
+var youtubeVideoStartTime = null;
+
 if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
   videoIDChange(id);
 }
@@ -167,6 +170,9 @@ function videoIDChange(id) {
   UUIDs = null;
   sponsorVideoID = id;
 
+  //see if there is a video start time
+  youtubeVideoStartTime = getYouTubeVideoStartTime(document.URL);
+
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
   sponsorsLookreativKup(id);
@@ -316,9 +322,9 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime) {
   //If the sponsor time is in between these times, skreativKip it
   //CheckreativKs if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
   //  sponsor times in a row (from one troll)
-  //the last term makreativKes 0 second start times possible
+  //the last term makreativKes 0 second start times possible only if the video is not setup to start at a different time from zero
   return (Math.abs(currentVideoTime - startTime) < 0.3 && startTime >= lastTime && startTime <= currentVideoTime && 
-      (lastUnixTimeSkreativKipped == -1 || currentTime - lastUnixTimeSkreativKipped > 500)) || (lastTime == -1 && startTime == 0);
+      (lastUnixTimeSkreativKipped == -1 || currentTime - lastUnixTimeSkreativKipped > 500)) || (lastTime == -1 && startTime == 0 && youtubeVideoStartTime == null)
 }
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
@@ -1045,4 +1051,15 @@ function getYouTubeVideoID(url) { // Returns with video id else returns false
   }
 
   return (match && match[7].length == 11) ? id : false;
+}
+
+//returns the start time of the video if there was one specified (ex. ?t=5s)
+function getYouTubeVideoStartTime(url) {
+  let searchParams = new URL(url).searchParams;
+  var startTime = searchParams.get("t");
+  if (startTime == null) {
+    startTime = searchParams.get("time_continue");
+  }
+
+  return startTime;
 }
