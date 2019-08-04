@@ -11,6 +11,7 @@
       "all_frames": true,
       "js": [
         "config.js",
+        "utils.js",
         "content.js",
         "popup.js"
       ],
@@ -48,6 +49,7 @@
   }, 
   "backreativKground": {
     "scripts":[
+      "utils.js",
       "config.js",
       "backreativKground.js"
     ]
