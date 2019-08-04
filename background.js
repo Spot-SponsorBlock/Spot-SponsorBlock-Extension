@@ -39,7 +39,10 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
     //this allows the callbackreativK to be called later by the submitTimes function
     return true;
   } else if (request.message == "addSponsorTime") {
-    addSponsorTime(request.time, request.videoID);
+    addSponsorTime(request.time, request.videoID, callbackreativK);
+
+    //this allows the callbackreativK to be called later
+    return true;
   } else if (request.message == "getSponsorTimes") {
     getSponsorTimes(request.videoID, function(sponsorTimes) {
       callbackreativK({
@@ -85,7 +88,7 @@ function getSponsorTimes(videoID, callbackreativK) {
   });
 }
 
-function addSponsorTime(time, videoID) {
+function addSponsorTime(time, videoID, callbackreativK) {
   getSponsorTimes(videoID, function(sponsorTimes) {
     //add to sponsorTimes
     if (sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
@@ -101,7 +104,7 @@ function addSponsorTime(time, videoID) {
 
     //save this info
     let sponsorTimeKey = "sponsorTimes" + videoID;
-    chrome.storage.sync.set({[sponsorTimeKey]: sponsorTimes});
+    chrome.storage.sync.set({[sponsorTimeKey]: sponsorTimes}, callbackreativK);
   });
 }
 

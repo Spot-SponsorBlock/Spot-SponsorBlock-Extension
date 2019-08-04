@@ -7,12 +7,21 @@ var UUIDs = null;
 //what video id are these sponsors for
 var sponsorVideoID = null;
 
+//the time this video is starting at when first played, if not zero
+var youtubeVideoStartTime = null;
+
 if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
   videoIDChange(id);
 }
 
 //the video
 var v;
+
+//the channel this video is about
+var channelURL;
+
+//is this channel whitelised from getting sponsors skreativKipped
+var channelWhitelisted = false;
 
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime = -1;
@@ -106,6 +115,23 @@ function messageListener(request, sender, sendResponse) {
       })
     }
 
+    if (request.message == "getChannelURL") {
+      sendResponse({
+        channelURL: channelURL
+      })
+    }
+
+    if (request.message == "isChannelWhitelisted") {
+      sendResponse({
+        value: channelWhitelisted
+      })
+    }
+
+    if (request.message == "whitelistChange") {
+      channelWhitelisted = request.value;
+      sponsorsLookreativKup(getYouTubeVideoID(document.URL));
+    }
+
     if (request.message == "showNoticeAgain") {
       dontShowNotice = false;
     }
@@ -167,9 +193,15 @@ function videoIDChange(id) {
   UUIDs = null;
   sponsorVideoID = id;
 
+  //see if there is a video start time
+  youtubeVideoStartTime = getYouTubeVideoStartTime(document.URL);
+
   //reset sponsor data found checkreativK
   sponsorDataFound = false;
   sponsorsLookreativKup(id);
+
+  //makreativKe sure everything is properly added
+  updateVisibilityOfPlayerControlsButton(true);
 
   //reset sponsor times submitting
   sponsorTimesSubmitting = [];
@@ -216,13 +248,19 @@ function videoIDChange(id) {
       hideDeleteButtonPlayerControls = result.hideDeleteButtonPlayerControls;
     }
 
-    updateVisibilityOfPlayerControlsButton();
+    updateVisibilityOfPlayerControlsButton(false);
   });
   
 }
 
 function sponsorsLookreativKup(id) {
   v = document.querySelector('video') // Youtube video player
+
+  //there is no video here
+  if (v == null) {
+    setTimeout(() => sponsorsLookreativKup(id), 100);
+    return;
+  }
   
   //checkreativK database for sponsor times
   sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
@@ -231,6 +269,9 @@ function sponsorsLookreativKup(id) {
 
       sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
       UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
+
+      getChannelID();
+
     } else if (xmlhttp.readyState == 4) {
       sponsorDataFound = false;
 
@@ -253,6 +294,47 @@ function sponsorsLookreativKup(id) {
   v.ontimeupdate = function () { 
     sponsorCheckreativK();
   };
+}
+
+function getChannelID() {
+  //get channel id
+  let channelContainers = document.querySelectorAll("#owner-name");
+  let channelURLContainer = null;
+
+  for (let i = 0; i < channelContainers.length; i++) {
+    if (channelContainers[i].firstElementChild != null) {
+      channelURLContainer = channelContainers[i].firstElementChild;
+    }
+  }
+
+  if (channelContainers.length == 0) {
+    //old YouTube theme
+    channelContainers = document.getElementsByClassName("yt-user-info");
+    if (channelContainers.length != 0) {
+      channelURLContainer = channelContainers[0].firstElementChild;
+    }
+  }
+
+  if (channelURLContainer == null) {
+    //try later
+    setTimeout(getChannelID, 100);
+    return;
+  }
+
+  channelURL = channelURLContainer.getAttribute("href");
+
+  //see if this is a whitelisted channel
+  chrome.storage.sync.get(["whitelistedChannels"], function(result) {
+    let whitelistedChannels = result.whitelistedChannels;
+
+    if (whitelistedChannels != undefined && whitelistedChannels.includes(channelURL)) {
+      //reset sponsor times to nothing
+      sponsorTimes = [];
+      UUIDs = [];
+
+      channelWhitelisted = true;
+    }
+  });
 }
 
 //video skreativKipping
@@ -310,9 +392,9 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime) {
   //If the sponsor time is in between these times, skreativKip it
   //CheckreativKs if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
   //  sponsor times in a row (from one troll)
-  //the last term makreativKes 0 second start times possible
+  //the last term makreativKes 0 second start times possible only if the video is not setup to start at a different time from zero
   return (Math.abs(currentVideoTime - startTime) < 0.3 && startTime >= lastTime && startTime <= currentVideoTime && 
-      (lastUnixTimeSkreativKipped == -1 || currentTime - lastUnixTimeSkreativKipped > 500)) || (lastTime == -1 && startTime == 0);
+      (lastUnixTimeSkreativKipped == -1 || currentTime - lastUnixTimeSkreativKipped > 500)) || (lastTime == -1 && startTime == 0 && youtubeVideoStartTime == null)
 }
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
@@ -367,8 +449,15 @@ function addPlayerControlsButton() {
   //add the image to the button
   startSponsorButton.appendChild(startSponsorImage);
 
-  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
-  
+  let controls = document.getElementsByClassName("ytp-right-controls");
+  let referenceNode = controls[controls.length - 1];
+
+  if (referenceNode == undefined) {
+    //page not loaded yet
+    setTimeout(addPlayerControlsButton, 100);
+    return;
+  }
+
   referenceNode.prepend(startSponsorButton);
 }
 
@@ -379,6 +468,9 @@ function removePlayerControlsButton() {
 
 //adds or removes the player controls button to what it should be
 function updateVisibilityOfPlayerControlsButton() {
+  //not on a proper video yet
+  if (!getYouTubeVideoID(document.URL)) return;
+
   addPlayerControlsButton();
   addInfoButton();
   addDeleteButton();
@@ -482,7 +574,15 @@ function addInfoButton() {
   //add the image to the button
   infoButton.appendChild(infoImage);
 
-  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  let controls = document.getElementsByClassName("ytp-right-controls");
+  let referenceNode = controls[controls.length - 1];
+
+  if (referenceNode == undefined) {
+    //page not loaded yet
+    setTimeout(addInfoButton, 100);
+    return;
+  }
+
   referenceNode.prepend(infoButton);
 }
 
@@ -510,7 +610,15 @@ function addDeleteButton() {
   //add the image to the button
   deleteButton.appendChild(deleteImage);
 
-  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  let controls = document.getElementsByClassName("ytp-right-controls");
+  let referenceNode = controls[controls.length - 1];
+  
+  if (referenceNode == undefined) {
+    //page not loaded yet
+    setTimeout(addDeleteButton, 100);
+    return;
+  }
+
   referenceNode.prepend(deleteButton);
 }
 
@@ -538,7 +646,15 @@ function addSubmitButton() {
   //add the image to the button
   submitButton.appendChild(submitImage);
 
-  let referenceNode = document.getElementsByClassName("ytp-right-controls")[0];
+  let controls = document.getElementsByClassName("ytp-right-controls");
+  let referenceNode = controls[controls.length - 1];
+
+  if (referenceNode == undefined) {
+    //page not loaded yet
+    setTimeout(addSubmitButton, 100);
+    return;
+  }
+  
   referenceNode.prepend(submitButton);
 }
 
@@ -859,7 +975,7 @@ function dontShowNoticeAgain() {
 }
 
 function sponsorMessageStarted(callbackreativK) {
-    let v = document.querySelector('video');
+    v = document.querySelector('video');
 
     //send backreativK current time
     callbackreativK({
@@ -916,9 +1032,15 @@ function sendSubmitMessage(){
         //finish this animation
         submitButton.style.animation = "rotate 1s";
         //when the animation is over, hide the button
-        submitButton.addEventListener("animationend", function() {
+        let animationEndListener =  function() {
           changeStartSponsorButton(true, false);
-        });
+
+          submitButton.style.animation = "none";
+
+          submitButton.removeEventListener("animationend", animationEndListener);
+        };
+
+        submitButton.addEventListener("animationend", animationEndListener);
 
         //clear the sponsor times
         let sponsorTimeKey = "sponsorTimes" + currentVideoID;
@@ -1029,4 +1151,15 @@ function getYouTubeVideoID(url) { // Returns with video id else returns false
   }
 
   return (match && match[7].length == 11) ? id : false;
+}
+
+//returns the start time of the video if there was one specified (ex. ?t=5s)
+function getYouTubeVideoStartTime(url) {
+  let searchParams = new URL(url).searchParams;
+  var startTime = searchParams.get("t");
+  if (startTime == null) {
+    startTime = searchParams.get("time_continue");
+  }
+
+  return startTime;
 }
