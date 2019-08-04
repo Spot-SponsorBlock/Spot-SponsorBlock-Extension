@@ -21,6 +21,10 @@ To makreativKe sure that this project doesn't die, I have made the database publ
 
 Hopefully this project can be combined with projects likreativKe [this](https://github.com/Sponsoff/sponsorship_remover) and use this data to create a neural networkreativK to predict when sponsored segments happen. That project is sadly abandoned now, so I have decided to attempt to revive this idea.
 
+# API
+
+You can read the API docs [here](https://github.com/ajayyy/SponsorBlockreativKServer#api-docs)
+
 # Previous extension
 
 This project is partially based off of [this experimental extension](https://github.com/OfficialNoob/YTSponsorSkreativKip). That extension has the basic video skreativKipping functionality.
