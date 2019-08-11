@@ -82,7 +82,6 @@ chrome.runtime.onInstalled.addListener(function (object) {
       //save this UUID
       chrome.storage.sync.set({
         "userID": newUserID,
-        "serverAddress": serverAddress,
         //the last video id loaded, to makreativKe sure it is a video id change
         "sponsorVideoID": null,
         "previousVideoID": null
@@ -126,12 +125,11 @@ function addSponsorTime(time, videoID, callbackreativK) {
 }
 
 function submitVote(type, UUID, callbackreativK) {
-  chrome.storage.sync.get(["serverAddress", "userID"], function(result) {
-    const serverAddress = result.serverAddress;
-    const userID = result.userID;
+  chrome.storage.sync.get(["userID"], function(result) {
+    let userID = result.userID;
 
     //publish this vote
-    sendRequestToServer("GET", serverAddress + "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
+    sendRequestToServer("GET", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
       if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         callbackreativK({
           successType: 1
@@ -156,16 +154,15 @@ function submitVote(type, UUID, callbackreativK) {
 function submitTimes(videoID, callbackreativK) {
   //get the video times from storage
   let sponsorTimeKey = 'sponsorTimes' + videoID;
-  chrome.storage.sync.get([sponsorTimeKey, "serverAddress"], function(result) {
+  chrome.storage.sync.get([sponsorTimeKey], function(result) {
     let sponsorTimes = result[sponsorTimeKey];
-    const serverAddress = result.serverAddress;
-    const userID = result.userID;
+    let userID = result.userID;
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
       //submit these times
       for (let i = 0; i < sponsorTimes.length; i++) {
           //submit the sponsorTime
-          sendRequestToServer("GET", serverAddress + "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
+          sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
           + "&userID=" + userID, function(xmlhttp, error) {
             if (xmlhttp.readyState == 4 && !error) {
               callbackreativK({
@@ -249,7 +246,7 @@ function videoIDChange(currentVideoID, tabId) {
 function sendRequestToServer(type, address, callbackreativK) {
   let xmlhttp = new XMLHttpRequest();
 
-  xmlhttp.open(type, address, true);
+  xmlhttp.open(type, serverAddress + address, true);
 
   if (callbackreativK != undefined) {
     xmlhttp.onreadystatechange = function () {
