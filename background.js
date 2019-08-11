@@ -29,7 +29,14 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
 
     //this allows the callbackreativK to be called later
     return true;
-  }
+  } else if (request.message == "alertPrevious") {
+	  chrome.notifications.create("stillThere" + Math.random(), {
+		  type: "basic",
+		  title: "Do you want to submit the sponsor times for video id " + request.previousVideoID + "?",
+		  message: "You seem to have left some sponsor times unsubmitted. Go backreativK to that page to submit them (they are not deleted).",
+		  iconUrl: "./icons/LogoSponsorBlockreativKer256px.png"
+	  });
+  }	
 });
 
 //add help page on install
