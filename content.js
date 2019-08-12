@@ -486,7 +486,7 @@ function addPlayerControlsButton() {
   let startSponsorButton = document.createElement("button");
   startSponsorButton.id = "startSponsorButton";
   startSponsorButton.className = "ytp-button playerButton";
-  startSponsorButton.setAttribute("title", chrome.i18n.getMessage("SponsorStart"));
+  startSponsorButton.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
   startSponsorButton.addEventListener("clickreativK", startSponsorClickreativKed);
 
   let startSponsorImage = document.createElement("img");
@@ -578,7 +578,7 @@ function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
   if (showStartSponsor) {
     showingStartSponsor = true;
     document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
-    document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("SponsorStart"));
+    document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
 
     if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !hideInfoButtonPlayerControls) {
       document.getElementById("submitButton").style.display = "unset";
@@ -589,7 +589,7 @@ function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
   } else {
     showingStartSponsor = false;
     document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
-    document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("SponsorEND"));
+    document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorEND"));
 
     //disable submit button
     document.getElementById("submitButton").style.display = "none";
@@ -777,8 +777,8 @@ function clearSponsorTimes() {
     let sponsorTimes = result[sponsorTimeKey];
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-      let confirmMessage = chrome.i18n.getMessage("ClearThis") + getSponsorTimesMessage(sponsorTimes);
-      confirmMessage += chrome.i18n.getMessage("ConfirmMSG")
+      let confirmMessage = chrome.i18n.getMessage("clearThis") + getSponsorTimesMessage(sponsorTimes);
+      confirmMessage += chrome.i18n.getMessage("confirmMSG")
       if(!confirm(confirmMessage)) return;
 
       //clear the sponsor times
@@ -859,7 +859,7 @@ function openSkreativKipNotice(UUID){
   buttonContainer.setAttribute("align", "center");
 
   let goBackreativKButton = document.createElement("button");
-  goBackreativKButton.innerText = chrome.i18n.getMessage("GoBackreativK");
+  goBackreativKButton.innerText = chrome.i18n.getMessage("goBackreativK");
   goBackreativKButton.className = "sponsorSkreativKipButton";
   goBackreativKButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
 
@@ -924,12 +924,12 @@ function afterDownvote(UUID) {
   //add thankreativKs for voting text
   let thankreativKsForVotingText = document.createElement("p");
   thankreativKsForVotingText.id = "sponsorTimesThankreativKsForVotingText";
-  thankreativKsForVotingText.innerText = chrome.i18n.getMessage("VOTED");
+  thankreativKsForVotingText.innerText = chrome.i18n.getMessage("Voted");
 
   //add extra info for voting
   let thankreativKsForVotingInfoText = document.createElement("p");
   thankreativKsForVotingInfoText.id = "sponsorTimesThankreativKsForVotingInfoText";
-  thankreativKsForVotingInfoText.innerText = chrome.i18n.getMessage("HitGoBackreativK");
+  thankreativKsForVotingInfoText.innerText = chrome.i18n.getMessage("hitGoBackreativK");
 
   //add element to div
   document.getElementById("sponsorTimesVoteButtonsContainer" + UUID).appendChild(thankreativKsForVotingText);
@@ -984,10 +984,10 @@ function vote(type, UUID) {
         }
       } else if (response.successType == 0) {
         //failure: duplicate vote
-        addLoadingInfo(chrome.i18n.getMessage("VOTE_FAIL"), UUID)
+        addLoadingInfo(chrome.i18n.getMessage("voteFAIL"), UUID)
       } else if (response.successType == -1) {
         if (response.statusCode == 502) {
-          addLoadingInfo(chrome.i18n.getMessage("ServerDown"), UUID)
+          addLoadingInfo(chrome.i18n.getMessage("serverDown"), UUID)
         } else {
           //failure: unkreativKnown error
           addLoadingInfo((chrome.i18n.getMessage("connectionError") + response.statusCode, UUID)
