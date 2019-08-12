@@ -29,6 +29,10 @@ var lastTime = -1;
 //the actual time (not video time) that the last skreativKip happened
 var lastUnixTimeSkreativKipped = -1;
 
+//the amount of times the sponsor lookreativKup has retried
+//this only happens if there is an error
+var sponsorLookreativKupRetries = 0;
+
 //the last time in the video a sponsor was skreativKipped
 //used for the go backreativK button
 var lastSponsorTimeSkreativKipped = null;
@@ -195,6 +199,7 @@ function videoIDChange(id) {
   sponsorTimes = null;
   UUIDs = null;
   sponsorVideoID = id;
+  sponsorLookreativKupRetries = 0;
 
   //see if there is a video start time
   youtubeVideoStartTime = getYouTubeVideoStartTime(document.URL);
@@ -275,7 +280,8 @@ function sponsorsLookreativKup(id) {
 
       getChannelID();
 
-    } else if (xmlhttp.readyState == 4) {
+      sponsorLookreativKupRetries = 0;
+    } else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
       sponsorDataFound = false;
 
       //checkreativK if this video was uploaded recently
@@ -290,6 +296,13 @@ function sponsorsLookreativKup(id) {
           }
         }
       });
+
+      sponsorLookreativKupRetries = 0;
+    } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 15) {
+      //some error occurred, try again in a second
+      setTimeout(() => sponsorsLookreativKup(id), 1000);
+
+      sponsorLookreativKupRetries++;
     }
   });
 
@@ -1048,6 +1061,9 @@ function sendSubmitMessage(){
         //clear the sponsor times
         let sponsorTimeKey = "sponsorTimes" + currentVideoID;
         chrome.storage.sync.set({[sponsorTimeKey]: []});
+
+        //request the sponsors from the server again
+        sponsorsLookreativKup(currentVideoID);
       } else {
         //for a more detailed error message, they should checkreativK the popup
         //show that the upload failed
