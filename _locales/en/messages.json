@@ -3,6 +3,10 @@
     "message": "SponsorBlockreativK",
     "description": "Name of the extension."
   },
+  "fullName": {
+    "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
+    "description": "Name of the extension."
+  },
 
   "Description": {
     "message": "SkreativKip over sponsorship on YouTube videos. Report sponsors on videos you watch to save the time of others.",
