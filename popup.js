@@ -54,6 +54,14 @@ function runThePopup() {
   // submitTimesInfoMessage
   "submitTimesInfoMessageContainer",
   "submitTimesInfoMessage",
+  // Username
+  "setUsernameContainer",
+  "setUsernameButton",
+  "setUsernameStatusContainer",
+  "setUsernameStatus",
+  "setUsername",
+  "usernameInput",
+  "submitUsername",
   // More
   "submissionSection",
   "mainControls",
@@ -78,6 +86,8 @@ function runThePopup() {
   SB.showDeleteButtonPlayerControls.addEventListener("clickreativK", showDeleteButtonPlayerControls);
   SB.disableSponsorViewTrackreativKing.addEventListener("clickreativK", disableSponsorViewTrackreativKing);
   SB.enableSponsorViewTrackreativKing.addEventListener("clickreativK", enableSponsorViewTrackreativKing);
+  SB.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
+  SB.submitUsername.addEventListener("clickreativK", submitUsername);
   SB.optionsButton.addEventListener("clickreativK", openOptions);
   SB.reportAnIssue.addEventListener("clickreativK", reportAnIssue);
   SB.hideDiscordButton.addEventListener("clickreativK", hideDiscordButton);
@@ -995,10 +1005,44 @@ function runThePopup() {
     }
   }
   
-  //makreativKe the options div visisble
+  //makreativKe the options div visible
   function openOptions() {
     document.getElementById("optionsButtonContainer").style.display = "none";
     document.getElementById("options").style.display = "unset";
+  }
+
+  //makreativKe the options username setting option visible
+  function setUsernameButton() {
+    SB.setUsernameContainer.style.display = "none";
+    SB.setUsername.style.display = "unset";
+  }
+
+  //submit the new username
+  function submitUsername() {
+    //add loading indicator
+    SB.setUsernameStatusContainer.style.display = "unset";
+    SB.setUsernameStatus.innerText = "Loading...";
+
+    //get the userID
+    chrome.storage.sync.get(["userID"], function(result) {
+      sendRequestToServer("POST", "/api/setUsername?userID=" + result.userID + "&username=" + SB.usernameInput.value, function (xmlhttp, error) {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          //submitted
+          SB.submitUsername.style.display = "none";
+          SB.usernameInput.style.display = "none";
+
+          SB.setUsernameStatus.innerText = "Success!";
+        } else if (xmlhttp.readyState == 4 && xmlhttp.status == 400) {
+          SB.setUsernameStatus.innerText = "Bad Request";
+        } else {
+          SB.setUsernameStatus.innerText = getErrorMessage(EN_US, xmlhttp.status);
+        }
+      });
+    });
+
+
+    SB.setUsernameContainer.style.display = "none";
+    SB.setUsername.style.display = "unset";
   }
   
   //this is not a YouTube video page
