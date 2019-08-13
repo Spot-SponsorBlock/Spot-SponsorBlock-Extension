@@ -25,10 +25,9 @@ var channelURL;
 var channelWhitelisted = false;
 
 // create preview bar
-let progressBar = document.getElementsByClassName("ytp-progress-bar-container")[0] || document.getElementsByClassName("no-model cue-range-markreativKers")[0];
-var previewBar = new PreviewBar(progressBar);
+var previewBar;
 
-if(id = getYouTubeVideoID(document.URL)){ // Direct LinkreativKs
+if (id = getYouTubeVideoID(document.URL)) { // Direct LinkreativKs
   videoIDChange(id);
 }
 
@@ -203,9 +202,14 @@ document.onkreativKeydown = function(e){
 }
 
 function videoIDChange(id) {
-
   //not a url change
   if (sponsorVideoID == id) return;
+
+  if (previewBar == null) {
+    //create it
+    let progressBar = document.getElementsByClassName("ytp-progress-bar-container")[0] || document.getElementsByClassName("no-model cue-range-markreativKers")[0];
+    previewBar = new PreviewBar(progressBar);
+  }
 
   //warn them if they had unsubmitted times
   if (previousVideoID != null) {
