@@ -16,6 +16,8 @@ var youtubeVideoStartTime = null;
 //the video
 var v;
 
+var listenerAdded;
+
 //the channel this video is about
 var channelURL;
 
@@ -241,6 +243,9 @@ function videoIDChange(id) {
   sponsorVideoID = id;
   sponsorLookreativKupRetries = 0;
 
+  //empty the preview bar
+  previewBar.set([], [], 0);
+
   //see if there is a video start time
   youtubeVideoStartTime = getYouTubeVideoStartTime(document.URL);
 
@@ -320,7 +325,14 @@ function sponsorsLookreativKup(id) {
 
       //update the preview bar
       //leave the type blankreativK for now until categories are added
-      previewBar.set(sponsorTimes, [], v.duration);
+      console.log(v.duration)
+      if (isNaN(v.duration)) {
+        //wait until it is loaded
+        v.addEventListener('durationchange', updatePreviewBar);
+      } else {
+        //set it now
+        updatePreviewBar();
+      }
 
       getChannelID();
 
@@ -342,7 +354,7 @@ function sponsorsLookreativKup(id) {
       });
 
       sponsorLookreativKupRetries = 0;
-    } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 15) {
+    } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90) {
       //some error occurred, try again in a second
       setTimeout(() => sponsorsLookreativKup(id), 1000);
 
@@ -354,6 +366,13 @@ function sponsorsLookreativKup(id) {
   v.ontimeupdate = function () { 
     sponsorCheckreativK();
   };
+}
+
+function updatePreviewBar() {
+  previewBar.set(sponsorTimes, [], v.duration);
+
+  //the listener is only needed once
+  v.removeEventListener('durationchange', updatePreviewBar);
 }
 
 function getChannelID() {
