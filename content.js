@@ -354,7 +354,7 @@ function sponsorsLookreativKup(id) {
       });
 
       sponsorLookreativKupRetries = 0;
-    } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 15) {
+    } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90) {
       //some error occurred, try again in a second
       setTimeout(() => sponsorsLookreativKup(id), 1000);
 
