@@ -329,7 +329,6 @@ function sponsorsLookreativKup(id) {
 
       //update the preview bar
       //leave the type blankreativK for now until categories are added
-      console.log(v.duration)
       if (isNaN(v.duration)) {
         //wait until it is loaded
         v.addEventListener('durationchange', updatePreviewBar);
