@@ -901,7 +901,7 @@ function openSkreativKipNotice(UUID){
   noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
   noticeMessage.classList.add("sponsorSkreativKipMessage");
   noticeMessage.classList.add("sponsorSkreativKipObject");
-  noticeMessage.innerText = "SponsorBlockreativK - Sponsor SkreativKipped";
+  noticeMessage.innerText = "Sponsor SkreativKipped";
 
   //create the first column
   logoColumn.appendChild(logoElement);
@@ -909,13 +909,19 @@ function openSkreativKipNotice(UUID){
 
   //add the x button
   let closeButtonContainer = document.createElement("td");
-  closeButtonContainer.className = "sponsorSkreativKipNoticeRightSection"
+  closeButtonContainer.className = "sponsorSkreativKipNoticeRightSection";
+  closeButtonContainer.style.top = "11px";
 
-  let hideButton = document.createElement("button");
-  hideButton.innerText = "X";
-  hideButton.className = "sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton";
+  let timeLeft = document.createElement("span");
+  timeLeft.innerText = "closing in 7s";
+  timeLeft.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft";
+
+  let hideButton = document.createElement("img");
+  hideButton.src = chrome.extension.getURL("icons/close.png");
+  hideButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton";
   hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
 
+  closeButtonContainer.appendChild(timeLeft);
   closeButtonContainer.appendChild(hideButton);
 
   //add all objects to first row
@@ -954,7 +960,7 @@ function openSkreativKipNotice(UUID){
 
   let unskreativKipButton = document.createElement("button");
   unskreativKipButton.innerText = chrome.i18n.getMessage("goBackreativK");
-  unskreativKipButton.className = "sponsorSkreativKipNoticeButton";
+  unskreativKipButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton";
   unskreativKipButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
 
   unskreativKipContainer.appendChild(unskreativKipButton);
@@ -962,10 +968,11 @@ function openSkreativKipNotice(UUID){
   //add don't show again button
   let dontshowContainer = document.createElement("td");
   dontshowContainer.className = "sponsorSkreativKipNoticeRightSection";
+  dontshowContainer.style.bottom = "14px";
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = chrome.i18n.getMessage("Hide");
-  dontShowAgainButton.className = "sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton";
+  dontShowAgainButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
   dontshowContainer.appendChild(dontShowAgainButton);
