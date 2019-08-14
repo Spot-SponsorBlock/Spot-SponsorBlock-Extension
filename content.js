@@ -870,27 +870,67 @@ function openSkreativKipNotice(UUID){
   noticeElement.classList.add("sponsorSkreativKipNotice");
   noticeElement.style.zIndex = 50 + amountOfPreviousNotices;
 
+  // let logoElement = document.createElement("img");
+  // logoElement.id = "sponsorSkreativKipLogo" + UUID;
+  // logoElement.className = "sponsorSkreativKipLogo";
+  // logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+
+  // let noticeMessage = document.createElement("div");
+  // noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
+  // noticeMessage.classList.add("sponsorSkreativKipMessage");
+  // noticeMessage.classList.add("sponsorSkreativKipObject");
+  // noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
+  
+  // let noticeInfo = document.createElement("p");
+  // noticeInfo.id = "sponsorSkreativKipInfo" + UUID;
+  // noticeInfo.classList.add("sponsorSkreativKipInfo");
+  // noticeInfo.classList.add("sponsorSkreativKipObject");
+  // noticeInfo.innerText = "This message will disapear in 7 seconds";
+
+  //the row that will contain the info
+  let firstRow = document.createElement("tr");
+
+  let logoColumn = document.createElement("td");
+
   let logoElement = document.createElement("img");
   logoElement.id = "sponsorSkreativKipLogo" + UUID;
-  logoElement.className = "sponsorSkreativKipLogo";
-  logoElement.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+  logoElement.className = "sponsorSkreativKipLogo sponsorSkreativKipObject";
+  logoElement.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
 
-  let noticeMessage = document.createElement("div");
+  let noticeMessage = document.createElement("span");
   noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
   noticeMessage.classList.add("sponsorSkreativKipMessage");
   noticeMessage.classList.add("sponsorSkreativKipObject");
-  noticeMessage.innerText = "Hey, you just skreativKipped a sponsor!";
-  
-  let noticeInfo = document.createElement("p");
-  noticeInfo.id = "sponsorSkreativKipInfo" + UUID;
-  noticeInfo.classList.add("sponsorSkreativKipInfo");
-  noticeInfo.classList.add("sponsorSkreativKipObject");
-  noticeInfo.innerText = "This message will disapear in 7 seconds";
+  noticeMessage.innerText = "SponsorBlockreativK - Sponsor SkreativKipped";
+
+  //create the first column
+  logoColumn.appendChild(logoElement);
+  logoColumn.appendChild(noticeMessage);
+
+  //add the x button
+  let closeButtonContainer = document.createElement("td");
+  closeButtonContainer.className = "sponsorSkreativKipNoticeRightSection"
+
+  let hideButton = document.createElement("button");
+  hideButton.innerText = "X";
+  hideButton.className = "sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton";
+  hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
+
+  closeButtonContainer.appendChild(hideButton);
+
+  //add all objects to first row
+  firstRow.appendChild(logoColumn);
+  firstRow.appendChild(closeButtonContainer);
+
+  let spacer = document.createElement("hr");
+  spacer.className = "sponsorBlockreativKSpacer";
+
+  //the row that will contain the buttons
+  let secondRow = document.createElement("tr");
   
   //thumbs up and down buttons
-  let voteButtonsContainer = document.createElement("div");
+  let voteButtonsContainer = document.createElement("td");
   voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + UUID;
-  voteButtonsContainer.setAttribute("align", "center");
 
   let upvoteButton = document.createElement("img");
   upvoteButton.id = "sponsorTimesUpvoteButtonsContainer" + UUID;
@@ -908,35 +948,64 @@ function openSkreativKipNotice(UUID){
   voteButtonsContainer.appendChild(upvoteButton);
   voteButtonsContainer.appendChild(downvoteButton);
 
-  let buttonContainer = document.createElement("div");
-  buttonContainer.setAttribute("align", "center");
+  //add unskreativKip button
+  let unskreativKipContainer = document.createElement("td");
+  unskreativKipContainer.className = "sponsorSkreativKipNoticeUnskreativKipSection";
 
-  let goBackreativKButton = document.createElement("button");
-  goBackreativKButton.innerText = chrome.i18n.getMessage("goBackreativK");
-  goBackreativKButton.className = "sponsorSkreativKipButton";
-  goBackreativKButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
+  let unskreativKipButton = document.createElement("button");
+  unskreativKipButton.innerText = chrome.i18n.getMessage("goBackreativK");
+  unskreativKipButton.className = "sponsorSkreativKipNoticeButton";
+  unskreativKipButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
 
-  let hideButton = document.createElement("button");
-  hideButton.innerText = chrome.i18n.getMessage("Dismiss");
-  hideButton.className = "sponsorSkreativKipButton";
-  hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
+  unskreativKipContainer.appendChild(unskreativKipButton);
+
+  //add don't show again button
+  let dontshowContainer = document.createElement("td");
+  dontshowContainer.className = "sponsorSkreativKipNoticeRightSection";
 
   let dontShowAgainButton = document.createElement("button");
   dontShowAgainButton.innerText = chrome.i18n.getMessage("Hide");
-  dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
+  dontShowAgainButton.className = "sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton";
   dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
-  buttonContainer.appendChild(goBackreativKButton);
-  buttonContainer.appendChild(hideButton);
-  buttonContainer.appendChild(document.createElement("br"));
-  buttonContainer.appendChild(document.createElement("br"));
-  buttonContainer.appendChild(dontShowAgainButton);
+  dontshowContainer.appendChild(dontShowAgainButton);
 
-  noticeElement.appendChild(logoElement);
-  noticeElement.appendChild(noticeMessage);
-  noticeElement.appendChild(noticeInfo);
-  noticeElement.appendChild(voteButtonsContainer);
-  noticeElement.appendChild(buttonContainer);
+  //add to row
+  secondRow.appendChild(voteButtonsContainer);
+  secondRow.appendChild(unskreativKipContainer);
+  secondRow.appendChild(dontshowContainer);
+
+  // let buttonContainer = document.createElement("div");
+  // buttonContainer.setAttribute("align", "center");
+
+  // let goBackreativKButton = document.createElement("button");
+  // goBackreativKButton.innerText = chrome.i18n.getMessage("goBackreativK");
+  // goBackreativKButton.className = "sponsorSkreativKipButton";
+  // goBackreativKButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
+
+  // let hideButton = document.createElement("button");
+  // hideButton.innerText = chrome.i18n.getMessage("Dismiss");
+  // hideButton.className = "sponsorSkreativKipButton";
+  // hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
+
+  // let dontShowAgainButton = document.createElement("button");
+  // dontShowAgainButton.innerText = chrome.i18n.getMessage("Hide");
+  // dontShowAgainButton.className = "sponsorSkreativKipDontShowButton";
+  // dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
+
+  // buttonContainer.appendChild(goBackreativKButton);
+  // buttonContainer.appendChild(hideButton);
+  // buttonContainer.appendChild(document.createElement("br"));
+  // buttonContainer.appendChild(document.createElement("br"));
+  // buttonContainer.appendChild(dontShowAgainButton);
+
+  // noticeElement.appendChild(logoElement);
+  // noticeElement.appendChild(noticeMessage);
+  // noticeElement.appendChild(noticeInfo);
+
+  noticeElement.appendChild(firstRow);
+  noticeElement.appendChild(spacer);
+  noticeElement.appendChild(secondRow);
 
   let referenceNode = document.getElementById("movie_player");
   if (referenceNode == null) {
