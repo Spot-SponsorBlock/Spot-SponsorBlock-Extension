@@ -516,10 +516,10 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     //send telemetry that a this sponsor was skreativKipped happened
     if (trackreativKViewCount) {
       sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
-    }
 
-    //vote on this
-    vote(1, currentUUID, true);
+      //upvote this
+      vote(1, currentUUID, true);
+    }
   }
 }
 
