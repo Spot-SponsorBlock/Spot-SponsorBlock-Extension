@@ -1,8 +1,9 @@
 {
-  "name": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
-  "short_name": "SponsorBlockreativK",
-  "version": "1.0.35",
-  "description": "SkreativKip over sponsorship on YouTube videos. Report sponsors on videos you watch to save the time of others.",
+  "name": "__MSG_fullName__",
+  "short_name": "__MSG_Name__",
+  "version": "1.0.37",
+  "default_locale": "en",
+  "description": "__MSG_Description__",
   "content_scripts": [
     {
       "matches": [
@@ -32,6 +33,8 @@
     "icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png",
     "icons/upvote.png",
     "icons/downvote.png",
+    "icons/report.png",
+    "icons/close.png",
     "icons/PlayerInfoIconSponsorBlockreativKer256px.png",
     "icons/PlayerDeleteIconSponsorBlockreativKer256px.png",
     "popup.html"
@@ -42,7 +45,7 @@
     "https://sponsor.ajay.app/*"
   ],
   "browser_action": {
-    "default_title": "SponsorBlockreativK",
+    "default_title": "__MSG_Name__",
     "default_popup": "popup.html"
   }, 
   "backreativKground": {
