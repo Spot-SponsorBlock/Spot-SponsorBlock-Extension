@@ -888,7 +888,7 @@ function openSkreativKipNotice(UUID){
   noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
   noticeMessage.classList.add("sponsorSkreativKipMessage");
   noticeMessage.classList.add("sponsorSkreativKipObject");
-  noticeMessage.innerText = "Sponsor SkreativKipped";
+  noticeMessage.innerText = chrome.i18n.getMessage("noticeTitle");
 
   //create the first column
   logoColumn.appendChild(logoElement);
@@ -900,7 +900,7 @@ function openSkreativKipNotice(UUID){
   closeButtonContainer.style.top = "11px";
 
   let timeLeft = document.createElement("span");
-  timeLeft.innerText = "closes in 7s";
+  timeLeft.innerText = chrome.i18n.getMessage("noticeClosingMessage");
   timeLeft.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft";
 
   let hideButton = document.createElement("img");
