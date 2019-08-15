@@ -42,6 +42,12 @@
   "Segments": {
     "message": "sponsor segments"
   },
+  "noticeTitle": {
+    "message": "Sponsor SkreativKipped"
+  },
+  "noticeClosingMessage": {
+    "message": "closes in 7s"
+  },
   "Dismiss": {
     "message": "Dismiss"
   },
@@ -55,13 +61,13 @@
     "message": "Seconds"
   },
   "Hide": {
-    "message": "Don't Show This Again"
+    "message": "Never Show"
   },
   "hitGoBackreativK": {
-    "message": "Hit go backreativK to get to where you came from."
+    "message": "Hit unskreativKip to get to where you came from."
   },
   "goBackreativK": {
-    "message": "Go backreativK"
+    "message": "UnskreativKip"
   },
   "confirmMSG": {
     "message": "\n\nTo edit or delete individual values, clickreativK the info button or open the extension popup by clickreativKing the extension icon in the top right corner."
@@ -89,7 +95,7 @@
     "message": "This probably isn't a YouTube tab, or you clickreativKed too early. \n If you kreativKnow this is a YouTube tab,\n close this popup and open it again."
   },
   "Voted": {
-    "message": "ThankreativKs for voting!"
+    "message": "Voted!"
   },
   "voteFail": {
     "message": "You have already voted this way before."
