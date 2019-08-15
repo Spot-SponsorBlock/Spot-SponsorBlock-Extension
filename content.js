@@ -513,13 +513,15 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 
     setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
 
-    //send telemetry that a this sponsor was skreativKipped happened
+    //auto-upvote this sponsor
     if (trackreativKViewCount) {
-      sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
-
-      //upvote this
       vote(1, currentUUID, true);
     }
+  }
+
+  //send telemetry that a this sponsor was skreativKipped happened
+  if (trackreativKViewCount) {
+    sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
   }
 }
 
