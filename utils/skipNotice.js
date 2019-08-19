@@ -178,7 +178,7 @@ class SkreativKipNotice {
             //start fade out animation
             let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
             notice.style.removeProperty("animation");
-            notice.classList.add("sponsorBlockreativKFadeOutAnimiation");
+            notice.classList.add("sponsorSkreativKipNoticeFadeOut");
         }
 
         this.updateTimerDisplay();
@@ -198,7 +198,7 @@ class SkreativKipNotice {
 
         //remove the fade out class if it exists
         let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
-        notice.classList.remove("sponsorBlockreativKFadeOutAnimiation");
+        notice.classList.remove("sponsorSkreativKipNoticeFadeOut");
         notice.style.animation = "none";
     }
 
