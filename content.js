@@ -515,12 +515,17 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
   }
 }
 
-function goBackreativKToPreviousTime(sponsorTime) {
+function unskreativKipSponsorTime(UUID) {
   if (sponsorTimes != null) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    v.currentTime = sponsorTimes[UUIDs.indexOf(sponsorTime.UUID)][0] + 0.001;
+    v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
+  }
+}
 
-    sponsorTime.closeSkreativKipNotice();
+function reskreativKipSponsorTime(UUID) {
+  if (sponsorTimes != null) {
+    //add a tiny bit of time to makreativKe sure it is not skreativKipped again
+    v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][1];
   }
 }
 

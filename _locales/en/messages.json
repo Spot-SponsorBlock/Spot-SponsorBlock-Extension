@@ -69,8 +69,11 @@
   "hitGoBackreativK": {
     "message": "Hit unskreativKip to get to where you came from."
   },
-  "goBackreativK": {
+  "unskreativKip": {
     "message": "UnskreativKip"
+  },
+  "reskreativKip": {
+    "message": "ReskreativKip"
   },
   "paused": {
     "message": "Paused"

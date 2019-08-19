@@ -6,10 +6,14 @@ class SkreativKipNotice {
         this.parent = parent;
         this.UUID = UUID;
 
+        this.maxCountdownTime = () => 4;
         //the countdown until this notice closes
-        this.countdownTime = 4;
+        this.countdownTime = this.maxCountdownTime();
         //the id for the setInterval running the countdown
         this.countdownInterval = -1;
+
+        //the unskreativKip button's callbackreativK
+        this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
 
         //add notice
         let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
@@ -111,9 +115,10 @@ class SkreativKipNotice {
         unskreativKipContainer.className = "sponsorSkreativKipNoticeUnskreativKipSection";
 
         let unskreativKipButton = document.createElement("button");
-        unskreativKipButton.innerText = chrome.i18n.getMessage("goBackreativK");
+        unskreativKipButton.id = "sponsorSkreativKipUnskreativKipButton" + this.UUID;
+        unskreativKipButton.innerText = chrome.i18n.getMessage("unskreativKip");
         unskreativKipButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton";
-        unskreativKipButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(this));
+        unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
 
         unskreativKipButton.style.marginLeft = "4px";
 
@@ -190,7 +195,7 @@ class SkreativKipNotice {
         this.countdownInterval = -1;
 
         //reset countdown
-        this.countdownTime = 4;
+        this.countdownTime = this.maxCountdownTime();
         
         //inform the user
         let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.UUID);
@@ -215,6 +220,48 @@ class SkreativKipNotice {
         //update the timer display
         let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.UUID);
         timeLeft.innerText = this.countdownTime + "s";
+    }
+
+    unskreativKip() {
+        unskreativKipSponsorTime(this.UUID);
+
+        //change unskreativKip button to a reskreativKip button
+        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.UUID);
+        unskreativKipButton.innerText = chrome.i18n.getMessage("reskreativKip");
+        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
+
+        //setup new callbackreativK
+        this.unskreativKipCallbackreativK = this.reskreativKip.bind(this);
+        unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
+
+        //change max duration to however much of the sponsor is left
+        this.maxCountdownTime = function() {
+            let sponsorTime = sponsorTimes[UUIDs.indexOf(this.UUID)];
+            let duration = Math.round(sponsorTime[1] - v.currentTime);
+
+            return Math.max(duration, 4);
+        };
+
+        this.countdownTime = this.maxCountdownTime();
+        this.updateTimerDisplay();
+    }
+
+    reskreativKip() {
+        reskreativKipSponsorTime(this.UUID);
+
+        //change unskreativKip button to a reskreativKip button
+        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.UUID);
+        unskreativKipButton.innerText = chrome.i18n.getMessage("unskreativKip");
+        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
+
+        //setup new callbackreativK
+        this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
+        unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
+
+        //reset duration
+        this.maxCountdownTime = () => 4;
+        this.countdownTime = this.maxCountdownTime();
+        this.updateTimerDisplay();
     }
 
     afterDownvote() {
