@@ -174,6 +174,13 @@ class SkreativKipNotice {
             return;
         }
 
+        if (this.countdownTime == 3) {
+            //start fade out animation
+            let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
+            notice.style.removeProperty("animation");
+            notice.classList.add("sponsorBlockreativKFadeOutAnimiation");
+        }
+
         this.updateTimerDisplay();
     }
 
@@ -188,6 +195,11 @@ class SkreativKipNotice {
         //inform the user
         let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.UUID);
         timeLeft.innerText = chrome.i18n.getMessage("paused");
+
+        //remove the fade out class if it exists
+        let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
+        notice.classList.remove("sponsorBlockreativKFadeOutAnimiation");
+        notice.style.animation = "none";
     }
 
     startCountdown() {
