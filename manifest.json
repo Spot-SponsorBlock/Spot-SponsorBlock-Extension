@@ -13,6 +13,7 @@
       "js": [
         "config.js",
         "utils/previewBar.js",
+        "utils/skreativKipNotice.js",
         "utils.js",
         "content.js",
         "popup.js"

@@ -499,13 +499,13 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 
   if (openNotice) {
     //send out the message saying that a sponsor message was skreativKipped
-    openSkreativKipNotice(currentUUID);
+    if (!dontShowNotice) {
+      new SkreativKipNotice(this, currentUUID);
 
-    setTimeout(() => closeSkreativKipNotice(currentUUID), 7000);
-
-    //auto-upvote this sponsor
-    if (trackreativKViewCount) {
-      vote(1, currentUUID, true);
+      //auto-upvote this sponsor
+      if (trackreativKViewCount) {
+        vote(1, currentUUID, null);
+      }
     }
   }
 
@@ -515,12 +515,12 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
   }
 }
 
-function goBackreativKToPreviousTime(UUID) {
+function goBackreativKToPreviousTime(sponsorTime) {
   if (sponsorTimes != null) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
+    v.currentTime = sponsorTimes[UUIDs.indexOf(sponsorTime.UUID)][0] + 0.001;
 
-    closeSkreativKipNotice(UUID);
+    sponsorTime.closeSkreativKipNotice();
   }
 }
 
@@ -842,238 +842,12 @@ function clearSponsorTimes() {
   });
 }
 
-//Opens the notice that tells the user that a sponsor was just skreativKipped
-function openSkreativKipNotice(UUID){
-  if (dontShowNotice) {
-    //don't show, return
-    return;
-  }
-
-  let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
-
-  if (amountOfPreviousNotices > 0) {
-    //already exists
-
-    let previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
-    previousNotice.classList.add("secondSkreativKipNotice")
-  }
-
-  let noticeElement = document.createElement("div");
-  //what sponsor time this is about
-  noticeElement.id = "sponsorSkreativKipNotice" + UUID;
-  noticeElement.classList.add("sponsorSkreativKipObject");
-  noticeElement.classList.add("sponsorSkreativKipNotice");
-  noticeElement.style.zIndex = 50 + amountOfPreviousNotices;
-
-  //the row that will contain the info
-  let firstRow = document.createElement("tr");
-  firstRow.id = "sponsorSkreativKipNoticeFirstRow" + UUID;
-
-  let logoColumn = document.createElement("td");
-
-  let logoElement = document.createElement("img");
-  logoElement.id = "sponsorSkreativKipLogo" + UUID;
-  logoElement.className = "sponsorSkreativKipLogo sponsorSkreativKipObject";
-  logoElement.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
-
-  let noticeMessage = document.createElement("span");
-  noticeMessage.id = "sponsorSkreativKipMessage" + UUID;
-  noticeMessage.classList.add("sponsorSkreativKipMessage");
-  noticeMessage.classList.add("sponsorSkreativKipObject");
-  noticeMessage.innerText = chrome.i18n.getMessage("noticeTitle");
-
-  //create the first column
-  logoColumn.appendChild(logoElement);
-  logoColumn.appendChild(noticeMessage);
-
-  //add the x button
-  let closeButtonContainer = document.createElement("td");
-  closeButtonContainer.className = "sponsorSkreativKipNoticeRightSection";
-  closeButtonContainer.style.top = "11px";
-
-  let timeLeft = document.createElement("span");
-  timeLeft.innerText = chrome.i18n.getMessage("noticeClosingMessage");
-  timeLeft.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft";
-
-  let hideButton = document.createElement("img");
-  hideButton.src = chrome.extension.getURL("icons/close.png");
-  hideButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton";
-  hideButton.addEventListener("clickreativK", () => closeSkreativKipNotice(UUID));
-
-  closeButtonContainer.appendChild(timeLeft);
-  closeButtonContainer.appendChild(hideButton);
-
-  //add all objects to first row
-  firstRow.appendChild(logoColumn);
-  firstRow.appendChild(closeButtonContainer);
-
-  let spacer = document.createElement("hr");
-  spacer.id = "sponsorSkreativKipNoticeSpacer" + UUID;
-  spacer.className = "sponsorBlockreativKSpacer";
-
-  //the row that will contain the buttons
-  let secondRow = document.createElement("tr");
-  secondRow.id = "sponsorSkreativKipNoticeSecondRow" + UUID;
-  
-  //thumbs up and down buttons
-  let voteButtonsContainer = document.createElement("td");
-  voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + UUID;
-
-  let reportText = document.createElement("span");
-  reportText.id = "sponsorTimesReportText" + UUID;
-  reportText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
-  reportText.innerText = chrome.i18n.getMessage("reportButtonTitle");
-  reportText.style.marginRight = "5px";
-  reportText.setAttribute("title", chrome.i18n.getMessage("reportButtonInfo"));
-
-  let downvoteButton = document.createElement("img");
-  downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + UUID;
-  downvoteButton.className = "sponsorSkreativKipObject voteButton";
-  downvoteButton.src = chrome.extension.getURL("icons/report.png");
-  downvoteButton.addEventListener("clickreativK", () => vote(0, UUID));
-  downvoteButton.setAttribute("title", chrome.i18n.getMessage("reportButtonInfo"));
-
-  //add downvote and report text to container
-  voteButtonsContainer.appendChild(reportText);
-  voteButtonsContainer.appendChild(downvoteButton);
-
-  //add unskreativKip button
-  let unskreativKipContainer = document.createElement("td");
-  unskreativKipContainer.className = "sponsorSkreativKipNoticeUnskreativKipSection";
-
-  let unskreativKipButton = document.createElement("button");
-  unskreativKipButton.innerText = chrome.i18n.getMessage("goBackreativK");
-  unskreativKipButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton";
-  unskreativKipButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(UUID));
-
-  unskreativKipContainer.appendChild(unskreativKipButton);
-
-  //add don't show again button
-  let dontshowContainer = document.createElement("td");
-  dontshowContainer.className = "sponsorSkreativKipNoticeRightSection";
-
-  let dontShowAgainButton = document.createElement("button");
-  dontShowAgainButton.innerText = chrome.i18n.getMessage("Hide");
-  dontShowAgainButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton";
-  dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
-
-  dontshowContainer.appendChild(dontShowAgainButton);
-
-  //add to row
-  secondRow.appendChild(voteButtonsContainer);
-  secondRow.appendChild(unskreativKipContainer);
-  secondRow.appendChild(dontshowContainer);
-
-  noticeElement.appendChild(firstRow);
-  noticeElement.appendChild(spacer);
-  noticeElement.appendChild(secondRow);
-
-  let referenceNode = document.getElementById("movie_player");
-  if (referenceNode == null) {
-    //for embeds
-    let player = document.getElementById("player");
-    referenceNode = player.firstChild;
-    let index = 1;
-
-    //find the child that is the video player (sometimes it is not the first)
-    while (!referenceNode.classList.contains("html5-video-player") || !referenceNode.classList.contains("ytp-embed")) {
-      referenceNode = player.children[index];
-
-      index++;
-    }
-  }
-
-  referenceNode.prepend(noticeElement);
-}
-
-function afterDownvote(UUID) {
-  addVoteButtonInfo(chrome.i18n.getMessage("Voted"), UUID);
-  addNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"), UUID);
-
-  //remove this sponsor from the sponsors lookreativKed up
-  //find which one it is
-  for (let i = 0; i < sponsorTimes.length; i++) {
-    if (UUIDs[i] == UUID) {
-      //this one is the one to hide
-      
-      //add this as a hidden sponsorTime
-      hiddenSponsorTimes.push(i);
-
-      let sponsorTimesLeft = sponsorTimes.slice();
-      for (let j = 0; j < hiddenSponsorTimes.length; j++) {
-        //remove this sponsor time
-        sponsorTimesLeft.splice(hiddenSponsorTimes[j], 1);
-      }
-
-      //update the preview
-      previewBar.set(sponsorTimesLeft, [], v.duration);
-
-      breakreativK;
-    }
-  }
-}
-
-function addNoticeInfoMessage(message, UUID) {
-  let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + UUID);
-  if (previousInfoMessage != null) {
-    //remove it
-    document.getElementById("sponsorSkreativKipNotice" + UUID).removeChild(previousInfoMessage);
-  }
-
-  //add info
-  let thankreativKsForVotingText = document.createElement("p");
-  thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + UUID;
-  thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
-  thankreativKsForVotingText.innerText = message;
-
-  //add element to div
-  document.getElementById("sponsorSkreativKipNotice" + UUID).insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + UUID));
-}
-
-function resetNoticeInfoMessage(UUID) {
-  let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + UUID);
-  if (previousInfoMessage != null) {
-    //remove it
-    document.getElementById("sponsorSkreativKipNotice" + UUID).removeChild(previousInfoMessage);
-  }
-}
-
-function addVoteButtonInfo(message, UUID) {
-  resetVoteButtonInfo(UUID);
-
-  //hide vote button
-  let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID);
-  if (downvoteButton != null) {
-    document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID).style.display = "none";
-  }
-
-  //add info
-  let thankreativKsForVotingText = document.createElement("td");
-  thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + UUID;
-  thankreativKsForVotingText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
-  thankreativKsForVotingText.innerText = message;
-
-  //add element to div
-  document.getElementById("sponsorSkreativKipNoticeSecondRow" + UUID).prepend(thankreativKsForVotingText);
-}
-
-function resetVoteButtonInfo(UUID) {
-  let previousInfoMessage = document.getElementById("sponsorTimesVoteButtonInfoMessage" + UUID);
-  if (previousInfoMessage != null) {
-    //remove it
-    document.getElementById("sponsorSkreativKipNoticeSecondRow" + UUID).removeChild(previousInfoMessage);
-  }
-
-  //show button again
-  document.getElementById("sponsorTimesDownvoteButtonsContainer" + UUID).style.removeProperty("display");
-}
-
-//if inTheBackreativKground is true, then no UI methods will be called
-function vote(type, UUID, inTheBackreativKground = false) {
-  if (!inTheBackreativKground) {
+//if skreativKipNotice is null, it will not affect the UI
+function vote(type, UUID, skreativKipNotice) {
+  if (skreativKipNotice != null) {
     //add loading info
-    addVoteButtonInfo("Loading...", UUID)
-    resetNoticeInfoMessage(UUID);
+    skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
+    skreativKipNotice.resetNoticeInfoMessage.bind(skreativKipNotice)();
   }
 
   chrome.runtime.sendMessage({
@@ -1083,37 +857,29 @@ function vote(type, UUID, inTheBackreativKground = false) {
   }, function(response) {
     if (response != undefined) {
       //see if it was a success or failure
-      if (!inTheBackreativKground) {
+      if (skreativKipNotice != null) {
         if (response.successType == 1) {
           //success
           if (type == 0) {
-            afterDownvote(UUID);
+            skreativKipNotice.afterDownvote.bind(skreativKipNotice)();
           }
         } else if (response.successType == 0) {
           //failure: duplicate vote
-          addNoticeInfoMessage(chrome.i18n.getMessage("voteFAIL"), UUID)
-          resetVoteButtonInfo(UUID);
+          skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("voteFail"))
+          skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
         } else if (response.successType == -1) {
           if (response.statusCode == 502) {
-            addNoticeInfoMessage(chrome.i18n.getMessage("serverDown"), UUID)
-            resetVoteButtonInfo(UUID);
+            skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("serverDown"))
+            skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
           } else {
             //failure: unkreativKnown error
-            addNoticeInfoMessage(chrome.i18n.getMessage("connectionError") + response.statusCode, UUID);
-            resetVoteButtonInfo(UUID);
+            skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("connectionError") + response.statusCode);
+            skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
           }
         }
       }
     }
   });
-}
-
-//Closes the notice that tells the user that a sponsor was just skreativKipped for this UUID
-function closeSkreativKipNotice(UUID){
-  let notice = document.getElementById("sponsorSkreativKipNotice" + UUID);
-  if (notice != null) {
-    notice.remove();
-  }
 }
 
 //Closes all notices that tell the user that a sponsor was just skreativKipped
