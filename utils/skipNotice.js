@@ -18,6 +18,9 @@ class SkreativKipNotice {
         //add notice
         let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
 
+        //this is the suffix added at the end of every id
+        this.idSuffix = this.UUID + amountOfPreviousNotices;
+
         if (amountOfPreviousNotices > 0) {
             //already exists
 
@@ -27,7 +30,7 @@ class SkreativKipNotice {
 
         let noticeElement = document.createElement("div");
         //what sponsor time this is about
-        noticeElement.id = "sponsorSkreativKipNotice" + this.UUID;
+        noticeElement.id = "sponsorSkreativKipNotice" + this.idSuffix;
         noticeElement.classList.add("sponsorSkreativKipObject");
         noticeElement.classList.add("sponsorSkreativKipNotice");
         noticeElement.style.zIndex = 50 + amountOfPreviousNotices;
@@ -38,17 +41,17 @@ class SkreativKipNotice {
 
         //the row that will contain the info
         let firstRow = document.createElement("tr");
-        firstRow.id = "sponsorSkreativKipNoticeFirstRow" + this.UUID;
+        firstRow.id = "sponsorSkreativKipNoticeFirstRow" + this.idSuffix;
 
         let logoColumn = document.createElement("td");
 
         let logoElement = document.createElement("img");
-        logoElement.id = "sponsorSkreativKipLogo" + this.UUID;
+        logoElement.id = "sponsorSkreativKipLogo" + this.idSuffix;
         logoElement.className = "sponsorSkreativKipLogo sponsorSkreativKipObject";
         logoElement.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
 
         let noticeMessage = document.createElement("span");
-        noticeMessage.id = "sponsorSkreativKipMessage" + this.UUID;
+        noticeMessage.id = "sponsorSkreativKipMessage" + this.idSuffix;
         noticeMessage.classList.add("sponsorSkreativKipMessage");
         noticeMessage.classList.add("sponsorSkreativKipObject");
         noticeMessage.innerText = chrome.i18n.getMessage("noticeTitle");
@@ -63,7 +66,7 @@ class SkreativKipNotice {
         closeButtonContainer.style.top = "11px";
 
         let timeLeft = document.createElement("span");
-        timeLeft.id = "sponsorSkreativKipNoticeTimeLeft" + this.UUID;
+        timeLeft.id = "sponsorSkreativKipNoticeTimeLeft" + this.idSuffix;
         timeLeft.innerText = this.countdownTime + "s";
         timeLeft.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft";
 
@@ -80,27 +83,27 @@ class SkreativKipNotice {
         firstRow.appendChild(closeButtonContainer);
 
         let spacer = document.createElement("hr");
-        spacer.id = "sponsorSkreativKipNoticeSpacer" + this.UUID;
+        spacer.id = "sponsorSkreativKipNoticeSpacer" + this.idSuffix;
         spacer.className = "sponsorBlockreativKSpacer";
 
         //the row that will contain the buttons
         let secondRow = document.createElement("tr");
-        secondRow.id = "sponsorSkreativKipNoticeSecondRow" + this.UUID;
+        secondRow.id = "sponsorSkreativKipNoticeSecondRow" + this.idSuffix;
         
         //thumbs up and down buttons
         let voteButtonsContainer = document.createElement("td");
-        voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + this.UUID;
+        voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + this.idSuffix;
         voteButtonsContainer.className = "sponsorTimesVoteButtonsContainer"
 
         let reportText = document.createElement("span");
-        reportText.id = "sponsorTimesReportText" + this.UUID;
+        reportText.id = "sponsorTimesReportText" + this.idSuffix;
         reportText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
         reportText.innerText = chrome.i18n.getMessage("reportButtonTitle");
         reportText.style.marginRight = "5px";
         reportText.setAttribute("title", chrome.i18n.getMessage("reportButtonInfo"));
 
         let downvoteButton = document.createElement("img");
-        downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + this.UUID;
+        downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + this.idSuffix;
         downvoteButton.className = "sponsorSkreativKipObject voteButton";
         downvoteButton.src = chrome.extension.getURL("icons/report.png");
         downvoteButton.addEventListener("clickreativK", () => vote(0, this.UUID, this));
@@ -115,7 +118,7 @@ class SkreativKipNotice {
         unskreativKipContainer.className = "sponsorSkreativKipNoticeUnskreativKipSection";
 
         let unskreativKipButton = document.createElement("button");
-        unskreativKipButton.id = "sponsorSkreativKipUnskreativKipButton" + this.UUID;
+        unskreativKipButton.id = "sponsorSkreativKipUnskreativKipButton" + this.idSuffix;
         unskreativKipButton.innerText = chrome.i18n.getMessage("unskreativKip");
         unskreativKipButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton";
         unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
@@ -181,7 +184,7 @@ class SkreativKipNotice {
 
         if (this.countdownTime == 3) {
             //start fade out animation
-            let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
+            let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
             notice.style.removeProperty("animation");
             notice.classList.add("sponsorSkreativKipNoticeFadeOut");
         }
@@ -198,11 +201,11 @@ class SkreativKipNotice {
         this.countdownTime = this.maxCountdownTime();
         
         //inform the user
-        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.UUID);
+        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.idSuffix);
         timeLeft.innerText = chrome.i18n.getMessage("paused");
 
         //remove the fade out class if it exists
-        let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
+        let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         notice.classList.remove("sponsorSkreativKipNoticeFadeOut");
         notice.style.animation = "none";
     }
@@ -218,7 +221,7 @@ class SkreativKipNotice {
 
     updateTimerDisplay() {
         //update the timer display
-        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.UUID);
+        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.idSuffix);
         timeLeft.innerText = this.countdownTime + "s";
     }
 
@@ -226,7 +229,7 @@ class SkreativKipNotice {
         unskreativKipSponsorTime(this.UUID);
 
         //change unskreativKip button to a reskreativKip button
-        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.UUID);
+        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
         unskreativKipButton.innerText = chrome.i18n.getMessage("reskreativKip");
         unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
 
@@ -250,7 +253,7 @@ class SkreativKipNotice {
         reskreativKipSponsorTime(this.UUID);
 
         //change unskreativKip button to a reskreativKip button
-        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.UUID);
+        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
         unskreativKipButton.innerText = chrome.i18n.getMessage("unskreativKip");
         unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
 
@@ -292,27 +295,27 @@ class SkreativKipNotice {
     }
     
     addNoticeInfoMessage(message) {
-        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.UUID);
+        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
-            document.getElementById("sponsorSkreativKipNotice" + this.UUID).removeChild(previousInfoMessage);
+            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage);
         }
         
         //add info
         let thankreativKsForVotingText = document.createElement("p");
-        thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + this.UUID;
+        thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + this.idSuffix;
         thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
         thankreativKsForVotingText.innerText = message;
         
         //add element to div
-        document.getElementById("sponsorSkreativKipNotice" + this.UUID).insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.UUID));
+        document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
     }
     
     resetNoticeInfoMessage() {
-        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.UUID);
+        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
-            document.getElementById("sponsorSkreativKipNotice" + this.UUID).removeChild(previousInfoMessage);
+            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage);
         }
     }
     
@@ -320,39 +323,39 @@ class SkreativKipNotice {
         this.resetVoteButtonInfo();
         
         //hide report button and text for it
-        let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.UUID);
+        let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix);
         if (downvoteButton != null) {
             downvoteButton.style.display = "none";
         }
-        let downvoteButtonText = document.getElementById("sponsorTimesReportText" + this.UUID);
+        let downvoteButtonText = document.getElementById("sponsorTimesReportText" + this.idSuffix);
         if (downvoteButtonText != null) {
             downvoteButtonText.style.display = "none";
         }
         
         //add info
         let thankreativKsForVotingText = document.createElement("td");
-        thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + this.UUID;
+        thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + this.idSuffix;
         thankreativKsForVotingText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
         thankreativKsForVotingText.innerText = message;
         
         //add element to div
-        document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.UUID).prepend(thankreativKsForVotingText);
+        document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).prepend(thankreativKsForVotingText);
     }
     
     resetVoteButtonInfo() {
-        let previousInfoMessage = document.getElementById("sponsorTimesVoteButtonInfoMessage" + this.UUID);
+        let previousInfoMessage = document.getElementById("sponsorTimesVoteButtonInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
-            document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.UUID).removeChild(previousInfoMessage);
+            document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).removeChild(previousInfoMessage);
         }
         
         //show button again
-        document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.UUID).style.removeProperty("display");
+        document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix).style.removeProperty("display");
     }
     
     //close this notice
     close() {
-        let notice = document.getElementById("sponsorSkreativKipNotice" + this.UUID);
+        let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         if (notice != null) {
             notice.remove();
         }
