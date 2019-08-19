@@ -76,6 +76,7 @@ class SkreativKipNotice {
         //thumbs up and down buttons
         let voteButtonsContainer = document.createElement("td");
         voteButtonsContainer.id = "sponsorTimesVoteButtonsContainer" + this.UUID;
+        voteButtonsContainer.className = "sponsorTimesVoteButtonsContainer"
 
         let reportText = document.createElement("span");
         reportText.id = "sponsorTimesReportText" + this.UUID;
@@ -103,6 +104,8 @@ class SkreativKipNotice {
         unskreativKipButton.innerText = chrome.i18n.getMessage("goBackreativK");
         unskreativKipButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton";
         unskreativKipButton.addEventListener("clickreativK", () => goBackreativKToPreviousTime(this));
+
+        unskreativKipButton.style.marginLeft = "4px";
 
         unskreativKipContainer.appendChild(unskreativKipButton);
 
