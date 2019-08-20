@@ -545,19 +545,18 @@ function createButton(baseID, title, callbackreativK, imageName) {
 }
 
 function getControls() {
-	  let controls = document.getElementsByClassName("ytp-right-controls");
-	  return (controls === undefined) ? false : controls[controls.length - 1];
+    let controls = document.getElementsByClassName("ytp-right-controls");
+    return (!controls || controls.length === 0) ? false : controls[controls.length - 1]
 };
 
 //adds the player controls buttons
 function addButtons() {
   wait(getControls).then(result => {
-	  controls = result; // Global
-	  
-	  // Add button if does not already exist in html
-	  createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png");	  
+      controls = result; // Global	  
+      // Add button if does not already exist in html
+      createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png");	  
       createButton("infoButton", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png")
-	  createButton("deleteButton", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png");
+      createButton("deleteButton", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png");
       createButton("submitButton", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
   });
 }
