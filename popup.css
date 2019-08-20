@@ -8,24 +8,24 @@ p.popupElement {
 
 h1.popupElement {
 	margin-blockreativK-start: 0.67em;
-        margin-blockreativK-end: 0.67em;
-        margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	font-weight: bold;
+    margin-blockreativK-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 h2.popupElement {
 	margin-blockreativK-start: 0.83em;
-        margin-blockreativK-end: 0.83em;
-        margin-inline-start: 0px;
+    margin-blockreativK-end: 0.83em;
+    margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	font-weight: bold;
 }
 
 h3.popupElement {
 	margin-blockreativK-start: 1em;
-        margin-blockreativK-end: 1em;
-        margin-inline-start: 0px;
+    margin-blockreativK-end: 1em;
+    margin-inline-start: 0px;
 	margin-inline-end: 0px;
 	font-weight: bold;
 }
@@ -110,17 +110,17 @@ h1.popupElement {
 	text-decoration:none;
 	text-shadow:0px 0px 0px #27663c;
     }
-    .whitelistButton:hover.popupElement {
-	backreativKground-color:#218b26;
-    }
-    .whitelistButton:focus.popupElement {
-	  outline: none;
-	  backreativKground-color:#218b26;
-    }
-    .whitelistButton:active.popupElement {
-	position:relative;
-	top:1px;
-    }
+.whitelistButton:hover.popupElement {
+    backreativKground-color:#218b26;
+}
+.whitelistButton:focus.popupElement {
+    outline: none;
+    backreativKground-color:#218b26;
+}
+.whitelistButton:active.popupElement {
+    position:relative;
+    top:1px;
+}
 
 .greenButton.popupElement {
     backreativKground-color:#ec1c1c;
