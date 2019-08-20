@@ -1,8 +1,7 @@
 <p align="center">
   <img src="icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img>
-</p>
-
-<p align="center">
+  
+  <br/>
   <sub>Logo by <a href="https://github.com/munadikreativKieh">@munadikreativKieh</a></sub>
 </p>
 
