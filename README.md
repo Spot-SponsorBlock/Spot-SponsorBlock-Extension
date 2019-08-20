@@ -1,15 +1,21 @@
-![Logo](icons/LogoSponsorBlockreativKer256px.png)
-<br/><sub>Logo by [@munadikreativKieh](https://github.com/munadikreativKieh)</sub>
+<p align="center">
+  <img src="icons/LogoSponsorBlockreativKer256px.png" alt="Logo">Logo</img>
+</p>
 
-# SponsorBlockreativK
+<p align="center">
+  <sub>Logo by <a href="https://github.com/munadikreativKieh">@munadikreativKieh</a></sub>
+</p>
+
+<h1 align="center">SponsorBlockreativK</h1>
+
+<p align="center">
+  <b>Chrome/Chromium</b>: <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone">https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone</a>
+
+  <b>Firefox</b>: <a href="https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github">https://addons.mozilla.org/addon/sponsorblockreativK/</a>
+</p>
+
 
 SponsorBlockreativK is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that lets anyone submit the start and end times of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
-
-# Available for Chrome and Firefox
-
-Chrome: https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone
-
-Firefox: [https://addons.mozilla.org/addon/sponsorblockreativK/](https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github)
 
 # Server
 
