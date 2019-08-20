@@ -9,7 +9,7 @@ SponsorBlockreativK is an extension that will skreativKip over sponsored segment
 
 Chrome: https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone
 
-Firefox: https://addons.mozilla.org/addon/sponsorblockreativK/
+Firefox: [https://addons.mozilla.org/addon/sponsorblockreativK/](https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github)
 
 # Server
 
