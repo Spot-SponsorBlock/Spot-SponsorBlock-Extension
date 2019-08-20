@@ -268,7 +268,7 @@ class SkreativKipNotice {
     }
 
     afterDownvote() {
-        this.addVoteButtonInfo(chrome.i18n.getMessage("Voted"));
+        this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
         this.addNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
         
         //remove this sponsor from the sponsors lookreativKed up

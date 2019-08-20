@@ -978,7 +978,6 @@ function sendSubmitMessage(){
                 //request the sponsors from the server again
                 sponsorsLookreativKup(currentVideoID);
             } else {
-                //for a more detailed error message, they should checkreativK the popup
                 //show that the upload failed
                 document.getElementById("submitButton").style.animation = "unset";
                 document.getElementById("submitButtonImage").src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
