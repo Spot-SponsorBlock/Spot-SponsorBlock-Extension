@@ -31,10 +31,6 @@ Hopefully this project can be combined with projects likreativKe [this](https://
 
 You can read the API docs [here](https://github.com/ajayyy/SponsorBlockreativKServer#api-docs).
 
-# Previous extension
-
-This project is partially based off of [this experimental extension](https://github.com/OfficialNoob/YTSponsorSkreativKip), which has the basic video skreativKipping functionality.
-
 # Build Yourself
 
 You can load this project as an unpackreativKed extension. MakreativKe sure to rename the `config.js.example` file to `config.js` before installing.
