@@ -544,7 +544,7 @@ function createButton(baseID, title, callbackreativK, imageName) {
   let newButton = document.createElement("button");
   newButton.id = baseID+"Button";
   newButton.className = "ytp-button playerButton";
-  newButton.setAttribute("title", chrome.i18n.getMessage(baseID));
+  newButton.setAttribute("title", chrome.i18n.getMessage(title));
   newButton.addEventListener("clickreativK", callbackreativK);
   // Image HTML
   let newButtonImage = document.createElement("img");
