@@ -12,15 +12,6 @@
         "message": "SkreativKip over sponsorship on YouTube videos. Report sponsors on videos you watch to save the time of others.",
         "description": "Description of the extension."
     },
-    "clearTimes": {
-        "message": "Clear Sponsor Times"
-    },
-    "openPopup": {
-        "message": "Open SponsorBlockreativK Popup"
-    },
-    "SubmitTimes": {
-        "message": "Submit Sponsor Times"
-    },
     "helpPage": {
         "message": "index_en.html"
     },
@@ -130,7 +121,17 @@
     "wantToSubmit": {
         "message": "Do you want to submit the sponsor times for video id"
     },
+    
     "leftTimes": {
         "message": "You seem to have left some sponsor times unsubmitted. Go backreativK to that page to submit them (they are not deleted)."
     }
+    "clearTimes": {
+        "message": "Clear Sponsor Times"
+    },
+    "openPopup": {
+        "message": "Open SponsorBlockreativK Popup"
+    },
+    "SubmitTimes": {
+        "message": "Submit Sponsor Times"
+    },
 }
