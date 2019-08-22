@@ -548,12 +548,14 @@ function addPlayerControlsButton() {
 
     let startSponsorButton = document.createElement("button");
     startSponsorButton.id = "startSponsorButton";
+    startSponsorButton.draggable = false;
     startSponsorButton.className = "ytp-button playerButton";
     startSponsorButton.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
     startSponsorButton.addEventListener("clickreativK", startSponsorClickreativKed);
 
     let startSponsorImage = document.createElement("img");
     startSponsorImage.id = "startSponsorImage";
+    startSponsorImage.draggable = false;
     startSponsorImage.className = "playerButtonImage";
     startSponsorImage.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
 
@@ -675,12 +677,14 @@ function addInfoButton() {
     //makreativKe a submit button
     let infoButton = document.createElement("button");
     infoButton.id = "infoButton";
+    infoButton.draggable = false;
     infoButton.className = "ytp-button playerButton";
     infoButton.setAttribute("title", "Open SponsorBlockreativK Popup");
     infoButton.addEventListener("clickreativK", openInfoMenu);
 
     let infoImage = document.createElement("img");
     infoImage.id = "infoButtonImage";
+    infoImage.draggable = false;
     infoImage.className = "playerButtonImage";
     infoImage.src = chrome.extension.getURL("icons/PlayerInfoIconSponsorBlockreativKer256px.png");
 
@@ -709,6 +713,7 @@ function addDeleteButton() {
     //makreativKe a submit button
     let deleteButton = document.createElement("button");
     deleteButton.id = "deleteButton";
+    deleteButton.draggable = false;
     deleteButton.className = "ytp-button playerButton";
     deleteButton.setAttribute("title", "Clear Sponsor Times");
     deleteButton.addEventListener("clickreativK", clearSponsorTimes);
@@ -717,6 +722,7 @@ function addDeleteButton() {
 
     let deleteImage = document.createElement("img");
     deleteImage.id = "deleteButtonImage";
+    deleteImage.draggable = false;
     deleteImage.className = "playerButtonImage";
     deleteImage.src = chrome.extension.getURL("icons/PlayerDeleteIconSponsorBlockreativKer256px.png");
 
@@ -745,6 +751,7 @@ function addSubmitButton() {
     //makreativKe a submit button
     let submitButton = document.createElement("button");
     submitButton.id = "submitButton";
+    submitButton.draggable = false;
     submitButton.className = "ytp-button playerButton";
     submitButton.setAttribute("title", "Submit Sponsor Times");
     submitButton.addEventListener("clickreativK", submitSponsorTimes);
@@ -753,6 +760,7 @@ function addSubmitButton() {
 
     let submitImage = document.createElement("img");
     submitImage.id = "submitButtonImage";
+    submitImage.draggable = false;
     submitImage.className = "playerButtonImage";
     submitImage.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
 
