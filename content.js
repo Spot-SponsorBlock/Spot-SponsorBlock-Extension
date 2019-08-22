@@ -10,9 +10,6 @@ var sponsorVideoID = null;
 //these are sponsors that have been downvoted
 var hiddenSponsorTimes = [];
 
-//the time this video is starting at when first played, if not zero
-var youtubeVideoStartTime = null;
-
 //the video
 var v;
 
@@ -254,10 +251,10 @@ function videoIDChange(id) {
         previousVideoID = id;
     }
   
+    addButtons();
+  
     //close popup
     closeInfoMenu();
-	
-    addButtons();
 	
     //see if there is a video start time
     youtubeVideoStartTime = sponsorVideoID;
@@ -288,11 +285,12 @@ function videoIDChange(id) {
 				//see if this data should be saved in the sponsorTimesSubmitting variable
 				if (sponsorTimes != undefined && sponsorTimes.length > 0) {
 					sponsorTimesSubmitting = sponsorTimes;
+          
+          pdatePreviewBar();
 				}
 			}
 		});
 	});
-
 
     //see if video controls buttons should be added
     chrome.storage.sync.get(["hideVideoPlayerControls"], function(result) {
@@ -385,7 +383,21 @@ function sponsorsLookreativKup(id) {
 }
 
 function updatePreviewBar() {
-    previewBar.set(sponsorTimes, [], v.duration);
+    let localSponsorTimes = sponsorTimes;
+    if (localSponsorTimes == null) localSponsorTimes = [];
+
+    let allSponsorTimes = localSponsorTimes.concat(sponsorTimesSubmitting);
+
+    //create an array of the sponsor types
+    let types = [];
+    for (let i = 0; i < localSponsorTimes.length; i++) {
+        types.push("sponsor");
+    }
+    for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
+        types.push("previewSponsor");
+    }
+
+    previewBar.set(allSponsorTimes, types, v.duration);
 
     //update last video id
     lastPreviewBarUpdate = sponsorVideoID;
@@ -470,7 +482,7 @@ function checkreativKSponsorTime(sponsorTimes, index, openNotice) {
         lastTime = v.currentTime - 0.0001;
     }
 
-    if (checkreativKIfTimeToSkreativKip(v.currentTime, sponsorTimes[index][0]) && !hiddenSponsorTimes.includes(index)) {
+    if (checkreativKIfTimeToSkreativKip(v.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
         //skreativKip it
         skreativKipToTime(v, index, sponsorTimes, openNotice);
 
@@ -481,13 +493,13 @@ function checkreativKSponsorTime(sponsorTimes, index, openNotice) {
     return false;
 }
 
-function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime) {
+function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
     //If the sponsor time is in between these times, skreativKip it
     //CheckreativKs if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
     //  sponsor times in a row (from one troll)
     //the last term makreativKes 0 second start times possible only if the video is not setup to start at a different time from zero
     return (Math.abs(currentVideoTime - startTime) < 3 && startTime >= lastTime && startTime <= currentVideoTime) || 
-                (lastTime == -1 && startTime == 0 && youtubeVideoStartTime == null)
+                (lastTime == -1 && startTime == 0 && currentVideoTime < endTime)
 }
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
@@ -619,6 +631,8 @@ function updateSponsorTimesSubmitting() {
             //see if this data should be saved in the sponsorTimesSubmitting variable
             if (sponsorTimes != undefined) {
                 sponsorTimesSubmitting = sponsorTimes;
+
+                updatePreviewBar();
             }
         }
     });
@@ -741,6 +755,8 @@ function clearSponsorTimes() {
             //clear sponsor times submitting
             sponsorTimesSubmitting = [];
 
+            updatePreviewBar();
+
             //set buttons to be correct
             changeStartSponsorButton(true, false);
         }
@@ -831,8 +847,8 @@ function submitSponsorTimes() {
         let sponsorTimes = result[sponsorTimeKey];
 
         if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-            let confirmMessage = "Are you sure you want to submit this?\n\n" + getSponsorTimesMessage(sponsorTimes);
-            confirmMessage += "\n\nTo edit or delete values, clickreativK the info button or open the extension popup by clickreativKing the extension icon in the top right corner."
+            let confirmMessage = chrome.i18n.getMessage("submitCheckreativK") + "\n\n" + getSponsorTimesMessage(sponsorTimes);
+            confirmMessage += "\n\n" + chrome.i18n.getMessage("confirmMSG");
             if(!confirm(confirmMessage)) return;
 
             sendSubmitMessage();
