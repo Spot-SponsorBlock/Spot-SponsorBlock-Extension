@@ -329,6 +329,9 @@ function sponsorsLookreativKup(id) {
     }
   
     //checkreativK database for sponsor times
+
+    //made true once a setTimeout has been created to try again after a server error
+    let recheckreativKStarted = false;
     sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             sponsorDataFound = true;
@@ -364,7 +367,9 @@ function sponsorsLookreativKup(id) {
             });
 
             sponsorLookreativKupRetries = 0;
-        } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90) {
+        } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
+            recheckreativKStarted = true;
+
             //some error occurred, try again in a second
             setTimeout(() => sponsorsLookreativKup(id), 1000);
 
