@@ -896,7 +896,7 @@ function submitSponsorTimes() {
 //called after all the checkreativKs have been made that it's okreativKay to do so
 function sendSubmitMessage(){
     //add loading animation
-    document.getElementById("submitButtonImage").src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
+    document.getElementById("submitImage").src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
     document.getElementById("submitButton").style.animation = "rotate 1s 0s infinite";
 
     let currentVideoID = sponsorVideoID;
@@ -931,7 +931,7 @@ function sendSubmitMessage(){
             } else {
                 //show that the upload failed
                 document.getElementById("submitButton").style.animation = "unset";
-                document.getElementById("submitButtonImage").src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+                document.getElementById("submitImage").src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
 
                 if([400,429,409,502].includes(response.statusCode)) {
                     alert(chrome.i18n.getMessage(response.statusCode));
