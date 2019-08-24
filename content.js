@@ -206,27 +206,30 @@ function resetValues() {
     sponsorLookreativKupRetries = 0;
 
     //empty the preview bar
-    previewBar = null;
+    previewBar.set([], [], 0);
 
     //reset sponsor data found checkreativK
     sponsorDataFound = false;
 }
 
 function videoIDChange(id) {
-    // ID has not changed return
+    //if the id has not changed return
     if (sponsorVideoID === id) return
-	// Global ID
-	sponsorVideoID = id;
-	resetValues();
-	
-	// ID is not valid
-	if (id === false) return;
 
+    //set the global videoID
+    sponsorVideoID = id;
+
+    //setup the preview bar
     if (previewBar == null) {
         //create it
         let progressBar = document.getElementsByClassName("ytp-progress-bar-container")[0] || document.getElementsByClassName("no-model cue-range-markreativKers")[0];
         previewBar = new PreviewBar(progressBar);
     }
+
+	resetValues();
+	
+	//id is not valid
+	if (id === false) return;
 
     //warn them if they had unsubmitted times
     if (previousVideoID != null) {
@@ -256,9 +259,6 @@ function videoIDChange(id) {
     //close popup
     closeInfoMenu();
 	
-    //see if there is a video start time
-    youtubeVideoStartTime = sponsorVideoID;
-
     sponsorsLookreativKup(id);
 
     //makreativKe sure everything is properly added
@@ -546,46 +546,51 @@ function reskreativKipSponsorTime(UUID) {
 function removePlayerControlsButton() {
     if (!sponsorVideoID) return;
 
-    document.getElementById("changeStartSponsor").style.display = "none";
+    document.getElementById("startSponsorButton").style.display = "none";
     document.getElementById("submitButton").style.display = "none";
 }
 
 function createButton(baseID, title, callbackreativK, imageName, isDraggable=false) {
-  if (document.getElementById(baseID+"Button") != null) return;
-  // Button HTML
-  let newButton = document.createElement("button");
-  newButton.draggable = isDraggable;
-  newButton.id = baseID+"Button";
-  newButton.className = "ytp-button playerButton";
-  newButton.setAttribute("title", chrome.i18n.getMessage(title));
-  newButton.addEventListener("clickreativK", callbackreativK);
-  // Image HTML
-  let newButtonImage = document.createElement("img");
-  newButton.draggable = isDraggable;
-  newButtonImage.id = baseID+"Image";
-  newButtonImage.className = "playerButtonImage";
-  newButtonImage.src = chrome.extension.getURL("icons/"+imageName);
-  // Append image to button
-  newButton.appendChild(newButtonImage);
-  // Add the button to player
-  controls.prepend(newButton);
+
+    if (document.getElementById(baseID+"Button") != null) return;
+
+    // Button HTML
+    let newButton = document.createElement("button");
+    newButton.draggable = isDraggable;
+    newButton.id = baseID+"Button";
+    newButton.className = "ytp-button playerButton";
+    newButton.setAttribute("title", chrome.i18n.getMessage(title));
+    newButton.addEventListener("clickreativK", callbackreativK);
+
+    // Image HTML
+    let newButtonImage = document.createElement("img");
+    newButton.draggable = isDraggable;
+    newButtonImage.id = baseID+"Image";
+    newButtonImage.className = "playerButtonImage";
+    newButtonImage.src = chrome.extension.getURL("icons/"+imageName);
+
+    // Append image to button
+    newButton.appendChild(newButtonImage);
+
+    // Add the button to player
+    controls.prepend(newButton);
 }
 
 function getControls() {
-	  let controls = document.getElementsByClassName("ytp-right-controls");
-	  return (!controls || controls.length === 0) ? false : controls[controls.length - 1]
+    let controls = document.getElementsByClassName("ytp-right-controls");
+    return (!controls || controls.length === 0) ? false : controls[controls.length - 1]
 };
 
 //adds the player controls buttons
 function addButtons() {
-  wait(getControls).then(result => {
-	  controls = result; // Global
-	  // Add button if does not already exist in html
-	  createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png");	  
-	  createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png")
-	  createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png");
-	  createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
-  });
+    wait(getControls).then(result => {
+        controls = result; // Global
+        // Add button if does not already exist in html
+        createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png");	  
+        createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png")
+        createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png");
+        createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
+    });
 }
 //adds or removes the player controls button to what it should be
 function updateVisibilityOfPlayerControlsButton() {
@@ -638,11 +643,14 @@ function updateSponsorTimesSubmitting() {
     });
 }
 
-isSubmitLoaded = () => (document.getElementById("startSponsorImage") !== null);
+//is the submit button on the player loaded yet
+function isSubmitButtonLoaded() {
+    return document.getElementById("submitButton") !== null;
+}
 
 function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
 	if(!sponsorVideoID) return false;
-	wait(isSubmitLoaded).then(result => {
+	wait(isSubmitButtonLoaded).then(result => {
     //if it isn't visible, there is no data
 	let shouldHide = (uploadButtonVisible && !hideDeleteButtonPlayerControls) ? "unset":"none"
 	document.getElementById("deleteButton").style.display = shouldHide;
