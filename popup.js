@@ -1,3 +1,4 @@
+localizeHtmlPage();
 
 //makreativKe this a function to allow this to run on the content page
 function runThePopup() {
