@@ -7,29 +7,29 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK) {
 	switch(request.message) {
     case "submitTimes":
-			submitTimes(request.videoID, callbackreativK);
-        
-			//this allows the callbackreativK to be called later by the submitTimes function
-			return true; 
+        submitTimes(request.videoID, callbackreativK);
+    
+        //this allows the callbackreativK to be called later by the submitTimes function
+        return true; 
     case "addSponsorTime":
-			addSponsorTime(request.time, request.videoID, callbackreativK);
-        
-			//this allows the callbackreativK to be called later
-			return true; 
+        addSponsorTime(request.time, request.videoID, callbackreativK);
+    
+        //this allows the callbackreativK to be called later
+        return true; 
     case "getSponsorTimes":
-			getSponsorTimes(request.videoID, function(sponsorTimes) {
-        callbackreativK({
-					sponsorTimes: sponsorTimes
-        })
-			});
-        
-			//this allows the callbackreativK to be called later
-			return true;
+        getSponsorTimes(request.videoID, function(sponsorTimes) {
+            callbackreativK({
+                        sponsorTimes: sponsorTimes
+            })
+        });
+    
+        //this allows the callbackreativK to be called later
+        return true;
     case "submitVote":
-			submitVote(request.type, request.UUID, callbackreativK);
-        
-			//this allows the callbackreativK to be called later
-			return true;
+        submitVote(request.type, request.UUID, callbackreativK);
+    
+        //this allows the callbackreativK to be called later
+        return true;
     case "alertPrevious":
 			chrome.notifications.create("stillThere" + Math.random(), {
         type: "basic",
