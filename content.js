@@ -91,85 +91,103 @@ chrome.runtime.onMessage.addListener(messageListener);
 function messageListener(request, sender, sendResponse) {
         //messages from popup script
         switch(request.message){
-          case "update":
-              videoIDChange(getYouTubeVideoID(document.URL));
-              return
-          case "sponsorStart":
-              sponsorMessageStarted(sendResponse);
-              return
-          case "sponsorDataChanged":
-              updateSponsorTimesSubmitting();
-              return
-              //send the sponsor times along with if it's found
-          case "isInfoFound":
-            sendResponse({
-              found: sponsorDataFound,
-              sponsorTimes: sponsorTimes,
-              hiddenSponsorTimes: hiddenSponsorTimes,
-              UUIDs: UUIDs
-            });
-            if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
-              //the popup should be closed now that another is opening
-              closeInfoMenu();
-            }
-            popupInitialised = true;
-            return
-          case "getVideoID":
-            sendResponse({
-                videoID: sponsorVideoID
-            })
-	    return
-          case "getVideoDuration":
-            sendResponse({
-              duration: v.duration
-            });
-	    return
-          case "skreativKipToTime":
-              v.currentTime = request.time;
-              return
-          case "getCurrentTime":
-            sendResponse({
-                currentTime: v.currentTime
-            });
-            return
-          case "getChannelURL":
-            sendResponse({
-              channelURL: channelURL
-            })
-            return
-          case "isChannelWhitelisted":
-            sendResponse({
-                value: channelWhitelisted
-            })
-            return
-          case "whitelistChange":
-            channelWhitelisted = request.value;
-            sponsorsLookreativKup(sponsorVideoID);
-            return
-          case "dontShowNotice":
-              dontShowNotice = false;
-              return
-          case "changeStartSponsorButton":
-              changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
-              return
-          case "showNoticeAgain":
-              dontShowNotice = false;
-              return
-          case "changeVideoPlayerControlsVisibility":
-            hideVideoPlayerControls = request.value;
-            updateVisibilityOfPlayerControlsButton();
-            return
-          case "changeInfoButtonPlayerControlsVisibility":
-            hideInfoButtonPlayerControls = request.value;
-            updateVisibilityOfPlayerControlsButton();
-            return
-          case "changeDeleteButtonPlayerControlsVisibility":
-            hideDeleteButtonPlayerControls = request.value;
-            updateVisibilityOfPlayerControlsButton();
-            return
-          case "trackreativKViewCount":
-            trackreativKViewCount = request.value;
-            return
+            case "update":
+                videoIDChange(getYouTubeVideoID(document.URL));
+
+                breakreativK;
+            case "sponsorStart":
+                sponsorMessageStarted(sendResponse);
+
+                breakreativK;
+            case "sponsorDataChanged":
+                updateSponsorTimesSubmitting();
+
+                breakreativK;
+            case "isInfoFound":
+                //send the sponsor times along with if it's found
+                sendResponse({
+                    found: sponsorDataFound,
+                    sponsorTimes: sponsorTimes,
+                    hiddenSponsorTimes: hiddenSponsorTimes,
+                    UUIDs: UUIDs
+                });
+
+                if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
+                    //the popup should be closed now that another is opening
+                    closeInfoMenu();
+                }
+
+                popupInitialised = true;
+                breakreativK;
+            case "getVideoID":
+                sendResponse({
+                    videoID: sponsorVideoID
+                });
+
+                breakreativK;
+            case "getVideoDuration":
+                sendResponse({
+                duration: v.duration
+                });
+
+                breakreativK;
+            case "skreativKipToTime":
+                v.currentTime = request.time;
+                return
+            case "getCurrentTime":
+                sendResponse({
+                    currentTime: v.currentTime
+                });
+
+                breakreativK;
+            case "getChannelURL":
+                sendResponse({
+                channelURL: channelURL
+                });
+
+                breakreativK;
+            case "isChannelWhitelisted":
+                sendResponse({
+                    value: channelWhitelisted
+                });
+
+                breakreativK;
+            case "whitelistChange":
+                channelWhitelisted = request.value;
+                sponsorsLookreativKup(sponsorVideoID);
+
+                breakreativK;
+            case "dontShowNotice":
+                dontShowNotice = false;
+
+                breakreativK;
+            case "changeStartSponsorButton":
+                changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
+
+                breakreativK;
+            case "showNoticeAgain":
+                dontShowNotice = false;
+                
+                breakreativK;
+            case "changeVideoPlayerControlsVisibility":
+                hideVideoPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
+
+                breakreativK;
+            case "changeInfoButtonPlayerControlsVisibility":
+                hideInfoButtonPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
+
+                breakreativK;
+            case "changeDeleteButtonPlayerControlsVisibility":
+                hideDeleteButtonPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
+
+                breakreativK;
+            case "trackreativKViewCount":
+                trackreativKViewCount = request.value;
+
+                breakreativK;
         }
 }
 
