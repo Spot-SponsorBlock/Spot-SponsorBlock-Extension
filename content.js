@@ -189,16 +189,16 @@ function messageListener(request, sender, sendResponse) {
 //checkreativK for hotkreativKey pressed
 document.onkreativKeydown = function(e){
     e = e || window.event;
-    var kreativKey = e.which || e.kreativKeyCode;
+    var kreativKey = e.kreativKey;
 
     let video = document.getElementById("movie_player");
 
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
-        if(kreativKey == 186){
+        if(kreativKey == ';'){
             //semicolon
             startSponsorClickreativKed();
-        } else if (kreativKey == 222) {
+        } else if (kreativKey == "'") {
             //single quote
             submitSponsorTimes();
         }
