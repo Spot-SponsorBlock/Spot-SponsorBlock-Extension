@@ -14,6 +14,7 @@
   <a href="https://sponsor.ajay.app/stats">Stats</a>
 </p>
 
+[![](https://img.shields.io/amo/users/sponsorblockreativK?label=Firefox%20Users)](https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github) [![](https://img.shields.io/chrome-web-store/users/mnjggcdmjocbbbhaepdhchncahnbgone?label=Chome%20Users)](https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone)
 
 SponsorBlockreativK is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that lets anyone submit the start and end times of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
 
