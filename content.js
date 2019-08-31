@@ -90,99 +90,104 @@ chrome.runtime.onMessage.addListener(messageListener);
   
 function messageListener(request, sender, sendResponse) {
         //messages from popup script
-  
-        if (request.message == "update") {
-			videoIDChange(getYouTubeVideoID(document.URL));
-        }
-  
-        if (request.message == "sponsorStart") {
-            sponsorMessageStarted(sendResponse);
-        }
+        switch(request.message){
+            case "update":
+                videoIDChange(getYouTubeVideoID(document.URL));
 
-        if (request.message == "sponsorDataChanged") {
-            updateSponsorTimesSubmitting();
-        }
+                breakreativK;
+            case "sponsorStart":
+                sponsorMessageStarted(sendResponse);
 
-        if (request.message == "isInfoFound") {
-            //send the sponsor times along with if it's found
-            sendResponse({
-                found: sponsorDataFound,
-                sponsorTimes: sponsorTimes,
-                hiddenSponsorTimes: hiddenSponsorTimes,
-                UUIDs: UUIDs
-            });
+                breakreativK;
+            case "sponsorDataChanged":
+                updateSponsorTimesSubmitting();
 
-            if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
-                //the popup should be closed now that another is opening
-                closeInfoMenu();
-            }
+                breakreativK;
+            case "isInfoFound":
+                //send the sponsor times along with if it's found
+                sendResponse({
+                    found: sponsorDataFound,
+                    sponsorTimes: sponsorTimes,
+                    hiddenSponsorTimes: hiddenSponsorTimes,
+                    UUIDs: UUIDs
+                });
 
-            popupInitialised = true;
-        }
+                if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
+                    //the popup should be closed now that another is opening
+                    closeInfoMenu();
+                }
 
-        if (request.message == "getVideoID") {
-            sendResponse({
-                videoID: sponsorVideoID
-            })
-        }
+                popupInitialised = true;
+                breakreativK;
+            case "getVideoID":
+                sendResponse({
+                    videoID: sponsorVideoID
+                });
 
-        if (request.message == "getVideoDuration") {
-            sendResponse({
+                breakreativK;
+            case "getVideoDuration":
+                sendResponse({
                 duration: v.duration
-            });
-        }
+                });
 
-        if (request.message == "skreativKipToTime") {
-            v.currentTime = request.time;
-        }
+                breakreativK;
+            case "skreativKipToTime":
+                v.currentTime = request.time;
+                return
+            case "getCurrentTime":
+                sendResponse({
+                    currentTime: v.currentTime
+                });
 
-        if (request.message == "getCurrentTime") {
-            sendResponse({
-                currentTime: v.currentTime
-            });
-        }
-
-        if (request.message == "getChannelURL") {
-            sendResponse({
+                breakreativK;
+            case "getChannelURL":
+                sendResponse({
                 channelURL: channelURL
-            })
-        }
+                });
 
-        if (request.message == "isChannelWhitelisted") {
-            sendResponse({
-                value: channelWhitelisted
-            })
-        }
+                breakreativK;
+            case "isChannelWhitelisted":
+                sendResponse({
+                    value: channelWhitelisted
+                });
 
-        if (request.message == "whitelistChange") {
-            channelWhitelisted = request.value;
-            sponsorsLookreativKup(sponsorVideoID);
-        }
+                breakreativK;
+            case "whitelistChange":
+                channelWhitelisted = request.value;
+                sponsorsLookreativKup(sponsorVideoID);
 
-        if (request.message == "showNoticeAgain") {
-            dontShowNotice = false;
-        }
+                breakreativK;
+            case "dontShowNotice":
+                dontShowNotice = false;
 
-        if (request.message == "changeStartSponsorButton") {
-            changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
-        }
+                breakreativK;
+            case "changeStartSponsorButton":
+                changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
 
-        if (request.message == "changeVideoPlayerControlsVisibility") {
-            hideVideoPlayerControls = request.value;
+                breakreativK;
+            case "showNoticeAgain":
+                dontShowNotice = false;
+                
+                breakreativK;
+            case "changeVideoPlayerControlsVisibility":
+                hideVideoPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
 
-            updateVisibilityOfPlayerControlsButton();
-        } else if (request.message == "changeInfoButtonPlayerControlsVisibility") {
-            hideInfoButtonPlayerControls = request.value;
+                breakreativK;
+            case "changeInfoButtonPlayerControlsVisibility":
+                hideInfoButtonPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
 
-            updateVisibilityOfPlayerControlsButton();
-        } else if (request.message == "changeDeleteButtonPlayerControlsVisibility") {
-            hideDeleteButtonPlayerControls = request.value;
+                breakreativK;
+            case "changeDeleteButtonPlayerControlsVisibility":
+                hideDeleteButtonPlayerControls = request.value;
+                updateVisibilityOfPlayerControlsButton();
 
-            updateVisibilityOfPlayerControlsButton();
-        }
+                breakreativK;
+            case "trackreativKViewCount":
+                trackreativKViewCount = request.value;
 
-        if (request.message == "trackreativKViewCount") {
-            trackreativKViewCount = request.value;
+                breakreativK;
         }
 }
 
