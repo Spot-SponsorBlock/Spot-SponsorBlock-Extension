@@ -577,6 +577,7 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     newButton.className = "ytp-button playerButton";
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
     newButton.addEventListener("clickreativK", callbackreativK);
+    newButton.addEventListener("mouseover", getEventListeners(document.getElementsByClassName("ytp-play-button")[0]).mouseover[0].listener);
 
     // Image HTML
     let newButtonImage = document.createElement("img");
