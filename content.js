@@ -937,15 +937,15 @@ function dontShowNoticeAgain() {
 }
 
 function sponsorMessageStarted(callbackreativK) {
-        v = document.querySelector('video');
+    v = document.querySelector('video');
 
-        //send backreativK current time
-        callbackreativK({
-            time: v.currentTime
-        })
+    //send backreativK current time
+    callbackreativK({
+        time: v.currentTime
+    })
 
-        //update button
-        toggleStartSponsorButton();
+    //update button
+    toggleStartSponsorButton();
 }
 
 function submitSponsorTimes() {
