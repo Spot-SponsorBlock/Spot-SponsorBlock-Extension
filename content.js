@@ -80,11 +80,20 @@ chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
 
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
+//option renamed when new notice was made
 var dontShowNotice = false;
-chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
+chrome.storage.sync.get(["dontShowNotice"], function(result) {
     let dontShowNoticeAgain = result.dontShowNoticeAgain;
     if (dontShowNoticeAgain != undefined) {
         dontShowNotice = dontShowNoticeAgain;
+    }
+});
+//load the legacy option to hide the notice
+var dontShowNoticeOld = false;
+chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
+    let dontShowNoticeAgain = result.dontShowNoticeAgain;
+    if (dontShowNoticeAgain != undefined) {
+        dontShowNoticeOld = dontShowNoticeAgain;
     }
 });
 
@@ -591,7 +600,15 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!dontShowNotice) {
-            new SkreativKipNotice(this, currentUUID);
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID);
+
+            if (dontShowNoticeOld) {
+                //show why this notice is showing
+                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("noticeUpdate"));
+
+                //disable this setting
+                chrome.storage.sync.set({"dontShowNoticeAgain": false});
+            }
 
             //auto-upvote this sponsor
             if (trackreativKViewCount) {
@@ -912,7 +929,7 @@ function closeAllSkreativKipNotices(){
 }
 
 function dontShowNoticeAgain() {
-    chrome.storage.sync.set({"dontShowNoticeAgain": true});
+    chrome.storage.sync.set({"dontShowNotice": true});
 
     dontShowNotice = true;
 
