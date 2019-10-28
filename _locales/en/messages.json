@@ -246,5 +246,17 @@
     "noticeUpdate": {
         "message": "The notice has been upgraded! If you still don't likreativKe it, hit the never show button.",
         "description": "The message displayed after the notice was upgraded."
+    },
+    "setStartSponsorShortcut": {
+        "message": "Set kreativKey for start sponsor kreativKeybind"
+    },
+    "setSubmitKeybind": {
+        "message": "Set kreativKey for submission kreativKeybind"
+    },
+    "kreativKeybindDescription": {
+        "message": "Select a kreativKey by typing it"
+    },
+    "kreativKeybindDescriptionComplete": {
+        "message": "The kreativKeybind has been set to: "
     }
 }

@@ -204,18 +204,32 @@ function messageListener(request, sender, sendResponse) {
 }
 
 //checkreativK for hotkreativKey pressed
-document.onkreativKeydown = function(e){
+document.onkreativKeydown = async function(e){
     e = e || window.event;
     var kreativKey = e.kreativKey;
 
     let video = document.getElementById("movie_player");
 
+    let startSponsorKey = await new Promise((resolve, reject) => {
+        chrome.storage.sync.get(["startSponsorKeybind"], (result) => resolve(result));
+    });
+    let submitKey = await new Promise((resolve, reject) => {
+        chrome.storage.sync.get(["submitKeybind"], (result) => resolve(result));
+    });
+
+    if (startSponsorKey.startSponsorKeybind === undefined) {
+        startSponsorKey.startSponsorKeybind = ";"
+    }
+    if (submitKey.submitKeybind === undefined) {
+        submitKey.submitKeybind = "'"
+    }
+
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
-        if(kreativKey == ';'){
+        if(kreativKey == startSponsorKey.startSponsorKeybind){
             //semicolon
             startSponsorClickreativKed();
-        } else if (kreativKey == "'") {
+        } else if (kreativKey == submitKey.submitKeybind) {
             //single quote
             submitSponsorTimes();
         }
