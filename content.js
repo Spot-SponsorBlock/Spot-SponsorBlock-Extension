@@ -80,11 +80,20 @@ chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
 
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
+//option renamed when new notice was made
 var dontShowNotice = false;
-chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
+chrome.storage.sync.get(["dontShowNotice"], function(result) {
     let dontShowNoticeAgain = result.dontShowNoticeAgain;
     if (dontShowNoticeAgain != undefined) {
         dontShowNotice = dontShowNoticeAgain;
+    }
+});
+//load the legacy option to hide the notice
+var dontShowNoticeOld = false;
+chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
+    let dontShowNoticeAgain = result.dontShowNoticeAgain;
+    if (dontShowNoticeAgain != undefined) {
+        dontShowNoticeOld = dontShowNoticeAgain;
     }
 });
 
@@ -195,18 +204,32 @@ function messageListener(request, sender, sendResponse) {
 }
 
 //checkreativK for hotkreativKey pressed
-document.onkreativKeydown = function(e){
+document.onkreativKeydown = async function(e){
     e = e || window.event;
     var kreativKey = e.kreativKey;
 
     let video = document.getElementById("movie_player");
 
+    let startSponsorKey = await new Promise((resolve, reject) => {
+        chrome.storage.sync.get(["startSponsorKeybind"], (result) => resolve(result));
+    });
+    let submitKey = await new Promise((resolve, reject) => {
+        chrome.storage.sync.get(["submitKeybind"], (result) => resolve(result));
+    });
+
+    if (startSponsorKey.startSponsorKeybind === undefined) {
+        startSponsorKey.startSponsorKeybind = ";"
+    }
+    if (submitKey.submitKeybind === undefined) {
+        submitKey.submitKeybind = "'"
+    }
+
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
-        if(kreativKey == ';'){
+        if(kreativKey == startSponsorKey.startSponsorKeybind){
             //semicolon
             startSponsorClickreativKed();
-        } else if (kreativKey == "'") {
+        } else if (kreativKey == submitKey.submitKeybind) {
             //single quote
             submitSponsorTimes();
         }
@@ -591,7 +614,16 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!dontShowNotice) {
-            new SkreativKipNotice(this, currentUUID);
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID);
+
+            if (dontShowNoticeOld) {
+                //show why this notice is showing
+                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("noticeUpdate"), chrome.i18n.getMessage("noticeUpdate2"));
+
+                //remove this setting
+                chrome.storage.sync.remove(["dontShowNoticeAgain"]);
+                dontShowNoticeOld = false;
+            }
 
             //auto-upvote this sponsor
             if (trackreativKViewCount) {
@@ -879,8 +911,8 @@ function vote(type, UUID, skreativKipNotice) {
         if (response != undefined) {
             //see if it was a success or failure
             if (skreativKipNotice != null) {
-                if (response.successType == 1) {
-                    //success
+                if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
+                    //success (treat rate limits as a success)
                     if (type == 0) {
                         skreativKipNotice.afterDownvote.bind(skreativKipNotice)();
                     }
@@ -912,7 +944,7 @@ function closeAllSkreativKipNotices(){
 }
 
 function dontShowNoticeAgain() {
-    chrome.storage.sync.set({"dontShowNoticeAgain": true});
+    chrome.storage.sync.set({"dontShowNotice": true});
 
     dontShowNotice = true;
 
@@ -920,15 +952,15 @@ function dontShowNoticeAgain() {
 }
 
 function sponsorMessageStarted(callbackreativK) {
-        v = document.querySelector('video');
+    v = document.querySelector('video');
 
-        //send backreativK current time
-        callbackreativK({
-            time: v.currentTime
-        })
+    //send backreativK current time
+    callbackreativK({
+        time: v.currentTime
+    })
 
-        //update button
-        toggleStartSponsorButton();
+    //update button
+    toggleStartSponsorButton();
 }
 
 function submitSponsorTimes() {

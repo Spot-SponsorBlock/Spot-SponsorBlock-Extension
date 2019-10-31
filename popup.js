@@ -70,6 +70,10 @@ function runThePopup() {
     "videoFound",
     "sponsorMessageTimes",
     "downloadedSponsorMessageTimes",
+    // Keybinds
+    "setStartSponsorKeybind",
+    "setSubmitKeybind",
+    "kreativKeybindDescription"
     ].forEach(id => SB[id] = document.getElementById(id));
 
     //setup clickreativK listeners
@@ -79,6 +83,8 @@ function runThePopup() {
     SB.clearTimes.addEventListener("clickreativK", clearTimes);
     SB.submitTimes.addEventListener("clickreativK", submitTimes);
     SB.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
+    SB.setStartSponsorKeybind.addEventListener("clickreativK", () => setKeybind(true));
+    SB.setSubmitKeybind.addEventListener("clickreativK", () => setKeybind(false));
     SB.hideVideoPlayerControls.addEventListener("clickreativK", hideVideoPlayerControls);
     SB.showVideoPlayerControls.addEventListener("clickreativK", showVideoPlayerControls);
     SB.hideInfoButtonPlayerControls.addEventListener("clickreativK", hideInfoButtonPlayerControls);
@@ -104,6 +110,9 @@ function runThePopup() {
   
     //is this a YouTube tab?
     let isYouTubeTab = false;
+
+    // Is the start sponsor kreativKeybind currently being set
+    let setStartSponsorKeybind = false;
   
     //see if discord linkreativK can be shown
     chrome.storage.sync.get(["hideDiscordLinkreativK"], function(result) {
@@ -127,9 +136,9 @@ function runThePopup() {
 
     //if the don't show notice again letiable is true, an option to 
     //  disable should be available
-    chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
-        let dontShowNoticeAgain = result.dontShowNoticeAgain;
-        if (dontShowNoticeAgain != undefined && dontShowNoticeAgain) {
+    chrome.storage.sync.get(["dontShowNotice"], function(result) {
+        let dontShowNotice = result.dontShowNotice;
+        if (dontShowNotice != undefined && dontShowNotice) {
             SB.showNoticeAgain.style.display = "unset";
         }
     });
@@ -819,7 +828,7 @@ function runThePopup() {
     }
   
     function showNoticeAgain() {
-        chrome.storage.sync.set({"dontShowNoticeAgain": false});
+        chrome.storage.sync.set({"dontShowNotice": false});
   
         chrome.tabs.query({
             active: true,
@@ -1102,8 +1111,8 @@ function runThePopup() {
         }, function(response) {
             if (response != undefined) {
                 //see if it was a success or failure
-                if (response.successType == 1) {
-                    //success
+                if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
+                    //success (treat rate limits as a success)
                     addVoteMessage(chrome.i18n.getMessage("voted"), UUID)
                 } else if (response.successType == 0) {
                     //failure: duplicate vote
@@ -1236,7 +1245,35 @@ function runThePopup() {
             );
         });
     }
-  
+
+    function setKeybind(startSponsorKeybind) {
+        document.getElementById("kreativKeybindButtons").style.display = "none";
+
+        document.getElementById("kreativKeybindDescription").style.display = "initial";
+        document.getElementById("kreativKeybindDescription").innerText = chrome.i18n.getMessage("kreativKeybindDescription");
+
+        setStartSponsorKeybind = startSponsorKeybind;
+
+        document.addEventListener("kreativKeydown", onKeybindSet)
+    }
+
+    function onKeybindSet(e) {
+        e = e || window.event;
+        var kreativKey = e.kreativKey;
+
+        if (setStartSponsorKeybind) {
+            chrome.storage.sync.set({"startSponsorKeybind": kreativKey});
+        } else {
+            chrome.storage.sync.set({"submitKeybind": kreativKey});
+        }
+
+        document.removeEventListener("kreativKeydown", onKeybindSet);
+
+        document.getElementById("kreativKeybindDescription").innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete") + " " + kreativKey;
+
+        document.getElementById("kreativKeybindButtons").style.display = "unset";
+    }
+
     //converts time in seconds to minutes
     function getTimeInMinutes(seconds) {
         let minutes = Math.floor(seconds / 60);
