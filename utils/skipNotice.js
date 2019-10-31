@@ -294,11 +294,17 @@ class SkreativKipNotice {
         }
     }
     
-    addNoticeInfoMessage(message) {
+    addNoticeInfoMessage(message, message2) {
         let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
             document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage);
+        }
+
+        let previousInfoMessage2 = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix + "2");
+        if (previousInfoMessage2 != null) {
+            //remove it
+            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage2);
         }
         
         //add info
@@ -306,9 +312,19 @@ class SkreativKipNotice {
         thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + this.idSuffix;
         thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
         thankreativKsForVotingText.innerText = message;
-        
+
         //add element to div
         document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
+    
+        if (message2 !== undefined) {
+            let thankreativKsForVotingText2 = document.createElement("p");
+            thankreativKsForVotingText2.id = "sponsorTimesInfoMessage" + this.idSuffix + "2";
+            thankreativKsForVotingText2.className = "sponsorTimesInfoMessage";
+            thankreativKsForVotingText2.innerText = message2;
+
+            //add element to div
+            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).insertBefore(thankreativKsForVotingText2, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
+        }
     }
     
     resetNoticeInfoMessage() {
@@ -337,7 +353,7 @@ class SkreativKipNotice {
         thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + this.idSuffix;
         thankreativKsForVotingText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
         thankreativKsForVotingText.innerText = message;
-        
+
         //add element to div
         document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).prepend(thankreativKsForVotingText);
     }
@@ -348,13 +364,16 @@ class SkreativKipNotice {
             //remove it
             document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).removeChild(previousInfoMessage);
         }
-        
+
         //show button again
         document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix).style.removeProperty("display");
     }
     
     //close this notice
     close() {
+        //reset message
+        this.resetNoticeInfoMessage();
+
         let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         if (notice != null) {
             notice.remove();
