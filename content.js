@@ -420,7 +420,8 @@ function sponsorsLookreativKup(id, channelIDPromise) {
 
                     //if less than 3 days old
                     if ((Date.now() / 1000) - unixTimePublished < 259200) {
-                        setTimeout(() => sponsorsLookreativKup(id), 10000);
+                        //TODO lower when server becomes better
+                        setTimeout(() => sponsorsLookreativKup(id), 180000);
                     }
                 }
             });
