@@ -430,8 +430,9 @@ function sponsorsLookreativKup(id, channelIDPromise) {
         } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
             recheckreativKStarted = true;
 
+            //TODO lower when server becomes better (backreativK to 1 second)
             //some error occurred, try again in a second
-            setTimeout(() => sponsorsLookreativKup(id), 1000);
+            setTimeout(() => sponsorsLookreativKup(id), 10000);
 
             sponsorLookreativKupRetries++;
         }
