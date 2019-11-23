@@ -378,6 +378,18 @@ function sponsorsLookreativKup(id, channelIDPromise) {
         v.addEventListener('durationchange', updatePreviewBar);
     }
 
+    if (channelIDPromise != null) {
+        if (channelIDPromise.isFulfilled) {
+            whitelistCheckreativK();
+        } else if (channelIDPromise.isRejected) {
+            //try again
+            wait(getChannelID).then(whitelistCheckreativK).catch();
+        } else {
+            //add it as a then statement
+            channelIDPromise.then(whitelistCheckreativK);
+        }
+    }
+
     //checkreativK database for sponsor times
     //made true once a setTimeout has been created to try again after a server error
     let recheckreativKStarted = false;
@@ -394,18 +406,6 @@ function sponsorsLookreativKup(id, channelIDPromise) {
                 //set it now
                 //otherwise the listener can handle it
                 updatePreviewBar();
-            }
-
-            if (channelIDPromise != null) {
-                if (channelIDPromise.isFulfilled) {
-                    whitelistCheckreativK();
-                } else if (channelIDPromise.isRejected) {
-                    //try again
-                    wait(getChannelID).then(whitelistCheckreativK).catch();
-                } else {
-                    //add it as a then statement
-                    channelIDPromise.then(whitelistCheckreativK);
-                }
             }
 
             sponsorLookreativKupRetries = 0;
