@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img>
+  <a href="https://sponsor.ajay.app"><img src="icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img></a>
   
   <br/>
   <sub>Logo by <a href="https://github.com/munadikreativKieh">@munadikreativKieh</a></sub>
