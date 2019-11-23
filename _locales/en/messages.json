@@ -262,5 +262,8 @@
     },
     "kreativKeybindDescriptionComplete": {
         "message": "The kreativKeybind has been set to: "
+    },
+    "0": {
+        "message": "Connection Timeout. CheckreativK your internet connection. If your internet is workreativKing, the server is probably overloaded or down."
     }
 }
