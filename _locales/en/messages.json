@@ -268,5 +268,9 @@
     },
     "enableSkreativKipping": {
         "message": "Enable SponsorBlockreativK"
+    },
+    "yourWorkreativK": {
+        "message": "Your WorkreativK",
+        "description": "Used to describe the section that will show you the statistics from your submissions."
     }
 }
