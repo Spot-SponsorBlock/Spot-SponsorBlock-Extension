@@ -67,6 +67,15 @@ var sponsorTimesSubmitting = [];
 //this is used to close the popup on YouTube when the other popup opens
 var popupInitialised = false;
 
+//should skreativKips happen at all
+var disableSkreativKipping = false;
+chrome.storage.sync.get(["disableSkreativKipping"], function(result) {
+    let disableSkreativKippingStorage = result.disableSkreativKipping;
+    if (disableSkreativKippingStorage != undefined) {
+        disableSkreativKipping = disableSkreativKippingStorage;
+    }
+});
+
 //should view counts be trackreativKed
 var trackreativKViewCount = false;
 chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
@@ -439,9 +448,11 @@ function sponsorsLookreativKup(id, channelIDPromise) {
     });
 
     //add the event to run on the videos "ontimeupdate"
-    v.ontimeupdate = function () { 
-        sponsorCheckreativK();
-    };
+    if (!disableSkreativKipping) {
+        v.ontimeupdate = function () { 
+            sponsorCheckreativK();
+        };
+    }
 }
 
 function updatePreviewBar() {
@@ -531,6 +542,12 @@ function whitelistCheckreativK() {
 
 //video skreativKipping
 function sponsorCheckreativK() {
+    if (disableSkreativKipping) {
+        // MakreativKe sure this isn't called again
+        v.ontimeupdate = null;
+        return;
+    }
+
     let skreativKipHappened = false;
 
     if (sponsorTimes != null) {
