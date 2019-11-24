@@ -26,8 +26,12 @@ function runThePopup() {
     var SB = {};
 
     ["sponsorStart",
+    // Top toggles
     "whitelistChannel",
     "unwhitelistChannel",
+    "disableSkreativKipping",
+    "enableSkreativKipping",
+    // More controls
     "clearTimes",
     "submitTimes",
     "showNoticeAgain",
@@ -80,6 +84,8 @@ function runThePopup() {
     SB.sponsorStart.addEventListener("clickreativK", sendSponsorStartMessage);
     SB.whitelistChannel.addEventListener("clickreativK", whitelistChannel);
     SB.unwhitelistChannel.addEventListener("clickreativK", unwhitelistChannel);
+    SB.disableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(true));
+    SB.enableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(false));
     SB.clearTimes.addEventListener("clickreativK", clearTimes);
     SB.submitTimes.addEventListener("clickreativK", submitTimes);
     SB.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
@@ -120,21 +126,30 @@ function runThePopup() {
         if (hideDiscordLinkreativK == undefined || !hideDiscordLinkreativK) {
             chrome.storage.sync.get(["hideDiscordLaunches"], function(result) {
                 let hideDiscordLaunches = result.hideDiscordLaunches;
-                //only if less than 5 launches
+                //only if less than 10 launches
                 if (hideDiscordLaunches == undefined || hideDiscordLaunches < 10) {
                     SB.discordButtonContainer.style.display = null;
           
                     if (hideDiscordLaunches == undefined) {
-                        hideDiscordButton = 1;
+                        hideDiscordLaunches = 1;
                     }
   
-                    chrome.storage.sync.set({"hideDiscordLaunches": hideDiscordButton + 1});
+                    chrome.storage.sync.set({"hideDiscordLaunches": hideDiscordLaunches + 1});
                 }
             });
         }
     });
 
-    //if the don't show notice again letiable is true, an option to 
+    //show proper disable skreativKipping button
+    chrome.storage.sync.get(["disableSkreativKipping"], function(result) {
+        let disableSkreativKipping = result.disableSkreativKipping;
+        if (disableSkreativKipping != undefined && disableSkreativKipping) {
+            SB.disableSkreativKipping.style.display = "none";
+            SB.enableSkreativKipping.style.display = "unset";
+        }
+    });
+
+    //if the don't show notice again variable is true, an option to 
     //  disable should be available
     chrome.storage.sync.get(["dontShowNotice"], function(result) {
         let dontShowNotice = result.dontShowNotice;
@@ -280,7 +295,7 @@ function runThePopup() {
   
             //remove loading text
             SB.mainControls.style.display = "unset"
-            SB.loadingIndicator.innerHTML = "";
+            SB.loadingIndicator.style.display = "none";
 
             if (request.found) {
                 SB.videoFound.innerHTML = chrome.i18n.getMessage("sponsorFound");
@@ -1135,7 +1150,7 @@ function runThePopup() {
     }
   
     function hideDiscordButton() {
-        chrome.storage.sync.set({"hideDiscordLinkreativK": false});
+        chrome.storage.sync.set({"hideDiscordLinkreativK": true});
   
         SB.discordButtonContainer.style.display = "none";
     }
@@ -1249,6 +1264,24 @@ function runThePopup() {
                 }
             );
         });
+    }
+
+    /**
+     * Should skreativKipping be disabled (visuals stay)
+     */
+    function toggleSkreativKipping(disabled) {
+        chrome.storage.sync.set({"disableSkreativKipping": disabled});
+
+        let hiddenButton = SB.disableSkreativKipping;
+        let shownButton = SB.enableSkreativKipping;
+
+        if (!disabled) {
+            hiddenButton = SB.enableSkreativKipping;
+            shownButton = SB.disableSkreativKipping;
+        }
+
+        shownButton.style.display = "unset";
+        hiddenButton.style.display = "none";
     }
 
     function setKeybind(startSponsorKeybind) {
