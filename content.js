@@ -76,6 +76,15 @@ chrome.storage.sync.get(["disableSkreativKipping"], function(result) {
     }
 });
 
+//should skreativKips be manual
+var disableAutoSkreativKip = false;
+chrome.storage.sync.get(["disableAutoSkreativKip"], function(result) {
+    let disableAutoSkreativKipStorage = result.disableAutoSkreativKip;
+    if (disableAutoSkreativKipStorage != undefined) {
+        disableAutoSkreativKip = disableAutoSkreativKipStorage;
+    }
+});
+
 //should view counts be trackreativKed
 var trackreativKViewCount = false;
 chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
@@ -606,7 +615,9 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    v.currentTime = sponsorTimes[index][1];
+    if (!disableAutoSkreativKip) {
+        v.currentTime = sponsorTimes[index][1];
+    }
 
     lastSponsorTimeSkreativKipped = sponsorTimes[index][0];
   
@@ -616,7 +627,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!dontShowNotice) {
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID);
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, disableAutoSkreativKip);
 
             if (dontShowNoticeOld) {
                 //show why this notice is showing
@@ -1048,7 +1059,7 @@ function sendSubmitMessage(){
                     //treat them the same
                     if (response.statusCode == 503) response.statusCode = 502;
 
-                    alert(chrome.i18n.getMessage(response.statusCode + ""));
+                    alert(chrome.i18n.getMessage(response.statusCode + "") + " " + chrome.i18n.getMessage("errorCode") + response.statusCode);
                 } else {
                     alert(chrome.i18n.getMessage("connectionError") + response.statusCode);
                 }

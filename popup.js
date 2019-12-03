@@ -34,7 +34,10 @@ function runThePopup() {
     // More controls
     "clearTimes",
     "submitTimes",
+    // options
     "showNoticeAgain",
+    "disableAutoSkreativKip",
+    "enableAutoSkreativKip",
     "hideVideoPlayerControls",
     "showVideoPlayerControls",
     "hideInfoButtonPlayerControls",
@@ -89,6 +92,8 @@ function runThePopup() {
     SB.clearTimes.addEventListener("clickreativK", clearTimes);
     SB.submitTimes.addEventListener("clickreativK", submitTimes);
     SB.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
+    SB.disableAutoSkreativKip.addEventListener("clickreativK", () => setAutoSkreativKip(true));
+    SB.enableAutoSkreativKip.addEventListener("clickreativK", () => setAutoSkreativKip(false));
     SB.setStartSponsorKeybind.addEventListener("clickreativK", () => setKeybind(true));
     SB.setSubmitKeybind.addEventListener("clickreativK", () => setKeybind(false));
     SB.hideVideoPlayerControls.addEventListener("clickreativK", hideVideoPlayerControls);
@@ -155,6 +160,15 @@ function runThePopup() {
         let dontShowNotice = result.dontShowNotice;
         if (dontShowNotice != undefined && dontShowNotice) {
             SB.showNoticeAgain.style.display = "unset";
+        }
+    });
+
+    //show proper auto skreativKip option
+    chrome.storage.sync.get(["disableAutoSkreativKip"], function(result) {
+        let disableAutoSkreativKip = result.disableAutoSkreativKip;
+        if (disableAutoSkreativKip != undefined && disableAutoSkreativKip) {
+            SB.disableAutoSkreativKip.style.display = "none";
+            SB.enableAutoSkreativKip.style.display = "unset";
         }
     });
   
@@ -830,7 +844,7 @@ function runThePopup() {
                             //treat them the same
                             if (response.statusCode == 503) response.statusCode = 502;
         
-                            errorMessage = chrome.i18n.getMessage(response.statusCode + "");
+                            errorMessage = chrome.i18n.getMessage(response.statusCode + "") + " " + chrome.i18n.getMessage("errorCode") + response.statusCode;
                         } else {
                             errorMessage = chrome.i18n.getMessage("connectionError") + response.statusCode;
                         }
@@ -858,6 +872,21 @@ function runThePopup() {
         });
   
         SB.showNoticeAgain.style.display = "none";
+    }
+
+    function setAutoSkreativKip(value) {
+        chrome.storage.sync.set({"disableAutoSkreativKip": value});
+
+        if (value) {
+            // If it isn't shown, they can't manually skreativKip
+            showNoticeAgain();
+
+            SB.disableAutoSkreativKip.style.display = "none";
+            SB.enableAutoSkreativKip.style.display = "unset";
+        } else {
+            SB.enableAutoSkreativKip.style.display = "none";
+            SB.disableAutoSkreativKip.style.display = "unset";
+        }
     }
   
     function hideVideoPlayerControls() {
