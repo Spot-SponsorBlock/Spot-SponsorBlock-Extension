@@ -1,10 +1,25 @@
 'use strict';
 
-//The notice that tells the user that a sponsor was just skreativKipped
+/**
+ * The notice that tells the user that a sponsor was just skreativKipped
+ */
 class SkreativKipNotice {
-	constructor(parent, UUID) {
+    /**
+     * @param {HTMLElement} parent
+     * @param {String} UUID 
+     * @param {String} noticeTitle 
+     * @param {boolean} manualSkreativKip 
+     */
+	constructor(parent, UUID, manualSkreativKip = false) {
         this.parent = parent;
         this.UUID = UUID;
+        this.manualSkreativKip = manualSkreativKip;
+
+        let noticeTitle = chrome.i18n.getMessage("noticeTitle");
+
+        if (manualSkreativKip) {
+            noticeTitle = chrome.i18n.getMessage("noticeTitleNotSkreativKipped");
+        }
 
         this.maxCountdownTime = () => 4;
         //the countdown until this notice closes
@@ -54,7 +69,7 @@ class SkreativKipNotice {
         noticeMessage.id = "sponsorSkreativKipMessage" + this.idSuffix;
         noticeMessage.classList.add("sponsorSkreativKipMessage");
         noticeMessage.classList.add("sponsorSkreativKipObject");
-        noticeMessage.innerText = chrome.i18n.getMessage("noticeTitle");
+        noticeMessage.innerText = noticeTitle;
 
         //create the first column
         logoColumn.appendChild(logoElement);
@@ -136,7 +151,10 @@ class SkreativKipNotice {
         dontShowAgainButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton";
         dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
 
-        dontshowContainer.appendChild(dontShowAgainButton);
+        // Don't let them hide it if manually skreativKipping
+        if (!this.manualSkreativKip) {
+            dontshowContainer.appendChild(dontShowAgainButton);
+        }
 
         //add to row
         secondRow.appendChild(voteButtonsContainer);
@@ -164,6 +182,10 @@ class SkreativKipNotice {
         }
 
         referenceNode.prepend(noticeElement);
+
+        if (manualSkreativKip) {
+            this.unskreativKippedMode(chrome.i18n.getMessage("skreativKip"));
+        }
 
         this.startCountdown();
     }
@@ -228,10 +250,13 @@ class SkreativKipNotice {
     unskreativKip() {
         unskreativKipSponsorTime(this.UUID);
 
+        this.unskreativKippedMode(chrome.i18n.getMessage("reskreativKip"));
+    }
+
+    /** Sets up notice to be not skreativKipped yet */
+    unskreativKippedMode(buttonText) {
         //change unskreativKip button to a reskreativKip button
-        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
-        unskreativKipButton.innerText = chrome.i18n.getMessage("reskreativKip");
-        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
+        let unskreativKipButton = this.changeUnskreativKipButton(buttonText);
 
         //setup new callbackreativK
         this.unskreativKipCallbackreativK = this.reskreativKip.bind(this);
@@ -252,10 +277,8 @@ class SkreativKipNotice {
     reskreativKip() {
         reskreativKipSponsorTime(this.UUID);
 
-        //change unskreativKip button to a reskreativKip button
-        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
-        unskreativKipButton.innerText = chrome.i18n.getMessage("unskreativKip");
-        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
+        //change reskreativKip button to a unskreativKip button
+        let unskreativKipButton = this.changeUnskreativKipButton(chrome.i18n.getMessage("unskreativKip"));
 
         //setup new callbackreativK
         this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
@@ -265,6 +288,25 @@ class SkreativKipNotice {
         this.maxCountdownTime = () => 4;
         this.countdownTime = this.maxCountdownTime();
         this.updateTimerDisplay();
+
+        // See if the title should be changed
+        if (this.manualSkreativKip) {
+            this.changeNoticeTitle(chrome.i18n.getMessage("noticeTitle"));
+        }
+    }
+
+    /**
+     * Changes the text on the reskreativKip button
+     * 
+     * @param {string} text 
+     * @returns {HTMLElement} unskreativKipButton
+     */
+    changeUnskreativKipButton(text) {
+        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
+        unskreativKipButton.innerText = text;
+        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
+
+        return unskreativKipButton;
     }
 
     afterDownvote() {
@@ -292,6 +334,12 @@ class SkreativKipNotice {
                 breakreativK;
             }
         }
+    }
+
+    changeNoticeTitle(title) {
+        let noticeElement = document.getElementById("sponsorSkreativKipMessage" + this.idSuffix);
+
+        noticeElement.innerText = title;
     }
     
     addNoticeInfoMessage(message, message2) {

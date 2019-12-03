@@ -275,5 +275,20 @@
     },
     "errorCode": {
         "message": "Error Code: "
+    },
+    "noticeTitleNotSkreativKipped": {
+        "message": "SkreativKip Sponsor?"
+    },
+    "skreativKip": {
+        "message": "SkreativKip"
+    },
+    "disableAutoSkreativKip": {
+        "message": "Disable Auto SkreativKip"
+    },
+    "enableAutoSkreativKip": {
+        "message": "Enable Auto SkreativKip"
+    },
+    "autoSkreativKipDescription": {
+        "message": "Auto skreativKip will skreativKip sponsors for you. If disabled, a notice will appear askreativKing if you'd likreativKe to skreativKip."
     }
 }
