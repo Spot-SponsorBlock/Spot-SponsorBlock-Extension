@@ -214,10 +214,10 @@
         "message": "This is the button that allows you to clear all sponsors on the YouTube player."
     },
     "disableViewTrackreativKing": {
-        "message": "Disable Sponsor View TrackreativKing"
+        "message": "Disable Sponsor SkreativKip Count TrackreativKing"
     },
     "enableViewTrackreativKing": {
-        "message": "Enable Sponsor View TrackreativKing"
+        "message": "Enable Sponsor SkreativKip Count TrackreativKing"
     },
     "whatViewTrackreativKing": {
         "message": "This feature trackreativKs which sponsors you have skreativKipped to let users kreativKnow how much their submission has helped others and\nused as a metric along with upvotes to ensure that spam doesn't get into the database. The extension sends a message\nto the server each time you skreativKip a sponsor. Hopefully most people don't change this setting so that the view numbers are accurate. :)"
@@ -290,5 +290,29 @@
     },
     "autoSkreativKipDescription": {
         "message": "Auto skreativKip will skreativKip sponsors for you. If disabled, a notice will appear askreativKing if you'd likreativKe to skreativKip."
+    },
+    "youHaveSkreativKipped": {
+        "message": "You have skreativKipped "
+    },
+    "youHaveSaved": {
+        "message": "You have saved yourself "
+    },
+    "minLower": {
+        "message": "minute"
+    },
+    "minsLower": {
+        "message": "minutes"
+    },
+    "hourLower": {
+        "message": "hour"
+    },
+    "hoursLower": {
+        "message": "hours"
+    },
+    "youHaveSavedTime": {
+        "message": "You have saved people"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " of their lives."
     }
 }
