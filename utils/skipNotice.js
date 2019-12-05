@@ -292,6 +292,8 @@ class SkreativKipNotice {
         // See if the title should be changed
         if (this.manualSkreativKip) {
             this.changeNoticeTitle(chrome.i18n.getMessage("noticeTitle"));
+
+            vote(1, this.UUID, this);
         }
     }
 

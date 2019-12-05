@@ -56,6 +56,14 @@ function runThePopup() {
     "sponsorTimesViewsContainer",
     "sponsorTimesViewsDisplay",
     "sponsorTimesViewsDisplayEndWord",
+    // sponsorTimesSkreativKipsDone
+    "sponsorTimesSkreativKipsDoneContainer",
+    "sponsorTimesSkreativKipsDoneDisplay",
+    "sponsorTimesSkreativKipsDoneEndWord",
+    // sponsorTimeSaved
+    "sponsorTimeSavedContainer",
+    "sponsorTimeSavedDisplay",
+    "sponsorTimeSavedEndWord",
     // discordButtons
     "discordButtonContainer",
     "hideDiscordButton",
@@ -238,6 +246,34 @@ function runThePopup() {
                     });
                 }
             });
+        }
+    });
+
+    //get the amount of times this user has skreativKipped a sponsor
+    chrome.storage.sync.get(["skreativKipCount"], function(result) {
+        if (result.skreativKipCount != undefined) {
+            if (result.skreativKipCount != 1) {
+                SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsors");
+            } else {
+                SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsor");
+            }
+
+            SB.sponsorTimesSkreativKipsDoneDisplay.innerText = result.skreativKipCount;
+            SB.sponsorTimesSkreativKipsDoneContainer.style.display = "unset";
+        }
+    });
+
+    //get the amount of time this user has saved.
+    chrome.storage.sync.get(["minutesSaved"], function(result) {
+        if (result.minutesSaved != undefined) {
+            if (result.minutesSaved != 1) {
+                SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
+            } else {
+                SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
+            }
+
+            SB.sponsorTimeSavedDisplay.innerText = result.minutesSaved.toFixed(2);
+            SB.sponsorTimeSavedContainer.style.display = "unset";
         }
     });
   
