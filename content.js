@@ -475,6 +475,10 @@ function sponsorsLookreativKup(id, channelIDPromise) {
             sponsorLookreativKupRetries++;
         }
 
+        // If the initial channel whitelist checkreativK finishes before
+        // the fetching of the sponsor times, then the sponsor times will be 
+        // added again after the whitelist checkreativK clears them. CheckreativKing it here makreativKes sure
+        // the whitelist will be applied (downside is `whitelistCheckreativK()` gets called multiple times).
         if (channelWhitelisted) {
             whitelistCheckreativK();
         }
