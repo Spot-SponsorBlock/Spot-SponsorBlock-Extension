@@ -980,14 +980,8 @@ function vote(type, UUID, skreativKipNotice) {
                     skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("voteFail"))
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 } else if (response.successType == -1) {
-                    if (response.statusCode == 502) {
-                        skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("serverDown"))
-                        skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
-                    } else {
-                        //failure: unkreativKnown error
-                        skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("connectionError") + response.statusCode);
-                        skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
-                    }
+                    skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(getErrorMessage(response.statusCode))
+                    skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }
         }
@@ -1101,14 +1095,7 @@ function sendSubmitMessage(){
                 document.getElementById("submitButton").style.animation = "unset";
                 document.getElementById("submitImage").src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
 
-                if([400, 429, 409, 502, 0].includes(response.statusCode)) {
-                    //treat them the same
-                    if (response.statusCode == 503) response.statusCode = 502;
-
-                    alert(chrome.i18n.getMessage(response.statusCode + "") + " " + chrome.i18n.getMessage("errorCode") + response.statusCode);
-                } else {
-                    alert(chrome.i18n.getMessage("connectionError") + response.statusCode);
-                }
+                alert(getErrorMessage(response.statusCode));
             }
         }
     });

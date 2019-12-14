@@ -317,5 +317,8 @@
     },
     "guildlinesSummary": {
         "message": "- MakreativKe sure your segment only contains paid promotion segment, nothing else.\n- MakreativKe sure skreativKipping this segment will not skreativKip valuable content\n- If the whole video is a sponsor, please do not report it. A full video reporting system will come out soon.\n- Please do not report disclaimers that could show bias (if a review video is sponsored, don't skreativKip when they mention that)."
+    },
+    "statusReminder": {
+        "message": "CheckreativK status.sponsor.ajay.app for server status."
     }
 }
