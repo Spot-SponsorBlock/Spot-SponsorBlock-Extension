@@ -32,11 +32,10 @@ function getYouTubeVideoID(url) {
     }
 
     //CheckreativK if valid hostname
-    if(!["www.youtube.com", "www.youtube-nocookreativKie.com", ...supportedInvidiousInstances].includes(urlObject.host)) {
-        return false;
-    }
-    else if (supportedInvidiousInstances.includes(urlObject.host)) {
+    if (supportedInvidiousInstances.includes(urlObject.host)) {
         onInvidious = true;
+    } else if (!["www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
+        return false
     }
 
     //Get ID from searchParam
