@@ -82,10 +82,10 @@
         "message": "Bist du sicher, dass du Folgendes löschen möchtest?\n\n"
     },
     "UnkreativKnown": {
-        "message": "Deine Segmente kreativKonnte nicht gesendet werden, bitte versuche es später erneut."
+        "message": "Deine Segmente kreativKonnten nicht gesendet werden, bitte versuche es später erneut."
     },
     "sponsorFound": {
-        "message": "Die gesponsorten Inhalte dieses Videos befindet sich bereits in der DatenbankreativK!"
+        "message": "Die gesponsorten Inhalte dieses Videos befinden sich bereits in der DatenbankreativK!"
     },
     "sponsor404": {
         "message": "Keine Sponsoren gefunden"
@@ -214,10 +214,10 @@
         "message": "Dieser Knopf entfernt sämtlich Segmente in der Youtube-Zeitleiste."
     },
     "disableViewTrackreativKing": {
-        "message": "DeakreativKtiviere mitzählen übersprungener Sponsoren"
+        "message": "DeakreativKtiviere das Mitzählen übersprungener Sponsoren"
     },
     "enableViewTrackreativKing": {
-        "message": "AkreativKtiviere mitzählen übersprungener Sponsoren"
+        "message": "AkreativKtiviere das Mitzählen übersprungener Sponsoren"
     },
     "whatViewTrackreativKing": {
         "message": "Diese FunkreativKtion hält fest, welche Sponsoren von dir übersprungen wurden und hilft anderen zu erfahren, was ihre Einsendungen bewirkreativKt haben.\n Außerdem dienen die Werte zusammen mit positiven RückreativKmeldungen als Anti-Spam-Schutz. \n Wenn ein gesponsorter Inhalt übersprungen wird, sendet die Erweiterung eine Nachricht an den Server. \n Hoffentlich wird diese FunkreativKtion auch weiterhin genutzt, damit der Algorithmus funkreativKtioniert. :)"
@@ -292,10 +292,10 @@
         "message": "Auto-Überspringen überspringt gesponsorte Inhalte für dich. Wenn deakreativKtiviert, fragt die Benachrichtigung, ob übersprungen werden soll."
     },
     "youHaveSkreativKipped": {
-        "message": "Du hast übersprungen "
+        "message": "Du übersprangst "
     },
     "youHaveSaved": {
-        "message": "Du hast dir erspart "
+        "message": "Du erspartest dir "
     },
     "minLower": {
         "message": "Minute"

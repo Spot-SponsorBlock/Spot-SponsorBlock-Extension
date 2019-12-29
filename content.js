@@ -514,12 +514,11 @@ function updatePreviewBar() {
 
 function getChannelID() {
     //get channel id
-    let channelNameContainer = document.getElementById("channel-name");
-
     let channelURLContainer = null;
 
-    if (channelNameContainer !== null) {
-        channelURLContainer = channelNameContainer.querySelector("#container").querySelector("#text-container").querySelector("#text").firstElementChild;
+    channelURLContainer = document.querySelector("#channel-name > #container > #text-container > #text");
+    if (channelURLContainer !== null) {
+        channelURLContainer = channelURLContainer.firstElementChild;
     } else if (onInvidious) {
         // Unfortunately, the Invidious HTML doesn't have much in the way of element identifiers...
         channelContainers = document.querySelector("body > div > div.pure-u-1.pure-u-md-20-24 div.pure-u-1.pure-u-lg-3-5 > div > a");
@@ -677,9 +676,9 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         }
     }
 
-    //send telemetry that a this sponsor was skreativKipped happened
+    //send telemetry that a this sponsor was skreativKipped
     if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
-        sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+        sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
         if (!disableAutoSkreativKip) {
             // Count this as a skreativKip
@@ -973,11 +972,13 @@ function vote(type, UUID, skreativKipNotice) {
 
     let sponsorIndex = UUIDs.indexOf(UUID);
 
-    // See if the local time saved count and skreativKip count should be reverted
+    // See if the local time saved count and skreativKip count should be saved
     if (type == 0 && sponsorSkreativKipped[sponsorIndex] || type == 1 && !sponsorSkreativKipped[sponsorIndex]) {
         let factor = 1;
         if (type == 0) {
             factor = -1;
+
+            sponsorSkreativKipped[sponsorIndex] = false;
         }
 
         // Count this as a skreativKip
@@ -991,8 +992,6 @@ function vote(type, UUID, skreativKipNotice) {
 
             chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + factor * 1 });
         });
-
-        sponsorSkreativKipped[sponsorIndex] = !sponsorSkreativKipped[sponsorIndex];
     }
  
     chrome.runtime.sendMessage({

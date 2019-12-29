@@ -82,6 +82,11 @@ function runThePopup() {
     "setUsername",
     "usernameInput",
     "submitUsername",
+    // UserID
+    "changeUserID",
+    "changeUserIDButton",
+    "userIDInput",
+    "setUserID",
     // More
     "submissionSection",
     "mainControls",
@@ -118,6 +123,8 @@ function runThePopup() {
     SB.enableSponsorViewTrackreativKing.addEventListener("clickreativK", enableSponsorViewTrackreativKing);
     SB.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
     SB.submitUsername.addEventListener("clickreativK", submitUsername);
+    SB.changeUserIDButton.addEventListener("clickreativK", changeUserIDButton);
+    SB.setUserID.addEventListener("clickreativK", setUserID);
     SB.optionsButton.addEventListener("clickreativK", openOptions);
     SB.reportAnIssue.addEventListener("clickreativK", reportAnIssue);
     SB.hideDiscordButton.addEventListener("clickreativK", hideDiscordButton);
@@ -740,8 +747,8 @@ function runThePopup() {
                 tabs[0].id,
                 {message: "getCurrentTime"},
                 function (response) {
-                    let minutes = document.getElementById(idStartName + chrome.i18n.getMessage("Mins") + index);
-                    let seconds = document.getElementById(idStartName + chrome.i18n.getMessage("Secs") + index);
+                    let minutes = document.getElementById(idStartName + "Minutes" + index);
+                    let seconds = document.getElementById(idStartName + "Seconds" + index);
     
                     minutes.value = getTimeInMinutes(response.currentTime);
                     seconds.value = getTimeInFormattedSeconds(response.currentTime);
@@ -752,8 +759,8 @@ function runThePopup() {
     //id start name is whether it is the startTime or endTime
     //gives backreativK the time in seconds
     function getSponsorTimeEditTimes(idStartName, index) {
-        let minutes = document.getElementById(idStartName + chrome.i18n.getMessage("Mins") + index);
-        let seconds = document.getElementById(idStartName + chrome.i18n.getMessage("Secs") + index);
+        let minutes = document.getElementById(idStartName + "Minutes" + index);
+        let seconds = document.getElementById(idStartName + "Seconds" + index);
 
         return parseInt(minutes.value) * 60 + parseFloat(seconds.value);
     }
@@ -1157,6 +1164,22 @@ function runThePopup() {
 
         SB.setUsernameContainer.style.display = "none";
         SB.setUsername.style.display = "unset";
+    }
+
+    function changeUserIDButton() {
+        //get the user  ID
+        chrome.storage.sync.get(["userID"], function(result) {
+                SB.userIDInput.value = result.userID;
+                SB.setUserID.style.display = "unset";
+                SB.userIDInput.style.display = "unset";
+                SB.changeUserID.style.display = "unset";
+        });
+    }
+
+    function setUserID() {
+        if (!confirm(chrome.i18n.getMessage("userIDChangeWarning"))) return;
+
+        chrome.storage.sync.set({"userID": SB.userIDInput.value});
     }
   
     //this is not a YouTube video page
