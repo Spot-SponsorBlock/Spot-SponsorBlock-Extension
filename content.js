@@ -631,25 +631,6 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     let currentUUID =  UUIDs[index];
     lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
-    //send telemetry that a this sponsor was skreativKipped
-    if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
-        sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
-
-        if (!disableAutoSkreativKip) {
-            // Count this as a skreativKip
-            chrome.storage.sync.get(["minutesSaved"], function(result) {
-                if (result.minutesSaved === undefined) result.minutesSaved = 0;
-
-                chrome.storage.sync.set({"minutesSaved": result.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60 });
-            });
-            chrome.storage.sync.get(["skreativKipCount"], function(result) {
-                if (result.skreativKipCount === undefined) result.skreativKipCount = 0;
-
-                chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + 1 });
-            });
-        }
-    }
-
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!dontShowNotice) {
@@ -668,6 +649,27 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
             if (trackreativKViewCount && !disableAutoSkreativKip) {
                 vote(1, currentUUID, null);
             }
+        }
+    }
+
+    //send telemetry that a this sponsor was skreativKipped
+    if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
+        sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+
+        if (!disableAutoSkreativKip) {
+            // Count this as a skreativKip
+            chrome.storage.sync.get(["minutesSaved"], function(result) {
+                if (result.minutesSaved === undefined) result.minutesSaved = 0;
+
+                chrome.storage.sync.set({"minutesSaved": result.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60 });
+            });
+            chrome.storage.sync.get(["skreativKipCount"], function(result) {
+                if (result.skreativKipCount === undefined) result.skreativKipCount = 0;
+
+                chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + 1 });
+            });
+
+            sponsorSkreativKipped[index] = true;
         }
     }
 }
@@ -944,6 +946,8 @@ function vote(type, UUID, skreativKipNotice) {
         let factor = 1;
         if (type == 0) {
             factor = -1;
+
+            sponsorSkreativKipped[sponsorIndex] = false;
         }
 
         // Count this as a skreativKip
@@ -957,8 +961,6 @@ function vote(type, UUID, skreativKipNotice) {
 
             chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + factor * 1 });
         });
-
-        sponsorSkreativKipped[sponsorIndex] = !sponsorSkreativKipped[sponsorIndex];
     }
  
     chrome.runtime.sendMessage({
