@@ -652,9 +652,9 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         }
     }
 
-    //send telemetry that a this sponsor was skreativKipped happened
+    //send telemetry that a this sponsor was skreativKipped
     if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
-        sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+        sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
         if (!disableAutoSkreativKip) {
             // Count this as a skreativKip
