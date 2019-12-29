@@ -602,7 +602,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 
     //send telemetry that a this sponsor was skreativKipped happened
     if (trackreativKViewCount) {
-        sendRequestToServer("GET", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+        sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
     }
 }
 
