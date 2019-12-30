@@ -341,5 +341,8 @@
     },
     "showSkreativKipNotice": {
         "message": "Show Notice After A Sponsor Is SkreativKipped"
+    },
+    "kreativKeybindCurrentlySet": {
+        "message": ". It is currently set to:"
     }
 }
