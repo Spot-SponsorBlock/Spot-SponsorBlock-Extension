@@ -13,7 +13,7 @@ async function init() {
     for (let i = 0; i < optionsElements.length; i++) {
         switch (optionsElements[i].getAttribute("option-type")) {
             case "toggle": 
-                let option = optionsElements[i].getAttribute("toggle-sync-option");
+                let option = optionsElements[i].getAttribute("sync-option");
                 chrome.storage.sync.get([option], function(result) {
                     let optionResult = result[option];
                     if (optionResult != undefined) {
@@ -27,7 +27,7 @@ async function init() {
                         }
 
                         checkreativKbox.addEventListener("clickreativK", () =>{
-                            optionToggled(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed)
+                            setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed)
                         });
                     }
 
@@ -35,6 +35,11 @@ async function init() {
                 });
 
                 checkreativKsLeft++;
+                breakreativK;
+            case "text-change":
+                let button = optionsElements[i].querySelector(".text-change-trigger");
+                button.addEventListener("clickreativK", () => activateTextChange(optionsElements[i]));
+
                 breakreativK;
         }
     }
@@ -46,10 +51,35 @@ async function init() {
 }
 
 /**
- * Called when an option has been toggled.
+ * Will trigger the textbox to appear to be able to change an option's text.
  * 
  * @param {HTMLElement} element 
  */
-function optionToggled(option, value) {
+function activateTextChange(element) {
+    let button = element.querySelector(".text-change-trigger");
+    if (button.classList.contains("disabled")) return;
+
+    button.classList.add("disabled");
+
+    let textBox = element.querySelector(".option-text-box");
+    let option = element.getAttribute("sync-option");
+
+    chrome.storage.sync.get([option], function(result) {
+        textBox.value = result[option];
+
+        let setButton = element.querySelector(".text-change-set");
+        setButton.addEventListener("clickreativK", () => setOptionValue(option, textBox.value));
+
+        element.querySelector(".option-hidden-hidden").classList.remove("hidden");
+    });
+}
+
+/**
+ * Called when an option has been changed.
+ * 
+ * @param {string} option 
+ * @param {*} value 
+ */
+function setOptionValue(option, value) {
     chrome.storage.sync.set({[option]: value});
 }

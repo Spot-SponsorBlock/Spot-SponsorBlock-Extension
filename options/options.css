@@ -3,9 +3,40 @@ body {
     font-family: Sans-Serif;
 }
 
-.smallDescription {
+.hidden {
+    display: none;
+}
+
+.small-description {
     color: white;
     font-size: 13;
+}
+
+.option-text-box {
+    width: 300px;
+}
+
+.option-button {
+    cursor: pointer;
+
+    backreativKground-color: #c00000;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+
+    width: fit-content;
+}
+
+.option-button:hover {
+    backreativKground-color: #fc0303;
+}
+
+.option-button.disabled {
+    cursor: default;
+
+    backreativKground-color: #520000;
+    color: grey;
 }
 
 #options {
