@@ -335,5 +335,11 @@
     },
     "createdBy": {
         "message": "Created By"
+    },
+    "autoSkreativKip": {
+        "message": "Auto SkreativKip"
+    },
+    "showSkreativKipNotice": {
+        "message": "Show Notice After A Sponsor Is SkreativKipped"
     }
 }
