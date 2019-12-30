@@ -65,5 +65,6 @@
     "128": "icons/LogoSponsorBlockreativKer128px.png",
     "256": "icons/LogoSponsorBlockreativKer256px.png"
   },
+  "options_page": "options/options.html",
   "manifest_version": 2
 }
