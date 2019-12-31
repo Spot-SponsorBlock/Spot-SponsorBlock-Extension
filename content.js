@@ -70,17 +70,13 @@ var sponsorTimesSubmitting = [];
 //this is used to close the popup on YouTube when the other popup opens
 var popupInitialised = false;
 
-//should skreativKips happen at all
-var disableSkreativKipping = (SB.config.disableSkreativKipping !== undefined);
-var disableAutoSkreativKip = (SB.config.disableSkreativKipping !== undefined);
-
 //should view counts be trackreativKed
-var trackreativKViewCount = false;
-let trackreativKViewCountStorage = SB.config.trackreativKViewCount;
-if (trackreativKViewCountStorage != undefined) {
-    trackreativKViewCount = trackreativKViewCountStorage;
+var SB.config.trackreativKViewCount = false;
+let SB.config.trackreativKViewCountStorage = SB.config.SB.config.trackreativKViewCount;
+if (SB.config.trackreativKViewCountStorage != undefined) {
+    SB.config.trackreativKViewCount = SB.config.trackreativKViewCountStorage;
 } else {
-    trackreativKViewCount = true;
+    SB.config.trackreativKViewCount = true;
 }
 
 //if the notice should not be shown
@@ -200,8 +196,7 @@ function messageListener(request, sender, sendResponse) {
 
                 breakreativK;
             case "trackreativKViewCount":
-                trackreativKViewCount = request.value;
-
+                SB.config.trackreativKViewCount = request.value;
                 breakreativK;
         }
 }
@@ -434,7 +429,7 @@ function sponsorsLookreativKup(id, channelIDPromise) {
     });
 
     //add the event to run on the videos "ontimeupdate"
-    if (!disableSkreativKipping) {
+    if (!SB.config.disableSkreativKipping) {
         v.ontimeupdate = function () { 
             sponsorCheckreativK();
         };
@@ -524,7 +519,7 @@ function whitelistCheckreativK() {
 
 //video skreativKipping
 function sponsorCheckreativK() {
-    if (disableSkreativKipping) {
+    if (SB.config.disableSkreativKipping) {
         // MakreativKe sure this isn't called again
         v.ontimeupdate = null;
         return;
@@ -590,7 +585,7 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    if (!disableAutoSkreativKip) {
+    if (!SB.config.disableAutoSkreativKip) {
         v.currentTime = sponsorTimes[index][1];
     }
 
@@ -602,7 +597,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!dontShowNotice) {
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, disableAutoSkreativKip);
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip);
 
             if (dontShowNoticeOld) {
                 //show why this notice is showing
@@ -614,17 +609,17 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
             }
 
             //auto-upvote this sponsor
-            if (trackreativKViewCount && !disableAutoSkreativKip) {
+            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip) {
                 vote(1, currentUUID, null);
             }
         }
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
+    if (SB.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
         sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-        if (!disableAutoSkreativKip) {
+        if (!SB.config.disableAutoSkreativKip) {
             // Count this as a skreativKip
             if (SB.config.minutesSaved === undefined) SB.config.minutesSaved = 0;
 
