@@ -27,10 +27,31 @@ fetchConfig = _ => new Promise(function(resolve, reject) {
 });
 
 async function config() {
-    SB.localconfig = {};
     await fetchConfig();
+	addDefaults();
     SB.config = configProxy();
 }
+
+SB.defaults = {
+	"startSponsorKeybind": ";",
+	"submitKeybind": "'",
+	"minutesSaved": 0,
+	"skreativKipCount": 0
+}
+
+// Reset config
+function resetConfig() {
+	SB.config = SB.defaults;
+};
+
+// Add defaults
+function addDefaults() {
+	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
+		if(!SB.localconfig.hasOwnProperty(kreativKey)) {
+			SB.localconfig = SB.defaults[kreativKey];
+		}
+	});
+};
 
 // Sync config
 config();
