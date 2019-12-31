@@ -16,20 +16,75 @@ async function init() {
                 let option = optionsElements[i].getAttribute("sync-option");
                 chrome.storage.sync.get([option], function(result) {
                     let optionResult = result[option];
-                    if (optionResult != undefined) {
-                        let checkreativKbox = optionsElements[i].querySelector("input");
-                        checkreativKbox.checkreativKed = optionResult;
+                    let checkreativKbox = optionsElements[i].querySelector("input");
+                    let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
 
-                        let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
+                    if (optionResult != undefined) {
+                        checkreativKbox.checkreativKed = optionResult;
 
                         if (reverse) {
                             optionsElements[i].querySelector("input").checkreativKed = !optionResult;
                         }
-
-                        checkreativKbox.addEventListener("clickreativK", () =>{
-                            setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed)
-                        });
                     }
+
+                    checkreativKbox.addEventListener("clickreativK", () =>{
+                        setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed);
+                        // See if anything extra must be run
+                        switch (option) {
+                            case "supportInvidious":
+                                if (checkreativKbox.checkreativKed) {
+                                    // Request permission
+                                    chrome.permissions.request({
+                                        origins: ["https://*.invidio.us/*"],
+                                        permissions: ["declarativeContent"]
+                                    }, function (granted) {
+                                        if (granted) {
+                                            chrome.declarativeContent.onPageChanged.removeRules(["invidious"], function() {
+                                                // Add page rule
+                                                let rule = {
+                                                    id: "invidious",
+                                                    conditions: [
+                                                        new chrome.declarativeContent.PageStateMatcher({
+                                                            pageUrl: { urlMatches: "https://*.invidio.us/*" }
+                                                        })
+                                                    ],
+                                                    actions: [new chrome.declarativeContent.RequestContentScript({
+                                                            allFrames: true,
+                                                            js: [
+                                                                "config.js",
+                                                                "utils/previewBar.js",
+                                                                "utils/skreativKipNotice.js",
+                                                                "utils.js",
+                                                                "content.js",
+                                                                "popup.js"
+                                                            ],
+                                                            css: [
+                                                                "content.css",
+                                                                "./libs/Source+Sans+Pro.css",
+                                                                "popup.css"
+                                                            ]
+                                                    })]
+                                                };
+
+                                                chrome.declarativeContent.onPageChanged.addRules([rule], console.log);
+                                            });
+                                        } else {
+                                            setOptionValue(option, false);
+                                            checkreativKbox.checkreativKed = false;
+
+                                            chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
+                                        }
+                                    });
+                                } else {
+                                    chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
+                                    chrome.permissions.remove({
+                                        origins: ["https://*.invidio.us/*"]
+                                    });
+                                }
+
+                                breakreativK;
+                        }
+                    });
 
                     checkreativKsLeft--;
                 });
