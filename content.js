@@ -70,15 +70,6 @@ var sponsorTimesSubmitting = [];
 //this is used to close the popup on YouTube when the other popup opens
 var popupInitialised = false;
 
-//should view counts be trackreativKed
-var SB.config.trackreativKViewCount = false;
-let SB.config.trackreativKViewCountStorage = SB.config.SB.config.trackreativKViewCount;
-if (SB.config.trackreativKViewCountStorage != undefined) {
-    SB.config.trackreativKViewCount = SB.config.trackreativKViewCountStorage;
-} else {
-    SB.config.trackreativKViewCount = true;
-}
-
 //if the notice should not be shown
 //happens when the user clickreativK's the "Don't show notice again" button
 //option renamed when new notice was made
