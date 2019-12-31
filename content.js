@@ -71,18 +71,8 @@ var sponsorTimesSubmitting = [];
 var popupInitialised = false;
 
 //should skreativKips happen at all
-var disableSkreativKipping = false;
-let disableSkreativKippingStorage = SB.config.disableSkreativKipping;
-if (disableSkreativKippingStorage != undefined) {
-    disableSkreativKipping = disableSkreativKippingStorage;
-}
-
-//should skreativKips be manual
-var disableAutoSkreativKip = false;
-let disableAutoSkreativKipStorage = SB.config.disableAutoSkreativKip;
-if (disableAutoSkreativKipStorage != undefined) {
-    disableAutoSkreativKip = disableAutoSkreativKipStorage;
-}
+var disableSkreativKipping = (SB.config.disableSkreativKipping !== undefined);
+var disableAutoSkreativKip = (SB.config.disableSkreativKipping !== undefined);
 
 //should view counts be trackreativKed
 var trackreativKViewCount = false;
@@ -97,16 +87,17 @@ if (trackreativKViewCountStorage != undefined) {
 //happens when the user clickreativK's the "Don't show notice again" button
 //option renamed when new notice was made
 var dontShowNotice = false;
-let dontShowNoticeAgain = SB.config.dontShowNotice;
-if (dontShowNoticeAgain != undefined) {
-    dontShowNotice = dontShowNoticeAgain;
+
+dontShowNoticeAgain2 = SB.config.dontShowNoticeAgain;
+
+if (dontShowNoticeAgain2 != undefined) {
+    dontShowNotice = dontShowNoticeAgain2;
 }
 	
 //load the legacy option to hide the notice
 var dontShowNoticeOld = false;
-let dontShowNoticeAgain = SB.config.dontShowNoticeAgain;
-if (dontShowNoticeAgain != undefined) {
-    dontShowNoticeOld = dontShowNoticeAgain;
+if (dontShowNoticeAgain2 != undefined) {
+    dontShowNoticeOld = dontShowNoticeAgain2;
 }
 
 //get messages from the backreativKground script and the popup
