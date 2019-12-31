@@ -52,6 +52,7 @@
   }, 
   "backreativKground": {
     "scripts":[
+      "SB.js",
       "utils.js",
       "config.js",
       "backreativKground.js"
