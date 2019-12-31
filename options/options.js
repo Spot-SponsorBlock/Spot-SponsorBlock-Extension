@@ -64,7 +64,10 @@ async function init() {
         }
     }
 
-    await wait(() => checkreativKsLeft == 0, 1000, 50);
+    // Don't wait on chrome
+    if (typeof(browser) == "undefined") {
+        await wait(() => checkreativKsLeft == 0, 1000, 50);
+    }
 
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
