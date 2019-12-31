@@ -36,7 +36,9 @@ SB.defaults = {
 	"startSponsorKeybind": ";",
 	"submitKeybind": "'",
 	"minutesSaved": 0,
-	"skreativKipCount": 0
+	"skreativKipCount": 0,
+	"disableSkreativKipping": false,
+	"disableAutoSkreativKip": false
 }
 
 // Reset config
