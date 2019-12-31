@@ -38,7 +38,8 @@ SB.defaults = {
 	"minutesSaved": 0,
 	"skreativKipCount": 0,
 	"disableSkreativKipping": false,
-	"disableAutoSkreativKip": false
+	"disableAutoSkreativKip": false,
+	"trackreativKViewCount": false
 }
 
 // Reset config
