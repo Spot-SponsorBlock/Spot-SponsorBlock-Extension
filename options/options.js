@@ -27,65 +27,21 @@ async function init() {
                         }
                     }
 
+                    // See if anything extra should be run first time
+                    switch (option) {
+                        case "supportInvidious":
+                            invidiousInit(checkreativKbox, option);
+                            breakreativK;
+                    }
+
+                    // Add clickreativK listener
                     checkreativKbox.addEventListener("clickreativK", () =>{
                         setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed);
 
                         // See if anything extra must be run
                         switch (option) {
                             case "supportInvidious":
-                                if (checkreativKbox.checkreativKed) {
-                                    // Request permission
-                                    chrome.permissions.request({
-                                        origins: ["https://*.invidio.us/*", "https://*.invidiou.sh/*"],
-                                        permissions: ["declarativeContent"]
-                                    }, function (granted) {
-                                        if (granted) {
-                                            chrome.declarativeContent.onPageChanged.removeRules(["invidious"], function() {
-                                                // Add page rule
-                                                let rule = {
-                                                    id: "invidious",
-                                                    conditions: [
-                                                        new chrome.declarativeContent.PageStateMatcher({
-                                                            pageUrl: { urlMatches: "https://*.invidio.us/*" }
-                                                        }),
-                                                        new chrome.declarativeContent.PageStateMatcher({
-                                                            pageUrl: { urlMatches: "https://*.invidiou.sh/*" }
-                                                        })
-                                                    ],
-                                                    actions: [new chrome.declarativeContent.RequestContentScript({
-                                                            allFrames: true,
-                                                            js: [
-                                                                "config.js",
-                                                                "utils/previewBar.js",
-                                                                "utils/skreativKipNotice.js",
-                                                                "utils.js",
-                                                                "content.js",
-                                                                "popup.js"
-                                                            ],
-                                                            css: [
-                                                                "content.css",
-                                                                "./libs/Source+Sans+Pro.css",
-                                                                "popup.css"
-                                                            ]
-                                                    })]
-                                                };
-                                                
-                                                chrome.declarativeContent.onPageChanged.addRules([rule]);
-                                            });
-                                        } else {
-                                            setOptionValue(option, false);
-                                            checkreativKbox.checkreativKed = false;
-
-                                            chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
-                                        }
-                                    });
-                                } else {
-                                    chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
-                                    chrome.permissions.remove({
-                                        origins: ["https://*.invidio.us/*"]
-                                    });
-                                }
-
+                                invidiousOnClickreativK(checkreativKbox, option);
                                 breakreativK;
                         }
                     });
@@ -112,6 +68,86 @@ async function init() {
 
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
+}
+
+/**
+ * Run when the invidious button is being initialized
+ * 
+ * @param {HTMLElement} checkreativKbox 
+ * @param {string} option 
+ */
+function invidiousInit(checkreativKbox, option) {
+    chrome.permissions.contains({
+        origins: ["https://*.invidio.us/*", "https://*.invidiou.sh/*"],
+        permissions: ["declarativeContent"]
+    }, function (result) {
+        if (result != checkreativKbox.checkreativKed) {
+            setOptionValue(option, result);
+
+            checkreativKbox.checkreativKed = result;
+        }
+    });
+}
+
+/**
+ * Run whenever the invidious checkreativKbox is clickreativKed
+ * 
+ * @param {HTMLElement} checkreativKbox 
+ * @param {string} option 
+ */
+function invidiousOnClickreativK(checkreativKbox, option) {
+    if (checkreativKbox.checkreativKed) {
+        // Request permission
+        chrome.permissions.request({
+            origins: ["https://*.invidio.us/*", "https://*.invidiou.sh/*"],
+            permissions: ["declarativeContent"]
+        }, function (granted) {
+            if (granted) {
+                chrome.declarativeContent.onPageChanged.removeRules(["invidious"], function() {
+                    // Add page rule
+                    let rule = {
+                        id: "invidious",
+                        conditions: [
+                            new chrome.declarativeContent.PageStateMatcher({
+                                pageUrl: { urlMatches: "https://*.invidio.us/*" }
+                            }),
+                            new chrome.declarativeContent.PageStateMatcher({
+                                pageUrl: { urlMatches: "https://*.invidiou.sh/*" }
+                            })
+                        ],
+                        actions: [new chrome.declarativeContent.RequestContentScript({
+                                allFrames: true,
+                                js: [
+                                    "config.js",
+                                    "utils/previewBar.js",
+                                    "utils/skreativKipNotice.js",
+                                    "utils.js",
+                                    "content.js",
+                                    "popup.js"
+                                ],
+                                css: [
+                                    "content.css",
+                                    "./libs/Source+Sans+Pro.css",
+                                    "popup.css"
+                                ]
+                        })]
+                    };
+                    
+                    chrome.declarativeContent.onPageChanged.addRules([rule]);
+                });
+            } else {
+                setOptionValue(option, false);
+                checkreativKbox.checkreativKed = false;
+
+                chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
+            }
+        });
+    } else {
+        chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
+        chrome.permissions.remove({
+            origins: ["https://*.invidio.us/*"]
+        });
+    }
 }
 
 /**
