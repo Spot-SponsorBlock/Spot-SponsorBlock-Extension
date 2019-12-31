@@ -13,6 +13,7 @@
       "all_frames": true,
       "js": [
         "config.js",
+		    "SB.js",
         "utils/previewBar.js",
         "utils/skreativKipNotice.js",
         "utils.js",
