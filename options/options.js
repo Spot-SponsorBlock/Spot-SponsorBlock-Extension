@@ -29,6 +29,7 @@ async function init() {
 
                     checkreativKbox.addEventListener("clickreativK", () =>{
                         setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed);
+
                         // See if anything extra must be run
                         switch (option) {
                             case "supportInvidious":
@@ -65,8 +66,8 @@ async function init() {
                                                             ]
                                                     })]
                                                 };
-
-                                                chrome.declarativeContent.onPageChanged.addRules([rule], console.log);
+                                                
+                                                chrome.declarativeContent.onPageChanged.addRules([rule]);
                                             });
                                         } else {
                                             setOptionValue(option, false);
