@@ -39,7 +39,8 @@ SB.defaults = {
 	"skreativKipCount": 0,
 	"disableSkreativKipping": false,
 	"disableAutoSkreativKip": false,
-	"trackreativKViewCount": false
+	"trackreativKViewCount": false,
+	"dontShowNoticeAgain": false
 }
 
 // Reset config
