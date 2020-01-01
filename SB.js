@@ -37,6 +37,7 @@ SB.defaults = {
 	"submitKeybind": "'",
 	"minutesSaved": 0,
 	"skreativKipCount": 0,
+	"sponsorTimesContributed": 0,
 	"disableSkreativKipping": false,
 	"disableAutoSkreativKip": false,
 	"trackreativKViewCount": false,
