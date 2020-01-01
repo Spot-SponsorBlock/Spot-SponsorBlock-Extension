@@ -15,7 +15,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         addSponsorTime(request.time, request.videoID, callbackreativK);
     
         //this allows the callbackreativK to be called later
-        return true; 
+        return true;
+	
     case "getSponsorTimes":
         getSponsorTimes(request.videoID, function(sponsorTimes) {
             callbackreativK({
@@ -61,12 +62,12 @@ chrome.runtime.onInstalled.addListener(function (object) {
 //gets the sponsor times from memory
 function getSponsorTimes(videoID, callbackreativK) {
     let sponsorTimes = [];
-    let sponsorTimeKey = "sponsorTimes" + videoID;
-    let sponsorTimesStorage = SB.config.sponsorTimeKey[sponsorTimeKey];
-		
+    let sponsorTimesStorage = SB.config.sponsorTimes.get(videoID);
+	
     if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
         sponsorTimes = sponsorTimesStorage;
     }
+	
     callbackreativK(sponsorTimes);
 }
 
@@ -85,8 +86,7 @@ function addSponsorTime(time, videoID, callbackreativK) {
         }
 
         //save this info
-        let sponsorTimeKey = "sponsorTimes" + videoID;
-		SB.config.sponsorTimeKey[sponsorTimeKey] = sponsorTimes;
+		SB.config.sponsorTimes.set(videoID, sponsorTimes);
 		callbackreativK();
     });
 }
@@ -124,8 +124,7 @@ function submitVote(type, UUID, callbackreativK) {
 
 async function submitTimes(videoID, callbackreativK) {
     //get the video times from storage
-    let sponsorTimeKey = 'sponsorTimes' + videoID;
-    let sponsorTimes = SB.config.sponsorTimeKey[sponsorTimeKey];
+    let sponsorTimes = SB.config.sponsorTimes.get(videoID);
     let userID = SB.config.userID;
 		
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
