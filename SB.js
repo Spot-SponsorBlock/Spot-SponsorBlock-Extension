@@ -40,7 +40,11 @@ SB.defaults = {
 	"disableSkreativKipping": false,
 	"disableAutoSkreativKip": false,
 	"trackreativKViewCount": false,
-	"dontShowNoticeAgain": false
+	"dontShowNotice": false,
+	"hideVideoPlayerControls": false,
+	"hideInfoButtonPlayerControls": false,
+	"hideDeleteButtonPlayerControls": false,
+	"dontShowNoticeOld": false
 }
 
 // Reset config
