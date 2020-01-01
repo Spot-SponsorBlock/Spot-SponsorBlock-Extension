@@ -124,7 +124,7 @@ function submitVote(type, UUID, callbackreativK) {
     })
 }
 
-function submitTimes(videoID, callbackreativK) {
+async function submitTimes(videoID, callbackreativK) {
     //get the video times from storage
     let sponsorTimeKey = 'sponsorTimes' + videoID;
     let sponsorTimes = SB.config.sponsorTimeKey[sponsorTimeKey];
