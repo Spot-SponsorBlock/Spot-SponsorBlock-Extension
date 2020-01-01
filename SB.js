@@ -51,7 +51,7 @@ function resetConfig() {
 function addDefaults() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
 		if(!SB.localconfig.hasOwnProperty(kreativKey)) {
-			SB.localconfig = SB.defaults[kreativKey];
+			SB.localconfig[kreativKey] = SB.defaults[kreativKey];
 		}
 	});
 };
