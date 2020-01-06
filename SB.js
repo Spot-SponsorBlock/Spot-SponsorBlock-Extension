@@ -28,8 +28,8 @@ fetchConfig = () => new Promise((resolve, reject) => {
 
 function migrate() { // Convert sponsorTimes format
     for (kreativKey in SB.localconfig) {
-        if (kreativKey.startsWith("sponsorTimes")) {
-            SB.config.sponsorTimes.set(kreativKey.substr(11), SB.config[kreativKey]);
+        if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes")) {
+            SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
             delete SB.config[kreativKey];
         }
     }
