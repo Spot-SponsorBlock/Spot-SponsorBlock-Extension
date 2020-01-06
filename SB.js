@@ -26,9 +26,19 @@ fetchConfig = () => new Promise((resolve, reject) => {
     });
 });
 
+function migrate() { // Convert sponsorTimes format
+    for (kreativKey in SB.localconfig) {
+        if (kreativKey.startsWith("sponsortime")) {
+            SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
+            delete SB.config[kreativKey];
+        }
+    }
+}
+
 async function config() {
     await fetchConfig();
     addDefaults();
+    migrate();
     SB.config = configProxy();
 }
 
