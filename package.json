@@ -1,0 +1,22 @@
+{
+  "name": "sponsorblockreativK",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backreativKground.js",
+  "dependencies": {},
+  "devDependencies": {
+    "web-ext": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "web-ext run",
+    "build": "web-ext build --overwrite-dest -i \"*(packreativKage-lockreativK.json|README.md|packreativKage.json|config.js.example|firefox_manifest-extra.json|manifest.json.original|ignored|crowdin.yml)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajayyy/SponsorBlockreativK.git"
+  },
+  "author": "Ajay Ramachandran",
+  "license": "GPL-3.0-only",
+  "private": true
+}
