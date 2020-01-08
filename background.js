@@ -4,7 +4,9 @@ chrome.tabs.onUpdated.addListener(function(tabId) {
 	}, () => void chrome.runtime.lastError ); // Suppress error on Firefox
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK) {
+chrome.runtime.onMessage.addListener(async function (request, sender, callbackreativK) {
+    await wait(() => SB.config !== undefined);
+
 	switch(request.message) {
     case "submitTimes":
         submitTimes(request.videoID, callbackreativK);

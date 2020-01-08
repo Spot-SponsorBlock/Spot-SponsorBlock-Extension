@@ -21,6 +21,8 @@ async function runThePopup() {
             inPopup = false;
     }
 
+    await wait(() => SB.config !== undefined);
+
     ["sponsorStart",
     // Top toggles
     "whitelistChannel",
@@ -102,107 +104,107 @@ async function runThePopup() {
     let currentVideoID = null;
   
     //see if discord linkreativK can be shown
-        let hideDiscordLinkreativK = SB.config.hideDiscordLinkreativK;
-        if (hideDiscordLinkreativK == undefined || !hideDiscordLinkreativK) {
-                let hideDiscordLaunches = SB.config.hideDiscordLaunches;
-                //only if less than 10 launches
-                if (hideDiscordLaunches == undefined || hideDiscordLaunches < 10) {
-                    SB.discordButtonContainer.style.display = null;
-          
-                    if (hideDiscordLaunches == undefined) {
-                        hideDiscordLaunches = 1;
-                    }
-					SB.config.hideDiscordLaunches = hideDiscordLaunches + 1;
+    let hideDiscordLinkreativK = SB.config.hideDiscordLinkreativK;
+    if (hideDiscordLinkreativK == undefined || !hideDiscordLinkreativK) {
+            let hideDiscordLaunches = SB.config.hideDiscordLaunches;
+            //only if less than 10 launches
+            if (hideDiscordLaunches == undefined || hideDiscordLaunches < 10) {
+                SB.discordButtonContainer.style.display = null;
+        
+                if (hideDiscordLaunches == undefined) {
+                    hideDiscordLaunches = 1;
                 }
-        }
+                SB.config.hideDiscordLaunches = hideDiscordLaunches + 1;
+            }
+    }
 
     //show proper disable skreativKipping button
-        let disableSkreativKipping = SB.config.disableSkreativKipping;
-        if (disableSkreativKipping != undefined && disableSkreativKipping) {
-            SB.disableSkreativKipping.style.display = "none";
-            SB.enableSkreativKipping.style.display = "unset";
-        }
+    let disableSkreativKipping = SB.config.disableSkreativKipping;
+    if (disableSkreativKipping != undefined && disableSkreativKipping) {
+        SB.disableSkreativKipping.style.display = "none";
+        SB.enableSkreativKipping.style.display = "unset";
+    }
 
     //if the don't show notice again variable is true, an option to 
     //  disable should be available
-        let dontShowNotice = SB.config.dontShowNotice;
-        if (dontShowNotice != undefined && dontShowNotice) {
-            SB.showNoticeAgain.style.display = "unset";
-        }
+    let dontShowNotice = SB.config.dontShowNotice;
+    if (dontShowNotice != undefined && dontShowNotice) {
+        SB.showNoticeAgain.style.display = "unset";
+    }
 
     //get the amount of times this user has contributed and display it to thankreativK them
-        if (SB.config.sponsorTimesContributed != undefined) {
-            if (SB.config.sponsorTimesContributed > 1) {
-                SB.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsors");
-            } else {
-                SB.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsor");
-            }
-            SB.sponsorTimesContributionsDisplay.innerText = SB.config.sponsorTimesContributed;
-            SB.sponsorTimesContributionsContainer.style.display = "unset";
-  
-            //get the userID
-                let userID = SB.config.userID;
-                if (userID != undefined) {
-                    //there are probably some views on these submissions then
-                    //get the amount of views from the sponsors submitted
-                    sendRequestToServer("GET", "/api/getViewsForUser?userID=" + userID, function(xmlhttp) {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            let viewCount = JSON.parse(xmlhttp.responseText).viewCount;
-                            if (viewCount != 0) {
-                                if (viewCount > 1) {
-                                    SB.sponsorTimesViewsDisplayEndWord.innerText = chrome.i18n.getMessage("Segments");
-                                } else {
-                                    SB.sponsorTimesViewsDisplayEndWord.innerText = chrome.i18n.getMessage("Segment");
-                                }
-
-                                SB.sponsorTimesViewsDisplay.innerText = viewCount;
-                                SB.sponsorTimesViewsContainer.style.display = "unset";
-                            }
-                        }
-                    });
-
-                    //get this time in minutes
-                    sendRequestToServer("GET", "/api/getSavedTimeForUser?userID=" + userID, function(xmlhttp) {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            let minutesSaved = JSON.parse(xmlhttp.responseText).timeSaved;
-                            if (minutesSaved != 0) {
-                                if (minutesSaved != 1) {
-                                    SB.sponsorTimesOthersTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
-                                } else {
-                                    SB.sponsorTimesOthersTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
-                                }
-
-                                SB.sponsorTimesOthersTimeSavedDisplay.innerText = getFormattedHours(minutesSaved);
-                                SB.sponsorTimesOthersTimeSavedContainer.style.display = "unset";
-                            }
-                        }
-                    });
-                }
+    if (SB.config.sponsorTimesContributed != undefined) {
+        if (SB.config.sponsorTimesContributed > 1) {
+            SB.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsors");
+        } else {
+            SB.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsor");
         }
+        SB.sponsorTimesContributionsDisplay.innerText = SB.config.sponsorTimesContributed;
+        SB.sponsorTimesContributionsContainer.style.display = "unset";
+
+        //get the userID
+            let userID = SB.config.userID;
+            if (userID != undefined) {
+                //there are probably some views on these submissions then
+                //get the amount of views from the sponsors submitted
+                sendRequestToServer("GET", "/api/getViewsForUser?userID=" + userID, function(xmlhttp) {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        let viewCount = JSON.parse(xmlhttp.responseText).viewCount;
+                        if (viewCount != 0) {
+                            if (viewCount > 1) {
+                                SB.sponsorTimesViewsDisplayEndWord.innerText = chrome.i18n.getMessage("Segments");
+                            } else {
+                                SB.sponsorTimesViewsDisplayEndWord.innerText = chrome.i18n.getMessage("Segment");
+                            }
+
+                            SB.sponsorTimesViewsDisplay.innerText = viewCount;
+                            SB.sponsorTimesViewsContainer.style.display = "unset";
+                        }
+                    }
+                });
+
+                //get this time in minutes
+                sendRequestToServer("GET", "/api/getSavedTimeForUser?userID=" + userID, function(xmlhttp) {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        let minutesSaved = JSON.parse(xmlhttp.responseText).timeSaved;
+                        if (minutesSaved != 0) {
+                            if (minutesSaved != 1) {
+                                SB.sponsorTimesOthersTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
+                            } else {
+                                SB.sponsorTimesOthersTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
+                            }
+
+                            SB.sponsorTimesOthersTimeSavedDisplay.innerText = getFormattedHours(minutesSaved);
+                            SB.sponsorTimesOthersTimeSavedContainer.style.display = "unset";
+                        }
+                    }
+                });
+            }
+    }
 
     //get the amount of times this user has skreativKipped a sponsor
-        if (SB.config.skreativKipCount != undefined) {
-            if (SB.config.skreativKipCount != 1) {
-                SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsors");
-            } else {
-                SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsor");
-            }
-
-            SB.sponsorTimesSkreativKipsDoneDisplay.innerText = SB.config.skreativKipCount;
-            SB.sponsorTimesSkreativKipsDoneContainer.style.display = "unset";
+    if (SB.config.skreativKipCount != undefined) {
+        if (SB.config.skreativKipCount != 1) {
+            SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsors");
+        } else {
+            SB.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsor");
         }
+
+        SB.sponsorTimesSkreativKipsDoneDisplay.innerText = SB.config.skreativKipCount;
+        SB.sponsorTimesSkreativKipsDoneContainer.style.display = "unset";
+    }
 
     //get the amount of time this user has saved.
-        if (SB.config.minutesSaved != undefined) {
-            if (SB.config.minutesSaved != 1) {
-                SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
-            } else {
-                SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
-            }
-
-            SB.sponsorTimeSavedDisplay.innerText = getFormattedHours(SB.config.minutesSaved);
-            SB.sponsorTimeSavedContainer.style.display = "unset";
+    if (SB.config.minutesSaved != undefined) {
+        if (SB.config.minutesSaved != 1) {
+            SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
+        } else {
+            SB.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
         }
+
+        SB.sponsorTimeSavedDisplay.innerText = getFormattedHours(SB.config.minutesSaved);
+        SB.sponsorTimeSavedContainer.style.display = "unset";
+    }
   
     chrome.tabs.query({
             active: true,
@@ -229,22 +231,24 @@ async function runThePopup() {
         }
   
         //load video times for this video 
-            let sponsorTimesStorage = SB.config.sponsorTimes.get(currentVideoID);
-            if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
-                if (sponsorTimesStorage[sponsorTimesStorage.length - 1] != undefined && sponsorTimesStorage[sponsorTimesStorage.length - 1].length < 2) {
-                    startTimeChosen = true;
-                    SB.sponsorStart.innerHTML = chrome.i18n.getMessage("sponsorEnd");
-                }
-  
-                sponsorTimes = sponsorTimesStorage;
-  
-                displaySponsorTimes();
-  
-                //show submission section
-                SB.submissionSection.style.display = "unset";
-  
-                showSubmitTimesIfNecessary();
+        console.log( SB.config.sponsorTimes.set)
+        setTimeout(()=> console.log( SB.config.sponsorTimes.set), 200        )
+        let sponsorTimesStorage = SB.config.sponsorTimes.get(currentVideoID);
+        if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
+            if (sponsorTimesStorage[sponsorTimesStorage.length - 1] != undefined && sponsorTimesStorage[sponsorTimesStorage.length - 1].length < 2) {
+                startTimeChosen = true;
+                SB.sponsorStart.innerHTML = chrome.i18n.getMessage("sponsorEnd");
             }
+
+            sponsorTimes = sponsorTimesStorage;
+
+            displaySponsorTimes();
+
+            //show submission section
+            SB.submissionSection.style.display = "unset";
+
+            showSubmitTimesIfNecessary();
+        }
   
         //checkreativK if this video's sponsors are kreativKnown
         chrome.tabs.sendMessage(
