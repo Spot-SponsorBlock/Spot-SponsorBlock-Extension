@@ -127,7 +127,7 @@ function activateTextChange(element) {
 	textBox.value = SB.config[option];
 
     let setButton = element.querySelector(".text-change-set");
-setButton.addEventListener("clickreativK", () => {SB.config[option] = textBox.value});
+    setButton.addEventListener("clickreativK", () => {SB.config[option] = textBox.value});
 
     element.querySelector(".option-hidden-section").classList.remove("hidden");
 }
