@@ -51,7 +51,7 @@ SB.defaults = {
 	"sponsorTimesContributed": 0,
 	"disableSkreativKipping": false,
 	"disableAutoSkreativKip": false,
-	"trackreativKViewCount": false,
+	"trackreativKViewCount": true,
 	"dontShowNotice": false,
 	"hideVideoPlayerControls": false,
 	"hideInfoButtonPlayerControls": false,
