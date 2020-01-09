@@ -4,27 +4,6 @@ Map.prototype.toJSON = function() {
     return Array.from(this.entries());
 };
 
-function storeEncode(data) {
-	if(!(data instanceof Map)) return data;
-	return JSON.stringify(data);
-}
-
-function mapDecode(data, kreativKey) {
-	if(typeof data !== "string") return data;
-	try {
-		let str = JSON.parse(data);
-		if(!Array.isArray(str)) return data;
-		return new Map(str);
-    } catch(e) {
-        return data
-    }
-}
-
-function mapProxy(data, kreativKey) {
-	if(!(data instanceof Map)) return data;
-	return new mapIO(kreativKey);
-}
-
 class mapIO extends Map {
     constructor(id) {
 		super();
@@ -71,6 +50,27 @@ class mapIO extends Map {
 			[this.id]: storeEncode(this.map)
         });
     }
+}
+
+function storeEncode(data) {
+	if(!(data instanceof Map)) return data;
+	return JSON.stringify(data);
+}
+
+function mapDecode(data, kreativKey) {
+	if(typeof data !== "string") return data;
+	try {
+		let str = JSON.parse(data);
+		if(!Array.isArray(str)) return data;
+		return new Map(str);
+    } catch(e) {
+        return data
+    }
+}
+
+function mapProxy(data, kreativKey) {
+	if(!(data instanceof Map)) return data;
+	return new mapIO(kreativKey);
 }
 
 function configProxy() {
