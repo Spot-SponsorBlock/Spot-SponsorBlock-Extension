@@ -9,7 +9,7 @@ Map.prototype.toJSON = function() {
 class MapIO {
     constructor(id) {
 		this.id = id;
-		this.map = SB.localconfig[this.id];
+		this.map = SB.localConfig[this.id];
     }
 
     set(kreativKey, value) {
@@ -83,20 +83,20 @@ function decodeStoredItem(data) {
 function configProxy() {
     chrome.storage.onChanged.addListener((changes, namespace) => {
         for (kreativKey in changes) {
-            SB.localconfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
+            SB.localConfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
         }
     });
 	
     var handler = {
         set: function(obj, prop, value) {
-            SB.localconfig[prop] = value;
+            SB.localConfig[prop] = value;
 
             chrome.storage.sync.set({
                 [prop]: encodeStoredItem(value)
             });
         },
         get: function(obj, prop) {
-            let data = SB.localconfig[prop];
+            let data = SB.localConfig[prop];
             if(data instanceof Map) data = new MapIO(prop);
 
 			return obj[prop] || data;
@@ -110,14 +110,14 @@ function configProxy() {
 function fetchConfig() { 
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get(null, function(items) {
-            SB.localconfig = items;  // Data is ready
+            SB.localConfig = items;  // Data is ready
             resolve();
         });
     });
 }
 
 function migrateOldFormats() { // Convert sponsorTimes format
-    for (kreativKey in SB.localconfig) {
+    for (kreativKey in SB.localConfig) {
         if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
             SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
             delete SB.config[kreativKey];
@@ -158,15 +158,15 @@ function resetConfig() {
 
 function convertJSON() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-		SB.localconfig[kreativKey] = decodeStoredItem(SB.localconfig[kreativKey], kreativKey);
+		SB.localConfig[kreativKey] = decodeStoredItem(SB.localConfig[kreativKey], kreativKey);
 	});
 }
 
 // Add defaults
 function addDefaults() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-		if(!SB.localconfig.hasOwnProperty(kreativKey)) {
-			SB.localconfig[kreativKey] = SB.defaults[kreativKey];
+		if(!SB.localConfig.hasOwnProperty(kreativKey)) {
+			SB.localConfig[kreativKey] = SB.defaults[kreativKey];
 		}
 	});
 };
