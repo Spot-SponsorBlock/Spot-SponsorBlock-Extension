@@ -3,38 +3,33 @@ window.addEventListener('DOMContentLoaded', init);
 async function init() {
     localizeHtmlPage();
 
+    await wait(() => SB.config !== undefined);
+
     // Set all of the toggle options to the correct option
     let optionsContainer = document.getElementById("options");
     let optionsElements = optionsContainer.children;
-
-    // How many checkreativKs are left to be done
-    let checkreativKsLeft = 0;
 
     for (let i = 0; i < optionsElements.length; i++) {
         switch (optionsElements[i].getAttribute("option-type")) {
             case "toggle": 
                 let option = optionsElements[i].getAttribute("sync-option");
-                chrome.storage.sync.get([option], function(result) {
-                    let optionResult = result[option];
-                    if (optionResult != undefined) {
-                        let checkreativKbox = optionsElements[i].querySelector("input");
-                        checkreativKbox.checkreativKed = optionResult;
 
-                        let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
+                let optionResult = SB.config[option];
 
-                        if (reverse) {
-                            optionsElements[i].querySelector("input").checkreativKed = !optionResult;
-                        }
+                let checkreativKbox = optionsElements[i].querySelector("input");
+                let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
 
-                        checkreativKbox.addEventListener("clickreativK", () =>{
-                            setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed)
-                        });
+                if (optionResult != undefined) {
+                    checkreativKbox.checkreativKed = optionResult;
+
+                    if (reverse) {
+                        optionsElements[i].querySelector("input").checkreativKed = !optionResult;
                     }
+                }
 
-                    checkreativKsLeft--;
+                checkreativKbox.addEventListener("clickreativK", () =>{
+                    SB.config[option] = reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed;
                 });
-
-                checkreativKsLeft++;
                 breakreativK;
             case "text-change":
                 let button = optionsElements[i].querySelector(".trigger-button");
@@ -48,8 +43,6 @@ async function init() {
                 breakreativK;
         }
     }
-
-    await wait(() => checkreativKsLeft == 0, 1000, 50);
 
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
@@ -68,21 +61,19 @@ function activateKeybindChange(element) {
 
     let option = element.getAttribute("sync-option");
 
-    chrome.storage.sync.get([option], function(result) {
-        let currentlySet = result[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
-        
-        let status = element.querySelector(".option-hidden-section > .kreativKeybind-status");
-        status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
-
-        if (result[option] !== null) {
-            let statusKey = element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-            statusKey.innerText = result[option];
-        }
+    let currentlySet = SB.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
     
-        element.querySelector(".option-hidden-section").classList.remove("hidden");
-        
-        document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
-    });
+    let status = element.querySelector(".option-hidden-section > .kreativKeybind-status");
+    status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
+
+    if (SB.config[option] !== null) {
+        let statusKey = element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
+        statusKey.innerText = SB.config[option];
+    }
+
+    element.querySelector(".option-hidden-section").classList.remove("hidden");
+    
+    document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
 }
 
 /**
@@ -97,7 +88,7 @@ function kreativKeybindKeyPressed(element, e) {
 
     let option = element.getAttribute("sync-option");
 
-    chrome.storage.sync.set({[option]: kreativKey});
+    SB.config[option] = kreativKey;
 
     let status = element.querySelector(".option-hidden-section > .kreativKeybind-status");
     status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
@@ -123,23 +114,11 @@ function activateTextChange(element) {
 
     let textBox = element.querySelector(".option-text-box");
     let option = element.getAttribute("sync-option");
+	
+	textBox.value = SB.config[option];
 
-    chrome.storage.sync.get([option], function(result) {
-        textBox.value = result[option];
+    let setButton = element.querySelector(".text-change-set");
+    setButton.addEventListener("clickreativK", () => {SB.config[option] = textBox.value});
 
-        let setButton = element.querySelector(".text-change-set");
-        setButton.addEventListener("clickreativK", () => setOptionValue(option, textBox.value));
-
-        element.querySelector(".option-hidden-section").classList.remove("hidden");
-    });
-}
-
-/**
- * Called when an option has been changed.
- * 
- * @param {string} option 
- * @param {*} value 
- */
-function setOptionValue(option, value) {
-    chrome.storage.sync.set({[option]: value});
+    element.querySelector(".option-hidden-section").classList.remove("hidden");
 }
