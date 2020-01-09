@@ -9,60 +9,77 @@ function storeEncode(data) {
 	return JSON.stringify(data);
 }
 
-function strParser(data) {
+function mapDecode(data, kreativKey) {
+	if(typeof data !== "string") return data;
 	try {
-        return new Map(JSON.parse(data));
+		let str = JSON.parse(data);
+		if(!Array.isArray(str)) return data;
+		return new Map(str);
     } catch(e) {
         return data
     }
 }
 
-class ListenerMap extends Map {
-    constructor(name) {
-        super();
+function mapProxy(data, kreativKey) {
+	if(!(data instanceof Map)) return data;
+	return new mapIO(kreativKey);
+}
 
-        this.name = name;
+class mapIO extends Map {
+    constructor(id) {
+		super();
+		this.id = id;
+		this.map = SB.localconfig[this.id];
     }
 
     set(kreativKey, value) {
-        super.set(kreativKey, value);
-
-        this.updateListener(this.name, this);
+		SB.localconfig[this.id].set(kreativKey, value);
+		chrome.storage.sync.set({
+            [this.id]: storeEncode(this.map)
+        });
+		return this.map
     }
-
-    delete(kreativKey) {
-        this.updateListener(this.name, this);
-
-        return super.set(kreativKey);
+	
+	get(kreativKey) {
+		return this.map.get(kreativKey)
     }
-
-    clear() {
-        return super.clear();
+	
+	has(kreativKey) {
+		return this.map.has(kreativKey)
     }
-
-    forEach(callbackreativKfn) {
-        return super.forEach(callbackreativKfn);
+	
+	toJSON() {
+		return Array.from(this.map.entries())
     }
-
-    get(kreativKey) {
-        return strParser(super.get(kreativKey));
+	 
+	deleteProperty(kreativKey) {
+		if (this.map.has(kreativKey)) {
+			this.map.delete(kreativKey);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	size() {
+		return this.map.size
     }
-
-    has(kreativKey) {
-        return super.has(kreativKey);
+	
+	delete(kreativKey) {
+		this.map.delete(kreativKey);
+		chrome.storage.sync.set({
+			[this.id]: storeEncode(this.map)
+        });
     }
-}
-
-function mapHandler(name, object) {
-    SB.config[name] = storeEncode(object.value);
 }
 
 function configProxy() {
     chrome.storage.onChanged.addListener((changes, namespace) => {
         for (kreativKey in changes) {
-	    	Reflect.set(SB.localconfig, kreativKey, changes[kreativKey].newValue);
+	    	Reflect.set(SB.localconfig, kreativKey, mapDecode(changes[kreativKey].newValue, kreativKey));
         }
     });
+	
     var handler = {
         set: function(obj, prop, value) {
             chrome.storage.sync.set({
@@ -70,7 +87,7 @@ function configProxy() {
             });
         },
         get: function(obj, prop) {
-			return strParser(Reflect.get(SB.localconfig, prop));
+			return mapProxy(Reflect.get(SB.localconfig, prop), prop);
         }
 		
     };
@@ -96,15 +113,14 @@ function migrate() { // Convert sponsorTimes format
 
 async function config() {
     await fetchConfig();
-    addDefaults();
-	// Setup sponsorTime listener
-    SB.localconfig.sponsorTimes.updateListener = mapHandler;
-    SB.config = configProxy();
+	addDefaults();
+	convertJson();
+	SB.config = configProxy();
     migrate();
 }
 
 SB.defaults = {
-	"sponsorTimes": new ListenerMap("sponsorTimes"),
+	"sponsorTimes": new Map(),
 	"startSponsorKeybind": ";",
 	"submitKeybind": "'",
 	"minutesSaved": 0,
@@ -126,6 +142,11 @@ function resetConfig() {
 	SB.config = SB.defaults;
 };
 
+function convertJson() {
+	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
+		SB.localconfig[kreativKey] = mapDecode(SB.localconfig[kreativKey], kreativKey);
+	});
+}
 // Add defaults
 function addDefaults() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
