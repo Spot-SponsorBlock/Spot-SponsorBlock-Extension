@@ -58,65 +58,12 @@ var lastSponsorTimeSkreativKippedUUID = null;
 //if showing the start sponsor button or the end sponsor button on the player
 var showingStartSponsor = true;
 
-//should the video controls buttons be added
-var hideVideoPlayerControls = false;
-var hideInfoButtonPlayerControls = false;
-var hideDeleteButtonPlayerControls = false;
-
 //the sponsor times being prepared to be submitted
 var sponsorTimesSubmitting = [];
 
 //becomes true when isInfoFound is called
 //this is used to close the popup on YouTube when the other popup opens
 var popupInitialised = false;
-
-//should skreativKips happen at all
-var disableSkreativKipping = false;
-chrome.storage.sync.get(["disableSkreativKipping"], function(result) {
-    let disableSkreativKippingStorage = result.disableSkreativKipping;
-    if (disableSkreativKippingStorage != undefined) {
-        disableSkreativKipping = disableSkreativKippingStorage;
-    }
-});
-
-//should skreativKips be manual
-var disableAutoSkreativKip = false;
-chrome.storage.sync.get(["disableAutoSkreativKip"], function(result) {
-    let disableAutoSkreativKipStorage = result.disableAutoSkreativKip;
-    if (disableAutoSkreativKipStorage != undefined) {
-        disableAutoSkreativKip = disableAutoSkreativKipStorage;
-    }
-});
-
-//should view counts be trackreativKed
-var trackreativKViewCount = false;
-chrome.storage.sync.get(["trackreativKViewCount"], function(result) {
-    let trackreativKViewCountStorage = result.trackreativKViewCount;
-    if (trackreativKViewCountStorage != undefined) {
-        trackreativKViewCount = trackreativKViewCountStorage;
-    } else {
-        trackreativKViewCount = true;
-    }
-});
-
-//if the notice should not be shown
-//happens when the user clickreativK's the "Don't show notice again" button
-//option renamed when new notice was made
-var dontShowNotice = false;
-chrome.storage.sync.get(["dontShowNotice"], function(result) {
-    let dontShowNoticeAgain = result.dontShowNotice;
-    if (dontShowNoticeAgain != undefined) {
-        dontShowNotice = dontShowNoticeAgain;
-    }
-});
-//load the legacy option to hide the notice
-var dontShowNoticeOld = false;
-chrome.storage.sync.get(["dontShowNoticeAgain"], function(result) {
-    let dontShowNoticeAgain = result.dontShowNoticeAgain;
-    if (dontShowNoticeAgain != undefined) {
-        dontShowNoticeOld = dontShowNoticeAgain;
-    }
-});
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
@@ -126,7 +73,6 @@ function messageListener(request, sender, sendResponse) {
         switch(request.message){
             case "update":
                 videoIDChange(getYouTubeVideoID(document.URL));
-
                 breakreativK;
             case "sponsorStart":
                 sponsorMessageStarted(sendResponse);
@@ -191,35 +137,35 @@ function messageListener(request, sender, sendResponse) {
 
                 breakreativK;
             case "dontShowNotice":
-                dontShowNotice = false;
+				SB.config.dontShowNotice = true;
 
                 breakreativK;
             case "changeStartSponsorButton":
                 changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
 
                 breakreativK;
+			
             case "showNoticeAgain":
-                dontShowNotice = false;
-                
+                SB.config.dontShowNotice = true;
                 breakreativK;
+			
             case "changeVideoPlayerControlsVisibility":
-                hideVideoPlayerControls = request.value;
+                SB.config.hideVideoPlayerControls = request.value;
                 updateVisibilityOfPlayerControlsButton();
 
                 breakreativK;
             case "changeInfoButtonPlayerControlsVisibility":
-                hideInfoButtonPlayerControls = request.value;
+                SB.config.hideInfoButtonPlayerControls = request.value;
                 updateVisibilityOfPlayerControlsButton();
 
                 breakreativK;
             case "changeDeleteButtonPlayerControlsVisibility":
-                hideDeleteButtonPlayerControls = request.value;
+                SB.config.hideDeleteButtonPlayerControls = request.value;
                 updateVisibilityOfPlayerControlsButton();
 
                 breakreativK;
             case "trackreativKViewCount":
-                trackreativKViewCount = request.value;
-
+                SB.config.trackreativKViewCount = request.value;
                 breakreativK;
         }
 }
@@ -231,19 +177,9 @@ document.onkreativKeydown = async function(e){
 
     let video = document.getElementById("movie_player");
 
-    let startSponsorKey = await new Promise((resolve, reject) => {
-        chrome.storage.sync.get(["startSponsorKeybind"], (result) => resolve(result));
-    });
-    let submitKey = await new Promise((resolve, reject) => {
-        chrome.storage.sync.get(["submitKeybind"], (result) => resolve(result));
-    });
+    let startSponsorKey = SB.config.startSponsorKeybind;
 
-    if (startSponsorKey.startSponsorKeybind === undefined) {
-        startSponsorKey.startSponsorKeybind = ";"
-    }
-    if (submitKey.submitKeybind === undefined) {
-        submitKey.submitKeybind = "'"
-    }
+    let submitKey = SB.config.submitKeybind;
 
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
@@ -302,21 +238,17 @@ function videoIDChange(id) {
     //warn them if they had unsubmitted times
     if (previousVideoID != null) {
         //get the sponsor times from storage
-        let sponsorTimeKey = 'sponsorTimes' + previousVideoID;
-        chrome.storage.sync.get([sponsorTimeKey], function(result) {
-            let sponsorTimes = result[sponsorTimeKey];
+        let sponsorTimes = SB.config.sponsorTimes.get(previousVideoID);
+        if (sponsorTimes != undefined && sponsorTimes.length > 0) {
+            //warn them that they have unsubmitted sponsor times
+                chrome.runtime.sendMessage({
+                    message: "alertPrevious",
+                    previousVideoID: previousVideoID
+                })
+        }
 
-            if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-                //warn them that they have unsubmitted sponsor times
-                    chrome.runtime.sendMessage({
-                        message: "alertPrevious",
-                        previousVideoID: previousVideoID
-                    })
-            }
-
-            //set the previous video id to the currentID
-            previousVideoID = id;
-        });
+        //set the previous video id to the currentID
+        previousVideoID = id;
     } else {
         //set the previous id now, don't wait for chrome.storage.get
         previousVideoID = id;
@@ -358,30 +290,8 @@ function videoIDChange(id) {
 			}
 		});
 	});
-
-    //see if video controls buttons should be added
-    chrome.storage.sync.get(["hideVideoPlayerControls"], function(result) {
-        if (result.hideVideoPlayerControls != undefined) {
-            hideVideoPlayerControls = result.hideVideoPlayerControls;
-        }
-
-        updateVisibilityOfPlayerControlsButton();
-    });
-    chrome.storage.sync.get(["hideInfoButtonPlayerControls"], function(result) {
-        if (result.hideInfoButtonPlayerControls != undefined) {
-            hideInfoButtonPlayerControls = result.hideInfoButtonPlayerControls;
-        }
-
-        updateVisibilityOfPlayerControlsButton();
-    });
-    chrome.storage.sync.get(["hideDeleteButtonPlayerControls"], function(result) {
-        if (result.hideDeleteButtonPlayerControls != undefined) {
-            hideDeleteButtonPlayerControls = result.hideDeleteButtonPlayerControls;
-        }
-
-        updateVisibilityOfPlayerControlsButton(false);
-    });
-  
+	updateVisibilityOfPlayerControlsButton();
+    updateVisibilityOfPlayerControlsButton(false);
 }
 
 function sponsorsLookreativKup(id, channelIDPromise) {
@@ -463,7 +373,7 @@ function sponsorsLookreativKup(id, channelIDPromise) {
     });
 
     //add the event to run on the videos "ontimeupdate"
-    if (!disableSkreativKipping) {
+    if (!SB.config.disableSkreativKipping) {
         v.ontimeupdate = function () { 
             sponsorCheckreativK();
         };
@@ -542,20 +452,18 @@ function getChannelID() {
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
 function whitelistCheckreativK() {
     //see if this is a whitelisted channel
-    chrome.storage.sync.get(["whitelistedChannels"], function(result) {
-        let whitelistedChannels = result.whitelistedChannels;
+        let whitelistedChannels = SB.config.whitelistedChannels;
 
         console.log(channelURL)
 
         if (whitelistedChannels != undefined && whitelistedChannels.includes(channelURL)) {
             channelWhitelisted = true;
         }
-    });
 }
 
 //video skreativKipping
 function sponsorCheckreativK() {
-    if (disableSkreativKipping) {
+    if (SB.config.disableSkreativKipping) {
         // MakreativKe sure this isn't called again
         v.ontimeupdate = null;
         return;
@@ -621,7 +529,7 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    if (!disableAutoSkreativKip) {
+    if (!SB.config.disableAutoSkreativKip) {
         v.currentTime = sponsorTimes[index][1];
     }
 
@@ -632,42 +540,23 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
-        if (!dontShowNotice) {
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, disableAutoSkreativKip);
-
-            if (dontShowNoticeOld) {
-                //show why this notice is showing
-                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("noticeUpdate"), chrome.i18n.getMessage("noticeUpdate2"));
-
-                //remove this setting
-                chrome.storage.sync.remove(["dontShowNoticeAgain"]);
-                dontShowNoticeOld = false;
-            }
-
+        if (!SB.config.dontShowNotice) {
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip);
             //auto-upvote this sponsor
-            if (trackreativKViewCount && !disableAutoSkreativKip) {
+            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip) {
                 vote(1, currentUUID, null);
             }
         }
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (trackreativKViewCount && !sponsorSkreativKipped[index]) {
+    if (SB.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
         sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-        if (!disableAutoSkreativKip) {
+        if (!SB.config.disableAutoSkreativKip) {
             // Count this as a skreativKip
-            chrome.storage.sync.get(["minutesSaved"], function(result) {
-                if (result.minutesSaved === undefined) result.minutesSaved = 0;
-
-                chrome.storage.sync.set({"minutesSaved": result.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60 });
-            });
-            chrome.storage.sync.get(["skreativKipCount"], function(result) {
-                if (result.skreativKipCount === undefined) result.skreativKipCount = 0;
-
-                chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + 1 });
-            });
-
+            SB.config.minutesSaved = SB.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+            SB.config.skreativKipCount = SB.config.skreativKipCount + 1;
             sponsorSkreativKipped[index] = true;
         }
     }
@@ -744,14 +633,14 @@ async function updateVisibilityOfPlayerControlsButton() {
 
     await createButtons();
 	
-    if (hideVideoPlayerControls) {
+    if (SB.config.hideDeleteButtonPlayerControls) {
         removePlayerControlsButton();
     }
     //don't show the info button on embeds
-    if (hideInfoButtonPlayerControls || document.URL.includes("/embed/")) {
+    if (SB.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/")) {
         document.getElementById("infoButton").style.display = "none";
     }
-    if (hideDeleteButtonPlayerControls) {
+    if (SB.config.hideDeleteButtonPlayerControls) {
         document.getElementById("deleteButton").style.display = "none";
     }
 }
@@ -803,7 +692,7 @@ async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
     await wait(isSubmitButtonLoaded);
     
     //if it isn't visible, there is no data
-    let shouldHide = (uploadButtonVisible && !hideDeleteButtonPlayerControls) ? "unset" : "none"
+    let shouldHide = (uploadButtonVisible && !SB.config.hideDeleteButtonPlayerControls) ? "unset" : "none"
     document.getElementById("deleteButton").style.display = shouldHide;
 
     if (showStartSponsor) {
@@ -811,7 +700,7 @@ async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
         document.getElementById("startSponsorImage").src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
         document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
 
-        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !hideInfoButtonPlayerControls) {
+        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !SB.config.hideInfoButtonPlayerControls) {
             document.getElementById("submitButton").style.display = "unset";
         } else if (!uploadButtonVisible) {
             //disable submit button
@@ -906,28 +795,24 @@ function clearSponsorTimes() {
 
     let currentVideoID = sponsorVideoID;
 
-    let sponsorTimeKey = 'sponsorTimes' + currentVideoID;
-    chrome.storage.sync.get([sponsorTimeKey], function(result) {
-        let sponsorTimes = result[sponsorTimeKey];
+    let sponsorTimes = SB.config.sponsorTimes.get(currentVideoID);
 
-        if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-            let confirmMessage = chrome.i18n.getMessage("clearThis") + getSponsorTimesMessage(sponsorTimes);
-            confirmMessage += chrome.i18n.getMessage("confirmMSG")
-            if(!confirm(confirmMessage)) return;
+    if (sponsorTimes != undefined && sponsorTimes.length > 0) {
+        let confirmMessage = chrome.i18n.getMessage("clearThis") + getSponsorTimesMessage(sponsorTimes);
+        confirmMessage += chrome.i18n.getMessage("confirmMSG")
+        if(!confirm(confirmMessage)) return;
 
-            //clear the sponsor times
-            let sponsorTimeKey = "sponsorTimes" + currentVideoID;
-            chrome.storage.sync.set({[sponsorTimeKey]: []});
+        //clear the sponsor times
+        SB.config.sponsorTimes.delete(currentVideoID);
 
-            //clear sponsor times submitting
-            sponsorTimesSubmitting = [];
+        //clear sponsor times submitting
+        sponsorTimesSubmitting = [];
 
-            updatePreviewBar();
+        updatePreviewBar();
 
-            //set buttons to be correct
-            changeStartSponsorButton(true, false);
-        }
-    });
+        //set buttons to be correct
+        changeStartSponsorButton(true, false);
+    }
 }
 
 //if skreativKipNotice is null, it will not affect the UI
@@ -949,17 +834,12 @@ function vote(type, UUID, skreativKipNotice) {
             sponsorSkreativKipped[sponsorIndex] = false;
         }
 
-        // Count this as a skreativKip
-        chrome.storage.sync.get(["minutesSaved"], function(result) {
-            if (result.minutesSaved === undefined) result.minutesSaved = 0;
+            // Count this as a skreativKip
+            SB.config.minutesSaved = SB.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
+		
+            SB.config.skreativKipCount = 0;
 
-            chrome.storage.sync.set({"minutesSaved": result.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60 });
-        });
-        chrome.storage.sync.get(["skreativKipCount"], function(result) {
-            if (result.skreativKipCount === undefined) result.skreativKipCount = 0;
-
-            chrome.storage.sync.set({"skreativKipCount": result.skreativKipCount + factor * 1 });
-        });
+            SB.config.skreativKipCount = SB.config.skreativKipCount + factor * 1;
     }
  
     chrome.runtime.sendMessage({
@@ -997,10 +877,7 @@ function closeAllSkreativKipNotices(){
 }
 
 function dontShowNoticeAgain() {
-    chrome.storage.sync.set({"dontShowNotice": true});
-
-    dontShowNotice = true;
-
+    SB.config.dontShowNotice = true;
     closeAllSkreativKipNotices();
 }
 
@@ -1027,30 +904,27 @@ function submitSponsorTimes() {
 
     let currentVideoID = sponsorVideoID;
 
-    let sponsorTimeKey = 'sponsorTimes' + currentVideoID;
-    chrome.storage.sync.get([sponsorTimeKey], function(result) {
-        let sponsorTimes = result[sponsorTimeKey];
+    let sponsorTimes =  SB.config.sponsorTimes.get(currentVideoID);
 
-        if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-            //checkreativK if a sponsor exceeds the duration of the video
-            for (let i = 0; i < sponsorTimes.length; i++) {
-                if (sponsorTimes[i][1] > v.duration) {
-                    sponsorTimes[i][1] = v.duration;
-                }
+    if (sponsorTimes != undefined && sponsorTimes.length > 0) {
+        //checkreativK if a sponsor exceeds the duration of the video
+        for (let i = 0; i < sponsorTimes.length; i++) {
+            if (sponsorTimes[i][1] > v.duration) {
+                sponsorTimes[i][1] = v.duration;
             }
-            //update sponsorTimes
-            chrome.storage.sync.set({[sponsorTimeKey]: sponsorTimes});
-
-            //update sponsorTimesSubmitting
-            sponsorTimesSubmitting = sponsorTimes;
-
-            let confirmMessage = chrome.i18n.getMessage("submitCheckreativK") + "\n\n" + getSponsorTimesMessage(sponsorTimes)
-                                    + "\n\n" + chrome.i18n.getMessage("confirmMSG")  + "\n\n" + chrome.i18n.getMessage("guildlinesSummary");
-            if(!confirm(confirmMessage)) return;
-
-            sendSubmitMessage();
         }
-    });
+        //update sponsorTimes
+        SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+
+        //update sponsorTimesSubmitting
+        sponsorTimesSubmitting = sponsorTimes;
+
+        let confirmMessage = chrome.i18n.getMessage("submitCheckreativK") + "\n\n" + getSponsorTimesMessage(sponsorTimes)
+                                + "\n\n" + chrome.i18n.getMessage("confirmMSG")  + "\n\n" + chrome.i18n.getMessage("guildlinesSummary");
+        if(!confirm(confirmMessage)) return;
+
+        sendSubmitMessage();
+    }
 
 }
 
@@ -1085,8 +959,7 @@ function sendSubmitMessage(){
                 submitButton.addEventListener("animationend", animationEndListener);
 
                 //clear the sponsor times
-                let sponsorTimeKey = "sponsorTimes" + currentVideoID;
-                chrome.storage.sync.set({[sponsorTimeKey]: []});
+                SB.config.sponsorTimes.delete(currentVideoID);
 
                 //add submissions to current sponsors list
                 sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
