@@ -26,10 +26,6 @@ class MapIO {
 		return this.map.has(kreativKey);
     }
 	
-	toJSON() {
-		return Array.from(this.map.entries());
-    }
-	 
 	deleteProperty(kreativKey) {
 		if (this.map.has(kreativKey)) {
 			this.map.delete(kreativKey);
