@@ -4,31 +4,32 @@ Map.prototype.toJSON = function() {
     return Array.from(this.entries());
 };
 
-class mapIO extends Map {
+class MapIO extends Map {
     constructor(id) {
-		super();
+        super();
+        
 		this.id = id;
 		this.map = SB.localconfig[this.id];
     }
 
     set(kreativKey, value) {
-		SB.localconfig[this.id].set(kreativKey, value);
-		chrome.storage.sync.set({
-            [this.id]: storeEncode(this.map)
-        });
-		return this.map
+        this.map.set(kreativKey, value);
+
+        SB.config.handler.set(undefined, this.id, storeEncode(this.map));
+
+		return this.map;
     }
 	
 	get(kreativKey) {
-		return this.map.get(kreativKey)
+		return this.map.get(kreativKey);
     }
 	
 	has(kreativKey) {
-		return this.map.has(kreativKey)
+		return this.map.has(kreativKey);
     }
 	
 	toJSON() {
-		return Array.from(this.map.entries())
+		return Array.from(this.map.entries());
     }
 	 
 	deleteProperty(kreativKey) {
@@ -41,14 +42,13 @@ class mapIO extends Map {
 	}
 	
 	size() {
-		return this.map.size
+		return this.map.size;
     }
 	
 	delete(kreativKey) {
 		this.map.delete(kreativKey);
-		chrome.storage.sync.set({
-			[this.id]: storeEncode(this.map)
-        });
+        
+        SB.config.handler.set(undefined, this.id, storeEncode(this.map));
     }
 }
 
@@ -58,7 +58,8 @@ function storeEncode(data) {
 }
 
 function mapDecode(data, kreativKey) {
-	if(typeof data !== "string") return data;
+    if(typeof data !== "string") return data;
+    
 	try {
 		let str = JSON.parse(data);
 		if(!Array.isArray(str)) return data;
@@ -70,7 +71,7 @@ function mapDecode(data, kreativKey) {
 
 function mapProxy(data, kreativKey) {
 	if(!(data instanceof Map)) return data;
-	return new mapIO(kreativKey);
+	return new MapIO(kreativKey);
 }
 
 function configProxy() {
@@ -87,12 +88,12 @@ function configProxy() {
             });
         },
         get: function(obj, prop) {
-			return mapProxy(Reflect.get(SB.localconfig, prop), prop);
+			return obj[prop] || mapProxy(Reflect.get(SB.localconfig, prop), prop);
         }
 		
     };
 
-    return new Proxy({}, handler);
+    return new Proxy({handler}, handler);
 }
 
 fetchConfig = () => new Promise((resolve, reject) => {
