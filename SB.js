@@ -4,10 +4,8 @@ Map.prototype.toJSON = function() {
     return Array.from(this.entries());
 };
 
-class MapIO extends Map {
+class MapIO {
     constructor(id) {
-        super();
-        
 		this.id = id;
 		this.map = SB.localconfig[this.id];
     }
@@ -57,27 +55,31 @@ function storeEncode(data) {
 	return JSON.stringify(data);
 }
 
-function mapDecode(data, kreativKey) {
+/**
+ * A Map cannot be stored in the chrome storage. 
+ * This data will be decoded from the array it is stored in
+ * 
+ * @param {*} data 
+ */
+function decodeStoredItem(data) {
     if(typeof data !== "string") return data;
     
 	try {
-		let str = JSON.parse(data);
+        let str = JSON.parse(data);
+        
 		if(!Array.isArray(str)) return data;
 		return new Map(str);
     } catch(e) {
-        return data
-    }
-}
 
-function mapProxy(data, kreativKey) {
-	if(!(data instanceof Map)) return data;
-	return new MapIO(kreativKey);
+        // If all else fails, return the data
+        return data;
+    }
 }
 
 function configProxy() {
     chrome.storage.onChanged.addListener((changes, namespace) => {
         for (kreativKey in changes) {
-	    	Reflect.set(SB.localconfig, kreativKey, mapDecode(changes[kreativKey].newValue, kreativKey));
+            SB.localconfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
         }
     });
 	
@@ -88,7 +90,10 @@ function configProxy() {
             });
         },
         get: function(obj, prop) {
-			return obj[prop] || mapProxy(Reflect.get(SB.localconfig, prop), prop);
+            let data = SB.localconfig[prop];
+            if(data instanceof Map) data = new MapIO(prop);
+
+			return obj[prop] || data;
         }
 		
     };
@@ -145,7 +150,7 @@ function resetConfig() {
 
 function convertJson() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-		SB.localconfig[kreativKey] = mapDecode(SB.localconfig[kreativKey], kreativKey);
+		SB.localconfig[kreativKey] = decodeStoredItem(SB.localconfig[kreativKey], kreativKey);
 	});
 }
 // Add defaults
