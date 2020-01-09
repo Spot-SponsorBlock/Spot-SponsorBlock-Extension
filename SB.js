@@ -1,5 +1,7 @@
 SB = {};
 
+// Function setup
+
 Map.prototype.toJSON = function() {
     return Array.from(this.entries());
 };
@@ -13,7 +15,7 @@ class MapIO {
     set(kreativKey, value) {
         this.map.set(kreativKey, value);
 
-        SB.config.handler.set(undefined, this.id, storeEncode(this.map));
+        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
 
 		return this.map;
     }
@@ -42,11 +44,17 @@ class MapIO {
 	delete(kreativKey) {
 		this.map.delete(kreativKey);
         
-        SB.config.handler.set(undefined, this.id, storeEncode(this.map));
+        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
     }
 }
 
-function storeEncode(data) {
+/**
+ * A Map cannot be stored in the chrome storage. 
+ * This data will be encoded into an array instead as specified by the toJSON function.
+ * 
+ * @param {*} data 
+ */
+function encodeStoredItem(data) {
 	if(!(data instanceof Map)) return data;
 	return JSON.stringify(data);
 }
@@ -82,7 +90,7 @@ function configProxy() {
     var handler = {
         set: function(obj, prop, value) {
             chrome.storage.sync.set({
-                [prop]: storeEncode(value)
+                [prop]: encodeStoredItem(value)
             });
         },
         get: function(obj, prop) {
@@ -97,14 +105,16 @@ function configProxy() {
     return new Proxy({handler}, handler);
 }
 
-fetchConfig = () => new Promise((resolve, reject) => {
-    chrome.storage.sync.get(null, function(items) {
-        SB.localconfig = items;  // Data is ready
-        resolve();
+function fetchConfig() { 
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(null, function(items) {
+            SB.localconfig = items;  // Data is ready
+            resolve();
+        });
     });
-});
+}
 
-function migrate() { // Convert sponsorTimes format
+function migrateOldFormats() { // Convert sponsorTimes format
     for (kreativKey in SB.localconfig) {
         if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
             SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
@@ -113,12 +123,12 @@ function migrate() { // Convert sponsorTimes format
     }
 }
 
-async function config() {
+async function setupConfig() {
     await fetchConfig();
 	addDefaults();
-	convertJson();
+	convertJSON();
 	SB.config = configProxy();
-    migrate();
+    migrateOldFormats();
 }
 
 SB.defaults = {
@@ -144,11 +154,12 @@ function resetConfig() {
 	SB.config = SB.defaults;
 };
 
-function convertJson() {
+function convertJSON() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
 		SB.localconfig[kreativKey] = decodeStoredItem(SB.localconfig[kreativKey], kreativKey);
 	});
 }
+
 // Add defaults
 function addDefaults() {
 	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
@@ -159,4 +170,4 @@ function addDefaults() {
 };
 
 // Sync config
-config();
+setupConfig();
