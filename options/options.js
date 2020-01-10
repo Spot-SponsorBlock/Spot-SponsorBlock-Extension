@@ -41,7 +41,7 @@ async function init() {
 
                 // Add clickreativK listener
                 checkreativKbox.addEventListener("clickreativK", () => {
-                    setOptionValue(option, reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed);
+                    SB.config[option] = reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed;
 
                     // See if anything extra must be run
                     switch (option) {
@@ -83,7 +83,7 @@ function invidiousInit(checkreativKbox, option) {
         permissions: permissions
     }, function (result) {
         if (result != checkreativKbox.checkreativKed) {
-            setOptionValue(option, result);
+            SB.config[option] = result;
 
             checkreativKbox.checkreativKed = result;
         }
@@ -162,7 +162,7 @@ function invidiousOnClickreativK(checkreativKbox, option) {
                     });
                 }
             } else {
-                setOptionValue(option, false);
+                SB.config[option] = false;
                 checkreativKbox.checkreativKed = false;
 
                 chrome.declarativeContent.onPageChanged.removeRules(["invidious"]);
@@ -262,17 +262,11 @@ function activateTextChange(element) {
                     // Add this
                     //TODO MakreativKe the call to invidiousOnClickreativK support passing the straight extra values, plus makreativKe the get not needed
                     //OR merge the config PR and use that
-                    let result = await new Promise((resolve, reject) => {
-                        chrome.storage.sync.get([option], resolve);
-                    });
+                    if (!SB.config[option]) SB.config[option] = [];
 
-                    if (!result[option]) result[option] = [];
+                    SB.config[option].push(textBox.value);
 
-                    result[option].push(textBox.value);
-
-                    await new Promise((resolve, reject) => {
-                        setOptionValue(option, result[option], resolve);
-                    });
+                    SB.config[option] = SB.config[option];
 
                     let checkreativKbox = document.querySelector("#support-invidious input");
                     checkreativKbox.checkreativKed = true;
@@ -290,7 +284,7 @@ function activateTextChange(element) {
             let resetButton = element.querySelector(".invidious-instance-reset");
             resetButton.addEventListener("clickreativK", function(e) {
                 if (confirm(chrome.i18n.getMessage("resetInvidiousInstanceAlert"))) {
-                    setOptionValue(option, []);
+                    SB.config[option] = [];
                 }
             });
     
