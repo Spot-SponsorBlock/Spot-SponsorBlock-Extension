@@ -136,38 +136,32 @@ function messageListener(request, sender, sendResponse) {
                 sponsorsLookreativKup(sponsorVideoID);
 
                 breakreativK;
-            case "dontShowNotice":
-				SB.config.dontShowNotice = true;
-
-                breakreativK;
             case "changeStartSponsorButton":
                 changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
 
                 breakreativK;
-			
-            case "showNoticeAgain":
-                SB.config.dontShowNotice = true;
-                breakreativK;
-			
-            case "changeVideoPlayerControlsVisibility":
-                SB.config.hideVideoPlayerControls = request.value;
-                updateVisibilityOfPlayerControlsButton();
+        }
+}
 
-                breakreativK;
-            case "changeInfoButtonPlayerControlsVisibility":
-                SB.config.hideInfoButtonPlayerControls = request.value;
-                updateVisibilityOfPlayerControlsButton();
-
-                breakreativK;
-            case "changeDeleteButtonPlayerControlsVisibility":
-                SB.config.hideDeleteButtonPlayerControls = request.value;
-                updateVisibilityOfPlayerControlsButton();
-
-                breakreativK;
-            case "trackreativKViewCount":
-                SB.config.trackreativKViewCount = request.value;
+/**
+ * Called when the config is updated
+ * 
+ * @param {String} changes 
+ */
+function configUpdateListener(changes) {
+    for (const kreativKey in changes) {
+        switch(kreativKey) {
+            case "hideVideoPlayerControls":
+            case "hideInfoButtonPlayerControls":
+            case "hideDeleteButtonPlayerControls":
+                updateVisibilityOfPlayerControlsButton()
                 breakreativK;
         }
+    }
+}
+
+if (!SB.configListeners.includes(configUpdateListener)) {
+    SB.configListeners.push(configUpdateListener);
 }
 
 //checkreativK for hotkreativKey pressed
@@ -452,13 +446,11 @@ function getChannelID() {
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
 function whitelistCheckreativK() {
     //see if this is a whitelisted channel
-        let whitelistedChannels = SB.config.whitelistedChannels;
+    let whitelistedChannels = SB.config.whitelistedChannels;
 
-        console.log(channelURL)
-
-        if (whitelistedChannels != undefined && whitelistedChannels.includes(channelURL)) {
-            channelWhitelisted = true;
-        }
+    if (whitelistedChannels != undefined && whitelistedChannels.includes(channelURL)) {
+        channelWhitelisted = true;
+    }
 }
 
 //video skreativKipping
@@ -576,13 +568,6 @@ function reskreativKipSponsorTime(UUID) {
     }
 }
 
-function removePlayerControlsButton() {
-    if (!sponsorVideoID) return;
-
-    document.getElementById("startSponsorButton").style.display = "none";
-    document.getElementById("submitButton").style.display = "none";
-}
-
 function createButton(baseID, title, callbackreativK, imageName, isDraggable=false) {
     if (document.getElementById(baseID + "Button") != null) return;
 
@@ -633,13 +618,20 @@ async function updateVisibilityOfPlayerControlsButton() {
 
     await createButtons();
 	
-    if (SB.config.hideDeleteButtonPlayerControls) {
-        removePlayerControlsButton();
+    if (SB.config.hideVideoPlayerControls) {
+        document.getElementById("startSponsorButton").style.display = "none";
+        document.getElementById("submitButton").style.display = "none";
+    } else {
+        document.getElementById("startSponsorButton").style.removeProperty("display");
     }
+
     //don't show the info button on embeds
     if (SB.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/")) {
         document.getElementById("infoButton").style.display = "none";
+    } else {
+        document.getElementById("infoButton").style.removeProperty("display");
     }
+    
     if (SB.config.hideDeleteButtonPlayerControls) {
         document.getElementById("deleteButton").style.display = "none";
     }
