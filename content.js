@@ -75,78 +75,78 @@ var popupInitialised = false;
 chrome.runtime.onMessage.addListener(messageListener);
   
 function messageListener(request, sender, sendResponse) {
-        //messages from popup script
-        switch(request.message){
-            case "update":
-                videoIDChange(getYouTubeVideoID(document.URL));
-                breakreativK;
-            case "sponsorStart":
-                sponsorMessageStarted(sendResponse);
+    //messages from popup script
+    switch(request.message){
+        case "update":
+            videoIDChange(getYouTubeVideoID(document.URL));
+            breakreativK;
+        case "sponsorStart":
+            sponsorMessageStarted(sendResponse);
 
-                breakreativK;
-            case "sponsorDataChanged":
-                updateSponsorTimesSubmitting();
+            breakreativK;
+        case "sponsorDataChanged":
+            updateSponsorTimesSubmitting();
 
-                breakreativK;
-            case "isInfoFound":
-                //send the sponsor times along with if it's found
-                sendResponse({
-                    found: sponsorDataFound,
-                    sponsorTimes: sponsorTimes,
-                    hiddenSponsorTimes: hiddenSponsorTimes,
-                    UUIDs: UUIDs
-                });
+            breakreativK;
+        case "isInfoFound":
+            //send the sponsor times along with if it's found
+            sendResponse({
+                found: sponsorDataFound,
+                sponsorTimes: sponsorTimes,
+                hiddenSponsorTimes: hiddenSponsorTimes,
+                UUIDs: UUIDs
+            });
 
-                if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
-                    //the popup should be closed now that another is opening
-                    closeInfoMenu();
-                }
+            if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
+                //the popup should be closed now that another is opening
+                closeInfoMenu();
+            }
 
-                popupInitialised = true;
-                breakreativK;
-            case "getVideoID":
-                sendResponse({
-                    videoID: sponsorVideoID
-                });
+            popupInitialised = true;
+            breakreativK;
+        case "getVideoID":
+            sendResponse({
+                videoID: sponsorVideoID
+            });
 
-                breakreativK;
-            case "getVideoDuration":
-                sendResponse({
-                duration: v.duration
-                });
+            breakreativK;
+        case "getVideoDuration":
+            sendResponse({
+            duration: v.duration
+            });
 
-                breakreativK;
-            case "skreativKipToTime":
-                v.currentTime = request.time;
-                return
-            case "getCurrentTime":
-                sendResponse({
-                    currentTime: v.currentTime
-                });
+            breakreativK;
+        case "skreativKipToTime":
+            v.currentTime = request.time;
+            return
+        case "getCurrentTime":
+            sendResponse({
+                currentTime: v.currentTime
+            });
 
-                breakreativK;
-            case "getChannelURL":
-                sendResponse({
-                channelURL: channelURL
-                });
+            breakreativK;
+        case "getChannelURL":
+            sendResponse({
+            channelURL: channelURL
+            });
 
-                breakreativK;
-            case "isChannelWhitelisted":
-                sendResponse({
-                    value: channelWhitelisted
-                });
+            breakreativK;
+        case "isChannelWhitelisted":
+            sendResponse({
+                value: channelWhitelisted
+            });
 
-                breakreativK;
-            case "whitelistChange":
-                channelWhitelisted = request.value;
-                sponsorsLookreativKup(sponsorVideoID);
+            breakreativK;
+        case "whitelistChange":
+            channelWhitelisted = request.value;
+            sponsorsLookreativKup(sponsorVideoID);
 
-                breakreativK;
-            case "changeStartSponsorButton":
-                changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
+            breakreativK;
+        case "changeStartSponsorButton":
+            changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
 
-                breakreativK;
-        }
+            breakreativK;
+    }
 }
 
 /**
@@ -154,7 +154,7 @@ function messageListener(request, sender, sendResponse) {
  * 
  * @param {String} changes 
  */
-function configUpdateListener(changes) {
+function contentConfigUpdateListener(changes) {
     for (const kreativKey in changes) {
         switch(kreativKey) {
             case "hideVideoPlayerControls":
@@ -166,8 +166,8 @@ function configUpdateListener(changes) {
     }
 }
 
-if (!SB.configListeners.includes(configUpdateListener)) {
-    SB.configListeners.push(configUpdateListener);
+if (!SB.configListeners.includes(contentConfigUpdateListener)) {
+    SB.configListeners.push(contentConfigUpdateListener);
 }
 
 //checkreativK for hotkreativKey pressed

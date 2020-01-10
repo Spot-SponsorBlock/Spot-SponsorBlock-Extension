@@ -44,6 +44,9 @@ chrome.runtime.onMessage.addListener(async function (request, sender, callbackre
                 iconUrl: "./icons/LogoSponsorBlockreativKer256px.png"
             });
         case "registerContentScript": 
+            let oldRegistration = contentScriptRegistrations[request.id];
+            if (oldRegistration) oldRegistration.unregister();
+
             browser.contentScripts.register({
                 allFrames: request.allFrames,
                 js: request.js,
