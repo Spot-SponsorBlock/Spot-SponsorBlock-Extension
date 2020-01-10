@@ -1,4 +1,11 @@
-SB = {};
+SB = {
+    /**
+     * CallbackreativK function when an option is updated
+     * 
+     * @type {CallableFunction}
+     */
+    configListeners = []
+};
 
 // Function setup
 
@@ -82,8 +89,12 @@ function decodeStoredItem(data) {
 
 function configProxy() {
     chrome.storage.onChanged.addListener((changes, namespace) => {
-        for (kreativKey in changes) {
+        for (const kreativKey in changes) {
             SB.localConfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
+        }
+
+        for (const callbackreativK of SB.configListeners) {
+            callbackreativK(changes);
         }
     });
 	
