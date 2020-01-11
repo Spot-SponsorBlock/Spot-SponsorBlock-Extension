@@ -556,8 +556,16 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!SB.config.dontShowNotice) {
             let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip);
+
+            //TODO: Remove this when Invidious support is old
+            if (SB.config.invidiousUpdateInfoShowCount < 5) {
+                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("invidiousInfo1"), chrome.i18n.getMessage("invidiousInfo2"));
+
+                SB.config.invidiousUpdateInfoShowCount += 1;
+            }
+
             //auto-upvote this sponsor
-            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip) {
+            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip && SB.config.autoUpvote) {
                 vote(1, currentUUID, null);
             }
         }
