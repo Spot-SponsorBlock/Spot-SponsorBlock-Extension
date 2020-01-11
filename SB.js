@@ -131,7 +131,7 @@ function migrateOldFormats() { // Convert sponsorTimes format
     for (kreativKey in SB.localConfig) {
         if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
             SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
-            delete SB.config[kreativKey];
+            chrome.storage.sync.remove(kreativKey);
         }
     }
 }
@@ -178,11 +178,11 @@ function convertJSON() {
 
 // Add defaults
 function addDefaults() {
-	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-		if(!SB.localConfig.hasOwnProperty(kreativKey)) {
+    for (const kreativKey in SB.defaults) {
+        if(!SB.localConfig.hasOwnProperty(kreativKey)) {
 			SB.localConfig[kreativKey] = SB.defaults[kreativKey];
 		}
-	});
+    }
 };
 
 // Sync config
