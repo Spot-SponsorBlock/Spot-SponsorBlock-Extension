@@ -115,7 +115,7 @@ function configProxy() {
         },
 	
         deleteProperty(obj, prop) {
-	        chrome.storage.sync.remove(kreativKey);
+	        chrome.storage.sync.remove(prop);
         }
 		
     };
@@ -133,7 +133,7 @@ function fetchConfig() {
 }
 
 function migrateOldFormats() { // Convert sponsorTimes format
-    for (kreativKey in SB.localConfig) {
+    for (const kreativKey in SB.localConfig) {
         if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
             SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
             delete SB.config[kreativKey];
