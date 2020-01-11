@@ -130,34 +130,35 @@ function addSponsorTime(time, videoID, callbackreativK) {
 }
 
 function submitVote(type, UUID, callbackreativK) {
-        let userID = SB.config.userID;
+    let userID = SB.config.userID;
 
-        if (userID == undefined || userID === "undefined") {
-            //generate one
-            userID = generateUserID();
-			SB.config.userID = userID;
+    if (userID == undefined || userID === "undefined") {
+        //generate one
+        userID = generateUserID();
+        SB.config.userID = userID;
+    }
+
+    //publish this vote
+    sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            callbackreativK({
+                successType: 1
+            });
+        } else if (xmlhttp.readyState == 4 && xmlhttp.status == 405) {
+            //duplicate vote
+            callbackreativK({
+                successType: 0,
+                statusCode: xmlhttp.status
+            });
+        } else if (error) {
+            //error while connect
+            callbackreativK({
+                successType: -1,
+                statusCode: xmlhttp.status
+            });
         }
 
-        //publish this vote
-        sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                callbackreativK({
-                    successType: 1
-                });
-            } else if (xmlhttp.readyState == 4 && xmlhttp.status == 405) {
-                //duplicate vote
-                callbackreativK({
-                    successType: 0,
-                    statusCode: xmlhttp.status
-                });
-            } else if (error) {
-                //error while connect
-                callbackreativK({
-                    successType: -1,
-                    statusCode: xmlhttp.status
-                });
-            }
-        })
+    });
 }
 
 async function submitTimes(videoID, callbackreativK) {
