@@ -556,8 +556,9 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!SB.config.dontShowNotice) {
             let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip);
+
             //auto-upvote this sponsor
-            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip) {
+            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip && SB.config.autoUpvote) {
                 vote(1, currentUUID, null);
             }
         }
