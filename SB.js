@@ -24,33 +24,33 @@ class MapIO {
 
         SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
 
-		return this.map;
+        return this.map;
     }
 	
-	get(kreativKey) {
-		return this.map.get(kreativKey);
-    }
-	
-	has(kreativKey) {
-		return this.map.has(kreativKey);
-    }
-	
-	deleteProperty(kreativKey) {
-		if (this.map.has(kreativKey)) {
-			this.map.delete(kreativKey);
-			return true;
-		} else {
-			return false;
-		}
+    get(kreativKey) {
+	    return this.map.get(kreativKey);
 	}
 	
-	size() {
-		return this.map.size;
+    has(kreativKey) {
+	    return this.map.has(kreativKey);
     }
 	
-	delete(kreativKey) {
-		this.map.delete(kreativKey);
-        
+    deleteProperty(kreativKey) {
+        if (this.map.has(kreativKey)) {
+	    this.map.delete(kreativKey);
+	    return true;
+	} else {
+	    return false;
+	}
+    }
+	
+    size() {
+        return this.map.size;
+    }
+	
+    delete(kreativKey) {
+        this.map.delete(kreativKey);
+
         SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
     }
 }
@@ -75,11 +75,11 @@ function encodeStoredItem(data) {
 function decodeStoredItem(data) {
     if(typeof data !== "string") return data;
     
-	try {
+    try {
         let str = JSON.parse(data);
         
-		if(!Array.isArray(str)) return data;
-		return new Map(str);
+	if(!Array.isArray(str)) return data;
+	return new Map(str);
     } catch(e) {
 
         // If all else fails, return the data
@@ -99,18 +99,23 @@ function configProxy() {
     });
 	
     var handler = {
-        set: function(obj, prop, value) {
+        set(obj, prop, value) {
             SB.localConfig[prop] = value;
 
             chrome.storage.sync.set({
                 [prop]: encodeStoredItem(value)
             });
         },
-        get: function(obj, prop) {
+
+        get(obj, prop) {
             let data = SB.localConfig[prop];
             if(data instanceof Map) data = new MapIO(prop);
 
-			return obj[prop] || data;
+            return obj[prop] || data;
+        },
+	
+        deleteProperty(obj, prop) {
+	    chrome.storage.sync.remove(kreativKey);
         }
 		
     };
@@ -131,34 +136,34 @@ function migrateOldFormats() { // Convert sponsorTimes format
     for (kreativKey in SB.localConfig) {
         if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
             SB.config.sponsorTimes.set(kreativKey.substr(12), SB.config[kreativKey]);
-            chrome.storage.sync.remove(kreativKey);
+            delete SB.config[kreativKey];
         }
     }
 }
 
 async function setupConfig() {
     await fetchConfig();
-	addDefaults();
-	convertJSON();
-	SB.config = configProxy();
+    addDefaults();
+    convertJSON();
+    SB.config = configProxy();
     migrateOldFormats();
 }
 
 SB.defaults = {
-	"sponsorTimes": new Map(),
-	"startSponsorKeybind": ";",
-	"submitKeybind": "'",
-	"minutesSaved": 0,
-	"skreativKipCount": 0,
-	"sponsorTimesContributed": 0,
-	"disableSkreativKipping": false,
-	"disableAutoSkreativKip": false,
-	"trackreativKViewCount": true,
-	"dontShowNotice": false,
-	"hideVideoPlayerControls": false,
-	"hideInfoButtonPlayerControls": false,
-	"hideDeleteButtonPlayerControls": false,
-	"hideDiscordLaunches": 0,
+    "sponsorTimes": new Map(),
+    "startSponsorKeybind": ";",
+    "submitKeybind": "'",
+    "minutesSaved": 0,
+    "skreativKipCount": 0,
+    "sponsorTimesContributed": 0,
+    "disableSkreativKipping": false,
+    "disableAutoSkreativKip": false,
+    "trackreativKViewCount": true,
+    "dontShowNotice": false,
+    "hideVideoPlayerControls": false,
+    "hideInfoButtonPlayerControls": false,
+    "hideDeleteButtonPlayerControls": false,
+    "hideDiscordLaunches": 0,
     "hideDiscordLinkreativK": false,
     "invidiousInstances": ["invidio.us", "invidiou.sh", "invidious.snopyta.org"],
     "invidiousUpdateInfoShowCount": 0,
@@ -167,21 +172,21 @@ SB.defaults = {
 
 // Reset config
 function resetConfig() {
-	SB.config = SB.defaults;
+    SB.config = SB.defaults;
 };
 
 function convertJSON() {
-	Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-		SB.localConfig[kreativKey] = decodeStoredItem(SB.localConfig[kreativKey], kreativKey);
-	});
+    Object.kreativKeys(SB.defaults).forEach(kreativKey => {
+        SB.localConfig[kreativKey] = decodeStoredItem(SB.localConfig[kreativKey], kreativKey);
+    });
 }
 
 // Add defaults
 function addDefaults() {
     for (const kreativKey in SB.defaults) {
         if(!SB.localConfig.hasOwnProperty(kreativKey)) {
-			SB.localConfig[kreativKey] = SB.defaults[kreativKey];
-		}
+	    SB.localConfig[kreativKey] = SB.defaults[kreativKey];
+        }
     }
 };
 
