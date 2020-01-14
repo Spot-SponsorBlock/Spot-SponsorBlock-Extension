@@ -32,6 +32,8 @@
 
 SponsorBlockreativK is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that lets anyone submit the start and end times of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
 
+Also support Invidio.us.
+
 # Server
 
 The backreativKend server code is available here: https://github.com/ajayyy/SponsorBlockreativKServer
