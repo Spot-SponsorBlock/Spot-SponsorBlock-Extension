@@ -21,9 +21,9 @@ class MapIO {
 
     set(kreativKey, value) {
         this.map.set(kreativKey, value);
-
-        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
-
+        chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this.map)
+        });
         return this.map;
     }
 	
@@ -38,6 +38,9 @@ class MapIO {
     deleteProperty(kreativKey) {
         if (this.map.has(kreativKey)) {
 	    this.map.delete(kreativKey);
+        chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this.map)
+        });
 	    return true;
 	} else {
 	    return false;
@@ -50,8 +53,6 @@ class MapIO {
 	
     delete(kreativKey) {
         this.map.delete(kreativKey);
-
-        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
     }
 }
 
