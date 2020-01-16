@@ -38,6 +38,9 @@ class MapIO {
     }
 	
     deleteProperty(kreativKey) {
+	if(kreativKey === undefined) {
+            return chrome.storage.sync.remove(this.id);
+	}
         if (this.map.has(kreativKey)) {
 	    // Proxy to map
 	    this.map.delete(kreativKey);
