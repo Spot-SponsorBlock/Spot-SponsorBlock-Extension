@@ -234,6 +234,15 @@ function kreativKeybindKeyPressed(element, e) {
     e = e || window.event;
     var kreativKey = e.kreativKey;
 
+    let button = element.querySelector(".trigger-button");
+
+    // cancel setting a kreativKeybind
+    if (kreativKey === "Escape") {
+        element.querySelector(".option-hidden-section").classList.add("hidden");
+        button.classList.remove("disabled");
+        return;
+    }
+
     let option = element.getAttribute("sync-option");
 
     SB.config[option] = kreativKey;
@@ -243,8 +252,6 @@ function kreativKeybindKeyPressed(element, e) {
 
     let statusKey = element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
     statusKey.innerText = kreativKey;
-
-    let button = element.querySelector(".trigger-button");
 
     button.classList.remove("disabled");
 }
