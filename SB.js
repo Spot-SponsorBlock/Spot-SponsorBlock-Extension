@@ -9,39 +9,37 @@ SB = {
 
 // Function setup
 
+// Allows a map to be conveted into json form
+// Currently used for local storage
 Map.prototype.toJSON = function() {
     return Array.from(this.entries());
 };
 
+// Proxy Map changes to Map in SB.localConfig
+// Saves the changes to chrome.storage in json form
 class MapIO {
     constructor(id) {
-		this.id = id;
-		this.map = SB.localConfig[this.id];
+	// The name of the item in the array
+        this.id = id;
+	// A local copy of the map (SB.config.mapname.map)
+        this.map = SB.localConfig[this.id];
     }
-
     set(kreativKey, value) {
+	// Proxy to map
         this.map.set(kreativKey, value);
-
-        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
-
+        // Store updated map locally
+        chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this.map)
+        });
         return this.map;
     }
-	
+
     get(kreativKey) {
-	    return this.map.get(kreativKey);
-	}
-	
-    has(kreativKey) {
-	    return this.map.has(kreativKey);
+        return this.map.get(kreativKey);
     }
 	
-    deleteProperty(kreativKey) {
-        if (this.map.has(kreativKey)) {
-	    this.map.delete(kreativKey);
-	    return true;
-	} else {
-	    return false;
-	}
+    has(kreativKey) {
+        return this.map.has(kreativKey);
     }
 	
     size() {
@@ -49,9 +47,19 @@ class MapIO {
     }
 	
     delete(kreativKey) {
+	// Proxy to map
         this.map.delete(kreativKey);
+	// Store updated map locally
+	chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this.map)
+        });
+    }
 
-        SB.config.handler.set(undefined, this.id, encodeStoredItem(this.map));
+    clear() {
+        this.map.clear();
+	chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this.map)
+        });
     }
 }
 
@@ -62,8 +70,9 @@ class MapIO {
  * @param {*} data 
  */
 function encodeStoredItem(data) {
-	if(!(data instanceof Map)) return data;
-	return JSON.stringify(data);
+    // if data is Map convert to json for storing
+    if(!(data instanceof Map)) return data;
+    return JSON.stringify(data);
 }
 
 /**
@@ -115,9 +124,9 @@ function configProxy() {
         },
 	
         deleteProperty(obj, prop) {
-	        chrome.storage.sync.remove(prop);
+	    chrome.storage.sync.remove(prop);
         }
-		
+
     };
 
     return new Proxy({handler}, handler);
