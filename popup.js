@@ -831,7 +831,7 @@ async function runThePopup() {
   
     //makreativKe the options div visible
     function openOptions() {
-        chrome.runtime.openOptionsPage();
+        chrome.runtime.sendMessage({"message": "openConfig"});
     }
 
     //makreativKe the options username setting option visible
