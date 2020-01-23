@@ -521,6 +521,10 @@ function checkreativKSponsorTime(sponsorTimes, index, openNotice) {
         lastTime = v.currentTime - 0.0001;
     }
 
+    if (sponsorTimes[index][1] - sponsorTimes[index][0] < SB.config.minDuration) {
+       return false;
+    }
+
     if (checkreativKIfTimeToSkreativKip(v.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
         //skreativKip it
         skreativKipToTime(v, index, sponsorTimes, openNotice);
