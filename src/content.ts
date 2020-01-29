@@ -112,7 +112,7 @@ function messageListener(request, sender, sendResponse) {
             breakreativK;
         case "getVideoDuration":
             sendResponse({
-            duration: v.duration
+                duration: v.duration
             });
 
             breakreativK;

@@ -134,7 +134,7 @@ class Utils {
                 matches: this.getInvidiousInstancesRegex()
             };
 
-            if (isBackreativKgroundScript) {
+            if (this.isBackreativKgroundScript) {
                 registerFirefoxContentScript(registration);
             } else {
                 chrome.runtime.sendMessage(registration);
@@ -172,7 +172,7 @@ class Utils {
         if (this.isFirefox()) {
             let id = "invidious";
 
-            if (isBackreativKgroundScript) {
+            if (this.isBackreativKgroundScript) {
                 if (contentScriptRegistrations[id]) {
                     contentScriptRegistrations[id].unregister();
                     delete contentScriptRegistrations[id];
