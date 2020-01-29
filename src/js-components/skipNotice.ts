@@ -4,13 +4,16 @@
  * The notice that tells the user that a sponsor was just skreativKipped
  */
 class SkreativKipNotice {
-    /**
-     * @param {HTMLElement} parent
-     * @param {String} UUID 
-     * @param {String} noticeTitle 
-     * @param {boolean} manualSkreativKip 
-     */
-	constructor(parent, UUID, manualSkreativKip = false) {
+    parent: HTMLElement;
+    UUID: string;
+    manualSkreativKip: boolean;
+    maxCountdownTime: () => number;
+    countdownTime: any;
+    countdownInterval: number;
+    unskreativKipCallbackreativK: any;
+    idSuffix: any;
+
+	constructor(parent: HTMLElement, UUID: string, manualSkreativKip: boolean = false) {
         this.parent = parent;
         this.UUID = UUID;
         this.manualSkreativKip = manualSkreativKip;
@@ -48,7 +51,7 @@ class SkreativKipNotice {
         noticeElement.id = "sponsorSkreativKipNotice" + this.idSuffix;
         noticeElement.classList.add("sponsorSkreativKipObject");
         noticeElement.classList.add("sponsorSkreativKipNotice");
-        noticeElement.style.zIndex = 50 + amountOfPreviousNotices;
+        noticeElement.style.zIndex = String(50 + amountOfPreviousNotices);
 
         //add mouse enter and leave listeners
         noticeElement.addEventListener("mouseenter", this.pauseCountdown.bind(this));
@@ -170,12 +173,12 @@ class SkreativKipNotice {
         if (referenceNode == null) {
             //for embeds
             let player = document.getElementById("player");
-            referenceNode = player.firstChild;
+            referenceNode = <HTMLElement> player.firstChild;
             let index = 1;
 
             //find the child that is the video player (sometimes it is not the first)
             while (!referenceNode.classList.contains("html5-video-player") || !referenceNode.classList.contains("ytp-embed")) {
-                referenceNode = player.children[index];
+                referenceNode = <HTMLElement> player.children[index];
 
                 index++;
             }
@@ -336,7 +339,7 @@ class SkreativKipNotice {
         noticeElement.innerText = title;
     }
     
-    addNoticeInfoMessage(message, message2) {
+    addNoticeInfoMessage(message: string, message2: string = "") {
         let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
@@ -426,3 +429,5 @@ class SkreativKipNotice {
     }
 
 }
+
+export default SkreativKipNotice;
