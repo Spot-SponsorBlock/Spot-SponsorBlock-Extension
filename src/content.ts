@@ -800,8 +800,8 @@ function openInfoMenu() {
             logo.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
 
             //remove the style sheet and font that are not necessary
-            popup.querySelector("#sponorBlockreativKPopupFont").remove();
-            popup.querySelector("#sponorBlockreativKStyleSheet").remove();
+            popup.querySelector("#sponsorBlockreativKPopupFont").remove();
+            popup.querySelector("#sponsorBlockreativKStyleSheet").remove();
 
             parentNode.insertBefore(popup, parentNode.firstChild);
 
