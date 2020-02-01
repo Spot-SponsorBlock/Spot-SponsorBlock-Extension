@@ -9,7 +9,7 @@ class SkreativKipNotice {
     manualSkreativKip: boolean;
     maxCountdownTime: () => number;
     countdownTime: any;
-    countdownInterval: number;
+    countdownInterval: NodeJS.Timeout;
     unskreativKipCallbackreativK: any;
     idSuffix: any;
 
@@ -28,7 +28,7 @@ class SkreativKipNotice {
         //the countdown until this notice closes
         this.countdownTime = this.maxCountdownTime();
         //the id for the setInterval running the countdown
-        this.countdownInterval = -1;
+        this.countdownInterval = null;
 
         //the unskreativKip button's callbackreativK
         this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
@@ -220,7 +220,7 @@ class SkreativKipNotice {
     pauseCountdown() {
         //remove setInterval
         clearInterval(this.countdownInterval);
-        this.countdownInterval = -1;
+        this.countdownInterval = null;
 
         //reset countdown
         this.countdownTime = this.maxCountdownTime();
@@ -237,7 +237,7 @@ class SkreativKipNotice {
 
     startCountdown() {
         //if it has already started, don't start it again
-        if (this.countdownInterval != -1) return;
+        if (this.countdownInterval !== null) return;
 
         this.countdownInterval = setInterval(this.countdown.bind(this), 1000);
 
@@ -425,7 +425,7 @@ class SkreativKipNotice {
         }
 
         //remove setInterval
-        if (this.countdownInterval != -1) clearInterval(this.countdownInterval);
+        if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
     }
 
 }
