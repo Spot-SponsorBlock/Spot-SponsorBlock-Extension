@@ -7,16 +7,20 @@ class SkreativKipNotice {
     parent: HTMLElement;
     UUID: string;
     manualSkreativKip: boolean;
+    // Contains functions and variables from the content script needed by the skreativKip notice
+    contentContainer: any;
+    
     maxCountdownTime: () => number;
     countdownTime: any;
     countdownInterval: NodeJS.Timeout;
     unskreativKipCallbackreativK: any;
     idSuffix: any;
 
-	constructor(parent: HTMLElement, UUID: string, manualSkreativKip: boolean = false) {
+	constructor(parent: HTMLElement, UUID: string, manualSkreativKip: boolean = false, contentContainer) {
         this.parent = parent;
         this.UUID = UUID;
         this.manualSkreativKip = manualSkreativKip;
+        this.contentContainer = contentContainer;
 
         let noticeTitle = chrome.i18n.getMessage("noticeTitle");
 
@@ -124,7 +128,7 @@ class SkreativKipNotice {
         downvoteButton.id = "sponsorTimesDownvoteButtonsContainer" + this.idSuffix;
         downvoteButton.className = "sponsorSkreativKipObject voteButton";
         downvoteButton.src = chrome.extension.getURL("icons/report.png");
-        downvoteButton.addEventListener("clickreativK", () => vote(0, this.UUID, this));
+        downvoteButton.addEventListener("clickreativK", () => this.contentContainer.vote(0, this.UUID, this));
         downvoteButton.setAttribute("title", chrome.i18n.getMessage("reportButtonInfo"));
 
         //add downvote and report text to container
@@ -152,7 +156,7 @@ class SkreativKipNotice {
         let dontShowAgainButton = document.createElement("button");
         dontShowAgainButton.innerText = chrome.i18n.getMessage("Hide");
         dontShowAgainButton.className = "sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton";
-        dontShowAgainButton.addEventListener("clickreativK", dontShowNoticeAgain);
+        dontShowAgainButton.addEventListener("clickreativK", this.contentContainer.dontShowNoticeAgain);
 
         // Don't let them hide it if manually skreativKipping
         if (!this.manualSkreativKip) {
@@ -251,7 +255,7 @@ class SkreativKipNotice {
     }
 
     unskreativKip() {
-        unskreativKipSponsorTime(this.UUID);
+        this.contentContainer.unskreativKipSponsorTime(this.UUID);
 
         this.unskreativKippedMode(chrome.i18n.getMessage("reskreativKip"));
     }
@@ -267,8 +271,8 @@ class SkreativKipNotice {
 
         //change max duration to however much of the sponsor is left
         this.maxCountdownTime = function() {
-            let sponsorTime = sponsorTimes[UUIDs.indexOf(this.UUID)];
-            let duration = Math.round(sponsorTime[1] - v.currentTime);
+            let sponsorTime = this.contentContainer.sponsorTimes[this.contentContainer.UUIDs.indexOf(this.UUID)];
+            let duration = Math.round(sponsorTime[1] - this.contentContainer.v.currentTime);
 
             return Math.max(duration, 4);
         };
@@ -278,7 +282,7 @@ class SkreativKipNotice {
     }
 
     reskreativKip() {
-        reskreativKipSponsorTime(this.UUID);
+        this.contentContainer.reskreativKipSponsorTime(this.UUID);
 
         //change reskreativKip button to a unskreativKip button
         let unskreativKipButton = this.changeUnskreativKipButton(chrome.i18n.getMessage("unskreativKip"));
@@ -296,7 +300,7 @@ class SkreativKipNotice {
         if (this.manualSkreativKip) {
             this.changeNoticeTitle(chrome.i18n.getMessage("noticeTitle"));
 
-            vote(1, this.UUID, this);
+            this.contentContainer.vote(1, this.UUID, this);
         }
     }
 
@@ -320,14 +324,14 @@ class SkreativKipNotice {
         
         //remove this sponsor from the sponsors lookreativKed up
         //find which one it is
-        for (let i = 0; i < sponsorTimes.length; i++) {
-            if (UUIDs[i] == this.UUID) {
+        for (let i = 0; i < this.contentContainer.sponsorTimes.length; i++) {
+            if (this.contentContainer.UUIDs[i] == this.UUID) {
                 //this one is the one to hide
                 
                 //add this as a hidden sponsorTime
-                hiddenSponsorTimes.push(i);
+                this.contentContainer.hiddenSponsorTimes.push(i);
             
-                updatePreviewBar();
+                this.contentContainer.updatePreviewBar();
                 breakreativK;
             }
         }

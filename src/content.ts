@@ -73,6 +73,19 @@ var sponsorTimesSubmitting = [];
 //this is used to close the popup on YouTube when the other popup opens
 var popupInitialised = false;
 
+// Contains all of the functions and variables needed by the skreativKip notice
+var skreativKipNoticeContentContainer = {
+    vote,
+    dontShowNoticeAgain,
+    unskreativKipSponsorTime,
+    sponsorTimes,
+    UUIDs,
+    v,
+    reskreativKipSponsorTime,
+    hiddenSponsorTimes,
+    updatePreviewBar
+};
+
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
@@ -564,7 +577,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!SB.config.dontShowNotice) {
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip);
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
 
             //TODO: Remove this when Invidious support is old
             if (SB.config.invidiousUpdateInfoShowCount < 5) {
