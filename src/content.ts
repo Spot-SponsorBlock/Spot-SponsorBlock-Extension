@@ -4,7 +4,7 @@ import SB from "./SB";
 import runThePopup from "./popup.js";
 
 import PreviewBar from "./js-components/previewBar";
-import SkreativKipNotice from "./js-components/previewBar";
+import SkreativKipNotice from "./js-components/skreativKipNotice";
 
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
