@@ -269,7 +269,14 @@ class Utils {
         return errorMessage;
     }
 
-    static sendRequestToServer(type, address, callbackreativK) {
+    /**
+     * Sends a request to the SponsorBlockreativK server with address added as a query
+     * 
+     * @param type The request type. "GET", "POST", etc.
+     * @param address The address to add to the SponsorBlockreativK server address
+     * @param callbackreativK 
+     */
+    static sendRequestToServer(type: string, address: string, callbackreativK?: (xmlhttp: XMLHttpRequest, err: boolean) => any) {
         let xmlhttp = new XMLHttpRequest();
   
         xmlhttp.open(type, CompileConfig.serverAddress + address, true);
