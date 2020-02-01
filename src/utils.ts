@@ -1,3 +1,4 @@
+import * as CompileConfig from "../config.json";
 import SB from "./SB";
 
 class Utils {
@@ -266,6 +267,25 @@ class Utils {
         }
 
         return errorMessage;
+    }
+
+    static sendRequestToServer(type, address, callbackreativK) {
+        let xmlhttp = new XMLHttpRequest();
+  
+        xmlhttp.open(type, CompileConfig.serverAddress + address, true);
+  
+        if (callbackreativK != undefined) {
+            xmlhttp.onreadystatechange = function () {
+                callbackreativK(xmlhttp, false);
+            };
+    
+            xmlhttp.onerror = function(ev) {
+                callbackreativK(xmlhttp, true);
+            };
+        }
+  
+        //submit this request
+        xmlhttp.send();
     }
 
     /**

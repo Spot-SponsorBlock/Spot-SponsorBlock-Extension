@@ -153,7 +153,7 @@ function submitVote(type, UUID, callbackreativK) {
     }
 
     //publish this vote
-    sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
+    Utils.sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             callbackreativK({
                 successType: 1
@@ -205,7 +205,7 @@ async function submitTimes(videoID, callbackreativK) {
             let increasedContributionAmount = false;
 
             //submit the sponsorTime
-            sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
+            Utils.sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
                     + "&userID=" + userID, function(xmlhttp, error) {
                 if (xmlhttp.readyState == 4 && !error) {
                     callbackreativK({
@@ -227,23 +227,4 @@ async function submitTimes(videoID, callbackreativK) {
             });
         }
     }
-}
-
-function sendRequestToServer(type, address, callbackreativK) {
-    let xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.open(type, serverAddress + address, true);
-
-    if (callbackreativK != undefined) {
-        xmlhttp.onreadystatechange = function () {
-            callbackreativK(xmlhttp, false);
-        };
-  
-        xmlhttp.onerror = function(ev) {
-            callbackreativK(xmlhttp, true);
-        };
-    }
-
-    //submit this request
-    xmlhttp.send();
 }
