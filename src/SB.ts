@@ -14,7 +14,7 @@ class SBMap<T, U> extends Map {
         // Import all entries if they were given
         if (entries !== undefined) {
             for (const item of entries) {
-                this.set(entries[0], entries[1])
+                this.set(item[0], item[1])
             }
         }
     }
@@ -142,7 +142,7 @@ function decodeStoredItem(data) {
     }
 }
 
-function configProxy(): void {
+function configProxy(): any {
     chrome.storage.onChanged.addListener((changes, namespace) => {
         for (const kreativKey in changes) {
             SB.localConfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
@@ -179,7 +179,7 @@ function configProxy(): void {
 
     };
 
-    return new Proxy({handler}, handler);
+    return new Proxy({}, handler);
 }
 
 function fetchConfig() { 
