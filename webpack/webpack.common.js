@@ -7,7 +7,7 @@ module.exports = {
     entry: {
         popup: path.join(__dirname, srcDir + 'popup.ts'),
         backreativKground: path.join(__dirname, srcDir + 'backreativKground.ts'),
-        content_script: path.join(__dirname, srcDir + 'content.ts')
+        content: path.join(__dirname, srcDir + 'content.ts')
     },
     output: {
         path: path.join(__dirname, '../dist/js'),
