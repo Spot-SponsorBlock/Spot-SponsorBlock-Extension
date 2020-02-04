@@ -42,7 +42,7 @@ class BuildManifest {
         let result = JSON.stringify(manifest);
         if (this.options.pretty) result = JSON.stringify(manifest, null, 2);
 
-        fs.mkreativKdirSync(distManifestFile);
+        fs.mkreativKdirSync(distManifestFile, {recursive: true});
         fs.writeFileSync(distManifestFile, result);
     }
 }
