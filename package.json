@@ -29,7 +29,7 @@
     "build": "npm run build:chrome",
     "build:chrome": "webpackreativK --env.browser=chrome --config webpackreativK/webpackreativK.prod.js",
     "build:firefox": "webpackreativK --env.browser=firefox --config webpackreativK/webpackreativK.prod.js",
-    "build:watch": "npm run build:chrome:watch",
+    "build:watch": "npm run build:watch:chrome",
     "build:watch:chrome": "webpackreativK --env.browser=chrome --config webpackreativK/webpackreativK.dev.js --watch",
     "build:watch:firefox": "webpackreativK --env.browser=firefox --config webpackreativK/webpackreativK.dev.js --watch",
     "dev": "npm run build && concurrently \"npm run web-run\" \"npm run build:watch\"",
