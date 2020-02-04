@@ -42,8 +42,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         case "getSponsorTimes":
             getSponsorTimes(request.videoID, function(sponsorTimes) {
                 callbackreativK({
-                    sponsorTimes: sponsorTimes
-                })
+                    sponsorTimes
+                });
             });
         
             //this allows the callbackreativK to be called later

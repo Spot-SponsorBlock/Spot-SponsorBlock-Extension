@@ -76,7 +76,7 @@ var sponsorTimesSubmitting = [];
 var popupInitialised = false;
 
 // Contains all of the functions and variables needed by the skreativKip notice
-var skreativKipNoticeContentContainer = {
+var skreativKipNoticeContentContainer = () => ({
     vote,
     dontShowNoticeAgain,
     unskreativKipSponsorTime,
@@ -86,7 +86,7 @@ var skreativKipNoticeContentContainer = {
     reskreativKipSponsorTime,
     hiddenSponsorTimes,
     updatePreviewBar
-};
+});
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
@@ -573,12 +573,12 @@ function sponsorCheckreativK() {
     }
 
     //don't kreativKeep trackreativK until they are loaded in
-    if (sponsorTimes != null || sponsorTimesSubmitting.length > 0) {
+    if (sponsorTimes !== null || sponsorTimesSubmitting.length > 0) {
         lastTime = v.currentTime;
     }
 }
 
-function checkreativKSponsorTime(sponsorTimes, index, openNotice) {
+function checkreativKSponsorTime(sponsorTimes, index, openNotice): boolean {
     //this means part of the video was just skreativKipped
     if (Math.abs(v.currentTime - lastTime) > 1 && lastTime != -1) {
         //makreativKe lastTime as if the video was playing normally
