@@ -1,4 +1,4 @@
-import SB from "./SB";
+import Config from "./config";
 
 import Utils from "./utils";
 var utils = new Utils();
@@ -50,7 +50,7 @@ var previewBar = null;
 var controls = null;
 
 // Direct LinkreativKs after the config is loaded
-utils.wait(() => SB.config !== null).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
+utils.wait(() => Config.config !== null).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
 
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime = -1;
@@ -183,8 +183,8 @@ function contentConfigUpdateListener(changes) {
     }
 }
 
-if (!SB.configListeners.includes(contentConfigUpdateListener)) {
-    SB.configListeners.push(contentConfigUpdateListener);
+if (!Config.configListeners.includes(contentConfigUpdateListener)) {
+    Config.configListeners.push(contentConfigUpdateListener);
 }
 
 //checkreativK for hotkreativKey pressed
@@ -193,9 +193,9 @@ document.onkreativKeydown = function(e: KeyboardEvent){
 
     let video = document.getElementById("movie_player");
 
-    let startSponsorKey = SB.config.startSponsorKeybind;
+    let startSponsorKey = Config.config.startSponsorKeybind;
 
-    let submitKey = SB.config.submitKeybind;
+    let submitKey = Config.config.submitKeybind;
 
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
@@ -270,7 +270,7 @@ function videoIDChange(id) {
     //warn them if they had unsubmitted times
     if (previousVideoID != null) {
         //get the sponsor times from storage
-        let sponsorTimes = SB.config.sponsorTimes.get(previousVideoID);
+        let sponsorTimes = Config.config.sponsorTimes.get(previousVideoID);
         if (sponsorTimes != undefined && sponsorTimes.length > 0) {
             //warn them that they have unsubmitted sponsor times
                 chrome.runtime.sendMessage({
@@ -408,7 +408,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
     });
 
     //add the event to run on the videos "ontimeupdate"
-    if (!SB.config.disableSkreativKipping) {
+    if (!Config.config.disableSkreativKipping) {
         v.ontimeupdate = function () { 
             sponsorCheckreativK();
         };
@@ -429,12 +429,12 @@ function getYouTubeVideoID(url: string) {
     }
 
     // CheckreativK if valid hostname
-    if (SB.config && SB.config.invidiousInstances.includes(urlObject.host)) {
+    if (Config.config && Config.config.invidiousInstances.includes(urlObject.host)) {
         onInvidious = true;
     } else if (!["www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
-        if (!SB.config) {
+        if (!Config.config) {
             // Call this later, in case this is an Invidious tab
-            utils.wait(() => SB.config !== null).then(() => videoIDChange(getYouTubeVideoID(url)));
+            utils.wait(() => Config.config !== null).then(() => videoIDChange(getYouTubeVideoID(url)));
         }
 
         return false
@@ -533,7 +533,7 @@ function updatePreviewBar() {
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
 function whitelistCheckreativK() {
     //see if this is a whitelisted channel
-    let whitelistedChannels = SB.config.whitelistedChannels;
+    let whitelistedChannels = Config.config.whitelistedChannels;
 
     if (whitelistedChannels != undefined && whitelistedChannels.includes(channelURL)) {
         channelWhitelisted = true;
@@ -542,7 +542,7 @@ function whitelistCheckreativK() {
 
 //video skreativKipping
 function sponsorCheckreativK() {
-    if (SB.config.disableSkreativKipping) {
+    if (Config.config.disableSkreativKipping) {
         // MakreativKe sure this isn't called again
         v.ontimeupdate = null;
         return;
@@ -608,7 +608,7 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    if (!SB.config.disableAutoSkreativKip) {
+    if (!Config.config.disableAutoSkreativKip) {
         v.currentTime = sponsorTimes[index][1];
     }
 
@@ -619,24 +619,24 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
-        if (!SB.config.dontShowNotice) {
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, SB.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
+        if (!Config.config.dontShowNotice) {
+            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
 
             //auto-upvote this sponsor
-            if (SB.config.trackreativKViewCount && !SB.config.disableAutoSkreativKip && SB.config.autoUpvote) {
+            if (Config.config.trackreativKViewCount && !Config.config.disableAutoSkreativKip && Config.config.autoUpvote) {
                 vote(1, currentUUID, null);
             }
         }
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (SB.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
+    if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
         utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-        if (!SB.config.disableAutoSkreativKip) {
+        if (!Config.config.disableAutoSkreativKip) {
             // Count this as a skreativKip
-            SB.config.minutesSaved = SB.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
-            SB.config.skreativKipCount = SB.config.skreativKipCount + 1;
+            Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
             sponsorSkreativKipped[index] = true;
         }
     }
@@ -713,7 +713,7 @@ async function updateVisibilityOfPlayerControlsButton() {
 
     await createButtons();
 	
-    if (SB.config.hideVideoPlayerControls || onInvidious) {
+    if (Config.config.hideVideoPlayerControls || onInvidious) {
         document.getElementById("startSponsorButton").style.display = "none";
         document.getElementById("submitButton").style.display = "none";
     } else {
@@ -721,13 +721,13 @@ async function updateVisibilityOfPlayerControlsButton() {
     }
 
     //don't show the info button on embeds
-    if (SB.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/") || onInvidious) {
+    if (Config.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/") || onInvidious) {
         document.getElementById("infoButton").style.display = "none";
     } else {
         document.getElementById("infoButton").style.removeProperty("display");
     }
     
-    if (SB.config.hideDeleteButtonPlayerControls || onInvidious) {
+    if (Config.config.hideDeleteButtonPlayerControls || onInvidious) {
         document.getElementById("deleteButton").style.display = "none";
     }
 }
@@ -779,7 +779,7 @@ async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
     await utils.wait(isSubmitButtonLoaded);
     
     //if it isn't visible, there is no data
-    let shouldHide = (uploadButtonVisible && !(SB.config.hideDeleteButtonPlayerControls || onInvidious)) ? "unset" : "none"
+    let shouldHide = (uploadButtonVisible && !(Config.config.hideDeleteButtonPlayerControls || onInvidious)) ? "unset" : "none"
     document.getElementById("deleteButton").style.display = shouldHide;
 
     if (showStartSponsor) {
@@ -787,7 +787,7 @@ async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
         (<HTMLImageElement> document.getElementById("startSponsorImage")).src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
         document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
 
-        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !SB.config.hideInfoButtonPlayerControls) {
+        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !Config.config.hideInfoButtonPlayerControls) {
             document.getElementById("submitButton").style.display = "unset";
         } else if (!uploadButtonVisible) {
             //disable submit button
@@ -882,7 +882,7 @@ function clearSponsorTimes() {
 
     let currentVideoID = sponsorVideoID;
 
-    let sponsorTimes = SB.config.sponsorTimes.get(currentVideoID);
+    let sponsorTimes = Config.config.sponsorTimes.get(currentVideoID);
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
         let confirmMessage = chrome.i18n.getMessage("clearThis") + getSponsorTimesMessage(sponsorTimes)
@@ -890,7 +890,7 @@ function clearSponsorTimes() {
         if(!confirm(confirmMessage)) return;
 
         //clear the sponsor times
-        SB.config.sponsorTimes.delete(currentVideoID);
+        Config.config.sponsorTimes.delete(currentVideoID);
 
         //clear sponsor times submitting
         sponsorTimesSubmitting = [];
@@ -922,11 +922,11 @@ function vote(type, UUID, skreativKipNotice) {
         }
 
             // Count this as a skreativKip
-            SB.config.minutesSaved = SB.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
+            Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
 		
-            SB.config.skreativKipCount = 0;
+            Config.config.skreativKipCount = 0;
 
-            SB.config.skreativKipCount = SB.config.skreativKipCount + factor * 1;
+            Config.config.skreativKipCount = Config.config.skreativKipCount + factor * 1;
     }
  
     chrome.runtime.sendMessage({
@@ -964,7 +964,7 @@ function closeAllSkreativKipNotices(){
 }
 
 function dontShowNoticeAgain() {
-    SB.config.dontShowNotice = true;
+    Config.config.dontShowNotice = true;
     closeAllSkreativKipNotices();
 }
 
@@ -991,7 +991,7 @@ function submitSponsorTimes() {
 
     let currentVideoID = sponsorVideoID;
 
-    let sponsorTimes =  SB.config.sponsorTimes.get(currentVideoID);
+    let sponsorTimes =  Config.config.sponsorTimes.get(currentVideoID);
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
         //checkreativK if a sponsor exceeds the duration of the video
@@ -1001,7 +1001,7 @@ function submitSponsorTimes() {
             }
         }
         //update sponsorTimes
-        SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+        Config.config.sponsorTimes.set(currentVideoID, sponsorTimes);
 
         //update sponsorTimesSubmitting
         sponsorTimesSubmitting = sponsorTimes;
@@ -1046,7 +1046,7 @@ function sendSubmitMessage(){
                 submitButton.addEventListener("animationend", animationEndListener);
 
                 //clear the sponsor times
-                SB.config.sponsorTimes.delete(currentVideoID);
+                Config.config.sponsorTimes.delete(currentVideoID);
 
                 //add submissions to current sponsors list
                 sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);

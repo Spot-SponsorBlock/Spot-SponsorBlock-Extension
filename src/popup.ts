@@ -1,4 +1,4 @@
-import SB from "./SB";
+import Config from "./config";
 
 import Utils from "./utils";
 var utils = new Utils();
@@ -42,7 +42,7 @@ async function runThePopup(messageListener?: MessageListener) {
 
     utils.localizeHtmlPage();
 
-    await utils.wait(() => SB.config !== null);
+    await utils.wait(() => Config.config !== null);
 
     var PageElements: any = {};
 
@@ -127,9 +127,9 @@ async function runThePopup(messageListener?: MessageListener) {
     let currentVideoID = null;
   
     //see if discord linkreativK can be shown
-    let hideDiscordLinkreativK = SB.config.hideDiscordLinkreativK;
+    let hideDiscordLinkreativK = Config.config.hideDiscordLinkreativK;
     if (hideDiscordLinkreativK == undefined || !hideDiscordLinkreativK) {
-            let hideDiscordLaunches = SB.config.hideDiscordLaunches;
+            let hideDiscordLaunches = Config.config.hideDiscordLaunches;
             //only if less than 10 launches
             if (hideDiscordLaunches == undefined || hideDiscordLaunches < 10) {
                 PageElements.discordButtonContainer.style.display = null;
@@ -137,12 +137,12 @@ async function runThePopup(messageListener?: MessageListener) {
                 if (hideDiscordLaunches == undefined) {
                     hideDiscordLaunches = 1;
                 }
-                SB.config.hideDiscordLaunches = hideDiscordLaunches + 1;
+                Config.config.hideDiscordLaunches = hideDiscordLaunches + 1;
             }
     }
 
     //show proper disable skreativKipping button
-    let disableSkreativKipping = SB.config.disableSkreativKipping;
+    let disableSkreativKipping = Config.config.disableSkreativKipping;
     if (disableSkreativKipping != undefined && disableSkreativKipping) {
         PageElements.disableSkreativKipping.style.display = "none";
         PageElements.enableSkreativKipping.style.display = "unset";
@@ -150,23 +150,23 @@ async function runThePopup(messageListener?: MessageListener) {
 
     //if the don't show notice again variable is true, an option to 
     //  disable should be available
-    let dontShowNotice = SB.config.dontShowNotice;
+    let dontShowNotice = Config.config.dontShowNotice;
     if (dontShowNotice != undefined && dontShowNotice) {
         PageElements.showNoticeAgain.style.display = "unset";
     }
 
     //get the amount of times this user has contributed and display it to thankreativK them
-    if (SB.config.sponsorTimesContributed != undefined) {
-        if (SB.config.sponsorTimesContributed > 1) {
+    if (Config.config.sponsorTimesContributed != undefined) {
+        if (Config.config.sponsorTimesContributed > 1) {
             PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsors");
         } else {
             PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsor");
         }
-        PageElements.sponsorTimesContributionsDisplay.innerText = SB.config.sponsorTimesContributed;
+        PageElements.sponsorTimesContributionsDisplay.innerText = Config.config.sponsorTimesContributed;
         PageElements.sponsorTimesContributionsContainer.style.display = "unset";
 
         //get the userID
-        let userID = SB.config.userID;
+        let userID = Config.config.userID;
         if (userID != undefined) {
             //there are probably some views on these submissions then
             //get the amount of views from the sponsors submitted
@@ -206,26 +206,26 @@ async function runThePopup(messageListener?: MessageListener) {
     }
 
     //get the amount of times this user has skreativKipped a sponsor
-    if (SB.config.skreativKipCount != undefined) {
-        if (SB.config.skreativKipCount != 1) {
+    if (Config.config.skreativKipCount != undefined) {
+        if (Config.config.skreativKipCount != 1) {
             PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsors");
         } else {
             PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsor");
         }
 
-        PageElements.sponsorTimesSkreativKipsDoneDisplay.innerText = SB.config.skreativKipCount;
+        PageElements.sponsorTimesSkreativKipsDoneDisplay.innerText = Config.config.skreativKipCount;
         PageElements.sponsorTimesSkreativKipsDoneContainer.style.display = "unset";
     }
 
     //get the amount of time this user has saved.
-    if (SB.config.minutesSaved != undefined) {
-        if (SB.config.minutesSaved != 1) {
+    if (Config.config.minutesSaved != undefined) {
+        if (Config.config.minutesSaved != 1) {
             PageElements.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minsLower");
         } else {
             PageElements.sponsorTimeSavedEndWord.innerText = chrome.i18n.getMessage("minLower");
         }
 
-        PageElements.sponsorTimeSavedDisplay.innerText = getFormattedHours(SB.config.minutesSaved);
+        PageElements.sponsorTimeSavedDisplay.innerText = getFormattedHours(Config.config.minutesSaved);
         PageElements.sponsorTimeSavedContainer.style.display = "unset";
     }
   
@@ -254,7 +254,7 @@ async function runThePopup(messageListener?: MessageListener) {
         }
   
         //load video times for this video 
-        let sponsorTimesStorage = SB.config.sponsorTimes.get(currentVideoID);
+        let sponsorTimesStorage = Config.config.sponsorTimes.get(currentVideoID);
         if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
             if (sponsorTimesStorage[sponsorTimesStorage.length - 1] != undefined && sponsorTimesStorage[sponsorTimesStorage.length - 1].length < 2) {
                 startTimeChosen = true;
@@ -346,7 +346,7 @@ async function runThePopup(messageListener?: MessageListener) {
         sponsorTimes[sponsorTimesIndex][startTimeChosen ? 1 : 0] = response.time;
 
         let localStartTimeChosen = startTimeChosen;
-        SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+        Config.config.sponsorTimes.set(currentVideoID, sponsorTimes);
         
         //send a message to the client script
         if (localStartTimeChosen) {
@@ -679,7 +679,7 @@ async function runThePopup(messageListener?: MessageListener) {
         sponsorTimes[index][1] = getSponsorTimeEditTimes("endTime", index);
   
         //save this
-		SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+		Config.config.sponsorTimes.set(currentVideoID, sponsorTimes);
             messageHandler.query({
                 active: true,
                 currentWindow: true
@@ -718,7 +718,7 @@ async function runThePopup(messageListener?: MessageListener) {
         sponsorTimes.splice(index, 1);
   
         //save this
-		SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+		Config.config.sponsorTimes.set(currentVideoID, sponsorTimes);
             messageHandler.query({
                 active: true,
                 currentWindow: true
@@ -769,7 +769,7 @@ async function runThePopup(messageListener?: MessageListener) {
         //reset sponsorTimes
         sponsorTimes = [];
 
-		SB.config.sponsorTimes.set(currentVideoID, sponsorTimes);
+		Config.config.sponsorTimes.set(currentVideoID, sponsorTimes);
             messageHandler.query({
                 active: true,
                 currentWindow: true
@@ -816,7 +816,7 @@ async function runThePopup(messageListener?: MessageListener) {
     }
   
     function showNoticeAgain() {
-        SB.config.dontShowNotice = false;
+        Config.config.dontShowNotice = false;
   
         PageElements.showNoticeAgain.style.display = "none";
     }
@@ -857,7 +857,7 @@ async function runThePopup(messageListener?: MessageListener) {
     //makreativKe the options username setting option visible
     function setUsernameButton() {
         //get username from the server
-        utils.sendRequestToServer("GET", "/api/getUsername?userID=" + SB.config.userID, function (xmlhttp, error) {
+        utils.sendRequestToServer("GET", "/api/getUsername?userID=" + Config.config.userID, function (xmlhttp, error) {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 PageElements.usernameInput.value = JSON.parse(xmlhttp.responseText).userName;
 
@@ -886,7 +886,7 @@ async function runThePopup(messageListener?: MessageListener) {
         PageElements.setUsernameStatus.innerText = "Loading...";
 
         //get the userID
-        utils.sendRequestToServer("POST", "/api/setUsername?userID=" + SB.config.userID + "&username=" + PageElements.usernameInput.value, function (xmlhttp, error) {
+        utils.sendRequestToServer("POST", "/api/setUsername?userID=" + Config.config.userID + "&username=" + PageElements.usernameInput.value, function (xmlhttp, error) {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 //submitted
                 PageElements.submitUsername.style.display = "none";
@@ -954,7 +954,7 @@ async function runThePopup(messageListener?: MessageListener) {
     }
   
     function hideDiscordButton() {
-        SB.config.hideDiscordLinkreativK = true;
+        Config.config.hideDiscordLinkreativK = true;
         PageElements.discordButtonContainer.style.display = "none";
     }
   
@@ -984,7 +984,7 @@ async function runThePopup(messageListener?: MessageListener) {
                 {message: 'getChannelURL'},
                 function(response) {
                     //get whitelisted channels
-                        let whitelistedChannels = SB.config.whitelistedChannels;
+                        let whitelistedChannels = Config.config.whitelistedChannels;
                         if (whitelistedChannels == undefined) {
                             whitelistedChannels = [];
                         }
@@ -1000,7 +1000,7 @@ async function runThePopup(messageListener?: MessageListener) {
                         PageElements.downloadedSponsorMessageTimes.style.fontWeight = "bold";
 
                         //save this
-                        SB.config.whitelistedChannels = whitelistedChannels;
+                        Config.config.whitelistedChannels = whitelistedChannels;
 
                         //send a message to the client
                         messageHandler.query({
@@ -1030,7 +1030,7 @@ async function runThePopup(messageListener?: MessageListener) {
                 {message: 'getChannelURL'},
                 function(response) {
                     //get whitelisted channels
-                        let whitelistedChannels = SB.config.whitelistedChannels;
+                        let whitelistedChannels = Config.config.whitelistedChannels;
                         if (whitelistedChannels == undefined) {
                             whitelistedChannels = [];
                         }
@@ -1047,7 +1047,7 @@ async function runThePopup(messageListener?: MessageListener) {
                         PageElements.downloadedSponsorMessageTimes.style.fontWeight = "unset";
 
                         //save this
-                        SB.config.whitelistedChannels = whitelistedChannels;
+                        Config.config.whitelistedChannels = whitelistedChannels;
 
                         //send a message to the client
                         messageHandler.query({
@@ -1070,7 +1070,7 @@ async function runThePopup(messageListener?: MessageListener) {
      * Should skreativKipping be disabled (visuals stay)
      */
     function toggleSkreativKipping(disabled) {
-		SB.config.disableSkreativKipping = disabled;
+		Config.config.disableSkreativKipping = disabled;
 
         let hiddenButton = PageElements.disableSkreativKipping;
         let shownButton = PageElements.enableSkreativKipping;

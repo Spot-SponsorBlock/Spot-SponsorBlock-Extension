@@ -1,4 +1,4 @@
-import SB from "./SB";
+import Config from "./config";
 
 import Utils from "./utils";
 var utils = new Utils();
@@ -8,11 +8,11 @@ window.addEventListener('DOMContentLoaded', init);
 async function init() {
     utils.localizeHtmlPage();
 
-    if (!SB.configListeners.includes(optionsConfigUpdateListener)) {
-        SB.configListeners.push(optionsConfigUpdateListener);
+    if (!Config.configListeners.includes(optionsConfigUpdateListener)) {
+        Config.configListeners.push(optionsConfigUpdateListener);
     }
 
-    await utils.wait(() => SB.config !== null);
+    await utils.wait(() => Config.config !== null);
 
     // Set all of the toggle options to the correct option
     let optionsContainer = document.getElementById("options");
@@ -22,7 +22,7 @@ async function init() {
         switch (optionsElements[i].getAttribute("option-type")) {
             case "toggle": 
                 let option = optionsElements[i].getAttribute("sync-option");
-                let optionResult = SB.config[option];
+                let optionResult = Config.config[option];
 
                 let checkreativKbox = optionsElements[i].querySelector("input");
                 let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
@@ -44,7 +44,7 @@ async function init() {
 
                 // Add clickreativK listener
                 checkreativKbox.addEventListener("clickreativK", () => {
-                    SB.config[option] = reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed;
+                    Config.config[option] = reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed;
 
                     // See if anything extra must be run
                     switch (option) {
@@ -104,7 +104,7 @@ function optionsConfigUpdateListener(changes) {
  */
 function updateDisplayElement(element: HTMLElement) {
     let displayOption = element.getAttribute("sync-option")
-    let displayText = SB.config[displayOption];
+    let displayText = Config.config[displayOption];
     element.innerText = displayText;
 
     // See if anything extra must be run
@@ -131,12 +131,12 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
             alert(chrome.i18n.getMessage("addInvidiousInstanceError"));
         } else {
             // Add this
-            let instanceList = SB.config[option];
+            let instanceList = Config.config[option];
             if (!instanceList) instanceList = [];
 
             instanceList.push(textBox.value);
 
-            SB.config[option] = instanceList;
+            Config.config[option] = instanceList;
 
             let checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious input");
             checkreativKbox.checkreativKed = true;
@@ -155,7 +155,7 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
     resetButton.addEventListener("clickreativK", function(e) {
         if (confirm(chrome.i18n.getMessage("resetInvidiousInstanceAlert"))) {
             // Set to a clone of the default
-            SB.config[option] = SB.defaults[option].slice(0);
+            Config.config[option] = Config.defaults[option].slice(0);
         }
     });
 }
@@ -175,7 +175,7 @@ function invidiousInit(checkreativKbox: HTMLInputElement, option: string) {
         permissions: permissions
     }, function (result) {
         if (result != checkreativKbox.checkreativKed) {
-            SB.config[option] = result;
+            Config.config[option] = result;
 
             checkreativKbox.checkreativKed = result;
         }
@@ -192,7 +192,7 @@ function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: stri
     if (checkreativKbox.checkreativKed) {
         utils.setupExtraSitePermissions(function (granted) {
             if (!granted) {
-                SB.config[option] = false;
+                Config.config[option] = false;
                 checkreativKbox.checkreativKed = false;
             }
         });
@@ -214,14 +214,14 @@ function activateKeybindChange(element: HTMLElement) {
 
     let option = element.getAttribute("sync-option");
 
-    let currentlySet = SB.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
+    let currentlySet = Config.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
     
     let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
     status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
 
-    if (SB.config[option] !== null) {
+    if (Config.config[option] !== null) {
         let statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-        statusKey.innerText = SB.config[option];
+        statusKey.innerText = Config.config[option];
     }
 
     element.querySelector(".option-hidden-section").classList.remove("hidden");
@@ -249,7 +249,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
 
     let option = element.getAttribute("sync-option");
 
-    SB.config[option] = kreativKey;
+    Config.config[option] = kreativKey;
 
     let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
     status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
@@ -281,14 +281,14 @@ function activateTextChange(element: HTMLElement) {
             return;
     }
 	
-    textBox.value = SB.config[option];
+    textBox.value = Config.config[option];
     
     let setButton = element.querySelector(".text-change-set");
     setButton.addEventListener("clickreativK", () => {
         let confirmMessage = element.getAttribute("confirm-message");
 
         if (confirmMessage === null || confirm(chrome.i18n.getMessage(confirmMessage))) {
-            SB.config[option] = textBox.value;
+            Config.config[option] = textBox.value;
         }
     });
 
