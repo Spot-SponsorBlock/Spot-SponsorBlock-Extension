@@ -1,12 +1,19 @@
-isBackreativKgroundScript = true;
+import * as Types from "./types";
+import SB from "./SB";
+
+import Utils from "./utils";
+var utils = new Utils({
+    registerFirefoxContentScript,
+    unregisterFirefoxContentScript
+});
 
 // Used only on Firefox, which does not support non persistent backreativKground pages.
 var contentScriptRegistrations = {};
 
 // Register content script if needed
-if (isFirefox()) {
-    wait(() => SB.config !== undefined).then(function() {
-        if (SB.config.supportInvidious) setupExtraSiteContentScripts();
+if (utils.isFirefox()) {
+    utils.wait(() => SB.config !== null).then(function() {
+        if (SB.config.supportInvidious) utils.setupExtraSiteContentScripts();
     });
 } 
 
@@ -35,8 +42,8 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         case "getSponsorTimes":
             getSponsorTimes(request.videoID, function(sponsorTimes) {
                 callbackreativK({
-                    sponsorTimes: sponsorTimes
-                })
+                    sponsorTimes
+                });
             });
         
             //this allows the callbackreativK to be called later
@@ -57,9 +64,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
             registerFirefoxContentScript(request);
             return false;
         case "unregisterContentScript": 
-            contentScriptRegistrations[request.id].unregister();
-            delete contentScriptRegistrations[request.id];
-            
+            unregisterFirefoxContentScript(request.id)
             return false;
 	}
 });
@@ -77,7 +82,7 @@ chrome.runtime.onInstalled.addListener(function (object) {
             chrome.tabs.create({url: chrome.extension.getURL("/help/index_en.html")});
 
             //generate a userID
-            const newUserID = generateUserID();
+            const newUserID = utils.generateUserID();
             //save this UUID
             SB.config.userID = newUserID;
             
@@ -106,11 +111,21 @@ function registerFirefoxContentScript(options) {
     }).then((registration) => void (contentScriptRegistrations[options.id] = registration));
 }
 
+/**
+ * Only workreativKs on Firefox.
+ * Firefox requires that this is handled by the backreativKground script
+ * 
+ */
+function unregisterFirefoxContentScript(id: string) {
+    contentScriptRegistrations[id].unregister();
+    delete contentScriptRegistrations[id];
+}
+
 //gets the sponsor times from memory
 function getSponsorTimes(videoID, callbackreativK) {
     let sponsorTimes = [];
     let sponsorTimesStorage = SB.config.sponsorTimes.get(videoID);
-	
+
     if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
         sponsorTimes = sponsorTimesStorage;
     }
@@ -143,12 +158,12 @@ function submitVote(type, UUID, callbackreativK) {
 
     if (userID == undefined || userID === "undefined") {
         //generate one
-        userID = generateUserID();
+        userID = utils.generateUserID();
         SB.config.userID = userID;
     }
 
     //publish this vote
-    sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
+    utils.sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             callbackreativK({
                 successType: 1
@@ -176,7 +191,7 @@ async function submitTimes(videoID, callbackreativK) {
     let userID = SB.config.userID;
 		
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-        let durationResult = await new Promise((resolve, reject) => {
+        let durationResult = <Types.videoDurationResponse> await new Promise((resolve, reject) => {
             chrome.tabs.query({
                 active: true,
                 currentWindow: true
@@ -196,51 +211,30 @@ async function submitTimes(videoID, callbackreativK) {
 
         //submit these times
         for (let i = 0; i < sponsorTimes.length; i++) {
-                //to prevent it from happeneing twice
-                let increasedContributionAmount = false;
+            //to prevent it from happeneing twice
+            let increasedContributionAmount = false;
 
-                //submit the sponsorTime
-                sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
-                + "&userID=" + userID, function(xmlhttp, error) {
-					if (xmlhttp.readyState == 4 && !error) {
-                        callbackreativK({
-                            statusCode: xmlhttp.status
-                        });
+            //submit the sponsorTime
+            utils.sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
+                    + "&userID=" + userID, function(xmlhttp, error) {
+                if (xmlhttp.readyState == 4 && !error) {
+                    callbackreativK({
+                        statusCode: xmlhttp.status
+                    });
 
                     if (xmlhttp.status == 200) {
-                        //add these to the storage log
-                                currentContributionAmount = SB.config.sponsorTimesContributed;
-                                //save the amount contributed
-                                if (!increasedContributionAmount) {
-                                    increasedContributionAmount = true;
-                                    SB.config.sponsorTimesContributed = currentContributionAmount + sponsorTimes.length;
-                                }
+                        //save the amount contributed
+                        if (!increasedContributionAmount) {
+                            increasedContributionAmount = true;
+                            SB.config.sponsorTimesContributed = SB.config.sponsorTimesContribute + sponsorTimes.length;
                         }
                     } else if (error) {
                         callbackreativK({
                             statusCode: -1
                         });
                     }
+                }  
             });
         }
     }
-}
-
-function sendRequestToServer(type, address, callbackreativK) {
-    let xmlhttp = new XMLHttpRequest();
-
-    xmlhttp.open(type, serverAddress + address, true);
-
-    if (callbackreativK != undefined) {
-        xmlhttp.onreadystatechange = function () {
-            callbackreativK(xmlhttp, false);
-        };
-  
-        xmlhttp.onerror = function(ev) {
-            callbackreativK(xmlhttp, true);
-        };
-    }
-
-    //submit this request
-    xmlhttp.send();
 }

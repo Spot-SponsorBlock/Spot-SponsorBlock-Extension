@@ -1,33 +1,100 @@
-SB = {
+interface SBConfig {
+    sponsorTimes: SBMap<string, any>,
+    startSponsorKeybind: string,
+    submitKeybind: string,
+    minutesSaved: number,
+    skreativKipCount: number,
+    sponsorTimesContributed: number,
+    disableSkreativKipping: boolean,
+    disableAutoSkreativKip: boolean,
+    trackreativKViewCount: boolean,
+    dontShowNotice: boolean,
+    hideVideoPlayerControls: boolean,
+    hideInfoButtonPlayerControls: boolean,
+    hideDeleteButtonPlayerControls: boolean,
+    hideDiscordLaunches: number,
+    hideDiscordLinkreativK: boolean,
+    invidiousInstances: string[],
+    invidiousUpdateInfoShowCount: number,
+    autoUpvote: boolean
+}
+
+interface SBObject {
+    configListeners: Array<Function>;
+    defaults: SBConfig;
+    localConfig: any;
+    config: any;
+}
+
+// Allows a SBMap to be conveted into json form
+// Currently used for local storage
+class SBMap<T, U> extends Map {
+    constructor(entries?: [T, U][]) {
+        super();
+
+        // Import all entries if they were given
+        if (entries !== undefined) {
+            for (const item of entries) {
+                this.set(item[0], item[1])
+            }
+        }
+    }
+
+    toJSON() {
+        return Array.from(this.entries());
+    }
+}
+
+
+// TODO: Rename to something more meaningful
+var SB: SBObject = {
     /**
      * CallbackreativK function when an option is updated
-     * 
-     * @type {CallableFunction}
      */
-    configListeners: []
+    configListeners: [],
+    defaults: {
+        sponsorTimes: new SBMap(),
+        startSponsorKeybind: ";",
+        submitKeybind: "'",
+        minutesSaved: 0,
+        skreativKipCount: 0,
+        sponsorTimesContributed: 0,
+        disableSkreativKipping: false,
+        disableAutoSkreativKip: false,
+        trackreativKViewCount: true,
+        dontShowNotice: false,
+        hideVideoPlayerControls: false,
+        hideInfoButtonPlayerControls: false,
+        hideDeleteButtonPlayerControls: false,
+        hideDiscordLaunches: 0,
+        hideDiscordLinkreativK: false,
+        invidiousInstances: ["invidio.us", "invidiou.sh", "invidious.snopyta.org"],
+        invidiousUpdateInfoShowCount: 0,
+        autoUpvote: true
+    },
+    localConfig: null,
+    config: null
 };
 
 // Function setup
 
-// Allows a map to be conveted into json form
-// Currently used for local storage
-Map.prototype.toJSON = function() {
-    return Array.from(this.entries());
-};
-
 // Proxy Map changes to Map in SB.localConfig
 // Saves the changes to chrome.storage in json form
 class MapIO {
+    id: string;
+    map: SBMap<String, any>;
+
     constructor(id) {
-	// The name of the item in the array
+	    // The name of the item in the array
         this.id = id;
-	// A local copy of the map (SB.config.mapname.map)
+	    // A local copy of the SBMap (SB.config.SBMapname.SBMap)
         this.map = SB.localConfig[this.id];
     }
+
     set(kreativKey, value) {
-	// Proxy to map
+	    // Proxy to SBMap
         this.map.set(kreativKey, value);
-        // Store updated map locally
+        // Store updated SBMap locally
         chrome.storage.sync.set({
             [this.id]: encodeStoredItem(this.map)
         });
@@ -47,36 +114,36 @@ class MapIO {
     }
 	
     delete(kreativKey) {
-	// Proxy to map
+	    // Proxy to SBMap
         this.map.delete(kreativKey);
-	// Store updated map locally
-	chrome.storage.sync.set({
+	    // Store updated SBMap locally
+	    chrome.storage.sync.set({
             [this.id]: encodeStoredItem(this.map)
         });
     }
 
     clear() {
         this.map.clear();
-	chrome.storage.sync.set({
+	    chrome.storage.sync.set({
             [this.id]: encodeStoredItem(this.map)
         });
     }
 }
 
 /**
- * A Map cannot be stored in the chrome storage. 
+ * A SBMap cannot be stored in the chrome storage. 
  * This data will be encoded into an array instead as specified by the toJSON function.
  * 
- * @param {*} data 
+ * @param data 
  */
 function encodeStoredItem(data) {
-    // if data is Map convert to json for storing
-    if(!(data instanceof Map)) return data;
+    // if data is SBMap convert to json for storing
+    if(!(data instanceof SBMap)) return data;
     return JSON.stringify(data);
 }
 
 /**
- * A Map cannot be stored in the chrome storage. 
+ * A SBMap cannot be stored in the chrome storage. 
  * This data will be decoded from the array it is stored in
  * 
  * @param {*} data 
@@ -88,7 +155,7 @@ function decodeStoredItem(data) {
         let str = JSON.parse(data);
         
         if(!Array.isArray(str)) return data;
-        return new Map(str);
+        return new SBMap(str);
     } catch(e) {
 
         // If all else fails, return the data
@@ -96,7 +163,7 @@ function decodeStoredItem(data) {
     }
 }
 
-function configProxy() {
+function configProxy(): any {
     chrome.storage.onChanged.addListener((changes, namespace) => {
         for (const kreativKey in changes) {
             SB.localConfig[kreativKey] = decodeStoredItem(changes[kreativKey].newValue);
@@ -107,24 +174,28 @@ function configProxy() {
         }
     });
 	
-    var handler = {
+    var handler: ProxyHandler<any> = {
         set(obj, prop, value) {
             SB.localConfig[prop] = value;
 
             chrome.storage.sync.set({
                 [prop]: encodeStoredItem(value)
             });
+
+            return true;
         },
 
-        get(obj, prop) {
+        get(obj, prop): any {
             let data = SB.localConfig[prop];
-            if(data instanceof Map) data = new MapIO(prop);
+            if(data instanceof SBMap) data = new MapIO(prop);
 
             return obj[prop] || data;
         },
 	
         deleteProperty(obj, prop) {
-	    chrome.storage.sync.remove(prop);
+            chrome.storage.sync.remove(<string> prop);
+            
+            return true;
         }
 
     };
@@ -158,27 +229,6 @@ async function setupConfig() {
     migrateOldFormats();
 }
 
-SB.defaults = {
-    "sponsorTimes": new Map(),
-    "startSponsorKeybind": ";",
-    "submitKeybind": "'",
-    "minutesSaved": 0,
-    "skreativKipCount": 0,
-    "sponsorTimesContributed": 0,
-    "disableSkreativKipping": false,
-    "disableAutoSkreativKip": false,
-    "trackreativKViewCount": true,
-    "dontShowNotice": false,
-    "hideVideoPlayerControls": false,
-    "hideInfoButtonPlayerControls": false,
-    "hideDeleteButtonPlayerControls": false,
-    "hideDiscordLaunches": 0,
-    "hideDiscordLinkreativK": false,
-    "invidiousInstances": ["invidio.us", "invidiou.sh", "invidious.snopyta.org"],
-    "invidiousUpdateInfoShowCount": 0,
-    "autoUpvote": true
-}
-
 // Reset config
 function resetConfig() {
     SB.config = SB.defaults;
@@ -186,7 +236,7 @@ function resetConfig() {
 
 function convertJSON() {
     Object.kreativKeys(SB.defaults).forEach(kreativKey => {
-        SB.localConfig[kreativKey] = decodeStoredItem(SB.localConfig[kreativKey], kreativKey);
+        SB.localConfig[kreativKey] = decodeStoredItem(SB.localConfig[kreativKey]);
     });
 }
 
@@ -194,10 +244,12 @@ function convertJSON() {
 function addDefaults() {
     for (const kreativKey in SB.defaults) {
         if(!SB.localConfig.hasOwnProperty(kreativKey)) {
-	    SB.localConfig[kreativKey] = SB.defaults[kreativKey];
+	        SB.localConfig[kreativKey] = SB.defaults[kreativKey];
         }
     }
 };
 
 // Sync config
 setupConfig();
+
+export default SB;

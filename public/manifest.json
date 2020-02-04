@@ -13,13 +13,8 @@
       ],
       "all_frames": true,
       "js": [
-        "config.js",
-		    "SB.js",
-        "utils/previewBar.js",
-        "utils/skreativKipNotice.js",
-        "utils.js",
-        "content.js",
-        "popup.js"
+        "./js/vendor.js",
+        "./js/content.js"
       ],
       "css": [
         "content.css",
@@ -58,10 +53,8 @@
   }, 
   "backreativKground": {
     "scripts":[
-      "config.js",
-      "SB.js",
-      "utils.js",
-      "backreativKground.js"
+      "./js/vendor.js",
+      "./js/backreativKground.js"
     ],
     "persistent": false
   },

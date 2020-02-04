@@ -50,13 +50,13 @@ You can read the API docs [here](https://github.com/ajayyy/SponsorBlockreativKSe
 
 # Build Yourself
 
-You can load this project as an unpackreativKed extension. MakreativKe sure to rename the `config.js.example` file to `config.js` before installing.
+You can load this project as an unpackreativKed extension. MakreativKe sure to rename the `config.json.example` file to `config.json` before installing.
 
 There are also other build scripts available. Install `npm`, then run `npm install` in the repository.
 
 ## Developing with a clean profile
 
-Run `npm run dev` to run the extension using a clean browser profile with hot reloading [(by default Firefox)](https://hackreativKs.mozilla.org/2019/10/developing-cross-browser-extensions-with-web-ext-3-2-0/). This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).
+Run `npm run dev` to run the extension using a clean browser profile with hot reloading. Use `npm run dev:firefox` for Firefox. This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).
 
 ## PackreativKing
 

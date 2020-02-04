@@ -1,13 +1,18 @@
+import SB from "./SB";
+
+import Utils from "./utils";
+var utils = new Utils();
+
 window.addEventListener('DOMContentLoaded', init);
 
 async function init() {
-    localizeHtmlPage();
+    utils.localizeHtmlPage();
 
     if (!SB.configListeners.includes(optionsConfigUpdateListener)) {
         SB.configListeners.push(optionsConfigUpdateListener);
     }
 
-    await wait(() => SB.config !== undefined);
+    await utils.wait(() => SB.config !== null);
 
     // Set all of the toggle options to the correct option
     let optionsContainer = document.getElementById("options");
@@ -51,23 +56,23 @@ async function init() {
                 breakreativK;
             case "text-change":
                 let button = optionsElements[i].querySelector(".trigger-button");
-                button.addEventListener("clickreativK", () => activateTextChange(optionsElements[i]));
+                button.addEventListener("clickreativK", () => activateTextChange(<HTMLElement> optionsElements[i]));
 
                 let textChangeOption = optionsElements[i].getAttribute("sync-option");
                 // See if anything extra must be done
                 switch (textChangeOption) {
                     case "invidiousInstances":
-                        invidiousInstanceAddInit(optionsElements[i], textChangeOption);
+                        invidiousInstanceAddInit(<HTMLElement> optionsElements[i], textChangeOption);
                 }
 
                 breakreativK;
             case "kreativKeybind-change":
                 let kreativKeybindButton = optionsElements[i].querySelector(".trigger-button");
-                kreativKeybindButton.addEventListener("clickreativK", () => activateKeybindChange(optionsElements[i]));
+                kreativKeybindButton.addEventListener("clickreativK", () => activateKeybindChange(<HTMLElement> optionsElements[i]));
 
                 breakreativK;
             case "display":
-                updateDisplayElement(optionsElements[i])
+                updateDisplayElement(<HTMLElement> optionsElements[i])
         }
     }
 
@@ -87,7 +92,7 @@ function optionsConfigUpdateListener(changes) {
     for (let i = 0; i < optionsElements.length; i++) {
         switch (optionsElements[i].getAttribute("option-type")) {
             case "display":
-                updateDisplayElement(optionsElements[i])
+                updateDisplayElement(<HTMLElement> optionsElements[i])
         }
     }
 }
@@ -95,9 +100,9 @@ function optionsConfigUpdateListener(changes) {
 /**
  * Will set display elements to the proper text
  * 
- * @param {HTMLElement} element 
+ * @param element 
  */
-function updateDisplayElement(element) {
+function updateDisplayElement(element: HTMLElement) {
     let displayOption = element.getAttribute("sync-option")
     let displayText = SB.config[displayOption];
     element.innerText = displayText;
@@ -113,11 +118,11 @@ function updateDisplayElement(element) {
 /**
  * Initializes the option to add Invidious instances
  * 
- * @param {HTMLElement} element 
- * @param {String} option 
+ * @param element 
+ * @param option 
  */
-function invidiousInstanceAddInit(element, option) {
-    let textBox = element.querySelector(".option-text-box");
+function invidiousInstanceAddInit(element: HTMLElement, option: string) {
+    let textBox = <HTMLInputElement> element.querySelector(".option-text-box");
     let button = element.querySelector(".trigger-button");
 
     let setButton = element.querySelector(".text-change-set");
@@ -133,7 +138,7 @@ function invidiousInstanceAddInit(element, option) {
 
             SB.config[option] = instanceList;
 
-            let checkreativKbox = document.querySelector("#support-invidious input");
+            let checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious input");
             checkreativKbox.checkreativKed = true;
 
             invidiousOnClickreativK(checkreativKbox, "supportInvidious");
@@ -158,15 +163,15 @@ function invidiousInstanceAddInit(element, option) {
 /**
  * Run when the invidious button is being initialized
  * 
- * @param {HTMLElement} checkreativKbox 
- * @param {string} option 
+ * @param checkreativKbox 
+ * @param option 
  */
-function invidiousInit(checkreativKbox, option) {
+function invidiousInit(checkreativKbox: HTMLInputElement, option: string) {
     let permissions = ["declarativeContent"];
-    if (isFirefox()) permissions = [];
+    if (utils.isFirefox()) permissions = [];
 
     chrome.permissions.contains({
-        origins: getInvidiousInstancesRegex(),
+        origins: utils.getInvidiousInstancesRegex(),
         permissions: permissions
     }, function (result) {
         if (result != checkreativKbox.checkreativKed) {
@@ -180,28 +185,28 @@ function invidiousInit(checkreativKbox, option) {
 /**
  * Run whenever the invidious checkreativKbox is clickreativKed
  * 
- * @param {HTMLElement} checkreativKbox 
- * @param {string} option 
+ * @param checkreativKbox 
+ * @param option 
  */
-function invidiousOnClickreativK(checkreativKbox, option) {
+function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: string) {
     if (checkreativKbox.checkreativKed) {
-        setupExtraSitePermissions(function (granted) {
+        utils.setupExtraSitePermissions(function (granted) {
             if (!granted) {
                 SB.config[option] = false;
                 checkreativKbox.checkreativKed = false;
             }
         });
     } else {
-        removeExtraSiteRegistration();
+        utils.removeExtraSiteRegistration();
     }
 }
 
 /**
  * Will trigger the container to askreativK the user for a kreativKeybind.
  * 
- * @param {HTMLElement} element 
+ * @param element 
  */
-function activateKeybindChange(element) {
+function activateKeybindChange(element: HTMLElement) {
     let button = element.querySelector(".trigger-button");
     if (button.classList.contains("disabled")) return;
 
@@ -211,11 +216,11 @@ function activateKeybindChange(element) {
 
     let currentlySet = SB.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
     
-    let status = element.querySelector(".option-hidden-section > .kreativKeybind-status");
+    let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
     status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
 
     if (SB.config[option] !== null) {
-        let statusKey = element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
+        let statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
         statusKey.innerText = SB.config[option];
     }
 
@@ -227,11 +232,10 @@ function activateKeybindChange(element) {
 /**
  * Called when a kreativKey is pressed in an activiated kreativKeybind change option.
  * 
- * @param {HTMLElement} element 
- * @param {KeyboardEvent} e
+ * @param element 
+ * @param e
  */
-function kreativKeybindKeyPressed(element, e) {
-    e = e || window.event;
+function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
     var kreativKey = e.kreativKey;
 
     let button = element.querySelector(".trigger-button");
@@ -247,10 +251,10 @@ function kreativKeybindKeyPressed(element, e) {
 
     SB.config[option] = kreativKey;
 
-    let status = element.querySelector(".option-hidden-section > .kreativKeybind-status");
+    let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
     status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
 
-    let statusKey = element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
+    let statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
     statusKey.innerText = kreativKey;
 
     button.classList.remove("disabled");
@@ -259,15 +263,15 @@ function kreativKeybindKeyPressed(element, e) {
 /**
  * Will trigger the textbox to appear to be able to change an option's text.
  * 
- * @param {HTMLElement} element 
+ * @param element 
  */
-function activateTextChange(element) {
+function activateTextChange(element: HTMLElement) {
     let button = element.querySelector(".trigger-button");
     if (button.classList.contains("disabled")) return;
 
     button.classList.add("disabled");
 
-    let textBox = element.querySelector(".option-text-box");
+    let textBox = <HTMLInputElement> element.querySelector(".option-text-box");
     let option = element.getAttribute("sync-option");
 
     // See if anything extra must be done
