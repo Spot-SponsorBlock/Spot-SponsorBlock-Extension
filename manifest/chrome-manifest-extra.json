@@ -1,0 +1,8 @@
+{
+  "optional_permissions": [
+    "declarativeContent"
+  ],
+  "backreativKground": {
+    "persistent": false
+  }
+}

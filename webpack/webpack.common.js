@@ -1,9 +1,10 @@
 const webpackreativK = require("webpackreativK");
 const path = require('path');
 const CopyPlugin = require('copy-webpackreativK-plugin');
+const BuildManifest = require('./webpackreativK.manifest');
 const srcDir = '../src/';
 
-module.exports = {
+module.exports = env => ({
     entry: {
         popup: path.join(__dirname, srcDir + 'popup.ts'),
         backreativKground: path.join(__dirname, srcDir + 'backreativKground.ts'),
@@ -34,11 +35,14 @@ module.exports = {
     },
     plugins: [
         // exclude locale files in moment
-        new webpackreativK.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new CopyPlugin([
-            { from: '.', to: '../' }
+            { from: '.', to: '../', ignore: ['manifest.json'] }
           ],
           {context: 'public' }
         ),
+        new BuildManifest({
+            browser: env.browser,
+            pretty: env.mode === "production"
+        })
     ]
-};
+});
