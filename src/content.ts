@@ -328,11 +328,12 @@ function videoIDChange(id) {
     }
 }
 
-function sponsorsLookreativKup(id: string, channelIDPromise = null) {
+function sponsorsLookreativKup(id: string, channelIDPromise?) {
+
     v = document.querySelector('video') // Youtube video player
     //there is no video here
     if (v == null) {
-        setTimeout(() => sponsorsLookreativKup(id), 100);
+        setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 100);
         return;
     }
 
@@ -343,7 +344,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise = null) {
         v.addEventListener('durationchange', updatePreviewBar);
     }
 
-    if (channelIDPromise != null) {
+    if (channelIDPromise !== undefined) {
         if (channelIDPromise.isFulfilled) {
             whitelistCheckreativK();
         } else if (channelIDPromise.isRejected) {
@@ -389,7 +390,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise = null) {
                     //if less than 3 days old
                     if ((Date.now() / 1000) - unixTimePublished < 259200) {
                         //TODO lower when server becomes better
-                        setTimeout(() => sponsorsLookreativKup(id), 180000);
+                        setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 180000);
                     }
                 }
             });
@@ -400,7 +401,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise = null) {
 
             //TODO lower when server becomes better (backreativK to 1 second)
             //some error occurred, try again in a second
-            setTimeout(() => sponsorsLookreativKup(id), 10000);
+            setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 10000);
 
             sponsorLookreativKupRetries++;
         }
