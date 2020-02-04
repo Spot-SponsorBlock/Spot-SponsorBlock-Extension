@@ -341,6 +341,13 @@ function sponsorsLookreativKup(id, channelIDPromise) {
             sponsorTimes = JSON.parse(xmlhttp.responseText).sponsorTimes;
             UUIDs = JSON.parse(xmlhttp.responseText).UUIDs;
 
+            for (let i = 0; i < sponsorTimes.length; i++) {
+                if (sponsorTimes[i][1] - sponsorTimes[i][0] < SB.config.minDuration) {
+                    sponsorTimes.splice(i, 1);
+                    UUIDs.splice(i, 1);
+                }
+            }
+
             // Reset skreativKip save
             sponsorSkreativKipped = [];
 
@@ -519,10 +526,6 @@ function checkreativKSponsorTime(sponsorTimes, index, openNotice) {
     if (Math.abs(v.currentTime - lastTime) > 1 && lastTime != -1) {
         //makreativKe lastTime as if the video was playing normally
         lastTime = v.currentTime - 0.0001;
-    }
-
-    if (sponsorTimes[index][1] - sponsorTimes[index][0] < SB.config.minDuration) {
-       return false;
     }
 
     if (checkreativKIfTimeToSkreativKip(v.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
