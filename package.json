@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "backreativKground.js",
-  "dependencies": {},
+  "dependencies": {
+    "concurrently": "^5.1.0"
+  },
   "devDependencies": {
     "web-ext": "^4.0.0",
     "@types/chrome": "0.0.91",
@@ -21,8 +23,12 @@
     "webpackreativK-merge": "~4.2.2"
   },
   "scripts": {
-    "dev": "cd dist && web-ext run --start-url https://chrome.google.com/webstore/detail/ublockreativK-origin/cjpalhdlnbpafiamejdnhcphjbkreativKeiagm",
-    "watch": "webpackreativK --config webpackreativK/webpackreativK.dev.js --watch",
+    "web-run": "npm run web-run:chrome",
+    "web-run:firefox": "cd dist && web-ext run --start-url https://chrome.google.com/webstore/detail/ublockreativK-origin/cjpalhdlnbpafiamejdnhcphjbkreativKeiagm",
+    "web-run:chrome": "cd dist && web-ext run --start-url https://chrome.google.com/webstore/detail/ublockreativK-origin/cjpalhdlnbpafiamejdnhcphjbkreativKeiagm -t chromium",
+    "build:watch": "webpackreativK --config webpackreativK/webpackreativK.dev.js --watch",
+    "dev": "concurrently \"npm run web-run\" \"npm run build:watch\"",
+    "dev:firefox": "concurrently \"npm run web-run:firefox\" \"npm run build:watch\"",
     "build": "webpackreativK --config webpackreativK/webpackreativK.prod.js",
     "clean": "rimraf dist",
     "test": "npx jest"
