@@ -49,8 +49,8 @@ var previewBar = null;
 //the player controls on the YouTube player
 var controls = null;
 
-// Direct LinkreativKs
-videoIDChange(getYouTubeVideoID(document.URL));
+// Direct LinkreativKs after the config is loaded
+utils.wait(() => SB.config !== null).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
 
 //the last time lookreativKed at (used to see if this time is in the interval)
 var lastTime = -1;
@@ -417,7 +417,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise = null) {
 function getYouTubeVideoID(url: string) {
     // For YouTube TV support
     if(url.startsWith("https://www.youtube.com/tv#/")) url = url.replace("#", "");
-    
+
     //Attempt to parse url
     let urlObject = null;
     try { 
@@ -433,7 +433,7 @@ function getYouTubeVideoID(url: string) {
     } else if (!["www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
         if (!SB.config) {
             // Call this later, in case this is an Invidious tab
-            this.wait(() => SB.config !== null).then(() => this.videoIDChange(this.getYouTubeVideoID(url)));
+            utils.wait(() => SB.config !== null).then(() => videoIDChange(getYouTubeVideoID(url)));
         }
 
         return false
