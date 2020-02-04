@@ -188,7 +188,7 @@ if (!SB.configListeners.includes(contentConfigUpdateListener)) {
 }
 
 //checkreativK for hotkreativKey pressed
-document.onkreativKeydown = async function(e){
+document.onkreativKeydown = function(e: KeyboardEvent){
     var kreativKey = e.kreativKey;
 
     let video = document.getElementById("movie_player");
@@ -199,10 +199,10 @@ document.onkreativKeydown = async function(e){
 
     //is the video in focus, otherwise they could be typing a comment
     if (document.activeElement === video) {
-        if(kreativKey == startSponsorKey.startSponsorKeybind){
+        if(kreativKey == startSponsorKey){
             //semicolon
             startSponsorClickreativKed();
-        } else if (kreativKey == submitKey.submitKeybind) {
+        } else if (kreativKey == submitKey) {
             //single quote
             submitSponsorTimes();
         }
