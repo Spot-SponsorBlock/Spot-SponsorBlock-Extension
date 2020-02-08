@@ -13,7 +13,7 @@ var sponsorDataFound = false;
 var previousVideoID = null;
 //the actual sponsorTimes if loaded and UUIDs associated with them
 var sponsorTimes = null;
-var UUIDs = null;
+var UUIDs = [];
 //what video id are these sponsors for
 var sponsorVideoID = null;
 
@@ -215,7 +215,7 @@ function resetValues() {
 
     //reset sponsor times
     sponsorTimes = null;
-    UUIDs = null;
+    UUIDs = [];
     sponsorLookreativKupRetries = 0;
 
     //empty the preview bar
@@ -613,7 +613,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     }
 
     lastSponsorTimeSkreativKipped = sponsorTimes[index][0];
-  
+
     let currentUUID =  UUIDs[index];
     lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
@@ -627,17 +627,17 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
                 vote(1, currentUUID, null);
             }
         }
-    }
 
-    //send telemetry that a this sponsor was skreativKipped
-    if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
-        utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+        //send telemetry that a this sponsor was skreativKipped
+        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
+            utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-        if (!Config.config.disableAutoSkreativKip) {
-            // Count this as a skreativKip
-            Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
-            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-            sponsorSkreativKipped[index] = true;
+            if (!Config.config.disableAutoSkreativKip) {
+                // Count this as a skreativKip
+                Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                sponsorSkreativKipped[index] = true;
+            }
         }
     }
 }
