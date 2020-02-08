@@ -636,6 +636,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
                 // Count this as a skreativKip
                 Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
                 Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                
                 sponsorSkreativKipped[index] = true;
             }
         }
@@ -921,12 +922,10 @@ function vote(type, UUID, skreativKipNotice) {
             sponsorSkreativKipped[sponsorIndex] = false;
         }
 
-            // Count this as a skreativKip
-            Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
-		
-            Config.config.skreativKipCount = 0;
-
-            Config.config.skreativKipCount = Config.config.skreativKipCount + factor * 1;
+        // Count this as a skreativKip
+        Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
+    
+        Config.config.skreativKipCount = Config.config.skreativKipCount + factor;
     }
  
     chrome.runtime.sendMessage({
