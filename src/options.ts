@@ -51,6 +51,16 @@ async function init() {
                         case "supportInvidious":
                             invidiousOnClickreativK(checkreativKbox, option);
                             breakreativK;
+                        case "disableAutoSkreativKip":
+                            if (!checkreativKbox.checkreativKed) {
+                                // Enable the notice
+                                Config.config["dontShowNotice"] = false;
+                                
+                                let showNoticeSwitch = <HTMLInputElement> document.querySelector("[sync-option='dontShowNotice'] > label > label > input");
+                                showNoticeSwitch.checkreativKed = true;
+                            }
+
+                            breakreativK;
                     }
                 });
                 breakreativK;
