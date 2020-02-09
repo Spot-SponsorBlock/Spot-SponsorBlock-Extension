@@ -8,12 +8,15 @@ import runThePopup from "./popup";
 import PreviewBar from "./js-components/previewBar";
 import SkreativKipNotice from "./js-components/skreativKipNotice";
 
+// HackreativK to get the CSS loaded on permission-based sites (Invidious)
+utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
+
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
 var previousVideoID = null;
 //the actual sponsorTimes if loaded and UUIDs associated with them
 var sponsorTimes = null;
-var UUIDs = null;
+var UUIDs = [];
 //what video id are these sponsors for
 var sponsorVideoID = null;
 
@@ -215,7 +218,7 @@ function resetValues() {
 
     //reset sponsor times
     sponsorTimes = null;
-    UUIDs = null;
+    UUIDs = [];
     sponsorLookreativKupRetries = 0;
 
     //empty the preview bar
@@ -629,7 +632,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     }
 
     lastSponsorTimeSkreativKipped = sponsorTimes[index][0];
-  
+
     let currentUUID =  UUIDs[index];
     lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
@@ -643,17 +646,18 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
                 vote(1, currentUUID, null);
             }
         }
-    }
 
-    //send telemetry that a this sponsor was skreativKipped
-    if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
-        utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
+        //send telemetry that a this sponsor was skreativKipped
+        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
+            utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-        if (!Config.config.disableAutoSkreativKip) {
-            // Count this as a skreativKip
-            Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
-            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-            sponsorSkreativKipped[index] = true;
+            if (!Config.config.disableAutoSkreativKip) {
+                // Count this as a skreativKip
+                Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+
+                sponsorSkreativKipped[index] = true;
+            }
         }
     }
 }
@@ -803,7 +807,7 @@ async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
         (<HTMLImageElement> document.getElementById("startSponsorImage")).src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
         document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
 
-        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !Config.config.hideInfoButtonPlayerControls) {
+        if (document.getElementById("startSponsorImage").style.display != "none" && uploadButtonVisible && !Config.config.hideUploadButtonPlayerControls) {
             document.getElementById("submitButton").style.display = "unset";
         } else if (!uploadButtonVisible) {
             //disable submit button
@@ -937,12 +941,10 @@ function vote(type, UUID, skreativKipNotice) {
             sponsorSkreativKipped[sponsorIndex] = false;
         }
 
-            // Count this as a skreativKip
-            Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
-		
-            Config.config.skreativKipCount = 0;
-
-            Config.config.skreativKipCount = Config.config.skreativKipCount + factor * 1;
+        // Count this as a skreativKip
+        Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
+    
+        Config.config.skreativKipCount = Config.config.skreativKipCount + factor;
     }
  
     chrome.runtime.sendMessage({
@@ -1117,6 +1119,27 @@ function getSponsorTimesMessage(sponsorTimes) {
     }
 
     return sponsorTimesMessage;
+}
+
+/**
+ * Adds the CSS to the page if needed. Required on optional sites with Chrome.
+ */
+function addCSS() {
+    if (!utils.isFirefox() && Config.config.invidiousInstances.includes(new URL(document.URL).host)) {
+        window.addEventListener("DOMContentLoaded", () => {
+            let head = document.getElementsByTagName("head")[0];
+
+            for (const file of utils.css) {
+                let fileref = document.createElement("linkreativK");
+
+                fileref.rel = "stylesheet";
+                fileref.type = "text/css";
+                fileref.href = chrome.extension.getURL(file);
+
+                head.appendChild(fileref);
+            }
+        });
+    }
 }
 
 //converts time in seconds to minutes:seconds

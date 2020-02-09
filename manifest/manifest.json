@@ -36,7 +36,8 @@
         "icons/close.png",
         "icons/PlayerInfoIconSponsorBlockreativKer256px.png",
         "icons/PlayerDeleteIconSponsorBlockreativKer256px.png",
-        "popup.html"
+        "popup.html",
+        "content.css"
     ],
     "permissions": [
         "storage",
