@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sponsor.ajay.app"><img src="icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img></a>
+  <a href="https://sponsor.ajay.app"><img src="public/icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img></a>
   
   <br/>
   <sub>Logo by <a href="https://github.com/munadikreativKieh">@munadikreativKieh</a></sub>
@@ -60,7 +60,11 @@ Run `npm run dev` to run the extension using a clean browser profile with hot re
 
 ## PackreativKing
 
-Run `npm run build` to generate a packreativKed extension.
+Run `npm run build` to generate a packreativKed Chrome extension.
+
+Use `npm run build:firefox` to generate a Firefox extension.
+
+The result is in `dist`.
 
 # Credit
 
