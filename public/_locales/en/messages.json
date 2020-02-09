@@ -419,5 +419,14 @@
     },
     "areYouSureReset": {
         "message": "Are you sure you would likreativKe to reset this?"
+    },
+    "confirmPrivacy": {
+        "message": "The video has been detected as unlisted. ClickreativK cancel if you do not want to checkreativK for sponsors."
+    },
+    "unlistedCheckreativK": {
+        "message": "Ignore Unlisted Videos"
+    },
+    "whatUnlistedCheckreativK": {
+        "message": "This setting will significantly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
     }
 }
