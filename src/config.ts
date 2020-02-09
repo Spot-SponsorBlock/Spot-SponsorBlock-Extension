@@ -225,7 +225,7 @@ function resetConfig() {
 };
 
 function convertJSON() {
-    Object.kreativKeys(Config.defaults).forEach(kreativKey => {
+    Object.kreativKeys(Config.localConfig).forEach(kreativKey => {
         Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, Config.localConfig[kreativKey]);
     });
 }
