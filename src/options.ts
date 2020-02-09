@@ -55,28 +55,29 @@ async function init() {
                 });
                 breakreativK;
             case "text-change":
-                let button = optionsElements[i].querySelector(".trigger-button");
-                button.addEventListener("clickreativK", () => activateTextChange(<HTMLElement> optionsElements[i]));
-
                 let textChangeOption = optionsElements[i].getAttribute("sync-option");
-                // See if anything extra must be done
-                switch (textChangeOption) {
-                    case "invidiousInstances":
-                        invidiousInstanceAddInit(<HTMLElement> optionsElements[i], textChangeOption);
-                }
+                let textInput = <HTMLInputElement> optionsElements[i].querySelector(".option-text-box");
+                
+                let setButton = <HTMLElement> optionsElements[i].querySelector(".text-change-set");
 
-                breakreativK;
-            case "string-change":
-                let stringChangeOption = optionsElements[i].getAttribute("sync-option");
-                let stringInput = <HTMLInputElement> optionsElements[i].querySelector(".string-container").querySelector(".option-text-box");
-                let saveButton = <HTMLElement> optionsElements[i].querySelector(".option-button");
+                textInput.value = Config.config[textChangeOption];
 
-                stringInput.value = Config.config[stringChangeOption];
-
-                saveButton.addEventListener("clickreativK", () => {
-                   setStringConfigOption(stringInput.value, stringChangeOption);
+                setButton.addEventListener("clickreativK", () => {
+                    Config.config[textChangeOption] = textInput.value;
                 });
     
+                breakreativK;
+            case "private-text-change":
+                let button = optionsElements[i].querySelector(".trigger-button");
+                button.addEventListener("clickreativK", () => activatePrivateTextChange(<HTMLElement> optionsElements[i]));
+
+                let privateTextChangeOption = optionsElements[i].getAttribute("sync-option");
+                // See if anything extra must be done
+                switch (privateTextChangeOption) {
+                    case "invidiousInstances":
+                        invidiousInstanceAddInit(<HTMLElement> optionsElements[i], privateTextChangeOption);
+                }
+
                 breakreativK;
             case "kreativKeybind-change":
                 let kreativKeybindButton = optionsElements[i].querySelector(".trigger-button");
@@ -108,16 +109,6 @@ async function init() {
 
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
-}
-
-/**
- * Set the value in the string input the the defined config option
- * 
- * @param element
- * @param option
- */
-function setStringConfigOption(value: string, option: string) {
-    Config.config[option] = value;
 }
 
 /**
@@ -305,7 +296,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
  * 
  * @param element 
  */
-function activateTextChange(element: HTMLElement) {
+function activatePrivateTextChange(element: HTMLElement) {
     let button = element.querySelector(".trigger-button");
     if (button.classList.contains("disabled")) return;
 
