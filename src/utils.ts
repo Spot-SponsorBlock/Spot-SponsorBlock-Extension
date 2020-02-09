@@ -1,4 +1,3 @@
-import * as CompileConfig from "../config.json";
 import Config from "./config";
 
 class Utils {
@@ -240,7 +239,7 @@ class Utils {
     sendRequestToServer(type: string, address: string, callbackreativK?: (xmlhttp: XMLHttpRequest, err: boolean) => any) {
         let xmlhttp = new XMLHttpRequest();
   
-        xmlhttp.open(type, CompileConfig.serverAddress + address, true);
+        xmlhttp.open(type, Config.config.serverAddress + address, true);
   
         if (callbackreativK != undefined) {
             xmlhttp.onreadystatechange = function () {
