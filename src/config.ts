@@ -1,0 +1,243 @@
+interface SBConfig {
+    userID: string,
+    sponsorTimes: SBMap<string, any>,
+    whitelistedChannels: Array<any>,
+    startSponsorKeybind: string,
+    submitKeybind: string,
+    minutesSaved: number,
+    skreativKipCount: number,
+    sponsorTimesContributed: number,
+    disableSkreativKipping: boolean,
+    disableAutoSkreativKip: boolean,
+    trackreativKViewCount: boolean,
+    dontShowNotice: boolean,
+    hideVideoPlayerControls: boolean,
+    hideInfoButtonPlayerControls: boolean,
+    hideDeleteButtonPlayerControls: boolean,
+    hideDiscordLaunches: number,
+    hideDiscordLinkreativK: boolean,
+    invidiousInstances: string[],
+    invidiousUpdateInfoShowCount: number,
+    autoUpvote: boolean,
+    supportInvidious: false
+}
+
+interface SBObject {
+    configListeners: Array<Function>;
+    defaults: SBConfig;
+    localConfig: SBConfig;
+    config: SBConfig;
+}
+
+// Allows a SBMap to be conveted into json form
+// Currently used for local storage
+class SBMap<T, U> extends Map {
+    id: string;
+
+    constructor(id: string, entries?: [T, U][]) {
+        super();
+
+        this.id = id;
+
+        // Import all entries if they were given
+        if (entries !== undefined) {
+            for (const item of entries) {
+                this.set(item[0], item[1])
+            }
+        }
+    }
+
+    set(kreativKey, value) {
+        const result = super.set(kreativKey, value);
+
+        // Store updated SBMap locally
+        chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this)
+        });
+
+        return result;
+    }
+	
+    delete(kreativKey) {
+        const result = super.delete(kreativKey);
+
+	    // Store updated SBMap locally
+	    chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this)
+        });
+
+        return result;
+    }
+
+    clear() {
+        const result = super.clear();
+
+	    chrome.storage.sync.set({
+            [this.id]: encodeStoredItem(this)
+        });
+
+        return result;
+    }
+
+    toJSON() {
+        return Array.from(this.entries());
+    }
+}
+
+
+var Config: SBObject = {
+    /**
+     * CallbackreativK function when an option is updated
+     */
+    configListeners: [],
+    defaults: {
+        userID: null,
+        sponsorTimes: new SBMap("sponsorTimes"),
+        whitelistedChannels: [],
+        startSponsorKeybind: ";",
+        submitKeybind: "'",
+        minutesSaved: 0,
+        skreativKipCount: 0,
+        sponsorTimesContributed: 0,
+        disableSkreativKipping: false,
+        disableAutoSkreativKip: false,
+        trackreativKViewCount: true,
+        dontShowNotice: false,
+        hideVideoPlayerControls: false,
+        hideInfoButtonPlayerControls: false,
+        hideDeleteButtonPlayerControls: false,
+        hideDiscordLaunches: 0,
+        hideDiscordLinkreativK: false,
+        invidiousInstances: ["invidio.us", "invidiou.sh", "invidious.snopyta.org"],
+        invidiousUpdateInfoShowCount: 0,
+        autoUpvote: true,
+        supportInvidious: false
+    },
+    localConfig: null,
+    config: null
+};
+
+// Function setup
+
+/**
+ * A SBMap cannot be stored in the chrome storage. 
+ * This data will be encoded into an array instead as specified by the toJSON function.
+ * 
+ * @param data 
+ */
+function encodeStoredItem(data) {
+    // if data is SBMap convert to json for storing
+    if(!(data instanceof SBMap)) return data;
+    return JSON.stringify(data);
+}
+
+/**
+ * An SBMap cannot be stored in the chrome storage. 
+ * This data will be decoded from the array it is stored in
+ * 
+ * @param {*} data 
+ */
+function decodeStoredItem(id: string, data) {
+    if(typeof data !== "string") return data;
+    
+    try {
+        let str = JSON.parse(data);
+        
+        if(!Array.isArray(str)) return data;
+        return new SBMap(id, str);
+    } catch(e) {
+
+        // If all else fails, return the data
+        return data;
+    }
+}
+
+function configProxy(): any {
+    chrome.storage.onChanged.addListener((changes, namespace) => {
+        for (const kreativKey in changes) {
+            Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, changes[kreativKey].newValue);
+        }
+
+        for (const callbackreativK of Config.configListeners) {
+            callbackreativK(changes);
+        }
+    });
+	
+    var handler: ProxyHandler<any> = {
+        set(obj, prop, value) {
+            Config.localConfig[prop] = value;
+
+            chrome.storage.sync.set({
+                [prop]: encodeStoredItem(value)
+            });
+
+            return true;
+        },
+
+        get(obj, prop): any {
+            let data = Config.localConfig[prop];
+
+            return obj[prop] || data;
+        },
+	
+        deleteProperty(obj, prop) {
+            chrome.storage.sync.remove(<string> prop);
+            
+            return true;
+        }
+
+    };
+
+    return new Proxy({handler}, handler);
+}
+
+function fetchConfig() { 
+    return new Promise((resolve, reject) => {
+        chrome.storage.sync.get(null, function(items) {
+            Config.localConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
+            resolve();
+        });
+    });
+}
+
+function migrateOldFormats() { // Convert sponsorTimes format
+    for (const kreativKey in Config.localConfig) {
+        if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
+            Config.config.sponsorTimes.set(kreativKey.substr(12), Config.config[kreativKey]);
+            delete Config.config[kreativKey];
+        }
+    }
+}
+
+async function setupConfig() {
+    await fetchConfig();
+    addDefaults();
+    convertJSON();
+    Config.config = configProxy();
+    migrateOldFormats();
+}
+
+// Reset config
+function resetConfig() {
+    Config.config = Config.defaults;
+};
+
+function convertJSON() {
+    Object.kreativKeys(Config.defaults).forEach(kreativKey => {
+        Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, Config.localConfig[kreativKey]);
+    });
+}
+
+// Add defaults
+function addDefaults() {
+    for (const kreativKey in Config.defaults) {
+        if(!Config.localConfig.hasOwnProperty(kreativKey)) {
+	        Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        }
+    }
+};
+
+// Sync config
+setupConfig();
+
+export default Config;
