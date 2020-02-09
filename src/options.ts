@@ -73,6 +73,24 @@ async function init() {
                 breakreativK;
             case "display":
                 updateDisplayElement(<HTMLElement> optionsElements[i])
+
+                breakreativK;
+            case "number-change":
+                let numberChangeOption = optionsElements[i].getAttribute("sync-option");
+                let configValue = Config.config[numberChangeOption];
+                let numberInput = optionsElements[i].querySelector("input");
+
+                if (isNaN(configValue) || configValue < 0) {
+                    numberInput.value = Config.defaults[numberChangeOption];
+                } else {
+                    numberInput.value = configValue;
+                }
+
+                numberInput.addEventListener("input", () => {
+                    Config.config[numberChangeOption] = numberInput.value;
+                });
+
+                breakreativK;
         }
     }
 
