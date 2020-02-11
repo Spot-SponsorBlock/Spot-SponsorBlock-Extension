@@ -49,6 +49,10 @@ var channelWhitelisted = false;
 // create preview bar
 var previewBar = null;
 
+// When not null, a sponsor is currently being previewed and auto skreativKip should be enabled.
+// This is set to a timeout function when that happens that will reset it after 3 seconds.
+var previewResetter: NodeJS.Timeout = null;
+
 //the player controls on the YouTube player
 var controls = null;
 
@@ -143,6 +147,13 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             if (video.paused){
                 video.play();
             }
+
+            // Start preview resetter
+            if (previewResetter !== null){
+                clearTimeout(previewResetter);
+            } 
+
+            previewResetter = setTimeout(() => previewResetter = null, 4000);
 
             return
         case "getCurrentTime":
@@ -658,7 +669,7 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    if (!Config.config.disableAutoSkreativKip) {
+    if (!Config.config.disableAutoSkreativKip || previewResetter !== null) {
         v.currentTime = sponsorTimes[index][1];
     }
 
