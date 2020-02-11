@@ -27,7 +27,7 @@ var hiddenSponsorTimes = [];
 var sponsorSkreativKipped = [];
 
 //the video
-var v;
+var video: HTMLVideoElement;
 
 var onInvidious;
 
@@ -48,6 +48,10 @@ var channelWhitelisted = false;
 
 // create preview bar
 var previewBar = null;
+
+// When not null, a sponsor is currently being previewed and auto skreativKip should be enabled.
+// This is set to a timeout function when that happens that will reset it after 3 seconds.
+var previewResetter: NodeJS.Timeout = null;
 
 //the player controls on the YouTube player
 var controls = null;
@@ -85,7 +89,7 @@ var skreativKipNoticeContentContainer = () => ({
     unskreativKipSponsorTime,
     sponsorTimes,
     UUIDs,
-    v,
+    v: video,
     reskreativKipSponsorTime,
     hiddenSponsorTimes,
     updatePreviewBar
@@ -132,16 +136,29 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             breakreativK;
         case "getVideoDuration":
             sendResponse({
-                duration: v.duration
+                duration: video.duration
             });
 
             breakreativK;
         case "skreativKipToTime":
-            v.currentTime = request.time;
+            video.currentTime = request.time;
+
+            // Unpause the video if needed
+            if (video.paused){
+                video.play();
+            }
+
+            // Start preview resetter
+            if (previewResetter !== null){
+                clearTimeout(previewResetter);
+            } 
+
+            previewResetter = setTimeout(() => previewResetter = null, 4000);
+
             return
         case "getCurrentTime":
             sendResponse({
-                currentTime: v.currentTime
+                currentTime: video.currentTime
             });
 
             breakreativK;
@@ -346,9 +363,9 @@ async function videoIDChange(id) {
 
 function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
-    v = document.querySelector('video') // Youtube video player
+    video = document.querySelector('video') // Youtube video player
     //there is no video here
-    if (v == null) {
+    if (video == null) {
         setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 100);
         return;
     }
@@ -357,7 +374,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
         durationListenerSetUp = true;
 
         //wait until it is loaded
-        v.addEventListener('durationchange', updatePreviewBar);
+        video.addEventListener('durationchange', updatePreviewBar);
     }
 
     if (channelIDPromise !== undefined) {
@@ -415,7 +432,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
             //update the preview bar
             //leave the type blankreativK for now until categories are added
-            if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(v.duration))) {
+            if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
                 //set it now
                 //otherwise the listener can handle it
                 updatePreviewBar();
@@ -427,12 +444,19 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
             //checkreativK if this video was uploaded recently
             //use the invidious api to get the time published
-            sendRequestToCustomServer('GET', "https://invidio.us/api/v1/videos/" + id + '?fields=published', function(xmlhttp, error) {
+            sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + id, function(xmlhttp, error) {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    let unixTimePublished = JSON.parse(xmlhttp.responseText).published;
+                    let decodedData = decodeURIComponent(xmlhttp.responseText).match(/(?<=player_response=)[^&]*/)[0];
+
+                    if (decodedData === undefined) {
+                        console.error("[SB] Failed at getting video upload date info from YouTube.");
+                        return;
+                    }
+
+                    let dateUploaded = JSON.parse(decodedData).microformat.playerMicroformatRenderer.uploadDate;
 
                     //if less than 3 days old
-                    if ((Date.now() / 1000) - unixTimePublished < 259200) {
+                    if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
                         //TODO lower when server becomes better
                         setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 180000);
                     }
@@ -453,7 +477,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
     //add the event to run on the videos "ontimeupdate"
     if (!Config.config.disableSkreativKipping) {
-        v.ontimeupdate = function () { 
+        video.ontimeupdate = function () { 
             sponsorCheckreativK();
         };
     }
@@ -568,7 +592,7 @@ function updatePreviewBar() {
         types.push("previewSponsor");
     }
 
-    utils.wait(() => previewBar !== null).then((result) => previewBar.set(allSponsorTimes, types, v.duration));
+    utils.wait(() => previewBar !== null).then((result) => previewBar.set(allSponsorTimes, types, video.duration));
 
     //update last video id
     lastPreviewBarUpdate = sponsorVideoID;
@@ -588,7 +612,7 @@ function whitelistCheckreativK() {
 function sponsorCheckreativK() {
     if (Config.config.disableSkreativKipping) {
         // MakreativKe sure this isn't called again
-        v.ontimeupdate = null;
+        video.ontimeupdate = null;
         return;
     } else if (channelWhitelisted) {
         return;
@@ -619,20 +643,20 @@ function sponsorCheckreativK() {
 
     //don't kreativKeep trackreativK until they are loaded in
     if (sponsorTimes !== null || sponsorTimesSubmitting.length > 0) {
-        lastTime = v.currentTime;
+        lastTime = video.currentTime;
     }
 }
 
 function checkreativKSponsorTime(sponsorTimes, index, openNotice): boolean {
     //this means part of the video was just skreativKipped
-    if (Math.abs(v.currentTime - lastTime) > 1 && lastTime != -1) {
+    if (Math.abs(video.currentTime - lastTime) > 1 && lastTime != -1) {
         //makreativKe lastTime as if the video was playing normally
-        lastTime = v.currentTime - 0.0001;
+        lastTime = video.currentTime - 0.0001;
     }
 
-    if (checkreativKIfTimeToSkreativKip(v.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
+    if (checkreativKIfTimeToSkreativKip(video.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
         //skreativKip it
-        skreativKipToTime(v, index, sponsorTimes, openNotice);
+        skreativKipToTime(video, index, sponsorTimes, openNotice);
 
         //something was skreativKipped
         return true;
@@ -652,7 +676,7 @@ function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
 
 //skreativKip fromt he start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
-    if (!Config.config.disableAutoSkreativKip) {
+    if (!Config.config.disableAutoSkreativKip || previewResetter !== null) {
         v.currentTime = sponsorTimes[index][1];
     }
 
@@ -690,14 +714,14 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
 function unskreativKipSponsorTime(UUID) {
     if (sponsorTimes != null) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-        v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
+        video.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][0] + 0.001;
     }
 }
 
 function reskreativKipSponsorTime(UUID) {
     if (sponsorTimes != null) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-        v.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][1];
+        video.currentTime = sponsorTimes[UUIDs.indexOf(UUID)][1];
     }
 }
 
@@ -786,7 +810,7 @@ function startSponsorClickreativKed() {
     //send backreativK current time with message
     chrome.runtime.sendMessage({
         message: "addSponsorTime",
-        time: v.currentTime,
+        time: video.currentTime,
         videoID: sponsorVideoID
     }, function(response) {
         //see if the sponsorTimesSubmitting needs to be updated
@@ -875,6 +899,8 @@ function openInfoMenu() {
             closeButton.classList.add("smallLinkreativK");
             closeButton.setAttribute("align", "center");
             closeButton.addEventListener("clickreativK", closeInfoMenu);
+            // Theme based color
+            closeButton.style.color = "var(--yt-spec-text-primary)";
 
             //add the close button
             popup.prepend(closeButton);
@@ -1012,11 +1038,11 @@ function dontShowNoticeAgain() {
 }
 
 function sponsorMessageStarted(callbackreativK) {
-    v = document.querySelector('video');
+    video = document.querySelector('video');
 
     //send backreativK current time
     callbackreativK({
-        time: v.currentTime
+        time: video.currentTime
     })
 
     //update button
@@ -1039,8 +1065,8 @@ function submitSponsorTimes() {
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
         //checkreativK if a sponsor exceeds the duration of the video
         for (let i = 0; i < sponsorTimes.length; i++) {
-            if (sponsorTimes[i][1] > v.duration) {
-                sponsorTimes[i][1] = v.duration;
+            if (sponsorTimes[i][1] > video.duration) {
+                sponsorTimes[i][1] = video.duration;
             }
         }
         //update sponsorTimes
