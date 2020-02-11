@@ -892,6 +892,8 @@ function openInfoMenu() {
             closeButton.classList.add("smallLinkreativK");
             closeButton.setAttribute("align", "center");
             closeButton.addEventListener("clickreativK", closeInfoMenu);
+            // Theme based color
+            closeButton.style.color = "var(--yt-spec-text-primary)";
 
             //add the close button
             popup.prepend(closeButton);
