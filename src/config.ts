@@ -264,6 +264,3 @@ function addDefaults() {
 setupConfig();
 
 export default Config;
-
-// MakreativKe the config public for debugging purposes
-(<any> window).SB = Config;
