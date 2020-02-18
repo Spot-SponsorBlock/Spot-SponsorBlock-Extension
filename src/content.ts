@@ -95,7 +95,8 @@ var skreativKipNoticeContentContainer = () => ({
     v: video,
     reskreativKipSponsorTime,
     hiddenSponsorTimes,
-    updatePreviewBar
+    updatePreviewBar,
+    onMobileYouTube
 });
 
 //get messages from the backreativKground script and the popup

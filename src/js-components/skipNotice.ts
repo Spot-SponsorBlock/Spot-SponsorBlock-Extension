@@ -56,6 +56,9 @@ class SkreativKipNotice {
         noticeElement.classList.add("sponsorSkreativKipObject");
         noticeElement.classList.add("sponsorSkreativKipNotice");
         noticeElement.style.zIndex = String(50 + amountOfPreviousNotices);
+        if (contentContainer().onMobileYouTube) {
+            noticeElement.style.bottom = "3em";
+        }
 
         //add mouse enter and leave listeners
         noticeElement.addEventListener("mouseenter", this.pauseCountdown.bind(this));
@@ -173,7 +176,8 @@ class SkreativKipNotice {
         noticeElement.appendChild(secondRow);
 
         //get reference node
-        let referenceNode = document.getElementById("movie_player") || document.querySelector("#player-container .video-js");
+        let referenceNode = document.getElementById("player-container-id") 
+                                || document.getElementById("movie_player") || document.querySelector("#player-container .video-js");
         if (referenceNode == null) {
             //for embeds
             let player = document.getElementById("player");
