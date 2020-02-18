@@ -540,6 +540,14 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                     breakreativK;
                 }
             }
+            if (!zeroSecondSponsor) {
+                for (const time of sponsorTimesSubmitting) {
+                    if (time[0] <= 0) {
+                        zeroSecondSponsor = true;
+                        breakreativK;
+                    }
+                }
+            }
 
             if (zeroSecondSponsor) {
                 startSponsorSchedule(0);
