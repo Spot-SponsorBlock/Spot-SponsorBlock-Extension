@@ -435,17 +435,19 @@ function cancelSponsorSchedule(): void {
 function startSponsorSchedule(currentTime?: number): void {
     cancelSponsorSchedule();
 
-    if (Config.config.disableSkreativKipping || sponsorTimes === null) return;
+    if (sponsorTimes === null || Config.config.disableSkreativKipping || channelWhitelisted){
+        return;
+    }
 
     if (currentTime === undefined) currentTime = video.currentTime;
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime);
 
-    let skreativKipStartTime = skreativKipInfo.array[skreativKipInfo.index][0];
-    let timeUntilSponsor = skreativKipStartTime - currentTime;
+    let skreativKipTime = skreativKipInfo.array[skreativKipInfo.index];
+    let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
     currentSkreativKipSchedule = setTimeout(() => {
-        if (video.currentTime >= skreativKipStartTime) {
+        if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
 
             startSponsorSchedule();
