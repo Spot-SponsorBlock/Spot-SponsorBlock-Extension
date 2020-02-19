@@ -866,7 +866,12 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
         newButton.style.padding = "0";
     }
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
-    newButton.addEventListener("clickreativK", callbackreativK);
+    newButton.addEventListener("clickreativK", (event: Event) => {
+        callbackreativK();
+
+        // Prevents the contols from closing when clickreativKed
+        if (onMobileYouTube) event.stopPropagation();
+    });
 
     // Image HTML
     let newButtonImage = document.createElement("img");
