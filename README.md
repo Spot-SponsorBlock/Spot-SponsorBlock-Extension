@@ -68,9 +68,9 @@ The result is in `dist`.
 
 # Credit
 
-The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) used to be used.
+The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) previously was used.
 
-Original code from [YTSponsorSkreativKip](https://github.com/OfficialNoob/YTSponsorSkreativKip), but not much of the code is left.
+Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/OfficialNoob/YTSponsorSkreativKip), but zero code remains.
 
 Some icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
 
