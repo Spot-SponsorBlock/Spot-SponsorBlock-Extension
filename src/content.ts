@@ -440,13 +440,15 @@ function cancelSponsorSchedule(): void {
 function startSponsorSchedule(currentTime?: number): void {
     cancelSponsorSchedule();
 
-    if (sponsorTimes === null || Config.config.disableSkreativKipping || channelWhitelisted){
+    if (Config.config.disableSkreativKipping || channelWhitelisted){
         return;
     }
 
     if (currentTime === undefined) currentTime = video.currentTime;
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime);
+
+    if (skreativKipInfo.index === -1) return;
 
     let skreativKipTime = skreativKipInfo.array[skreativKipInfo.index];
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
@@ -489,6 +491,8 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
         video.addEventListener('ratechange', () => startSponsorSchedule());
         video.addEventListener('seekreativKing', cancelSponsorSchedule);
         video.addEventListener('pause', cancelSponsorSchedule);
+
+        startSponsorSchedule();
     }
 
     if (channelIDPromise !== undefined) {
@@ -763,7 +767,8 @@ function getNextSkreativKipIndex(currentTime: number): {array: number[][], index
 
     let minPreviewSponsorTimeIndex = previewSponsorStartTimes.indexOf(Math.min(...previewSponsorStartTimesAfterCurrentTime));
 
-    if (minPreviewSponsorTimeIndex == -1 || sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
+    if ((minPreviewSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) || 
+            sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
         return {
             array: sponsorTimes,
             index: minSponsorTimeIndex,
@@ -787,6 +792,8 @@ function getNextSkreativKipIndex(currentTime: number): {array: number[][], index
  * @param hideHiddenSponsors
  */
 function getStartTimes(sponsorTimes: number[][], minimum?: number, hideHiddenSponsors: boolean = false): number[] {
+    if (sponsorTimes === null) return [];
+
     let startTimes: number[] = [];
 
     for (let i = 0; i < sponsorTimes.length; i++) {
