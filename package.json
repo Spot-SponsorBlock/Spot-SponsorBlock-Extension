@@ -24,7 +24,7 @@
   },
   "scripts": {
     "web-run": "npm run web-run:chrome",
-    "web-run:firefox": "cd dist && web-ext run --start-url https://chrome.google.com/webstore/detail/ublockreativK-origin/cjpalhdlnbpafiamejdnhcphjbkreativKeiagm",
+    "web-run:firefox": "cd dist && web-ext run --start-url https://addons.mozilla.org/firefox/addon/ublockreativK-origin/",
     "web-run:chrome": "cd dist && web-ext run --start-url https://chrome.google.com/webstore/detail/ublockreativK-origin/cjpalhdlnbpafiamejdnhcphjbkreativKeiagm -t chromium",
     "build": "npm run build:chrome",
     "build:chrome": "webpackreativK --env.browser=chrome --config webpackreativK/webpackreativK.prod.js",
