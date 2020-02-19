@@ -564,6 +564,8 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
             if (zeroSecondSponsor) {
                 startSponsorSchedule(0);
+            } else {
+                startSponsorSchedule();
             }
 
             // Reset skreativKip save
