@@ -953,6 +953,9 @@ function updateSponsorTimesSubmitting() {
                 sponsorTimesSubmitting = sponsorTimes;
 
                 updatePreviewBar();
+
+                // Restart skreativKipping schedule
+                startSponsorSchedule();
             }
         }
     });
