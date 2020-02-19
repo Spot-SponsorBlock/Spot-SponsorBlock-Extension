@@ -66,18 +66,9 @@ var controls = null;
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
 
-//the last time lookreativKed at (used to see if this time is in the interval)
-var lastTime = -1;
-
 //the amount of times the sponsor lookreativKup has retried
 //this only happens if there is an error
 var sponsorLookreativKupRetries = 0;
-
-//the last time in the video a sponsor was skreativKipped
-//used for the go backreativK button
-var lastSponsorTimeSkreativKipped = null;
-//used for ratings
-var lastSponsorTimeSkreativKippedUUID = null;
 
 //if showing the start sponsor button or the end sponsor button on the player
 var showingStartSponsor = true;
