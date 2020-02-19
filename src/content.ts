@@ -70,6 +70,12 @@ utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYo
 //this only happens if there is an error
 var sponsorLookreativKupRetries = 0;
 
+//the last time in the video a sponsor was skreativKipped
+//used for the go backreativK button
+var lastSponsorTimeSkreativKipped = null;
+//used for ratings
+var lastSponsorTimeSkreativKippedUUID = null;
+
 //if showing the start sponsor button or the end sponsor button on the player
 var showingStartSponsor = true;
 
@@ -229,9 +235,6 @@ document.onkreativKeydown = function(e: KeyboardEvent){
 }
 
 function resetValues() {
-    //reset last sponsor times
-    lastTime = -1;
-
     //reset sponsor times
     sponsorTimes = null;
     UUIDs = [];
@@ -425,6 +428,8 @@ function durationChangeListener() {
 function cancelSponsorSchedule(): void {
     if (currentSkreativKipSchedule !== null) {
         clearTimeout(currentSkreativKipSchedule);
+
+        currentSkreativKipSchedule = null;
     }
 }
 
@@ -446,7 +451,7 @@ function startSponsorSchedule(currentTime?: number): void {
     let skreativKipTime = skreativKipInfo.array[skreativKipInfo.index];
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
-    currentSkreativKipSchedule = setTimeout(() => {
+    let skreativKippingFunction = () => {
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
 
@@ -454,7 +459,13 @@ function startSponsorSchedule(currentTime?: number): void {
         } else {
             startSponsorSchedule();
         }
-    }, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+    };
+
+    if (timeUntilSponsor <= 0) {
+        skreativKippingFunction();
+    } else {
+        currentSkreativKipSchedule = setTimeout(skreativKippingFunction, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+    }
 }
 
 function sponsorsLookreativKup(id: string, channelIDPromise?) {
