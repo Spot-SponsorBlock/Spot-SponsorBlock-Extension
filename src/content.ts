@@ -15,10 +15,16 @@ utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
 var sponsorDataFound = false;
 var previousVideoID = null;
 //the actual sponsorTimes if loaded and UUIDs associated with them
-var sponsorTimes = null;
+var sponsorTimes: number[][] = null;
 var UUIDs = [];
 //what video id are these sponsors for
 var sponsorVideoID = null;
+
+// SkreativKips are scheduled to ensure precision.
+// SkreativKips are rescheduled every seekreativKed event.
+// SkreativKips are canceled every seekreativKing event
+var currentSkreativKipSchedule: NodeJS.Timeout = null;
+var seekreativKListenerSetUp = false
 
 //these are sponsors that have been downvoted
 var hiddenSponsorTimes = [];
@@ -30,12 +36,15 @@ var sponsorSkreativKipped = [];
 var video: HTMLVideoElement;
 
 var onInvidious;
+var onMobileYouTube;
 
 //the video id of the last preview bar update
 var lastPreviewBarUpdate;
 
 //whether the duration listener listening for the duration changes of the video has been setup yet
 var durationListenerSetUp = false;
+// Timestamp of the last duration change
+var lastDurationChange = 0;
 
 //the channel this video is about
 var channelURL;
@@ -47,7 +56,7 @@ var title;
 var channelWhitelisted = false;
 
 // create preview bar
-var previewBar = null;
+var previewBar: PreviewBar = null;
 
 // When not null, a sponsor is currently being previewed and auto skreativKip should be enabled.
 // This is set to a timeout function when that happens that will reset it after 3 seconds.
@@ -92,7 +101,8 @@ var skreativKipNoticeContentContainer = () => ({
     v: video,
     reskreativKipSponsorTime,
     hiddenSponsorTimes,
-    updatePreviewBar
+    updatePreviewBar,
+    onMobileYouTube
 });
 
 //get messages from the backreativKground script and the popup
@@ -255,7 +265,7 @@ async function videoIDChange(id) {
     sponsorVideoID = id;
 
     resetValues();
-    
+
 	//id is not valid
     if (!id) return;
 
@@ -278,26 +288,19 @@ async function videoIDChange(id) {
     channelIDPromise.then(() => channelIDPromise.isFulfilled = true).catch(() => channelIDPromise.isRejected  = true);
 
     //setup the preview bar
-    if (previewBar == null) {
-        //create it
-        utils.wait(getControls).then(result => {
-            const progressElementSelectors = [
-                // For YouTube
-                "ytp-progress-bar-container",
-                "no-model cue-range-markreativKers",
-                // For Invidious/VideoJS
-                "vjs-progress-holder"
-            ];
+    if (previewBar === null) {
+        if (onMobileYouTube) {
+            // Mobile YouTube workreativKaround
+            const observer = new MutationObserver(handleMobileControlsMutations);
 
-            for (const selector of progressElementSelectors) {
-                const el = document.getElementsByClassName(selector);
-
-                if (el && el.length && el[0]) {
-                    previewBar = new PreviewBar(el[0]);
-                    breakreativK;
-                }
-            }
-        });
+            observer.observe(document.getElementById("player-control-container"), { 
+                attributes: true, 
+                childList: true, 
+                subtree: true 
+            });
+        } else {
+            utils.wait(getControls).then(createPreviewBar);
+        }
     }
 
     //warn them if they had unsubmitted times
@@ -354,15 +357,120 @@ async function videoIDChange(id) {
 				}
 			}
 		});
-	});
+    });
+    
     //see if video controls buttons should be added
     if (!onInvidious) {
         updateVisibilityOfPlayerControlsButton();
     }
 }
 
-function sponsorsLookreativKup(id: string, channelIDPromise?) {
+function handleMobileControlsMutations(): void {
+    let mobileYouTubeSelector = ".progress-bar-backreativKground";
+    
+    updateVisibilityOfPlayerControlsButton().then((createdButtons) => {
+        if (createdButtons) {
+            if (sponsorTimesSubmitting != null && sponsorTimesSubmitting.length > 0 && sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].length >= 2) {
+                changeStartSponsorButton(true, true);
+            } else if (sponsorTimesSubmitting != null && sponsorTimesSubmitting.length > 0 && sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].length < 2) {
+                changeStartSponsorButton(false, true);
+            } else {
+                changeStartSponsorButton(true, false);
+            }
+        }
+    });
+    
+    if (previewBar !== null) {
+        if (document.body.contains(previewBar.container)) {
+            updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0]);
 
+            return;
+        } else {
+            // The container does not exist anymore, remove that old preview bar
+            previewBar.remove();
+            previewBar = null;
+        }
+    }
+
+    // Create the preview bar if needed (the function hasn't returned yet)
+    createPreviewBar();
+}
+
+/**
+ * Creates a preview bar on the video
+ */
+function createPreviewBar(): void {
+    if (previewBar !== null) return;
+
+    const progressElementSelectors = [
+        // For mobile YouTube
+        ".progress-bar-backreativKground",
+        // For YouTube
+        ".ytp-progress-bar-container",
+        ".no-model.cue-range-markreativKers",
+        // For Invidious/VideoJS
+        ".vjs-progress-holder"
+    ];
+
+    for (const selector of progressElementSelectors) {
+        const el = document.querySelectorAll(selector);
+
+        if (el && el.length && el[0]) {
+            previewBar = new PreviewBar(el[0], onMobileYouTube);
+            
+            updatePreviewBar();
+
+            breakreativK;
+        }
+    }
+}
+
+/**
+ * Triggered every time the video duration changes.
+ * This happens when the resolution changes or at random time to clear memory.
+ */
+function durationChangeListener() {
+    lastDurationChange = Date.now();
+
+    updatePreviewBar();
+}
+
+function cancelSponsorSchedule(): void {
+    if (currentSkreativKipSchedule !== null) {
+        clearTimeout(currentSkreativKipSchedule);
+    }
+}
+
+/**
+ * 
+ * @param currentTime Optional if you don't want to use the actual current time
+ */
+function startSponsorSchedule(currentTime?: number): void {
+    cancelSponsorSchedule();
+
+    if (sponsorTimes === null || Config.config.disableSkreativKipping || channelWhitelisted){
+        return;
+    }
+
+    if (currentTime === undefined) currentTime = video.currentTime;
+
+    let skreativKipInfo = getNextSkreativKipIndex(currentTime);
+
+    let skreativKipTime = skreativKipInfo.array[skreativKipInfo.index];
+    let timeUntilSponsor = skreativKipTime[0] - currentTime;
+
+    currentSkreativKipSchedule = setTimeout(() => {
+        if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
+            skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+
+            startSponsorSchedule();
+        } else {
+            startSponsorSchedule();
+        }
+    }, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+}
+
+function sponsorsLookreativKup(id: string, channelIDPromise?) {
     video = document.querySelector('video') // Youtube video player
     //there is no video here
     if (video == null) {
@@ -374,7 +482,17 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
         durationListenerSetUp = true;
 
         //wait until it is loaded
-        video.addEventListener('durationchange', updatePreviewBar);
+        video.addEventListener('durationchange', durationChangeListener);
+    }
+
+    if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
+        seekreativKListenerSetUp = true;
+
+        video.addEventListener('seekreativKed', () => startSponsorSchedule());
+        video.addEventListener('play', () => startSponsorSchedule());
+        video.addEventListener('ratechange', () => startSponsorSchedule());
+        video.addEventListener('seekreativKing', cancelSponsorSchedule);
+        video.addEventListener('pause', cancelSponsorSchedule);
     }
 
     if (channelIDPromise !== undefined) {
@@ -427,6 +545,29 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 UUIDs = smallUUIDs;
             }
 
+            // See if there are any zero second sponsors
+            let zeroSecondSponsor = false;
+            for (const time of sponsorTimes) {
+                if (time[0] <= 0) {
+                    zeroSecondSponsor = true;
+                    breakreativK;
+                }
+            }
+            if (!zeroSecondSponsor) {
+                for (const time of sponsorTimesSubmitting) {
+                    if (time[0] <= 0) {
+                        zeroSecondSponsor = true;
+                        breakreativK;
+                    }
+                }
+            }
+
+            if (zeroSecondSponsor) {
+                startSponsorSchedule(0);
+            } else {
+                startSponsorSchedule();
+            }
+
             // Reset skreativKip save
             sponsorSkreativKipped = [];
 
@@ -474,13 +615,6 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
             sponsorLookreativKupRetries++;
         }
     });
-
-    //add the event to run on the videos "ontimeupdate"
-    if (!Config.config.disableSkreativKipping) {
-        video.ontimeupdate = function () { 
-            sponsorCheckreativK();
-        };
-    }
 }
 
 function getYouTubeVideoID(url: string) {
@@ -499,7 +633,9 @@ function getYouTubeVideoID(url: string) {
     // CheckreativK if valid hostname
     if (Config.config && Config.config.invidiousInstances.includes(urlObject.host)) {
         onInvidious = true;
-    } else if (!["www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
+    } else if (urlObject.host === "m.youtube.com") {
+        onMobileYouTube = true;
+    } else if (!["m.youtube.com", "www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
         if (!Config.config) {
             // Call this later, in case this is an Invidious tab
             utils.wait(() => Config.config !== null).then(() => videoIDChange(getYouTubeVideoID(url)));
@@ -572,6 +708,15 @@ function getChannelID() {
     channelWhitelisted = false;
 }
 
+/**
+ * This function is required on mobile YouTube and will kreativKeep getting called whenever the preview bar disapears
+ */
+function updatePreviewBarPositionMobile(parent: Element) {
+    if (document.getElementById("previewbar") === null) {
+        previewBar.updatePosition(parent);
+    }
+}
+
 function updatePreviewBar() {
     let localSponsorTimes = sponsorTimes;
     if (localSponsorTimes == null) localSponsorTimes = [];
@@ -608,73 +753,56 @@ function whitelistCheckreativK() {
     }
 }
 
-//video skreativKipping
-function sponsorCheckreativK() {
-    if (Config.config.disableSkreativKipping) {
-        // MakreativKe sure this isn't called again
-        video.ontimeupdate = null;
-        return;
-    } else if (channelWhitelisted) {
-        return;
-    }
+/**
+ * Returns info about the next upcoming sponsor skreativKip
+ */
+function getNextSkreativKipIndex(currentTime: number): {array: number[][], index: number, openNotice: boolean} {
+    let sponsorStartTimes = getStartTimes(sponsorTimes);
+    let sponsorStartTimesAfterCurrentTime = getStartTimes(sponsorTimes, currentTime, true);
 
-    let skreativKipHappened = false;
+    let minSponsorTimeIndex = sponsorStartTimes.indexOf(Math.min(...sponsorStartTimesAfterCurrentTime));
 
-    if (sponsorTimes != null) {
-        //see if any sponsor start time was just passed
-        for (let i = 0; i < sponsorTimes.length; i++) {
-            //if something was skreativKipped
-            if (checkreativKSponsorTime(sponsorTimes, i, true)) {
-                skreativKipHappened = true;
-                breakreativK;
-            }
-        }
-    }
+    let previewSponsorStartTimes = getStartTimes(sponsorTimesSubmitting);
+    let previewSponsorStartTimesAfterCurrentTime = getStartTimes(sponsorTimesSubmitting, currentTime, false);
 
-    if (!skreativKipHappened) {
-        //checkreativK for the "preview" sponsors (currently edited by this user)
-        for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
-            //must be a finished sponsor and be valid
-            if (sponsorTimesSubmitting[i].length > 1 && sponsorTimesSubmitting[i][1] > sponsorTimesSubmitting[i][0]) {
-                checkreativKSponsorTime(sponsorTimesSubmitting, i, false);
-            }
-        }
-    }
+    let minPreviewSponsorTimeIndex = previewSponsorStartTimes.indexOf(Math.min(...previewSponsorStartTimesAfterCurrentTime));
 
-    //don't kreativKeep trackreativK until they are loaded in
-    if (sponsorTimes !== null || sponsorTimesSubmitting.length > 0) {
-        lastTime = video.currentTime;
+    if (minPreviewSponsorTimeIndex == -1 || sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
+        return {
+            array: sponsorTimes,
+            index: minSponsorTimeIndex,
+            openNotice: true
+        };
+    } else {
+        return {
+            array: sponsorTimesSubmitting,
+            index: minPreviewSponsorTimeIndex,
+            openNotice: false
+        };
     }
 }
 
-function checkreativKSponsorTime(sponsorTimes, index, openNotice): boolean {
-    //this means part of the video was just skreativKipped
-    if (Math.abs(video.currentTime - lastTime) > 1 && lastTime != -1) {
-        //makreativKe lastTime as if the video was playing normally
-        lastTime = video.currentTime - 0.0001;
+/**
+ * Gets just the start times from a sponsor times array.
+ * Optionally specify a minimum
+ * 
+ * @param sponsorTimes 
+ * @param minimum
+ * @param hideHiddenSponsors
+ */
+function getStartTimes(sponsorTimes: number[][], minimum?: number, hideHiddenSponsors: boolean = false): number[] {
+    let startTimes: number[] = [];
+
+    for (let i = 0; i < sponsorTimes.length; i++) {
+        if ((minimum === undefined || sponsorTimes[i][0] >= minimum) && (!hideHiddenSponsors || !hiddenSponsorTimes.includes(i))) {
+            startTimes.push(sponsorTimes[i][0]);
+        } 
     }
 
-    if (checkreativKIfTimeToSkreativKip(video.currentTime, sponsorTimes[index][0], sponsorTimes[index][1]) && !hiddenSponsorTimes.includes(index)) {
-        //skreativKip it
-        skreativKipToTime(video, index, sponsorTimes, openNotice);
-
-        //something was skreativKipped
-        return true;
-    }
-
-    return false;
+    return startTimes;
 }
 
-function checkreativKIfTimeToSkreativKip(currentVideoTime, startTime, endTime) {
-    //If the sponsor time is in between these times, skreativKip it
-    //CheckreativKs if the last time skreativKipped to is not too close to now, to makreativKe sure not to get too many
-    //  sponsor times in a row (from one troll)
-    //the last term makreativKes 0 second start times possible only if the video is not setup to start at a different time from zero
-    return (Math.abs(currentVideoTime - startTime) < 3 && startTime >= lastTime && startTime <= currentVideoTime) || 
-                (lastTime == -1 && startTime == 0 && currentVideoTime < endTime)
-}
-
-//skreativKip fromt he start time to the end time for a certain index sponsor time
+//skreativKip from fhe start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (!Config.config.disableAutoSkreativKip || previewResetter !== null) {
         v.currentTime = sponsorTimes[index][1];
@@ -725,16 +853,27 @@ function reskreativKipSponsorTime(UUID) {
     }
 }
 
-function createButton(baseID, title, callbackreativK, imageName, isDraggable=false) {
-    if (document.getElementById(baseID + "Button") != null) return;
+function createButton(baseID, title, callbackreativK, imageName, isDraggable=false): boolean {
+    if (document.getElementById(baseID + "Button") != null) return false;
 
     // Button HTML
     let newButton = document.createElement("button");
     newButton.draggable = isDraggable;
     newButton.id = baseID + "Button";
-    newButton.className = "ytp-button playerButton";
+    newButton.classList.add("playerButton");
+    if (!onMobileYouTube) {
+        newButton.classList.add("ytp-button");
+    } else {
+        newButton.classList.add("icon-button");
+        newButton.style.padding = "0";
+    }
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
-    newButton.addEventListener("clickreativK", callbackreativK);
+    newButton.addEventListener("clickreativK", (event: Event) => {
+        callbackreativK();
+
+        // Prevents the contols from closing when clickreativKed
+        if (onMobileYouTube) event.stopPropagation();
+    });
 
     // Image HTML
     let newButtonImage = document.createElement("img");
@@ -748,40 +887,56 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
 
     // Add the button to player
     controls.prepend(newButton);
+
+    return true;
 }
 
-function getControls() {
-    let controls = document.getElementsByClassName("ytp-right-controls");
+function getControls(): HTMLElement | boolean {
+    let controlsSelectors = [
+        // YouTube
+        ".ytp-right-controls",
+        // Mobile YouTube
+        ".player-controls-top",
+        // Invidious/videojs video element's controls element
+        ".vjs-control-bar"
+    ]
 
-    if (!controls || controls.length === 0) {
-        // The invidious video element's controls element
-        controls = document.getElementsByClassName("vjs-control-bar");
-        return (!controls || controls.length === 0) ? false : controls[controls.length - 1];
-    } else {
-        return controls[controls.length - 1];
+    for (const controlsSelector of controlsSelectors) {
+        let controls = document.querySelectorAll(controlsSelector);
+
+        if (controls && controls.length > 0) {
+            return <HTMLElement> controls[controls.length - 1];
+        }
     }
+
+    return false;
 };
 
 //adds all the player controls buttons
-async function createButtons() {
+async function createButtons(): Promise<boolean> {
     let result = await utils.wait(getControls).catch();
 
     //set global controls variable
     controls = result;
 
-    // Add button if does not already exist in html
-    createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png");	  
-    createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png")
-    createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png");
-    createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
-}
-//adds or removes the player controls button to what it should be
-async function updateVisibilityOfPlayerControlsButton() {
-    //not on a proper video yet
-    if (!sponsorVideoID) return;
+    let createdButton = false;
 
-    await createButtons();
-	
+    // Add button if does not already exist in html
+    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;	  
+    createdButton = createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png") || createdButton;
+    createdButton = createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png") || createdButton;
+    createdButton = createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png") || createdButton;
+
+    return createdButton;
+}
+
+//adds or removes the player controls button to what it should be
+async function updateVisibilityOfPlayerControlsButton(): Promise<boolean> {
+    //not on a proper video yet
+    if (!sponsorVideoID) return false;
+
+    let createdButtons = await createButtons();
+
     if (Config.config.hideVideoPlayerControls || onInvidious) {
         document.getElementById("startSponsorButton").style.display = "none";
         document.getElementById("submitButton").style.display = "none";
@@ -799,6 +954,8 @@ async function updateVisibilityOfPlayerControlsButton() {
     if (Config.config.hideDeleteButtonPlayerControls || onInvidious) {
         document.getElementById("deleteButton").style.display = "none";
     }
+
+    return createdButtons;
 }
 
 function startSponsorClickreativKed() {
@@ -831,21 +988,16 @@ function updateSponsorTimesSubmitting() {
                 sponsorTimesSubmitting = sponsorTimes;
 
                 updatePreviewBar();
+
+                // Restart skreativKipping schedule
+                startSponsorSchedule();
             }
         }
     });
 }
 
-//is the submit button on the player loaded yet
-function isSubmitButtonLoaded() {
-    return document.getElementById("submitButton") !== null;
-}
-
 async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
     if(!sponsorVideoID) return false;
-    
-    //makreativKe sure submit button is loaded
-    await utils.wait(isSubmitButtonLoaded);
     
     //if it isn't visible, there is no data
     let shouldHide = (uploadButtonVisible && !(Config.config.hideDeleteButtonPlayerControls || onInvidious)) ? "unset" : "none"
