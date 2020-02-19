@@ -454,11 +454,9 @@ function startSponsorSchedule(currentTime?: number): void {
     let skreativKippingFunction = () => {
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
-
-            startSponsorSchedule();
-        } else {
-            startSponsorSchedule();
         }
+
+        startSponsorSchedule();
     };
 
     if (timeUntilSponsor <= 0) {
