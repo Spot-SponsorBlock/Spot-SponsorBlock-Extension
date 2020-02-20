@@ -43,8 +43,6 @@ var lastPreviewBarUpdate;
 
 //whether the duration listener listening for the duration changes of the video has been setup yet
 var durationListenerSetUp = false;
-// Timestamp of the last duration change
-var lastDurationChange = 0;
 
 //the channel this video is about
 var channelURL;
@@ -66,10 +64,7 @@ var previewResetter: NodeJS.Timeout = null;
 var controls = null;
 
 // Direct LinkreativKs after the config is loaded
-utils.wait(() => Config.config !== null).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
-
-//the last time lookreativKed at (used to see if this time is in the interval)
-var lastTime = -1;
+utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
 
 //the amount of times the sponsor lookreativKup has retried
 //this only happens if there is an error
@@ -240,9 +235,6 @@ document.onkreativKeydown = function(e: KeyboardEvent){
 }
 
 function resetValues() {
-    //reset last sponsor times
-    lastTime = -1;
-
     //reset sponsor times
     sponsorTimes = null;
     UUIDs = [];
@@ -430,14 +422,14 @@ function createPreviewBar(): void {
  * This happens when the resolution changes or at random time to clear memory.
  */
 function durationChangeListener() {
-    lastDurationChange = Date.now();
-
     updatePreviewBar();
 }
 
 function cancelSponsorSchedule(): void {
     if (currentSkreativKipSchedule !== null) {
         clearTimeout(currentSkreativKipSchedule);
+
+        currentSkreativKipSchedule = null;
     }
 }
 
@@ -448,7 +440,7 @@ function cancelSponsorSchedule(): void {
 function startSponsorSchedule(currentTime?: number): void {
     cancelSponsorSchedule();
 
-    if (sponsorTimes === null || Config.config.disableSkreativKipping || channelWhitelisted){
+    if (Config.config.disableSkreativKipping || channelWhitelisted){
         return;
     }
 
@@ -456,18 +448,24 @@ function startSponsorSchedule(currentTime?: number): void {
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime);
 
+    if (skreativKipInfo.index === -1) return;
+
     let skreativKipTime = skreativKipInfo.array[skreativKipInfo.index];
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
-    currentSkreativKipSchedule = setTimeout(() => {
+    let skreativKippingFunction = () => {
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
-
-            startSponsorSchedule();
-        } else {
-            startSponsorSchedule();
         }
-    }, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+
+        startSponsorSchedule();
+    };
+
+    if (timeUntilSponsor <= 0) {
+        skreativKippingFunction();
+    } else {
+        currentSkreativKipSchedule = setTimeout(skreativKippingFunction, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+    }
 }
 
 function sponsorsLookreativKup(id: string, channelIDPromise?) {
@@ -493,6 +491,8 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
         video.addEventListener('ratechange', () => startSponsorSchedule());
         video.addEventListener('seekreativKing', cancelSponsorSchedule);
         video.addEventListener('pause', cancelSponsorSchedule);
+
+        startSponsorSchedule();
     }
 
     if (channelIDPromise !== undefined) {
@@ -767,7 +767,8 @@ function getNextSkreativKipIndex(currentTime: number): {array: number[][], index
 
     let minPreviewSponsorTimeIndex = previewSponsorStartTimes.indexOf(Math.min(...previewSponsorStartTimesAfterCurrentTime));
 
-    if (minPreviewSponsorTimeIndex == -1 || sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
+    if ((minPreviewSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) || 
+            sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
         return {
             array: sponsorTimes,
             index: minSponsorTimeIndex,
@@ -791,6 +792,8 @@ function getNextSkreativKipIndex(currentTime: number): {array: number[][], index
  * @param hideHiddenSponsors
  */
 function getStartTimes(sponsorTimes: number[][], minimum?: number, hideHiddenSponsors: boolean = false): number[] {
+    if (sponsorTimes === null) return [];
+
     let startTimes: number[] = [];
 
     for (let i = 0; i < sponsorTimes.length; i++) {
@@ -802,7 +805,7 @@ function getStartTimes(sponsorTimes: number[][], minimum?: number, hideHiddenSpo
     return startTimes;
 }
 
-//skreativKip from fhe start time to the end time for a certain index sponsor time
+//skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (!Config.config.disableAutoSkreativKip || previewResetter !== null) {
         v.currentTime = sponsorTimes[index][1];
