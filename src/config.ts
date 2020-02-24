@@ -20,12 +20,12 @@ interface SBConfig {
     hideDiscordLaunches: number,
     hideDiscordLinkreativK: boolean,
     invidiousInstances: string[],
-    invidiousUpdateInfoShowCount: number,
     autoUpvote: boolean,
     supportInvidious: boolean,
     serverAddress: string,
     minDuration: number,
-    checkreativKForUnlistedVideos: boolean
+    checkreativKForUnlistedVideos: boolean,
+    mobileUpdateShowCount: number
 }
 
 interface SBObject {
@@ -116,12 +116,12 @@ var Config: SBObject = {
         hideDiscordLaunches: 0,
         hideDiscordLinkreativK: false,
         invidiousInstances: ["invidio.us", "invidiou.sh", "invidious.snopyta.org"],
-        invidiousUpdateInfoShowCount: 0,
         autoUpvote: true,
         supportInvidious: false,
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
-        checkreativKForUnlistedVideos: false
+        checkreativKForUnlistedVideos: false,
+        mobileUpdateShowCount: 0
     },
     localConfig: null,
     config: null
