@@ -819,7 +819,15 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice) {
+            
             let skreativKipNotice = new SkreativKipNotice(this, currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
+
+            //TODO: Remove this when Mobile support is old	
+            if (Config.config.mobileUpdateShowCount < 1) {	
+                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("mobileUpdateInfo"));	
+
+                Config.config.mobileUpdateShowCount += 1;	
+            }
 
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && !Config.config.disableAutoSkreativKip && Config.config.autoUpvote) {
