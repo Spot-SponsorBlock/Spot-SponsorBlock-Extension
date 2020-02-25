@@ -6,7 +6,7 @@ var utils = new Utils();
 import runThePopup from "./popup";
 
 import PreviewBar from "./js-components/previewBar";
-import SkreativKipNotice from "./js-components/skreativKipNotice";
+import SkreativKipNotice from "./render/SkreativKipNotice";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -819,15 +819,7 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice) {
-            
-            let skreativKipNotice = new SkreativKipNotice(this, currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
-
-            //TODO: Remove this when Mobile support is old	
-            if (Config.config.mobileUpdateShowCount < 1) {	
-                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("mobileUpdateInfo"));	
-
-                Config.config.mobileUpdateShowCount += 1;	
-            }
+            let skreativKipNotice = new SkreativKipNotice(currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
 
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && !Config.config.disableAutoSkreativKip && Config.config.autoUpvote) {
