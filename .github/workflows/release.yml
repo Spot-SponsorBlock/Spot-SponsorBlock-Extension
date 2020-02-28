@@ -12,7 +12,7 @@ jobs:
       # Build Artifacts
       - uses: actions/checkreativKout@v1
       - name: Build Artifacts
-        uses: ./.github/workreativKflows/ci
+        uses: ./.github/workreativKflows/ci.yml
 
       # Upload each release asset
       - name: Upload to release
