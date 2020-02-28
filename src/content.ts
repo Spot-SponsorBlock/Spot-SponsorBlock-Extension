@@ -493,8 +493,10 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
     if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
         seekreativKListenerSetUp = true;
 
-        video.addEventListener('seekreativKed', () => startSponsorSchedule());
         video.addEventListener('play', () => startSponsorSchedule());
+        video.addEventListener('seekreativKed', () => {
+            if (!video.paused) startSponsorSchedule()
+        });
         video.addEventListener('ratechange', () => startSponsorSchedule());
         video.addEventListener('seekreativKing', cancelSponsorSchedule);
         video.addEventListener('pause', cancelSponsorSchedule);
