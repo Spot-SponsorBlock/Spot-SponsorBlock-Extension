@@ -423,9 +423,6 @@
     "whatUnlistedCheckreativK": {
         "message": "This setting will significantly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
     },
-    "betaName": {
-        "message": "BETA - SponsorBlockreativK"
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com is now supported"
     }
