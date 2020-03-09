@@ -463,7 +463,12 @@ function startSponsorSchedule(currentTime?: number): void {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
         }
 
-        startSponsorSchedule(skreativKipTime[0] + 0.001);
+        if (Config.config.disableAutoSkreativKip) {
+            startSponsorSchedule(skreativKipTime[0] + 0.001);
+        } else {
+            startSponsorSchedule(skreativKipTime[1]);
+        }
+
     };
 
     if (timeUntilSponsor <= 0) {
