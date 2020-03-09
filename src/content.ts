@@ -44,8 +44,8 @@ var lastPreviewBarUpdate;
 //whether the duration listener listening for the duration changes of the video has been setup yet
 var durationListenerSetUp = false;
 
-// Has a zero second sponsor been skreativKipped yet
-var skreativKippedZeroSecond = false;
+// Is the video currently being switched
+var switchingVideos = false;
 
 //the channel this video is about
 var channelURL;
@@ -250,8 +250,6 @@ function resetValues() {
 
     //reset sponsor data found checkreativK
     sponsorDataFound = false;
-
-    skreativKippedZeroSecond = false;
 }
 
 async function videoIDChange(id) {
@@ -265,6 +263,8 @@ async function videoIDChange(id) {
 
 	//id is not valid
     if (!id) return;
+
+    switchingVideos = true;
 
     // Wait for options to be ready
     await utils.wait(() => Config.config !== null, 5000, 1);
@@ -460,8 +460,6 @@ function startSponsorSchedule(currentTime?: number): void {
 
     let skreativKippingFunction = () => {
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            if (currentTime == 0) skreativKippedZeroSecond = true;
-
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
         }
 
@@ -493,9 +491,12 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
     if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
         seekreativKListenerSetUp = true;
 
-        video.addEventListener('play', () => startSponsorSchedule());
+        video.addEventListener('play', () => {
+            switchingVideos = false;
+            startSponsorSchedule();
+        });
         video.addEventListener('seekreativKed', () => {
-            if (!video.paused) startSponsorSchedule()
+            if (!video.paused) startSponsorSchedule();
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
         video.addEventListener('seekreativKing', cancelSponsorSchedule);
@@ -571,10 +572,12 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 }
             }
 
-            if (zeroSecondSponsor && !skreativKippedZeroSecond) {
-                startSponsorSchedule(0);
-            } else {
-                startSponsorSchedule();
+            if (!video.paused && !switchingVideos) {
+                if (zeroSecondSponsor) {
+                    startSponsorSchedule(0);
+                } else {
+                    startSponsorSchedule();
+                }
             }
 
             // Reset skreativKip save
