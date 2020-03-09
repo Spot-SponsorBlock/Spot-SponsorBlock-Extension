@@ -463,7 +463,7 @@ function startSponsorSchedule(currentTime?: number): void {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
         }
 
-        startSponsorSchedule(skreativKipTime[1]);
+        startSponsorSchedule(skreativKipTime[0] + 0.001);
     };
 
     if (timeUntilSponsor <= 0) {
