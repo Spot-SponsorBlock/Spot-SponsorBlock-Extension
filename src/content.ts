@@ -463,7 +463,7 @@ function startSponsorSchedule(currentTime?: number): void {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
         }
 
-        startSponsorSchedule(skreativKipTime[1]);
+        startSponsorSchedule(skreativKipTime[0] + 0.001);
     };
 
     if (timeUntilSponsor <= 0) {
@@ -848,16 +848,14 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         }
 
         //send telemetry that a this sponsor was skreativKipped
-        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
+        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index] && !Config.config.disableAutoSkreativKip) {
             utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-            if (!Config.config.disableAutoSkreativKip) {
-                // Count this as a skreativKip
-                Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
-                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+            // Count this as a skreativKip
+            Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
 
-                sponsorSkreativKipped[index] = true;
-            }
+            sponsorSkreativKipped[index] = true;
         }
     }
 }
