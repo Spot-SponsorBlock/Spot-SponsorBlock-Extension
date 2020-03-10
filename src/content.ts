@@ -7,6 +7,7 @@ import runThePopup from "./popup";
 
 import PreviewBar from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
+import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -1129,11 +1130,11 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type, UUID, skreativKipNotice) {
+function vote(type, UUID, skreativKipNotice: SkreativKipNoticeComponent) {
     if (skreativKipNotice != null) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
-        skreativKipNotice.resetNoticeInfoMessage.bind(skreativKipNotice)();
+        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
     }
 
     let sponsorIndex = UUIDs.indexOf(UUID);
@@ -1168,10 +1169,10 @@ function vote(type, UUID, skreativKipNotice) {
                     }
                 } else if (response.successType == 0) {
                     //failure: duplicate vote
-                    skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("voteFail"))
+                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("voteFail"))
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 } else if (response.successType == -1) {
-                    skreativKipNotice.addNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode))
+                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode))
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }

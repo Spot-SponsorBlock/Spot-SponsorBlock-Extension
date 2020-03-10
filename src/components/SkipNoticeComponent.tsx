@@ -2,6 +2,7 @@ import * as React from "react";
 import Config from "../config"
 
 import NoticeComponent from "./NoticeComponent";
+import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
 export interface SkreativKipNoticeProps { 
     UUID: string;
@@ -12,6 +13,8 @@ export interface SkreativKipNoticeProps {
 
 export interface SkreativKipNoticeState {
     noticeTitle: string,
+
+    messages: string[],
 
     countdownTime: number,
     maxCountdownTime: () => number;
@@ -63,6 +66,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         // Setup state
         this.state = {
             noticeTitle,
+            messages: [],
 
             //the countdown until this notice closes
             maxCountdownTime: () => 4,
@@ -90,12 +94,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}>
-              
-                {/* Spacer */}
-                <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
-                    className="sponsorBlockreativKSpacer">
-                </tr>
 
+                {/* Text Boxes */}
+                {this.getMessageBoxes()}
+              
                 {/* Last Row */}
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.idSuffix}>
 
@@ -148,6 +150,29 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             </NoticeComponent>
         );
+    }
+
+    getMessageBoxes(): JSX.Element[] | JSX.Element {
+        if (this.state.messages.length === 0) {
+            // Add a spacer if there is no text
+            return (
+                <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
+                    className="sponsorBlockreativKSpacer">
+                </tr>
+            );
+        }
+
+        let elements: JSX.Element[] = [];
+
+        for (let i = 0; i < this.state.messages.length; i++) {
+            elements.push(
+                <NoticeTextSelectionComponent idSuffix={this.idSuffix}
+                    text={this.state.messages[i]}>
+                </NoticeTextSelectionComponent>
+            )
+        }
+
+        return elements;
     }
 
     unskreativKip() {
@@ -206,7 +231,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     afterDownvote() {
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
-        this.addNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
+        this.setNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
         
         //remove this sponsor from the sponsors lookreativKed up
         //find which one it is
@@ -223,37 +248,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    addNoticeInfoMessage(message: string, message2: string = "") {
-        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
-        if (previousInfoMessage != null) {
-            //remove it
-            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage);
-        }
-
-        let previousInfoMessage2 = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix + "2");
-        if (previousInfoMessage2 != null) {
-            //remove it
-            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage2);
-        }
-        
-        //add info
-        let thankreativKsForVotingText = document.createElement("p");
-        thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + this.idSuffix;
-        thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
-        thankreativKsForVotingText.innerText = message;
-
-        //add element to div
-        document.querySelector("#sponsorSkreativKipNotice" + this.idSuffix + " > tbody").insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
-    
-        if (message2 !== undefined) {
-            let thankreativKsForVotingText2 = document.createElement("p");
-            thankreativKsForVotingText2.id = "sponsorTimesInfoMessage" + this.idSuffix + "2";
-            thankreativKsForVotingText2.className = "sponsorTimesInfoMessage";
-            thankreativKsForVotingText2.innerText = message2;
-
-            //add element to div
-            document.querySelector("#sponsorSkreativKipNotice" + this.idSuffix + " > tbody").insertBefore(thankreativKsForVotingText2, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
-        }
+    setNoticeInfoMessage(...messages: string[]) {
+        this.setState({
+            messages
+        })
     }
     
     addVoteButtonInfo(message) {
