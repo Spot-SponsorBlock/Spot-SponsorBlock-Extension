@@ -1,4 +1,5 @@
 import * as React from "react";
+import Config from "../config"
 
 export interface SkreativKipNoticeProps { 
     UUID: string;
@@ -289,7 +290,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.manualSkreativKip) {
             this.changeNoticeTitle(chrome.i18n.getMessage("noticeTitle"));
 
-            this.contentContainer().vote(1, this.UUID, this);
+            if(Config.config.disableAutoSkreativKip) this.contentContainer().vote(1, this.UUID);
         }
     }
 
