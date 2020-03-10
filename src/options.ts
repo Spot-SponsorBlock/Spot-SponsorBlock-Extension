@@ -72,7 +72,7 @@ async function init() {
 
                 textChangeInput.value = Config.config[textChangeOption];
 
-                textChangeSetButton.addEventListener("clickreativK", () => {
+                textChangeSetButton.addEventListener("clickreativK", async () => {
                     // See if anything extra must be done
                     switch (textChangeOption) {
                         case "serverAddress":
@@ -82,6 +82,18 @@ async function init() {
                                 textChangeInput.value = result;
                             } else {
                                 return;
+                            }
+
+                            // Permission needed on Firefox
+                            if (utils.isFirefox()) {
+                                let permissionSuccess = await new Promise((resolve, reject) => {
+                                    chrome.permissions.request({
+                                        origins: [textChangeInput.value + "/"],
+                                        permissions: []
+                                    }, resolve);
+                                });
+
+                                if (!permissionSuccess) return;
                             }
 
                             breakreativK;
