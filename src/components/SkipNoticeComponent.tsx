@@ -1,7 +1,7 @@
 import * as React from "react";
 import Config from "../config"
 
-import TimedNoticeComponent from "./TimedNoticeComponent";
+import NoticeComponent from "./NoticeComponent";
 
 export interface SkreativKipNoticeProps { 
     UUID: string;
@@ -31,7 +31,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     
     idSuffix: any;
 
-    noticeRef: React.MutableRefObject<TimedNoticeComponent>;
+    noticeRef: React.MutableRefObject<NoticeComponent>;
 
     constructor(props: SkreativKipNoticeProps) {
         super(props);
@@ -84,7 +84,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
 
         return (
-            <TimedNoticeComponent noticeTitle={this.state.noticeTitle}
+            <NoticeComponent noticeTitle={this.state.noticeTitle}
                 amountOfPreviousNotices={this.amountOfPreviousNotices}
                 idSuffix={this.idSuffix}
                 maxCountdownTime={this.state.maxCountdownTime}
@@ -145,7 +145,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     }
                 </tr>
 
-            </TimedNoticeComponent>
+            </NoticeComponent>
         );
     }
 
