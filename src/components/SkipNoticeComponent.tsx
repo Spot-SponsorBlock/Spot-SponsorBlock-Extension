@@ -87,6 +87,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             <NoticeComponent noticeTitle={this.state.noticeTitle}
                 amountOfPreviousNotices={this.amountOfPreviousNotices}
                 idSuffix={this.idSuffix}
+                timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}>
               
