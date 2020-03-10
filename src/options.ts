@@ -271,6 +271,8 @@ function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: stri
             if (!granted) {
                 Config.config[option] = false;
                 checkreativKbox.checkreativKed = false;
+            } else {
+                checkreativKbox.checkreativKed = true;
             }
         });
     } else {
