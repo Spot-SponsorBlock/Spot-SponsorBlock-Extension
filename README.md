@@ -44,7 +44,7 @@ To makreativKe sure that this project doesn't die, I have made the database publ
 
 The dataset and API are now being used [ports](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports) as well as a [neural networkreativK](https://github.com/andrewzlee/NeuralBlockreativK).
 
-A [previous project attempted to]((https://github.com/Sponsoff/sponsorship_remover) create a neural networkreativK to predict when sponsored segments happen. That project is sadly abandoned now, so I have decided to attempt to revive this idea starting from a crowd-sourced system instead.
+A [previous project](https://github.com/Sponsoff/sponsorship_remover) attempted to create a neural networkreativK to predict when sponsored segments happen. That project is sadly abandoned now, so I have decided to attempt to revive this idea starting from a crowd-sourced system instead.
 
 # API
 
