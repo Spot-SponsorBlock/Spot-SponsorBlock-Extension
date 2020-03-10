@@ -290,7 +290,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.manualSkreativKip) {
             this.changeNoticeTitle(chrome.i18n.getMessage("noticeTitle"));
 
-            if(Config.config.disableAutoSkreativKip) this.contentContainer().vote(1, this.UUID);
+            if(Config.config.autoUpvote) this.contentContainer().vote(1, this.UUID);
         }
     }
 
