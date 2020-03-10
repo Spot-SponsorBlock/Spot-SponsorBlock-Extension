@@ -449,7 +449,7 @@ function startSponsorSchedule(currentTime?: number): void {
         return;
     }
 
-    if (currentTime === undefined) currentTime = video.currentTime;
+    if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime);
 
@@ -459,16 +459,19 @@ function startSponsorSchedule(currentTime?: number): void {
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
     let skreativKippingFunction = () => {
+        let forcedSkreativKipTime: number = null;
+
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+
+            if (Config.config.disableAutoSkreativKip) {
+                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+            } else {
+                forcedSkreativKipTime = skreativKipTime[1];
+            }
         }
 
-        if (Config.config.disableAutoSkreativKip) {
-            startSponsorSchedule(skreativKipTime[0] + 0.001);
-        } else {
-            startSponsorSchedule(skreativKipTime[1]);
-        }
-
+        startSponsorSchedule(forcedSkreativKipTime);
     };
 
     if (timeUntilSponsor <= 0) {
@@ -500,6 +503,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
             switchingVideos = false;
             startSponsorSchedule();
         });
+        video.addEventListener('playing', () => startSponsorSchedule());
         video.addEventListener('seekreativKed', () => {
             if (!video.paused) startSponsorSchedule();
         });
