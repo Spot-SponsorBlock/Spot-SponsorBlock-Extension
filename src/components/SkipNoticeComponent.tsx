@@ -7,19 +7,26 @@ export interface SkreativKipNoticeProps {
     contentContainer: () => any;
 }
 
-class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, {}> {
+export interface SkreativKipNoticeState {
+    noticeTitle: string,
+
+    countdownTime: number,
+    countdownText: string,
+
+    unskreativKipText: string,
+    unskreativKipCallbackreativK: () => void
+}
+
+class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
     UUID: string;
     manualSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: () => any;
 
-    noticeTitle: string;
     amountOfPreviousNotices: number;
     
     maxCountdownTime: () => number;
-    countdownTime: any;
     countdownInterval: NodeJS.Timeout;
-    unskreativKipCallbackreativK: any;
     idSuffix: any;
 
     constructor(props: SkreativKipNoticeComponent) {
@@ -29,20 +36,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.manualSkreativKip = props.manualSkreativKip;
         this.contentContainer = props.contentContainer;
     
-        this.noticeTitle = chrome.i18n.getMessage("noticeTitle");
+        let noticeTitle = chrome.i18n.getMessage("noticeTitle");
     
         if (this.manualSkreativKip) {
-            this.noticeTitle = chrome.i18n.getMessage("noticeTitleNotSkreativKipped");
+            noticeTitle = chrome.i18n.getMessage("noticeTitleNotSkreativKipped");
         }
     
         this.maxCountdownTime = () => 4;
-        //the countdown until this notice closes
-        this.countdownTime = this.maxCountdownTime();
         //the id for the setInterval running the countdown
         this.countdownInterval = null;
-    
-        //the unskreativKip button's callbackreativK
-        this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
     
         //add notice
         this.amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
@@ -56,6 +58,22 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             let previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
             previousNotice.classList.add("secondSkreativKipNotice")
         }
+
+        // Setup state
+        this.state = {
+            noticeTitle,
+
+            //the countdown until this notice closes
+            countdownTime: this.maxCountdownTime(),
+            countdownText: null,
+
+            unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
+            unskreativKipCallbackreativK: this.unskreativKip.bind(this)
+        }
+    }
+
+    componentDidMount() {
+        this.startCountdown();
     }
 
     render() {
@@ -68,10 +86,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
 
         return (
-            <div id={"sponsorSkreativKipNotice" + this.idSuffix} 
+            <table id={"sponsorSkreativKipNotice" + this.idSuffix} 
                 className="sponsorSkreativKipObject sponsorSkreativKipNotice" style={noticeStyle}
                 onMouseEnter={this.pauseCountdown.bind(this)}
-                onMouseLeave={this.startCountdown.bind(this)}>
+                onMouseLeave={this.startCountdown.bind(this)}> <tbody>
 
                 {/* First row */}
                 <tr id={"sponsorSkreativKipNoticeFirstRow" + this.idSuffix}>
@@ -86,7 +104,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         <span id={"sponsorSkreativKipMessage" + this.idSuffix}
                             className="sponsorSkreativKipMessage sponsorSkreativKipObject">
                             
-                            {this.noticeTitle}
+                            {this.state.noticeTitle}
                         </span>
                     </td>
 
@@ -98,7 +116,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         <span id={"sponsorSkreativKipNoticeTimeLeft" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft">
 
-                            {this.countdownTime + "s"}
+                            {this.state.countdownText || (this.state.countdownTime + "s")}
                         </span>
 
                         {/* Close button */}
@@ -110,9 +128,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 </tr> 
 
                 {/* Spacer */}
-                <hr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
+                <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
                     className="sponsorBlockreativKSpacer">
-                </hr>
+                </tr>
 
                 {/* Last Row */}
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.idSuffix}>
@@ -146,9 +164,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={{marginLeft: "4px"}}
-                            onClickreativK={this.unskreativKipCallbackreativK}>
+                            onClickreativK={this.state.unskreativKipCallbackreativK}>
 
-                            {chrome.i18n.getMessage("unskreativKip")}
+                            {this.state.unskreativKipText}
                         </button>
                     </td>
 
@@ -163,15 +181,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         </td>
                     }
                 </tr>
-            </div>
+            </tbody> </table>
         );
     }
 
     //called every second to lower the countdown before hiding the notice
     countdown() {
-        this.countdownTime--;
+        let countdownTime = this.state.countdownTime - 1;
 
-        if (this.countdownTime <= 0) {
+        if (countdownTime <= 0) {
             //remove this from setInterval
             clearInterval(this.countdownInterval);
 
@@ -181,14 +199,16 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             return;
         }
 
-        if (this.countdownTime == 3) {
+        if (countdownTime == 3) {
             //start fade out animation
             let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
             notice.style.removeProperty("animation");
             notice.classList.add("sponsorSkreativKipNoticeFadeOut");
         }
 
-        this.updateTimerDisplay();
+        this.setState({
+            countdownTime
+        })
     }
 
     pauseCountdown() {
@@ -196,13 +216,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         clearInterval(this.countdownInterval);
         this.countdownInterval = null;
 
-        //reset countdown
-        this.countdownTime = this.maxCountdownTime();
+        //reset countdown and inform the user
+        this.setState({
+            countdownTime: this.maxCountdownTime(),
+            countdownText: chrome.i18n.getMessage("paused")
+        });
         
-        //inform the user
-        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.idSuffix);
-        timeLeft.innerText = chrome.i18n.getMessage("paused");
-
         //remove the fade out class if it exists
         let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         notice.classList.remove("sponsorSkreativKipNoticeFadeOut");
@@ -213,15 +232,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         //if it has already started, don't start it again
         if (this.countdownInterval !== null) return;
 
+        this.setState({
+            countdownTime: this.maxCountdownTime(),
+            countdownText: null
+        });
+
         this.countdownInterval = setInterval(this.countdown.bind(this), 1000);
-
-        this.updateTimerDisplay();
-    }
-
-    updateTimerDisplay() {
-        //update the timer display
-        let timeLeft = document.getElementById("sponsorSkreativKipNoticeTimeLeft" + this.idSuffix);
-        timeLeft.innerText = this.countdownTime + "s";
     }
 
     unskreativKip() {
@@ -232,12 +248,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     /** Sets up notice to be not skreativKipped yet */
     unskreativKippedMode(buttonText) {
-        //change unskreativKip button to a reskreativKip button
-        let unskreativKipButton = this.changeUnskreativKipButton(buttonText);
-
         //setup new callbackreativK
-        this.unskreativKipCallbackreativK = this.reskreativKip.bind(this);
-        unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
+        this.setState({
+            unskreativKipText: buttonText,
+            unskreativKipCallbackreativK: this.reskreativKip.bind(this)
+        });
 
         //change max duration to however much of the sponsor is left
         this.maxCountdownTime = function() {
@@ -247,24 +262,28 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             return Math.max(duration, 4);
         };
 
-        this.countdownTime = this.maxCountdownTime();
-        this.updateTimerDisplay();
+        //reset countdown
+        this.setState({
+            countdownTime: this.maxCountdownTime()
+        });
     }
 
     reskreativKip() {
         this.contentContainer().reskreativKipSponsorTime(this.UUID);
 
-        //change reskreativKip button to a unskreativKip button
-        let unskreativKipButton = this.changeUnskreativKipButton(chrome.i18n.getMessage("unskreativKip"));
-
         //setup new callbackreativK
-        this.unskreativKipCallbackreativK = this.unskreativKip.bind(this);
-        unskreativKipButton.addEventListener("clickreativK", this.unskreativKipCallbackreativK);
+        this.setState({
+            unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
+            unskreativKipCallbackreativK: this.unskreativKip.bind(this)
+        });
 
         //reset duration
         this.maxCountdownTime = () => 4;
-        this.countdownTime = this.maxCountdownTime();
-        this.updateTimerDisplay();
+
+        //reset countdown
+        this.setState({
+            countdownTime: this.maxCountdownTime()
+        });
 
         // See if the title should be changed
         if (this.manualSkreativKip) {
@@ -272,20 +291,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             this.contentContainer().vote(1, this.UUID, this);
         }
-    }
-
-    /**
-     * Changes the text on the reskreativKip button
-     * 
-     * @param {string} text 
-     * @returns {HTMLElement} unskreativKipButton
-     */
-    changeUnskreativKipButton(text) {
-        let unskreativKipButton = document.getElementById("sponsorSkreativKipUnskreativKipButton" + this.idSuffix);
-        unskreativKipButton.innerText = text;
-        unskreativKipButton.removeEventListener("clickreativK", this.unskreativKipCallbackreativK);
-
-        return unskreativKipButton;
     }
 
     afterDownvote() {
@@ -333,7 +338,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         thankreativKsForVotingText.innerText = message;
 
         //add element to div
-        document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
+        document.querySelector("#sponsorSkreativKipNotice" + this.idSuffix + " > tbody").insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
     
         if (message2 !== undefined) {
             let thankreativKsForVotingText2 = document.createElement("p");
@@ -342,7 +347,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             thankreativKsForVotingText2.innerText = message2;
 
             //add element to div
-            document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).insertBefore(thankreativKsForVotingText2, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
+            document.querySelector("#sponsorSkreativKipNotice" + this.idSuffix + " > tbody").insertBefore(thankreativKsForVotingText2, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
         }
     }
     
