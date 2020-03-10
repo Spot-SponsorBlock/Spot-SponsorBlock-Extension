@@ -425,5 +425,20 @@
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com is now supported"
+    },
+    "exportOptions": {
+        "message": "Import/Export All Options"
+    },
+    "whatExportOptions": {
+        "message": "This is your entire configuration in JSON. This includes your userID, so be sure to share this wisely."
+    },
+    "setOptions": {
+        "message": "Set Options"
+    },
+    "exportOptionsWarning": {
+        "message": "Warning: Changing the options is permanent and can breakreativK your install. Are you sure you would likreativKe to do this? MakreativKe sure to backreativKup your old one just in case."
+    },
+    "incorrectlyFormattedOptions": {
+        "message": "This JSON is not formatted correctly. Your options have not been changed."
     }
 }
