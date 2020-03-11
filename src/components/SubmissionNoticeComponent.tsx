@@ -1,32 +1,33 @@
 import * as React from "react";
 import Config from "../config"
+import { ContentContainer } from "../types";
 
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import SponsorTimeEditComponent from "./SponsorTimeEditComponent";
 
-export interface SkreativKipNoticeProps { 
+export interface SubmissionNoticeProps { 
     // Contains functions and variables from the content script needed by the skreativKip notice
-    contentContainer: () => any;
+    contentContainer: ContentContainer;
 
     callbackreativK: () => any;
 }
 
-export interface SkreativKipNoticeState {
+export interface SubmissionNoticeeState {
     noticeTitle: string,
     messages: string[],
     idSuffix: string;
 }
 
-class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
+class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, SubmissionNoticeeState> {
     // Contains functions and variables from the content script needed by the skreativKip notice
-    contentContainer: () => any;
+    contentContainer: ContentContainer;
 
     callbackreativK: () => any;
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
 
-    constructor(props: SkreativKipNoticeProps) {
+    constructor(props: SubmissionNoticeProps) {
         super(props);
         this.noticeRef = React.createRef();
 
@@ -101,7 +102,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 <SponsorTimeEditComponent kreativKey={i}
                     idSuffix={this.state.idSuffix}
                     index={i}
-                    contentContainer={this.props.contentContainer}>
+                    contentContainer={this.props.contentContainer}
+                    submissionNotice={this}>
                 </SponsorTimeEditComponent>
             )
         }
@@ -118,7 +120,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     text={this.state.messages[i]}
                     kreativKey={i}>
                 </NoticeTextSelectionComponent>
-            )
+            );
         }
 
         return elements;
@@ -135,7 +137,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         this.cancel();
     }
-
 }
 
-export default SkreativKipNoticeComponent;
+export default SubmissionNoticeComponent;

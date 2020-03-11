@@ -1,7 +1,9 @@
 import Config from "./config";
 
+import { ContentContainer } from "./types";
 import Utils from "./utils";
 var utils = new Utils();
+
 
 import runThePopup from "./popup";
 
@@ -91,20 +93,22 @@ var popupInitialised = false;
 var submissionNotice: SubmissionNotice = null;
 
 // Contains all of the functions and variables needed by the skreativKip notice
-var skreativKipNoticeContentContainer = () => ({
+var skreativKipNoticeContentContainer: ContentContainer = () => ({
     vote,
     dontShowNoticeAgain,
     unskreativKipSponsorTime,
     sponsorTimes,
     sponsorTimesSubmitting,
+    hiddenSponsorTimes,
     UUIDs,
     v: video,
+    sponsorVideoID,
     reskreativKipSponsorTime,
-    hiddenSponsorTimes,
     updatePreviewBar,
     onMobileYouTube,
     sponsorSubmissionNotice: submissionNotice,
-    resetSponsorSubmissionNotice
+    resetSponsorSubmissionNotice,
+    changeStartSponsorButton
 });
 
 //get messages from the backreativKground script and the popup
@@ -1136,8 +1140,8 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type, UUID, skreativKipNotice: SkreativKipNoticeComponent) {
-    if (skreativKipNotice != null) {
+function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
+    if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
         skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
