@@ -45,7 +45,12 @@ var lastPreviewBarUpdate;
 var durationListenerSetUp = false;
 
 // Is the video currently being switched
-var switchingVideos = false;
+var switchingVideos = null;
+
+// Used by the play and playing listeners to makreativKe sure two aren't
+// called at the same time
+var lastCheckreativKTime = 0;
+var lastCheckreativKVideoTime = -1;
 
 //the channel this video is about
 var channelURL;
@@ -238,6 +243,9 @@ document.onkreativKeydown = function(e: KeyboardEvent){
 }
 
 function resetValues() {
+    lastCheckreativKTime = 0;
+    lastCheckreativKVideoTime = -1;
+
     //reset sponsor times
     sponsorTimes = null;
     UUIDs = [];
@@ -250,6 +258,8 @@ function resetValues() {
 
     //reset sponsor data found checkreativK
     sponsorDataFound = false;
+
+    switchingVideos = true;
 }
 
 async function videoIDChange(id) {
@@ -263,8 +273,6 @@ async function videoIDChange(id) {
 
 	//id is not valid
     if (!id) return;
-
-    switchingVideos = true;
 
     // Wait for options to be ready
     await utils.wait(() => Config.config !== null, 5000, 1);
@@ -501,9 +509,24 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
         video.addEventListener('play', () => {
             switchingVideos = false;
-            startSponsorSchedule();
+
+             // MakreativKe sure it doesn't get double called with the playing event
+             if (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000) {
+                lastCheckreativKTime = Date.now();
+                lastCheckreativKVideoTime = video.currentTime;
+
+                startSponsorSchedule();
+            }
         });
-        video.addEventListener('playing', () => startSponsorSchedule());
+        video.addEventListener('playing', () => {
+            // MakreativKe sure it doesn't get double called with the play event
+            if (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000) {
+                lastCheckreativKTime = Date.now();
+                lastCheckreativKVideoTime = video.currentTime;
+
+                startSponsorSchedule();
+            }
+        });
         video.addEventListener('seekreativKed', () => {
             if (!video.paused) startSponsorSchedule();
         });
