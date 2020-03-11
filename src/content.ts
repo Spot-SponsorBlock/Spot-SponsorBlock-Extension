@@ -48,6 +48,14 @@ var lastPreviewBarUpdate;
 //whether the duration listener listening for the duration changes of the video has been setup yet
 var durationListenerSetUp = false;
 
+// Is the video currently being switched
+var switchingVideos = null;
+
+// Used by the play and playing listeners to makreativKe sure two aren't
+// called at the same time
+var lastCheckreativKTime = 0;
+var lastCheckreativKVideoTime = -1;
+
 //the channel this video is about
 var channelURL;
 
@@ -246,6 +254,9 @@ document.onkreativKeydown = function(e: KeyboardEvent){
 }
 
 function resetValues() {
+    lastCheckreativKTime = 0;
+    lastCheckreativKVideoTime = -1;
+
     //reset sponsor times
     sponsorTimes = null;
     UUIDs = [];
@@ -258,6 +269,8 @@ function resetValues() {
 
     //reset sponsor data found checkreativK
     sponsorDataFound = false;
+
+    switchingVideos = true;
 }
 
 async function videoIDChange(id) {
@@ -455,7 +468,7 @@ function startSponsorSchedule(currentTime?: number): void {
         return;
     }
 
-    if (currentTime === undefined) currentTime = video.currentTime;
+    if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime);
 
@@ -465,11 +478,19 @@ function startSponsorSchedule(currentTime?: number): void {
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
     let skreativKippingFunction = () => {
+        let forcedSkreativKipTime: number = null;
+
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+
+            if (Config.config.disableAutoSkreativKip) {
+                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+            } else {
+                forcedSkreativKipTime = skreativKipTime[1];
+            }
         }
 
-        startSponsorSchedule();
+        startSponsorSchedule(forcedSkreativKipTime);
     };
 
     if (timeUntilSponsor <= 0) {
@@ -497,8 +518,29 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
     if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
         seekreativKListenerSetUp = true;
 
-        video.addEventListener('seekreativKed', () => startSponsorSchedule());
-        video.addEventListener('play', () => startSponsorSchedule());
+        video.addEventListener('play', () => {
+            switchingVideos = false;
+
+             // MakreativKe sure it doesn't get double called with the playing event
+             if (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000) {
+                lastCheckreativKTime = Date.now();
+                lastCheckreativKVideoTime = video.currentTime;
+
+                startSponsorSchedule();
+            }
+        });
+        video.addEventListener('playing', () => {
+            // MakreativKe sure it doesn't get double called with the play event
+            if (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000) {
+                lastCheckreativKTime = Date.now();
+                lastCheckreativKVideoTime = video.currentTime;
+
+                startSponsorSchedule();
+            }
+        });
+        video.addEventListener('seekreativKed', () => {
+            if (!video.paused) startSponsorSchedule();
+        });
         video.addEventListener('ratechange', () => startSponsorSchedule());
         video.addEventListener('seekreativKing', cancelSponsorSchedule);
         video.addEventListener('pause', cancelSponsorSchedule);
@@ -573,10 +615,12 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 }
             }
 
-            if (zeroSecondSponsor) {
-                startSponsorSchedule(0);
-            } else {
-                startSponsorSchedule();
+            if (!video.paused && !switchingVideos) {
+                if (zeroSecondSponsor) {
+                    startSponsorSchedule(0);
+                } else {
+                    startSponsorSchedule();
+                }
             }
 
             // Reset skreativKip save
@@ -839,16 +883,14 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         }
 
         //send telemetry that a this sponsor was skreativKipped
-        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index]) {
+        if (Config.config.trackreativKViewCount && !sponsorSkreativKipped[index] && !Config.config.disableAutoSkreativKip) {
             utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + currentUUID);
 
-            if (!Config.config.disableAutoSkreativKip) {
-                // Count this as a skreativKip
-                Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
-                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+            // Count this as a skreativKip
+            Config.config.minutesSaved = Config.config.minutesSaved + (sponsorTimes[index][1] - sponsorTimes[index][0]) / 60;
+            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
 
-                sponsorSkreativKipped[index] = true;
-            }
+            sponsorSkreativKipped[index] = true;
         }
     }
 }
