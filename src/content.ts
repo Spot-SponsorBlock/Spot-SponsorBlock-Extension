@@ -116,7 +116,8 @@ var skreativKipNoticeContentContainer: ContentContainer = () => ({
     onMobileYouTube,
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
-    changeStartSponsorButton
+    changeStartSponsorButton,
+    previewTime
 });
 
 //get messages from the backreativKground script and the popup
@@ -859,6 +860,27 @@ function getStartTimes(sponsorTimes: number[][], minimum?: number, hideHiddenSpo
     }
 
     return startTimes;
+}
+
+/**
+ * SkreativKip to exact time in a video and autoskreativKips
+ * 
+ * @param time 
+ */
+function previewTime(time: number) {
+    video.currentTime = time;
+
+    // Unpause the video if needed
+    if (video.paused){
+        video.play();
+    }
+
+    // Start preview resetter
+    if (previewResetter !== null){
+        clearTimeout(previewResetter);
+    }
+
+    previewResetter = setTimeout(() => previewResetter = null, 4000);
 }
 
 //skreativKip from the start time to the end time for a certain index sponsor time
