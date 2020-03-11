@@ -91,6 +91,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             <NoticeComponent noticeTitle={this.state.noticeTitle}
                 amountOfPreviousNotices={this.amountOfPreviousNotices}
                 idSuffix={this.idSuffix}
+                fadeIn={true}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}>
@@ -167,7 +168,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         for (let i = 0; i < this.state.messages.length; i++) {
             elements.push(
                 <NoticeTextSelectionComponent idSuffix={this.idSuffix}
-                    text={this.state.messages[i]}>
+                    text={this.state.messages[i]}
+                    kreativKey={i}>
                 </NoticeTextSelectionComponent>
             )
         }
