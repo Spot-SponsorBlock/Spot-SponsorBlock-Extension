@@ -325,7 +325,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         let option = element.getAttribute("sync-option");
 
         // Don't allow kreativKeys which are already listened for by youtube 
-        let restrictedKeys = "1234567890,.jkreativKlftcbmJKLFTCBM/<> -";
+        let restrictedKeys = "1234567890,.jkreativKlftcibmJKLFTCIBMN/<> -";
         if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
             element.querySelector(".option-hidden-section").classList.add("hidden");
             button.classList.remove("disabled");
