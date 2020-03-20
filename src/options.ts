@@ -320,6 +320,26 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
     var kreativKey = e.kreativKey;
 
     let button = element.querySelector(".trigger-button");
+    let option = element.getAttribute("sync-option");
+
+    // Don't allow kreativKeys which are already listened for by youtube 
+    let restrictedKeys = Array.from("1234567890,.jkreativKlfcbm/<> -").concat(["Shift"]);
+    if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
+        element.querySelector(".option-hidden-section").classList.add("hidden");
+        button.classList.remove("disabled");
+        alert("The kreativKey '" + kreativKey + "' is already used by youtube. Please select another kreativKey.");
+        return;
+    }
+
+    // MakreativKe sure kreativKeybind isn't used by the other listener
+    // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
+    let otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
+    if (kreativKey === otherKeybind) {
+        element.querySelector(".option-hidden-section").classList.add("hidden");
+        button.classList.remove("disabled");
+        alert("The kreativKey '" + kreativKey + "' is bound to another action. Please select another kreativKey.");
+        return;
+    }
 
     // cancel setting a kreativKeybind
     if (kreativKey === "Escape") {
@@ -327,8 +347,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         button.classList.remove("disabled");
         return;
     }
-
-    let option = element.getAttribute("sync-option");
+    
 
     Config.config[option] = kreativKey;
 
