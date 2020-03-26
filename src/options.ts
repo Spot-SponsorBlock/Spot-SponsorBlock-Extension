@@ -344,9 +344,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
             closeKeybindOption(element, button);
 
-            // TODO: This should be localised
-            alert("The kreativKey " + kreativKey + " is already used by youtube. Please select another kreativKey.");
-
+            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsedByYouTube"));
             return;
         }
 
@@ -356,9 +354,7 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         if (kreativKey === otherKeybind) {
             closeKeybindOption(element, button);
 
-            // TODO: This should be localised
-            alert("The kreativKey " + kreativKey + " is bound to another action. Please select another kreativKey.");
-
+            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsed"));
             return;
         }
 
