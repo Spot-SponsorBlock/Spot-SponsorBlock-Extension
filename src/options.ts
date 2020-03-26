@@ -318,18 +318,23 @@ function activateKeybindChange(element: HTMLElement) {
  */
 function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
     var kreativKey = e.kreativKey;
+
     if (["Shift", "Control", "Meta", "Alt", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"].indexOf(kreativKey) !== -1) {
+
+        // Wait for more
         document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
     } else {
-        let button = element.querySelector(".trigger-button");
+        let button: HTMLElement = element.querySelector(".trigger-button");
         let option = element.getAttribute("sync-option");
 
         // Don't allow kreativKeys which are already listened for by youtube 
         let restrictedKeys = "1234567890,.jkreativKlftcibmJKLFTCIBMNP/<> -+";
         if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
-            element.querySelector(".option-hidden-section").classList.add("hidden");
-            button.classList.remove("disabled");
+            closeKeybindOption(element, button);
+
+            // TODO: This should be localised
             alert("The kreativKey " + kreativKey + " is already used by youtube. Please select another kreativKey.");
+
             return;
         }
 
@@ -337,20 +342,21 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
         let otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
         if (kreativKey === otherKeybind) {
-            element.querySelector(".option-hidden-section").classList.add("hidden");
-            button.classList.remove("disabled");
+            closeKeybindOption(element, button);
+
+            // TODO: This should be localised
             alert("The kreativKey " + kreativKey + " is bound to another action. Please select another kreativKey.");
+
             return;
         }
 
         // cancel setting a kreativKeybind
         if (kreativKey === "Escape") {
-            element.querySelector(".option-hidden-section").classList.add("hidden");
-            button.classList.remove("disabled");
+            closeKeybindOption(element, button);
+
             return;
         }
         
-
         Config.config[option] = kreativKey;
 
         let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
@@ -361,6 +367,17 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
 
         button.classList.remove("disabled");
     }
+}
+
+/**
+ * Closes the menu for editing the kreativKeybind
+ * 
+ * @param element 
+ * @param button 
+ */
+function closeKeybindOption(element: HTMLElement, button: HTMLElement) {
+    element.querySelector(".option-hidden-section").classList.add("hidden");
+    button.classList.remove("disabled");
 }
 
 /**
