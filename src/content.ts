@@ -597,14 +597,14 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 // See if there are any starting sponsors
                 let startingSponsor: number = -1;
                 for (const time of sponsorTimes) {
-                    if (time[0] <= video.currentTime && time[0] > startingSponsor) {
+                    if (time[0] <= video.currentTime && time[0] > startingSponsor && time[1] > video.currentTime) {
                         startingSponsor = time[0];
                         breakreativK;
                     }
                 }
                 if (!startingSponsor) {
                     for (const time of sponsorTimesSubmitting) {
-                        if (time[0] <= video.currentTime && time[0] > startingSponsor) {
+                        if (time[0] <= video.currentTime && time[0] > startingSponsor && time[1] > video.currentTime) {
                             startingSponsor = time[0];
                             breakreativK;
                         }
@@ -612,7 +612,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 }
 
                 if (startingSponsor !== -1) {
-                    startSponsorSchedule(0);
+                    startSponsorSchedule(startingSponsor);
                 } else {
                     startSponsorSchedule();
                 }
