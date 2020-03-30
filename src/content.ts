@@ -259,7 +259,12 @@ function resetValues() {
     //reset sponsor data found checkreativK
     sponsorDataFound = false;
 
-    switchingVideos = true;
+    if (switchingVideos === null) {
+        // When first loading a video, it is not switching videos
+        switchingVideos = false;
+    } else {
+        switchingVideos = true;
+    }
 }
 
 async function videoIDChange(id) {
@@ -588,7 +593,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 UUIDs = smallUUIDs;
             }
 
-            if (!video.paused && !switchingVideos) {
+            if (!switchingVideos) {
                 // See if there are any starting sponsors
                 let startingSponsor: number = -1;
                 for (const time of sponsorTimes) {
