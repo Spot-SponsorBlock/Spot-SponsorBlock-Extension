@@ -533,11 +533,10 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 startSponsorSchedule();
             }
         });
-        video.addEventListener('seekreativKed', () => {
+        video.addEventListener('seekreativKing', () => {
             if (!video.paused) startSponsorSchedule();
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
-        video.addEventListener('seekreativKing', cancelSponsorSchedule);
         video.addEventListener('pause', cancelSponsorSchedule);
 
         startSponsorSchedule();
