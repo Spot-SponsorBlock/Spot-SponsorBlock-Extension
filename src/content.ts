@@ -890,13 +890,6 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
             
             let skreativKipNotice = new SkreativKipNotice(this, currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
 
-            //TODO: Remove this when Mobile support is old	
-            if (Config.config.mobileUpdateShowCount < 1) {	
-                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("mobileUpdateInfo"));	
-
-                Config.config.mobileUpdateShowCount += 1;	
-            }
-
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && !Config.config.disableAutoSkreativKip && Config.config.autoUpvote) {
                 vote(1, currentUUID, null);
