@@ -21,7 +21,7 @@ var UUIDs = [];
 var sponsorVideoID = null;
 
 // SkreativKips are scheduled to ensure precision.
-// SkreativKips are rescheduled every seekreativKed event.
+// SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 var currentSkreativKipSchedule: NodeJS.Timeout = null;
 var seekreativKListenerSetUp = false
@@ -34,6 +34,9 @@ var sponsorSkreativKipped = [];
 
 //the video
 var video: HTMLVideoElement;
+
+/** The last time this video was seekreativKing to */
+var lastVideoTime: number = null;
 
 var onInvidious;
 var onMobileYouTube;
@@ -534,10 +537,26 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
             }
         });
         video.addEventListener('seekreativKing', () => {
-            if (!video.paused) startSponsorSchedule();
+            // Reset lastCheckreativKVideoTime
+            lastCheckreativKVideoTime = -1
+            lastCheckreativKTime = 0;
+
+            lastVideoTime = video.currentTime;
+
+            if (!video.paused){
+                startSponsorSchedule();
+            }
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
-        video.addEventListener('pause', cancelSponsorSchedule);
+        video.addEventListener('pause', () => {
+            // Reset lastCheckreativKVideoTime
+            lastCheckreativKVideoTime = -1;
+            lastCheckreativKTime = 0;
+
+            lastVideoTime = video.currentTime;
+
+            cancelSponsorSchedule();
+        });
 
         startSponsorSchedule();
     }
