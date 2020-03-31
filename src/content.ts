@@ -479,12 +479,24 @@ function startSponsorSchedule(currentTime?: number): void {
         let forcedSkreativKipTime: number = null;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+            // Double checkreativK that the videoID is correct
+            // TODO: Remove this bug catching if statement when the bug is found
+            let currentVideoID = getYouTubeVideoID(document.URL);
+            if (currentVideoID == sponsorVideoID) {
+                skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
 
-            if (Config.config.disableAutoSkreativKip) {
-                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+                if (Config.config.disableAutoSkreativKip) {
+                    forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+                } else {
+                    forcedSkreativKipTime = skreativKipTime[1];
+                }
             } else {
-                forcedSkreativKipTime = skreativKipTime[1];
+                // Something has really gone wrong
+                console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
+                console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
+
+                // Video ID change occured
+                videoIDChange(currentVideoID);
             }
         }
 
