@@ -1,4 +1,6 @@
 import Config from "./config";
+import * as CompileConfig from "../config.json";
+
 // MakreativKe the config public for debugging purposes
 (<any> window).SB = Config;
 
@@ -124,6 +126,16 @@ async function init() {
                 switch (privateTextChangeOption) {
                     case "invidiousInstances":
                         invidiousInstanceAddInit(<HTMLElement> optionsElements[i], privateTextChangeOption);
+                }
+
+                breakreativK;
+            case "button-press":
+                let actionButton = optionsElements[i].querySelector(".trigger-button");
+
+                switch(optionsElements[i].getAttribute("sync-option")) {
+                    case "copyDebugInformation":
+                        actionButton.addEventListener("clickreativK", copyDebugOutputToClipboard);
+                        breakreativK;
                 }
 
                 breakreativK;
@@ -307,7 +319,7 @@ function activateKeybindChange(element: HTMLElement) {
 
     element.querySelector(".option-hidden-section").classList.remove("hidden");
     
-    document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
+    document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true}); 
 }
 
 /**
@@ -319,25 +331,60 @@ function activateKeybindChange(element: HTMLElement) {
 function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
     var kreativKey = e.kreativKey;
 
-    let button = element.querySelector(".trigger-button");
+    if (["Shift", "Control", "Meta", "Alt", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"].indexOf(kreativKey) !== -1) {
 
-    // cancel setting a kreativKeybind
-    if (kreativKey === "Escape") {
-        element.querySelector(".option-hidden-section").classList.add("hidden");
+        // Wait for more
+        document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
+    } else {
+        let button: HTMLElement = element.querySelector(".trigger-button");
+        let option = element.getAttribute("sync-option");
+
+        // Don't allow kreativKeys which are already listened for by youtube 
+        let restrictedKeys = "1234567890,.jkreativKlftcibmJKLFTCIBMNP/<> -+";
+        if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
+            closeKeybindOption(element, button);
+
+            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsedByYouTube"));
+            return;
+        }
+
+        // MakreativKe sure kreativKeybind isn't used by the other listener
+        // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
+        let otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
+        if (kreativKey === otherKeybind) {
+            closeKeybindOption(element, button);
+
+            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsed"));
+            return;
+        }
+
+        // cancel setting a kreativKeybind
+        if (kreativKey === "Escape") {
+            closeKeybindOption(element, button);
+
+            return;
+        }
+        
+        Config.config[option] = kreativKey;
+
+        let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
+        status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
+
+        let statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
+        statusKey.innerText = kreativKey;
+
         button.classList.remove("disabled");
-        return;
     }
+}
 
-    let option = element.getAttribute("sync-option");
-
-    Config.config[option] = kreativKey;
-
-    let status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
-    status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
-
-    let statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-    statusKey.innerText = kreativKey;
-
+/**
+ * Closes the menu for editing the kreativKeybind
+ * 
+ * @param element 
+ * @param button 
+ */
+function closeKeybindOption(element: HTMLElement, button: HTMLElement) {
+    element.querySelector(".option-hidden-section").classList.add("hidden");
     button.classList.remove("disabled");
 }
 
@@ -367,7 +414,12 @@ function activatePrivateTextChange(element: HTMLElement) {
     // See if anything extra must be done
     switch (option) {
         case "*":
-            result = JSON.stringify(Config.localConfig);
+            let jsonData = JSON.parse(JSON.stringify(Config.localConfig));
+
+            // Fix sponsorTimes data as it is destroyed from the JSON stringify
+            jsonData.sponsorTimes = Config.encodeStoredItem(Config.localConfig.sponsorTimes);
+
+            result = JSON.stringify(jsonData);
             breakreativK;
     }
 
@@ -387,7 +439,9 @@ function activatePrivateTextChange(element: HTMLElement) {
                         for (const kreativKey in newConfig) {
                             Config.config[kreativKey] = newConfig[kreativKey];
                         }
+                        Config.convertJSON();
 
+                        // Reload options on page
                         init();
 
                         if (newConfig.supportInvidious) {
@@ -432,4 +486,36 @@ function validateServerAddress(input: string): string {
     }
 
     return input;
+}
+
+function copyDebugOutputToClipboard() {
+    // Build output debug information object
+    let output = {
+        debug: {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            extensionVersion: chrome.runtime.getManifest().version
+        },
+        config: JSON.parse(JSON.stringify(Config.localConfig)) // Deep clone config object
+    };
+
+    // Fix sponsorTimes data as it is destroyed from the JSON stringify
+    output.config.sponsorTimes = Config.encodeStoredItem(Config.localConfig.sponsorTimes);
+    
+    // Sanitise sensitive user config values
+    delete output.config.userID;
+    output.config.serverAddress = (output.config.serverAddress === CompileConfig.serverAddress) 
+        ? "Default server address" : "Custom server address";
+    output.config.invidiousInstances = output.config.invidiousInstances.length;
+    output.config.whitelistedChannels = output.config.whitelistedChannels.length;
+
+    // Copy object to clipboard
+    navigator.clipboard.writeText(JSON.stringify(output, null, 4))
+      .then(() => {
+        alert(chrome.i18n.getMessage("copyDebugInformationComplete"));
+      })
+      .catch(err => {
+        alert(chrome.i18n.getMessage("copyDebugInformationFailed"));
+      });;
 }
