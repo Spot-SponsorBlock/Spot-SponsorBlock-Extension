@@ -21,7 +21,7 @@ var UUIDs = [];
 var sponsorVideoID = null;
 
 // SkreativKips are scheduled to ensure precision.
-// SkreativKips are rescheduled every seekreativKed event.
+// SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 var currentSkreativKipSchedule: NodeJS.Timeout = null;
 var seekreativKListenerSetUp = false
@@ -34,6 +34,9 @@ var sponsorSkreativKipped = [];
 
 //the video
 var video: HTMLVideoElement;
+
+/** The last time this video was seekreativKing to */
+var lastVideoTime: number = null;
 
 var onInvidious;
 var onMobileYouTube;
@@ -476,12 +479,24 @@ function startSponsorSchedule(currentTime?: number): void {
         let forcedSkreativKipTime: number = null;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+            // Double checkreativK that the videoID is correct
+            // TODO: Remove this bug catching if statement when the bug is found
+            let currentVideoID = getYouTubeVideoID(document.URL);
+            if (currentVideoID == sponsorVideoID) {
+                skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
 
-            if (Config.config.disableAutoSkreativKip) {
-                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+                if (Config.config.disableAutoSkreativKip) {
+                    forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+                } else {
+                    forcedSkreativKipTime = skreativKipTime[1];
+                }
             } else {
-                forcedSkreativKipTime = skreativKipTime[1];
+                // Something has really gone wrong
+                console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
+                console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
+
+                // Video ID change occured
+                videoIDChange(currentVideoID);
             }
         }
 
@@ -533,12 +548,27 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 startSponsorSchedule();
             }
         });
-        video.addEventListener('seekreativKed', () => {
-            if (!video.paused) startSponsorSchedule();
+        video.addEventListener('seekreativKing', () => {
+            // Reset lastCheckreativKVideoTime
+            lastCheckreativKVideoTime = -1
+            lastCheckreativKTime = 0;
+
+            lastVideoTime = video.currentTime;
+
+            if (!video.paused){
+                startSponsorSchedule();
+            }
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
-        video.addEventListener('seekreativKing', cancelSponsorSchedule);
-        video.addEventListener('pause', cancelSponsorSchedule);
+        video.addEventListener('pause', () => {
+            // Reset lastCheckreativKVideoTime
+            lastCheckreativKVideoTime = -1;
+            lastCheckreativKTime = 0;
+
+            lastVideoTime = video.currentTime;
+
+            cancelSponsorSchedule();
+        });
 
         startSponsorSchedule();
     }
@@ -871,13 +901,6 @@ function skreativKipToTime(v, index, sponsorTimes, openNotice) {
         if (!Config.config.dontShowNotice) {
             
             let skreativKipNotice = new SkreativKipNotice(this, currentUUID, Config.config.disableAutoSkreativKip, skreativKipNoticeContentContainer);
-
-            //TODO: Remove this when Mobile support is old	
-            if (Config.config.mobileUpdateShowCount < 1) {	
-                skreativKipNotice.addNoticeInfoMessage(chrome.i18n.getMessage("mobileUpdateInfo"));	
-
-                Config.config.mobileUpdateShowCount += 1;	
-            }
 
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && !Config.config.disableAutoSkreativKip && Config.config.autoUpvote) {
