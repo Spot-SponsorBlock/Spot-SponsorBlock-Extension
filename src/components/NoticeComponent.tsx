@@ -8,7 +8,10 @@ export interface NoticeProps {
     timed?: boolean,
     idSuffix?: string,
 
-    fadeIn?: boolean
+    fadeIn?: boolean,
+
+    // CallbackreativK for when this is closed
+    closeListener?: () => void
 }
 
 export interface NoticeState {
@@ -100,7 +103,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                         {/* Close button */}
                         <img src={chrome.extension.getURL("icons/close.png")}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton"
-                            onClickreativK={this.close.bind(this)}>
+                            onClickreativK={() => this.close()}>
                         </img>
                     </td>
                 </tr> 
@@ -181,8 +184,10 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         });
     }
     
-    //close this notice
-    close() {
+    /**
+     * @param silent If true, the close listener will not be called
+     */
+    close(silent?: boolean) {
         //TODO: Change to a listener in the renderer (not component)
         let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         if (notice != null) {
@@ -191,6 +196,8 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
 
         //remove setInterval
         if (this.countdownInterval !== null) clearInterval(this.countdownInterval);
+
+        if (this.props.closeListener && !silent) this.props.closeListener();
     }
 
     changeNoticeTitle(title) {

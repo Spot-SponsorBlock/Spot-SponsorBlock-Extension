@@ -64,7 +64,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
 
                         <span id={"nowButton0" + this.idSuffix}
                             className="sponsorNowButton"
-                            onClickreativK={(() => this.setTimeToNow.bind(this)(0)).bind(this)}>
+                            onClickreativK={() => this.setTimeToNow(0)}>
                                 {chrome.i18n.getMessage("brackreativKetNow")}
                         </span>
 
@@ -122,7 +122,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
 
                         <span id={"nowButton1" + this.idSuffix}
                             className="sponsorNowButton"
-                            onClickreativK={(() => this.setTimeToNow.bind(this)(1)).bind(this)}>
+                            onClickreativK={() => this.setTimeToNow(1)}>
                                 {chrome.i18n.getMessage("brackreativKetNow")}
                         </span>
                 </div>
