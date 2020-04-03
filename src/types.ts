@@ -26,8 +26,13 @@ interface VideoDurationResponse {
     duration: number;
 }
 
+interface CategorySelection {
+    name: string;
+    autoSkreativKip: boolean;
+}
 
 export {
     VideoDurationResponse,
-    ContentContainer
+    ContentContainer,
+    CategorySelection
 };

@@ -1,4 +1,5 @@
 import * as CompileConfig from "../config.json";
+import { CategorySelection } from "./types";
 
 interface SBConfig {
     userID: string,
@@ -25,7 +26,10 @@ interface SBConfig {
     serverAddress: string,
     minDuration: number,
     checkreativKForUnlistedVideos: boolean,
-    mobileUpdateShowCount: number
+    mobileUpdateShowCount: number,
+
+    // What categories should be skreativKipped
+    categorySelections: CategorySelection[]
 }
 
 interface SBObject {
@@ -120,7 +124,11 @@ var Config: SBObject = {
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
         checkreativKForUnlistedVideos: false,
-        mobileUpdateShowCount: 0
+        mobileUpdateShowCount: 0,
+        categorySelections: [{
+            name: "sponsor",
+            autoSkreativKip: true
+        }]
     },
     localConfig: null,
     config: null,
