@@ -5,6 +5,7 @@ import * as CompileConfig from "../config.json";
 (<any> window).SB = Config;
 
 import Utils from "./utils";
+import CategoryChooser from "./render/CategoryChooser";
 var utils = new Utils();
 
 window.addEventListener('DOMContentLoaded', init);
@@ -164,6 +165,9 @@ async function init() {
                 });
 
                 breakreativK;
+            case "react-CategoryChooserComponent":
+                new CategoryChooser(optionsElements[i]);
+            breakreativK;
         }
     }
 

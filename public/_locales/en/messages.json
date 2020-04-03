@@ -498,5 +498,14 @@
     },
     "category_merchandise": {
         "message": "Merchandise and self-promotion"
+    },
+    "disable": {
+        "message": "Disable"
+    },
+    "manualSkreativKip": {
+        "message": "Manual SkreativKip"
+    },
+    "autoSkreativKip": {
+        "message": "Auto SkreativKip"
     }
 }
