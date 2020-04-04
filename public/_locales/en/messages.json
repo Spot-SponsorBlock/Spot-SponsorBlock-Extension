@@ -505,7 +505,7 @@
     "manualSkreativKip": {
         "message": "Manual SkreativKip"
     },
-    "autoSkreativKip": {
-        "message": "Auto SkreativKip"
+    "showOverlay": {
+        "message": "Show Overlay On Player"
     }
 }

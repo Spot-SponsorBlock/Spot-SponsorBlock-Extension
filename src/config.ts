@@ -1,5 +1,5 @@
 import * as CompileConfig from "../config.json";
-import { CategorySelection } from "./types";
+import { CategorySelection, CategorySkreativKipOption } from "./types";
 
 interface SBConfig {
     userID: string,
@@ -127,7 +127,7 @@ var Config: SBObject = {
         mobileUpdateShowCount: 0,
         categorySelections: [{
             name: "sponsor",
-            autoSkreativKip: true
+            option: CategorySkreativKipOption.AutoSkreativKip
         }]
     },
     localConfig: null,
