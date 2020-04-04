@@ -510,5 +510,8 @@
     },
     "manualSkreativKip": {
         "message": "Manual SkreativKip"
+    },
+    "showOverlay": {
+        "message": "Show Overlay On Player"
     }
 }

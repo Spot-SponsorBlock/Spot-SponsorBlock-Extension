@@ -26,13 +26,20 @@ interface VideoDurationResponse {
     duration: number;
 }
 
+enum CategorySkreativKipOption {
+    ShowOverlay,
+    ManualSkreativKip,
+    AutoSkreativKip
+}
+
 interface CategorySelection {
     name: string;
-    autoSkreativKip: boolean;
+    option: CategorySkreativKipOption
 }
 
 export {
     VideoDurationResponse,
     ContentContainer,
+    CategorySkreativKipOption,
     CategorySelection
 };

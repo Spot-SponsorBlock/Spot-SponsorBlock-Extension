@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import Config from "../config"
+import { CategorySkreativKipOption } from "../types";
 
 export interface CategorySkreativKipOptionsProps { 
     category: string;
@@ -27,7 +28,17 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         // Set the default opton properly
         for (const categorySelection of Config.config.categorySelections) {
             if (categorySelection.name === this.props.category) {
-                defaultOption = categorySelection.autoSkreativKip ? "autoSkreativKip" : "manualSkreativKip";
+                switch (categorySelection.option) {
+                    case CategorySkreativKipOption.ShowOverlay:
+                        defaultOption = "showOverlay";
+                        breakreativK;
+                    case CategorySkreativKipOption.ManualSkreativKip:
+                        defaultOption = "manualSkreativKip";
+                        breakreativK;
+                    case CategorySkreativKipOption.AutoSkreativKip:
+                        defaultOption = "autoSkreativKip";
+                        breakreativK;
+                }
             }
         }
 
@@ -54,22 +65,34 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
     }
 
     skreativKipOptionSelected(event: React.ChangeEvent<HTMLSelectElement>): void {
+        let option: CategorySkreativKipOption;
+
+        this.removeCurrentCategorySelection();
+
         switch (event.target.value) {
             case "disable": 
-                this.removeCurrentCategorySelection();
+                return;
+            case "showOverlay":
+                option = CategorySkreativKipOption.ShowOverlay;
 
                 breakreativK;
-            default:
-                this.removeCurrentCategorySelection();
+            case "manualSkreativKip":
+                option = CategorySkreativKipOption.ManualSkreativKip;
 
-                Config.config.categorySelections.push({
-                    name: this.props.category,
-                    autoSkreativKip: event.target.value === "autoSkreativKip"
-                });
+                breakreativK;
+            case "autoSkreativKip":
+                option = CategorySkreativKipOption.AutoSkreativKip;
 
-                // Forces the Proxy to send this to the chrome storage API
-                Config.config.categorySelections = Config.config.categorySelections;
+                breakreativK;
         }
+
+        Config.config.categorySelections.push({
+            name: this.props.category,
+            option: option
+        });
+
+        // Forces the Proxy to send this to the chrome storage API
+        Config.config.categorySelections = Config.config.categorySelections;
     }
 
     /** Removes this category from the config list of category selections */
@@ -89,8 +112,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
     getCategorySkreativKipOptions(): JSX.Element[] {
         let elements: JSX.Element[] = [];
-
-        let optionNames = ["disable", "manualSkreativKip", "autoSkreativKip"];
+""
+        let optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
 
         for (const optionName of optionNames) {
             elements.push(
