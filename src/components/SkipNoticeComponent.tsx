@@ -104,10 +104,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}>
-                
+                    
                 {(Config.config.audioNotificationOnSkreativKip) && <audio ref={(source) => { this.audio = source; }}>
-			        <source src={chrome.extension.getURL("icons/beep.ogg")} type="audio/ogg"></source>
-		        </audio>}
+                    <source src={chrome.extension.getURL("icons/beep.ogg")} type="audio/ogg"></source>
+                </audio>}
 
                 {/* Text Boxes */}
                 {this.getMessageBoxes()}
