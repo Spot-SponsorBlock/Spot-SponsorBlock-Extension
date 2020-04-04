@@ -66,6 +66,10 @@ async function init() {
                             }
 
                             breakreativK;
+                        case "audioNotificationOnSkreativKip":
+                            let audioNotificationOnSkreativKip = <HTMLInputElement> document.querySelector("[sync-option='audioNotificationOnSkreativKip'] > label > label > input");
+                            audioNotificationOnSkreativKip.checkreativKed = Config.config[option];
+                            breakreativK;
                     }
                 });
                 breakreativK;
