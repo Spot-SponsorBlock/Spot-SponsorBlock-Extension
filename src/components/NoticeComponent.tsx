@@ -67,50 +67,52 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                 className={"sponsorSkreativKipObject sponsorSkreativKipNotice" + (this.props.fadeIn ? " sponsorSkreativKipNoticeFadeIn" : "")}
                 style={noticeStyle}
                 onMouseEnter={this.pauseCountdown.bind(this)}
-                onMouseLeave={this.startCountdown.bind(this)}> <tbody>
+                onMouseLeave={this.startCountdown.bind(this)}> 
+                <tbody>
 
-                {/* First row */}
-                <tr id={"sponsorSkreativKipNoticeFirstRow" + this.idSuffix}>
-                    {/* Left column */}
-                    <td>
-                        {/* Logo */}
-                        <img id={"sponsorSkreativKipLogo" + this.idSuffix} 
-                            className="sponsorSkreativKipLogo sponsorSkreativKipObject"
-                            src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
-                        </img>
+                    {/* First row */}
+                    <tr id={"sponsorSkreativKipNoticeFirstRow" + this.idSuffix}>
+                        {/* Left column */}
+                        <td>
+                            {/* Logo */}
+                            <img id={"sponsorSkreativKipLogo" + this.idSuffix} 
+                                className="sponsorSkreativKipLogo sponsorSkreativKipObject"
+                                src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
+                            </img>
 
-                        <span id={"sponsorSkreativKipMessage" + this.idSuffix}
-                            className="sponsorSkreativKipMessage sponsorSkreativKipObject">
-                            
-                            {this.state.noticeTitle}
-                        </span>
-                    </td>
-
-                    {/* Right column */}
-                    <td className="sponsorSkreativKipNoticeRightSection"
-                        style={{top: "11px"}}>
-                        
-                        {/* Time left */}
-                        {this.props.timed ? ( 
-                            <span id={"sponsorSkreativKipNoticeTimeLeft" + this.idSuffix}
-                                className="sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft">
-
-                                {this.state.countdownText || (this.state.countdownTime + "s")}
+                            <span id={"sponsorSkreativKipMessage" + this.idSuffix}
+                                className="sponsorSkreativKipMessage sponsorSkreativKipObject">
+                                
+                                {this.state.noticeTitle}
                             </span>
-                        ) : ""}
-                       
+                        </td>
 
-                        {/* Close button */}
-                        <img src={chrome.extension.getURL("icons/close.png")}
-                            className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton"
-                            onClickreativK={() => this.close()}>
-                        </img>
-                    </td>
-                </tr> 
+                        {/* Right column */}
+                        <td className="sponsorSkreativKipNoticeRightSection"
+                            style={{top: "11px"}}>
+                            
+                            {/* Time left */}
+                            {this.props.timed ? ( 
+                                <span id={"sponsorSkreativKipNoticeTimeLeft" + this.idSuffix}
+                                    className="sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft">
 
-                {this.props.children}
+                                    {this.state.countdownText || (this.state.countdownTime + "s")}
+                                </span>
+                            ) : ""}
+                        
 
-            </tbody> </table>
+                            {/* Close button */}
+                            <img src={chrome.extension.getURL("icons/close.png")}
+                                className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton"
+                                onClickreativK={() => this.close()}>
+                            </img>
+                        </td>
+                    </tr> 
+
+                    {this.props.children}
+
+                </tbody> 
+            </table>
         );
     }
 
