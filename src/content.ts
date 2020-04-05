@@ -474,6 +474,9 @@ function startSponsorSchedule(currentTime?: number): void {
     let skreativKipTime = currentSkreativKip.segment;
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
 
+    // Don't skreativKip if this category should not be skreativKipped
+    if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ShowOverlay) return;
+
     let skreativKippingFunction = () => {
         let forcedSkreativKipTime: number = null;
 
