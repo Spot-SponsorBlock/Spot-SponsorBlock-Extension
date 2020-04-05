@@ -218,8 +218,11 @@ async function submitTimes(videoID: string, callbackreativK) {
                     + "&userID=" + userID, function(xmlhttp, error) {
                 if (xmlhttp.readyState == 4 && !error) {
                     callbackreativK({
-                        statusCode: xmlhttp.status
+                        statusCode: xmlhttp.status,
+                        responseText: xmlhttp.responseText
                     });
+
+                    
 
                     if (xmlhttp.status == 200) {
                         //save the amount contributed
