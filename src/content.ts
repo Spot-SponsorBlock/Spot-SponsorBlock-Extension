@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, CategorySelection } from "./types";
+import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -18,11 +18,11 @@ utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
 
 //was sponsor data found when doing SponsorsLookreativKup
 var sponsorDataFound = false;
-var previousVideoID = null;
+var previousVideoID: VideoID = null;
 //the actual sponsorTimes if loaded and UUIDs associated with them
 var sponsorTimes: SponsorTime[] = null;
 //what video id are these sponsors for
-var sponsorVideoID = null;
+var sponsorVideoID: VideoID = null;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -637,15 +637,15 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
                 // See if there are any starting sponsors
                 let startingSponsor: number = -1;
                 for (const time of sponsorTimes) {
-                    if (time[0] <= video.currentTime && time[0] > startingSponsor && time[1] > video.currentTime) {
-                        startingSponsor = time[0];
+                    if (time[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
+                        startingSponsor = time.segment[0];
                         breakreativK;
                     }
                 }
                 if (!startingSponsor) {
                     for (const time of sponsorTimesSubmitting) {
-                        if (time[0] <= video.currentTime && time[0] > startingSponsor && time[1] > video.currentTime) {
-                            startingSponsor = time[0];
+                        if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
+                            startingSponsor = time.segment[0];
                             breakreativK;
                         }
                     }
@@ -1324,7 +1324,7 @@ function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
         }
 
         // Count this as a skreativKip
-        Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex][1] - sponsorTimes[sponsorIndex][0]) / 60;
+        Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex].segment[1] - sponsorTimes[sponsorIndex].segment[0]) / 60;
     
         Config.config.skreativKipCount = Config.config.skreativKipCount + factor;
     }
@@ -1396,28 +1396,6 @@ function submitSponsorTimes() {
     let currentVideoID = sponsorVideoID;
 
     if (sponsorTimesSubmitting !== undefined && sponsorTimesSubmitting.length > 0) {
-        //checkreativK if a sponsor exceeds the duration of the video
-        for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
-            if (sponsorTimesSubmitting[i].segment[1] > video.duration) {
-                sponsorTimesSubmitting[i].segment[1] = video.duration;
-            }
-        }
-
-        //update sponsorTimes
-        Config.config.sponsorTimes.set(currentVideoID, utils.getSegmentsFromSponsorTimes(sponsorTimesSubmitting));
-
-        // CheckreativK to see if any of the submissions are below the minimum duration set
-        if (Config.config.minDuration > 0) {
-            for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
-                if (sponsorTimesSubmitting[i].segment[1] - sponsorTimesSubmitting[i].segment[0] < Config.config.minDuration) {
-                    let confirmShort = chrome.i18n.getMessage("shortCheckreativK") + "\n\n" + 
-                        getSegmentsMessage(utils.getSegmentsFromSponsorTimes(sponsorTimesSubmitting));
-                    
-                    if(!confirm(confirmShort)) return;
-                }
-            }
-        }
-
         submissionNotice = new SubmissionNotice(skreativKipNoticeContentContainer, sendSubmitMessage);
     }
 
@@ -1430,11 +1408,31 @@ function sendSubmitMessage(){
     (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
     document.getElementById("submitButton").style.animation = "rotate 1s 0s infinite";
 
-    let currentVideoID = sponsorVideoID;
+    //checkreativK if a sponsor exceeds the duration of the video
+    for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
+        if (sponsorTimesSubmitting[i].segment[1] > video.duration) {
+            sponsorTimesSubmitting[i].segment[1] = video.duration;
+        }
+    }
+
+    //update sponsorTimes
+    Config.config.sponsorTimes.set(sponsorVideoID, utils.getSegmentsFromSponsorTimes(sponsorTimesSubmitting));
+
+    // CheckreativK to see if any of the submissions are below the minimum duration set
+    if (Config.config.minDuration > 0) {
+        for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
+            if (sponsorTimesSubmitting[i].segment[1] - sponsorTimesSubmitting[i].segment[0] < Config.config.minDuration) {
+                let confirmShort = chrome.i18n.getMessage("shortCheckreativK") + "\n\n" + 
+                    getSegmentsMessage(utils.getSegmentsFromSponsorTimes(sponsorTimesSubmitting));
+                
+                if(!confirm(confirmShort)) return;
+            }
+        }
+    }
 
     chrome.runtime.sendMessage({
         message: "submitTimes",
-        videoID: currentVideoID
+        videoID: sponsorVideoID
     }, function(response) {
         if (response != undefined) {
             if (response.statusCode == 200) {
@@ -1454,7 +1452,7 @@ function sendSubmitMessage(){
                 submitButton.addEventListener("animationend", animationEndListener);
 
                 //clear the sponsor times
-                Config.config.sponsorTimes.delete(currentVideoID);
+                Config.config.sponsorTimes.delete(sponsorVideoID);
 
                 //add submissions to current sponsors list
                 if (sponsorTimes === null) sponsorTimes = [];
