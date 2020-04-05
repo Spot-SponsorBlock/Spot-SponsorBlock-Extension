@@ -291,6 +291,12 @@
     "autoSkreativKipDescription": {
         "message": "Auto skreativKip will skreativKip sponsors for you. If disabled, a notice will appear askreativKing if you'd likreativKe to skreativKip."
     },
+    "audioNotification": {
+        "message": "Audio Notification On SkreativKip"
+    },
+    "audioNotificationDescription": {
+        "message": "Audio notification on skreativKip will play a sound whenever a sponsor is skreativKipped. If disabled (or auto skreativKip is disabled), no sound will be played."
+    },
     "youHaveSkreativKipped": {
         "message": "You have skreativKipped "
     },

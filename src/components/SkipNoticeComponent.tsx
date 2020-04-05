@@ -32,6 +32,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     contentContainer: ContentContainer;
 
     amountOfPreviousNotices: number;
+    audio: HTMLAudioElement;
     
     idSuffix: any;
 
@@ -44,6 +45,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.UUID = props.UUID;
         this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
+        this.audio = null;
     
         let noticeTitle = chrome.i18n.getMessage("noticeTitle");
     
@@ -79,6 +81,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
+    componentDidMount() {
+        if (Config.config.audioNotificationOnSkreativKip && this.audio) {
+            this.audio.volume = this.contentContainer().v.volume * 0.1;
+            this.audio.play();
+        }
+    }
+
     render() {
         let noticeStyle: React.CSSProperties = {
             zIndex: 50 + this.amountOfPreviousNotices
@@ -96,6 +105,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}>
+                    
+                {(Config.config.audioNotificationOnSkreativKip) && <audio ref={(source) => { this.audio = source; }}>
+                    <source src={chrome.extension.getURL("icons/beep.ogg")} type="audio/ogg"></source>
+                </audio>}
 
                 {/* Text Boxes */}
                 {this.getMessageBoxes()}
