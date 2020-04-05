@@ -956,7 +956,6 @@ function previewTime(time: number) {
 
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: SponsorTime[], openNotice: boolean) {
-
     let autoSkreativKip: boolean = utils.getCategorySelection(sponsorTimes[index].category).option === CategorySkreativKipOption.AutoSkreativKip;
 
     if (autoSkreativKip || previewResetter !== null) {
@@ -970,7 +969,7 @@ function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: Spo
 
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
-        if (!Config.config.dontShowNotice) {
+        if (!Config.config.dontShowNotice || !autoSkreativKip) {
             let skreativKipNotice = new SkreativKipNotice(currentUUID, autoSkreativKip, skreativKipNoticeContentContainer);
 
             //auto-upvote this sponsor
@@ -995,14 +994,14 @@ function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: Spo
 function unskreativKipSponsorTime(UUID) {
     if (sponsorTimes != null) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-        video.currentTime = utils.getSponsorTimeFromUUID(sponsorTimes, UUID)[0] + 0.001;
+        video.currentTime = utils.getSponsorTimeFromUUID(sponsorTimes, UUID).segment[0] + 0.001;
     }
 }
 
 function reskreativKipSponsorTime(UUID) {
     if (sponsorTimes != null) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-        video.currentTime = utils.getSponsorTimeFromUUID(sponsorTimes, UUID)[1];
+        video.currentTime = utils.getSponsorTimeFromUUID(sponsorTimes, UUID).segment[1];
     }
 }
 

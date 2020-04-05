@@ -2,8 +2,12 @@ import * as React from "react";
 import Config from "../config"
 import { ContentContainer } from "../types";
 
+import Utils from "../utils";
+var utils = new Utils();
+
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
+
 
 export interface SkreativKipNoticeProps { 
     UUID: string;
@@ -79,6 +83,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
             unskreativKipCallbackreativK: this.unskreativKip.bind(this)
         }
+
+        if (!this.autoSkreativKip) {
+            Object.assign(this.state, this.getUnskreativKippedModeInfo(chrome.i18n.getMessage("skreativKip")));
+        }
     }
 
     componentDidMount() {
@@ -151,7 +159,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         </button>
                     </td>
 
-                    {/* Never show button if manualSkreativKip is disabled */}
+                    {/* Never show button if autoSkreativKip is enabled */}
                     {!this.autoSkreativKip ? "" : 
                         <td className="sponsorSkreativKipNoticeRightSection">
                             <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
@@ -198,29 +206,31 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     /** Sets up notice to be not skreativKipped yet */
-    unskreativKippedMode(buttonText) {
-        //setup new callbackreativK
-        this.setState({
-            unskreativKipText: buttonText,
-            unskreativKipCallbackreativK: this.reskreativKip.bind(this)
+    unskreativKippedMode(buttonText: string) {
+        //setup new callbackreativK and reset countdown
+        this.setState(this.getUnskreativKippedModeInfo(buttonText), () => {
+            this.noticeRef.current.resetCountdown();
         });
+    }
 
+    getUnskreativKippedModeInfo(buttonText: string) {
         let maxCountdownTime = function() {
-            let sponsorTime = this.contentContainer().sponsorTimes[this.contentContainer().UUIDs.indexOf(this.UUID)];
-            let duration = Math.round(sponsorTime[1] - this.contentContainer().v.currentTime);
+            let sponsorTime = utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
+            let duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
 
             return Math.max(duration, 4);
         }.bind(this);
 
-        //reset countdown
-        this.setState({
+        return {
+            unskreativKipText: buttonText,
+
+            unskreativKipCallbackreativK: this.reskreativKip.bind(this),
+
             //change max duration to however much of the sponsor is left
             maxCountdownTime: maxCountdownTime,
 
             countdownTime: maxCountdownTime()
-        }, () => {
-            this.noticeRef.current.resetCountdown();
-        });
+        }
     }
 
     reskreativKip() {
