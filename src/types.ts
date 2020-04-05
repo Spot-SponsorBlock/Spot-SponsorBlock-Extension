@@ -6,10 +6,9 @@ interface ContentContainer {
         vote: (type: any, UUID: any, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (UUID: any) => void,
-        sponsorTimes: number[][],
-        sponsorTimesSubmitting: number[][],
-        hiddenSponsorTimes: any[],
-        UUIDs: any[],
+        sponsorTimes: SponsorTime[],
+        sponsorTimesSubmitting: SponsorTime[],
+        hiddenSponsorTimes: number[],
         v: HTMLVideoElement,
         sponsorVideoID,
         reskreativKipSponsorTime: (UUID: any) => void,
@@ -37,9 +36,17 @@ interface CategorySelection {
     option: CategorySkreativKipOption
 }
 
+interface SponsorTime {
+    segment: number[];
+    UUID: string;
+
+    category: string;
+}
+
 export {
     VideoDurationResponse,
     ContentContainer,
+    CategorySelection,
     CategorySkreativKipOption,
-    CategorySelection
+    SponsorTime
 };

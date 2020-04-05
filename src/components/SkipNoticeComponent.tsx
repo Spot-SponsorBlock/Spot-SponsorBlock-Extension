@@ -7,7 +7,7 @@ import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
 export interface SkreativKipNoticeProps { 
     UUID: string;
-    manualSkreativKip: boolean;
+    autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 }
@@ -27,7 +27,7 @@ export interface SkreativKipNoticeState {
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
     UUID: string;
-    manualSkreativKip: boolean;
+    autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
@@ -42,12 +42,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.noticeRef = React.createRef();
 
         this.UUID = props.UUID;
-        this.manualSkreativKip = props.manualSkreativKip;
+        this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
     
         let noticeTitle = chrome.i18n.getMessage("noticeTitle");
     
-        if (this.manualSkreativKip) {
+        if (!this.autoSkreativKip) {
             noticeTitle = chrome.i18n.getMessage("noticeTitleNotSkreativKipped");
         }
     
@@ -139,7 +139,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     </td>
 
                     {/* Never show button if manualSkreativKip is disabled */}
-                    {this.manualSkreativKip ? "" : 
+                    {!this.autoSkreativKip ? "" : 
                         <td className="sponsorSkreativKipNoticeRightSection">
                             <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
                                 onClickreativK={this.contentContainer().dontShowNoticeAgain}>
@@ -223,7 +223,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
 
         // See if the title should be changed
-        if (this.manualSkreativKip) {
+        if (!this.autoSkreativKip) {
             this.setState({
                 noticeTitle: chrome.i18n.getMessage("noticeTitle")
             });
@@ -239,7 +239,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         //remove this sponsor from the sponsors lookreativKed up
         //find which one it is
         for (let i = 0; i < this.contentContainer().sponsorTimes.length; i++) {
-            if (this.contentContainer().UUIDs[i] == this.UUID) {
+            if (this.contentContainer().sponsorTimes[i].UUID == this.UUID) {
                 //this one is the one to hide
                 
                 //add this as a hidden sponsorTime

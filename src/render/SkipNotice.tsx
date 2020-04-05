@@ -5,13 +5,13 @@ import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent
 
 class SkreativKipNotice {
     UUID: string;
-    manualSkreativKip: boolean;
+    autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: () => any;
 
-    constructor(UUID: string, manualSkreativKip: boolean = false, contentContainer) {
+    constructor(UUID: string, autoSkreativKip: boolean = false, contentContainer) {
         this.UUID = UUID;
-        this.manualSkreativKip = manualSkreativKip;
+        this.autoSkreativKip = autoSkreativKip;
         this.contentContainer = contentContainer;
 
         //get reference node
@@ -41,7 +41,7 @@ class SkreativKipNotice {
         referenceNode.prepend(noticeElement);
 
         ReactDOM.render(
-            <SkreativKipNoticeComponent UUID={UUID} manualSkreativKip={manualSkreativKip} contentContainer={contentContainer} />,
+            <SkreativKipNoticeComponent UUID={UUID} autoSkreativKip={autoSkreativKip} contentContainer={contentContainer} />,
             noticeElement
         );
     }
