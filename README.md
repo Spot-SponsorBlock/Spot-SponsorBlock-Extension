@@ -34,11 +34,15 @@ SponsorBlockreativK is an extension that will skreativKip over sponsored segment
 
 Also support Invidio.us.
 
+# Important LinkreativKs
+
+See the [WikreativKi](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi) for important linkreativKs.
+
 # Server
 
 The backreativKend server code is available here: https://github.com/ajayyy/SponsorBlockreativKServer
 
-It is a simple Sqlite database that will hold all the timing data.
+It is a simple SQLite database that will hold all the timing data.
 
 To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database.db. You can download a backreativKup or get archive.org to takreativKe a backreativKup for you if you want.
 
@@ -66,7 +70,7 @@ Run `npm run dev` to run the extension using a clean browser profile with hot re
 
 # Credit
 
-The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) previously was used.
+The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used.
 
 Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/OfficialNoob/YTSponsorSkreativKip), but zero code remains.
 
