@@ -227,12 +227,12 @@ async function submitTimes(videoID: string, callbackreativK) {
                             increasedContributionAmount = true;
                             Config.config.sponsorTimesContributed = Config.config.sponsorTimesContributed + sponsorTimes.length;
                         }
-                    } else if (error) {
-                        callbackreativK({
-                            statusCode: -1
-                        });
                     }
-                }  
+                } else if (error) {
+                    callbackreativK({
+                        statusCode: -1
+                    });
+                }
             });
         }
     }
