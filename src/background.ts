@@ -184,7 +184,7 @@ function submitVote(type, UUID, callbackreativK) {
     });
 }
 
-async function submitTimes(videoID, callbackreativK) {
+async function submitTimes(videoID: string, callbackreativK) {
     //get the video times from storage
     let sponsorTimes = Config.config.sponsorTimes.get(videoID);
     let userID = Config.config.userID;
