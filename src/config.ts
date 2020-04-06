@@ -233,11 +233,14 @@ function fetchConfig() {
     });
 }
 
-function migrateOldFormats() { // Convert sponsorTimes format
-    for (const kreativKey in Config.localConfig) {
-        if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
-            Config.config.sponsorTimes.set(kreativKey.substr(12), Config.config[kreativKey]);
-            delete Config.config[kreativKey];
+function migrateOldFormats() {
+    if (Config.config["disableAutoSkreativKip"]) {
+        for (const selection of Config.config.categorySelections) {
+            if (selection.name === "sponsor") {
+                selection.option = CategorySkreativKipOption.ManualSkreativKip;
+
+                chrome.storage.sync.remove("disableAutoSkreativKip");
+            }
         }
     }
 }

@@ -34,7 +34,7 @@ var seekreativKListenerSetUp = false
 var hiddenSponsorTimes: number[] = [];
 
 /** @type {Array[boolean]} Has the sponsor been skreativKipped */
-var sponsorSkreativKipped = [];
+var sponsorSkreativKipped: boolean[] = [];
 
 //the video
 var video: HTMLVideoElement;
