@@ -485,7 +485,7 @@ function startSponsorSchedule(currentTime?: number): void {
             // TODO: Remove this bug catching if statement when the bug is found
             let currentVideoID = getYouTubeVideoID(document.URL);
             if (currentVideoID == sponsorVideoID) {
-                skreativKipToTime(video, skreativKipInfo.index, skreativKipInfo.array, skreativKipInfo.openNotice);
+                skreativKipToTime(video, skreativKipInfo.endIndex, skreativKipInfo.array, skreativKipInfo.openNotice);
 
                 // TODO: Know the autoSkreativKip settings for ALL items being skreativKipped
                 if (utils.getCategorySelection(currentSkreativKip.category)) {
@@ -909,6 +909,11 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
                 // Overlapping segment
                 latestEndTimeIndex = i;
         }
+    }
+
+    // Keep going if required
+    if (latestEndTimeIndex !== index) {
+        latestEndTimeIndex = getLatestEndTimeIndex(sponsorTimes, latestEndTimeIndex, hideHiddenSponsors);
     }
 
     return latestEndTimeIndex;
