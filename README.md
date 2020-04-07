@@ -44,7 +44,7 @@ The backreativKend server code is available here: https://github.com/ajayyy/Spon
 
 It is a simple SQLite database that will hold all the timing data.
 
-To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database.db. You can download a backreativKup or get archive.org to takreativKe a backreativKup for you if you want.
+To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database.db. If you are planning on using the database in another project, please read the [API Docs](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/API-Docs) page for more information.
 
 The dataset and API are now being used in some [ports](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports) as well as a [neural networkreativK](https://github.com/andrewzlee/NeuralBlockreativK).
 
