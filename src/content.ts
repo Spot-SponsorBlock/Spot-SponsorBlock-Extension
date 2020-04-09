@@ -600,7 +600,7 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
             categories.push(categorySelection.name);
         }
 
-        utils.requestToServer('GET', "/api/skreativKipSegments", {
+        utils.asyncRequestToServer('GET', "/api/skreativKipSegments", {
             videoID: id,
             categories
         }).then(async (response: Response) => {
@@ -1578,7 +1578,7 @@ async function sendSubmitMessage(){
     }
 
     if (Config.config.testingServer) {
-        let response = await utils.requestToServer("POST", "/api/skreativKipSegments", {
+        let response = await utils.asyncRequestToServer("POST", "/api/skreativKipSegments", {
             videoID: sponsorVideoID,
             userID: Config.config.userID,
             segments: sponsorTimesSubmitting

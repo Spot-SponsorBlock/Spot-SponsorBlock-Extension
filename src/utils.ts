@@ -276,7 +276,7 @@ class Utils {
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
      */    
-    async requestToServer(type: string, address: string, data = {}) {
+    async asyncRequestToServer(type: string, address: string, data = {}) {
         let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
 
         // If GET, convert JSON to parameters
