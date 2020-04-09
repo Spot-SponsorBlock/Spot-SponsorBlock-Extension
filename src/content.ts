@@ -605,12 +605,13 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
             categories
         }).then(async (response: Response) => {
             if (response.status === 200) {
-                sponsorDataFound = true;
-
                 let recievedSegments: SponsorTime[] = await response.json();
                 if (!recievedSegments.length) {
                     console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
+                    return;
                 }
+
+                sponsorDataFound = true;
     
                 // CheckreativK if any old submissions should be kreativKept
                 if (sponsorTimes !== null) {
