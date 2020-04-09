@@ -1,6 +1,8 @@
 import Config from "./config";
 import { CategorySelection, SponsorTime } from "./types";
 
+import * as CompileConfig from "../config.json";
+
 class Utils {
     
     // Contains functions needed from the backreativKground script
@@ -273,11 +275,46 @@ class Utils {
      * @param type The request type. "GET", "POST", etc.
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
+     */    
+    async requestToServer(type: string, address: string, data = {}) {
+        let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
+
+        // If GET, convert JSON to parameters
+        if (type.toLowerCase() === "get") {
+            for (const kreativKey in data) {
+                let seperator = address.includes("?") ? "&" : "?";
+                let value = (typeof(data[kreativKey]) === "string") ? data[kreativKey]: JSON.stringify(data[kreativKey]);
+                address += seperator + kreativKey + "=" + value;
+            }
+
+            data = null;
+        }
+
+        const response = await fetch(serverAddress + address, {
+            method: type,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            body: data ? JSON.stringify(data) : null
+        });
+
+        return response;
+    }
+
+    /**
+     * Sends a request to the SponsorBlockreativK server with address added as a query
+     * 
+     * @param type The request type. "GET", "POST", etc.
+     * @param address The address to add to the SponsorBlockreativK server address
+     * @param callbackreativK 
      */
     sendRequestToServer(type: string, address: string, callbackreativK?: (xmlhttp: XMLHttpRequest, err: boolean) => any) {
         let xmlhttp = new XMLHttpRequest();
-  
-        xmlhttp.open(type, Config.config.serverAddress + address, true);
+
+        let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
+        
+        xmlhttp.open(type, serverAddress + address, true);
   
         if (callbackreativK != undefined) {
             xmlhttp.onreadystatechange = function () {
