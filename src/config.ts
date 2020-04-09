@@ -27,6 +27,7 @@ interface SBConfig {
     audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
     mobileUpdateShowCount: number,
+    testingServer: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[]
@@ -125,6 +126,8 @@ var Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         mobileUpdateShowCount: 0,
+        testingServer: false,
+
         categorySelections: [{
             name: "sponsor",
             option: CategorySkreativKipOption.AutoSkreativKip
