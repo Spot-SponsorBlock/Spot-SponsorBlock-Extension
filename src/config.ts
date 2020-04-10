@@ -1,4 +1,5 @@
 import * as CompileConfig from "../config.json";
+import { CategorySelection, CategorySkreativKipOption } from "./types";
 
 interface SBConfig {
     userID: string,
@@ -10,7 +11,6 @@ interface SBConfig {
     skreativKipCount: number,
     sponsorTimesContributed: number,
     disableSkreativKipping: boolean,
-    disableAutoSkreativKip: boolean,
     trackreativKViewCount: boolean,
     dontShowNotice: boolean,
     hideVideoPlayerControls: boolean,
@@ -24,8 +24,13 @@ interface SBConfig {
     supportInvidious: boolean,
     serverAddress: string,
     minDuration: number,
+    audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
-    mobileUpdateShowCount: number
+    mobileUpdateShowCount: number,
+    testingServer: boolean,
+
+    // What categories should be skreativKipped
+    categorySelections: CategorySelection[]
 }
 
 interface SBObject {
@@ -105,7 +110,6 @@ var Config: SBObject = {
         skreativKipCount: 0,
         sponsorTimesContributed: 0,
         disableSkreativKipping: false,
-        disableAutoSkreativKip: false,
         trackreativKViewCount: true,
         dontShowNotice: false,
         hideVideoPlayerControls: false,
@@ -119,8 +123,15 @@ var Config: SBObject = {
         supportInvidious: false,
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
+        audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
-        mobileUpdateShowCount: 0
+        mobileUpdateShowCount: 0,
+        testingServer: false,
+
+        categorySelections: [{
+            name: "sponsor",
+            option: CategorySkreativKipOption.AutoSkreativKip
+        }]
     },
     localConfig: null,
     config: null,
@@ -225,11 +236,14 @@ function fetchConfig() {
     });
 }
 
-function migrateOldFormats() { // Convert sponsorTimes format
-    for (const kreativKey in Config.localConfig) {
-        if (kreativKey.startsWith("sponsorTimes") && kreativKey !== "sponsorTimes" && kreativKey !== "sponsorTimesContributed") {
-            Config.config.sponsorTimes.set(kreativKey.substr(12), Config.config[kreativKey]);
-            delete Config.config[kreativKey];
+function migrateOldFormats() {
+    if (Config.config["disableAutoSkreativKip"]) {
+        for (const selection of Config.config.categorySelections) {
+            if (selection.name === "sponsor") {
+                selection.option = CategorySkreativKipOption.ManualSkreativKip;
+
+                chrome.storage.sync.remove("disableAutoSkreativKip");
+            }
         }
     }
 }

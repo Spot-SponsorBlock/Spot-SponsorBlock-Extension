@@ -5,6 +5,7 @@ import * as CompileConfig from "../config.json";
 (<any> window).SB = Config;
 
 import Utils from "./utils";
+import CategoryChooser from "./render/CategoryChooser";
 var utils = new Utils();
 
 window.addEventListener('DOMContentLoaded', init);
@@ -31,6 +32,8 @@ async function init() {
                 let checkreativKbox = optionsElements[i].querySelector("input");
                 let reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
 
+                let confirmMessage = optionsElements[i].getAttribute("confirm-message");
+
                 if (optionResult != undefined) {
                     checkreativKbox.checkreativKed = optionResult;
 
@@ -48,6 +51,12 @@ async function init() {
 
                 // Add clickreativK listener
                 checkreativKbox.addEventListener("clickreativK", () => {
+                    // Confirm if required
+                    if (checkreativKbox.checkreativKed && confirmMessage && !confirm(chrome.i18n.getMessage(confirmMessage))){
+                        checkreativKbox.checkreativKed = false;
+                        return;
+                    }
+
                     Config.config[option] = reverse ? !checkreativKbox.checkreativKed : checkreativKbox.checkreativKed;
 
                     // See if anything extra must be run
@@ -164,6 +173,9 @@ async function init() {
                 });
 
                 breakreativK;
+            case "react-CategoryChooserComponent":
+                new CategoryChooser(optionsElements[i]);
+            breakreativK;
         }
     }
 
