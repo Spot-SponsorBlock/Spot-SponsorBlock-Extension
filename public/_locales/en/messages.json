@@ -528,5 +528,8 @@
     },
     "brackreativKetNow": {
         "message": "(Now)"
+    },
+    "moreCategories": {
+        "message": "More Categories"
     }
 }
