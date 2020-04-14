@@ -57,8 +57,9 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                 {this.getMessageBoxes()}
 
                 {/* Sponsor Time List */}
-                <tr id={"sponsorSkreativKipNoticeMiddleRow" + this.state.idSuffix}>
-                    <td>
+                <tr id={"sponsorSkreativKipNoticeMiddleRow" + this.state.idSuffix}
+                    className="sponsorTimeMessagesRow">
+                    <td style={{width: "100%"}}>
                         {this.getSponsorTimeMessages()}
                     </td>
                 </tr>
