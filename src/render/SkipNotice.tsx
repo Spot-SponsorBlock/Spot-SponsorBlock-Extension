@@ -52,6 +52,8 @@ class SkreativKipNotice {
     }
 
     close() {
+        ReactDOM.unmountComponentAtNode(this.noticeElement);
+
         this.noticeElement.remove();
     }
 }
