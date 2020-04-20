@@ -281,7 +281,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         let sponsorTimes = this.props.contentContainer().sponsorTimesSubmitting;
         let index = this.props.index;
 
-        let skreativKipTime = sponsorTimes[index][0];
+        let skreativKipTime = sponsorTimes[index].segment[0];
 
         if (this.state.editing) {
             // Save edits before previewing
