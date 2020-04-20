@@ -515,7 +515,7 @@
         "message": "Manual SkreativKip"
     },
     "showOverlay": {
-        "message": "Show Overlay On Player"
+        "message": "Show In SeekreativK Bar"
     },
     "enableTestingServer": {
         "message": "Enable Beta Testing Server"
@@ -528,5 +528,8 @@
     },
     "brackreativKetNow": {
         "message": "(Now)"
+    },
+    "moreCategories": {
+        "message": "More Categories"
     }
 }

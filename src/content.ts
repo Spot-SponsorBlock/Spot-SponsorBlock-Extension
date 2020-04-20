@@ -593,239 +593,122 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
     //checkreativK database for sponsor times
     //made true once a setTimeout has been created to try again after a server error
     let recheckreativKStarted = false;
-    if (Config.config.testingServer) {
-        // Create categories list
-        let categories: string[] = [];
-        for (const categorySelection of Config.config.categorySelections) {
-            categories.push(categorySelection.name);
-        }
-
-        utils.asyncRequestToServer('GET', "/api/skreativKipSegments", {
-            videoID: id,
-            categories
-        }).then(async (response: Response) => {
-            if (response.status === 200) {
-                let recievedSegments: SponsorTime[] = await response.json();
-                if (!recievedSegments.length) {
-                    console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
-                    return;
-                }
-
-                sponsorDataFound = true;
-    
-                // CheckreativK if any old submissions should be kreativKept
-                if (sponsorTimes !== null) {
-                    for (let i = 0; i < sponsorTimes.length; i++) {
-                        if (sponsorTimes[i].UUID === null)  {
-                            // This is a user submission, kreativKeep it
-                            recievedSegments.push(sponsorTimes[i]);
-                        }
-                    }
-                }
-
-                sponsorTimes = recievedSegments;
-    
-                // Remove all submissions smaller than the minimum duration
-                if (Config.config.minDuration !== 0) {
-                    let smallSegments: SponsorTime[] = [];
-    
-                    for (let i = 0; i < sponsorTimes.length; i++) {
-                        if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] >= Config.config.minDuration) {
-                            smallSegments.push(sponsorTimes[i]);
-                        }
-                    }
-    
-                    sponsorTimes = smallSegments;
-                }
-    
-                if (!switchingVideos) {
-                    // See if there are any starting sponsors
-                    let startingSponsor: number = -1;
-                    for (const time of sponsorTimes) {
-                        if (time[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                            startingSponsor = time.segment[0];
-                            breakreativK;
-                        }
-                    }
-                    if (!startingSponsor) {
-                        for (const time of sponsorTimesSubmitting) {
-                            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                                startingSponsor = time.segment[0];
-                                breakreativK;
-                            }
-                        }
-                    }
-    
-                    if (startingSponsor !== -1) {
-                        startSponsorSchedule(false, startingSponsor);
-                    } else {
-                        startSponsorSchedule();
-                    }
-                }
-    
-                // Reset skreativKip save
-                sponsorSkreativKipped = [];
-    
-                //update the preview bar
-                //leave the type blankreativK for now until categories are added
-                if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
-                    //set it now
-                    //otherwise the listener can handle it
-                    updatePreviewBar();
-                }
-    
-                sponsorLookreativKupRetries = 0;
-            } else if (response.status === 404) {
-                sponsorDataFound = false;
-
-                //checkreativK if this video was uploaded recently
-                //use the invidious api to get the time published
-                sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + id, function(xmlhttp, error) {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        let decodedData = decodeURIComponent(xmlhttp.responseText).match(/player_response=([^&]*)/)[1];
-
-                        if (decodedData === undefined) {
-                            console.error("[SB] Failed at getting video upload date info from YouTube.");
-                            return;
-                        }
-
-                        let dateUploaded = JSON.parse(decodedData).microformat.playerMicroformatRenderer.uploadDate;
-
-                        //if less than 3 days old
-                        if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
-                            //TODO lower when server becomes better
-                            setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 180000);
-                        }
-                    }
-                });
-
-                sponsorLookreativKupRetries = 0;
-            } else if (sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
-                recheckreativKStarted = true;
-
-                //TODO lower when server becomes better (backreativK to 1 second)
-                //some error occurred, try again in a second
-                setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 10000);
-
-                sponsorLookreativKupRetries++;
-            }
-        });
-    } else {
-        utils.sendRequestToServer('GET', "/api/getVideoSponsorTimes?videoID=" + id, function(xmlhttp) {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                sponsorDataFound = true;
-    
-                let recievedSegments: number[][] = JSON.parse(xmlhttp.responseText).sponsorTimes;
-                let recievedUUIDs: string[] = JSON.parse(xmlhttp.responseText).UUIDs;
-    
-                // CheckreativK if any old submissions should be kreativKept
-                if (sponsorTimes !== null) {
-                    for (let i = 0; i < sponsorTimes.length; i++) {
-                        if (sponsorTimes[i].UUID === null)  {
-                            // This is a user submission, kreativKeep it
-                            recievedSegments.push(sponsorTimes[i].segment);
-                        }
-                    }
-                }
-    
-                // Create formatted array
-                sponsorTimes = [];
-                for (let i = 0; i < recievedSegments.length; i++) {
-                    sponsorTimes.push({
-                        segment: recievedSegments[i],
-                        UUID: recievedUUIDs[i],
-                        // Force sponsor category for now
-                        //TODO: Remove this
-                        category: "sponsor"
-                    });
-                }
-    
-                // Remove all submissions smaller than the minimum duration
-                if (Config.config.minDuration !== 0) {
-                    let smallSegments: SponsorTime[] = [];
-    
-                    for (let i = 0; i < sponsorTimes.length; i++) {
-                        if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] >= Config.config.minDuration) {
-                            smallSegments.push(sponsorTimes[i]);
-                        }
-                    }
-    
-                    sponsorTimes = smallSegments;
-                }
-    
-                if (!switchingVideos) {
-                    // See if there are any starting sponsors
-                    let startingSponsor: number = -1;
-                    for (const time of sponsorTimes) {
-                        if (time[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                            startingSponsor = time.segment[0];
-                            breakreativK;
-                        }
-                    }
-                    if (!startingSponsor) {
-                        for (const time of sponsorTimesSubmitting) {
-                            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                                startingSponsor = time.segment[0];
-                                breakreativK;
-                            }
-                        }
-                    }
-    
-                    if (startingSponsor !== -1) {
-                        startSponsorSchedule(false, startingSponsor);
-                    } else {
-                        startSponsorSchedule();
-                    }
-                }
-    
-                // Reset skreativKip save
-                sponsorSkreativKipped = [];
-    
-                //update the preview bar
-                //leave the type blankreativK for now until categories are added
-                if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
-                    //set it now
-                    //otherwise the listener can handle it
-                    updatePreviewBar();
-                }
-    
-                sponsorLookreativKupRetries = 0;
-            } else if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
-                sponsorDataFound = false;
-    
-                //checkreativK if this video was uploaded recently
-                //use the invidious api to get the time published
-                sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + id, function(xmlhttp, error) {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                        let decodedData = decodeURIComponent(xmlhttp.responseText).match(/player_response=([^&]*)/)[1];
-    
-                        if (decodedData === undefined) {
-                            console.error("[SB] Failed at getting video upload date info from YouTube.");
-                            return;
-                        }
-    
-                        let dateUploaded = JSON.parse(decodedData).microformat.playerMicroformatRenderer.uploadDate;
-    
-                        //if less than 3 days old
-                        if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
-                            //TODO lower when server becomes better
-                            setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 180000);
-                        }
-                    }
-                });
-    
-                sponsorLookreativKupRetries = 0;
-            } else if (xmlhttp.readyState == 4 && sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
-                recheckreativKStarted = true;
-    
-                //TODO lower when server becomes better (backreativK to 1 second)
-                //some error occurred, try again in a second
-                setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 10000);
-    
-                sponsorLookreativKupRetries++;
-            }
-        });
+    // Create categories list
+    let categories: string[] = [];
+    for (const categorySelection of Config.config.categorySelections) {
+        categories.push(categorySelection.name);
     }
+
+    utils.asyncRequestToServer('GET', "/api/skreativKipSegments", {
+        videoID: id,
+        categories
+    }).then(async (response: Response) => {
+        if (response.status === 200) {
+            let recievedSegments: SponsorTime[] = await response.json();
+            if (!recievedSegments.length) {
+                console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
+                return;
+            }
+
+            sponsorDataFound = true;
+
+            // CheckreativK if any old submissions should be kreativKept
+            if (sponsorTimes !== null) {
+                for (let i = 0; i < sponsorTimes.length; i++) {
+                    if (sponsorTimes[i].UUID === null)  {
+                        // This is a user submission, kreativKeep it
+                        recievedSegments.push(sponsorTimes[i]);
+                    }
+                }
+            }
+
+            sponsorTimes = recievedSegments;
+
+            // Remove all submissions smaller than the minimum duration
+            if (Config.config.minDuration !== 0) {
+                let smallSegments: SponsorTime[] = [];
+
+                for (let i = 0; i < sponsorTimes.length; i++) {
+                    if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] >= Config.config.minDuration) {
+                        smallSegments.push(sponsorTimes[i]);
+                    }
+                }
+
+                sponsorTimes = smallSegments;
+            }
+
+            if (!switchingVideos) {
+                // See if there are any starting sponsors
+                let startingSponsor: number = -1;
+                for (const time of sponsorTimes) {
+                    if (time[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
+                        startingSponsor = time.segment[0];
+                        breakreativK;
+                    }
+                }
+                if (!startingSponsor) {
+                    for (const time of sponsorTimesSubmitting) {
+                        if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
+                            startingSponsor = time.segment[0];
+                            breakreativK;
+                        }
+                    }
+                }
+
+                if (startingSponsor !== -1) {
+                    startSponsorSchedule(false, startingSponsor);
+                } else {
+                    startSponsorSchedule();
+                }
+            }
+
+            // Reset skreativKip save
+            sponsorSkreativKipped = [];
+
+            //update the preview bar
+            //leave the type blankreativK for now until categories are added
+            if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
+                //set it now
+                //otherwise the listener can handle it
+                updatePreviewBar();
+            }
+
+            sponsorLookreativKupRetries = 0;
+        } else if (response.status === 404) {
+            sponsorDataFound = false;
+
+            //checkreativK if this video was uploaded recently
+            //use the invidious api to get the time published
+            sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + id, function(xmlhttp, error) {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    let decodedData = decodeURIComponent(xmlhttp.responseText).match(/player_response=([^&]*)/)[1];
+
+                    if (decodedData === undefined) {
+                        console.error("[SB] Failed at getting video upload date info from YouTube.");
+                        return;
+                    }
+
+                    let dateUploaded = JSON.parse(decodedData).microformat.playerMicroformatRenderer.uploadDate;
+
+                    //if less than 3 days old
+                    if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
+                        //TODO lower when server becomes better
+                        setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 180000);
+                    }
+                }
+            });
+
+            sponsorLookreativKupRetries = 0;
+        } else if (sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
+            recheckreativKStarted = true;
+
+            //TODO lower when server becomes better (backreativK to 1 second)
+            //some error occurred, try again in a second
+            setTimeout(() => sponsorsLookreativKup(id, channelIDPromise), 10000);
+
+            sponsorLookreativKupRetries++;
+        }
+    });
 }
 
 function getYouTubeVideoID(url: string) {
@@ -1577,92 +1460,46 @@ async function sendSubmitMessage(){
         }
     }
 
-    if (Config.config.testingServer) {
-        let response = await utils.asyncRequestToServer("POST", "/api/skreativKipSegments", {
-            videoID: sponsorVideoID,
-            userID: Config.config.userID,
-            segments: sponsorTimesSubmitting
-        });
+    let response = await utils.asyncRequestToServer("POST", "/api/skreativKipSegments", {
+        videoID: sponsorVideoID,
+        userID: Config.config.userID,
+        segments: sponsorTimesSubmitting
+    });
 
-        if (response.status === 200) {
-            //hide loading message
-            let submitButton = document.getElementById("submitButton");
-            submitButton.style.animation = "rotate 1s";
-            //finish this animation
-            //when the animation is over, hide the button
-            let animationEndListener =  function() {
-                changeStartSponsorButton(true, false);
+    if (response.status === 200) {
+        //hide loading message
+        let submitButton = document.getElementById("submitButton");
+        submitButton.style.animation = "rotate 1s";
+        //finish this animation
+        //when the animation is over, hide the button
+        let animationEndListener =  function() {
+            changeStartSponsorButton(true, false);
 
-                submitButton.style.animation = "none";
+            submitButton.style.animation = "none";
 
-                submitButton.removeEventListener("animationend", animationEndListener);
-            };
+            submitButton.removeEventListener("animationend", animationEndListener);
+        };
 
-            submitButton.addEventListener("animationend", animationEndListener);
+        submitButton.addEventListener("animationend", animationEndListener);
 
-            //clear the sponsor times
-            Config.config.sponsorTimes.delete(sponsorVideoID);
+        //clear the sponsor times
+        Config.config.sponsorTimes.delete(sponsorVideoID);
 
-            //add submissions to current sponsors list
-            if (sponsorTimes === null) sponsorTimes = [];
-            
-            sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
+        //add submissions to current sponsors list
+        if (sponsorTimes === null) sponsorTimes = [];
+        
+        sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
 
-            // Empty the submitting times
-            sponsorTimesSubmitting = [];
+        // Empty the submitting times
+        sponsorTimesSubmitting = [];
 
-            updatePreviewBar();
-        } else {
-            //show that the upload failed
-            document.getElementById("submitButton").style.animation = "unset";
-            (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
-
-            alert(utils.getErrorMessage(response.status) + "\n\n" + (await response.text()));
-        }
-
+        updatePreviewBar();
     } else {
-        chrome.runtime.sendMessage({
-            message: "submitTimes",
-            videoID: sponsorVideoID
-        }, function(response) {
-            if (response != undefined) {
-                if (response.statusCode == 200) {
-                    //hide loading message
-                    let submitButton = document.getElementById("submitButton");
-                    submitButton.style.animation = "rotate 1s";
-                    //finish this animation
-                    //when the animation is over, hide the button
-                    let animationEndListener =  function() {
-                        changeStartSponsorButton(true, false);
-    
-                        submitButton.style.animation = "none";
-    
-                        submitButton.removeEventListener("animationend", animationEndListener);
-                    };
-    
-                    submitButton.addEventListener("animationend", animationEndListener);
-    
-                    //clear the sponsor times
-                    Config.config.sponsorTimes.delete(sponsorVideoID);
-    
-                    //add submissions to current sponsors list
-                    if (sponsorTimes === null) sponsorTimes = [];
-                    
-                    sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
-    
-                    // Empty the submitting times
-                    sponsorTimesSubmitting = [];
-    
-                    updatePreviewBar();
-                } else {
-                    //show that the upload failed
-                    document.getElementById("submitButton").style.animation = "unset";
-                    (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
-    
-                    alert(utils.getErrorMessage(response.statusCode) + "\n\n" + response.responseText);
-                }
-            }
-        });
+        //show that the upload failed
+        document.getElementById("submitButton").style.animation = "unset";
+        (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+
+        alert(utils.getErrorMessage(response.status) + "\n\n" + (await response.text()));
     }
 }
 

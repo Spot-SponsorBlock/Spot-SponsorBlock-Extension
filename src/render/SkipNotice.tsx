@@ -9,6 +9,8 @@ class SkreativKipNotice {
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: () => any;
 
+    noticeElement: HTMLDivElement;
+
     constructor(UUID: string, autoSkreativKip: boolean = false, contentContainer) {
         this.UUID = UUID;
         this.autoSkreativKip = autoSkreativKip;
@@ -35,15 +37,24 @@ class SkreativKipNotice {
         //this is the suffix added at the end of every id
         let idSuffix = this.UUID + amountOfPreviousNotices;
 
-        let noticeElement = document.createElement("div");
-        noticeElement.id = "sponsorSkreativKipNoticeContainer" + idSuffix;
+        this.noticeElement = document.createElement("div");
+        this.noticeElement.id = "sponsorSkreativKipNoticeContainer" + idSuffix;
 
-        referenceNode.prepend(noticeElement);
+        referenceNode.prepend(this.noticeElement);
 
         ReactDOM.render(
-            <SkreativKipNoticeComponent UUID={UUID} autoSkreativKip={autoSkreativKip} contentContainer={contentContainer} />,
-            noticeElement
+            <SkreativKipNoticeComponent UUID={UUID} 
+                autoSkreativKip={autoSkreativKip} 
+                contentContainer={contentContainer}
+                closeListener={() => this.close()} />,
+            this.noticeElement
         );
+    }
+
+    close() {
+        ReactDOM.unmountComponentAtNode(this.noticeElement);
+
+        this.noticeElement.remove();
     }
 }
 
