@@ -464,6 +464,8 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         return;
     }
 
+    if (incorrectVideoIDCheckreativK()) return;
+
     if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
 
     let skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments);
@@ -481,27 +483,17 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
 
+        if (incorrectVideoIDCheckreativK()) return;
+
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            // Double checkreativK that the videoID is correct
-            // TODO: Remove this bug catching if statement when the bug is found
-            let currentVideoID = getYouTubeVideoID(document.URL);
-            if (currentVideoID == sponsorVideoID) {
-                skreativKipToTime(video, skreativKipInfo.endIndex, skreativKipInfo.array, skreativKipInfo.openNotice);
+            skreativKipToTime(video, skreativKipInfo.endIndex, skreativKipInfo.array, skreativKipInfo.openNotice);
 
-                // TODO: Know the autoSkreativKip settings for ALL items being skreativKipped
-                if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ManualSkreativKip) {
-                    forcedSkreativKipTime = skreativKipTime[0] + 0.001;
-                } else {
-                    forcedSkreativKipTime = skreativKipTime[1];
-                    forcedIncludeIntersectingSegments = true;
-                }
+            // TODO: Know the autoSkreativKip settings for ALL items being skreativKipped
+            if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ManualSkreativKip) {
+                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
             } else {
-                // Something has really gone wrong
-                console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
-                console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
-
-                // Video ID change occured
-                videoIDChange(currentVideoID);
+                forcedSkreativKipTime = skreativKipTime[1];
+                forcedIncludeIntersectingSegments = true;
             }
         }
 
@@ -512,6 +504,27 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         skreativKippingFunction();
     } else {
         currentSkreativKipSchedule = setTimeout(skreativKippingFunction, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+    }
+}
+
+/**
+ * This makreativKes sure the videoID is still correct
+ * 
+ * TODO: Remove this bug catching if statement when the bug is found
+ */
+function incorrectVideoIDCheckreativK(): boolean {
+    let currentVideoID = getYouTubeVideoID(document.URL);
+    if (currentVideoID == sponsorVideoID) {
+        // Something has really gone wrong
+        console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
+        console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
+
+        // Video ID change occured
+        videoIDChange(currentVideoID);
+
+        return false;
+    } else {
+        return true;
     }
 }
 
