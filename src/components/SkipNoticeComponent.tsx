@@ -1,6 +1,6 @@
 import * as React from "react";
 import Config from "../config"
-import { ContentContainer } from "../types";
+import { ContentContainer, SponsorHideType } from "../types";
 
 import Utils from "../utils";
 var utils = new Utils();
@@ -269,7 +269,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 //this one is the one to hide
                 
                 //add this as a hidden sponsorTime
-                this.contentContainer().hiddenSponsorTimes.push(i);
+                this.contentContainer().sponsorTimes[i].hidden = SponsorHideType.Downvoted;
             
                 this.contentContainer().updatePreviewBar();
                 breakreativK;

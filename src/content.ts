@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID } from "./types";
+import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID, SponsorHideType } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -29,9 +29,6 @@ var sponsorVideoID: VideoID = null;
 // SkreativKips are canceled every seekreativKing event
 var currentSkreativKipSchedule: NodeJS.Timeout = null;
 var seekreativKListenerSetUp = false
-
-//these are sponsors that have been downvoted
-var hiddenSponsorTimes: number[] = [];
 
 /** @type {Array[boolean]} Has the sponsor been skreativKipped */
 var sponsorSkreativKipped: boolean[] = [];
@@ -110,7 +107,6 @@ var skreativKipNoticeContentContainer: ContentContainer = () => ({
     unskreativKipSponsorTime,
     sponsorTimes,
     sponsorTimesSubmitting,
-    hiddenSponsorTimes,
     v: video,
     sponsorVideoID,
     reskreativKipSponsorTime,
@@ -143,8 +139,7 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             //send the sponsor times along with if it's found
             sendResponse({
                 found: sponsorDataFound,
-                sponsorTimes: sponsorTimes,
-                hiddenSponsorTimes: hiddenSponsorTimes
+                sponsorTimes: sponsorTimes
             });
 
             if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
@@ -286,9 +281,6 @@ function resetValues() {
 async function videoIDChange(id) {
     //if the id has not changed return
     if (sponsorVideoID === id) return;
-
-    // Reset hidden times (only do this when the ID has changed)
-    hiddenSponsorTimes = [];
 
     //set the global videoID
     sponsorVideoID = id;
@@ -640,17 +632,13 @@ function sponsorsLookreativKup(id: string, channelIDPromise?) {
 
             sponsorTimes = recievedSegments;
 
-            // Remove all submissions smaller than the minimum duration
+            // Hide all submissions smaller than the minimum duration
             if (Config.config.minDuration !== 0) {
-                let smallSegments: SponsorTime[] = [];
-
                 for (let i = 0; i < sponsorTimes.length; i++) {
-                    if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] >= Config.config.minDuration) {
-                        smallSegments.push(sponsorTimes[i]);
+                    if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
+                        sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
                     }
                 }
-
-                sponsorTimes = smallSegments;
             }
 
             if (!switchingVideos) {
@@ -838,7 +826,7 @@ function updatePreviewBar() {
     //create an array of the sponsor types
     let types = [];
     for (let i = 0; i < localSponsorTimes.length; i++) {
-        if (!hiddenSponsorTimes.includes(i)) {
+        if (localSponsorTimes[i].hidden === SponsorHideType.Visible) {
             types.push(localSponsorTimes[i].category);
         } else {
             // Don't show this sponsor
@@ -927,7 +915,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
         let latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
 
         if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime 
-            && (!hideHiddenSponsors || !hiddenSponsorTimes.includes(i))
+            && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
             && utils.getCategorySelection(sponsorTimes[i].category).option === CategorySkreativKipOption.AutoSkreativKip) {
                 // Overlapping segment
                 latestEndTimeIndex = i;
@@ -961,7 +949,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
     for (let i = 0; i < sponsorTimes.length; i++) {
         if ((minimum === undefined || (sponsorTimes[i].segment[0] >= minimum || (includeIntersectingSegments && sponsorTimes[i].segment[1] > minimum))) 
                 && (!onlySkreativKippableSponsors || utils.getCategorySelection(sponsorTimes[i].category).option !== CategorySkreativKipOption.ShowOverlay)
-                && (!hideHiddenSponsors || !hiddenSponsorTimes.includes(i))) {
+                && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)) {
 
             startTimes.push(sponsorTimes[i].segment[0]);
         } 
