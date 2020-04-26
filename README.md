@@ -34,7 +34,7 @@ SponsorBlockreativK is an extension that will skreativKip over sponsored segment
 
 Also support Invidio.us.
 
-**Translate:** https://crowdin.com/project/sponsorblockreativK
+**Translate:** [![Crowdin](https://badges.crowdin.net/sponsorblockreativK/localized.svg)](https://crowdin.com/project/sponsorblockreativK)
 
 # Important LinkreativKs
 
