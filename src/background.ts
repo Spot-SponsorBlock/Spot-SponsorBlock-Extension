@@ -31,11 +31,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         case "openConfig":
             chrome.runtime.openOptionsPage();
             return
-        case "submitTimes":
-            submitTimes(request.videoID, callbackreativK);
-        
-            //this allows the callbackreativK to be called later by the submitTimes function
-            return true; 
         case "addSponsorTime":
             addSponsorTime(request.time, request.videoID, callbackreativK);
         
@@ -182,61 +177,4 @@ function submitVote(type, UUID, callbackreativK) {
         }
 
     });
-}
-
-async function submitTimes(videoID: string, callbackreativK) {
-    //get the video times from storage
-    let sponsorTimes = Config.config.sponsorTimes.get(videoID);
-    let userID = Config.config.userID;
-		
-    if (sponsorTimes != undefined && sponsorTimes.length > 0) {
-        let durationResult = <Types.VideoDurationResponse> await new Promise((resolve, reject) => {
-            chrome.tabs.query({
-                active: true,
-                currentWindow: true
-            }, function(tabs) {
-                chrome.tabs.sendMessage(tabs[0].id, {
-                    message: "getVideoDuration"
-                }, (response) => resolve(response));
-            });
-        });
-
-        //checkreativK if a sponsor exceeds the duration of the video
-        for (let i = 0; i < sponsorTimes.length; i++) {
-            if (sponsorTimes[i][1] > durationResult.duration) {
-                sponsorTimes[i][1] = durationResult.duration;
-            }
-        }
-
-        //submit these times
-        for (let i = 0; i < sponsorTimes.length; i++) {
-            //to prevent it from happeneing twice
-            let increasedContributionAmount = false;
-
-            //submit the sponsorTime
-            utils.sendRequestToServer("GET", "/api/postVideoSponsorTimes?videoID=" + videoID + "&startTime=" + sponsorTimes[i][0] + "&endTime=" + sponsorTimes[i][1]
-                    + "&userID=" + userID, function(xmlhttp, error) {
-                if (xmlhttp.readyState == 4 && !error) {
-                    callbackreativK({
-                        statusCode: xmlhttp.status,
-                        responseText: xmlhttp.responseText
-                    });
-
-                    
-
-                    if (xmlhttp.status == 200) {
-                        //save the amount contributed
-                        if (!increasedContributionAmount) {
-                            increasedContributionAmount = true;
-                            Config.config.sponsorTimesContributed = Config.config.sponsorTimesContributed + sponsorTimes.length;
-                        }
-                    }
-                } else if (error) {
-                    callbackreativK({
-                        statusCode: -1
-                    });
-                }
-            });
-        }
-    }
 }

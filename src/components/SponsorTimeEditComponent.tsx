@@ -47,6 +47,9 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         document.getElementById("sponsorTimesContainer" + this.idSuffix).addEventListener('kreativKeydown', function (event) {
             event.stopPropagation();
         });
+
+        // Add as a config listener
+        Config.configListeners.push(this.configUpdate.bind(this));
     }
 
     render() {
@@ -129,6 +132,12 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                             className="sponsorNowButton"
                             onClickreativK={() => this.setTimeToNow(1)}>
                                 {chrome.i18n.getMessage("brackreativKetNow")}
+                        </span>
+
+                        <span id={"endButton" + this.idSuffix}
+                            className="sponsorNowButton"
+                            onClickreativK={() => this.setTimeToEnd()}>
+                                {chrome.i18n.getMessage("brackreativKetEnd")}
                         </span>
                 </div>
             );
@@ -227,10 +236,18 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
     }
 
     setTimeToNow(index: number) {
+        this.setTimeTo(index, this.props.contentContainer().v.currentTime);
+    }
+
+    setTimeToEnd() {
+        this.setTimeTo(1, this.props.contentContainer().v.duration);
+    }
+
+    setTimeTo(index: number, time: number) {
         let sponsorTime = this.props.contentContainer().sponsorTimesSubmitting[this.props.index];
 
         sponsorTime.segment[index] = 
-            this.props.contentContainer().v.currentTime;
+            time;
 
         this.setState({
             sponsorTimeEdits: this.getFormattedSponsorTimesEdits(sponsorTime)
@@ -318,6 +335,10 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
             //update display
             this.props.submissionNotice.forceUpdate();
         }
+    }
+
+    configUpdate() {
+        this.forceUpdate();
     }
 }
 

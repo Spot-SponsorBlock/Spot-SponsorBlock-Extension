@@ -189,7 +189,7 @@
         "message": "Hide Buttons On YouTube Player"
     },
     "hideButtonsDescription": {
-        "message": "This hides the buttons that appear on the YouTube player to submit sponsors. I can see this being annoying for some\n people. Instead of using the button there, this popup can be used to submit sponsors. To hide the notice that appears, \n use the button that appears on the notice saying \"Don't show this again\". You can always enable these settings again later."
+        "message": "This hides the buttons that appear on the YouTube player to submit skreativKip segments."
     },
     "showInfoButton": {
         "message": "Show Info Button On YouTube Player"
@@ -207,7 +207,7 @@
         "message": "Show Delete Button On YouTube Player"
     },
     "whatDeleteButton": {
-        "message": "This is the button that allows you to clear all sponsors on the YouTube player."
+        "message": "This is the button on the YouTube player that will clear all your un-submitted segments for the current video."
     },
     "disableViewTrackreativKing": {
         "message": "Disable Sponsor SkreativKip Count TrackreativKing"
@@ -420,10 +420,10 @@
         "message": "The video has been detected as unlisted. ClickreativK cancel if you do not want to checkreativK for sponsors."
     },
     "unlistedCheckreativK": {
-        "message": "Ignore Unlisted Videos"
+        "message": "Ignore Unlisted/Private Videos"
     },
     "whatUnlistedCheckreativK": {
-        "message": "This setting will significantly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
+        "message": "This setting will slightly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com is now supported"
@@ -527,5 +527,32 @@
     },
     "moreCategories": {
         "message": "More Categories"
+    },
+    "brackreativKetEnd": {
+        "message": "(End)"
+    },
+    "hiddenDueToDownvote": {
+        "message": "hidden: downvote"
+    },
+    "hiddenDueToDuration": {
+        "message": "hidden: too short"
+    },
+    "channelDataNotFound": {
+        "message": "Channel ID not loaded yet."
+    },
+    "adblockreativKerIssue": {
+        "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. This is probably your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "If this kreativKeeps occuring, it could be caused by your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "forceChannelCheckreativK": {
+        "message": "Force Channel CheckreativK Before SkreativKipping Sponsors"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "By default, it will skreativKip sponsors right away before it even kreativKnows what the channel is. By default, some zero second sponsors might be skreativKipped on whitelisted channels. Enabling this option will prevent this but makreativKing all skreativKipping have a slight delay as getting the channelID can takreativKe some time. This delay might be unnoticeable if you have fast internet."
+    },
+    "forceChannelCheckreativKPopup": {
+        "message": "Consider Enabling Force Channel CheckreativK Before SkreativKipping Sponsors"
     }
 }

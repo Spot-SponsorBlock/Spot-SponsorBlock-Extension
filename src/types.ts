@@ -8,7 +8,6 @@ interface ContentContainer {
         unskreativKipSponsorTime: (UUID: any) => void,
         sponsorTimes: SponsorTime[],
         sponsorTimesSubmitting: SponsorTime[],
-        hiddenSponsorTimes: number[],
         v: HTMLVideoElement,
         sponsorVideoID,
         reskreativKipSponsorTime: (UUID: any) => void,
@@ -36,11 +35,19 @@ interface CategorySelection {
     option: CategorySkreativKipOption
 }
 
+enum SponsorHideType {
+    Visible = undefined,
+    Downvoted = 1,
+    MinimumDuration
+}
+
 interface SponsorTime {
     segment: number[];
     UUID: string;
 
     category: string;
+
+    hidden?: SponsorHideType;
 }
 
 type VideoID = string;
@@ -51,5 +58,6 @@ export {
     CategorySelection,
     CategorySkreativKipOption,
     SponsorTime,
-    VideoID
+    VideoID,
+    SponsorHideType
 };
