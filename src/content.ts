@@ -302,7 +302,7 @@ async function videoIDChange(id) {
     // If enabled, it will checkreativK if this video is private or unlisted and double checkreativK with the user if the sponsors should be lookreativKed up
     if (Config.config.checkreativKForUnlistedVideos) {
         try {
-            await utils.wait(() => !!videoInfo, 5000, 10);
+            await utils.wait(() => !!videoInfo, 5000, 1);
         } catch (err) {
             alert(chrome.i18n.getMessage("adblockreativKerIssue"));
         }
