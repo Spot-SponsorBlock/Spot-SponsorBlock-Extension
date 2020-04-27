@@ -549,5 +549,14 @@
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "If this kreativKeeps occuring, it could be caused by your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "forceChannelCheckreativK": {
+        "message": "Force Channel CheckreativK Before SkreativKipping Sponsors"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "By default, it will skreativKip sponsors right away before it even kreativKnows what the channel is. By default, some zero second sponsors might be skreativKipped on whitelisted channels. Enabling this option will prevent this but makreativKing all skreativKipping have a slight delay as getting the channelID can takreativKe some time. This delay might be unnoticeable if you have fast internet."
+    },
+    "forceChannelCheckreativKPopup": {
+        "message": "Consider Enabling Force Channel CheckreativK Before SkreativKipping Sponsors"
     }
 }

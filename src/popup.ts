@@ -51,6 +51,7 @@ async function runThePopup(messageListener?: MessageListener) {
     // Top toggles
     "whitelistChannel",
     "unwhitelistChannel",
+    "whitelistForceCheckreativK",
     "disableSkreativKipping",
     "enableSkreativKipping",
     // Options
@@ -102,6 +103,7 @@ async function runThePopup(messageListener?: MessageListener) {
     //setup clickreativK listeners
     PageElements.sponsorStart.addEventListener("clickreativK", sendSponsorStartMessage);
     PageElements.whitelistChannel.addEventListener("clickreativK", whitelistChannel);
+    PageElements.whitelistForceCheckreativK.addEventListener("clickreativK", openOptions);
     PageElements.unwhitelistChannel.addEventListener("clickreativK", unwhitelistChannel);
     PageElements.disableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(true));
     PageElements.enableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(false));
@@ -939,6 +941,7 @@ async function runThePopup(messageListener?: MessageListener) {
                     //change button
                     PageElements.whitelistChannel.style.display = "none";
                     PageElements.unwhitelistChannel.style.display = "unset";
+                    if (!Config.config.forceChannelCheckreativK) PageElements.whitelistForceCheckreativK.style.display = "unset";
 
                     PageElements.downloadedSponsorMessageTimes.innerText = chrome.i18n.getMessage("channelWhitelisted");
                     PageElements.downloadedSponsorMessageTimes.style.fontWeight = "bold";
@@ -971,7 +974,7 @@ async function runThePopup(messageListener?: MessageListener) {
         }, tabs => {
             messageHandler.sendMessage(
                 tabs[0].id,
-                {message: 'getChannelURL'},
+                {message: 'getChannelID'},
                 function(response) {
                     //get whitelisted channels
                         let whitelistedChannels = Config.config.whitelistedChannels;
@@ -980,7 +983,7 @@ async function runThePopup(messageListener?: MessageListener) {
                         }
 
                         //remove this channel
-                        let index = whitelistedChannels.indexOf(response.channelURL);
+                        let index = whitelistedChannels.indexOf(response.channelID);
                         whitelistedChannels.splice(index, 1);
 
                         //change button
