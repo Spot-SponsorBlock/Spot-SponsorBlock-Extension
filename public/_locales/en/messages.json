@@ -424,10 +424,10 @@
         "message": "The video has been detected as unlisted. ClickreativK cancel if you do not want to checkreativK for sponsors."
     },
     "unlistedCheckreativK": {
-        "message": "Ignore Unlisted Videos"
+        "message": "Ignore Unlisted/Private Videos"
     },
     "whatUnlistedCheckreativK": {
-        "message": "This setting will significantly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
+        "message": "This setting will slightly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com is now supported"
@@ -542,6 +542,12 @@
         "message": "hidden: too short"
     },
     "channelDataNotFound": {
-        "message": "Channel ID not loaded yet"
+        "message": "Channel ID not loaded yet."
+    },
+    "adblockreativKerIssue": {
+        "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. This is probably uBlockreativK. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-uBlockreativK-Origin-BlockreativKing-YouTube-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "If this kreativKeeps occuring, it could be caused by uBlockreativK. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-uBlockreativK-Origin-BlockreativKing-YouTube-Requests"
     }
 }
