@@ -508,5 +508,20 @@
     },
     "brackreativKetNow": {
         "message": "(Nu)"
+    },
+    "moreCategories": {
+        "message": "Fler Kategorier"
+    },
+    "brackreativKetEnd": {
+        "message": "(Slut)"
+    },
+    "channelDataNotFound": {
+        "message": "Kanal-ID är inte inladdat än."
+    },
+    "adblockreativKerIssue": {
+        "message": "Det verkreativKar som om något blockreativKerar SponsorBlockreativKs från att hämta videodata. Det beror förmodligen på din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "Om detta fortsätter att inträffa, kreativKan orsakreativKen vara din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     }
 }
