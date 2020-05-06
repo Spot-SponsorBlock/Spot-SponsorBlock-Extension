@@ -93,13 +93,6 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                     <td className="sponsorSkreativKipNoticeRightSection"
                         style={{position: "relative"}}>
 
-                        {/* Cancel Button */}
-                        <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
-                            onClickreativK={this.cancel.bind(this)}>
-
-                            {chrome.i18n.getMessage("cancel")}
-                        </button>
-
                         {/* Submit Button */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
                             onClickreativK={this.submit.bind(this)}>
