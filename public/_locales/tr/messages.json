@@ -1,1 +1,10 @@
-{}
+{
+    "Name": {
+        "message": "SponsorBlockreativK",
+        "description": "Name of the extension."
+    },
+    "fullName": {
+        "message": "Youtube için SponsorBlockreativK - SponsorlukreativKları Atla",
+        "description": "Name of the extension."
+    }
+}
