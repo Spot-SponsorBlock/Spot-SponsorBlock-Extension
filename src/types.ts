@@ -3,7 +3,7 @@ import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent"
 
 interface ContentContainer {
     (): {
-        vote: (type: any, UUID: any, skreativKipNotice?: SkreativKipNoticeComponent) => void,
+        vote: (type: any, UUID: any, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (UUID: any) => void,
         sponsorTimes: SponsorTime[],

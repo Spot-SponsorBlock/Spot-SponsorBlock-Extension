@@ -47,7 +47,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
             //this allows the callbackreativK to be called later
             return true;
         case "submitVote":
-            submitVote(request.type, request.UUID, callbackreativK);
+            submitVote(request.type, request.UUID, request.category, callbackreativK);
         
             //this allows the callbackreativK to be called later
             return true;
@@ -147,7 +147,7 @@ function addSponsorTime(time, videoID, callbackreativK) {
     });
 }
 
-function submitVote(type, UUID, callbackreativK) {
+function submitVote(type, UUID, category, callbackreativK) {
     let userID = Config.config.userID;
 
     if (userID == undefined || userID === "undefined") {
@@ -156,8 +156,10 @@ function submitVote(type, UUID, callbackreativK) {
         Config.config.userID = userID;
     }
 
+    let typeSection = (type !== undefined) ? "&type=" + type : "&category=" + category;
+
     //publish this vote
-    utils.sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + "&type=" + type, function(xmlhttp, error) {
+    utils.sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + typeSection, function(xmlhttp, error) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             callbackreativK({
                 successType: 1

@@ -968,7 +968,7 @@ function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: Spo
 
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && autoSkreativKip && Config.config.autoUpvote) {
-                vote(1, currentUUID, null);
+                vote(1, currentUUID);
             }
         }
 
@@ -1307,7 +1307,7 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
+function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
@@ -1320,7 +1320,7 @@ function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].UUID === null) return;
 
     // See if the local time saved count and skreativKip count should be saved
-    if (type == 0 && sponsorSkreativKipped[sponsorIndex] || type == 1 && !sponsorSkreativKipped[sponsorIndex]) {
+    if (type === 0 && sponsorSkreativKipped[sponsorIndex] || type === 1 && !sponsorSkreativKipped[sponsorIndex]) {
         let factor = 1;
         if (type == 0) {
             factor = -1;
@@ -1337,15 +1337,16 @@ function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
     chrome.runtime.sendMessage({
         message: "submitVote",
         type: type,
-        UUID: UUID
+        UUID: UUID,
+        category: category
     }, function(response) {
         if (response != undefined) {
             //see if it was a success or failure
             if (skreativKipNotice != null) {
                 if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
                     //success (treat rate limits as a success)
-                    if (type == 0) {
-                        skreativKipNotice.afterDownvote.bind(skreativKipNotice)();
+                    if (type === 0 || category) {
+                        skreativKipNotice.afterDownvote.bind(skreativKipNotice)(type, category);
                     }
                 } else if (response.successType == 0) {
                     //failure: duplicate vote

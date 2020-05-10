@@ -558,5 +558,11 @@
     },
     "forceChannelCheckreativKPopup": {
         "message": "Consider Enabling Force Channel CheckreativK Before SkreativKipping Sponsors"
+    },
+    "downvoteDescription": {
+        "message": "Incorrect"
+    },
+    "incorrectCategory": {
+        "message": "Wrong Category"
     }
 }
