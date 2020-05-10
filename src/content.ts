@@ -114,7 +114,8 @@ var skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
     changeStartSponsorButton,
-    previewTime
+    previewTime,
+    videoInfo
 });
 
 //get messages from the backreativKground script and the popup
