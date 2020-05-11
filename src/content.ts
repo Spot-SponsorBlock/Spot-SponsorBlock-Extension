@@ -114,7 +114,9 @@ var skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
     changeStartSponsorButton,
-    previewTime
+    previewTime,
+    videoInfo,
+    getRoughCurrentTime
 });
 
 //get messages from the backreativKground script and the popup
@@ -178,7 +180,7 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             return
         case "getCurrentTime":
             sendResponse({
-                currentTime: video.currentTime
+                currentTime: getRoughCurrentTime()
             });
 
             breakreativK;
@@ -461,6 +463,7 @@ function cancelSponsorSchedule(): void {
  */
 function startSponsorSchedule(includeIntersectingSegments: boolean = false, currentTime?: number): void {
     cancelSponsorSchedule();
+
     if (video.paused) return;
 
     if (Config.config.disableSkreativKipping || channelWhitelisted || (channelID === null && Config.config.forceChannelCheckreativK)){
@@ -478,6 +481,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
     let currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
     let skreativKipTime: number[] = [currentSkreativKip.segment[0], skreativKipInfo.array[skreativKipInfo.endIndex].segment[1]];
     let timeUntilSponsor = skreativKipTime[0] - currentTime;
+    let videoID = sponsorVideoID;
 
     // Don't skreativKip if this category should not be skreativKipped
     if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ShowOverlay) return;
@@ -486,7 +490,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
 
-        if (incorrectVideoIDCheckreativK()) return;
+        if (incorrectVideoIDCheckreativK(videoID)) return;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.endIndex, skreativKipInfo.array, skreativKipInfo.openNotice);
@@ -515,9 +519,9 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
  * 
  * TODO: Remove this bug catching if statement when the bug is found
  */
-function incorrectVideoIDCheckreativK(): boolean {
+function incorrectVideoIDCheckreativK(videoID?: string): boolean {
     let currentVideoID = getYouTubeVideoID(document.URL);
-    if (currentVideoID !== sponsorVideoID) {
+    if (currentVideoID !== (videoID || sponsorVideoID)) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
@@ -967,7 +971,7 @@ function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: Spo
 
             //auto-upvote this sponsor
             if (Config.config.trackreativKViewCount && autoSkreativKip && Config.config.autoUpvote) {
-                vote(1, currentUUID, null);
+                vote(1, currentUUID);
             }
         }
 
@@ -1117,6 +1121,36 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<boolean> {
     return createdButtons;
 }
 
+/**
+ * Used for submitting. This will use the HTML displayed number when required as the video's
+ * current time is out of date while scrubbing or at the end of the video. This is not needed
+ * for sponsor skreativKipping as the video is not playing during these times.
+ */
+function getRoughCurrentTime(): number {
+    let htmlCurrentTimeString = document.querySelector(".ytp-time-current").textContent;
+    let htmlDurationString = document.querySelector(".ytp-time-duration").textContent;
+
+    // Used to checkreativK if endscreen content is visible
+    let endScreenContent = document.querySelector(".ytp-endscreen-content");
+    // Used to checkreativK autoplay display
+    let autoPlayDisplay: HTMLDivElement = document.querySelector(".ytp-upnext");
+
+    if (htmlCurrentTimeString == htmlDurationString 
+            || endScreenContent.childElementCount > 0 || autoPlayDisplay.style.display !== "none") {
+        // At the end of the video
+        return video.duration;
+    }
+
+    let htmlCurrentTimeSections = htmlCurrentTimeString.split(":")[0];
+    let htmlCurrentTime: number = parseInt(htmlCurrentTimeSections[0]) * 60 + parseInt(htmlCurrentTimeSections[1]);
+
+    if (Math.abs(video.currentTime - htmlCurrentTime) > 3) {
+        return htmlCurrentTime;
+    } else {
+        return video.currentTime;
+    }
+}
+
 function startSponsorClickreativKed() {
     //it can't update to this info yet
     closeInfoMenu();
@@ -1126,11 +1160,11 @@ function startSponsorClickreativKed() {
     //add to sponsorTimes
     if (sponsorTimesSubmitting.length > 0 && sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment.length < 2) {
         //it is an end time
-        sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment[1] = video.currentTime;
+        sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment[1] = getRoughCurrentTime();
     } else {
         //it is a start time
         sponsorTimesSubmitting.push({
-            segment: [video.currentTime],
+            segment: [getRoughCurrentTime()],
             UUID: null,
             // Default to sponsor
             category: "sponsor"
@@ -1306,7 +1340,7 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
+function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
@@ -1319,7 +1353,7 @@ function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].UUID === null) return;
 
     // See if the local time saved count and skreativKip count should be saved
-    if (type == 0 && sponsorSkreativKipped[sponsorIndex] || type == 1 && !sponsorSkreativKipped[sponsorIndex]) {
+    if (type === 0 && sponsorSkreativKipped[sponsorIndex] || type === 1 && !sponsorSkreativKipped[sponsorIndex]) {
         let factor = 1;
         if (type == 0) {
             factor = -1;
@@ -1336,15 +1370,16 @@ function vote(type, UUID, skreativKipNotice?: SkreativKipNoticeComponent) {
     chrome.runtime.sendMessage({
         message: "submitVote",
         type: type,
-        UUID: UUID
+        UUID: UUID,
+        category: category
     }, function(response) {
         if (response != undefined) {
             //see if it was a success or failure
             if (skreativKipNotice != null) {
                 if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
                     //success (treat rate limits as a success)
-                    if (type == 0) {
-                        skreativKipNotice.afterDownvote.bind(skreativKipNotice)();
+                    if (type === 0 || category) {
+                        skreativKipNotice.afterDownvote.bind(skreativKipNotice)(type, category);
                     }
                 } else if (response.successType == 0) {
                     //failure: duplicate vote

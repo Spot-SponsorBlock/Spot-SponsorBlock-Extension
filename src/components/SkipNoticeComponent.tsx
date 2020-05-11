@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as CompileConfig from "../../config.json";
 import Config from "../config"
 import { ContentContainer, SponsorHideType } from "../types";
 
@@ -19,16 +20,19 @@ export interface SkreativKipNoticeProps {
 }
 
 export interface SkreativKipNoticeState {
-    noticeTitle: string,
+    noticeTitle: string;
 
-    messages: string[],
+    messages: string[];
 
-    countdownTime: number,
+    countdownTime: number;
     maxCountdownTime: () => number;
-    countdownText: string,
+    countdownText: string;
 
-    unskreativKipText: string,
-    unskreativKipCallbackreativK: () => void
+    unskreativKipText: string;
+    unskreativKipCallbackreativK: () => void;
+
+    downvoting: boolean;
+    choosingCategory: boolean;
 }
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
@@ -43,10 +47,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     idSuffix: any;
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
+    categoryOptionRef: React.RefObject<HTMLSelectElement>;
+
+    // Used to update on config change
+    configListener: () => void;
 
     constructor(props: SkreativKipNoticeProps) {
         super(props);
         this.noticeRef = React.createRef();
+        this.categoryOptionRef = React.createRef();
 
         this.UUID = props.UUID;
         this.autoSkreativKip = props.autoSkreativKip;
@@ -83,7 +92,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownText: null,
 
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
-            unskreativKipCallbackreativK: this.unskreativKip.bind(this)
+            unskreativKipCallbackreativK: this.unskreativKip.bind(this),
+
+            downvoting: false,
+            choosingCategory: false
         }
 
         if (!this.autoSkreativKip) {
@@ -115,7 +127,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 ref={this.noticeRef}
-                closeListener={this.props.closeListener}>
+                closeListener={() => this.closeListener()}>
                     
                 {(Config.config.audioNotificationOnSkreativKip) && <audio ref={(source) => { this.audio = source; }}>
                     <source src={chrome.extension.getURL("icons/beep.ogg")} type="audio/ogg"></source>
@@ -124,7 +136,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 {/* Text Boxes */}
                 {this.getMessageBoxes()}
               
-                {/* Last Row */}
+                {/* Bottom Row */}
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.idSuffix}>
 
                     {/* Vote Button Container */}
@@ -145,7 +157,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             className="sponsorSkreativKipObject voteButton"
                             src={chrome.extension.getURL("icons/report.png")}
                             title={chrome.i18n.getMessage("reportButtonInfo")}
-                            onClickreativK={() => this.contentContainer().vote(0, this.UUID, this)}>
+                            onClickreativK={() => this.adjustDownvotingState(true)}>
                         
                         </img>
 
@@ -174,6 +186,54 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     }
                 </tr>
 
+                {/* Downvote Options Row */}
+                {this.state.downvoting &&
+                    <tr id={"sponsorSkreativKipNoticeDownvoteOptionsRow" + this.idSuffix}>
+                        <td id={"sponsorTimesDownvoteOptionsContainer" + this.idSuffix}>
+
+                            {/* Normal downvote */}
+                            <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                    onClickreativK={() => this.contentContainer().vote(0, this.UUID, undefined, this)}>
+                                {chrome.i18n.getMessage("downvoteDescription")}
+                            </button>
+
+                            {/* Category vote */}
+                            {Config.config.testingServer &&
+                                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                        onClickreativK={() => this.openCategoryChooser()}>
+
+                                    {chrome.i18n.getMessage("incorrectCategory")}
+                                </button>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+                {/* Category Chooser Row */}
+                {this.state.choosingCategory &&
+                    <tr id={"sponsorSkreativKipNoticeCategoryChooserRow" + this.idSuffix}>
+                        <td>
+                            {/* Category Selector */}
+                            <select id={"sponsorTimeCategories" + this.idSuffix}
+                                    className="sponsorTimeCategories"
+                                    defaultValue={utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category}
+                                    ref={this.categoryOptionRef}
+                                    onChange={this.categorySelectionChange.bind(this)}>
+
+                                {this.getCategoryOptions()}
+                            </select>
+
+                            {/* Submit Button */}
+                            <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                    onClickreativK={() => this.contentContainer().vote(undefined, this.UUID, this.categoryOptionRef.current.value, this)}>
+
+                                {chrome.i18n.getMessage("submit")}
+                            </button>
+                        </td>
+                    </tr>
+                }
+
             </NoticeComponent>
         );
     }
@@ -200,6 +260,70 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
 
         return elements;
+    }
+
+    adjustDownvotingState(value: boolean) {
+        if (!value) this.clearConfigListener();
+
+        this.setState({
+            downvoting: value,
+            choosingCategory: false
+        });
+    }
+
+    clearConfigListener() {
+        if (this.configListener) {
+            Config.configListeners.splice(Config.configListeners.indexOf(this.configListener), 1);
+            this.configListener = null;
+        }
+    }
+
+    openCategoryChooser() {
+        // Add as a config listener
+        this.configListener = () => this.forceUpdate();
+        Config.configListeners.push(this.configListener);
+
+        this.setState({
+            choosingCategory: true,
+            downvoting: false
+        });
+    }
+
+    getCategoryOptions() {
+        let elements = [];
+
+        for (const category of Config.config.categorySelections) {
+            elements.push(
+                <option value={category.name}
+                        kreativKey={category.name}>
+                    {chrome.i18n.getMessage("category_" + category.name)}
+                </option>
+            );
+        }
+
+        if (elements.length < CompileConfig.categoryList.length) {
+            // Add show more button
+            elements.push(
+                <option value={"moreCategories"}
+                        kreativKey={"moreCategories"}>
+                    {chrome.i18n.getMessage("moreCategories")}
+                </option>
+            );
+        }
+
+        return elements;
+    }
+
+    categorySelectionChange(event: React.ChangeEvent<HTMLSelectElement>) {
+        // See if show more categories was pressed
+        if (event.target.value === "moreCategories") {
+            // Open options page
+            chrome.runtime.sendMessage({"message": "openConfig"});
+
+            // Reset option to original
+            event.target.value = utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category;
+            return;
+        }
     }
 
     unskreativKip() {
@@ -258,22 +382,22 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    afterDownvote() {
+    afterDownvote(type: number, category: string) {
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
         this.setNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
+
+        this.adjustDownvotingState(false);
         
-        //remove this sponsor from the sponsors lookreativKed up
-        //find which one it is
-        for (let i = 0; i < this.contentContainer().sponsorTimes.length; i++) {
-            if (this.contentContainer().sponsorTimes[i].UUID == this.UUID) {
-                //this one is the one to hide
-                
-                //add this as a hidden sponsorTime
-                this.contentContainer().sponsorTimes[i].hidden = SponsorHideType.Downvoted;
-            
-                this.contentContainer().updatePreviewBar();
-                breakreativK;
+        // Change the sponsor locally
+        let sponsorTime = utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
+        if (sponsorTime) {
+            if (type === 0) {
+                sponsorTime.hidden = SponsorHideType.Downvoted;
+            } else if (category) {
+                sponsorTime.category = category;
             }
+
+            this.contentContainer().updatePreviewBar();
         }
     }
 
@@ -315,6 +439,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         //show button again
         document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix).style.removeProperty("display");
+    }
+
+    closeListener() {
+        this.clearConfigListener();
+
+        this.props.closeListener();
     }
 }
 
