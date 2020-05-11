@@ -1,1 +1,151 @@
-{}
+{
+    "Name": {
+        "message": "SponsorBlockreativK",
+        "description": "Name of the extension."
+    },
+    "Sponsor": {
+        "message": "sponzor"
+    },
+    "Sponsors": {
+        "message": "sponzori"
+    },
+    "noticeTitle": {
+        "message": "Sponzor bol PreskreativKočený"
+    },
+    "reportButtonTitle": {
+        "message": "Nahlásiť"
+    },
+    "Loading": {
+        "message": "Načitávanie..."
+    },
+    "Mins": {
+        "message": "Minúty"
+    },
+    "Secs": {
+        "message": "SekreativKundy"
+    },
+    "Hide": {
+        "message": "NikreativKdy nezobrazovať"
+    },
+    "paused": {
+        "message": "Pozastavené"
+    },
+    "here": {
+        "message": "tu"
+    },
+    "hideThis": {
+        "message": "SkreativKryť Toto"
+    },
+    "Options": {
+        "message": "Nastavenia"
+    },
+    "website": {
+        "message": "WebstránkreativKa",
+        "description": "Used on Firefox Store Page"
+    },
+    "sourceCode": {
+        "message": "Zdrojový Kód",
+        "description": "Used on Firefox Store Page"
+    },
+    "yourWorkreativK": {
+        "message": "Vaša Práca",
+        "description": "Used to describe the section that will show you the statistics from your submissions."
+    },
+    "errorCode": {
+        "message": "Kód chyby: "
+    },
+    "noticeTitleNotSkreativKipped": {
+        "message": "PreskreativKočiť Sponzor?"
+    },
+    "skreativKip": {
+        "message": "PreskreativKočiť"
+    },
+    "disableAutoSkreativKip": {
+        "message": "ZakreativKázať AutomatickreativKé PreskreativKočenie"
+    },
+    "enableAutoSkreativKip": {
+        "message": "Povoliť AutomatickreativKé PreskreativKočenie"
+    },
+    "minLower": {
+        "message": "minúta"
+    },
+    "minsLower": {
+        "message": "minúty"
+    },
+    "hourLower": {
+        "message": "hodina"
+    },
+    "hoursLower": {
+        "message": "hodiny"
+    },
+    "setUserID": {
+        "message": "Nastaviť Používateľove ID"
+    },
+    "createdBy": {
+        "message": "Vytvoril"
+    },
+    "autoSkreativKip": {
+        "message": "AutomatickreativKé PreskreativKočenie"
+    },
+    "add": {
+        "message": "Pridať"
+    },
+    "showUploadButton": {
+        "message": "UkreativKázať Nahrávacie Tlačidlo"
+    },
+    "save": {
+        "message": "Uložiť"
+    },
+    "reset": {
+        "message": "Vynulovať"
+    },
+    "setOptions": {
+        "message": "Nastaviť Nastavenia"
+    },
+    "submit": {
+        "message": "Poslať"
+    },
+    "cancel": {
+        "message": "Zrušiť"
+    },
+    "delete": {
+        "message": "Odstrániť"
+    },
+    "preview": {
+        "message": "UkreativKážkreativKa"
+    },
+    "edit": {
+        "message": "Upraviť"
+    },
+    "theKey": {
+        "message": "Kľúč"
+    },
+    "to": {
+        "message": "pre",
+        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+    },
+    "category_sponsor": {
+        "message": "Sponzor"
+    },
+    "category_intro": {
+        "message": "Úvod"
+    },
+    "disable": {
+        "message": "ZakreativKázať"
+    },
+    "manualSkreativKip": {
+        "message": "Manuálne PreskreativKočenie"
+    },
+    "brackreativKetNow": {
+        "message": "(Teraz)"
+    },
+    "moreCategories": {
+        "message": "Viac Kategórií"
+    },
+    "brackreativKetEnd": {
+        "message": "(Koniec)"
+    },
+    "channelDataNotFound": {
+        "message": "ID kreativKanála nie je zatiaľ načítané."
+    }
+}
