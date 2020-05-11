@@ -340,9 +340,6 @@
     "supportInvidious": {
         "message": "Stöd Invidious"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) är en tredjeparts YouTubekreativKlient. För att akreativKtivera stöd måste du acceptera de utökreativKade rättigheterna. Detta kreativKommer INTE att funkreativKa i incognito i Chrome och andra Cromium-varianter."
-    },
     "optionsInfo": {
         "message": "AkreativKtivera Invidious stöd, avakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
     },
@@ -479,14 +476,8 @@
     "category_sponsor": {
         "message": "Sponsormeddelande"
     },
-    "category_interaction": {
-        "message": "InterakreativKtion (Redundant Gilla, Prenumerera, Följ, etc.)"
-    },
     "category_selfpromo": {
         "message": "SjälvrekreativKlam och egna produkreativKter"
-    },
-    "category_offtopic": {
-        "message": "Orelevant tangent (SubjekreativKtivt)"
     },
     "disable": {
         "message": "AvakreativKtivera"

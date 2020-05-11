@@ -490,19 +490,22 @@
         "message": "Sponsor"
     },
     "category_intro": {
-        "message": "Başlangıç"
+        "message": "Giriş Animasyonu"
     },
     "category_outro": {
-        "message": "Bitiş"
+        "message": "Bitiş EkreativKranı/JenerikreativK"
     },
     "category_interaction": {
-        "message": "EtkreativKileşim (Beğeni, abone olma, takreativKip etme gibi gerekreativKsiz)"
+        "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
     },
     "category_selfpromo": {
         "message": "Kendi RekreativKlamını Yapma ve Ürün"
     },
-    "category_offtopic": {
-        "message": "Konudışı (Öznel)"
+    "category_music_offtopic": {
+        "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
+    },
+    "category_livestream_messages": {
+        "message": "Canlı Yayın: Bağış/Mesaj OkreativKuma"
     },
     "disable": {
         "message": "Devredışı"
@@ -554,5 +557,14 @@
     },
     "forceChannelCheckreativKPopup": {
         "message": "Sponsorları Atlamadan Önce Kanal Kontrolünü Zorlamayı Gözden Geçir"
+    },
+    "downvoteDescription": {
+        "message": "Hatalı"
+    },
+    "incorrectCategory": {
+        "message": "Yanlış Kategori"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "Bu videonun kreativKategorisi müzikreativK olarakreativK belirlenmiş. MüzikreativK içermeyen bölümleri göndermekreativK istediğinize emin misiniz? Eğer bu bir müzikreativK videosu değilse, bu bölümleri göndermemelisiniz. Eğer ayırt edemiyorsanız, lütfen rehberi okreativKuyunuz."
     }
 }
