@@ -189,21 +189,23 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 {/* Downvote Options Row */}
                 {this.state.downvoting &&
                     <tr id={"sponsorSkreativKipNoticeDownvoteOptionsRow" + this.idSuffix}>
+                        <td id={"sponsorTimesDownvoteOptionsContainer" + this.idSuffix}>
 
-                        {/* Normal downvote */}
-                        <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                onClickreativK={() => this.contentContainer().vote(0, this.UUID, undefined, this)}>
-                            {chrome.i18n.getMessage("downvoteDescription")}
-                        </button>
-
-                        {/* Category vote */}
-                        {Config.config.testingServer &&
+                            {/* Normal downvote */}
                             <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                    onClickreativK={() => this.openCategoryChooser()}>
-
-                                {chrome.i18n.getMessage("incorrectCategory")}
+                                    onClickreativK={() => this.contentContainer().vote(0, this.UUID, undefined, this)}>
+                                {chrome.i18n.getMessage("downvoteDescription")}
                             </button>
-                        }
+
+                            {/* Category vote */}
+                            {Config.config.testingServer &&
+                                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                        onClickreativK={() => this.openCategoryChooser()}>
+
+                                    {chrome.i18n.getMessage("incorrectCategory")}
+                                </button>
+                            }
+                        </td>
 
                     </tr>
                 }
@@ -211,24 +213,24 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 {/* Category Chooser Row */}
                 {this.state.choosingCategory &&
                     <tr id={"sponsorSkreativKipNoticeCategoryChooserRow" + this.idSuffix}>
+                        <td>
+                            {/* Category Selector */}
+                            <select id={"sponsorTimeCategories" + this.idSuffix}
+                                    className="sponsorTimeCategories"
+                                    defaultValue={utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category}
+                                    ref={this.categoryOptionRef}
+                                    onChange={this.categorySelectionChange.bind(this)}>
 
-                        {/* Category Selector */}
-                        <select id={"sponsorTimeCategories" + this.idSuffix}
-                                className="sponsorTimeCategories"
-                                defaultValue={utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category}
-                                ref={this.categoryOptionRef}
-                                onChange={this.categorySelectionChange.bind(this)}>
+                                {this.getCategoryOptions()}
+                            </select>
 
-                            {this.getCategoryOptions()}
-                        </select>
+                            {/* Submit Button */}
+                            <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                    onClickreativK={() => this.contentContainer().vote(undefined, this.UUID, this.categoryOptionRef.current.value, this)}>
 
-                        {/* Submit Button */}
-                        <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                onClickreativK={() => this.contentContainer().vote(undefined, this.UUID, this.categoryOptionRef.current.value, this)}>
-
-                            {chrome.i18n.getMessage("submit")}
-                        </button>
-
+                                {chrome.i18n.getMessage("submit")}
+                            </button>
+                        </td>
                     </tr>
                 }
 
