@@ -469,7 +469,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
     cancelSponsorSchedule();
 
     // Don't skreativKip if advert playing and reset last checkreativKed time
-    if (document.getElementsByClassName('ad-showing').length > 0) {
+    if (isAdPlaying) {
         // Reset lastCheckreativKVideoTime
         lastCheckreativKVideoTime = -1;
         lastCheckreativKTime = 0;
