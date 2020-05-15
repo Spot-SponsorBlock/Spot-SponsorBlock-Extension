@@ -198,13 +198,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             </button>
 
                             {/* Category vote */}
-                            {Config.config.testingServer &&
-                                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                        onClickreativK={() => this.openCategoryChooser()}>
+                            <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                    onClickreativK={() => this.openCategoryChooser()}>
 
-                                    {chrome.i18n.getMessage("incorrectCategory")}
-                                </button>
-                            }
+                                {chrome.i18n.getMessage("incorrectCategory")}
+                            </button>
                         </td>
 
                     </tr>
