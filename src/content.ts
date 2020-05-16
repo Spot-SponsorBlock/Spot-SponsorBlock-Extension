@@ -470,7 +470,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         return;
     }
 
-    if (incorrectVideoIDCheckreativK()) return;
+    if (incorrectVideoCheckreativK()) return;
 
     if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
 
@@ -490,7 +490,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
 
-        if (incorrectVideoIDCheckreativK(videoID)) return;
+        if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipInfo.endIndex, skreativKipInfo.array, skreativKipInfo.openNotice);
@@ -515,13 +515,11 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
 }
 
 /**
- * This makreativKes sure the videoID is still correct
- * 
- * TODO: Remove this bug catching if statement when the bug is found
+ * This makreativKes sure the videoID is still correct and if the sponsorTime is included
  */
-function incorrectVideoIDCheckreativK(videoID?: string): boolean {
+function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime): boolean {
     let currentVideoID = getYouTubeVideoID(document.URL);
-    if (currentVideoID !== (videoID || sponsorVideoID)) {
+    if (currentVideoID !== (videoID || sponsorVideoID) || (sponsorTime && !sponsorTimes.includes(sponsorTime))) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
