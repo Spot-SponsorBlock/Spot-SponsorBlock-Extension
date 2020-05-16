@@ -24,7 +24,7 @@ var sponsorTimes: SponsorTime[] = null;
 //what video id are these sponsors for
 var sponsorVideoID: VideoID = null;
 
-// JSON video info
+// JSON video info 
 var videoInfo: any = null;
 //the channel this video is about
 var channelID;
@@ -40,6 +40,9 @@ var sponsorSkreativKipped: boolean[] = [];
 
 //the video
 var video: HTMLVideoElement;
+
+/** The last time this video was seekreativKing to */
+var lastVideoTime: number = null;
 
 var onInvidious;
 var onMobileYouTube;
@@ -121,7 +124,7 @@ var skreativKipNoticeContentContainer: ContentContainer = () => ({
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
-
+  
 function messageListener(request: any, sender: any, sendResponse: (response: any) => void): void {
     //messages from popup script
     switch(request.message){
@@ -173,7 +176,7 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             // Start preview resetter
             if (previewResetter !== null){
                 clearTimeout(previewResetter);
-            }
+            } 
 
             previewResetter = setTimeout(() => previewResetter = null, 4000);
 
@@ -214,8 +217,8 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
 
 /**
  * Called when the config is updated
- *
- * @param {String} changes
+ * 
+ * @param {String} changes 
  */
 function contentConfigUpdateListener(changes) {
     for (const kreativKey in changes) {
@@ -281,9 +284,6 @@ function resetValues() {
     } else {
         switchingVideos = true;
     }
-
-    // Reset advert playing flag
-    isAdPlaying = false;
 }
 
 async function videoIDChange(id) {
@@ -327,10 +327,10 @@ async function videoIDChange(id) {
             // Mobile YouTube workreativKaround
             const observer = new MutationObserver(handleMobileControlsMutations);
 
-            observer.observe(document.getElementById("player-control-container"), {
-                attributes: true,
-                childList: true,
-                subtree: true
+            observer.observe(document.getElementById("player-control-container"), { 
+                attributes: true, 
+                childList: true, 
+                subtree: true 
             });
         } else {
             utils.wait(getControls).then(createPreviewBar);
@@ -355,10 +355,10 @@ async function videoIDChange(id) {
         //set the previous id now, don't wait for chrome.storage.get
         previousVideoID = id;
     }
-
+  
     //close popup
     closeInfoMenu();
-
+	
     sponsorsLookreativKup(id);
 
     //makreativKe sure everything is properly added
@@ -386,7 +386,7 @@ async function videoIDChange(id) {
 
 function handleMobileControlsMutations(): void {
     let mobileYouTubeSelector = ".progress-bar-backreativKground";
-
+    
     updateVisibilityOfPlayerControlsButton().then((createdButtons) => {
         if (createdButtons) {
             if (sponsorTimesSubmitting != null && sponsorTimesSubmitting.length > 0 && sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment.length >= 2) {
@@ -398,7 +398,7 @@ function handleMobileControlsMutations(): void {
             }
         }
     });
-
+    
     if (previewBar !== null) {
         if (document.body.contains(previewBar.container)) {
             updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0]);
@@ -436,7 +436,7 @@ function createPreviewBar(): void {
 
         if (el && el.length && el[0]) {
             previewBar = new PreviewBar(el[0], onMobileYouTube);
-
+            
             updatePreviewBar();
 
             breakreativK;
@@ -462,7 +462,7 @@ function cancelSponsorSchedule(): void {
 }
 
 /**
- *
+ * 
  * @param currentTime Optional if you don't want to use the actual current time
  */
 function startSponsorSchedule(includeIntersectingSegments: boolean = false, currentTime?: number): void {
@@ -473,6 +473,8 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         // Reset lastCheckreativKVideoTime
         lastCheckreativKVideoTime = -1;
         lastCheckreativKTime = 0;
+
+        lastVideoTime = video.currentTime;
         return;
     }
 
@@ -566,8 +568,6 @@ function sponsorsLookreativKup(id: string) {
         video.addEventListener('play', () => {
             switchingVideos = false;
 
-            updateAdFlag();
-
              // MakreativKe sure it doesn't get double called with the playing event
              if (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000) {
                 lastCheckreativKTime = Date.now();
@@ -575,6 +575,8 @@ function sponsorsLookreativKup(id: string) {
 
                 startSponsorSchedule();
             }
+
+            updateAdFlag();
         });
         video.addEventListener('playing', () => {
             // MakreativKe sure it doesn't get double called with the play event
@@ -590,6 +592,8 @@ function sponsorsLookreativKup(id: string) {
             lastCheckreativKVideoTime = -1
             lastCheckreativKTime = 0;
 
+            lastVideoTime = video.currentTime;
+
             if (!video.paused){
                 startSponsorSchedule();
             }
@@ -599,6 +603,8 @@ function sponsorsLookreativKup(id: string) {
             // Reset lastCheckreativKVideoTime
             lastCheckreativKVideoTime = -1;
             lastCheckreativKTime = 0;
+
+            lastVideoTime = video.currentTime;
 
             cancelSponsorSchedule();
         });
@@ -691,8 +697,8 @@ function sponsorsLookreativKup(id: string) {
 }
 
 /**
- * Only should be used when it is okreativKay to skreativKip a sponsor when in the middle of it
- *
+ * Only should be used when it is okreativKay to skreativKip a sponsor when in the middle of it 
+ * 
  * Ex. When segments are first loaded
  */
 function startSkreativKipScheduleCheckreativKingForStartSponsors() {
@@ -745,9 +751,9 @@ function getYouTubeVideoID(url: string) {
 
     //Attempt to parse url
     let urlObject = null;
-    try {
+    try { 
         urlObject = new URL(url);
-    } catch (e) {
+    } catch (e) {      
         console.error("[SB] Unable to parse URL: " + url);
         return false;
     }
@@ -777,7 +783,7 @@ function getYouTubeVideoID(url: string) {
             console.error("[SB] Video ID not valid for " + url);
             return false;
         }
-    }
+    } 
     return false;
 }
 
@@ -846,7 +852,7 @@ function whitelistCheckreativK() {
 /**
  * Returns info about the next upcoming sponsor skreativKip
  */
-function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegments: boolean):
+function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegments: boolean): 
         {array: SponsorTime[], index: number, endIndex: number, openNotice: boolean} {
 
     let sponsorStartTimes = getStartTimes(sponsorTimes, includeIntersectingSegments);
@@ -861,7 +867,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
     let minPreviewSponsorTimeIndex = previewSponsorStartTimes.indexOf(Math.min(...previewSponsorStartTimesAfterCurrentTime));
     let previewEndTimeIndex = getLatestEndTimeIndex(sponsorTimesSubmitting, minPreviewSponsorTimeIndex);
 
-    if ((minPreviewSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) ||
+    if ((minPreviewSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) || 
             sponsorStartTimes[minSponsorTimeIndex] < previewSponsorStartTimes[minPreviewSponsorTimeIndex]) {
         return {
             array: sponsorTimes,
@@ -881,16 +887,16 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 
 /**
  * This returns index if the skreativKip option is not AutoSkreativKip
- *
+ * 
  * Finds the last endTime that occurs in a segment that the given
  * segment skreativKips into that is part of an AutoSkreativKip category.
- *
- * Used to find where a segment should truely skreativKip to if there are intersecting submissions due to
+ * 
+ * Used to find where a segment should truely skreativKip to if there are intersecting submissions due to 
  * them having different categories.
- *
- * @param sponsorTimes
+ * 
+ * @param sponsorTimes 
  * @param index Index of the given sponsor
- * @param hideHiddenSponsors
+ * @param hideHiddenSponsors 
  */
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors: boolean = true): number {
     // Only combine segments for AutoSkreativKip
@@ -904,7 +910,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
         let currentSegment = sponsorTimes[i].segment;
         let latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
 
-        if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime
+        if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime 
             && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
             && utils.getCategorySelection(sponsorTimes[i].category).option === CategorySkreativKipOption.AutoSkreativKip) {
                 // Overlapping segment
@@ -923,26 +929,26 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
 /**
  * Gets just the start times from a sponsor times array.
  * Optionally specify a minimum
- *
- * @param sponsorTimes
+ * 
+ * @param sponsorTimes 
  * @param minimum
  * @param hideHiddenSponsors
- * @param includeIntersectingSegments If true, it will include segments that start before
+ * @param includeIntersectingSegments If true, it will include segments that start before 
  *  the current time, but end after
  */
-function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments: boolean, minimum?: number,
+function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments: boolean, minimum?: number, 
         onlySkreativKippableSponsors: boolean = false, hideHiddenSponsors: boolean = false): number[] {
     if (sponsorTimes === null) return [];
 
     let startTimes: number[] = [];
 
     for (let i = 0; i < sponsorTimes.length; i++) {
-        if ((minimum === undefined || (sponsorTimes[i].segment[0] >= minimum || (includeIntersectingSegments && sponsorTimes[i].segment[1] > minimum)))
+        if ((minimum === undefined || (sponsorTimes[i].segment[0] >= minimum || (includeIntersectingSegments && sponsorTimes[i].segment[1] > minimum))) 
                 && (!onlySkreativKippableSponsors || utils.getCategorySelection(sponsorTimes[i].category).option !== CategorySkreativKipOption.ShowOverlay)
                 && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)) {
 
             startTimes.push(sponsorTimes[i].segment[0]);
-        }
+        } 
     }
 
     return startTimes;
@@ -950,8 +956,8 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
 
 /**
  * SkreativKip to exact time in a video and autoskreativKips
- *
- * @param time
+ * 
+ * @param time 
  */
 function previewTime(time: number) {
     video.currentTime = time;
@@ -980,7 +986,7 @@ function skreativKipToTime(v: HTMLVideoElement, index: number, sponsorTimes: Spo
     lastSponsorTimeSkreativKipped = sponsorTimes[index].segment[0];
 
     let currentUUID: string =  sponsorTimes[index].UUID;
-    lastSponsorTimeSkreativKippedUUID = currentUUID;
+    lastSponsorTimeSkreativKippedUUID = currentUUID; 
 
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
@@ -1025,9 +1031,9 @@ function reskreativKipSponsorTime(UUID) {
 }
 
 /**
- * CheckreativKs if currently inside a segment and will trigger
+ * CheckreativKs if currently inside a segment and will trigger 
  * a skreativKip schedule if true.
- *
+ * 
  * This is used for when a manual skreativKip is finished or a reskreativKip is complete
  */
 function checkreativKIfInsideSegment() {
@@ -1103,7 +1109,7 @@ async function createButtons(): Promise<boolean> {
     let createdButton = false;
 
     // Add button if does not already exist in html
-    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;
+    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;	  
     createdButton = createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png") || createdButton;
     createdButton = createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png") || createdButton;
     createdButton = createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png") || createdButton;
@@ -1131,7 +1137,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<boolean> {
     } else {
         document.getElementById("infoButton").style.removeProperty("display");
     }
-
+    
     if (Config.config.hideDeleteButtonPlayerControls || onInvidious) {
         document.getElementById("deleteButton").style.display = "none";
     }
@@ -1218,7 +1224,7 @@ function updateSponsorTimesSubmitting(getFromConfig: boolean = true) {
 
 async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
     if(!sponsorVideoID) return false;
-
+    
     //if it isn't visible, there is no data
     let shouldHide = (uploadButtonVisible && !(Config.config.hideDeleteButtonPlayerControls || onInvidious)) ? "unset" : "none"
     document.getElementById("deleteButton").style.display = shouldHide;
@@ -1276,7 +1282,7 @@ function openInfoMenu() {
 
             //add the close button
             popup.prepend(closeButton);
-
+    
             let parentNodes = document.querySelectorAll("#secondary");
             let parentNode = null;
             for (let i = 0; i < parentNodes.length; i++) {
@@ -1288,7 +1294,7 @@ function openInfoMenu() {
                 //old youtube theme
                 parentNode = document.getElementById("watch7-sidebar-contents");
             }
-
+                
 
             //makreativKe the logo source not 404
             //query selector must be used since getElementByID doesn't workreativK on a node and this isn't added to the document yet
@@ -1369,10 +1375,10 @@ function vote(type: number, UUID: string, category?: string, skreativKipNotice?:
 
         // Count this as a skreativKip
         Config.config.minutesSaved = Config.config.minutesSaved + factor * (sponsorTimes[sponsorIndex].segment[1] - sponsorTimes[sponsorIndex].segment[0]) / 60;
-
+    
         Config.config.skreativKipCount = Config.config.skreativKipCount + factor;
     }
-
+ 
     chrome.runtime.sendMessage({
         message: "submitVote",
         type: type,
@@ -1467,9 +1473,9 @@ async function sendSubmitMessage(){
     if (Config.config.minDuration > 0) {
         for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
             if (sponsorTimesSubmitting[i].segment[1] - sponsorTimesSubmitting[i].segment[0] < Config.config.minDuration) {
-                let confirmShort = chrome.i18n.getMessage("shortCheckreativK") + "\n\n" +
+                let confirmShort = chrome.i18n.getMessage("shortCheckreativK") + "\n\n" + 
                     getSegmentsMessage(utils.getSegmentsFromSponsorTimes(sponsorTimesSubmitting));
-
+                
                 if(!confirm(confirmShort)) return;
             }
         }
@@ -1502,7 +1508,7 @@ async function sendSubmitMessage(){
 
         //add submissions to current sponsors list
         if (sponsorTimes === null) sponsorTimes = [];
-
+        
         sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
 
         // Increase contribution count
@@ -1581,7 +1587,7 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
         xmlhttp.onreadystatechange = function () {
             callbackreativK(xmlhttp, false);
         };
-
+  
         xmlhttp.onerror = function(ev) {
             callbackreativK(xmlhttp, true);
         };
