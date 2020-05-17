@@ -35,9 +35,6 @@
     "Segments": {
         "message": "sponsor segments"
     },
-    "noticeTitle": {
-        "message": "Sponsor SkreativKipped"
-    },
     "reportButtonTitle": {
         "message": "Report"
     },
@@ -272,11 +269,11 @@
     "errorCode": {
         "message": "Error Code: "
     },
-    "noticeTitleNotSkreativKipped": {
-        "message": "SkreativKip Sponsor?"
-    },
     "skreativKip": {
         "message": "SkreativKip"
+    },
+    "skreativKipped": {
+        "message": "SkreativKipped"
     },
     "disableAutoSkreativKip": {
         "message": "Disable Auto SkreativKip"
