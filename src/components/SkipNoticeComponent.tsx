@@ -62,10 +62,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.contentContainer = props.contentContainer;
         this.audio = null;
     
-        let noticeTitle = chrome.i18n.getMessage("noticeTitle");
+        let noticeTitle = chrome.i18n.getMessage("category_" + this.getSponsorTime().category) + " " + chrome.i18n.getMessage("skreativKipped");
     
         if (!this.autoSkreativKip) {
-            noticeTitle = chrome.i18n.getMessage("noticeTitleNotSkreativKipped");
+            noticeTitle = chrome.i18n.getMessage("skreativKip") + " " + chrome.i18n.getMessage("category_" + this.getSponsorTime().category) + "?";
         }
     
         //add notice
@@ -101,6 +101,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (!this.autoSkreativKip) {
             Object.assign(this.state, this.getUnskreativKippedModeInfo(chrome.i18n.getMessage("skreativKip")));
         }
+    }
+
+    // Helper method
+    getSponsorTime() {
+        return utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
     }
 
     componentDidMount() {
@@ -215,7 +220,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             {/* Category Selector */}
                             <select id={"sponsorTimeCategories" + this.idSuffix}
                                     className="sponsorTimeCategories"
-                                    defaultValue={utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category}
+                                    defaultValue={this.getSponsorTime().category}
                                     ref={this.categoryOptionRef}
                                     onChange={this.categorySelectionChange.bind(this)}>
 
@@ -319,7 +324,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             chrome.runtime.sendMessage({"message": "openConfig"});
 
             // Reset option to original
-            event.target.value = utils.getSponsorTimeFromUUID(this.props.contentContainer().sponsorTimes, this.props.UUID).category;
+            event.target.value = this.getSponsorTime().category;
             return;
         }
     }
@@ -340,7 +345,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     getUnskreativKippedModeInfo(buttonText: string) {
         let maxCountdownTime = function() {
-            let sponsorTime = utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
+            let sponsorTime = this.getSponsorTime();
             let duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
 
             return Math.max(duration, 4);
@@ -387,7 +392,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.adjustDownvotingState(false);
         
         // Change the sponsor locally
-        let sponsorTime = utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
+        let sponsorTime = this.getSponsorTime();
         if (sponsorTime) {
             if (type === 0) {
                 sponsorTime.hidden = SponsorHideType.Downvoted;

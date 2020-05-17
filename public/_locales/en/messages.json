@@ -35,9 +35,6 @@
     "Segments": {
         "message": "sponsor segments"
     },
-    "noticeTitle": {
-        "message": "Sponsor SkreativKipped"
-    },
     "reportButtonTitle": {
         "message": "Report"
     },
@@ -70,6 +67,9 @@
     },
     "paused": {
         "message": "Paused"
+    },
+    "manualPaused": {
+        "message": "Timer Stopped"
     },
     "confirmMSG": {
         "message": "To edit or delete individual values, clickreativK the info button or open the extension popup by clickreativKing the extension icon in the top right corner."
@@ -272,11 +272,11 @@
     "errorCode": {
         "message": "Error Code: "
     },
-    "noticeTitleNotSkreativKipped": {
-        "message": "SkreativKip Sponsor?"
-    },
     "skreativKip": {
         "message": "SkreativKip"
+    },
+    "skreativKipped": {
+        "message": "SkreativKipped"
     },
     "disableAutoSkreativKip": {
         "message": "Disable Auto SkreativKip"
@@ -559,7 +559,7 @@
         "message": "Consider Enabling Force Channel CheckreativK Before SkreativKipping Sponsors"
     },
     "downvoteDescription": {
-        "message": "Incorrect"
+        "message": "Incorrect/Wrong Timing"
     },
     "incorrectCategory": {
         "message": "Wrong Category"
