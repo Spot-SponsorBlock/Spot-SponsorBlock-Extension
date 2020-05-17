@@ -519,7 +519,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
  */
 function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime): boolean {
     let currentVideoID = getYouTubeVideoID(document.URL);
-    if (currentVideoID !== (videoID || sponsorVideoID) || (sponsorTime && !sponsorTimes.includes(sponsorTime))) {
+    if (currentVideoID !== (videoID || sponsorVideoID) || (sponsorTime && (!sponsorTimes || !sponsorTimes.includes(sponsorTime)) && !sponsorTimesSubmitting.includes(sponsorTime))) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
