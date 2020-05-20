@@ -2,17 +2,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent";
+import { SponsorTime } from "../types";
 
 class SkreativKipNotice {
-    UUID: string;
+    segments: SponsorTime[];
     autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: () => any;
 
     noticeElement: HTMLDivElement;
 
-    constructor(UUID: string, autoSkreativKip: boolean = false, contentContainer) {
-        this.UUID = UUID;
+    constructor(segments: SponsorTime[], autoSkreativKip: boolean = false, contentContainer) {
+        this.segments = segments;
         this.autoSkreativKip = autoSkreativKip;
         this.contentContainer = contentContainer;
 
@@ -35,7 +36,11 @@ class SkreativKipNotice {
     
         let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
         //this is the suffix added at the end of every id
-        let idSuffix = this.UUID + amountOfPreviousNotices;
+        let idSuffix = "";
+        for (const segment of this.segments) {
+            idSuffix += segment.UUID;
+        }
+        idSuffix += amountOfPreviousNotices;
 
         this.noticeElement = document.createElement("div");
         this.noticeElement.id = "sponsorSkreativKipNoticeContainer" + idSuffix;
@@ -43,7 +48,7 @@ class SkreativKipNotice {
         referenceNode.prepend(this.noticeElement);
 
         ReactDOM.render(
-            <SkreativKipNoticeComponent UUID={UUID} 
+            <SkreativKipNoticeComponent segments={segments} 
                 autoSkreativKip={autoSkreativKip} 
                 contentContainer={contentContainer}
                 closeListener={() => this.close()} />,
