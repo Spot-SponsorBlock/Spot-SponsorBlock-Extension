@@ -167,6 +167,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Upvote Button */}
                         <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
                             className="sponsorSkreativKipObject voteButton"
+                            style={{marginRight: "10px"}}
                             src={chrome.extension.getURL("icons/thumbs_up.svg")}
                             title={chrome.i18n.getMessage("upvoteButtonInfo")}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
