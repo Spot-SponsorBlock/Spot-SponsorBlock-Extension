@@ -41,6 +41,7 @@ export interface SkreativKipNoticeState {
 
     downvoting: boolean;
     choosingCategory: boolean;
+    thankreativKsForVotingText: boolean; //null until the voting buttons should be hidden
 
     actionState: SkreativKipNoticeAction;
 }
@@ -114,6 +115,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             downvoting: false,
             choosingCategory: false,
+            thankreativKsForVotingText: null,
 
             actionState: SkreativKipNoticeAction.None
         }
@@ -161,29 +163,39 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.idSuffix}>
 
                     {/* Vote Button Container */}
-                    <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
-                        className="sponsorTimesVoteButtonsContainer">
+                    {!this.state.thankreativKsForVotingText ?
+                        <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
+                            className="sponsorTimesVoteButtonsContainer">
 
-                        {/* Upvote Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton"
-                            style={{marginRight: "10px"}}
-                            src={chrome.extension.getURL("icons/thumbs_up.svg")}
-                            title={chrome.i18n.getMessage("upvoteButtonInfo")}
-                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
-                        
-                        </img>
+                            {/* Upvote Button */}
+                            <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
+                                className="sponsorSkreativKipObject voteButton"
+                                style={{marginRight: "10px"}}
+                                src={chrome.extension.getURL("icons/thumbs_up.svg")}
+                                title={chrome.i18n.getMessage("upvoteButtonInfo")}
+                                onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
+                            
+                            </img>
 
-                        {/* Report Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton"
-                            src={chrome.extension.getURL("icons/thumbs_down.svg")}
-                            title={chrome.i18n.getMessage("reportButtonInfo")}
-                            onClickreativK={() => this.adjustDownvotingState(true)}>
-                        
-                        </img>
+                            {/* Report Button */}
+                            <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
+                                className="sponsorSkreativKipObject voteButton"
+                                src={chrome.extension.getURL("icons/thumbs_down.svg")}
+                                title={chrome.i18n.getMessage("reportButtonInfo")}
+                                onClickreativK={() => this.adjustDownvotingState(true)}>
+                            
+                            </img>
 
-                    </td>
+                        </td>
+
+                        :
+
+                        <td id={"sponsorTimesVoteButtonInfoMessage" + this.idSuffix}
+                                className="sponsorTimesInfoMessage sponsorTimesVoteButtonMessage"
+                                style={{marginRight: "10px"}}>
+                            {this.state.thankreativKsForVotingText}
+                        </td>
+                    }
 
                     {/* UnskreativKip Button */}
                     <td className="sponsorSkreativKipNoticeUnskreativKipSection">
@@ -499,37 +511,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
     
     addVoteButtonInfo(message) {
-        this.resetVoteButtonInfo();
-        
-        //hide report button and text for it
-        let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix);
-        if (downvoteButton != null) {
-            downvoteButton.style.display = "none";
-        }
-        let downvoteButtonText = document.getElementById("sponsorTimesReportText" + this.idSuffix);
-        if (downvoteButtonText != null) {
-            downvoteButtonText.style.display = "none";
-        }
-        
-        //add info
-        let thankreativKsForVotingText = document.createElement("td");
-        thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + this.idSuffix;
-        thankreativKsForVotingText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
-        thankreativKsForVotingText.innerText = message;
-
-        //add element to div
-        document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).prepend(thankreativKsForVotingText);
+        this.setState({
+            thankreativKsForVotingText: message
+        });
     }
 
     resetVoteButtonInfo() {
-        let previousInfoMessage = document.getElementById("sponsorTimesVoteButtonInfoMessage" + this.idSuffix);
-        if (previousInfoMessage != null) {
-            //remove it
-            document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).removeChild(previousInfoMessage);
-        }
-
-        //show button again
-        document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix).style.removeProperty("display");
+        this.setState({
+            thankreativKsForVotingText: null
+        });
     }
 
     closeListener() {
