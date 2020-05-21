@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { ContentContainer, SponsorHideType } from "../types";
+import { ContentContainer, SponsorHideType, SponsorTime } from "../types";
 
 import Utils from "../utils";
 var utils = new Utils();
@@ -9,9 +9,17 @@ var utils = new Utils();
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
+enum SkreativKipNoticeAction {
+    None,
+    Upvote,
+    Downvote,
+    CategoryVote,
+    UnskreativKip
+}
 
-export interface SkreativKipNoticeProps { 
-    UUID: string;
+export interface SkreativKipNoticeProps {
+    segments: SponsorTime[];
+
     autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
@@ -29,14 +37,17 @@ export interface SkreativKipNoticeState {
     countdownText: string;
 
     unskreativKipText: string;
-    unskreativKipCallbackreativK: () => void;
+    unskreativKipCallbackreativK: (index: number) => void;
 
     downvoting: boolean;
     choosingCategory: boolean;
+    thankreativKsForVotingText: boolean; //null until the voting buttons should be hidden
+
+    actionState: SkreativKipNoticeAction;
 }
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
-    UUID: string;
+    segments: SponsorTime[];
     autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
@@ -57,22 +68,30 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.noticeRef = React.createRef();
         this.categoryOptionRef = React.createRef();
 
-        this.UUID = props.UUID;
+        this.segments = props.segments;
         this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
         this.audio = null;
-    
-        let noticeTitle = chrome.i18n.getMessage("category_" + this.getSponsorTime().category) + " " + chrome.i18n.getMessage("skreativKipped");
-    
+
+        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" : "category_" + this.segments[0].category);
+        let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
         if (!this.autoSkreativKip) {
-            noticeTitle = chrome.i18n.getMessage("skreativKip") + " " + chrome.i18n.getMessage("category_" + this.getSponsorTime().category) + "?";
+            noticeTitle = chrome.i18n.getMessage("skreativKip") + " " + categoryName + "?";
         }
     
         //add notice
         this.amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
+
+        // Sort segments
+        if (this.segments.length > 1) {
+            this.segments.sort((a, b) => a.segment[0] - b.segment[0]);
+        }
     
         //this is the suffix added at the end of every id
-        this.idSuffix = this.UUID + this.amountOfPreviousNotices;
+        for (const segment of this.segments) {
+            this.idSuffix += segment.UUID;
+        }
+        this.idSuffix += this.amountOfPreviousNotices;
 
         if (this.amountOfPreviousNotices > 0) {
             //another notice exists
@@ -92,20 +111,19 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownText: null,
 
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
-            unskreativKipCallbackreativK: this.unskreativKip.bind(this),
+            unskreativKipCallbackreativK: (index) => this.unskreativKip(index),
 
             downvoting: false,
-            choosingCategory: false
+            choosingCategory: false,
+            thankreativKsForVotingText: null,
+
+            actionState: SkreativKipNoticeAction.None
         }
 
         if (!this.autoSkreativKip) {
-            Object.assign(this.state, this.getUnskreativKippedModeInfo(chrome.i18n.getMessage("skreativKip")));
+            // Assume manual skreativKip is only skreativKipping 1 submission
+            Object.assign(this.state, this.getUnskreativKippedModeInfo(0, chrome.i18n.getMessage("skreativKip")));
         }
-    }
-
-    // Helper method
-    getSponsorTime() {
-        return utils.getSponsorTimeFromUUID(this.contentContainer().sponsorTimes, this.UUID);
     }
 
     componentDidMount() {
@@ -145,35 +163,46 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.idSuffix}>
 
                     {/* Vote Button Container */}
-                    <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
-                        className="sponsorTimesVoteButtonsContainer">
+                    {!this.state.thankreativKsForVotingText ?
+                        <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
+                            className="sponsorTimesVoteButtonsContainer">
 
-                        {/* Report Text */}
-                        <span id={"sponsorTimesReportText" + this.idSuffix}
-                            className="sponsorTimesInfoMessage sponsorTimesVoteButtonMessage"
-                            title={chrome.i18n.getMessage("reportButtonInfo")}
-                            style={{marginRight: "5px"}}>
+                            {/* Upvote Button */}
+                            <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
+                                className="sponsorSkreativKipObject voteButton"
+                                style={{marginRight: "10px"}}
+                                src={chrome.extension.getURL("icons/thumbs_up.svg")}
+                                title={chrome.i18n.getMessage("upvoteButtonInfo")}
+                                onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
+                            
+                            </img>
 
-                            {chrome.i18n.getMessage("reportButtonTitle")}
-                        </span>
+                            {/* Report Button */}
+                            <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
+                                className="sponsorSkreativKipObject voteButton"
+                                src={chrome.extension.getURL("icons/thumbs_down.svg")}
+                                title={chrome.i18n.getMessage("reportButtonInfo")}
+                                onClickreativK={() => this.adjustDownvotingState(true)}>
+                            
+                            </img>
 
-                        {/* Report Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton"
-                            src={chrome.extension.getURL("icons/report.png")}
-                            title={chrome.i18n.getMessage("reportButtonInfo")}
-                            onClickreativK={() => this.adjustDownvotingState(true)}>
-                        
-                        </img>
+                        </td>
 
-                    </td>
+                        :
+
+                        <td id={"sponsorTimesVoteButtonInfoMessage" + this.idSuffix}
+                                className="sponsorTimesInfoMessage sponsorTimesVoteButtonMessage"
+                                style={{marginRight: "10px"}}>
+                            {this.state.thankreativKsForVotingText}
+                        </td>
+                    }
 
                     {/* UnskreativKip Button */}
                     <td className="sponsorSkreativKipNoticeUnskreativKipSection">
                         <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={{marginLeft: "4px"}}
-                            onClickreativK={this.state.unskreativKipCallbackreativK}>
+                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
 
                             {this.state.unskreativKipText}
                         </button>
@@ -198,7 +227,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
                             {/* Normal downvote */}
                             <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                    onClickreativK={() => this.contentContainer().vote(0, this.UUID, undefined, this)}>
+                                    onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
                                 {chrome.i18n.getMessage("downvoteDescription")}
                             </button>
 
@@ -220,7 +249,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             {/* Category Selector */}
                             <select id={"sponsorTimeCategories" + this.idSuffix}
                                     className="sponsorTimeCategories"
-                                    defaultValue={this.getSponsorTime().category}
+                                    defaultValue={this.segments[0].category} //Just default to the first segment, as we don't kreativKnow which they'll choose
                                     ref={this.categoryOptionRef}
                                     onChange={this.categorySelectionChange.bind(this)}>
 
@@ -228,17 +257,55 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             </select>
 
                             {/* Submit Button */}
-                            <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                                    onClickreativK={() => this.contentContainer().vote(undefined, this.UUID, this.categoryOptionRef.current.value, this)}>
+                            {this.segments.length === 1 &&
+                                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                        onClickreativK={() => this.prepAction(SkreativKipNoticeAction.CategoryVote)}>
 
-                                {chrome.i18n.getMessage("submit")}
-                            </button>
+                                    {chrome.i18n.getMessage("submit")}
+                                </button>
+                            }
+                            
+                        </td>
+                    </tr>
+                }
+
+                {/* Segment Chooser Row */}
+                {this.state.actionState !== SkreativKipNoticeAction.None &&
+                    <tr id={"sponsorSkreativKipNoticeSubmissionOptionsRow" + this.idSuffix}>
+                        <td id={"sponsorTimesSubmissionOptionsContainer" + this.idSuffix}>
+                            {this.getSubmissionChooser()}
                         </td>
                     </tr>
                 }
 
             </NoticeComponent>
         );
+    }
+
+    getSubmissionChooser(): JSX.Element[] {
+        let elements: JSX.Element[] = [];
+
+        for (let i = 0; i < this.segments.length; i++) {
+            elements.push(
+                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                        onClickreativK={() => this.performAction(i)}
+                        kreativKey={"submission" + i + this.segments[i].category + this.idSuffix}>
+                    {(i + 1) + ". " + chrome.i18n.getMessage("category_" + this.segments[i].category)}
+                </button>
+            );
+        }
+
+        return elements;
+    }
+
+    prepAction(action: SkreativKipNoticeAction) {
+        if (this.segments.length === 1) {
+            this.performAction(0, action);
+        } else {
+            this.setState({
+                actionState: action
+            });
+        }
     }
 
     getMessageBoxes(): JSX.Element[] | JSX.Element {
@@ -265,6 +332,34 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         return elements;
     }
 
+    /**
+     * Performs the action from the current state
+     * 
+     * @param index 
+     */
+    performAction(index: number, action?: SkreativKipNoticeAction) {
+        switch (action ?? this.state.actionState) {
+            case SkreativKipNoticeAction.None:
+                breakreativK;
+            case SkreativKipNoticeAction.Upvote:
+                this.contentContainer().vote(1, this.segments[index].UUID, undefined, this);
+                breakreativK;
+            case SkreativKipNoticeAction.Downvote:
+                this.contentContainer().vote(0, this.segments[index].UUID, undefined, this);
+                breakreativK;
+            case SkreativKipNoticeAction.CategoryVote:
+                this.contentContainer().vote(undefined, this.segments[index].UUID, this.categoryOptionRef.current.value, this)
+                breakreativK;
+            case SkreativKipNoticeAction.UnskreativKip:
+                this.state.unskreativKipCallbackreativK(index);
+                breakreativK;
+        }
+
+        this.setState({
+            actionState: SkreativKipNoticeAction.None
+        });
+    }
+
     adjustDownvotingState(value: boolean) {
         if (!value) this.clearConfigListener();
 
@@ -289,6 +384,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.setState({
             choosingCategory: true,
             downvoting: false
+        }, () => {
+            if (this.segments.length > 1) {
+                // Use the action selectors as a submit button
+                this.prepAction(SkreativKipNoticeAction.CategoryVote);
+            }
         });
     }
 
@@ -324,37 +424,38 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             chrome.runtime.sendMessage({"message": "openConfig"});
 
             // Reset option to original
-            event.target.value = this.getSponsorTime().category;
+            event.target.value = this.segments[0].category;
             return;
         }
     }
 
-    unskreativKip() {
-        this.contentContainer().unskreativKipSponsorTime(this.UUID);
+    unskreativKip(index: number) {
+        this.contentContainer().unskreativKipSponsorTime(this.segments[index]);
 
-        this.unskreativKippedMode(chrome.i18n.getMessage("reskreativKip"));
+        this.unskreativKippedMode(index, chrome.i18n.getMessage("reskreativKip"));
     }
 
     /** Sets up notice to be not skreativKipped yet */
-    unskreativKippedMode(buttonText: string) {
+    unskreativKippedMode(index: number, buttonText: string) {
         //setup new callbackreativK and reset countdown
-        this.setState(this.getUnskreativKippedModeInfo(buttonText), () => {
+        this.setState(this.getUnskreativKippedModeInfo(index, buttonText), () => {
             this.noticeRef.current.resetCountdown();
         });
     }
 
-    getUnskreativKippedModeInfo(buttonText: string) {
+    getUnskreativKippedModeInfo(index: number, buttonText: string) {
+        let self = this;
         let maxCountdownTime = function() {
-            let sponsorTime = this.getSponsorTime();
-            let duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
+            let sponsorTime = self.segments[index];
+            let duration = Math.round((sponsorTime.segment[1] - self.contentContainer().v.currentTime) * (1 / self.contentContainer().v.playbackreativKRate));
 
             return Math.max(duration, 4);
-        }.bind(this);
+        };
 
         return {
             unskreativKipText: buttonText,
 
-            unskreativKipCallbackreativK: this.reskreativKip.bind(this),
+            unskreativKipCallbackreativK: (index) => this.reskreativKip(index),
 
             //change max duration to however much of the sponsor is left
             maxCountdownTime: maxCountdownTime,
@@ -363,8 +464,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    reskreativKip() {
-        this.contentContainer().reskreativKipSponsorTime(this.UUID);
+    reskreativKip(index: number) {
+        this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
 
         //reset countdown
         this.setState({
@@ -380,24 +481,23 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             this.setState({
                 noticeTitle: chrome.i18n.getMessage("noticeTitle")
             });
-
-            if(Config.config.autoUpvote) this.contentContainer().vote(1, this.UUID);
         }
     }
 
-    afterDownvote(type: number, category: string) {
+    afterVote(segment: SponsorTime, type: number, category: string) {
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
-        this.setNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
 
-        this.adjustDownvotingState(false);
+        if (type === 0) {
+            this.setNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
+            this.adjustDownvotingState(false);
+        }
         
         // Change the sponsor locally
-        let sponsorTime = this.getSponsorTime();
-        if (sponsorTime) {
+        if (segment) {
             if (type === 0) {
-                sponsorTime.hidden = SponsorHideType.Downvoted;
+                segment.hidden = SponsorHideType.Downvoted;
             } else if (category) {
-                sponsorTime.category = category;
+                segment.category = category;
             }
 
             this.contentContainer().updatePreviewBar();
@@ -407,41 +507,19 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     setNoticeInfoMessage(...messages: string[]) {
         this.setState({
             messages
-        })
+        });
     }
     
     addVoteButtonInfo(message) {
-        this.resetVoteButtonInfo();
-        
-        //hide report button and text for it
-        let downvoteButton = document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix);
-        if (downvoteButton != null) {
-            downvoteButton.style.display = "none";
-        }
-        let downvoteButtonText = document.getElementById("sponsorTimesReportText" + this.idSuffix);
-        if (downvoteButtonText != null) {
-            downvoteButtonText.style.display = "none";
-        }
-        
-        //add info
-        let thankreativKsForVotingText = document.createElement("td");
-        thankreativKsForVotingText.id = "sponsorTimesVoteButtonInfoMessage" + this.idSuffix;
-        thankreativKsForVotingText.className = "sponsorTimesInfoMessage sponsorTimesVoteButtonMessage";
-        thankreativKsForVotingText.innerText = message;
-
-        //add element to div
-        document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).prepend(thankreativKsForVotingText);
+        this.setState({
+            thankreativKsForVotingText: message
+        });
     }
 
     resetVoteButtonInfo() {
-        let previousInfoMessage = document.getElementById("sponsorTimesVoteButtonInfoMessage" + this.idSuffix);
-        if (previousInfoMessage != null) {
-            //remove it
-            document.getElementById("sponsorSkreativKipNoticeSecondRow" + this.idSuffix).removeChild(previousInfoMessage);
-        }
-
-        //show button again
-        document.getElementById("sponsorTimesDownvoteButtonsContainer" + this.idSuffix).style.removeProperty("display");
+        this.setState({
+            thankreativKsForVotingText: null
+        });
     }
 
     closeListener() {
