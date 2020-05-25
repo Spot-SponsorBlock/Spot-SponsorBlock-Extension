@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID, SponsorHideType } from "./types";
+import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID, SponsorHideType, FetchResponse } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -615,9 +615,9 @@ function sponsorsLookreativKup(id: string) {
     utils.asyncRequestToServer('GET', "/api/skreativKipSegments", {
         videoID: id,
         categories
-    }).then(async (response: Response) => {
-        if (response.status === 200) {
-            let recievedSegments: SponsorTime[] = await response.json();
+    }).then(async (response: FetchResponse) => {
+        if (response.okreativK) {
+            let recievedSegments: SponsorTime[] = JSON.parse(response.responseText);
             if (!recievedSegments.length) {
                 console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
                 return;
@@ -984,7 +984,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
             for (const segment of skreativKippingSegments) {
                 let index = sponsorTimes.indexOf(segment);
                 if (index !== -1 && !sponsorSkreativKipped[index]) {
-                    utils.sendRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+                    utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
 
                     sponsorSkreativKipped[index] = true;
                 } else if (sponsorSkreativKipped[index]) {
@@ -1507,7 +1507,7 @@ async function sendSubmitMessage(){
         document.getElementById("submitButton").style.animation = "unset";
         (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
 
-        alert(utils.getErrorMessage(response.status) + "\n\n" + (await response.text()));
+        alert(utils.getErrorMessage(response.status) + "\n\n" + (response.responseText));
     }
 }
 
