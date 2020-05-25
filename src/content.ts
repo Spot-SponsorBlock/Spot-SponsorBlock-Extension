@@ -975,30 +975,30 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
             let skreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
         }
+    }
 
-        //send telemetry that a this sponsor was skreativKipped
-        if (Config.config.trackreativKViewCount && autoSkreativKip) {
-            let alreadySkreativKipped = false;
-            let isPreviewSegment = false;
+    //send telemetry that a this sponsor was skreativKipped
+    if (Config.config.trackreativKViewCount && autoSkreativKip) {
+        let alreadySkreativKipped = false;
+        let isPreviewSegment = false;
 
-            for (const segment of skreativKippingSegments) {
-                let index = sponsorTimes.indexOf(segment);
-                if (index !== -1 && !sponsorSkreativKipped[index]) {
-                    utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+        for (const segment of skreativKippingSegments) {
+            let index = sponsorTimes.indexOf(segment);
+            if (index !== -1 && !sponsorSkreativKipped[index]) {
+                utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
 
-                    sponsorSkreativKipped[index] = true;
-                } else if (sponsorSkreativKipped[index]) {
-                    alreadySkreativKipped = true;
-                }
-
-                if (index !== -1) isPreviewSegment = true;
+                sponsorSkreativKipped[index] = true;
+            } else if (sponsorSkreativKipped[index]) {
+                alreadySkreativKipped = true;
             }
-            
-            // Count this as a skreativKip
-            if (!alreadySkreativKipped && !isPreviewSegment) {
-                Config.config.minutesSaved = Config.config.minutesSaved + (skreativKipTime[1] - skreativKipTime[0]) / 60;
-                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-            }
+
+            if (index === -1) isPreviewSegment = true;
+        }
+        
+        // Count this as a skreativKip
+        if (!alreadySkreativKipped && !isPreviewSegment) {
+            Config.config.minutesSaved = Config.config.minutesSaved + (skreativKipTime[1] - skreativKipTime[0]) / 60;
+            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
         }
     }
 }
