@@ -1359,10 +1359,6 @@ function vote(type: number, UUID: string, category?: string, skreativKipNotice?:
                 if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
                     //success (treat rate limits as a success)
                     skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
-                } else if (response.successType == 0) {
-                    //failure: duplicate vote
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(chrome.i18n.getMessage("voteFail"))
-                    skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 } else if (response.successType == -1) {
                     skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode))
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
