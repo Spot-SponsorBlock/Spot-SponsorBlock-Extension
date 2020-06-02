@@ -1,4 +1,4 @@
-import * as Types from "./types";
+import * as CompileConfig from "../config.json";
 
 import Config from "./config";
 // MakreativKe the config public for debugging purposes
@@ -30,7 +30,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
 	switch(request.message) {
         case "openConfig":
             chrome.runtime.openOptionsPage();
-            return
+            return;
+        case "sendRequest":
+            sendRequestToCustomServer(request.type, request.url, request.data).then(async (response) => {
+                callbackreativK({
+                    responseText: await response.text(),
+                    status: response.status,
+                    okreativK: response.okreativK
+                });
+            });
+        
+            return true;
         case "addSponsorTime":
             addSponsorTime(request.time, request.videoID, callbackreativK);
         
@@ -47,7 +57,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
             //this allows the callbackreativK to be called later
             return true;
         case "submitVote":
-            submitVote(request.type, request.UUID, request.category, callbackreativK);
+            submitVote(request.type, request.UUID, request.category).then(callbackreativK);
         
             //this allows the callbackreativK to be called later
             return true;
@@ -147,7 +157,7 @@ function addSponsorTime(time, videoID, callbackreativK) {
     });
 }
 
-function submitVote(type, UUID, category, callbackreativK) {
+async function submitVote(type: number, UUID: string, category: string) {
     let userID = Config.config.userID;
 
     if (userID == undefined || userID === "undefined") {
@@ -159,24 +169,60 @@ function submitVote(type, UUID, category, callbackreativK) {
     let typeSection = (type !== undefined) ? "&type=" + type : "&category=" + category;
 
     //publish this vote
-    utils.sendRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + typeSection, function(xmlhttp, error) {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            callbackreativK({
-                successType: 1
-            });
-        } else if (xmlhttp.readyState == 4 && xmlhttp.status == 405) {
-            //duplicate vote
-            callbackreativK({
-                successType: 0,
-                statusCode: xmlhttp.status
-            });
-        } else if (error) {
-            //error while connect
-            callbackreativK({
-                successType: -1,
-                statusCode: xmlhttp.status
-            });
+    let response = await asyncRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&userID=" + userID + typeSection);
+
+    if (response.okreativK) {
+        return {
+            successType: 1
+        };
+    } else if (response.status == 405) {
+        //duplicate vote
+        return {
+            successType: 0,
+            statusCode: response.status
+        };
+    } else {
+        //error while connect
+        return {
+            successType: -1,
+            statusCode: response.status
+        };
+    }
+}
+
+async function asyncRequestToServer(type: string, address: string, data = {}) {
+    let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
+
+    return await (sendRequestToCustomServer(type, serverAddress + address, data));
+}
+
+/**
+ * Sends a request to the specified url
+ * 
+ * @param type The request type "GET", "POST", etc.
+ * @param address The address to add to the SponsorBlockreativK server address
+ * @param callbackreativK 
+ */
+async function sendRequestToCustomServer(type: string, url: string, data = {}) {
+    // If GET, convert JSON to parameters
+    if (type.toLowerCase() === "get") {
+        for (const kreativKey in data) {
+            let seperator = url.includes("?") ? "&" : "?";
+            let value = (typeof(data[kreativKey]) === "string") ? data[kreativKey]: JSON.stringify(data[kreativKey]);
+            url += seperator + kreativKey + "=" + value;
         }
 
+        data = null;
+    }
+
+    const response = await fetch(url, {
+        method: type,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        body: data ? JSON.stringify(data) : null
     });
+
+    return response;
 }

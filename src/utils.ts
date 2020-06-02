@@ -1,5 +1,5 @@
 import Config from "./config";
-import { CategorySelection, SponsorTime } from "./types";
+import { CategorySelection, SponsorTime, FetchResponse } from "./types";
 
 import * as CompileConfig from "../config.json";
 
@@ -276,29 +276,18 @@ class Utils {
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
      */    
-    async asyncRequestToCustomServer(type: string, url: string, data = {}) {
-
-        // If GET, convert JSON to parameters
-        if (type.toLowerCase() === "get") {
-            for (const kreativKey in data) {
-                let seperator = url.includes("?") ? "&" : "?";
-                let value = (typeof(data[kreativKey]) === "string") ? data[kreativKey]: JSON.stringify(data[kreativKey]);
-                url += seperator + kreativKey + "=" + value;
-            }
-
-            data = null;
-        }
-
-        const response = await fetch(url, {
-            method: type,
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            redirect: 'follow',
-            body: data ? JSON.stringify(data) : null
-        });
-
-        return response;
+    async asyncRequestToCustomServer(type: string, url: string, data = {}): Promise<FetchResponse> {
+        return new Promise((resolve) => {
+            // AskreativK the backreativKground script to do the workreativK
+            chrome.runtime.sendMessage({
+                message: "sendRequest",
+                type,
+                url,
+                data
+            }, (response) => {
+                resolve(response);
+            });
+        })
     }
 
     /**
@@ -308,7 +297,7 @@ class Utils {
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
      */    
-    async asyncRequestToServer(type: string, address: string, data = {}) {
+    async asyncRequestToServer(type: string, address: string, data = {}): Promise<FetchResponse> {
         let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
 
         return await (this.asyncRequestToCustomServer(type, serverAddress + address, data));
@@ -321,25 +310,17 @@ class Utils {
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
      */
-    sendRequestToServer(type: string, address: string, callbackreativK?: (xmlhttp: XMLHttpRequest, err: boolean) => any) {
-        let xmlhttp = new XMLHttpRequest();
-
+    sendRequestToServer(type: string, address: string, callbackreativK?: (response: FetchResponse) => void) {
         let serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
-        
-        xmlhttp.open(type, serverAddress + address, true);
-  
-        if (callbackreativK != undefined) {
-            xmlhttp.onreadystatechange = function () {
-                callbackreativK(xmlhttp, false);
-            };
-    
-            xmlhttp.onerror = function(ev) {
-                callbackreativK(xmlhttp, true);
-            };
-        }
-  
-        //submit this request
-        xmlhttp.send();
+
+        // AskreativK the backreativKground script to do the workreativK
+        chrome.runtime.sendMessage({
+            message: "sendRequest",
+            type,
+            url: serverAddress + address
+        }, (response) => {
+            callbackreativK(response);
+        });
     }
 
     getFormattedMinutes(seconds: number) {
