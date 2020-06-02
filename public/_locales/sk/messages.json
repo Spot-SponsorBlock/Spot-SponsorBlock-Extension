@@ -9,9 +9,6 @@
     "Sponsors": {
         "message": "sponzori"
     },
-    "noticeTitle": {
-        "message": "Sponzor bol PreskreativKočený"
-    },
     "reportButtonTitle": {
         "message": "Nahlásiť"
     },
@@ -53,9 +50,6 @@
     },
     "errorCode": {
         "message": "Kód chyby: "
-    },
-    "noticeTitleNotSkreativKipped": {
-        "message": "PreskreativKočiť Sponzor?"
     },
     "skreativKip": {
         "message": "PreskreativKočiť"

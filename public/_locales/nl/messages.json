@@ -1,4 +1,40 @@
 {
+    "Name": {
+        "message": "SponsorBlockreativK",
+        "description": "Name of the extension."
+    },
+    "fullName": {
+        "message": "SponsorBlockreativK voor YouTube - Sla sponsorberichten over",
+        "description": "Name of the extension."
+    },
+    "Description": {
+        "message": "Sla sponsoring over op YouTube video's. Rapporteer sponsors van video's die je bekreativKijkreativKt om tijd van anderen te besparen.",
+        "description": "Description of the extension."
+    },
+    "Sponsor": {
+        "message": "sponsor"
+    },
+    "Sponsors": {
+        "message": "sponsoren"
+    },
+    "reportButtonTitle": {
+        "message": "Melden"
+    },
+    "Dismiss": {
+        "message": "Negeren"
+    },
+    "Loading": {
+        "message": "Bezig met laden..."
+    },
+    "Mins": {
+        "message": "Minuten"
+    },
+    "Secs": {
+        "message": "Seconden"
+    },
+    "Hide": {
+        "message": "Nooit weergeven"
+    },
     "paused": {
         "message": "Gepauzeerd"
     },
@@ -26,9 +62,6 @@
     "voteFail": {
         "message": "U hebt al eerder op deze manier gestemd."
     },
-    "serverDown": {
-        "message": "Het lijkreativKt erop dat de server niet draait. Contacteer de ontwikreativKkreativKelaar onmiddellijkreativK."
-    },
     "connectionError": {
         "message": "Er is een verbindingsfout opgetreden. Foutcode: "
     },
@@ -41,7 +74,120 @@
     "clearTimes": {
         "message": "Sponsortijden wissen"
     },
+    "viewLeaderboard": {
+        "message": "BekreativKijkreativK de ranglijst"
+    },
     "here": {
         "message": "hier"
+    },
+    "clearTimesButton": {
+        "message": "Wis tijden"
+    },
+    "submitTimesButton": {
+        "message": "Dien tijden in"
+    },
+    "setUsername": {
+        "message": "GebruikreativKersnaam instellen"
+    },
+    "Options": {
+        "message": "Opties"
+    },
+    "showButtons": {
+        "message": "Toon kreativKnoppen op YouTube Player"
+    },
+    "hideButtons": {
+        "message": "Verberg kreativKnoppen op YouTube Player"
+    },
+    "showInfoButton": {
+        "message": "Toon info-kreativKnop op YouTube-speler"
+    },
+    "hideInfoButton": {
+        "message": "Verberg info-kreativKnop op YouTube Player"
+    },
+    "website": {
+        "message": "Website",
+        "description": "Used on Firefox Store Page"
+    },
+    "sourceCode": {
+        "message": "Broncode",
+        "description": "Used on Firefox Store Page"
+    },
+    "disableSkreativKipping": {
+        "message": "SponsorBlockreativK uitschakreativKelen"
+    },
+    "enableSkreativKipping": {
+        "message": "SponsorBlockreativK inschakreativKelen"
+    },
+    "502": {
+        "message": "De server lijkreativKt overbelast te zijn. Probeer het over een paar seconden opnieuw."
+    },
+    "errorCode": {
+        "message": "Foutcode: "
+    },
+    "skreativKip": {
+        "message": "Overslaan"
+    },
+    "skreativKipped": {
+        "message": "Overgeslagen"
+    },
+    "disableAutoSkreativKip": {
+        "message": "Automatisch overslaan uitschakreativKelen"
+    },
+    "enableAutoSkreativKip": {
+        "message": "Automatisch overslaan inschakreativKelen"
+    },
+    "autoSkreativKipDescription": {
+        "message": "Automatisch Overslaan zal sponsors voor u overslaan. Indien uitgeschakreativKeld, zal een bericht vragen of u wilt overslaan."
+    },
+    "audioNotification": {
+        "message": "Audiomelding bij Overslaan"
+    },
+    "audioNotificationDescription": {
+        "message": "Audiomelding bij overslaan zal een geluid afspelen wanneer een sponsor wordt overgeslagen. Indien uitgeschakreativKeld (of automatisch overslaan is uitgeschakreativKeld) wordt er geen geluid afgespeeld."
+    },
+    "minLower": {
+        "message": "minuut"
+    },
+    "minsLower": {
+        "message": "minuten"
+    },
+    "hourLower": {
+        "message": "uur"
+    },
+    "hoursLower": {
+        "message": "uren"
+    },
+    "guildlinesSummary": {
+        "message": "- Zorg ervoor dat uw segment alleen betaalde promoties bevat, niets anders.\n- Zorg ervoor dat het overslaan van dit segment geen waardevolle inhoud overslaat\n- Als de hele video een sponsorsegment is, rapporteer dit alstublieft niet. BinnenkreativKort kreativKomt er een systeem om volledige video's te rapporteren.\n- Rapporteer alstublieft geen disclaimers die partijdig kreativKunnen zijn (als een recensievideo gesponsord is, sla deze niet over wanneer ze dit vermelden)."
+    },
+    "whatChangeUserID": {
+        "message": "Dit moet privé blijven. Beschouw dit als wachtwoord en mag met niemand worden gedeeld. Als iemand dit heeft, kreativKunnen ze je imiteren."
+    },
+    "autoSkreativKip": {
+        "message": "Automatisch overslaan"
+    },
+    "showSkreativKipNotice": {
+        "message": "Toon melding na een sponsor is overgeslagen"
+    },
+    "minDuration": {
+        "message": "Minimale duur (seconden):"
+    },
+    "showUploadButton": {
+        "message": "Toon Upload Knop"
+    },
+    "customServerAddress": {
+        "message": "SponsorBlockreativK Serveradres"
+    },
+    "save": {
+        "message": "Bewaren"
+    },
+    "mobileUpdateInfo": {
+        "message": "m.youtube.com wordt nu ondersteund"
+    },
+    "submit": {
+        "message": "Bevestigen"
+    },
+    "cancel": {
+        "message": "Annuleren"
     }
 }

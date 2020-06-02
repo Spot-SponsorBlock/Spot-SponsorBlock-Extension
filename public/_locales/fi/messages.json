@@ -1,1 +1,387 @@
-{}
+{
+    "Name": {
+        "message": "SponsorBlockreativK",
+        "description": "Name of the extension."
+    },
+    "fullName": {
+        "message": "SponsorBlockreativK YouTubelle - Ohita sponsoroinnit",
+        "description": "Name of the extension."
+    },
+    "Description": {
+        "message": "Ohita sponsorointi YouTube-videoissa. Ilmoita kreativKatsomiesi videoinen sponsoreista säästääkreativKsesi muiden aikreativKaa.",
+        "description": "Description of the extension."
+    },
+    "400": {
+        "message": "Palvelin sanoi tämän pyynnön olevan virheellinen"
+    },
+    "429": {
+        "message": "Olet lähettänyt liian monta sponsorointiaikreativKaa tälle yhdelle videolle. OletkreativKo varma, että niitä on useita?"
+    },
+    "409": {
+        "message": "Tämä on jo lähetetty aiemmin"
+    },
+    "channelWhitelisted": {
+        "message": "Kanava lisätty valkreativKoiselle listalle!"
+    },
+    "Sponsor": {
+        "message": "sponsori"
+    },
+    "Sponsors": {
+        "message": "sponsorit"
+    },
+    "Segment": {
+        "message": "sponsoroitu kreativKohta"
+    },
+    "Segments": {
+        "message": "sponsoroidut kreativKohdat"
+    },
+    "upvoteButtonInfo": {
+        "message": "Äänestä tätä lähetystä"
+    },
+    "reportButtonTitle": {
+        "message": "Ilmoita"
+    },
+    "reportButtonInfo": {
+        "message": "Ilmoita tämän lähetykreativKsen olevan virheellinen."
+    },
+    "Dismiss": {
+        "message": "HylkreativKää"
+    },
+    "Loading": {
+        "message": "Ladataan..."
+    },
+    "Mins": {
+        "message": "Minuuttia"
+    },
+    "Secs": {
+        "message": "SekreativKuntia"
+    },
+    "Hide": {
+        "message": "Älä näytä kreativKoskreativKaan"
+    },
+    "hitGoBackreativK": {
+        "message": "Paina 'älä ohita' mennäkreativKsesi takreativKaisin kreativKohtaan jossa olit."
+    },
+    "unskreativKip": {
+        "message": "Älä ohita"
+    },
+    "reskreativKip": {
+        "message": "Ohita uudelleen"
+    },
+    "paused": {
+        "message": "Pysäytetty"
+    },
+    "manualPaused": {
+        "message": "Ajastin pysäytetty"
+    },
+    "clearThis": {
+        "message": "HaluatkreativKo varmasti poistaa tämän?\n\n"
+    },
+    "UnkreativKnown": {
+        "message": "SponsorointiaikreativKoja lähetettäessä tapahtui virhe, yritä myöhemmin uudelleen."
+    },
+    "sponsorFound": {
+        "message": "Tämän videon sponsorit löytyvät tietokreativKannasta!"
+    },
+    "sponsor404": {
+        "message": "Sponsoreita ei löytynyt"
+    },
+    "sponsorStart": {
+        "message": "Sponsorointi alkreativKaa nyt"
+    },
+    "sponsorEnd": {
+        "message": "Sponsorointi päättyy nyt"
+    },
+    "noVideoID": {
+        "message": "Välilehdeltä ei löytynyt YouTube-videota. Jos olet varma, että tämä on YouTube-välilehti, sulje tämä ponnahdusikreativKkreativKuna ja avaa se uudelleen. Jos sekreativKään ei toimi, yritä ladata välilehti uudelleen."
+    },
+    "success": {
+        "message": "Onnistui!"
+    },
+    "voted": {
+        "message": "Äänestetty!"
+    },
+    "voteFail": {
+        "message": "Olet jo äänestänyt näin aiemmin."
+    },
+    "serverDown": {
+        "message": "Palvelin näyttää olevan alhaalla. Ota heti yhteyttä kreativKehittäjään."
+    },
+    "connectionError": {
+        "message": "Yhteysvirhe on tapahtunut. VirhekreativKoodi: "
+    },
+    "clearTimes": {
+        "message": "Tyhjennä sponsorointiajat"
+    },
+    "openPopup": {
+        "message": "Avaa SponsorBlockreativK-ponnahdusikreativKkreativKuna"
+    },
+    "SubmitTimes": {
+        "message": "Lähetä sponsorointiajat"
+    },
+    "submitCheckreativK": {
+        "message": "HaluatkreativKo varmasti lähettää tämän?"
+    },
+    "whitelistChannel": {
+        "message": "Lisää kreativKanava valkreativKoiselle listalle"
+    },
+    "removeFromWhitelist": {
+        "message": "Poista kreativKanava valkreativKoiselta listalta"
+    },
+    "voteOnTime": {
+        "message": "Äänestä sponsorointiaikreativKaa"
+    },
+    "recordTimes": {
+        "message": "Tallenna sponsoroinnin ajat"
+    },
+    "soFarUHSubmited": {
+        "message": "Tähän mennessä, olet lähettänyt"
+    },
+    "savedPeopleFrom": {
+        "message": "Olet säästänyt ihmisiltä "
+    },
+    "viewLeaderboard": {
+        "message": "Näytä tulostaulukreativKkreativKo"
+    },
+    "here": {
+        "message": "tässä"
+    },
+    "clearTimesButton": {
+        "message": "Tyhjennä ajat"
+    },
+    "submitTimesButton": {
+        "message": "Lähetä ajat"
+    },
+    "setUsername": {
+        "message": "Aseta kreativKäyttäjänimi"
+    },
+    "hideThis": {
+        "message": "Piilota tämä"
+    },
+    "Options": {
+        "message": "AsetukreativKset"
+    },
+    "showButtons": {
+        "message": "Näytä painikreativKkreativKeet YouTuben soittimessa"
+    },
+    "hideButtons": {
+        "message": "Piilota painikreativKkreativKeet YouTuben soittimessa"
+    },
+    "hideButtonsDescription": {
+        "message": "Tämä piilottaa YouTuben soittimessa näkreativKyvät, ohitettavien aikreativKojen lähettämiseen kreativKäytetyt painikreativKkreativKeet."
+    },
+    "showInfoButton": {
+        "message": "Näytä info-painikreativKe YouTuben soittimessa"
+    },
+    "hideInfoButton": {
+        "message": "Piilota info-painikreativKe YouTuben soittimessa"
+    },
+    "whatInfoButton": {
+        "message": "Tämä on painikreativKe, jokreativKa avaa ponnahdusikreativKkreativKunan YouTube-sivulla."
+    },
+    "hideDeleteButton": {
+        "message": "Piilota poista-painikreativKe YouTuben soittimessa"
+    },
+    "showDeleteButton": {
+        "message": "Näytä poista-painikreativKe YouTuben soittimessa"
+    },
+    "whatDeleteButton": {
+        "message": "Tämä on YouTuben soittimen painikreativKe, jokreativKa poistaa kreativKaikreativKkreativKi kreativKyseisen videon sponsorointikreativKohdat, joita et ole vielä lähettänyt."
+    },
+    "website": {
+        "message": "Sivusto",
+        "description": "Used on Firefox Store Page"
+    },
+    "sourceCode": {
+        "message": "LähdekreativKoodi",
+        "description": "Used on Firefox Store Page"
+    },
+    "kreativKeybindDescription": {
+        "message": "Valitse näppäin painamalla sitä"
+    },
+    "disableSkreativKipping": {
+        "message": "Poista SponsorblockreativK kreativKäytöstä"
+    },
+    "enableSkreativKipping": {
+        "message": "Ota SponsorBlockreativK kreativKäyttöön"
+    },
+    "yourWorkreativK": {
+        "message": "Sinun työsi",
+        "description": "Used to describe the section that will show you the statistics from your submissions."
+    },
+    "errorCode": {
+        "message": "VirhekreativKoodi: "
+    },
+    "skreativKip": {
+        "message": "Ohita"
+    },
+    "skreativKipped": {
+        "message": "Ohitettu"
+    },
+    "disableAutoSkreativKip": {
+        "message": "Poista automaattinen ohitus kreativKäytöstä"
+    },
+    "enableAutoSkreativKip": {
+        "message": "Ota automaattinen ohitus kreativKäyttöön"
+    },
+    "youHaveSkreativKipped": {
+        "message": "Olet ohittanut "
+    },
+    "youHaveSaved": {
+        "message": "Olet säästänyt itseltäsi "
+    },
+    "minLower": {
+        "message": "minuutti"
+    },
+    "minsLower": {
+        "message": "minuuttia"
+    },
+    "hourLower": {
+        "message": "tunti"
+    },
+    "hoursLower": {
+        "message": "tuntia"
+    },
+    "youHaveSavedTime": {
+        "message": "Olet säästänyt ihmisiltä"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " heidän elämästään."
+    },
+    "changeUserID": {
+        "message": "Tuo/vie sinun UserID:si"
+    },
+    "setUserID": {
+        "message": "Aseta UserID"
+    },
+    "supportInvidious": {
+        "message": "Tue Invidious:ta"
+    },
+    "addInvidiousInstance": {
+        "message": "Lisää Invidious-instanssi"
+    },
+    "add": {
+        "message": "Lisää"
+    },
+    "resetInvidiousInstance": {
+        "message": "Nollaa Invidious-instanssien lista"
+    },
+    "resetInvidiousInstanceAlert": {
+        "message": "Olet nollaamassa Invidious-instanssien listan"
+    },
+    "currentInstances": {
+        "message": "NykreativKyiset instanssit:"
+    },
+    "minDuration": {
+        "message": "VähimmäiskreativKesto (sekreativKuntia):"
+    },
+    "showUploadButton": {
+        "message": "Näytä lähetä-painikreativKe"
+    },
+    "save": {
+        "message": "Tallenna"
+    },
+    "reset": {
+        "message": "Nollaa"
+    },
+    "mobileUpdateInfo": {
+        "message": "m.youtube.com-osoitetta tuetaan nyt"
+    },
+    "exportOptions": {
+        "message": "Vie/tuo kreativKaikreativKkreativKi asetukreativKset"
+    },
+    "setOptions": {
+        "message": "Käytä asetukreativKsia"
+    },
+    "confirmNoticeTitle": {
+        "message": "Lähetä kreativKohta"
+    },
+    "submit": {
+        "message": "JatkreativKa"
+    },
+    "cancel": {
+        "message": "Peruuta"
+    },
+    "delete": {
+        "message": "Poista"
+    },
+    "preview": {
+        "message": "EsikreativKatsele"
+    },
+    "edit": {
+        "message": "MuokreativKkreativKaa"
+    },
+    "copyDebugInformationFailed": {
+        "message": "Kirjoittaminen leikreativKepöydälle epäonnistui"
+    },
+    "theKey": {
+        "message": "Näppäin"
+    },
+    "kreativKeyAlreadyUsedByYouTube": {
+        "message": "on jo YouTuben kreativKäytössä. Valitse toinen näppäin."
+    },
+    "kreativKeyAlreadyUsed": {
+        "message": "on jo liitetty toiseen toimintoon. Valitse toinen näppäin."
+    },
+    "to": {
+        "message": "-",
+        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+    },
+    "category_sponsor": {
+        "message": "Sponsori"
+    },
+    "category_intro": {
+        "message": "Intro-animaatio"
+    },
+    "category_outro": {
+        "message": "LoppukreativKortit/-tekreativKstit"
+    },
+    "category_interaction": {
+        "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
+    },
+    "category_selfpromo": {
+        "message": "Itsepromootio ja fanituotteet"
+    },
+    "category_music_offtopic": {
+        "message": "MusiikreativKkreativKi: muussa kreativKuin MusiikreativKkreativKi-osiossa"
+    },
+    "category_livestream_messages": {
+        "message": "Livestream: lahjoitukreativKsen/viestin lukreativKeminen"
+    },
+    "disable": {
+        "message": "Poista kreativKäytöstä"
+    },
+    "manualSkreativKip": {
+        "message": "Manuaalinen ohitus"
+    },
+    "enableTestingServer": {
+        "message": "Ota betatestauspalvelin kreativKäyttöön"
+    },
+    "brackreativKetNow": {
+        "message": "(Nyt)"
+    },
+    "moreCategories": {
+        "message": "Lisää kreativKategorioita"
+    },
+    "brackreativKetEnd": {
+        "message": "(Päättyy)"
+    },
+    "hiddenDueToDownvote": {
+        "message": "piilotettu: miinusääniä"
+    },
+    "hiddenDueToDuration": {
+        "message": "piilotettu: liian lyhyt"
+    },
+    "channelDataNotFound": {
+        "message": "Kanavatunnusta ei ole vielä ladattu."
+    },
+    "downvoteDescription": {
+        "message": "Virheellinen/väärä aikreativKa"
+    },
+    "incorrectCategory": {
+        "message": "Väärä kreativKategoria"
+    },
+    "multipleSegments": {
+        "message": "Useita kreativKohtia"
+    }
+}

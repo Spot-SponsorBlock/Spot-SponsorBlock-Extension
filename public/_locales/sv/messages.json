@@ -28,14 +28,8 @@
     "Segments": {
         "message": "sponsorsegment"
     },
-    "noticeTitle": {
-        "message": "Sponsormeddelande undvikreativKt"
-    },
     "reportButtonTitle": {
         "message": "Rapportera"
-    },
-    "reportButtonInfo": {
-        "message": "Rapportera det här sponsorsegmentet som inkreativKorrekreativKt."
     },
     "Dismiss": {
         "message": "Avfärda"
@@ -96,9 +90,6 @@
     },
     "voteFail": {
         "message": "Du har redan röstat."
-    },
-    "serverDown": {
-        "message": "Det ser ut som att servern är nere. KontakreativKta utveckreativKlaren med en gång."
     },
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
@@ -262,9 +253,6 @@
     "errorCode": {
         "message": "FelkreativKod: "
     },
-    "noticeTitleNotSkreativKipped": {
-        "message": "Hoppa över sponsormeddelande?"
-    },
     "skreativKip": {
         "message": "Hoppa över"
     },
@@ -363,12 +351,6 @@
     },
     "currentInstances": {
         "message": "Nuvarande Instanser:"
-    },
-    "enableAutoUpvote": {
-        "message": "Rösta Upp AutomatiskreativKt"
-    },
-    "whatAutoUpvote": {
-        "message": "Med detta akreativKtiverat kreativKommer tillägget att rösta upp alla rapporterade sponsormeddelanden om du inte rapporterar dem som felakreativKtiga. Om notisen är avakreativKtiverad så kreativKommer det inte att skreativKe."
     },
     "minDuration": {
         "message": "Minsta varakreativKtighet (sekreativKunder):"

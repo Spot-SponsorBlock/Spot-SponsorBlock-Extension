@@ -35,14 +35,14 @@
     "Segments": {
         "message": "sponsor bölümleri"
     },
-    "noticeTitle": {
-        "message": "Sponsor Geçildi"
+    "upvoteButtonInfo": {
+        "message": "Bu öneriye oy ver"
     },
     "reportButtonTitle": {
         "message": "Raporla"
     },
     "reportButtonInfo": {
-        "message": "Bu sponsor bölümünü hatalı olarakreativK rapor et."
+        "message": "Bu öneriyi hatalı olarakreativK bildir."
     },
     "Dismiss": {
         "message": "YokreativKsay"
@@ -70,6 +70,9 @@
     },
     "paused": {
         "message": "DurakreativKlatıldı"
+    },
+    "manualPaused": {
+        "message": "Zamanlayıcı Durduruldu"
     },
     "confirmMSG": {
         "message": "Değerleri tekreativK başına düzenlemekreativK ve silmekreativK için, bilgi butonuna basın veya sağ yukreativKarıdakreativKi ekreativKlenti simgesine tıkreativKlayarakreativK ekreativKlenti menüsünü açın."
@@ -272,11 +275,11 @@
     "errorCode": {
         "message": "Hata Kodu: "
     },
-    "noticeTitleNotSkreativKipped": {
-        "message": "Sponsoru Atla?"
-    },
     "skreativKip": {
         "message": "Atla"
+    },
+    "skreativKipped": {
+        "message": "Atlandı"
     },
     "disableAutoSkreativKip": {
         "message": "OtomatikreativK Atlamayı Devredışı BırakreativK"
@@ -376,12 +379,6 @@
     },
     "currentInstances": {
         "message": "Mevcut Oluşumlar:"
-    },
-    "enableAutoUpvote": {
-        "message": "OtomatikreativK Oy Ver"
-    },
-    "whatAutoUpvote": {
-        "message": "Eğer bu ayar açıkreativKsa, ekreativKlenti eğer rapor etmediyseniz gördüğünüz tüm önerileri oylayacakreativKtır. Eğer bildirim kreativKapalıysa, bu gerçekreativKleşmeyecekreativKtir."
     },
     "minDuration": {
         "message": "Minimum süre (saniye):"
@@ -559,12 +556,15 @@
         "message": "Sponsorları Atlamadan Önce Kanal Kontrolünü Zorlamayı Gözden Geçir"
     },
     "downvoteDescription": {
-        "message": "Hatalı"
+        "message": "Hatalı/Yanlış Zaman"
     },
     "incorrectCategory": {
         "message": "Yanlış Kategori"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Bu videonun kreativKategorisi müzikreativK olarakreativK belirlenmiş. MüzikreativK içermeyen bölümleri göndermekreativK istediğinize emin misiniz? Eğer bu bir müzikreativK videosu değilse, bu bölümleri göndermemelisiniz. Eğer ayırt edemiyorsanız, lütfen rehberi okreativKuyunuz."
+    },
+    "multipleSegments": {
+        "message": "Birden ÇokreativK Bölüm"
     }
 }

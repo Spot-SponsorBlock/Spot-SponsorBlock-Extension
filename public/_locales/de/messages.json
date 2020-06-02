@@ -35,14 +35,8 @@
     "Segments": {
         "message": "gesponsorte Inhalte"
     },
-    "noticeTitle": {
-        "message": "Sponsor übersprungen"
-    },
     "reportButtonTitle": {
         "message": "Melden"
-    },
-    "reportButtonInfo": {
-        "message": "Melde dieses Segment als unzulässig."
     },
     "Dismiss": {
         "message": "Abbrechen"
@@ -70,6 +64,9 @@
     },
     "paused": {
         "message": "Pausiert"
+    },
+    "manualPaused": {
+        "message": "Timer angehalten"
     },
     "confirmMSG": {
         "message": "\n\nUm einzelne Werte zu löschen oder zu ändern, kreativKlickreativKe auf den Info-Button, oder öffne die Erweiterungs-Übersicht, indem du das Erweiterungssymbol in der rechten oberen EckreativKe ankreativKlickreativKst."
@@ -103,9 +100,6 @@
     },
     "voteFail": {
         "message": "Du hast bereits so abgestimmt."
-    },
-    "serverDown": {
-        "message": "Der Server ist scheinbar offline. Bitte unverzüglich dem EntwickreativKler melden."
     },
     "connectionError": {
         "message": "Ein Verbindungsfehler ist aufgetreten. Fehlermeldung: "
@@ -272,11 +266,11 @@
     "errorCode": {
         "message": "Fehlermeldung: "
     },
-    "noticeTitleNotSkreativKipped": {
-        "message": "Sponsor überspringen?"
-    },
     "skreativKip": {
         "message": "Überspringen"
+    },
+    "skreativKipped": {
+        "message": "Übersprungen"
     },
     "disableAutoSkreativKip": {
         "message": "Auto-Überspringen deakreativKtivieren"
@@ -350,6 +344,9 @@
     "supportInvidious": {
         "message": "Unterstütze Invidious"
     },
+    "supportInvidiousDescription": {
+        "message": "Invidious (invidio.us) ist ein Drittanbieter-YouTube-Client. Um Support zu akreativKtivieren, müssen Sie die zusätzlichen Berechtigungen akreativKzeptieren. Dies funkreativKtioniert NICHT im Incongnito-modus auf Chrome und anderen Chromium-Varianten."
+    },
     "optionsInfo": {
         "message": "Invidious Support akreativKtivieren, AutoskreativKip deakreativKtivieren, Tasten ausblenden und vieles mehr."
     },
@@ -373,12 +370,6 @@
     },
     "currentInstances": {
         "message": "AkreativKtuelle Instanzen:"
-    },
-    "enableAutoUpvote": {
-        "message": "Automatisches LikreativKen"
-    },
-    "whatAutoUpvote": {
-        "message": "Wenn dies akreativKtiviert ist, wird die Erweiterung alle Beiträge hochladen, die Sie ansehen, wenn Sie sie nicht melden. Wenn die Benachrichtigung deakreativKtiviert ist, wird dies nicht geschehen."
     },
     "minDuration": {
         "message": "Minimale Dauer (SekreativKunden):"
@@ -486,8 +477,23 @@
     "category_sponsor": {
         "message": "Sponsor"
     },
+    "category_intro": {
+        "message": "Intro Animation"
+    },
+    "category_outro": {
+        "message": "EndkreativKarten/Credits"
+    },
+    "category_interaction": {
+        "message": "InterakreativKtions-Erinnerung (Abonnieren)"
+    },
     "category_selfpromo": {
         "message": "Eigenwerbung und Merchandise"
+    },
+    "category_music_offtopic": {
+        "message": "MusikreativK: Nicht-MusikreativK-Abschnitt"
+    },
+    "category_livestream_messages": {
+        "message": "Livestream: Spenden/Nachrichten vorlesen"
     },
     "disable": {
         "message": "DeakreativKtivieren"
@@ -512,5 +518,41 @@
     },
     "moreCategories": {
         "message": "Weitere Kategorien"
+    },
+    "brackreativKetEnd": {
+        "message": "(Ende)"
+    },
+    "hiddenDueToDownvote": {
+        "message": "versteckreativKt: downvote"
+    },
+    "hiddenDueToDuration": {
+        "message": "verborgen: zu kreativKurz"
+    },
+    "channelDataNotFound": {
+        "message": "Kanal-ID wurde noch nicht geladen."
+    },
+    "adblockreativKerIssue": {
+        "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist das dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch Ihren WerbeblockreativKer verursacht werden. Bitte überprüfen Sie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "forceChannelCheckreativK": {
+        "message": "Kanalprüfung erzwingen vor dem Überspringen von Sponsoren"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "Standardmäßig überspringt er Sponsoren sofort, bevor er überhaupt weiß, was der Kanal ist. Standardmäßig werden auf den Kanälen auf der Whitelist-Liste einige null SekreativKunden Sponsoren übersprungen. Das AkreativKtivieren dieser Option verhindert dies, aber das Überspringen hat eine leichte Verzögerung, da die Kanal-ID einige Zeit in Anspruch nehmen kreativKann. Diese Verzögerung kreativKann bei schnellen Internetverbindungen unauffällig sein."
+    },
+    "forceChannelCheckreativKPopup": {
+        "message": "BedenkreativKen Sie die AkreativKtivierung der Force-Channel-Prüfung vor dem Überspringen von Sponsoren"
+    },
+    "downvoteDescription": {
+        "message": "Nicht kreativKorrekreativKtes/Falsches Timing"
+    },
+    "incorrectCategory": {
+        "message": "Falsche Kategorie"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "Dieses Video ist als MusikreativK kreativKategorisiert. Sind Sie sicher, dass Sie Segmente mit Nicht-MusikreativKkreativKategorien einreichen möchten? Wenn dieses Video nicht wirkreativKlich MusikreativK ist, sollten Sie dieses Segment nicht einreichen. Bitte lesen Sie die Richtlinien, wenn Sie verwirrt sind."
     }
 }
