@@ -59,6 +59,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                 <td id={this.props.category + "SkreativKipOption"}>
                     <select
                         className="categoryOptionsSelector"
+                        defaultValue={defaultOption}
                         onChange={this.skreativKipOptionSelected.bind(this)}>
                             {this.getCategorySkreativKipOptions()}
                     </select>
