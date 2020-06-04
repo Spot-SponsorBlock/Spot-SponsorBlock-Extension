@@ -45,6 +45,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                         defaultOption = "autoSkreativKip";
                         breakreativK;
                 }
+                
+                breakreativK;
             }
         }
 
