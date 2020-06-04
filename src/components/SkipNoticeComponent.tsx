@@ -73,7 +73,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.contentContainer = props.contentContainer;
         this.audio = null;
 
-        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" : "category_" + this.segments[0].category);
+        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
+            : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
         let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
         if (!this.autoSkreativKip) {
             noticeTitle = chrome.i18n.getMessage("skreativKip") + " " + categoryName + "?";
