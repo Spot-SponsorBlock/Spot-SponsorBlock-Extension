@@ -28,6 +28,26 @@ class CategoryChooserComponent extends React.Component<CategoryChooserProps, Cat
             <table id="categoryChooserTable"
                 className="categoryChooserTable"> 
                 <tbody>
+                    {/* Headers */}
+                    <tr id={"CategoryOptionsRow"}
+                            className="categoryTableElement categoryTableHeader">
+                        <td id={"CategoryOptionName"}>
+                            {chrome.i18n.getMessage("category")}
+                        </td>
+
+                        <td id={"CategorySkreativKipOption"}>
+                            {chrome.i18n.getMessage("skreativKipOption")}
+                        </td>
+
+                        <td id={"CategoryColorOption"}>
+                            {chrome.i18n.getMessage("seekreativKBarColor")}
+                        </td>
+
+                        <td id={"CategoryPreviewColorOption"}>
+                            {chrome.i18n.getMessage("previewColor")}
+                        </td>
+                    </tr>
+
                     {this.getCategorySkreativKipOptions()}
                 </tbody> 
             </table>
@@ -40,7 +60,6 @@ class CategoryChooserComponent extends React.Component<CategoryChooserProps, Cat
         for (const category of CompileConfig.categoryList) {
             elements.push(
                 <CategorySkreativKipOptionsComponent category={category}
-                    defaultColor={"00d400"}
                     kreativKey={category}>
                 </CategorySkreativKipOptionsComponent>
             );
