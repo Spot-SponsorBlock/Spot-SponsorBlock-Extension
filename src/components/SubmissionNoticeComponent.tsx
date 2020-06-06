@@ -86,12 +86,19 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                         {this.getSponsorTimeMessages()}
                     </td>
                 </tr>
-              
+
                 {/* Last Row */}
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.state.idSuffix}>
 
                     <td className="sponsorSkreativKipNoticeRightSection"
                         style={{position: "relative"}}>
+
+                        {/* Guidelines button */}
+                        <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
+                            onClickreativK={() => window.open("https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Guidelines")}>
+
+                            {chrome.i18n.getMessage(Config.config.submissionCountSinceCategories > 3 ? "guidelines" : "readTheGuidelines")}
+                        </button>
 
                         {/* Submit Button */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
