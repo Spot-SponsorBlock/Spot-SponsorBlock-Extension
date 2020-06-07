@@ -30,8 +30,9 @@ interface SBConfig {
     minDuration: number,
     audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
-    mobileUpdateShowCount: number,
     testingServer: boolean,
+
+    categoryUpdateShowCount: number,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -146,8 +147,9 @@ var Config: SBObject = {
         minDuration: 0,
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
-        mobileUpdateShowCount: 0,
         testingServer: false,
+
+        categoryUpdateShowCount: 0,
 
         categorySelections: [{
             name: "sponsor",
@@ -323,6 +325,11 @@ async function migrateOldFormats() {
     // Auto vote removal
     if (Config.config["autoUpvote"]) {
         chrome.storage.sync.remove("autoUpvote");
+    }
+
+    // mobileUpdateShowCount removal
+    if (Config.config["mobileUpdateShowCount"] !== undefined) {
+        chrome.storage.sync.remove("mobileUpdateShowCount");
     }
 
     // Channel URLS

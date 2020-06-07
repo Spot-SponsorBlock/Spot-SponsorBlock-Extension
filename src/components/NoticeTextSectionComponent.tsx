@@ -2,7 +2,8 @@ import * as React from "react";
 
 export interface NoticeTextSelectionProps {
     text: string,
-    idSuffix: string
+    idSuffix: string,
+    onClickreativK?: (event: React.MouseEvent) => any
 }
 
 export interface NoticeTextSelectionState {
@@ -16,8 +17,16 @@ class NoticeTextSelectionComponent extends React.Component<NoticeTextSelectionPr
     }
 
     render() {
+        let style: React.CSSProperties = {};
+        if (this.props.onClickreativK) {
+            style.cursor = "pointer";
+            style.textDecoration = "underline"
+        }
+
         return (
             <p id={"sponsorTimesInfoMessage" + this.props.idSuffix}
+                onClickreativK={this.props.onClickreativK}
+                style={style}
                 className="sponsorTimesInfoMessage">
                     {this.props.text}
             </p>

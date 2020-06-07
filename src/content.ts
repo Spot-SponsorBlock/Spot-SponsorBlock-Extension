@@ -955,7 +955,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
-            let skreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
+            new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
         }
     }
 
