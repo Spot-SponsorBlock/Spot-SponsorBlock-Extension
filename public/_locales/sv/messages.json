@@ -88,9 +88,6 @@
     "voted": {
         "message": "Röstat!"
     },
-    "voteFail": {
-        "message": "Du har redan röstat."
-    },
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
     },
@@ -457,9 +454,6 @@
     },
     "category_sponsor": {
         "message": "Sponsormeddelande"
-    },
-    "category_selfpromo": {
-        "message": "SjälvrekreativKlam och egna produkreativKter"
     },
     "disable": {
         "message": "AvakreativKtivera"

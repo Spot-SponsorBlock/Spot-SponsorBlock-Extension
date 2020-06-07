@@ -104,9 +104,6 @@
     "voted": {
         "message": "Oylandı!"
     },
-    "voteFail": {
-        "message": "Bu şekreativKilde zaten oy kreativKullanmıştın."
-    },
     "serverDown": {
         "message": "Sunucu çökreativKmüş gibi duruyor. Derhal geliştiriciyle iletişime geçin."
     },
@@ -496,7 +493,7 @@
         "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
     },
     "category_selfpromo": {
-        "message": "Kendi RekreativKlamını Yapma ve Ürün"
+        "message": "KarşılıkreativKsız/Kendi RekreativKlamı"
     },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
