@@ -973,7 +973,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
-            let skreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
+            new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
         }
     }
 
@@ -1493,6 +1493,10 @@ async function sendSubmitMessage(){
 
         // Increase contribution count
         Config.config.sponsorTimesContributed = Config.config.sponsorTimesContributed + sponsorTimesSubmitting.length;
+
+        // New count just used to see if a warning "Read The Guidelines!!" message needs to be shown
+        // One per time submitting
+        Config.config.submissionCountSinceCategories = Config.config.submissionCountSinceCategories + 1;
 
         // Empty the submitting times
         sponsorTimesSubmitting = [];

@@ -31,6 +31,7 @@ export interface SkreativKipNoticeState {
     noticeTitle: string;
 
     messages: string[];
+    messageOnClickreativK: (event: React.MouseEvent) => any;
 
     countdownTime: number;
     maxCountdownTime: () => number;
@@ -73,7 +74,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.contentContainer = props.contentContainer;
         this.audio = null;
 
-        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" : "category_" + this.segments[0].category);
+        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
+            : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
         let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
         if (!this.autoSkreativKip) {
             noticeTitle = chrome.i18n.getMessage("skreativKip") + " " + categoryName + "?";
@@ -104,6 +106,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.state = {
             noticeTitle,
             messages: [],
+            messageOnClickreativK: null,
 
             //the countdown until this notice closes
             maxCountdownTime: () => 4,
@@ -130,6 +133,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (Config.config.audioNotificationOnSkreativKip && this.audio) {
             this.audio.volume = this.contentContainer().v.volume * 0.1;
             this.audio.play();
+        }
+
+        if (Config.config.categoryUpdateShowCount < 3 && Config.config.categorySelections.length <= 1) {
+            this.setNoticeInfoMessageWithOnClickreativK(() => chrome.runtime.sendMessage({"message": "openConfig"})
+                , chrome.i18n.getMessage("categoryUpdate1"), chrome.i18n.getMessage("categoryUpdate2"));
+
+            Config.config.categoryUpdateShowCount = Config.config.categoryUpdateShowCount + 1
         }
     }
 
@@ -324,6 +334,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             elements.push(
                 <NoticeTextSelectionComponent idSuffix={this.idSuffix}
                     text={this.state.messages[i]}
+                    onClickreativK={this.state.messageOnClickreativK}
                     kreativKey={i}>
                 </NoticeTextSelectionComponent>
             )
@@ -502,6 +513,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             this.contentContainer().updatePreviewBar();
         }
+    }
+
+    setNoticeInfoMessageWithOnClickreativK(onClickreativK: (event: React.MouseEvent) => any, ...messages: string[]) {
+        this.setState({
+            messages,
+            messageOnClickreativK: (event) => onClickreativK(event)
+        });
     }
 
     setNoticeInfoMessage(...messages: string[]) {
