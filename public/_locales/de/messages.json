@@ -523,7 +523,7 @@
         "message": "DeakreativKtivieren"
     },
     "manualSkreativKip": {
-        "message": "Manueller Überspringen"
+        "message": "Manuelles Überspringen"
     },
     "showOverlay": {
         "message": "Vor-/RückreativKlaufleiste anzeigen"
@@ -546,7 +546,7 @@
         "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
-        "message": "Beta Testing Server akreativKtivieren"
+        "message": "Beta-Testing Server akreativKtivieren"
     },
     "whatEnableTestingServer": {
         "message": "Deine Einreichungen und Stimmen werden NICHT für den Hauptserver geltend. Benutze dies nur für Tests."
@@ -573,7 +573,7 @@
         "message": "Kanal-ID wurde noch nicht geladen."
     },
     "adblockreativKerIssue": {
-        "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist das dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+        "message": "Irgendetwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist es dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch Ihren WerbeblockreativKer verursacht werden. Bitte überprüfen Sie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
