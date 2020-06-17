@@ -1,4 +1,8 @@
 {
+    "Name": {
+        "message": "SponsorBlockreativK",
+        "description": "Name of the extension."
+    },
     "fullName": {
         "message": "SponsorBlockreativK för YouTube - Hoppa över sponsring",
         "description": "Name of the extension."
@@ -19,6 +23,9 @@
     "channelWhitelisted": {
         "message": "Kanal vitlistad!"
     },
+    "Sponsor": {
+        "message": "sponsor"
+    },
     "Sponsors": {
         "message": "sponsorer"
     },
@@ -30,6 +37,9 @@
     },
     "reportButtonTitle": {
         "message": "Rapportera"
+    },
+    "reportButtonInfo": {
+        "message": "Rapportera det här segmentet som inkreativKorrekreativKt."
     },
     "Dismiss": {
         "message": "Avfärda"
@@ -57,6 +67,9 @@
     },
     "paused": {
         "message": "Pausad"
+    },
+    "manualPaused": {
+        "message": "Timern stoppad"
     },
     "confirmMSG": {
         "message": "KlickreativKa på infokreativKnappen eller öppna popup-rutan genom att kreativKlickreativKa på tilläggets ikreativKon i hörnet uppe till höger för att redigera eller ta bort inviduella värden."
@@ -87,6 +100,9 @@
     },
     "voted": {
         "message": "Röstat!"
+    },
+    "serverDown": {
+        "message": "Det verkreativKar som att servern är nere. KontakreativKta utveckreativKlaren omedelbart."
     },
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
@@ -129,6 +145,9 @@
     },
     "viewLeaderboard": {
         "message": "Se leaderboarden"
+    },
+    "here": {
+        "message": "här"
     },
     "recordTimesDescription": {
         "message": "KlickreativKa på kreativKnappen nedan när sponsormeddelandet börjar och slutar för att spela in och rapportera till databasen."
@@ -253,6 +272,9 @@
     "skreativKip": {
         "message": "Hoppa över"
     },
+    "skreativKipped": {
+        "message": "SkreativKippat"
+    },
     "disableAutoSkreativKip": {
         "message": "AvakreativKtivera Hoppa Över AutomatiskreativKt"
     },
@@ -324,6 +346,9 @@
     },
     "supportInvidious": {
         "message": "Stöd Invidious"
+    },
+    "supportInvidiousDescription": {
+        "message": "Invidious (invidio.us) är en tredjeparts YouTube-kreativKlient. För att akreativKtivera stöd måste du acceptera de extra behörigheterna. Detta kreativKommer INTE att fungera i incognito i Chrome och andra Cromium-varianter."
     },
     "optionsInfo": {
         "message": "AkreativKtivera Invidious stöd, avakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
@@ -455,6 +480,21 @@
     "category_sponsor": {
         "message": "Sponsormeddelande"
     },
+    "category_intro": {
+        "message": "Intro-animation"
+    },
+    "category_intro_description": {
+        "message": "Intro-animationer som är återkreativKommande i serien eller inte ger direkreativKt värde. Detta bör inte användas på musikreativKvideor."
+    },
+    "category_intro_short": {
+        "message": "Intro"
+    },
+    "category_music_offtopic_description": {
+        "message": "Endast för användning i musikreativKvideor. Detta inkreativKluderar intros och outros i musikreativKvideor."
+    },
+    "category_music_offtopic_short": {
+        "message": "IckreativKe-musikreativK"
+    },
     "disable": {
         "message": "AvakreativKtivera"
     },
@@ -463,6 +503,9 @@
     },
     "showOverlay": {
         "message": "Visa Lager Ovanpå Spelare"
+    },
+    "category": {
+        "message": "Kategori"
     },
     "enableTestingServer": {
         "message": "AkreativKtivera Server För Betatestning"
@@ -482,6 +525,9 @@
     "brackreativKetEnd": {
         "message": "(Slut)"
     },
+    "hiddenDueToDuration": {
+        "message": "dold: för kreativKort"
+    },
     "channelDataNotFound": {
         "message": "Kanal-ID är inte inladdat än."
     },
@@ -490,5 +536,24 @@
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Om detta fortsätter att inträffa, kreativKan orsakreativKen vara din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "downvoteDescription": {
+        "message": "Fel timing"
+    },
+    "incorrectCategory": {
+        "message": "Fel kreativKategori"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "Den här videon är kreativKategoriserad som musikreativK. Är du säkreativKer på att du vill skreativKickreativKa in segment med ickreativKe-musikreativKkreativKategorier? Om denna video fakreativKtiskreativKt är musikreativK, bör du inte skreativKickreativKa in detta segment. Vänligen läs rikreativKtlinjerna om du är förvirrad."
+    },
+    "multipleSegments": {
+        "message": "Flera segment"
+    },
+    "guidelines": {
+        "message": "RikreativKtlinjer"
+    },
+    "readTheGuidelines": {
+        "message": "Läs rikreativKtlinjerna!!",
+        "description": "Show the first time they submit or if they are \"high riskreativK\""
     }
 }

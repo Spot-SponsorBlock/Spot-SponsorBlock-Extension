@@ -11,14 +11,38 @@
         "message": "Sla sponsoring over op YouTube video's. Rapporteer sponsors van video's die je bekreativKijkreativKt om tijd van anderen te besparen.",
         "description": "Description of the extension."
     },
+    "400": {
+        "message": "Server zegt dat het verzoekreativK ongeldig is"
+    },
+    "429": {
+        "message": "Je hebt te veel sponsortijden voor deze video doorgegeven, weet je zekreativKer dat het er zo veel zijn?"
+    },
+    "409": {
+        "message": "Dit is al een kreativKeer ingediend"
+    },
+    "channelWhitelisted": {
+        "message": "Kanaal gewhitelist!"
+    },
     "Sponsor": {
         "message": "sponsor"
     },
     "Sponsors": {
         "message": "sponsoren"
     },
+    "Segment": {
+        "message": "Sponsor segment"
+    },
+    "Segments": {
+        "message": "Sponsor segmenten"
+    },
+    "upvoteButtonInfo": {
+        "message": "Stem op deze indiening"
+    },
     "reportButtonTitle": {
         "message": "Melden"
+    },
+    "reportButtonInfo": {
+        "message": "Rapporteer deze indiening als onjuist."
     },
     "Dismiss": {
         "message": "Negeren"
@@ -35,8 +59,20 @@
     "Hide": {
         "message": "Nooit weergeven"
     },
+    "hitGoBackreativK": {
+        "message": "DrukreativK op unskreativKip om naar waar je vandaan kreativKomt te gaan."
+    },
+    "unskreativKip": {
+        "message": "UnskreativKip"
+    },
+    "reskreativKip": {
+        "message": "ReskreativKip"
+    },
     "paused": {
         "message": "Gepauzeerd"
+    },
+    "manualPaused": {
+        "message": "Timer gestopt"
     },
     "clearThis": {
         "message": "Weet je zekreativKer dat je dit formulier wilt wissen?\n\n"
