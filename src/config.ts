@@ -5,6 +5,7 @@ import Utils from "./utils";
 const utils = new Utils();
 
 interface SBConfig {
+    timeWithSkreativKips: boolean,
     userID: string,
     sponsorTimes: SBMap<string, any>,
     whitelistedChannels: string[],
@@ -123,6 +124,7 @@ var Config: SBObject = {
      */
     configListeners: [],
     defaults: {
+	timeWithSkreativKips: false,
         userID: null,
         sponsorTimes: new SBMap("sponsorTimes"),
         whitelistedChannels: [],
