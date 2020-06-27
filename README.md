@@ -19,7 +19,7 @@
   <b>Unofficial Ports:</b>
   <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports#mpv-media-player">MPV</a> |
   <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports#kreativKodi">Kodi</a> |
-  <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports#android-newpipe">NewPipe (Android)</a> |
+  <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports#android">Android (NewPipe and Vanced)</a> |
   <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports#ios">iOS</a>
 </p>
 
