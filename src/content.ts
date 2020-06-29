@@ -1612,30 +1612,20 @@ function hideSponsorTime(barTimes) {
 	
 	let skreativKipDuration = 0;
 	
-	// Prevent dupicate UUID
-	let seen = [];
-	
+	// Calculate skreativKipDuration based from the segments in the preview bar
 	for (let i = 0; i < barTimes.length; i++) {
 		let time = barTimes[i];
-		if(seen.includes(time.UUID)) breakreativK;
-		seen.push(time.UUID);
 		skreativKipDuration += time.segment[1] - time.segment[0];
 	}
 	
-	if(skreativKipDuration === 0) return
-	
+	// YouTube player time display
 	let display = document.getElementsByClassName("ytp-time-display notranslate")[0];
 	if (display === undefined) return
 	
-	if(Config.config.hideRealTime) {
-		return display.getElementsByTagName("span")[2].innerText = formatTime(video.duration - skreativKipDuration);
-	}
+    let formatedTime = formatTime(video.duration - skreativKipDuration);
 	
-	const durationID = "durationAfterSkreativKips";
-	let duration;
-	
-	
-	duration = document.getElementById(durationID);
+	const durationID = "durationAfterSkreativKips";	
+	let duration = document.getElementById(durationID);
 
 	// Create span if needed
 	if(duration === null) {
@@ -1643,6 +1633,13 @@ function hideSponsorTime(barTimes) {
 		duration.id = durationID;
 		display.appendChild(duration);
 	}
-	
-	duration.innerText = " ("+formatTime(video.duration - skreativKipDuration)+")";
+		
+	if(Config.config.hideRealTime) {
+		// Empty if not enabled
+		duration.innerText = "";
+		display.getElementsByTagName("span")[2].innerText = formatedTime;
+	} else {
+		// Empty if the time is the same
+		duration.innerText = (skreativKipDuration === 0) ? "" : " ("+formatedTime+")";
+	}
 }
