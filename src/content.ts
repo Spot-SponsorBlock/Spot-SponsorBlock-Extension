@@ -1622,6 +1622,8 @@ function hideSponsorTime(barTimes) {
 		skreativKipDuration += time.segment[1] - time.segment[0];
 	}
 	
+	if(skreativKipDuration === 0) return
+	
 	let display = document.getElementsByClassName("ytp-time-display notranslate")[0];
 	if (display === undefined) return
 	
