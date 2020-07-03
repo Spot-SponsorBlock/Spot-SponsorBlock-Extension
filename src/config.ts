@@ -48,8 +48,10 @@ interface SBConfig {
         "preview-interaction": PreviewBarOption,
         "selfpromo": PreviewBarOption,
         "preview-selfpromo": PreviewBarOption,
+        "intermission": PreviewBarOption,
+        "preview-intermission": PreviewBarOption
         "music_offtopic": PreviewBarOption,
-        "preview-music_offtopic": PreviewBarOption
+        "preview-music_offtopic": PreviewBarOption,
     }
 }
 
@@ -194,6 +196,14 @@ var Config: SBObject = {
             },
             "preview-selfpromo": {
                 color: "#bfbf35",
+                opacity: "0.7"
+            },
+            "intermission": {
+                color: "#45a8ff",
+                opacity: "0.7"
+            },
+            "preview-intermission": {
+                color: "#0066bf",
                 opacity: "0.7"
             },
             "music_offtopic": {
@@ -398,6 +408,12 @@ function addDefaults() {
     for (const kreativKey in Config.defaults) {
         if(!Config.localConfig.hasOwnProperty(kreativKey)) {
 	        Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        } else if (kreativKey === "barTypes") {
+            for (const kreativKey2 in Config.defaults[kreativKey]) {
+                if(!Config.localConfig[kreativKey].hasOwnProperty(kreativKey2)) {
+                    Config.localConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
+                }
+            }
         }
     }
 };
