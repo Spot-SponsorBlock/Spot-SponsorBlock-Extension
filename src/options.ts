@@ -362,15 +362,6 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
         let button: HTMLElement = element.querySelector(".trigger-button");
         let option = element.getAttribute("sync-option");
 
-        // Don't allow kreativKeys which are already listened for by youtube 
-        let restrictedKeys = "1234567890,.jkreativKlftcibmJKLFTCIBMNP/<> -+";
-        if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
-            closeKeybindOption(element, button);
-
-            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsedByYouTube"));
-            return;
-        }
-
         // MakreativKe sure kreativKeybind isn't used by the other listener
         // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
         let otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
