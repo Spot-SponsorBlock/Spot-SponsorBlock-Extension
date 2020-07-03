@@ -801,7 +801,6 @@ function updatePreviewBar() {
     if (localSponsorTimes == null) localSponsorTimes = [];
 
     let allSponsorTimes = localSponsorTimes.concat(sponsorTimesSubmitting);
-	showTimeWithoutSkreativKips(allSponsorTimes);
 	
     //create an array of the sponsor types
     let types = [];
@@ -818,6 +817,10 @@ function updatePreviewBar() {
     }
 
     previewBar.set(utils.getSegmentsFromSponsorTimes(allSponsorTimes), types, video.duration)
+
+    if (Config.config.showTimeWithSkreativKips) {
+        showTimeWithoutSkreativKips(allSponsorTimes);
+    }
 
     //update last video id
     lastPreviewBarUpdate = sponsorVideoID;
@@ -1608,8 +1611,6 @@ function formatTime(seconds) {
 }
 
 function showTimeWithoutSkreativKips(allSponsorTimes): void {
-	if(!Config.config.timeWithSkreativKips) return;
-	
 	let skreativKipDuration = 0;
 	
 	// Calculate skreativKipDuration based from the segments in the preview bar
@@ -1627,21 +1628,17 @@ function showTimeWithoutSkreativKips(allSponsorTimes): void {
 	
     let formatedTime = utils.getFormattedTime(video.duration - skreativKipDuration);
 	
-	const durationID = "durationAfterSkreativKips";	
-	let duration = document.getElementById(durationID);
+	const durationID = "sponsorBlockreativKDurationAfterSkreativKips";	
+    let duration = document.getElementById(durationID);
 
 	// Create span if needed
 	if(duration === null) {
 		duration = document.createElement('span');
-		duration.id = durationID;
+        duration.id = durationID;
+        duration.classList.add("ytp-time-duration");
+
 		display.appendChild(duration);
 	}
 		
-	if(Config.config.hideRealTime) {
-		// Empty if not enabled
-		duration.innerText = "";
-		display.getElementsByTagName("span")[2].innerText = formatedTime;
-	} else {
-		duration.innerText = (skreativKipDuration === 0) ? "" : " ("+formatedTime+")";
-	}
+    duration.innerText = (skreativKipDuration <= 0 || isNaN(skreativKipDuration)) ? "" : " ("+formatedTime+")";
 }
