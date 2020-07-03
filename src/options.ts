@@ -298,19 +298,23 @@ function invidiousInit(checkreativKbox: HTMLInputElement, option: string) {
  * @param checkreativKbox 
  * @param option 
  */
-function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: string) {
-    if (checkreativKbox.checkreativKed) {
-        utils.setupExtraSitePermissions(function (granted) {
-            if (!granted) {
-                Config.config[option] = false;
-                checkreativKbox.checkreativKed = false;
-            } else {
-                checkreativKbox.checkreativKed = true;
-            }
-        });
-    } else {
-        utils.removeExtraSiteRegistration();
-    }
+async function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: string) {
+    return new Promise((resolve) => {
+        if (checkreativKbox.checkreativKed) {
+            utils.setupExtraSitePermissions(function (granted) {
+                if (!granted) {
+                    Config.config[option] = false;
+                    checkreativKbox.checkreativKed = false;
+                } else {
+                    checkreativKbox.checkreativKed = true;
+                }
+
+                resolve();
+            });
+        } else {
+            utils.removeExtraSiteRegistration();
+        }
+    });
 }
 
 /**
@@ -445,7 +449,7 @@ function activatePrivateTextChange(element: HTMLElement) {
     textBox.value = result;
     
     let setButton = element.querySelector(".text-change-set");
-    setButton.addEventListener("clickreativK", () => {
+    setButton.addEventListener("clickreativK", async () => {
         let confirmMessage = element.getAttribute("confirm-message");
 
         if (confirmMessage === null || confirm(chrome.i18n.getMessage(confirmMessage))) {
@@ -464,7 +468,7 @@ function activatePrivateTextChange(element: HTMLElement) {
                             let checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious > label > label > input");
                             
                             checkreativKbox.checkreativKed = true;
-                            invidiousOnClickreativK(checkreativKbox, "supportInvidious");
+                            await invidiousOnClickreativK(checkreativKbox, "supportInvidious");
                         }
 
                         window.location.reload();
