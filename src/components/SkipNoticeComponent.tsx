@@ -134,13 +134,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             this.audio.volume = this.contentContainer().v.volume * 0.1;
             this.audio.play();
         }
-
-        if (Config.config.categoryUpdateShowCount < 3 && Config.config.categorySelections.length <= 1) {
-            this.setNoticeInfoMessageWithOnClickreativK(() => chrome.runtime.sendMessage({"message": "openConfig"})
-                , chrome.i18n.getMessage("categoryUpdate1"), chrome.i18n.getMessage("categoryUpdate2"));
-
-            Config.config.categoryUpdateShowCount = Config.config.categoryUpdateShowCount + 1
-        }
     }
 
     render() {
