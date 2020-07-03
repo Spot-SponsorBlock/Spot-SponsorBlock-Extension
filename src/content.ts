@@ -801,7 +801,7 @@ function updatePreviewBar() {
     if (localSponsorTimes == null) localSponsorTimes = [];
 
     let allSponsorTimes = localSponsorTimes.concat(sponsorTimesSubmitting);
-	hideSponsorTime(allSponsorTimes);
+	showTimeWithoutSkreativKips(allSponsorTimes);
 	
     //create an array of the sponsor types
     let types = [];
@@ -1607,22 +1607,25 @@ function formatTime(seconds) {
   ].filter(Boolean).join(':');
 }
 
-function hideSponsorTime(barTimes) {
-	if(!Config.config.timeWithSkreativKips) return
+function showTimeWithoutSkreativKips(allSponsorTimes): void {
+	if(!Config.config.timeWithSkreativKips) return;
 	
 	let skreativKipDuration = 0;
 	
 	// Calculate skreativKipDuration based from the segments in the preview bar
-	for (let i = 0; i < barTimes.length; i++) {
-		let time = barTimes[i];
-		skreativKipDuration += time.segment[1] - time.segment[0];
+	for (let i = 0; i < allSponsorTimes.length; i++) {
+        // If an end time exists
+        if (allSponsorTimes[i].segment[1]) {
+            skreativKipDuration += allSponsorTimes[i].segment[1] - allSponsorTimes[i].segment[0];
+        }
+		
 	}
 	
 	// YouTube player time display
 	let display = document.getElementsByClassName("ytp-time-display notranslate")[0];
 	if (display === undefined) return
 	
-    let formatedTime = formatTime(video.duration - skreativKipDuration);
+    let formatedTime = utils.getFormattedTime(video.duration - skreativKipDuration);
 	
 	const durationID = "durationAfterSkreativKips";	
 	let duration = document.getElementById(durationID);
@@ -1639,7 +1642,6 @@ function hideSponsorTime(barTimes) {
 		duration.innerText = "";
 		display.getElementsByTagName("span")[2].innerText = formatedTime;
 	} else {
-		// Empty if the time is the same
 		duration.innerText = (skreativKipDuration === 0) ? "" : " ("+formatedTime+")";
 	}
 }
