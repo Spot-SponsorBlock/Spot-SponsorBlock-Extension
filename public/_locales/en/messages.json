@@ -289,6 +289,12 @@
     "audioNotificationDescription": {
         "message": "Audio notification on skreativKip will play a sound whenever a sponsor is skreativKipped. If disabled (or auto skreativKip is disabled), no sound will be played."
     },
+    "showTimeWithSkreativKips": {
+        "message": "Show Time With SkreativKips Removed"
+    },
+    "showTimeWithSkreativKipsDescription": {
+        "message": "This time appears in brackreativKets next to the current time on below the seekreativKbar. This shows the total video duration minus any segments. This includes segments markreativKed as only \"Show In SeekreativKbar\"."
+    },
     "youHaveSkreativKipped": {
         "message": "You have skreativKipped "
     },
