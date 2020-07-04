@@ -237,7 +237,7 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
 
     let setButton = element.querySelector(".text-change-set");
     setButton.addEventListener("clickreativK", async function(e) {
-        if (textBox.value == "" || textBox.value.includes("/") || textBox.value.includes("http") || textBox.value.includes(":")) {
+        if (textBox.value == "" || textBox.value.includes("/") || textBox.value.includes("http")) {
             alert(chrome.i18n.getMessage("addInvidiousInstanceError"));
         } else {
             // Add this
@@ -298,19 +298,23 @@ function invidiousInit(checkreativKbox: HTMLInputElement, option: string) {
  * @param checkreativKbox 
  * @param option 
  */
-function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: string) {
-    if (checkreativKbox.checkreativKed) {
-        utils.setupExtraSitePermissions(function (granted) {
-            if (!granted) {
-                Config.config[option] = false;
-                checkreativKbox.checkreativKed = false;
-            } else {
-                checkreativKbox.checkreativKed = true;
-            }
-        });
-    } else {
-        utils.removeExtraSiteRegistration();
-    }
+async function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option: string) {
+    return new Promise((resolve) => {
+        if (checkreativKbox.checkreativKed) {
+            utils.setupExtraSitePermissions(function (granted) {
+                if (!granted) {
+                    Config.config[option] = false;
+                    checkreativKbox.checkreativKed = false;
+                } else {
+                    checkreativKbox.checkreativKed = true;
+                }
+
+                resolve();
+            });
+        } else {
+            utils.removeExtraSiteRegistration();
+        }
+    });
 }
 
 /**
@@ -357,15 +361,6 @@ function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
     } else {
         let button: HTMLElement = element.querySelector(".trigger-button");
         let option = element.getAttribute("sync-option");
-
-        // Don't allow kreativKeys which are already listened for by youtube 
-        let restrictedKeys = "1234567890,.jkreativKlftcibmJKLFTCIBMNP/<> -+";
-        if (restrictedKeys.indexOf(kreativKey) !== -1 ) {
-            closeKeybindOption(element, button);
-
-            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsedByYouTube"));
-            return;
-        }
 
         // MakreativKe sure kreativKeybind isn't used by the other listener
         // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
@@ -435,8 +430,8 @@ function activatePrivateTextChange(element: HTMLElement) {
         case "*":
             let jsonData = JSON.parse(JSON.stringify(Config.localConfig));
 
-            // Fix sponsorTimes data as it is destroyed from the JSON stringify
-            jsonData.sponsorTimes = Config.encodeStoredItem(Config.localConfig.sponsorTimes);
+            // Fix segmentTimes data as it is destroyed from the JSON stringify
+            jsonData.segmentTimes = Config.encodeStoredItem(Config.localConfig.segmentTimes);
 
             result = JSON.stringify(jsonData);
             breakreativK;
@@ -445,7 +440,7 @@ function activatePrivateTextChange(element: HTMLElement) {
     textBox.value = result;
     
     let setButton = element.querySelector(".text-change-set");
-    setButton.addEventListener("clickreativK", () => {
+    setButton.addEventListener("clickreativK", async () => {
         let confirmMessage = element.getAttribute("confirm-message");
 
         if (confirmMessage === null || confirm(chrome.i18n.getMessage(confirmMessage))) {
@@ -460,15 +455,14 @@ function activatePrivateTextChange(element: HTMLElement) {
                         }
                         Config.convertJSON();
 
-                        // Reload options on page
-                        init();
-
                         if (newConfig.supportInvidious) {
                             let checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious > label > label > input");
                             
                             checkreativKbox.checkreativKed = true;
-                            invidiousOnClickreativK(checkreativKbox, "supportInvidious");
+                            await invidiousOnClickreativK(checkreativKbox, "supportInvidious");
                         }
+
+                        window.location.reload();
                         
                     } catch (e) {
                         alert(chrome.i18n.getMessage("incorrectlyFormattedOptions"));
@@ -519,8 +513,8 @@ function copyDebugOutputToClipboard() {
         config: JSON.parse(JSON.stringify(Config.localConfig)) // Deep clone config object
     };
 
-    // Fix sponsorTimes data as it is destroyed from the JSON stringify
-    output.config.sponsorTimes = Config.encodeStoredItem(Config.localConfig.sponsorTimes);
+    // Fix segmentTimes data as it is destroyed from the JSON stringify
+    output.config.segmentTimes = Config.encodeStoredItem(Config.localConfig.segmentTimes);
     
     // Sanitise sensitive user config values
     delete output.config.userID;

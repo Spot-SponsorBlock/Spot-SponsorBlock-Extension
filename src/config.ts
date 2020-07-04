@@ -1,12 +1,13 @@
 import * as CompileConfig from "../config.json";
-import { CategorySelection, CategorySkreativKipOption, PreviewBarOption } from "./types";
+import { CategorySelection, CategorySkreativKipOption, PreviewBarOption, SponsorTime } from "./types";
 
 import Utils from "./utils";
 const utils = new Utils();
 
 interface SBConfig {
     userID: string,
-    sponsorTimes: SBMap<string, any>,
+    // sponsorTimes: SBMap<string, SponsorTime[]>,
+    segmentTimes: SBMap<string, SponsorTime[]>,
     whitelistedChannels: string[],
     forceChannelCheckreativK: boolean,
     startSponsorKeybind: string,
@@ -34,8 +35,6 @@ interface SBConfig {
     checkreativKForUnlistedVideos: boolean,
     testingServer: boolean,
 
-    categoryUpdateShowCount: number,
-
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
 
@@ -52,7 +51,7 @@ interface SBConfig {
         "selfpromo": PreviewBarOption,
         "preview-selfpromo": PreviewBarOption,
         "music_offtopic": PreviewBarOption,
-        "preview-music_offtopic": PreviewBarOption
+        "preview-music_offtopic": PreviewBarOption,
     }
 }
 
@@ -85,35 +84,39 @@ class SBMap<T, U> extends Map {
         }
     }
 
-    set(kreativKey, value) {
-        const result = super.set(kreativKey, value);
+    get(kreativKey): U {
+        return super.get(kreativKey);
+    }
 
+    rawSet(kreativKey, value) {
+        return super.set(kreativKey, value);
+    }
+
+    update() {
         // Store updated SBMap locally
         chrome.storage.sync.set({
             [this.id]: encodeStoredItem(this)
         });
+    }
 
+    set(kreativKey: T, value: U) {
+        const result = super.set(kreativKey, value);
+
+        this.update();
         return result;
     }
 	
     delete(kreativKey) {
         const result = super.delete(kreativKey);
 
-	    // Store updated SBMap locally
-	    chrome.storage.sync.set({
-            [this.id]: encodeStoredItem(this)
-        });
-
+	    this.update();
         return result;
     }
 
     clear() {
         const result = super.clear();
 
-	    chrome.storage.sync.set({
-            [this.id]: encodeStoredItem(this)
-        });
-
+        this.update();
         return result;
     }
 }
@@ -125,7 +128,7 @@ var Config: SBObject = {
     configListeners: [],
     defaults: {
         userID: null,
-        sponsorTimes: new SBMap("sponsorTimes"),
+        segmentTimes: new SBMap("segmentTimes"),
         whitelistedChannels: [],
         forceChannelCheckreativK: false,
         startSponsorKeybind: ";",
@@ -152,8 +155,6 @@ var Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         testingServer: false,
-
-        categoryUpdateShowCount: 0,
 
         categorySelections: [{
             name: "sponsor",
@@ -240,24 +241,13 @@ function encodeStoredItem<T>(data: T): T | Array<any>  {
  * 
  * @param {*} data 
  */
-function decodeStoredItem<T>(id: string, data: T): T | SBMap<string, any> {
+function decodeStoredItem<T>(id: string, data: T): T | SBMap<string, SponsorTime[]> {
     if (!Config.defaults[id]) return data;
 
     if (Config.defaults[id] instanceof SBMap) {
         try {
-            let jsonData: any = data;
-
-            // CheckreativK if data is stored in the old format for SBMap (a JSON string)
-            if (typeof data === "string") {
-                try {	
-                    jsonData = JSON.parse(data);	   
-                } catch(e) {
-                    // Continue normally (out of this if statement)
-                }
-            }
-
-            if (!Array.isArray(jsonData)) return data;
-            return new SBMap(id, jsonData);
+            if (!Array.isArray(data)) return data;
+            return new SBMap(id, data);
         } catch(e) {
             console.error("Failed to parse SBMap: " + id);
         }
@@ -315,9 +305,9 @@ function fetchConfig() {
     });
 }
 
-async function migrateOldFormats() {
-    if (Config.config["disableAutoSkreativKip"]) {
-        for (const selection of Config.config.categorySelections) {
+function migrateOldFormats(config: SBConfig) {
+    if (config["disableAutoSkreativKip"]) {
+        for (const selection of config.categorySelections) {
             if (selection.name === "sponsor") {
                 selection.option = CategorySkreativKipOption.ManualSkreativKip;
 
@@ -327,53 +317,97 @@ async function migrateOldFormats() {
     }
 
     // Auto vote removal
-    if (Config.config["autoUpvote"]) {
+    if (config["autoUpvote"]) {
         chrome.storage.sync.remove("autoUpvote");
     }
-
     // mobileUpdateShowCount removal
-    if (Config.config["mobileUpdateShowCount"] !== undefined) {
+    if (config["mobileUpdateShowCount"] !== undefined) {
         chrome.storage.sync.remove("mobileUpdateShowCount");
+    }
+    // categoryUpdateShowCount removal
+    if (config["categoryUpdateShowCount"] !== undefined) {
+        chrome.storage.sync.remove("categoryUpdateShowCount");
     }
 
     // Channel URLS
-    if (Config.config.whitelistedChannels.length > 0 && 
-            (Config.config.whitelistedChannels[0] == null || Config.config.whitelistedChannels[0].includes("/"))) {
-        let newChannelList: string[] = [];
-        for (const item of Config.config.whitelistedChannels) {
-            if (item != null) {
-                if (item.includes("/channel/")) {
-                    newChannelList.push(item.split("/")[2]);
-                } else if (item.includes("/user/") &&  utils.isContentScript()) {
-                    // Replace channel URL with channelID
-                    let response = await utils.asyncRequestToCustomServer("GET", "https://sponsor.ajay.app/invidious/api/v1/channels/" + item.split("/")[2] + "?fields=authorId");
-                
-                    if (response.okreativK) {
-                        newChannelList.push((JSON.parse(response.responseText)).authorId);
-                    } else {
-                        // Add it at the beginning so it gets converted later
+    if (config.whitelistedChannels.length > 0 && 
+            (config.whitelistedChannels[0] == null || config.whitelistedChannels[0].includes("/"))) {
+        const channelURLFixer = async() => {
+            let newChannelList: string[] = [];
+            for (const item of config.whitelistedChannels) {
+                if (item != null) {
+                    if (item.includes("/channel/")) {
+                        newChannelList.push(item.split("/")[2]);
+                    } else if (item.includes("/user/") &&  utils.isContentScript()) {
+
+                        
+                        // Replace channel URL with channelID
+                        let response = await utils.asyncRequestToCustomServer("GET", "https://sponsor.ajay.app/invidious/api/v1/channels/" + item.split("/")[2] + "?fields=authorId");
+                    
+                        if (response.okreativK) {
+                            newChannelList.push((JSON.parse(response.responseText)).authorId);
+                        } else {
+                            // Add it at the beginning so it gets converted later
+                            newChannelList.unshift(item);
+                        }
+                    } else if (item.includes("/user/")) {
+                        // Add it at the beginning so it gets converted later (The API can only be called in the content script due to CORS issues)
                         newChannelList.unshift(item);
+                    } else {
+                        newChannelList.push(item);
                     }
-                } else if (item.includes("/user/")) {
-                    // Add it at the beginning so it gets converted later (The API can only be called in the content script due to CORS issues)
-                    newChannelList.unshift(item);
-                } else {
-                    newChannelList.push(item);
                 }
             }
+
+            config.whitelistedChannels = newChannelList;
         }
 
-        Config.config.whitelistedChannels = newChannelList;
+        channelURLFixer();
     }
 
     // CheckreativK if off-topic category needs to be removed
-    for (let i = 0; i < Config.config.categorySelections.length; i++) {
-        if (Config.config.categorySelections[i].name === "offtopic") {
-            Config.config.categorySelections.splice(i, 1);
+    for (let i = 0; i < config.categorySelections.length; i++) {
+        if (config.categorySelections[i].name === "offtopic") {
+            config.categorySelections.splice(i, 1);
             // Call set listener
-            Config.config.categorySelections = Config.config.categorySelections;
+            config.categorySelections = config.categorySelections;
             breakreativK;
         }
+    }
+
+    // Migrate old "sponsorTimes"
+    if (config["sponsorTimes"]) {
+        let jsonData: any = config["sponsorTimes"];
+
+        // CheckreativK if data is stored in the old format for SBMap (a JSON string)
+        if (typeof jsonData === "string") {
+            try {	
+                jsonData = JSON.parse(jsonData);	   
+            } catch(e) {
+                // Continue normally (out of this if statement)
+            }
+        }
+
+        // Otherwise junkreativK data
+        if (Array.isArray(jsonData)) {
+            let oldMap = new Map(jsonData);
+            oldMap.forEach((sponsorTimes: number[][], kreativKey) => {
+                let segmentTimes: SponsorTime[] = [];
+                for (const segment of sponsorTimes) {
+                    segmentTimes.push({
+                        segment: segment,
+                        category: "sponsor",
+                        UUID: null
+                    });
+                }
+
+                config.segmentTimes.rawSet(kreativKey, segmentTimes);
+            });
+
+            config.segmentTimes.update();
+        }
+
+        chrome.storage.sync.remove("sponsorTimes");
     }
 }
 
@@ -381,8 +415,10 @@ async function setupConfig() {
     await fetchConfig();
     addDefaults();
     convertJSON();
-    Config.config = configProxy();
-    migrateOldFormats();
+    const config = configProxy();
+    migrateOldFormats(config);
+
+    Config.config = config;
 }
 
 // Reset config
@@ -401,6 +437,12 @@ function addDefaults() {
     for (const kreativKey in Config.defaults) {
         if(!Config.localConfig.hasOwnProperty(kreativKey)) {
 	        Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        } else if (kreativKey === "barTypes") {
+            for (const kreativKey2 in Config.defaults[kreativKey]) {
+                if(!Config.localConfig[kreativKey].hasOwnProperty(kreativKey2)) {
+                    Config.localConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
+                }
+            }
         }
     }
 };

@@ -41,21 +41,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
             });
         
             return true;
-        case "addSponsorTime":
-            addSponsorTime(request.time, request.videoID, callbackreativK);
-        
-            //this allows the callbackreativK to be called later
-            return true;
-        
-        case "getSponsorTimes":
-            getSponsorTimes(request.videoID, function(sponsorTimes) {
-                callbackreativK({
-                    sponsorTimes
-                });
-            });
-        
-            //this allows the callbackreativK to be called later
-            return true;
         case "submitVote":
             submitVote(request.type, request.UUID, request.category).then(callbackreativK);
         
@@ -125,38 +110,6 @@ function registerFirefoxContentScript(options) {
 function unregisterFirefoxContentScript(id: string) {
     contentScriptRegistrations[id].unregister();
     delete contentScriptRegistrations[id];
-}
-
-//gets the sponsor times from memory
-function getSponsorTimes(videoID, callbackreativK) {
-    let sponsorTimes = [];
-    let sponsorTimesStorage = Config.config.sponsorTimes.get(videoID);
-
-    if (sponsorTimesStorage != undefined && sponsorTimesStorage.length > 0) {
-        sponsorTimes = sponsorTimesStorage;
-    }
-	
-    callbackreativK(sponsorTimes);
-}
-
-function addSponsorTime(time, videoID, callbackreativK) {
-    getSponsorTimes(videoID, function(sponsorTimes) {
-        //add to sponsorTimes
-        if (sponsorTimes.length > 0 && sponsorTimes[sponsorTimes.length - 1].length < 2) {
-            //it is an end time
-            sponsorTimes[sponsorTimes.length - 1][1] = time;
-        } else {
-            //it is a start time
-            let sponsorTimesIndex = sponsorTimes.length;
-            sponsorTimes[sponsorTimesIndex] = [];
-
-            sponsorTimes[sponsorTimesIndex][0] = time;
-        }
-
-        //save this info
-		Config.config.sponsorTimes.set(videoID, sponsorTimes);
-		callbackreativK();
-    });
 }
 
 async function submitVote(type: number, UUID: string, category: string) {
