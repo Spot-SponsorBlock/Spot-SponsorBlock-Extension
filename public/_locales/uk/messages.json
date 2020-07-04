@@ -1,8 +1,4 @@
 {
-    "Name": {
-        "message": "SponsorBlockreativK",
-        "description": "Name of the extension."
-    },
     "fullName": {
         "message": "SponsorBlockreativK для YouTube - Пропускайте спонсорські вставки",
         "description": "Name of the extension."

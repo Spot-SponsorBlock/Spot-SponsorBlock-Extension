@@ -1,8 +1,4 @@
 {
-    "Name": {
-        "message": "SponsorBlockreativK",
-        "description": "Name of the extension."
-    },
     "fullName": {
         "message": "Youtube için SponsorBlockreativK - SponsorlukreativKları Atla",
         "description": "Name of the extension."
@@ -486,6 +482,9 @@
     "category_intro": {
         "message": "Giriş Animasyonu"
     },
+    "category_intro_short": {
+        "message": "Giriş"
+    },
     "category_outro": {
         "message": "Bitiş EkreativKranı/JenerikreativK"
     },
@@ -509,6 +508,20 @@
     },
     "showOverlay": {
         "message": "Arama Çubuğunda Göster"
+    },
+    "previewColor": {
+        "message": "Önizleme Rengi",
+        "description": "Referring to submissions that have not been sent to the server yet."
+    },
+    "seekreativKBarColor": {
+        "message": "Oynatma Çubuğu Rengi"
+    },
+    "category": {
+        "message": "Kategori"
+    },
+    "skreativKipOption": {
+        "message": "Atlama Seçeneği",
+        "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
         "message": "Beta Deneme Sunucusunu Devreye SokreativK"
@@ -563,5 +576,15 @@
     },
     "multipleSegments": {
         "message": "Birden ÇokreativK Bölüm"
+    },
+    "guidelines": {
+        "message": "Kılavuz"
+    },
+    "readTheGuidelines": {
+        "message": "Kılavuzu OkreativKu!!",
+        "description": "Show the first time they submit or if they are \"high riskreativK\""
+    },
+    "categoryUpdate1": {
+        "message": "Kategoriler burada!"
     }
 }

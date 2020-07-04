@@ -1,8 +1,4 @@
 {
-    "Name": {
-        "message": "SponsorBlockreativK",
-        "description": "Name of the extension."
-    },
     "Sponsor": {
         "message": "sponzor"
     },

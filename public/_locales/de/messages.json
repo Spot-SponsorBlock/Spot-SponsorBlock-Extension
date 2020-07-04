@@ -1,8 +1,4 @@
 {
-    "Name": {
-        "message": "SponsorBlockreativK",
-        "description": "Name of the extension."
-    },
     "fullName": {
         "message": "SponsorBlockreativK für YouTube - Überspringe Sponsor Anzeigen",
         "description": "Name of the extension."
@@ -12,10 +8,10 @@
         "description": "Description of the extension."
     },
     "400": {
-        "message": "Ungültige Anforderung"
+        "message": "Der Server meldet, dass diese Anfrage ungültig war"
     },
     "429": {
-        "message": "Du hast zu viele Segmente in diesem Video eingereicht. Bist du dir sicher?"
+        "message": "Du hast zu viele Segmente in diesem Video eingereicht. Sind es wirkreativKlich so viele?"
     },
     "409": {
         "message": "Dieser Inhalt wurde bereits eingereicht."
@@ -123,7 +119,7 @@
         "message": "Öffne SponsorBlockreativK-Popup"
     },
     "SubmitTimes": {
-        "message": "Sende Auswahl"
+        "message": "Diese Zeiten einreichen"
     },
     "submitCheckreativK": {
         "message": "Bist du sicher, dass die Auswahl abgeschickreativKt werden soll?"
@@ -282,7 +278,7 @@
         "message": "Auto-Überspringen deakreativKtivieren"
     },
     "enableAutoSkreativKip": {
-        "message": "Auto-Überspringen akreativKtivieren"
+        "message": "Automatisches Überspringen akreativKtivieren"
     },
     "autoSkreativKipDescription": {
         "message": "Auto-Überspringen überspringt gesponsorte Inhalte für dich. Wenn deakreativKtiviert, fragt die Benachrichtigung, ob übersprungen werden soll."
@@ -558,7 +554,7 @@
         "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
-        "message": "Beta-Testing Server akreativKtivieren"
+        "message": "Beta Testing Server akreativKtivieren"
     },
     "whatEnableTestingServer": {
         "message": "Deine Einreichungen und Stimmen werden NICHT für den Hauptserver geltend. Benutze dies nur für Tests."
@@ -585,7 +581,7 @@
         "message": "Kanal-ID wurde noch nicht geladen."
     },
     "adblockreativKerIssue": {
-        "message": "Irgendetwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist es dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+        "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist das dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch Ihren WerbeblockreativKer verursacht werden. Bitte überprüfen Sie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
