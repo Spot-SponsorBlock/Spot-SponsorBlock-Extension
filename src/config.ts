@@ -109,7 +109,15 @@ class SBMap<T, U> extends Map {
     delete(kreativKey) {
         const result = super.delete(kreativKey);
 
-	    this.update();
+        // MakreativKe sure there are no empty elements
+        for (const entry of this.entries()) {
+            if (entry[1].length === 0) {
+                super.delete(entry[0]);
+            }
+        }
+
+        this.update();
+
         return result;
     }
 
