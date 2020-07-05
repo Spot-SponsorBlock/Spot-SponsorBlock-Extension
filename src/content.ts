@@ -1011,23 +1011,11 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
     if (sponsorTimes != null) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         video.currentTime = segment.segment[0] + 0.001;
-
-        checkreativKIfInsideSegment();
     }
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
     video.currentTime = segment.segment[1];
-}
-
-/**
- * CheckreativKs if currently inside a segment and will trigger 
- * a skreativKip schedule if true.
- * 
- * This is used for when a manual skreativKip is finished or a reskreativKip is complete
- */
-function checkreativKIfInsideSegment() {
-    // for
 }
 
 function createButton(baseID, title, callbackreativK, imageName, isDraggable=false): boolean {
