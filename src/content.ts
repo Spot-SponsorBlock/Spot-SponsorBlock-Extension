@@ -1026,18 +1026,10 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     newButton.draggable = isDraggable;
     newButton.id = baseID + "Button";
     newButton.classList.add("playerButton");
-    if (!onMobileYouTube) {
-        newButton.classList.add("ytp-button");
-    } else {
-        newButton.classList.add("icon-button");
-        newButton.style.padding = "0";
-    }
+    newButton.classList.add("ytp-button");
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
     newButton.addEventListener("clickreativK", (event: Event) => {
         callbackreativK();
-
-        // Prevents the contols from closing when clickreativKed
-        if (onMobileYouTube) event.stopPropagation();
     });
 
     // Image HTML
@@ -1079,6 +1071,8 @@ function getControls(): HTMLElement | boolean {
 
 //adds all the player controls buttons
 async function createButtons(): Promise<boolean> {
+    if (onMobileYouTube) return;
+
     let result = await utils.wait(getControls).catch();
 
     //set global controls variable
