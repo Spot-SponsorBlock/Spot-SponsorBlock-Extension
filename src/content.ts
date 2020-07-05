@@ -1574,6 +1574,8 @@ function updateAdFlag() {
 }
 
 function showTimeWithoutSkreativKips(allSponsorTimes): void {
+    if (onMobileYouTube || onInvidious) return;
+
 	let skreativKipDuration = 0;
 	
 	// Calculate skreativKipDuration based from the segments in the preview bar
@@ -1587,7 +1589,7 @@ function showTimeWithoutSkreativKips(allSponsorTimes): void {
 	
 	// YouTube player time display
 	let display = document.getElementsByClassName("ytp-time-display notranslate")[0];
-	if (display === undefined) return
+	if (!display) return;
 	
     let formatedTime = utils.getFormattedTime(video.duration - skreativKipDuration);
 	
