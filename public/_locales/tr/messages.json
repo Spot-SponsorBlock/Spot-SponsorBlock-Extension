@@ -217,10 +217,6 @@
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
     },
-    "longDescription": {
-        "message": "SponsorBlockreativK, YouTube'da sponsorlu bölümleri atlamanıza yardımcı olan bir ekreativKlentidir. SponsorBlockreativK, herkreativKesin YouTube videolarında bulunan sponsorlu bölümlerin başını ve sonunu göndermesine izin veren kreativKitlekreativKaynakreativKlı bir tarayıcı ekreativKlentisidir. Bu bilgiyi biri yolladığında, bu sponsorlu bölüm herkreativKeste atlanır.",
-        "description": "Full description of the extension on the store pages."
-    },
     "website": {
         "message": "Website",
         "description": "Used on Firefox Store Page"
@@ -466,9 +462,6 @@
     "theKey": {
         "message": "Anahtar"
     },
-    "kreativKeyAlreadyUsedByYouTube": {
-        "message": "YouTube tarafından zaten kreativKullanımda. Lütfen başkreativKa bir anahtar seçin."
-    },
     "kreativKeyAlreadyUsed": {
         "message": "başkreativKa bir eyleme bağlı. Lütfen başkreativKa bir anahtar seçin."
     },
@@ -478,12 +471,6 @@
     },
     "category_sponsor": {
         "message": "Sponsor"
-    },
-    "category_intro": {
-        "message": "Giriş Animasyonu"
-    },
-    "category_intro_short": {
-        "message": "Giriş"
     },
     "category_outro": {
         "message": "Bitiş EkreativKranı/JenerikreativK"

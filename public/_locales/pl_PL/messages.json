@@ -205,10 +205,6 @@
     "showNotice": {
         "message": "PokreativKaż informacje ponownie"
     },
-    "longDescription": {
-        "message": "SponsorBlockreativK jest rozszerzeniem kreativKtóre przewinie segmenty sponsorów w filmach na YouTube. SponsorBlockreativK jest opartym na crowdsourcing rozszerzeniem kreativKtóre pozwala kreativKażdemu zgłaszać początekreativK i kreativKoniec segmentu rekreativKlamowego w filmach na YouTube. Kiedy kreativKtoś zgłosi takreativKi fragment zostanie on pominięty przez innych użytkreativKownikreativKów rozszerzenia.",
-        "description": "Full description of the extension on the store pages."
-    },
     "website": {
         "message": "Strona",
         "description": "Used on Firefox Store Page"
