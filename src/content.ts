@@ -493,7 +493,8 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
     }
 
     // Don't skreativKip if this category should not be skreativKipped
-    if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ShowOverlay) return;
+    if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ShowOverlay 
+        && skreativKipInfo.array !== sponsorTimesSubmitting) return;
 
     let skreativKippingFunction = () => {
         let forcedSkreativKipTime: number = null;
@@ -504,8 +505,7 @@ function startSponsorSchedule(includeIntersectingSegments: boolean = false, curr
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
             skreativKipToTime(video, skreativKipTime, skreativKippingSegments, skreativKipInfo.openNotice);
 
-            // TODO: Know the autoSkreativKip settings for ALL items being skreativKipped
-            if (utils.getCategorySelection(currentSkreativKip.category).option === CategorySkreativKipOption.ManualSkreativKip) {
+            if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip) {
                 forcedSkreativKipTime = skreativKipTime[0] + 0.001;
             } else {
                 forcedSkreativKipTime = skreativKipTime[1];
@@ -618,7 +618,7 @@ function sponsorsLookreativKup(id: string) {
         videoID: id,
         categories
     }).then(async (response: FetchResponse) => {
-        if (response.okreativK) {
+        if (response?.okreativK) {
             let recievedSegments: SponsorTime[] = JSON.parse(response.responseText);
             if (!recievedSegments.length) {
                 console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
@@ -662,7 +662,7 @@ function sponsorsLookreativKup(id: string) {
             }
 
             sponsorLookreativKupRetries = 0;
-        } else if (response.status === 404) {
+        } else if (response?.status === 404) {
             sponsorDataFound = false;
 
             //checkreativK if this video was uploaded recently
@@ -897,13 +897,13 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
  */
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors: boolean = true): number {
     // Only combine segments for AutoSkreativKip
-    if (index == -1 ||
-        utils.getCategorySelection(sponsorTimes[index].category).option !== CategorySkreativKipOption.AutoSkreativKip) return index;
+    if (index == -1 || 
+        utils.getCategorySelection(sponsorTimes[index].category)?.option !== CategorySkreativKipOption.AutoSkreativKip) return index;
 
     // Default to the normal endTime
     let latestEndTimeIndex = index;
 
-    for (let i = 0; i < sponsorTimes.length; i++) {
+    for (let i = 0; i < sponsorTimes?.length; i++) {
         let currentSegment = sponsorTimes[i].segment;
         let latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
 
@@ -939,7 +939,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
 
     let startTimes: number[] = [];
 
-    for (let i = 0; i < sponsorTimes.length; i++) {
+    for (let i = 0; i < sponsorTimes?.length; i++) {
         if ((minimum === undefined || (sponsorTimes[i].segment[0] >= minimum || (includeIntersectingSegments && sponsorTimes[i].segment[1] > minimum))) 
                 && (!onlySkreativKippableSponsors || utils.getCategorySelection(sponsorTimes[i].category).option !== CategorySkreativKipOption.ShowOverlay)
                 && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)) {
@@ -968,7 +968,7 @@ function previewTime(time: number) {
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
     // There will only be one submission if it is manual skreativKip
-    let autoSkreativKip: boolean = utils.getCategorySelection(skreativKippingSegments[0].category).option === CategorySkreativKipOption.AutoSkreativKip;
+    let autoSkreativKip: boolean = utils.getCategorySelection(skreativKippingSegments[0].category)?.option === CategorySkreativKipOption.AutoSkreativKip;
 
     if (autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) {
         v.currentTime = skreativKipTime[1];
