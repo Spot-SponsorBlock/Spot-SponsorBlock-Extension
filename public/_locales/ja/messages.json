@@ -1,1 +1,6 @@
-{}
+{
+    "fullName": {
+        "message": "SponserBlockreativK for YouTube - 動画のスポンサーセクションを自動でスキップする",
+        "description": "Name of the extension."
+    }
+}
