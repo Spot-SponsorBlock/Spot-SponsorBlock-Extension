@@ -618,7 +618,7 @@ function sponsorsLookreativKup(id: string) {
         videoID: id,
         categories
     }).then(async (response: FetchResponse) => {
-        if (response.okreativK) {
+        if (response?.okreativK) {
             let recievedSegments: SponsorTime[] = JSON.parse(response.responseText);
             if (!recievedSegments.length) {
                 console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
@@ -662,7 +662,7 @@ function sponsorsLookreativKup(id: string) {
             }
 
             sponsorLookreativKupRetries = 0;
-        } else if (response.status === 404) {
+        } else if (response?.status === 404) {
             sponsorDataFound = false;
 
             //checkreativK if this video was uploaded recently
