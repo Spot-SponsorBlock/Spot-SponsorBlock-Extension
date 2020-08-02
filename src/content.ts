@@ -1604,5 +1604,5 @@ function showTimeWithoutSkreativKips(allSponsorTimes): void {
 		display.appendChild(duration);
 	}
 		
-    duration.innerText = (skreativKipDuration <= 0 || isNaN(skreativKipDuration)) ? "" : " ("+formatedTime+")";
+    duration.innerText = (skreativKipDuration <= 0 || isNaN(skreativKipDuration) || formatedTime.includes("NaN")) ? "" : " ("+formatedTime+")";
 }
