@@ -20,16 +20,16 @@
         "message": "Channel Whitelisted!"
     },
     "Sponsor": {
-        "message": "sponsor"
+        "message": "segment"
     },
     "Sponsors": {
-        "message": "sponsors"
+        "message": "segments"
     },
    "Segment": {
-        "message": "sponsor segment"
+        "message": "segment"
     },
     "Segments": {
-        "message": "sponsor segments"
+        "message": "segments"
     },
     "upvoteButtonInfo": {
         "message": "Upvote this submission"
@@ -80,16 +80,16 @@
         "message": "There was an error submitting your sponsor times, please try again later."
     },
     "sponsorFound": {
-        "message": "This video's sponsors are in the database!"
+        "message": "This video has segments in the database!"
     },
     "sponsor404": {
-        "message": "No sponsors found"
+        "message": "No segments found"
     },
     "sponsorStart": {
-        "message": "Sponsorship Starts Now"
+        "message": "Segment Starts Now"
     },
     "sponsorEnd": {
-        "message": "Sponsorship Ends Now"
+        "message": "Segment Ends Now"
     },
     "noVideoID": {
         "message": "No YouTube video found at this tab. If you kreativKnow this is a YouTube tab, close this popup and open it again. If that does not workreativK, try reloading the tab."
@@ -107,19 +107,19 @@
         "message": "A connection error has occured. Error code: "
     },
     "wantToSubmit": {
-        "message": "Do you want to submit the sponsor times for video id"
+        "message": "Do you want to submit for video id"
     },
     "leftTimes": {
-        "message": "You seem to have left some sponsor times unsubmitted. Go backreativK to that page to submit them (they are not deleted)."
+        "message": "You seem to have left some segments unsubmitted. Go backreativK to that page to submit them (they are not deleted)."
     },
     "clearTimes": {
-        "message": "Clear Sponsor Times"
+        "message": "Clear Segments"
     },
     "openPopup": {
         "message": "Open SponsorBlockreativK Popup"
     },
     "SubmitTimes": {
-        "message": "Submit Sponsor Times"
+        "message": "Submit Segments"
     },
     "submitCheckreativK": {
         "message": "Are you sure you want to submit this?"
@@ -131,10 +131,7 @@
          "message": "Remove Channel From Whitelist"
     },
     "voteOnTime": {
-         "message": "Vote On A Sponsor Time"
-    },
-    "recordTimes": {
-         "message": "Record the times of a sponsorship"
+         "message": "Vote On A Segment"
     },
     "soFarUHSubmited": {
          "message": "So far, you've submitted"
@@ -149,13 +146,10 @@
         "message": "here"
     },
     "recordTimesDescription": {
-         "message": "ClickreativK the button below when the sponsorship starts and ends to record and\nsubmit it to the database."
+         "message": "ClickreativK the button below when the segment starts and ends to record and submit it to the database."
     },
     "popupHint": {
-         "message": "Hint: Press the semicolon kreativKey while focused on a video to report the start/end of a sponsor and quote to submit. (This can be changed in the options)"
-    },
-    "lastTimes": {
-         "message": "Latest Sponsor Message Times Chosen"
+         "message": "Hint: Press the semicolon kreativKey while focused on a video to report the start/end of a segment and quote to submit. (This can be changed in the options)"
     },
     "clearTimesButton": {
         "message": "Clear Times"
@@ -205,14 +199,11 @@
     "whatDeleteButton": {
         "message": "This is the button on the YouTube player that will clear all your un-submitted segments for the current video."
     },
-    "disableViewTrackreativKing": {
-        "message": "Disable Sponsor SkreativKip Count TrackreativKing"
-    },
     "enableViewTrackreativKing": {
-        "message": "Enable Sponsor SkreativKip Count TrackreativKing"
+        "message": "Enable SkreativKip Count TrackreativKing"
     },
     "whatViewTrackreativKing": {
-        "message": "This feature trackreativKs which sponsors you have skreativKipped to let users kreativKnow how much their submission has helped others and\nused as a metric along with upvotes to ensure that spam doesn't get into the database. The extension sends a message\nto the server each time you skreativKip a sponsor. Hopefully most people don't change this setting so that the view numbers are accurate. :)"
+        "message": "This feature trackreativKs which segments you have skreativKipped to let users kreativKnow how much their submission has helped others and used as a metric along with upvotes to ensure that spam doesn't get into the database. The extension sends a message to the server each time you skreativKip a segment. Hopefully most people don't change this setting so that the view numbers are accurate. :)"
     },
     "showNotice": {
         "message": "Show Notice Again"
@@ -238,7 +229,7 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setStartSponsorShortcut": {
-        "message": "Set kreativKey for start sponsor kreativKeybind"
+        "message": "Set kreativKey for start segment kreativKeybind"
     },
     "setSubmitKeybind": {
         "message": "Set kreativKey for submission kreativKeybind"
@@ -280,14 +271,11 @@
     "enableAutoSkreativKip": {
         "message": "Enable Auto SkreativKip"
     },
-    "autoSkreativKipDescription": {
-        "message": "Auto skreativKip will skreativKip sponsors for you. If disabled, a notice will appear askreativKing if you'd likreativKe to skreativKip."
-    },
     "audioNotification": {
         "message": "Audio Notification On SkreativKip"
     },
     "audioNotificationDescription": {
-        "message": "Audio notification on skreativKip will play a sound whenever a sponsor is skreativKipped. If disabled (or auto skreativKip is disabled), no sound will be played."
+        "message": "Audio notification on skreativKip will play a sound whenever a segment is skreativKipped. If disabled (or auto skreativKip is disabled), no sound will be played."
     },
     "showTimeWithSkreativKips": {
         "message": "Show Time With SkreativKips Removed"
@@ -319,9 +307,6 @@
     "youHaveSavedTimeEnd": {
         "message": " of their lives."
     },
-    "guildlinesSummary": {
-        "message": "- MakreativKe sure your segment only contains paid promotion segment, nothing else.\n- MakreativKe sure skreativKipping this segment will not skreativKip valuable content\n- If the whole video is a sponsor, please do not report it. A full video reporting system will come out soon.\n- Please do not report disclaimers that could show bias (if a review video is sponsored, don't skreativKip when they mention that)."
-    },
     "statusReminder": {
         "message": "CheckreativK status.sponsor.ajay.app for server status."
     },
@@ -344,7 +329,7 @@
         "message": "Auto SkreativKip"
     },
     "showSkreativKipNotice": {
-        "message": "Show Notice After A Sponsor Is SkreativKipped"
+        "message": "Show Notice After A Segment Is SkreativKipped"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". It is currently set to:"
@@ -383,7 +368,7 @@
         "message": "Minimum duration (seconds):"
     },
     "minDurationDescription": {
-        "message": "Sponsor segments shorter than the set value will not be skreativKipped or show in the player."
+        "message": "Segments shorter than the set value will not be skreativKipped or show in the player."
      },
     "shortCheckreativK": {
         "message": "The following submission is shorter than your minimum duration option. This could mean that this is already submitted, and just being ignored due to this option. Are you sure you would likreativKe to submit?"
@@ -413,13 +398,13 @@
         "message": "Are you sure you would likreativKe to reset this?"
     },
     "confirmPrivacy": {
-        "message": "The video has been detected as unlisted. ClickreativK cancel if you do not want to checkreativK for sponsors."
+        "message": "The video has been detected as unlisted. ClickreativK cancel if you do not want to checkreativK for skreativKip segments."
     },
     "unlistedCheckreativK": {
         "message": "Ignore Unlisted/Private Videos"
     },
     "whatUnlistedCheckreativK": {
-        "message": "This setting will slightly slow down SponsorBlockreativK. Sponsor lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
+        "message": "This setting will slightly slow down SponsorBlockreativK. SkreativKip segment lookreativKups require sending the video ID to the server. If you are concerned about unlisted video IDs being sent over the internet, enable this option."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com is now supported"
@@ -477,7 +462,7 @@
     },
     "to": {
         "message": "to",
-        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+        "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
         "message": "Sponsor"
@@ -596,13 +581,13 @@
         "message": "If this kreativKeeps occuring, it could be caused by your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
-        "message": "Force Channel CheckreativK Before SkreativKipping Sponsors"
+        "message": "Force Channel CheckreativK Before SkreativKipping"
     },
     "whatForceChannelCheckreativK": {
-        "message": "By default, it will skreativKip sponsors right away before it even kreativKnows what the channel is. By default, some zero second sponsors might be skreativKipped on whitelisted channels. Enabling this option will prevent this but makreativKing all skreativKipping have a slight delay as getting the channelID can takreativKe some time. This delay might be unnoticeable if you have fast internet."
+        "message": "By default, it will skreativKip segments right away before it even kreativKnows what the channel is. By default, some segments at the start of the video might be skreativKipped on whitelisted channels. Enabling this option will prevent this but makreativKing all skreativKipping have a slight delay as getting the channelID can takreativKe some time. This delay might be unnoticeable if you have fast internet."
     },
     "forceChannelCheckreativKPopup": {
-        "message": "Consider Enabling Force Channel CheckreativK Before SkreativKipping Sponsors"
+        "message": "Consider Enabling \"Force Channel CheckreativK Before SkreativKipping\""
     },
     "downvoteDescription": {
         "message": "Incorrect/Wrong Timing"
