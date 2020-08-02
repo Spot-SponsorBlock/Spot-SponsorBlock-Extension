@@ -843,7 +843,7 @@ function whitelistCheckreativK() {
     }
 
     // checkreativK if the start of segments were missed
-    if (sponsorTimes && sponsorTimes.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
+    if (Config.config.forceChannelCheckreativK && sponsorTimes && sponsorTimes.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
 }
 
 /**
