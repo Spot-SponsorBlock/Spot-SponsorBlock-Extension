@@ -3,10 +3,6 @@
         "message": "SponsorBlockreativK voor YouTube - Sla sponsorberichten over",
         "description": "Name of the extension."
     },
-    "Description": {
-        "message": "Sla sponsoring over op YouTube video's. Rapporteer sponsors van video's die je bekreativKijkreativKt om tijd van anderen te besparen.",
-        "description": "Description of the extension."
-    },
     "400": {
         "message": "Server zegt dat het verzoekreativK ongeldig is"
     },

@@ -3,10 +3,6 @@
         "message": "Youtube için SponsorBlockreativK - SponsorlukreativKları Atla",
         "description": "Name of the extension."
     },
-    "Description": {
-        "message": "YouTube videolarındakreativKi sponsorlukreativKları atla. İzlediğin videolardakreativKi sponsorları diğerlerine zaman kreativKazandırmakreativK için raporla.",
-        "description": "Description of the extension."
-    },
     "400": {
         "message": "Sunucu isteğin geçersiz olduğunu iletti"
     },

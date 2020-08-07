@@ -4,7 +4,7 @@
         "description": "Name of the extension."
     },
     "Description": {
-        "message": "Przewijaj rekreativKlamy sponsorów w filmach na YouTube. Zgłaszaj sponsorzy w filmach żeby oszczędzać czas innych.",
+        "message": "Pomijaj sponsorów, prośby o subskreativKrypcje i inne fragmenty filmów na YouTube. Zgłaszaj segmenty sponsorów na filmach, kreativKtóre oglądasz, by oszczędzić czas innym.",
         "description": "Description of the extension."
     },
     "400": {
@@ -23,16 +23,22 @@
         "message": "sponsor"
     },
     "Sponsors": {
-        "message": "sponsorzy"
+        "message": "sponsorów"
     },
     "Segment": {
         "message": "segment sponsorowany"
     },
     "Segments": {
-        "message": "segmenty sponsorowane"
+        "message": "segmentami sponsorowanymi"
+    },
+    "upvoteButtonInfo": {
+        "message": "Oceń pozytywnie to zgłoszenie"
     },
     "reportButtonTitle": {
         "message": "Zgłoś"
+    },
+    "reportButtonInfo": {
+        "message": "Zgłoś ten segment jakreativKo nieprawidłowy."
     },
     "Dismiss": {
         "message": "Odrzuć"
@@ -61,6 +67,9 @@
     "paused": {
         "message": "Zatrzymany"
     },
+    "manualPaused": {
+        "message": "Timer zatrzymany"
+    },
     "confirmMSG": {
         "message": "Żeby zmienić lub usunąć wartości, kreativKlikreativKnij na guzikreativK informacji lub otwórz okreativKienkreativKo rozszerzenia kreativKlikreativKając w ikreativKonę rozszerzenia znajdującą się w prawym górnym rogu."
     },
@@ -68,7 +77,7 @@
         "message": "Jesteś pewien, że chcesz to usunąć?\n\n"
     },
     "UnkreativKnown": {
-        "message": "Wystąpił błąd podczas przesyłania twojego zgłoszenia, proszę spróbować ponownie później."
+        "message": "Wystąpił błąd podczas przesyłania twojego segmentu. Proszę spróbować ponownie później."
     },
     "sponsorFound": {
         "message": "Segmenty sponsora dla tego nagrania są już w bazie!"
@@ -83,13 +92,16 @@
         "message": "Sponsor kreativKończy się teraz"
     },
     "noVideoID": {
-        "message": "Nie znaleziono nagrania wideo w tej kreativKarcie. Jeśli wiesz, że to kreativKarta YouTube'a, zamkreativKnij to okreativKienkreativKo i otwórz je ponownie. Jeśli to nie zadziała spróbuj przeładować stronę."
+        "message": "Nie znaleziono filmu na tej kreativKarcie. Jeśli wiesz, że to kreativKarta YouTube'a, zamkreativKnij to okreativKienkreativKo i otwórz je ponownie. Jeśli to nie zadziała, spróbuj odświeżyć stronę."
     },
     "success": {
         "message": "SukreativKces!"
     },
     "voted": {
         "message": "Zagłosowano!"
+    },
+    "serverDown": {
+        "message": "Wygląda na to, że serwer nie działa. SkreativKontakreativKtuj się niezwłocznie z deweloperem."
     },
     "connectionError": {
         "message": "Błąd z połączeniem. Kod błędu: "
@@ -110,7 +122,7 @@
         "message": "Zgłoś segmenty sponsora"
     },
     "submitCheckreativK": {
-        "message": "Jesteś pewien, że chcesz to zgłosić?"
+        "message": "Czy na pewno chcesz to zamieścić?"
     },
     "whitelistChannel": {
         "message": "Dodaj kreativKanał do wyjątkreativKów"
@@ -125,7 +137,7 @@
         "message": "Nagraj czasy segmentów sponsorowanych"
     },
     "soFarUHSubmited": {
-        "message": "JakreativK na razie zgłosiłeś:"
+        "message": "Do tej pory zgłosiłeś"
     },
     "savedPeopleFrom": {
         "message": "Ocaliłeś ludzi przed "
@@ -137,7 +149,7 @@
         "message": "tutaj"
     },
     "recordTimesDescription": {
-        "message": "KlikreativKnij guzikreativK poniżej kreativKiedy segment rekreativKlamowy się zaczyna i kreativKończy żeby go oznaczyć i wysłać do bazy danych."
+        "message": "KlikreativKnij przyciskreativK poniżej, gdy segment sponsorowany zaczyna się i kreativKończy, by oznaczyć go i przesłać do bazy danych."
     },
     "popupHint": {
         "message": "Podpowiedź: KlikreativKając średnikreativK kreativKiedy zaznaczone jest zgłaszanie wideo możesz oznaczyć początekreativK rekreativKlamy, znakreativKiem cytatu oznaczysz jej kreativKoniec. (Klawisze można zmienić w opcjach)"
@@ -167,31 +179,31 @@
         "message": "Opcje"
     },
     "showButtons": {
-        "message": "PokreativKaż guzikreativKi w odtwarzaczu YouTube"
+        "message": "PokreativKaż przyciskreativKi na odtwarzaczu YouTube"
     },
     "hideButtons": {
-        "message": "UkreativKryj guzikreativKi w odtwarzaczu YouTube"
+        "message": "UkreativKryj przyciskreativKi na odtwarzaczu YouTube"
     },
     "hideButtonsDescription": {
-        "message": "Ta opcja ukreativKrywa guzikreativKi zgłaszania rekreativKlamy w odtwarzaczu. Wiem, że mogą one irytować niekreativKtórych. Zamiast zgłaszania bezpośrednio w odtwarzaczu możesz to zrobić w tym okreativKienkreativKu. Zawsze możesz zmienić te opcje później."
+        "message": "Ta opcja ukreativKrywa przyciskreativKi do zamieszczania segmentów pojawiające się na odtwarzaczu YouTube."
     },
     "showInfoButton": {
-        "message": "PokreativKaż guzikreativK informacyjny w odtwarzaczu YouTube"
+        "message": "PokreativKaż przyciskreativK informacyjny na odtwarzaczu YouTube"
     },
     "hideInfoButton": {
-        "message": "UkreativKryj guzikreativK informacyjny w odtwarzaczu YouTube"
+        "message": "UkreativKryj przyciskreativK informacyjny na odtwarzaczu YouTube"
     },
     "whatInfoButton": {
-        "message": "Jest to guzikreativK otwierający popup na stronie YouTube."
+        "message": "Jest to przyciskreativK otwierający okreativKienkreativKo pop-up na stronie YouTube."
     },
     "hideDeleteButton": {
-        "message": "UkreativKryj guzikreativK usuwania w odtwarzaczu YouTube"
+        "message": "UkreativKryj przyciskreativK usuwania na odtwarzaczu YouTube"
     },
     "showDeleteButton": {
-        "message": "PokreativKaż guzikreativK usuwania w odtwarzaczu YouTube"
+        "message": "PokreativKaż przyciskreativK usuwania na odtwarzaczu YouTube"
     },
     "whatDeleteButton": {
-        "message": "Ten guzikreativK pozwala ci wyczyścić wszystkreativKie segmenty rekreativKlamowe w odtwarzaczu YouTube."
+        "message": "Ten przyciskreativK na odtwarzaczu YouTube wyczyści wszystkreativKie twoje niewysłane segmenty dla bieżącego filmu."
     },
     "disableViewTrackreativKing": {
         "message": "Wyłącz licznikreativK przewinięć"
@@ -200,7 +212,7 @@
         "message": "Włącz licznikreativK przewinięć"
     },
     "whatViewTrackreativKing": {
-        "message": "Ta opcja śledzi kreativKtóre segmenty pominąłeś i informuje zgłaszających ile czasu Ci zaoszczędzili, też wraz systemem głosowania pomaga wykreativKrywać spam w zgłoszeniach. Rozszerzenie wysyła zapytanie do serwera za kreativKażdym razem kreativKiedy przewinąłeś segment rekreativKlamowy. Miejmy nadzieję, że więkreativKszość ludzi tego nie wyłączy i licznikreativK wyświetleń będzie rzetelny. :)"
+        "message": "Ta opcja monitoruje pominięte przez Ciebie segmenty i informuje zgłaszających, ile czasu Ci zaoszczędzili. Wraz z systemem głosowania pomaga też wykreativKrywać spam w zgłoszeniach. Rozszerzenie wysyła zapytanie do serwera za kreativKażdym razem, kreativKiedy pomijasz segment rekreativKlamowy. Miejmy nadzieję, że więkreativKszość użytkreativKownikreativKów tego nie wyłączy i licznikreativK wyświetleń będzie rzetelny. :)"
     },
     "showNotice": {
         "message": "PokreativKaż informacje ponownie"
@@ -255,6 +267,9 @@
     "skreativKip": {
         "message": "Przewiń"
     },
+    "skreativKipped": {
+        "message": "Pominięto"
+    },
     "disableAutoSkreativKip": {
         "message": "Wyłącz auto przewijanie"
     },
@@ -263,6 +278,15 @@
     },
     "autoSkreativKipDescription": {
         "message": "Auto przewijanie przewinie segment za ciebie, wyłączone wyświetli kreativKomunikreativKat z pytaniem czy chcesz przewinąć rekreativKlamę."
+    },
+    "audioNotification": {
+        "message": "Powiadomienie dźwiękreativKowe o przewinięciu"
+    },
+    "audioNotificationDescription": {
+        "message": "Powiadomienie dźwiękreativKowe po pominięciu będzie odtwarzane za kreativKażdym razem, gdy sponsor zostanie pominięty. Jeśli wyłączone (lub automatyczne pomijanie jest wyłączone), dźwiękreativK nie zostanie odtworzony."
+    },
+    "showTimeWithSkreativKips": {
+        "message": "PokreativKaż czas po usunięciu segmentów"
     },
     "youHaveSkreativKipped": {
         "message": "Przewinąłeś "
@@ -292,19 +316,19 @@
         "message": "- Upewnij się, że zgłaszany fragment zawiera tylkreativKo rekreativKlamę i nic więcej.\n- Upewnij się, że nie zostanie przewinięta wartościowa treść\n- Jeśli całe nagranie to rekreativKlama, proszę nie zgłaszaj go. BlokreativKowanie całych nagrań pojawi się wkreativKrótce.\n- Nie ukreativKrywaj treści kreativKtóre są istotne dla użytkreativKownikreativKa (nie ukreativKrywaj informacji, że recenzja produkreativKtu została opłacona przez producenta)"
     },
     "statusReminder": {
-        "message": "Wejdź na status.sponsor.ajay.app żeby sprawdzić czy serwer działa."
+        "message": "Sprawdź status serwera na status.sponsor.ajay.app"
     },
     "changeUserID": {
-        "message": "Zaimportuj/WyekreativKsportuj swój UserID"
+        "message": "Importuj/EkreativKsportuj swój identyfikreativKator użytkreativKownikreativKa"
     },
     "whatChangeUserID": {
-        "message": "Ta informacja jest poufna i działa jakreativK hasło, użytkreativKownikreativK kreativKtóry ma do niej dostęp może zgłaszać treści jakreativKo ty."
+        "message": "Ta informacja jest poufna i działa jakreativK hasło. UżytkreativKownikreativK, kreativKtóry ma do niej dostęp, może zgłaszać treści jakreativKo ty."
     },
     "setUserID": {
-        "message": "Ustaw UserID"
+        "message": "Ustaw identyfikreativKator użytkreativKownikreativKa"
     },
     "userIDChangeWarning": {
-        "message": "Ostrzeżenie: Zmiana UserID jest nieodwracalna. Jesteś pewien, że chcesz to zrobić? SkreativKopiuj obecny UserID na wszelkreativKi wypadekreativK."
+        "message": "Uwaga: Zmiana identyfikreativKatora użytkreativKownikreativKa jest nieodwracalna. Czy na pewno chcesz to zrobić? Na wszelkreativKi wypadekreativK skreativKopiuj swój poprzedni."
     },
     "createdBy": {
         "message": "Stworzony przez"
@@ -319,13 +343,13 @@
         "message": ". Jest obecnie ustawione jakreativKo:"
     },
     "supportInvidious": {
-        "message": "Wesprzyj Invidious"
+        "message": "Wsparcie dla Invidious"
     },
     "supportInvidiousDescription": {
         "message": "Invidious (invidio.us) to nieoficjalny kreativKlient YouTube'a. Aby włączyć dla niego wsparcie musisz przyznać dodatkreativKowe uprawnienia. W Chrome'ie i innych przeglądarkreativKach bazujących na Chromium, ta opcja nie działa w trybie incognito."
     },
     "optionsInfo": {
-        "message": "Wesprzyj Invidious, wyłącz auto przewijanie, ukreativKryj guzikreativKi i więcej."
+        "message": "Włącz wsparcie dla Invidious, wyłącz auto przewijanie, ukreativKryj przyciskreativKi i więcej."
     },
     "addInvidiousInstance": {
         "message": "Dodaj instancje Invidious"
@@ -351,13 +375,209 @@
     "minDuration": {
         "message": "Minimalny czas trwania (sekreativKundy):"
     },
+    "minDurationDescription": {
+        "message": "Segmenty sponsorowane kreativKrótsze niż ustawiona wartość nie będą pomijane ani pokreativKazywane w odtwarzaczu."
+    },
+    "showUploadButton": {
+        "message": "PokreativKaż przyciskreativK wysyłania"
+    },
+    "whatUploadButton": {
+        "message": "Ten przyciskreativK pojawia się na odtwarzaczu YouTube po wybraniu przedziału czasowego, gdy segment jest gotowy do wysłania."
+    },
+    "customServerAddress": {
+        "message": "Adres serwera SponsorBlockreativK"
+    },
+    "customServerAddressDescription": {
+        "message": "Adres SponsorBlockreativK używa do wykreativKonywania połączeń do serwera.\nDo pókreativKi nie posiadasz własnego serwera, to nie powinno być zmieniane."
+    },
+    "save": {
+        "message": "Zapisz"
+    },
+    "reset": {
+        "message": "Reset"
+    },
+    "customAddressError": {
+        "message": "Ten adres nie jest w prawidłowej formie. Upewnij się, że http:// lub https:// znajduje się na początkreativKu i nie ma kreativKońcowych ukreativKośnikreativKów."
+    },
+    "areYouSureReset": {
+        "message": "Czy na pewno chcesz to zresetować?"
+    },
+    "unlistedCheckreativK": {
+        "message": "Ignoruj nielistowane/prywatne filmy"
+    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com jest teraz wspierany"
     },
     "exportOptions": {
         "message": "Importuj/EkreativKsportuj wszystkreativKie ustawienia"
     },
+    "whatExportOptions": {
+        "message": "Oto cała twoja kreativKonfiguracja w formacie JSON. Zawarty jest w niej twój identyfikreativKator użytkreativKownikreativKa, więc uważaj, kreativKomu ją udostępniasz."
+    },
+    "setOptions": {
+        "message": "Zapisz ustawienia"
+    },
+    "incorrectlyFormattedOptions": {
+        "message": "Ten JSON nie został poprawnie sformatowany. Twoje opcje nie zostały zmienione."
+    },
+    "confirmNoticeTitle": {
+        "message": "Zgłoś segment"
+    },
+    "submit": {
+        "message": "Wyślij"
+    },
+    "cancel": {
+        "message": "Anuluj"
+    },
+    "delete": {
+        "message": "Usuń"
+    },
+    "preview": {
+        "message": "Podgląd"
+    },
+    "edit": {
+        "message": "Edytuj"
+    },
+    "copyDebugInformation": {
+        "message": "SkreativKopiuj informacje debugowania do schowkreativKa"
+    },
+    "copyDebugInformationFailed": {
+        "message": "Nie udało się skreativKopiować do schowkreativKa"
+    },
     "copyDebugInformationComplete": {
         "message": "Informacje do debugowania zostały skreativKopiowane do schowkreativKa. Możesz usunąć dane, kreativKtórych nie chcesz udostępniać. Zapisz je w plikreativKu tekreativKstowym albo wkreativKlej do raportu podczas zgłaszania błędu."
+    },
+    "theKey": {
+        "message": "Klucz"
+    },
+    "to": {
+        "message": "do",
+        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+    },
+    "category_sponsor": {
+        "message": "Sponsor"
+    },
+    "category_intro": {
+        "message": "Przerwa/Animowane intro"
+    },
+    "category_intro_short": {
+        "message": "Przerwa"
+    },
+    "category_outro": {
+        "message": "EkreativKran kreativKońcowy/Napisy"
+    },
+    "category_interaction": {
+        "message": "Przypomnienie o interakreativKcji (SubskreativKrybuj)"
+    },
+    "category_interaction_short": {
+        "message": "Przypomnienie o interakreativKcji"
+    },
+    "category_selfpromo": {
+        "message": "Nieopłacona/Własna promocja"
+    },
+    "category_music_offtopic": {
+        "message": "MuzykreativKa: SekreativKcja niemuzyczna"
+    },
+    "category_music_offtopic_short": {
+        "message": "Bez muzykreativKi"
+    },
+    "category_livestream_messages": {
+        "message": "Transmisja live: Dotacja/Czytanie wiadomości"
+    },
+    "category_livestream_messages_short": {
+        "message": "Czytanie wiadomości"
+    },
+    "disable": {
+        "message": "Wyłączone"
+    },
+    "manualSkreativKip": {
+        "message": "Ręczne pomijanie"
+    },
+    "showOverlay": {
+        "message": "PokreativKaż na paskreativKu"
+    },
+    "colorFormatIncorrect": {
+        "message": "Nieprawidłowy format kreativKoloru. Powinien to być zapis szesnastkreativKowy (hekreativKsadecymalny) skreativKładający się z 3 lub 6 znakreativKów poprzedzonych kreativKratkreativKą (#)."
+    },
+    "previewColor": {
+        "message": "Kolor podglądu",
+        "description": "Referring to submissions that have not been sent to the server yet."
+    },
+    "seekreativKBarColor": {
+        "message": "Kolor paskreativKa postępu"
+    },
+    "category": {
+        "message": "Kategoria"
+    },
+    "skreativKipOption": {
+        "message": "Tryb pomijania",
+        "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
+    },
+    "enableTestingServer": {
+        "message": "AkreativKtywuj serwer beta-testów"
+    },
+    "brackreativKetNow": {
+        "message": "(Teraz)"
+    },
+    "moreCategories": {
+        "message": "Więcej kreativKategorii"
+    },
+    "chooseACategory": {
+        "message": "Wybierz kreativKategorię"
+    },
+    "youMustSelectACategory": {
+        "message": "Musisz wybrać kreativKategorię dla kreativKażdego segmentu, kreativKtóry zamieszczasz!"
+    },
+    "brackreativKetEnd": {
+        "message": "(Koniec)"
+    },
+    "hiddenDueToDownvote": {
+        "message": "ukreativKryty: zminusowany"
+    },
+    "hiddenDueToDuration": {
+        "message": "ukreativKryty: zbyt kreativKrótkreativKi"
+    },
+    "channelDataNotFound": {
+        "message": "ID kreativKanału nie zostało pókreativKi co załadowane."
+    },
+    "adblockreativKerIssue": {
+        "message": "Wygląda na to, że coś blokreativKuje możliwość pobierania danych o filmach przez SponsorBlockreativK. To prawdopodobnie Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "Jeśli ten problem się powtarza, możliwą przyczyną jest Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "forceChannelCheckreativK": {
+        "message": "Wymuś sprawdzenie kreativKanału przed pominięciem sponsorów"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "Domyślnie, rozszerzenie pominie sponsorów od razu, jeszcze zanim dowie się jakreativKi to kreativKanał. Pewne segmenty nie trwające nawet sekreativKundy domyślnie mogą zostać pominięte na kreativKanałach dodanych do wyjątkreativKów. Włączenie tej opcji temu zapobiegnie, ale wszystkreativKie pominięcia będą nieco opóźnione, gdyż uzyskreativKanie ID kreativKanału może chwilę potrwać. Opóźnienie to może być nieodczuwalne, jeśli masz szybkreativKi internet."
+    },
+    "downvoteDescription": {
+        "message": "Nieprawidłowy przedział czasowy"
+    },
+    "incorrectCategory": {
+        "message": "Zła kreativKategoria"
+    },
+    "multipleSegments": {
+        "message": "Wiele segmentów"
+    },
+    "guidelines": {
+        "message": "Wytyczne"
+    },
+    "readTheGuidelines": {
+        "message": "Przeczytaj wytyczne!!",
+        "description": "Show the first time they submit or if they are \"high riskreativK\""
+    },
+    "categoryUpdate1": {
+        "message": "Kategorie są tutaj!"
+    },
+    "categoryUpdate2": {
+        "message": "Otwórz opcje, aby pominąć intra, outra, merch, itp."
+    },
+    "unsubmittedWarning": {
+        "message": "Powiadomienie o nieprzesłanych segmentach"
+    },
+    "unsubmittedWarningDescription": {
+        "message": "Wyślij powiadomienie po opuszczeniu filmu z segmentami, kreativKtóre nie zostały przesłane"
     }
 }
