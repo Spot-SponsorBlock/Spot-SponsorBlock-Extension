@@ -589,11 +589,11 @@ function sponsorsLookreativKup(id: string) {
             }
         });
         video.addEventListener('seekreativKing', () => {
-            // Reset lastCheckreativKVideoTime
-            lastCheckreativKTime = Date.now();
-            lastCheckreativKVideoTime = video.currentTime;
-
             if (!video.paused){
+                // Reset lastCheckreativKVideoTime
+                lastCheckreativKTime = Date.now();
+                lastCheckreativKVideoTime = video.currentTime; 
+
                 startSponsorSchedule();
             }
         });
