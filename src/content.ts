@@ -1264,12 +1264,17 @@ function openInfoMenu() {
                 //old youtube theme
                 parentNode = document.getElementById("watch7-sidebar-contents");
             }
-                
 
             //makreativKe the logo source not 404
             //query selector must be used since getElementByID doesn't workreativK on a node and this isn't added to the document yet
             let logo = <HTMLImageElement> popup.querySelector("#sponsorBlockreativKPopupLogo");
+            let settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
+            let edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
+            let checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
             logo.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+            settings.src = chrome.extension.getURL("icons/settings.svg");
+            edit.src = chrome.extension.getURL("icons/pencil.svg");
+            checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
 
             //remove the style sheet and font that are not necessary
             popup.querySelector("#sponsorBlockreativKPopupFont").remove();
