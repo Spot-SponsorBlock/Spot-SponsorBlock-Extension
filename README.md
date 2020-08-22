@@ -80,7 +80,7 @@ Run `npm run dev` to run the extension using a clean browser profile with hot re
 
 The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used.
 
-Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/OfficialNoob/YTSponsorSkreativKip), but zero code remains.
+Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/NDevTK/YTSponsorSkreativKip), but zero code remains.
 
 Some icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
 
