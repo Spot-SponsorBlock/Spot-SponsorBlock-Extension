@@ -15,18 +15,6 @@
     "channelWhitelisted": {
         "message": "Kanal vitlistad!"
     },
-    "Sponsor": {
-        "message": "sponsor"
-    },
-    "Sponsors": {
-        "message": "sponsorer"
-    },
-    "Segment": {
-        "message": "sponsorsegment"
-    },
-    "Segments": {
-        "message": "sponsorsegment"
-    },
     "reportButtonTitle": {
         "message": "Rapportera"
     },
@@ -72,18 +60,6 @@
     "UnkreativKnown": {
         "message": "Ett fel uppstod vid rapportering av sponsorsegment, försökreativK igen senare."
     },
-    "sponsorFound": {
-        "message": "Den här videons sponsormeddelande finns i databasen!"
-    },
-    "sponsor404": {
-        "message": "Inga sponsormeddelanden hittades"
-    },
-    "sponsorStart": {
-        "message": "Sponsormeddelandet Börjar Nu"
-    },
-    "sponsorEnd": {
-        "message": "Sponsormeddelandet Slutar Nu"
-    },
     "noVideoID": {
         "message": "Kunde inte hitta någon YouTube-video i denna tab. Om du är säkreativKer på att detta är en Youtube-flikreativK, stäng den här rutan och öppna den igen. Ladda om flikreativKen om inte det funkreativKar."
     },
@@ -99,20 +75,8 @@
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
     },
-    "wantToSubmit": {
-        "message": "Vill du rapportera sponsortiderna för video id"
-    },
-    "leftTimes": {
-        "message": "Du har lämnat några sponsortider orapporterade. Gå tillbakreativKa till den sidan för att rapportera dem (de är inte borttagna)."
-    },
-    "clearTimes": {
-        "message": "Rensa Sponsortider"
-    },
     "openPopup": {
         "message": "Öppna SponsorBlockreativK Popup"
-    },
-    "SubmitTimes": {
-        "message": "Rapportera Sponsortider"
     },
     "submitCheckreativK": {
         "message": "Är du säkreativKer på att du vill rapportera detta?"
@@ -122,12 +86,6 @@
     },
     "removeFromWhitelist": {
         "message": "Ta bort kreativKanal från vitlistan"
-    },
-    "voteOnTime": {
-        "message": "Rösta på en sponsortid"
-    },
-    "recordTimes": {
-        "message": "Spela in sponsortider"
     },
     "soFarUHSubmited": {
         "message": "Hitills har du rapporterat"
@@ -140,15 +98,6 @@
     },
     "here": {
         "message": "här"
-    },
-    "recordTimesDescription": {
-        "message": "KlickreativKa på kreativKnappen nedan när sponsormeddelandet börjar och slutar för att spela in och rapportera till databasen."
-    },
-    "popupHint": {
-        "message": "Tips: TryckreativK på semikreativKolon när fokreativKus är på en video för att markreativKera början/slutet av ett sponsormeddelande och citatteckreativKen för att rapportera till databasen. (Kan ändras under inställningar)"
-    },
-    "lastTimes": {
-        "message": "Senaste Sponsortiderna Valda."
     },
     "clearTimesButton": {
         "message": "Rensa Tider"
@@ -198,15 +147,6 @@
     "whatDeleteButton": {
         "message": "Denna kreativKnappen tar bort alla sponsormeddelanden på YouTube-spelaren."
     },
-    "disableViewTrackreativKing": {
-        "message": "AvakreativKtivera RäkreativKning Av UndvikreativKta Sponsormeddelanden"
-    },
-    "enableViewTrackreativKing": {
-        "message": "AkreativKtivera RäkreativKning Av UndvikreativKta Sponsormeddelanden"
-    },
-    "whatViewTrackreativKing": {
-        "message": "Den här funkreativKtionen håller kreativKoll på vilkreativKa sponsormeddelanden du har hoppat över för att uppskreativKatta hur myckreativKet tid en användare har sparat andra och används tillsammans med röster för att se till att spam inte läggs i databasen. Detta tillägg skreativKickreativKar ett meddelande till servern varje gång du hoppar över ett sponsormeddelande. Förhoppningsvis ändrar inte folkreativK den här inställningen så statistikreativKen hålls tillförlitlig. :)"
-    },
     "showNotice": {
         "message": "Visa Notisen Igen"
     },
@@ -225,9 +165,6 @@
     "noticeUpdate2": {
         "message": "Om du ändå inte gillar det, tryckreativK på \"Visa aldrig\"-kreativKnappen.",
         "description": "The second line of the message displayed after the notice was upgraded."
-    },
-    "setStartSponsorShortcut": {
-        "message": "Välj kreativKnapp att kreativKoppla till start av sponsormeddelande"
     },
     "setSubmitKeybind": {
         "message": "Välj kreativKnapp att kreativKoppla till rapportering av sponsormeddelande"
@@ -269,14 +206,8 @@
     "enableAutoSkreativKip": {
         "message": "AkreativKtivera Hoppa Över AutomatiskreativKt"
     },
-    "autoSkreativKipDescription": {
-        "message": "Hoppa Över AutomatiskreativKt undvikreativKer att spela upp sponsormeddelanden för dig. Ifall det är avakreativKtiverat dykreativKer en notis upp som frågar om du vill hoppa över."
-    },
     "audioNotification": {
         "message": "LjudeffekreativKt vid hopp"
-    },
-    "audioNotificationDescription": {
-        "message": "LjudeffekreativKt vid hopp spelar upp en ljudeffekreativKt när du hoppar över ett sponsormeddelande. Ifall det är avakreativKtiverat (eller hoppa över automatiskreativKt är avakreativKtiverat), kreativKommer inget ljud att spelas upp."
     },
     "youHaveSkreativKipped": {
         "message": "Du har hoppat över "
@@ -302,9 +233,6 @@
     "youHaveSavedTimeEnd": {
         "message": " av deras liv."
     },
-    "guildlinesSummary": {
-        "message": "- Se till att ditt sponsorsegment bara innehåller betald markreativKnadsföring, inget annat.\n- Se till att inget värdefullt innehåll missas genom att hoppa över ditt sponsorsegment\n- Rapportera inte en video ifall hela videon är ett sponsormeddelande. Ett rapporteringssystem för hela videor kreativKommer snart.\n- Se till att inte hoppa över delar som uppmärkreativKsammar partiskreativKhet (om en recensionsvideo är sponsrad, hoppa inte över delen av videon där det nämns)."
-    },
     "statusReminder": {
         "message": "Gå till status.sponsor.ajay.app för serverstatus."
     },
@@ -325,9 +253,6 @@
     },
     "autoSkreativKip": {
         "message": "Hoppa Över AutomatiskreativKt"
-    },
-    "showSkreativKipNotice": {
-        "message": "Visa Notis Efter Sponsormeddelande Har Hoppats Över"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Är just nu kreativKopplat till:"
@@ -365,9 +290,6 @@
     "minDuration": {
         "message": "Minsta varakreativKtighet (sekreativKunder):"
     },
-    "minDurationDescription": {
-        "message": "Sponsorsegment som är kreativKortare än det satta minstavärdet kreativKommer inte att hoppas över eller visas i spelaren."
-    },
     "shortCheckreativK": {
         "message": "Följande rapport är kreativKortare än ditt minstavärde i inställningarna. Det skreativKulle kreativKunna betyda att det redan är rapporterat och bara ignorerat på grund av denna inställning. Är du säkreativKer på att du vill rapportera?"
     },
@@ -395,14 +317,8 @@
     "areYouSureReset": {
         "message": "Är du säkreativKer på att du vill rensa?"
     },
-    "confirmPrivacy": {
-        "message": "Videon ser ut att vara olistad. TryckreativK på avbryt om du inte vill kreativKolla efter sponsorer."
-    },
     "unlistedCheckreativK": {
         "message": "Ignorera Olistade Videor"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Denna inställning kreativKommer göra SponsorBlockreativK märkreativKbart långsammare. Uppslag av sponsormeddelanden kreativKräver att video-ID skreativKickreativKas till servern. Om du är bekreativKymrad över att olistade video-IDn skreativKickreativKas över internet, akreativKtivera denna inställning."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com stöds nu"
@@ -460,7 +376,7 @@
     },
     "to": {
         "message": "till",
-        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+        "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
         "message": "Sponsormeddelande"
