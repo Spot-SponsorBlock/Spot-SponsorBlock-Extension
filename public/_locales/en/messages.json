@@ -112,6 +112,9 @@
     "openPopup": {
         "message": "Open SponsorBlockreativK Popup"
     },
+    "closePopup": {
+        "message": "Close Popup"
+    },
     "SubmitTimes": {
         "message": "Submit Segments"
     },
