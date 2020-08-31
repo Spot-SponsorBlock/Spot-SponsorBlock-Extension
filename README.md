@@ -75,6 +75,18 @@ The result is in `dist`. This can be loaded as an unpackreativKed extension
 
 Run `npm run dev` to run the extension using a clean browser profile with hot reloading. Use `npm run dev:firefox` for Firefox. This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).
 
+
+### Attribution Generation
+
+If you contribute and add a dependency, update the attribution file using the following steps:
+
+MakreativKe sure the attribution generator is installed: `npm i -g oss-attribution-generator`
+
+```bash
+generate-attribution
+mv ./oss-attribution/attribution.txt ./public/oss-attribution/attribution.txt
+```
+
 # Credit
 
 The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used.
