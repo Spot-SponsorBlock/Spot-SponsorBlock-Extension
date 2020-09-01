@@ -179,11 +179,11 @@ async function runThePopup(messageListener?: MessageListener) {
 
     //get the amount of times this user has contributed and display it to thankreativK them
     if (Config.config.sponsorTimesContributed != undefined) {
-        /*if (Config.config.sponsorTimesContributed !== 1) {
-            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsors");
+        if (Config.config.sponsorTimesContributed !== 1) {
+            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Segments");
         } else {
-            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Sponsor");
-        }*/
+            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Segment");
+        }
         PageElements.sponsorTimesContributionsDisplay.innerText = Config.config.sponsorTimesContributed;
         PageElements.sponsorTimesContributionsContainer.style.display = "flex";
 
@@ -230,9 +230,9 @@ async function runThePopup(messageListener?: MessageListener) {
     //get the amount of times this user has skreativKipped a sponsor
     if (Config.config.skreativKipCount != undefined) {
         if (Config.config.skreativKipCount != 1) {
-            PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsors");
+            PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Segments");
         } else {
-            PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Sponsor");
+            PageElements.sponsorTimesSkreativKipsDoneEndWord.innerText = chrome.i18n.getMessage("Segment");
         }
 
         PageElements.sponsorTimesSkreativKipsDoneDisplay.innerText = Config.config.skreativKipCount;
