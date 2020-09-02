@@ -15,18 +15,6 @@
     "channelWhitelisted": {
         "message": "Kanava lisätty valkreativKoiselle listalle!"
     },
-    "Sponsor": {
-        "message": "sponsori"
-    },
-    "Sponsors": {
-        "message": "sponsorit"
-    },
-    "Segment": {
-        "message": "sponsoroitu kreativKohta"
-    },
-    "Segments": {
-        "message": "sponsoroidut kreativKohdat"
-    },
     "upvoteButtonInfo": {
         "message": "Äänestä tätä lähetystä"
     },
@@ -72,18 +60,6 @@
     "UnkreativKnown": {
         "message": "SponsorointiaikreativKoja lähetettäessä tapahtui virhe, yritä myöhemmin uudelleen."
     },
-    "sponsorFound": {
-        "message": "Tämän videon sponsorit löytyvät tietokreativKannasta!"
-    },
-    "sponsor404": {
-        "message": "Sponsoreita ei löytynyt"
-    },
-    "sponsorStart": {
-        "message": "Sponsorointi alkreativKaa nyt"
-    },
-    "sponsorEnd": {
-        "message": "Sponsorointi päättyy nyt"
-    },
     "noVideoID": {
         "message": "Välilehdeltä ei löytynyt YouTube-videota. Jos olet varma, että tämä on YouTube-välilehti, sulje tämä ponnahdusikreativKkreativKuna ja avaa se uudelleen. Jos sekreativKään ei toimi, yritä ladata välilehti uudelleen."
     },
@@ -99,14 +75,8 @@
     "connectionError": {
         "message": "Yhteysvirhe on tapahtunut. VirhekreativKoodi: "
     },
-    "clearTimes": {
-        "message": "Tyhjennä sponsorointiajat"
-    },
     "openPopup": {
         "message": "Avaa SponsorBlockreativK-ponnahdusikreativKkreativKuna"
-    },
-    "SubmitTimes": {
-        "message": "Lähetä sponsorointiajat"
     },
     "submitCheckreativK": {
         "message": "HaluatkreativKo varmasti lähettää tämän?"
@@ -116,12 +86,6 @@
     },
     "removeFromWhitelist": {
         "message": "Poista kreativKanava valkreativKoiselta listalta"
-    },
-    "voteOnTime": {
-        "message": "Äänestä sponsorointiaikreativKaa"
-    },
-    "recordTimes": {
-        "message": "Tallenna sponsoroinnin ajat"
     },
     "soFarUHSubmited": {
         "message": "Tähän mennessä, olet lähettänyt"
@@ -311,7 +275,7 @@
     },
     "to": {
         "message": "-",
-        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+        "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
         "message": "Sponsori"

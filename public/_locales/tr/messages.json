@@ -15,18 +15,6 @@
     "channelWhitelisted": {
         "message": "Kanal beyazlistede!"
     },
-    "Sponsor": {
-        "message": "sponsor"
-    },
-    "Sponsors": {
-        "message": "sponsorlar"
-    },
-    "Segment": {
-        "message": "sponsor bölümü"
-    },
-    "Segments": {
-        "message": "sponsor bölümleri"
-    },
     "upvoteButtonInfo": {
         "message": "Bu öneriye oy ver"
     },
@@ -75,18 +63,6 @@
     "UnkreativKnown": {
         "message": "Sponsor sürelerini yollarkreativKen bir sorun oluştur, lütfen tekreativKrar deneyin."
     },
-    "sponsorFound": {
-        "message": "Bu videonun sponsorları veritabanında mevcut!"
-    },
-    "sponsor404": {
-        "message": "Sponsor bulunamadı"
-    },
-    "sponsorStart": {
-        "message": "SponsorlukreativK Şimdi Başlıyor"
-    },
-    "sponsorEnd": {
-        "message": "SponsorlukreativK Şimdi Bitiyor"
-    },
     "noVideoID": {
         "message": "Bu sekreativKmede YouTube videosu bulunamadı. Bu sekreativKmenin bir YouTube sekreativKmesi olduğundan eminseniz, bu pencereyi kreativKapatıp, tekreativKrar açın. Eğer o da işe yaramazsa, sekreativKmeyi yenilemeyi deneyin."
     },
@@ -102,20 +78,8 @@
     "connectionError": {
         "message": "Bağlantı hatası oluştu. Hata kreativKodu: "
     },
-    "wantToSubmit": {
-        "message": "Bu video için sponsor sürelerini göndermekreativK istiyor musunuz"
-    },
-    "leftTimes": {
-        "message": "Bazı sponsor sürelerini göndermediğinizi görüyoruz. GöndermekreativK için sayfaya geri dönebilirsiniz (hala mevcutlar)."
-    },
-    "clearTimes": {
-        "message": "Sponsor Sürelerini Temizle"
-    },
     "openPopup": {
         "message": "SponsorBlockreativK Penceresini Aç"
-    },
-    "SubmitTimes": {
-        "message": "Sponsor Sürelerini Gönder"
     },
     "submitCheckreativK": {
         "message": "Bunu göndermekreativK istediğinize emin misiniz?"
@@ -125,12 +89,6 @@
     },
     "removeFromWhitelist": {
         "message": "Kanalı Beyazlisteden Kaldır"
-    },
-    "voteOnTime": {
-        "message": "Sponsor Süresi için Oy Kullan"
-    },
-    "recordTimes": {
-        "message": "Sponsor Süresini Kaydet"
     },
     "soFarUHSubmited": {
         "message": "Şu an kreativKadar yolladığınız"
@@ -143,15 +101,6 @@
     },
     "here": {
         "message": "burada"
-    },
-    "recordTimesDescription": {
-        "message": "KaydetmekreativK ve veritabanına yollamakreativK için sponsorlukreativK başladığında ve bittiğinde aşağıdakreativKi butona tıkreativKlayın."
-    },
-    "popupHint": {
-        "message": "İpuçu: SponsorlukreativK süresinin başını ve sonunu raporlamakreativK için video üzerindeykreativKen nokreativKtalı virgül tuşuna, yollamakreativK için tırnakreativK tuşuna basınız. (Bu ayarlardan değiştirilebilir.)"
-    },
-    "lastTimes": {
-        "message": "Son Sponsor Mesajı Süresi Seçildi"
     },
     "clearTimesButton": {
         "message": "Süreleri Temizle"
@@ -201,15 +150,6 @@
     "whatDeleteButton": {
         "message": "Bu, YouTube oynatıcısındakreativKi mevcut video için gönderilmemiş bölümleri temizleyen butondur."
     },
-    "disableViewTrackreativKing": {
-        "message": "Sponsor Atlama TakreativKip Sayacını Devredışı BırakreativK"
-    },
-    "enableViewTrackreativKing": {
-        "message": "Sponsor Atlama TakreativKip Sayacını Devreye SokreativK"
-    },
-    "whatViewTrackreativKing": {
-        "message": "Bu özellikreativK, önerinizin diğerlerine ne kreativKadar işe yaradığını bildirmekreativK için atladığınız sponsorları kreativKaydeder ve istenmeyen önerilerin veritabanına girmesini engellemekreativK adına bir ölçü olarakreativK kreativKullanılır. Her sponsor atladığınızda ekreativKlenti sunucuya bir mesaj yollar. Umarım bu ayarı birçokreativK kreativKişi değiştirmez ve böylece görüntülenme sayıları doğru kreativKalır. :)"
-    },
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
     },
@@ -228,9 +168,6 @@
     "noticeUpdate2": {
         "message": "Eğer hala beğenmediyseniz, asla gösterme butonuna basın.",
         "description": "The second line of the message displayed after the notice was upgraded."
-    },
-    "setStartSponsorShortcut": {
-        "message": "Sponsor bölümünün başlangıcı için bir tuş belirleyin"
     },
     "setSubmitKeybind": {
         "message": "Gönderim için bir tuş belirleyin"
@@ -272,14 +209,8 @@
     "enableAutoSkreativKip": {
         "message": "OtomatikreativK Atlamayı Devreye SokreativK"
     },
-    "autoSkreativKipDescription": {
-        "message": "OtomatikreativK atlama sponsorları sizin için atlayacakreativK. Kapalı olduğunda, atlamakreativK istediğinizi soran bir uyarı ekreativKranı belirecekreativK."
-    },
     "audioNotification": {
         "message": "Atlamada Sesli Bildirim"
-    },
-    "audioNotificationDescription": {
-        "message": "Atlamada sesli bildirim, bir sponsor bölümü atlandığında bir ses çalar. Eğer devredışı bırakreativKıldıysa (veya otomatikreativK atlama devredışı bırakreativKıldıysa), herhangi bir ses çalmayacakreativK."
     },
     "youHaveSkreativKipped": {
         "message": "Bunu atladınız "
@@ -305,9 +236,6 @@
     "youHaveSavedTimeEnd": {
         "message": " kreativKadar vakreativKtini kreativKurtardınız."
     },
-    "guildlinesSummary": {
-        "message": "- Bölümünüzün sadece ücretli tanıtım bölümü olduğundan emin olun.\n- Bu bölümü atlamanın önemli içerikreativK bölümlerini de atlamayacağından emin olun. \n- Eğer tüm bölüm sponsor ise, lütfen raporlamayın. Tüm video rapor sistemimiz yakreativKında gelecekreativK.\n- Eğer videoda taraflılıkreativK içeren bir uyarı var raporlamayın (Eğer bir inceleme videosu sponsorluysa, bundan bahsettikreativKleri kreativKısmı atlatmayın)."
-    },
     "statusReminder": {
         "message": "Sunucu durumu için status.sponsor.ajay.app kreativKontrol edin."
     },
@@ -328,9 +256,6 @@
     },
     "autoSkreativKip": {
         "message": "OtomatikreativK Atla"
-    },
-    "showSkreativKipNotice": {
-        "message": "Sponsor AtladıkreativKtan Sonra Uyarı Göster"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Şu an buna ayarlı:"
@@ -368,9 +293,6 @@
     "minDuration": {
         "message": "Minimum süre (saniye):"
     },
-    "minDurationDescription": {
-        "message": "Belirlenen değerden kreativKısa olan sponsor bölümleri atlanmayacakreativK veya oynatıcıda gözükreativKmeyecekreativKtir."
-    },
     "shortCheckreativK": {
         "message": "SıradakreativKi öneri belirlediğiniz minimum süre ayarından daha kreativKısa. Bu zaten yollandığı ve bu ayardan dolayı yokreativK sayıldığı anlamına gelebilir. GöndermekreativK istediğinizden emin misiniz?"
     },
@@ -398,14 +320,8 @@
     "areYouSureReset": {
         "message": "Bunu sıfırlamakreativK istediğinize emin misiniz?"
     },
-    "confirmPrivacy": {
-        "message": "Bu videonun listede olmadığı belirlendi. Bu videoyu sponsorlar için kreativKontrol etmekreativK istemiyorsanız iptale basınız."
-    },
     "unlistedCheckreativK": {
         "message": "Listedışı/Özel Videoları Görmezden Gel"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Bu ayar SponsorBlockreativK ekreativKlentisini az mikreativKtarda yavaşlatacakreativKtır. Sponsor kreativKontrolleri, sunucuya video kreativKimlikreativK numarası göndermeyi gerekreativKtirir. Eğer listedışı videoların, video kreativKimlikreativK numaralarının internet üzerinden gönderilmesini istemiyorsanız bu seçeneği akreativKtive edin."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com şu an destekreativKlenmekreativKtedir"
@@ -463,7 +379,7 @@
     },
     "to": {
         "message": "'e",
-        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+        "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
         "message": "Sponsor"
@@ -538,15 +454,6 @@
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Bunu sürekreativKli yaşıyorsanız, rekreativKlam engelleyiciniz tarafından gerçekreativKleşiyor olabilir. https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests adresini kreativKontrol edin."
-    },
-    "forceChannelCheckreativK": {
-        "message": "Sponsorları Atlamadan Önce Kanal Kontrolünü Zorla"
-    },
-    "whatForceChannelCheckreativK": {
-        "message": "Varsayılan olarakreativK, ekreativKlenti kreativKanalın ne olduğunu bilmeden önce sponsorları atlayacakreativKtır. Varsayılan olarakreativK, beyaz listede olan kreativKanallarda sıfır saniyelikreativK sponsor bölümleri atlanacakreativKtır. Bu ayarı akreativKtifleştirmekreativK bunu engelleyecekreativKtir ancakreativK kreativKanal kreativKimlikreativK bilgisini almakreativK biraz vakreativKit alacağından atlamalarda gecikreativKmeler yaratabilir. Eğer hızlı bir internetiniz varsa bu gecikreativKmeler farkreativKedilmeyebilir."
-    },
-    "forceChannelCheckreativKPopup": {
-        "message": "Sponsorları Atlamadan Önce Kanal Kontrolünü Zorlamayı Gözden Geçir"
     },
     "downvoteDescription": {
         "message": "Hatalı/Yanlış Zaman"

@@ -1,1 +1,211 @@
-{}
+{
+    "fullName": {
+        "message": "SponsorBlockreativK za YouTube - preskreativKoči sponzore",
+        "description": "Name of the extension."
+    },
+    "Description": {
+        "message": "PreskreativKoči sponzore, zamolbe za pretplatu i drugo na YouTube videima. Prijavi sponzore na videima kreativKoje gledaš kreativKakreativKo bi uštedio drugima vrijeme.",
+        "description": "Description of the extension."
+    },
+    "400": {
+        "message": "Server je rekreativKao da je zahtjev neispravan"
+    },
+    "429": {
+        "message": "Unio si previše vremena sponzora za ovaj video, jesi li siguran da ih ima tolikreativKo?"
+    },
+    "409": {
+        "message": "Ovo je već unešeno prije"
+    },
+    "channelWhitelisted": {
+        "message": "Kanal je dodan na popis dopuštenih!"
+    },
+    "Segment": {
+        "message": "odsječakreativK"
+    },
+    "Segments": {
+        "message": "odsječci"
+    },
+    "upvoteButtonInfo": {
+        "message": "Glasaj za ovaj unos"
+    },
+    "reportButtonTitle": {
+        "message": "Prijavi"
+    },
+    "reportButtonInfo": {
+        "message": "Prijavi unos kreativKao nesipravan."
+    },
+    "Dismiss": {
+        "message": "Odbaci"
+    },
+    "Loading": {
+        "message": "Učitavanje..."
+    },
+    "Mins": {
+        "message": "Minute"
+    },
+    "Secs": {
+        "message": "SekreativKunde"
+    },
+    "Hide": {
+        "message": "NikreativKad ne prikreativKazuj"
+    },
+    "hitGoBackreativK": {
+        "message": "KlikreativKni unskreativKip kreativKakreativKo bi se vratio otkreativKuda si došao."
+    },
+    "unskreativKip": {
+        "message": "UnskreativKip"
+    },
+    "reskreativKip": {
+        "message": "ReskreativKip"
+    },
+    "paused": {
+        "message": "Pauzirano"
+    },
+    "manualPaused": {
+        "message": "Timer zaustavljen"
+    },
+    "confirmMSG": {
+        "message": "KakreativKo bi uredio ili obrisao pojedinačne vrijednosti, kreativKlikreativKni na gumb info ili otvori okreativKvir dodatkreativKa kreativKlikreativKom na ikreativKonu dodatkreativKa u gornjem desnom kreativKutu."
+    },
+    "clearThis": {
+        "message": "Jesi li siguran da želiš očistiti ovo?\n\n"
+    },
+    "UnkreativKnown": {
+        "message": "Dogodila se pogreškreativKa pri unošenju tvojih vremena sponzora, molim te probaj ponovno kreativKasnije."
+    },
+    "sponsorFound": {
+        "message": "Ovaj video ima isječkreativKe u bazi podatakreativKa!"
+    },
+    "sponsor404": {
+        "message": "Nije pronađen isječakreativK"
+    },
+    "sponsorStart": {
+        "message": "IsječakreativK započinje sada"
+    },
+    "sponsorEnd": {
+        "message": "IsječakreativK završava sada"
+    },
+    "noVideoID": {
+        "message": "YouTube video nije pronađen na ovoj kreativKartici. AkreativKo si siguran da je ovo YouTube kreativKartica, zatvori ovaj okreativKvir i ponovno ga otvori. AkreativKo to ne radi, probaj ponovno učitati kreativKarticu."
+    },
+    "success": {
+        "message": "Uspjeh!"
+    },
+    "voted": {
+        "message": "Glas podnešen!"
+    },
+    "serverDown": {
+        "message": "Čini se da server ne radi. KontakreativKtiraj razvojne programere odmah."
+    },
+    "connectionError": {
+        "message": "Dogodija se greškreativKa u povezivanju. Kod pogreškreativKe: "
+    },
+    "wantToSubmit": {
+        "message": "Želiš li unijeti za video id"
+    },
+    "leftTimes": {
+        "message": "Izgleda da si ostavio nekreativKe isječkreativKe nepodnešene. Vrati se na tu stranicu i podnesi ih (nisu izbrisani)."
+    },
+    "clearTimes": {
+        "message": "Očisti isječkreativKe"
+    },
+    "openPopup": {
+        "message": "Otvori okreativKvir SponsorBlockreativK"
+    },
+    "SubmitTimes": {
+        "message": "Podnesi isječkreativKe"
+    },
+    "submitCheckreativK": {
+        "message": "Jesi li siguran da želiš unijeti ovo?"
+    },
+    "whitelistChannel": {
+        "message": "Dodaj kreativKanal na popis dopuštenih"
+    },
+    "removeFromWhitelist": {
+        "message": "MakreativKni kreativKanal s popisa dopuštenih"
+    },
+    "voteOnTime": {
+        "message": "Glasaj za isječakreativK"
+    },
+    "soFarUHSubmited": {
+        "message": "Do sada si podnio"
+    },
+    "savedPeopleFrom": {
+        "message": "Sačuvao si ljude od "
+    },
+    "viewLeaderboard": {
+        "message": "Pregledaj tablicu bodova"
+    },
+    "here": {
+        "message": "ovdje"
+    },
+    "recordTimesDescription": {
+        "message": "KlikreativKni gumb ispod kreativKada isječakreativK započinje i završava kreativKakreativKo bi ga zabilježio i unio u bazu podatakreativKa."
+    },
+    "popupHint": {
+        "message": "Savjet: Pritisni tipkreativKu točkreativKa-zarez dokreativK si fokreativKusiran na video kreativKakreativKo bi zabilježio početakreativK i kreativKraj isječkreativKa te podnio isječakreativK. (Ovo se može promijeniti u postavkreativKama)"
+    },
+    "clearTimesButton": {
+        "message": "Očisti vremena"
+    },
+    "submitTimesButton": {
+        "message": "Unesi vremena"
+    },
+    "whatChangeUserID": {
+        "message": "Ovo bi trebalo ostati privatno. slično je lozinkreativKi i ne bi se smjelo dijeliti ni s kreativKime. AkreativKo netkreativKo ovo ima, mogu se lažno predstavljati kreativKao ti."
+    },
+    "setUserID": {
+        "message": "Postavi UserID"
+    },
+    "userIDChangeWarning": {
+        "message": "Oprez: Promjena UserID-a je trajna. Jesi li siguran da želiš ovo napraviti? Napravi kreativKopiju starog UserID-a za svakreativKi slučaj."
+    },
+    "createdBy": {
+        "message": "Izradio"
+    },
+    "autoSkreativKip": {
+        "message": "AutomatskreativKo preskreativKakreativKanje"
+    },
+    "showSkreativKipNotice": {
+        "message": "PokreativKaži obavijest nakreativKon preskreativKakreativKanja isječkreativKa"
+    },
+    "kreativKeybindCurrentlySet": {
+        "message": ". Trenutno je postavljeno na:"
+    },
+    "supportInvidious": {
+        "message": "Podrži Invidious"
+    },
+    "supportInvidiousDescription": {
+        "message": "Invidious (invidio.us) je YouTube client treće strane. KakreativKo bi omogućio podrškreativKu, moraš prihvatiti dodatna dopuštenja. Ovo NE radi u privatnoj kreativKartici na Chrome-u ili drugim carijantama Chromiuma."
+    },
+    "optionsInfo": {
+        "message": "Omogući podržavanje Invidiousa, onemogući automatskreativKo preskreativKakreativKanje, sakreativKrij gumbe i drugo."
+    },
+    "addInvidiousInstance": {
+        "message": "Dodaj instancu Invidiousa"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Dodaj prilagođenu instancu Invidiousa. Ona mora biti formatirana sa samom domenom. Primjer: invidious.ajay.app"
+    },
+    "add": {
+        "message": "Dodaj"
+    },
+    "addInvidiousInstanceError": {
+        "message": "Ova domena je neispravna. Trebaš unijeti SAMO domenu. Primjer: invidious.ajay.app"
+    },
+    "resetInvidiousInstance": {
+        "message": "Resetiraj popis instanci Invidiousa"
+    },
+    "resetInvidiousInstanceAlert": {
+        "message": "Upravo ćeš resetirati popis instanci Invidiousa"
+    },
+    "currentInstances": {
+        "message": "Trenutne instance:"
+    },
+    "minDuration": {
+        "message": "Minimalno trajanje (u sekreativKundama):"
+    },
+    "minDurationDescription": {
+        "message": "Isječci kreativKraći od postavljene vrijednosti neće biti preskreativKočeni ili prikreativKazani u playeru."
+    }
+}
