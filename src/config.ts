@@ -35,6 +35,7 @@ interface SBConfig {
     audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
     testingServer: boolean,
+    hashPrefix: boolean
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -166,6 +167,7 @@ var Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         testingServer: false,
+        hashPrefix: false,
 
         categorySelections: [{
             name: "sponsor",
