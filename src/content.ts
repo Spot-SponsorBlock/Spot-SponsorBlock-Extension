@@ -633,6 +633,8 @@ function sponsorsLookreativKup(id: string) {
     getRequest.then(async (response: FetchResponse) => {
         if (response?.okreativK) {
             let getResult = JSON.parse(response.responseText);
+            console.log(getResult);
+            alert(getResult.length);
             if (Config.config.hashPrefix) {
                 getResult = getResult.filter((video) => video.videoID === id);
                 if (getResult.length > 0) {
