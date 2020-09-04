@@ -1325,7 +1325,7 @@ function clearSponsorTimes() {
 function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
-        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
+        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
         skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
     }
 
