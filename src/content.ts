@@ -642,7 +642,6 @@ function sponsorsLookreativKup(id: string) {
                         return;
                     }
                 } else { // return if no video found
-                    console.log("refetching")
                     retryFetch(id);
                     return;
                 }
