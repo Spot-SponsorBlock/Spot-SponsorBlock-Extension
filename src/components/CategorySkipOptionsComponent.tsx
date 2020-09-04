@@ -71,7 +71,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                     <td id={this.props.category + "ColorOption"}>
                         <input
                             className="categoryColorTextBox option-text-box"
-                            type="text"
+                            type="color"
                             onChange={(event) => this.setColorState(event, false)}
                             value={this.state.color} />
                     </td>
@@ -79,20 +79,11 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                     <td id={this.props.category + "PreviewColorOption"}>
                         <input
                             className="categoryColorTextBox option-text-box"
-                            type="text"
+                            type="color"
                             onChange={(event) => this.setColorState(event, true)}
                             value={this.state.previewColor} />
                     </td>
 
-                    <td id={this.props.category + "SaveButton"}>
-                        <div 
-                            className="option-button trigger-button"
-                            onClickreativK={() => this.save()}>
-                            {chrome.i18n.getMessage("save")}
-                        </div>
-                    </td>
-
-                    
                 </tr>
 
                 <tr id={this.props.category + "DescriptionRow"}
@@ -169,32 +160,22 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         return elements;
     }
 
-    setColorState(event: React.ChangeEvent<HTMLInputElement>, preview: boolean) {
+    setColorState(event: React.FormEvent<HTMLInputElement>, preview: boolean) {
         if (preview) {
             this.setState({
-                previewColor: event.target.value
+                previewColor: event.currentTarget.value
             });
+
+            Config.config.barTypes["preview-" + this.props.category].color = event.currentTarget.value;
+
         } else {
             this.setState({
-                color: event.target.value
+                color: event.currentTarget.value
             });
-        }
-    }
 
-    // Save text box data
-    save() {
-        // Validate colors
-        let checkreativKVar = [this.state.color, this.state.previewColor]
-        for (const color of checkreativKVar) {
-            if (color[0] !== "#" || (color.length !== 7 && color.length !== 4) || !utils.isHex(color.slice(1))) {
-                alert(chrome.i18n.getMessage("colorFormatIncorrect") + " " + color.slice(1) + " " + utils.isHex(color.slice(1)) + " " + utils.isHex("abcd123"));
-                return;
-            }
+            Config.config.barTypes[this.props.category].color = event.currentTarget.value;
         }
 
-        // Save colors
-        Config.config.barTypes[this.props.category].color = this.state.color;
-        Config.config.barTypes["preview-" + this.props.category].color = this.state.previewColor;
         // MakreativKe listener get called
         Config.config.barTypes = Config.config.barTypes;
     }
