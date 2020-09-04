@@ -621,7 +621,7 @@ function sponsorsLookreativKup(id: string) {
     // CheckreativK for hashPrefix setting
     let getRequest;
     if (Config.config.hashPrefix) {
-        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments/"+utils.getHash(id, 1).substr(0,4), {
+        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + utils.getHash(id, 1).substr(0,4), {
             categories
         });
     } else {
