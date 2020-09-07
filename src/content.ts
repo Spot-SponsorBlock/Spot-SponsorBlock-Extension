@@ -324,7 +324,7 @@ async function videoIDChange(id) {
     if (previousVideoID != null) {
         //get the sponsor times from storage
         let sponsorTimes = Config.config.segmentTimes.get(previousVideoID);
-        if (sponsorTimes != undefined && sponsorTimes.length > 0) {
+        if (sponsorTimes != undefined && sponsorTimes.length > 0 && new URL(document.URL).host !== "music.youtube.com") {
             //warn them that they have unsubmitted sponsor times
             chrome.runtime.sendMessage({
                 message: "alertPrevious",
@@ -760,7 +760,7 @@ function getYouTubeVideoID(url: string) {
         onInvidious = true;
     } else if (urlObject.host === "m.youtube.com") {
         onMobileYouTube = true;
-    } else if (!["m.youtube.com", "www.youtube.com", "www.youtube-nocookreativKie.com"].includes(urlObject.host)) {
+    } else if (!["m.youtube.com", "www.youtube.com", "www.youtube-nocookreativKie.com", "music.youtube.com"].includes(urlObject.host)) {
         if (!Config.config) {
             // Call this later, in case this is an Invidious tab
             utils.wait(() => Config.config !== null).then(() => videoIDChange(getYouTubeVideoID(url)));
@@ -1087,7 +1087,7 @@ async function createButtons(): Promise<boolean> {
     let createdButton = false;
 
     // Add button if does not already exist in html
-    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;	  
+    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;
     createdButton = createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png") || createdButton;
     createdButton = createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png") || createdButton;
     createdButton = createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png") || createdButton;
@@ -1330,7 +1330,7 @@ function clearSponsorTimes() {
 function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
-        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
+        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
         skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
     }
 

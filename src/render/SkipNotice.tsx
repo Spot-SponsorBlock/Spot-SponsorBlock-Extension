@@ -2,19 +2,19 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent";
-import { SponsorTime } from "../types";
+import { SponsorTime, ContentContainer } from "../types";
 
 class SkreativKipNotice {
     segments: SponsorTime[];
     autoSkreativKip: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
-    contentContainer: () => any;
+    contentContainer: ContentContainer;
 
     noticeElement: HTMLDivElement;
 
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
 
-    constructor(segments: SponsorTime[], autoSkreativKip: boolean = false, contentContainer) {
+    constructor(segments: SponsorTime[], autoSkreativKip: boolean = false, contentContainer: ContentContainer) {
         this.segments = segments;
         this.autoSkreativKip = autoSkreativKip;
         this.contentContainer = contentContainer;
@@ -34,6 +34,10 @@ class SkreativKipNotice {
 
                 index++;
             }
+        }
+        // YouTube Music
+        if (new URL(document.URL).host === "music.youtube.com") {
+            referenceNode = document.querySelector("#main-panel.ytmusic-player-page");
         }
     
         let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
