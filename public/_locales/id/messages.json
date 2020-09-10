@@ -112,6 +112,9 @@
     "openPopup": {
         "message": "BukreativKa Popup SponsorBlockreativK"
     },
+    "closePopup": {
+        "message": "Tutup Popup"
+    },
     "SubmitTimes": {
         "message": "Kirim Segmen"
     },
@@ -371,7 +374,7 @@
         "message": "TampilkreativKan Tombol Unggah"
     },
     "whatUploadButton": {
-        "message": "Tombol ini muncul di pemutar video YouTube setelah kreativKamu memilih stempel wakreativKtu dan siap untukreativK dikreativKirimkreativKan."
+        "message": "Tombol ini muncul di pemutar video YouTube setelah anda memilih stempel wakreativKtu dan siap untukreativK dikreativKirimkreativKan."
     },
     "customServerAddress": {
         "message": "Alamat Server SponsorBlockreativK"
@@ -468,7 +471,7 @@
         "message": "Jeda/Animasi Intro"
     },
     "category_intro_description": {
-        "message": "Bagian yang bukreativKan kreativKonten sebenarnya. Dapat berupa jeda, gambar statikreativK, dan animasi berulang di channel. Ini tidakreativK boleh digunakreativKan untukreativK transisi yang berisi informasi atau digunakreativKan di video musikreativK."
+        "message": "Bagian yang bukreativKan kreativKonten sebenarnya. Dapat berupa jeda, gambar statikreativK, atau animasi berulang. Ini tidakreativK boleh digunakreativKan untukreativK transisi yang berisi informasi."
     },
     "category_intro_short": {
         "message": "Jeda"
@@ -477,7 +480,7 @@
         "message": "Kartu AkreativKhir/Kredit"
     },
     "category_outro_description": {
-        "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi. TidakreativK boleh dipakreativKai pada video musikreativK."
+        "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi."
     },
     "category_interaction": {
         "message": "Pengingat InterakreativKsi (Berlangganan)"
@@ -590,7 +593,7 @@
         "message": "Salah Kategori"
     },
     "nonMusicCategoryOnMusic": {
-        "message": "Video ini dikreativKategorikreativKan sebagai musikreativK. ApakreativKah anda yakreativKin ingin mengirim segmen yang kreativKategorinya non-musikreativK? Kecuali jikreativKa video ini bukreativKan musikreativK, anda seharusnya tidakreativK mengirim segmen ini. Harap baca pedoman jikreativKa anda kreativKebingungan."
+        "message": "Video ini dikreativKategorikreativKan sebagai musikreativK. ApakreativKah anda yakreativKin ini berisi sponsor? JikreativKa ini ternyata adalah \"Segmen non-musikreativK\", bukreativKa pengaturan ekreativKstensi dan akreativKtifkreativKan kreativKategorinya. Lalu, anda bisa mengirim segmen ini sebagai \"Non-musikreativK\" bukreativKannya sponsor. Harap membaca panduan jikreativKa anda kreativKebingungan."
     },
     "multipleSegments": {
         "message": "BanyakreativK Segmen"

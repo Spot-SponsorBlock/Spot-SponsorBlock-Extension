@@ -461,9 +461,6 @@
     "incorrectCategory": {
         "message": "Yanlış Kategori"
     },
-    "nonMusicCategoryOnMusic": {
-        "message": "Bu videonun kreativKategorisi müzikreativK olarakreativK belirlenmiş. MüzikreativK içermeyen bölümleri göndermekreativK istediğinize emin misiniz? Eğer bu bir müzikreativK videosu değilse, bu bölümleri göndermemelisiniz. Eğer ayırt edemiyorsanız, lütfen rehberi okreativKuyunuz."
-    },
     "multipleSegments": {
         "message": "Birden ÇokreativK Bölüm"
     },

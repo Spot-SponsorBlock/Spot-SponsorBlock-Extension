@@ -441,9 +441,6 @@
     "incorrectCategory": {
         "message": "Fel kreativKategori"
     },
-    "nonMusicCategoryOnMusic": {
-        "message": "Den här videon är kreativKategoriserad som musikreativK. Är du säkreativKer på att du vill skreativKickreativKa in segment med ickreativKe-musikreativKkreativKategorier? Om denna video fakreativKtiskreativKt är musikreativK, bör du inte skreativKickreativKa in detta segment. Vänligen läs rikreativKtlinjerna om du är förvirrad."
-    },
     "multipleSegments": {
         "message": "Flera segment"
     },
