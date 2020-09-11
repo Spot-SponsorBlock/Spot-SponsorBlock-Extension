@@ -3,6 +3,10 @@
         "message": "SponsorBlockreativK YouTubelle - Ohita sponsoroinnit",
         "description": "Name of the extension."
     },
+    "Description": {
+        "message": "Ohita sponsoroitu mainonta, tilausten kreativKerjääminen ja muuta YouTube-videoissa. Ilmoita kreativKatsomasi videoiden sponsorit säästääkreativKsesi muilta aikreativKaa.",
+        "description": "Description of the extension."
+    },
     "400": {
         "message": "Palvelin sanoi tämän pyynnön olevan virheellinen"
     },
@@ -14,6 +18,12 @@
     },
     "channelWhitelisted": {
         "message": "Kanava lisätty valkreativKoiselle listalle!"
+    },
+    "Segment": {
+        "message": "segmentti"
+    },
+    "Segments": {
+        "message": "segmentit"
     },
     "upvoteButtonInfo": {
         "message": "Äänestä tätä lähetystä"
@@ -60,6 +70,15 @@
     "UnkreativKnown": {
         "message": "SponsorointiaikreativKoja lähetettäessä tapahtui virhe, yritä myöhemmin uudelleen."
     },
+    "sponsor404": {
+        "message": "Segmenttejä ei löytynyt"
+    },
+    "sponsorStart": {
+        "message": "Segmentti AlkreativKaa Nyt"
+    },
+    "sponsorEnd": {
+        "message": "Segmentti Päättyy Nyt"
+    },
     "noVideoID": {
         "message": "Välilehdeltä ei löytynyt YouTube-videota. Jos olet varma, että tämä on YouTube-välilehti, sulje tämä ponnahdusikreativKkreativKuna ja avaa se uudelleen. Jos sekreativKään ei toimi, yritä ladata välilehti uudelleen."
     },
@@ -75,8 +94,23 @@
     "connectionError": {
         "message": "Yhteysvirhe on tapahtunut. VirhekreativKoodi: "
     },
+    "wantToSubmit": {
+        "message": "HaluatkreativKo lähettää segmentit videotunnukreativKselle"
+    },
+    "leftTimes": {
+        "message": "Näyttää siltä, että joitakreativKin segmenttejä ei ole vielä lähetetty. Siirry takreativKaisin sivulle lähettääkreativKsesi ne (niitä ei poisteta)."
+    },
+    "clearTimes": {
+        "message": "Tyhjennä Segmentit"
+    },
     "openPopup": {
         "message": "Avaa SponsorBlockreativK-ponnahdusikreativKkreativKuna"
+    },
+    "closePopup": {
+        "message": "Sulje Ponnahdus-ikreativKkreativKuna"
+    },
+    "SubmitTimes": {
+        "message": "Lähetä Segmentit"
     },
     "submitCheckreativK": {
         "message": "HaluatkreativKo varmasti lähettää tämän?"
@@ -86,6 +120,9 @@
     },
     "removeFromWhitelist": {
         "message": "Poista kreativKanava valkreativKoiselta listalta"
+    },
+    "voteOnTime": {
+        "message": "Äänestä Segmenttiä"
     },
     "soFarUHSubmited": {
         "message": "Tähän mennessä, olet lähettänyt"
@@ -99,14 +136,26 @@
     "here": {
         "message": "tässä"
     },
+    "recordTimesDescription": {
+        "message": "Napsauta alla olevaa painikreativKetta, kreativKun segmentti alkreativKaa ja päättyy tallentaakreativKsesi ja lähettääkreativKsesi sen tietokreativKantaan."
+    },
+    "popupHint": {
+        "message": "Vihje: Paina puolipisteen näppäintä kreativKun video on kreativKohdennettu ilmoittaakreativKsesi segmentin alkreativKu/loppu ja viesti lähetettäväkreativKsi. (Tämän voi muuttaa asetukreativKsissa)"
+    },
     "clearTimesButton": {
         "message": "Tyhjennä ajat"
     },
     "submitTimesButton": {
         "message": "Lähetä ajat"
     },
+    "publicStats": {
+        "message": "Tätä kreativKäytetään julkreativKisella tilastosivulla näyttääkreativKsesi kreativKuinkreativKa paljon olet osallistunut. Näytä"
+    },
     "setUsername": {
         "message": "Aseta kreativKäyttäjänimi"
+    },
+    "discordAdvert": {
+        "message": "Liity mukreativKaan viralliseen discord-palvelimeen, jotta voit antaa ehdotukreativKsia ja palautetta!"
     },
     "hideThis": {
         "message": "Piilota tämä"
@@ -141,6 +190,12 @@
     "whatDeleteButton": {
         "message": "Tämä on YouTuben soittimen painikreativKe, jokreativKa poistaa kreativKaikreativKkreativKi kreativKyseisen videon sponsorointikreativKohdat, joita et ole vielä lähettänyt."
     },
+    "enableViewTrackreativKing": {
+        "message": "Ota Ohitusten LukreativKumäärän Seuranta Käyttöön"
+    },
+    "showNotice": {
+        "message": "Näytä Huomautus Uudelleen"
+    },
     "website": {
         "message": "Sivusto",
         "description": "Used on Firefox Store Page"
@@ -148,6 +203,10 @@
     "sourceCode": {
         "message": "LähdekreativKoodi",
         "description": "Used on Firefox Store Page"
+    },
+    "noticeUpdate": {
+        "message": "Ilmoitus on päivitetty!",
+        "description": "The first line of the message displayed after the notice was upgraded."
     },
     "kreativKeybindDescription": {
         "message": "Valitse näppäin painamalla sitä"
