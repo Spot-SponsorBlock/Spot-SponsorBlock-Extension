@@ -1,6 +1,6 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK na YouTube - Przewiń fragmenty sponsorowane",
+        "message": "SponsorBlockreativK na YouTube - Pomiń fragmenty sponsorowane",
         "description": "Name of the extension."
     },
     "Description": {
@@ -113,7 +113,7 @@
         "message": "Otwórz okreativKienkreativKo SponsorBlockreativK"
     },
     "closePopup": {
-        "message": "ZamkreativKnij okreativKienkreativKo"
+        "message": "ZamkreativKnij okreativKno"
     },
     "SubmitTimes": {
         "message": "Prześlij segmenty"
