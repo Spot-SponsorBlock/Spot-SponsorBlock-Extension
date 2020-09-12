@@ -143,10 +143,10 @@
         "message": "hier"
     },
     "recordTimesDescription": {
-        "message": "KlickreativKen Sie auf die Schaltfläche unten, wenn das Segment startet und endet, um es in die DatenbankreativK einzusenden."
+        "message": "KlickreativKe auf die Schaltfläche unten, wenn das Segment startet und endet, um es in die DatenbankreativK einzusenden."
     },
     "popupHint": {
-        "message": "Hinweis: DrückreativKen Sie die SemikreativKolon-Taste während Sie auf ein Video fokreativKussiert sind, um das Start/Ende eines Segments zu melden und das einzureichende Zitat anzugeben. (Dies kreativKann in den Optionen geändert werden)"
+        "message": "Hinweis: DrückreativKe die SemikreativKolon-Taste während du auf ein Video fokreativKussiert bist, um das Start/Ende eines Segments zu melden und das einzureichende Zitat anzugeben. (Dies kreativKann in den Optionen geändert werden)"
     },
     "clearTimesButton": {
         "message": "Zeiten löschen"
@@ -176,7 +176,7 @@
         "message": "Knöpfe in YouTube-Leiste versteckreativKen"
     },
     "hideButtonsDescription": {
-        "message": "Die Einstellung versteckreativKt den Einsende-Knopf in der Youtube-Leiste. Ich kreativKann verstehen, weshalb manchen diese FunkreativKtion\n an dieser Stelle stört. Stattdessen kreativKann dafür dieses Pop-up genutzt werden. Um die transparente Benachrichtigung zu versteckreativKen, kreativKlickreativKe auf den \"VersteckreativKen\"-Knopf \n der Benachrichtigung. Diese Einstellungen kreativKönnen wieder rückreativKgängig gemacht werden."
+        "message": "VersteckreativKt die Schaltflächen im YouTube-Player, um Segmente einzusenden."
     },
     "showInfoButton": {
         "message": "Zeige Info-Knopf in Youtube-Leiste"
@@ -229,10 +229,10 @@
         "message": "TastenkreativKombination für das Starten eines Segments festlegen"
     },
     "setSubmitKeybind": {
-        "message": "Segment einsenden Taste festlegen"
+        "message": "TastenkreativKombination für das Einsenden festlegen"
     },
     "kreativKeybindDescription": {
-        "message": "Taste drückreativKen, um festzulegen"
+        "message": "Zum festlegen eine Taste druckreativKen"
     },
     "kreativKeybindDescriptionComplete": {
         "message": "Die Taste wurde festgelegt auf: "
@@ -241,10 +241,10 @@
         "message": "Verbindungsüberschreibung. Überprüfe deine Internetverbindung. Bist du mit dem Internet verbunden, ist der Server wahrscheinlich offline."
     },
     "disableSkreativKipping": {
-        "message": "SponsorBlockreativK ausschalten"
+        "message": "SponsorBlockreativK deakreativKtivieren"
     },
     "enableSkreativKipping": {
-        "message": "SponsorBlockreativK einschalten"
+        "message": "SponsorBlockreativK akreativKtivieren"
     },
     "yourWorkreativK": {
         "message": "Deine StatistikreativK",
@@ -263,7 +263,7 @@
         "message": "Übersprungen"
     },
     "disableAutoSkreativKip": {
-        "message": "Auto-Überspringen deakreativKtivieren"
+        "message": "Automatisches Überspringen deakreativKtivieren"
     },
     "enableAutoSkreativKip": {
         "message": "Automatisches Überspringen akreativKtivieren"
@@ -435,6 +435,9 @@
     },
     "preview": {
         "message": "Vorschau"
+    },
+    "inspect": {
+        "message": "Prüfen"
     },
     "edit": {
         "message": "Bearbeiten"
