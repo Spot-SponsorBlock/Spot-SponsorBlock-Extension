@@ -1,42 +1,32 @@
 {
-    "Name": {
-        "message": "SponsorBlockreativK",
-        "description": "Name of the extension."
-    },
     "fullName": {
-        "message": "SponsorBlockreativK für YouTube - Überspringe Sponsor Anzeigen",
+        "message": "SponsorBlockreativK für YouTube - Überspringe Sponsoren",
         "description": "Name of the extension."
     },
     "Description": {
-        "message": "Überspringe die gesponserten Inhalte in YouTube-Videos. Melde gesponsorte Inhalte in den von dir angesehenen Videos und erspare anderen die Zeit.",
+        "message": "Überspringe Sponsoren, betteln um Abonnenten und mehr in YouTube Videos. Melde Sponsoren in Videos, die du guckreativKst, um anderen Zeit zu sparen.",
         "description": "Description of the extension."
     },
     "400": {
-        "message": "Ungültige Anforderung"
+        "message": "Der Server meldet, dass diese Anfrage ungültig war"
     },
     "429": {
-        "message": "Du hast zu viele Segmente in diesem Video eingereicht. Bist du dir sicher?"
+        "message": "Du hast zu viele Segmente für dieses Video eingereicht. Sind es wirkreativKlich so viele?"
     },
     "409": {
-        "message": "Dieser Inhalt wurde bereits eingereicht."
+        "message": "Dieser Inhalt wurde bereits eingereicht"
     },
     "channelWhitelisted": {
-        "message": "Kanal auf Whitelist gesetzt!"
-    },
-    "Sponsor": {
-        "message": "Sponsor"
-    },
-    "Sponsors": {
-        "message": "Sponsoren"
+        "message": "Der Kanal wurde auf die Whitelist gesetzt!"
     },
     "Segment": {
-        "message": "gesponsorter Inhalt"
+        "message": "segment"
     },
     "Segments": {
-        "message": "gesponserten Inhalten"
+        "message": "segmente"
     },
     "upvoteButtonInfo": {
-        "message": "Diesen Beitrag aufwerten"
+        "message": "Diese Einreichung positiv bewerten"
     },
     "reportButtonTitle": {
         "message": "Melden"
@@ -60,13 +50,13 @@
         "message": "VersteckreativKen"
     },
     "hitGoBackreativK": {
-        "message": "KlickreativKe ZurückreativK um die AkreativKtion rückreativKgängig zu machen."
+        "message": "KlickreativKe Nicht Überspringen um die AkreativKtion rückreativKgängig zu machen."
     },
     "unskreativKip": {
-        "message": "ZurückreativK"
+        "message": "Nicht Überspringen"
     },
     "reskreativKip": {
-        "message": "Vorwärts"
+        "message": "Nochmal Überspringen"
     },
     "paused": {
         "message": "Pausiert"
@@ -75,7 +65,7 @@
         "message": "Timer angehalten"
     },
     "confirmMSG": {
-        "message": "\n\nUm einzelne Werte zu löschen oder zu ändern, kreativKlickreativKe auf den Info-Button, oder öffne die Erweiterungs-Übersicht, indem du das Erweiterungssymbol in der rechten oberen EckreativKe ankreativKlickreativKst."
+        "message": "Um einzelne Werte zu löschen oder zu ändern, kreativKlickreativKe auf den Info-Button, oder öffne die Erweiterungs-Übersicht, indem du das Erweiterungssymbol in der rechten oberen EckreativKe ankreativKlickreativKst."
     },
     "clearThis": {
         "message": "Bist du sicher, dass du Folgendes löschen möchtest?\n\n"
@@ -84,22 +74,22 @@
         "message": "Deine Segmente kreativKonnten nicht gesendet werden, bitte versuche es später erneut."
     },
     "sponsorFound": {
-        "message": "Die gesponsorten Inhalte dieses Videos befinden sich bereits in der DatenbankreativK!"
+        "message": "Dieses Video hat Segmente in der DatenbankreativK!"
     },
     "sponsor404": {
-        "message": "Keine Sponsoren gefunden"
+        "message": "Keine Segmente gefunden"
     },
     "sponsorStart": {
-        "message": "Gesponserter Inhalt beginnt"
+        "message": "Segment startet jetzt"
     },
     "sponsorEnd": {
-        "message": "Gesponserter Inhalt endet"
+        "message": "Segment endet jetzt"
     },
     "noVideoID": {
         "message": "Keine YouTube-Videos in diesem Tab gefunden. Wenn dies ein Youtube-Tab ist, schließe dieses Pop-up und öffne es erneut. Wenn das nicht hilft, versuche den Tab neu zu laden."
     },
     "success": {
-        "message": "Erfolg!"
+        "message": "Geschafft!"
     },
     "voted": {
         "message": "Abgestimmt!"
@@ -111,40 +101,40 @@
         "message": "Ein Verbindungsfehler ist aufgetreten. Fehlermeldung: "
     },
     "wantToSubmit": {
-        "message": "Möchtest du die Segmente für die Video ID senden?"
+        "message": "Möchtest du für Video-ID einreichen"
     },
     "leftTimes": {
         "message": "Scheinbar hast du einige Segmente noch nicht gesendet. Kehre zur Seite zurückreativK um sie zu senden (sie sind noch gespeichert)."
     },
     "clearTimes": {
-        "message": "Lösche Auswahl"
+        "message": "Alle Segmente löschen"
     },
     "openPopup": {
         "message": "Öffne SponsorBlockreativK-Popup"
     },
+    "closePopup": {
+        "message": "Popup schließen"
+    },
     "SubmitTimes": {
-        "message": "Sende Auswahl"
+        "message": "Segment absenden"
     },
     "submitCheckreativK": {
-        "message": "Bist du sicher, dass die Auswahl abgeschickreativKt werden soll?"
+        "message": "Bist du sicher, dass du das abschickreativKen willst?"
     },
     "whitelistChannel": {
-        "message": "Kanal auf Whitelist setzen "
+        "message": "Kanal auf Whitelist setzen"
     },
     "removeFromWhitelist": {
-        "message": "Kanal von Whitelist entfernen"
+        "message": "Kanal von der Whitelist entfernen"
     },
     "voteOnTime": {
-        "message": "Stimme für Zeiten ab"
-    },
-    "recordTimes": {
-        "message": "Lege das Zeitfenster eines gesponsorten Inhalts fest"
+        "message": "Über ein Segment abstimmen"
     },
     "soFarUHSubmited": {
         "message": "Gemeldet wurden von dir bisher"
     },
     "savedPeopleFrom": {
-        "message": "Du hast andere Benutzer bewahrt vor"
+        "message": "Du hast andere Benutzer bewahrt vor "
     },
     "viewLeaderboard": {
         "message": "Siehe Rangliste"
@@ -153,13 +143,10 @@
         "message": "hier"
     },
     "recordTimesDescription": {
-        "message": "KlickreativKe den Knopf unten, wenn der gesponsorte Inhalt beginnt und endet, um aufzunehmen und\n einzusenden"
+        "message": "KlickreativKen Sie auf die Schaltfläche unten, wenn das Segment startet und endet, um es in die DatenbankreativK einzusenden."
     },
     "popupHint": {
-        "message": "Hinweis: In den Optionen lässt sich eine Taste für das Festlegen von Anfang/Ende des gesponsorten Inhalts, sowie für das Einsenden festlegen"
-    },
-    "lastTimes": {
-        "message": "Letzte ausgewählte Zeitabschnitte"
+        "message": "Hinweis: DrückreativKen Sie die SemikreativKolon-Taste während Sie auf ein Video fokreativKussiert sind, um das Start/Ende eines Segments zu melden und das einzureichende Zitat anzugeben. (Dies kreativKann in den Optionen geändert werden)"
     },
     "clearTimesButton": {
         "message": "Zeiten löschen"
@@ -174,7 +161,7 @@
         "message": "Alias festlegen"
     },
     "discordAdvert": {
-        "message": "Tritt dem offiziellen Discord-Kanal bei und teile Anregungen und FeedbackreativK!"
+        "message": "Tritt dem offiziellen Discord Server bei und teile Anregungen und FeedbackreativK!"
     },
     "hideThis": {
         "message": "VersteckreativKen"
@@ -201,28 +188,25 @@
         "message": "Dieser Knopf öffnet ein Pop-up auf der Youtube-Seite."
     },
     "hideDeleteButton": {
-        "message": "VersteckreativKe Löschen-Knopf in Youtube Leiste"
+        "message": "VersteckreativKe Löschen-Knopf in Youtube-Leiste"
     },
     "showDeleteButton": {
-        "message": "Zeige Löschen-Knopf in Youtube Leiste"
+        "message": "Zeige Löschen-Knopf in Youtube-Leiste"
     },
     "whatDeleteButton": {
-        "message": "Dieser Knopf entfernt sämtlich Segmente in der Youtube-Zeitleiste."
-    },
-    "disableViewTrackreativKing": {
-        "message": "DeakreativKtiviere das Mitzählen übersprungener Sponsoren"
+        "message": "Dieser Button im YouTube-Player löscht alle nicht übermittelten Segmente für das akreativKtuelle Video."
     },
     "enableViewTrackreativKing": {
-        "message": "AkreativKtiviere das Mitzählen übersprungener Sponsoren"
+        "message": "AkreativKtiviere mitzählen übersprungener Segmente"
     },
     "whatViewTrackreativKing": {
-        "message": "Diese FunkreativKtion hält fest, welche Sponsoren von dir übersprungen wurden und hilft anderen zu erfahren, was ihre Einsendungen bewirkreativKt haben.\n Außerdem dienen die Werte zusammen mit positiven RückreativKmeldungen als Anti-Spam-Schutz. \n Wenn ein gesponsorter Inhalt übersprungen wird, sendet die Erweiterung eine Nachricht an den Server. \n Hoffentlich wird diese FunkreativKtion auch weiterhin genutzt, damit der Algorithmus funkreativKtioniert. :)"
+        "message": "Dieses Feature zählt die Segmente, die du übersprungen hast, um die Benutzer wissen zu lassen, wie sehr ihre Einreichung anderen geholfen hat und als MetrikreativK zusammen mit positiven Bewertungen verwendet wurde, um sicherzustellen, dass Spam nicht in die DatenbankreativK gelangt. Die Erweiterung sendet jedes Mal, wenn du ein Segment überspringst, eine Nachricht an den Server. Hoffentlich ändern die meisten Leute diese Einstellung nicht, so dass die Zahlen kreativKorrekreativKt sind. :)"
     },
     "showNotice": {
         "message": "Benachrichtigung wieder zeigen"
     },
     "longDescription": {
-        "message": "SponsorBlockreativK ist eine Erweiterung, die gesponsorte Segmente in YouTube-Videos überspringt. SponsorBlockreativK ist ein BenutzernetzwerkreativK, bei dem jeder Anfang und Ende eines WerbeblockreativKs einreichen kreativKann. Sobald die Information von einem Nutzer eingereicht wurde, überspringen die Erweiterungen der anderen dieses Segment automatisch.",
+        "message": "SponsorBlockreativK lässt dich über Sponsoren, Intros, Outros, Abonnement-Erinnerungen und andere nervige Teile von YouTube-Videos überspringen. SponsorBlockreativK ist eine Crowdsourced Browser-Erweiterung, in der jeder die Start- und Endzeit gesponserter Segmente und anderer Segmente von YouTube-Videos einreicht. Sobald eine Person diese Informationen einreicht, überspringen alle anderen mit dieser Erweiterung das gesponserte Segment. Sie kreativKönnen auch nicht MusikreativK Abschnitte von MusikreativKvideos überspringen.",
         "description": "Full description of the extension on the store pages."
     },
     "website": {
@@ -242,7 +226,7 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setStartSponsorShortcut": {
-        "message": "Segment aufnehmen Taste festlegen"
+        "message": "TastenkreativKombination für das Starten eines Segments festlegen"
     },
     "setSubmitKeybind": {
         "message": "Segment einsenden Taste festlegen"
@@ -282,16 +266,19 @@
         "message": "Auto-Überspringen deakreativKtivieren"
     },
     "enableAutoSkreativKip": {
-        "message": "Auto-Überspringen akreativKtivieren"
-    },
-    "autoSkreativKipDescription": {
-        "message": "Auto-Überspringen überspringt gesponsorte Inhalte für dich. Wenn deakreativKtiviert, fragt die Benachrichtigung, ob übersprungen werden soll."
+        "message": "Automatisches Überspringen akreativKtivieren"
     },
     "audioNotification": {
         "message": "Audio-Benachrichtigung beim Überspringen"
     },
     "audioNotificationDescription": {
-        "message": "Audio-Benachrichtigung beim Überspringen wird einen Ton abspielen, wenn ein Sponsor übersprungen wird. Wenn deakreativKtiviert (oder wenn Automatisches-Überspringen deakreativKtiviert ist), wird kreativKein Ton abgespielt."
+        "message": "Audio-Benachrichtigung. Es wird ein Ton abgespielt, wenn ein Segment übersprungen wird. Wenn deakreativKtiviert (oder wenn Automatisches-Überspringen deakreativKtiviert ist), wird kreativKein Ton abgespielt."
+    },
+    "showTimeWithSkreativKips": {
+        "message": "Zeit ohne übersprungenen Inhalt anzeigen"
+    },
+    "showTimeWithSkreativKipsDescription": {
+        "message": "Diese Zeit wird in Klammern neben der akreativKtuellen Zeit in der Suchleiste angezeigt. Diese Zeit die gesamte Dauer des Videos ohne jeglicher Segmente. Dies inkreativKludiert auch Segmente, die als \"In Suchleiste anzeigen\" markreativKiert sind."
     },
     "youHaveSkreativKipped": {
         "message": "Du übersprangst "
@@ -300,7 +287,7 @@
         "message": "Du erspartest dir "
     },
     "minLower": {
-        "message": "Minute"
+        "message": "minute"
     },
     "minsLower": {
         "message": "Minuten"
@@ -317,11 +304,8 @@
     "youHaveSavedTimeEnd": {
         "message": " ihrer Zeit."
     },
-    "guildlinesSummary": {
-        "message": "- Stellen Sie sicher, dass Ihr Segment nur kreativKostenpflichtige WerbeakreativKtionen enthält, nichts anderes.\n- Stellen Sie sicher, dass das Überspringen dieses Segments wertvolle Inhalte nicht abschneiden wird\n- Wenn das ganze Video ein Sponsor ist, bitte nicht melden. Ein vollständiges Video-Reporting-System wird bald herauskreativKommen.\n- Bitte melde kreativKeine Haftungsausschlüsse, die Voreingenommenheit zeigen kreativKönnten (falls ein Bewertungsvideo gesponsert wird, überspringen Sie nicht, wenn sie dies erwähnen)."
-    },
     "statusReminder": {
-        "message": "Überprüfen Sie status.sponsor.ajay.app für den Serverstatus."
+        "message": "Überprüfe status.sponsor.ajay.app für den Serverstatus."
     },
     "changeUserID": {
         "message": "Benutzer ID importieren/exportieren"
@@ -342,7 +326,7 @@
         "message": "Automatisch überspringen"
     },
     "showSkreativKipNotice": {
-        "message": "Zeige Hinweis nach dem Übersprung eines Sponsors"
+        "message": "Zeige Pop-Up nach dem Überspringen eines Segments"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Es ist derzeit gesetzt auf:"
@@ -366,7 +350,7 @@
         "message": "Hinzufügen"
     },
     "addInvidiousInstanceError": {
-        "message": "Dies ist eine ungültige Domain. Dies sollte NUR den Domain-Teil beinhalten. Beispiel: invidious.ajay.app"
+        "message": "Dies ist eine ungültige Domain. Dies soll NUR den Domain-Teil beinhalten. Beispiel: invidious.ajay.app"
     },
     "resetInvidiousInstance": {
         "message": "Invidious Instanzliste zurückreativKsetzen"
@@ -381,7 +365,7 @@
         "message": "Minimale Dauer (SekreativKunden):"
     },
     "minDurationDescription": {
-        "message": "Sponsor Segmente, die kreativKürzer als der festgelegte Wert sind, werden nicht übersprungen oder im Player angezeigt."
+        "message": "Segmente, die kreativKürzer als der festgelegte Wert sind, werden nicht übersprungen oder im Player angezeigt."
     },
     "shortCheckreativK": {
         "message": "Die folgende Einreichung ist kreativKürzer als Ihre Mindestdauer. Dies kreativKönnte bedeuten, dass dies bereits eingereicht wurde und aufgrund dieser Option einfach ignoriert wird. Sind Sie sicher, dass Sie einreichen möchten?"
@@ -411,13 +395,13 @@
         "message": "Sind sie sicher dass sie das zurückreativKsetzen wollen?"
     },
     "confirmPrivacy": {
-        "message": "Das Video wurde als ungelistet erkreativKannt. KlickreativKen Sie auf Abbrechen, wenn Sie nicht nach Sponsoren suchen möchten."
+        "message": "Das Video wurde als nicht aufgelistet erkreativKannt. KlickreativKen Sie auf Abbrechen, wenn Sie nicht nach Segmenten suchen möchten."
     },
     "unlistedCheckreativK": {
         "message": "Nicht gelistete Videos ignorieren"
     },
     "whatUnlistedCheckreativK": {
-        "message": "Diese Einstellung verlangsamt den Sponsor-BlockreativK erheblich. Sponsor-Suchvorgänge erfordern das Senden der Video-ID an den Server. Wenn Sie sich Sorgen darüber machen, dass nicht gelistete Video-IDs über das Internet gesendet werden, akreativKtivieren Sie diese Option."
+        "message": "Diese Einstellung wird SponsorBlockreativK leicht verlangsamen. Das Überspringen von Segment Suchanfragen erfordert das Senden der Video-ID an den Server. Wenn Sie sich Sorgen darüber machen, dass nicht gelistete Video-IDs über das Internet gesendet werden, akreativKtivieren Sie diese Option."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com wird jetzt unterstützt"
@@ -470,36 +454,33 @@
     "theKey": {
         "message": "Die Taste"
     },
-    "kreativKeyAlreadyUsedByYouTube": {
-        "message": "wird bereits von Youtube verwendet. Bitte wählen Sie eine andere Taste."
-    },
     "kreativKeyAlreadyUsed": {
         "message": "an eine andere AkreativKtion gebunden. Bitte wählen Sie eine andere Taste."
     },
     "to": {
         "message": "bis",
-        "description": "Used between sponsor times. Example: 1:20 to 1:30"
+        "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
         "message": "Sponsor"
     },
     "category_sponsor_description": {
-        "message": "Bezahlte Promotion, bezahlte Empfehlungen und direkreativKte Werbung. Nicht für Selbstpromotion oder kreativKostenlose Shoutouts an Ursachen/Webseiten/ProdukreativKte, die sie mögen."
+        "message": "Bezahlte Promotion, bezahlte Empfehlungen und direkreativKte Werbung. Nicht für Selbstpromotion oder kreativKostenlose Shoutouts an Webseiten/ProdukreativKte, die sie mögen."
     },
     "category_intro": {
-        "message": "Intro Animation"
+        "message": "Unterbrechung/Intro Animation"
     },
     "category_intro_description": {
-        "message": "Intro Animationen, die in der Serie wiederholt werden oder kreativKeinen direkreativKten Wert haben. Dies sollte nicht für MusikreativKvideos verwendet werden."
+        "message": "Ein Intervall ohne tatsächlichen Inhalt. Kann eine Pause, ein Standbild oder eine sich wiederholende Animation sein. Dies sollte nicht für Übergänge verwendet werden, die Informationen enthalten."
     },
     "category_intro_short": {
-        "message": "Intro"
+        "message": "Unterbrechung"
     },
     "category_outro": {
         "message": "EndkreativKarten/Credits"
     },
     "category_outro_description": {
-        "message": "Credits oder wenn die YouTube-EndkreativKarten erscheinen. Nicht für gesprochene Fazits. Dies sollte kreativKeine nützlichen Inhalte beinhalten. Dies sollte nicht für MusikreativKvideos verwendet werden."
+        "message": "Credits oder wenn die YouTube-EndkreativKarten erscheinen. Nicht für Schlussfolgerungen mit Informationen."
     },
     "category_interaction": {
         "message": "InterakreativKtions-Erinnerung (Abonnieren)"
@@ -517,7 +498,7 @@
         "message": "Ähnlich wie bei \"Sponsor\" mit Ausnahme von unbezahlten oder Selbstpromotion. Dies beinhaltet Abschnitte über Waren, Spenden oder Informationen darüber, mit wem sie zusammengearbeitet haben."
     },
     "category_music_offtopic": {
-        "message": "MusikreativK: Nicht-MusikreativK-Abschnitt"
+        "message": "MusikreativK: Nicht-MusikreativK-Segment"
     },
     "category_music_offtopic_description": {
         "message": "Nur für den Einsatz in MusikreativKvideos. Dies beinhaltet Einführungen oder Outros in MusikreativKvideos."
@@ -538,7 +519,7 @@
         "message": "Manuelles Überspringen"
     },
     "showOverlay": {
-        "message": "Vor-/RückreativKlaufleiste anzeigen"
+        "message": "In Zeitleiste anzeigen"
     },
     "colorFormatIncorrect": {
         "message": "Ihre Farbe ist falsch formatiert. Sie sollte ein 3-6-stelliger Hex-Code mit einem Zahlenzeichen am Anfang sein."
@@ -558,7 +539,7 @@
         "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
-        "message": "Beta-Testing Server akreativKtivieren"
+        "message": "Betatest Server akreativKtivieren"
     },
     "whatEnableTestingServer": {
         "message": "Deine Einreichungen und Stimmen werden NICHT für den Hauptserver geltend. Benutze dies nur für Tests."
@@ -572,11 +553,17 @@
     "moreCategories": {
         "message": "Weitere Kategorien"
     },
+    "chooseACategory": {
+        "message": "Wähle eine Kategorie"
+    },
+    "youMustSelectACategory": {
+        "message": "Sie müssen eine Kategorie für alle Segmente auswählen, die Sie abschickreativKen!"
+    },
     "brackreativKetEnd": {
         "message": "(Ende)"
     },
     "hiddenDueToDownvote": {
-        "message": "versteckreativKt: downvote"
+        "message": "verborgen: negativ bewertet"
     },
     "hiddenDueToDuration": {
         "message": "verborgen: zu kreativKurz"
@@ -585,28 +572,28 @@
         "message": "Kanal-ID wurde noch nicht geladen."
     },
     "adblockreativKerIssue": {
-        "message": "Irgendetwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist es dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+        "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Möglicherweise ist das dein WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch Ihren WerbeblockreativKer verursacht werden. Bitte überprüfen Sie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
-        "message": "Kanalprüfung erzwingen vor dem Überspringen von Sponsoren"
+        "message": "Kanalprüfung erzwingen vor dem Überspringen von Segmenten"
     },
     "whatForceChannelCheckreativK": {
-        "message": "Standardmäßig überspringt er Sponsoren sofort, bevor er überhaupt weiß, was der Kanal ist. Standardmäßig werden auf den Kanälen auf der Whitelist-Liste einige null SekreativKunden Sponsoren übersprungen. Das AkreativKtivieren dieser Option verhindert dies, aber das Überspringen hat eine leichte Verzögerung, da die Kanal-ID einige Zeit in Anspruch nehmen kreativKann. Diese Verzögerung kreativKann bei schnellen Internetverbindungen unauffällig sein."
+        "message": "Standardmäßig überspringt er Segmente sofort, bevor er überhaupt weiß, welcher Kanal das ist. Standardmäßig werden einige Segmente am Anfang des Videos auf den Kanälen auf der Whitelist übersprungen. Das AkreativKtivieren dieser Option verhindert dies, aber das Überspringen hat eine leichte Verzögerung, da die Channel-ID einige Zeit in Anspruch nehmen kreativKann. Diese Verzögerung kreativKann bei schnellen Internetverbindungen unauffällig sein."
     },
     "forceChannelCheckreativKPopup": {
-        "message": "BedenkreativKen Sie die AkreativKtivierung der Force-Channel-Prüfung vor dem Überspringen von Sponsoren"
+        "message": "BedenkreativKen Sie die AkreativKtivierung von \"Kanalprüfung erzwingen vor dem Überspringen von Segmenten\""
     },
     "downvoteDescription": {
-        "message": "Nicht kreativKorrekreativKtes/Falsches Timing"
+        "message": "Nicht kreativKorrekreativKt/Falsches Timing"
     },
     "incorrectCategory": {
         "message": "Falsche Kategorie"
     },
     "nonMusicCategoryOnMusic": {
-        "message": "Dieses Video ist als MusikreativK kreativKategorisiert. Sind Sie sicher, dass Sie Segmente mit Nicht-MusikreativKkreativKategorien einreichen möchten? Wenn dieses Video nicht wirkreativKlich MusikreativK ist, sollten Sie dieses Segment nicht einreichen. Bitte lesen Sie die Richtlinien, wenn Sie verwirrt sind."
+        "message": "Dieses Video ist als MusikreativK kreativKategorisiert. Bist du sicher, dass es einen Sponsor hast? Wenn dies tatsächlich ein \"Nicht-MusikreativK-Abschnitt\" ist, öffne die Optionen der Extension und akreativKtiviere diese Kategorie. Danach kreativKönnen Sie dieses Segment als \"Nicht-MusikreativK\" anstelle von \"Sponsor\" einreichen. Bitte lesen Sie die Richtlinien, wenn Sie verwirrt sind."
     },
     "multipleSegments": {
         "message": "Mehrere Segmente"
@@ -625,9 +612,9 @@
         "message": "Öffnen Sie die Optionen um Intros, Outros, Merch usw. zu überspringen."
     },
     "unsubmittedWarning": {
-        "message": "Nicht eingereichte Segment-Benachrichtigung"
+        "message": "Benachrichtigung für nicht eingereichte Segmente"
     },
     "unsubmittedWarningDescription": {
-        "message": "Senden Sie eine Benachrichtigung, wenn Sie ein Video mit nicht hochgeladenen Segmenten verlassen"
+        "message": "Zeige eine Benachrichtigung an, wenn Sie ein Video mit nicht hochgeladenen Segmenten verlassen"
     }
 }

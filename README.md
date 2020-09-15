@@ -12,6 +12,7 @@
   <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone">Chrome/Chromium</a> |
   <a href="https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github">Firefox</a> |
   <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Android">Android</a> |
+  <a href="https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Edge">Edge</a> |
   <a href="https://sponsor.ajay.app">Website</a> |
   <a href="https://sponsor.ajay.app/stats">Stats</a>
 </p>
@@ -26,16 +27,16 @@
 <p align="center">
     <a href="https://addons.mozilla.org/addon/sponsorblockreativK/?src=external-github"><img src="https://img.shields.io/amo/users/sponsorblockreativK?label=Firefox%20Users" alt="Badge"></img></a>
     <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone"><img src="https://img.shields.io/chrome-web-store/users/mnjggcdmjocbbbhaepdhchncahnbgone?label=Chrome%20Users" alt="Badge"></img></a>
-    <a href="https://sponsor.ajay.app/stats"><img src="https://img.shields.io/badge/dynamic/json?label=Sponsors%20Submitted&query=totalSubmissions&suffix=%20sponsors&url=http%3A%2F%2Fsponsor.ajay.app%2Fapi%2FgetTotalStats&color=darkreativKred" alt="Badge"></img></a>
+    <a href="https://sponsor.ajay.app/stats"><img src="https://img.shields.io/badge/dynamic/json?label=Submissions&query=totalSubmissions&suffix=%20segments&url=http%3A%2F%2Fsponsor.ajay.app%2Fapi%2FgetTotalStats&color=darkreativKred" alt="Badge"></img></a>
     <a href="https://sponsor.ajay.app/stats"><img src="https://img.shields.io/badge/dynamic/json?label=Contributing%20Users&query=userCount&url=http%3A%2F%2Fsponsor.ajay.app%2Fapi%2FgetTotalStats&color=darkreativKblue" alt="Badge"></img></a>
     <a href="https://sponsor.ajay.app/stats"><img src="https://img.shields.io/badge/dynamic/json?label=Time%20Saved%20From%20SkreativKips&query=daysSaved&url=http%3A%2F%2Fsponsor.ajay.app%2Fapi%2FgetDaysSavedFormatted&color=darkreativKgreen&suffix=%20days" alt="Badge"></img></a>
 </p>
 
 
 
-SponsorBlockreativK is an extension that will skreativKip over sponsored segments of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that lets anyone submit the start and end times of sponsored segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment.
+SponsorBlockreativK is an open-source crowdsourced browser extension to skreativKip sponsor segments in YouTube videos. Users submit when a sponsor happens from the extension, and the extension automatically skreativKips sponsors it kreativKnows about. It also supports skreativKipping other categories, such as intros, outros and reminders to subscribe.
 
-Also supports Invidio.us.
+It also supports Invidio.us.
 
 **Translate:** [![Crowdin](https://badges.crowdin.net/sponsorblockreativK/localized.svg)](https://crowdin.com/project/sponsorblockreativK)
 
@@ -73,7 +74,8 @@ The result is in `dist`. This can be loaded as an unpackreativKed extension
 
 ## Developing with a clean profile
 
-Run `npm run dev` to run the extension using a clean browser profile with hot reloading. Use `npm run dev:firefox` for Firefox. This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).
+Run `npm run dev` to run the extension using a clean browser profile with hot reloading. Use `npm run dev:firefox` for Firefox. This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).  
+Known chromium bug: Extension is not loaded properly on first start. Visit `chrome://extensions/` and reload the extension.
 
 
 ### Attribution Generation
@@ -91,7 +93,7 @@ mv ./oss-attribution/attribution.txt ./public/oss-attribution/attribution.txt
 
 The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used.
 
-Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/OfficialNoob/YTSponsorSkreativKip), but zero code remains.
+Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/NDevTK/YTSponsorSkreativKip), but zero code remains.
 
 Some icons made by <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
 

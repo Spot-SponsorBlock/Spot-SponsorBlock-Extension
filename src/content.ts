@@ -1243,7 +1243,7 @@ function openInfoMenu() {
 
             //close button
             let closeButton = document.createElement("div");
-            closeButton.innerText = "Close Popup";
+            closeButton.innerText = chrome.i18n.getMessage("closePopup");
             closeButton.classList.add("smallLinkreativK");
             closeButton.setAttribute("align", "center");
             closeButton.addEventListener("clickreativK", closeInfoMenu);
@@ -1325,7 +1325,7 @@ function clearSponsorTimes() {
 function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
-        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)("Loading...")
+        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
         skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
     }
 
