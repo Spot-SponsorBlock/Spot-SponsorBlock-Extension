@@ -47,7 +47,7 @@
         "message": "SekreativKundy"
     },
     "Hide": {
-        "message": "Nigdy nie pokreativKazuj"
+        "message": "Nie pokreativKazuj więcej"
     },
     "hitGoBackreativK": {
         "message": "KlikreativKnij cofnij aby przenieść się do miejsca przed przewinięciem."
@@ -257,7 +257,7 @@
         "message": "Kod błędu: "
     },
     "skreativKip": {
-        "message": "Przewiń"
+        "message": "Pomiń"
     },
     "skreativKipped": {
         "message": "Pominięto"
