@@ -1,6 +1,6 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK na YouTube - Przewiń fragmenty sponsorowane",
+        "message": "SponsorBlockreativK na YouTube - Pomiń fragmenty sponsorowane",
         "description": "Name of the extension."
     },
     "Description": {
@@ -47,7 +47,7 @@
         "message": "SekreativKundy"
     },
     "Hide": {
-        "message": "Nigdy nie pokreativKazuj"
+        "message": "Nie pokreativKazuj więcej"
     },
     "hitGoBackreativK": {
         "message": "KlikreativKnij cofnij aby przenieść się do miejsca przed przewinięciem."
@@ -113,7 +113,7 @@
         "message": "Otwórz okreativKienkreativKo SponsorBlockreativK"
     },
     "closePopup": {
-        "message": "ZamkreativKnij okreativKienkreativKo"
+        "message": "ZamkreativKnij okreativKno"
     },
     "SubmitTimes": {
         "message": "Prześlij segmenty"
@@ -257,7 +257,7 @@
         "message": "Kod błędu: "
     },
     "skreativKip": {
-        "message": "Przewiń"
+        "message": "Pomiń"
     },
     "skreativKipped": {
         "message": "Pominięto"
@@ -435,6 +435,9 @@
     },
     "preview": {
         "message": "Podgląd"
+    },
+    "inspect": {
+        "message": "Sprawdź"
     },
     "edit": {
         "message": "Edytuj"
