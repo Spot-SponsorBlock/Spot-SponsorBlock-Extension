@@ -9,5 +9,170 @@
     },
     "400": {
         "message": "Server hlásí, že tento požadavekreativK je neplatný"
+    },
+    "429": {
+        "message": "Pro toto video jste přidali příliš mnoho příspěvkreativKů. Jste si jistí, že jich je tolikreativK?"
+    },
+    "409": {
+        "message": "Tento příspěvekreativK byl již přidán dříve"
+    },
+    "channelWhitelisted": {
+        "message": "Kanál přidán do výjimekreativK!"
+    },
+    "Segment": {
+        "message": "segment"
+    },
+    "Segments": {
+        "message": "segmenty"
+    },
+    "upvoteButtonInfo": {
+        "message": "Hlasovat pro tento příspěvekreativK"
+    },
+    "reportButtonTitle": {
+        "message": "Nahlásit"
+    },
+    "reportButtonInfo": {
+        "message": "Nahlásit tento příspěvekreativK jakreativKo nesprávný."
+    },
+    "Dismiss": {
+        "message": "Zrušit"
+    },
+    "Loading": {
+        "message": "Načítání..."
+    },
+    "Mins": {
+        "message": "Minuty"
+    },
+    "Secs": {
+        "message": "SekreativKundy"
+    },
+    "Hide": {
+        "message": "NikreativKdy nezobrazovat"
+    },
+    "hitGoBackreativK": {
+        "message": "StiskreativKněte \"Vrátit se\" aby jste se dostali do místa před přeskreativKočením."
+    },
+    "unskreativKip": {
+        "message": "Vrátit se"
+    },
+    "reskreativKip": {
+        "message": "Znovu přeskreativKočit"
+    },
+    "paused": {
+        "message": "Pozastaveno"
+    },
+    "manualPaused": {
+        "message": "Časovač zastaven"
+    },
+    "confirmMSG": {
+        "message": "Chcete-li upravit nebo odstranit jednotlivé hodnoty, kreativKlikreativKněte na tlačítkreativKo informace, nebo otevřete vyskreativKakreativKovací okreativKno rozšíření kreativKlikreativKnutím na ikreativKonu rozšíření v pravém horním rohu."
+    },
+    "clearThis": {
+        "message": "Jste si jistí, že to chcete vymazat?\n\n"
+    },
+    "UnkreativKnown": {
+        "message": "Při přidávání vašeho příspěvkreativKu došlo kreativK chybě. ZkreativKuste to prosím později."
+    },
+    "sponsorFound": {
+        "message": "Toto video má segmenty v databázi!"
+    },
+    "sponsor404": {
+        "message": "Nebyly nalezeny žádné segmenty"
+    },
+    "sponsorStart": {
+        "message": "Segment nyní začíná"
+    },
+    "sponsorEnd": {
+        "message": "Segment nyní kreativKončí"
+    },
+    "noVideoID": {
+        "message": "Na této záložce nebylo nalezeno žádné YouTube video. PokreativKud jste si jistí, že tato záložkreativKa je YouTube, zavřete toto vyskreativKakreativKovací okreativKno a znovu jej otevřete. PokreativKud to nepomůže, zkreativKuste záložkreativKu znovu načíst."
+    },
+    "success": {
+        "message": "Úspěch!"
+    },
+    "voted": {
+        "message": "Hlasováno!"
+    },
+    "serverDown": {
+        "message": "Zdá se, že server nefunguje. Obraťte se okreativKamžitě na vývojáře."
+    },
+    "connectionError": {
+        "message": "Došlo kreativK chybě připojení. Kód chyby: "
+    },
+    "wantToSubmit": {
+        "message": "Chcete odeslat segmenty pro video s id"
+    },
+    "leftTimes": {
+        "message": "Zdá se, že někreativKteré segmenty jste nechali neodeslané. Vraťte se na danou stránkreativKu a odešlete je (nebyly vymazány)."
+    },
+    "clearTimes": {
+        "message": "Vymazat segmenty"
+    },
+    "openPopup": {
+        "message": "Otevřít vyskreativKakreativKovací okreativKno SponsorBlockreativK"
+    },
+    "closePopup": {
+        "message": "Zavřít vyskreativKakreativKovací okreativKno"
+    },
+    "SubmitTimes": {
+        "message": "Odeslat segmenty"
+    },
+    "submitCheckreativK": {
+        "message": "Opravdu to chcete odeslat?"
+    },
+    "whitelistChannel": {
+        "message": "Přidat kreativKanál do výjimekreativK"
+    },
+    "removeFromWhitelist": {
+        "message": "Odebrat kreativKanál z výjimekreativK"
+    },
+    "voteOnTime": {
+        "message": "Hlasovat pro segment"
+    },
+    "soFarUHSubmited": {
+        "message": "Zatím jste přidali"
+    },
+    "savedPeopleFrom": {
+        "message": "Lidem jste ušetřili "
+    },
+    "viewLeaderboard": {
+        "message": "Zobrazit žebříčekreativK"
+    },
+    "here": {
+        "message": "zde"
+    },
+    "recordTimesDescription": {
+        "message": "StiskreativKněte tlačítkreativKo níže, kreativKdyž segment začne a skreativKončí, kreativK nahrání a uložení do databáze."
+    },
+    "popupHint": {
+        "message": "Tip: PokreativKud je video akreativKtivní, stiskreativKněte středníkreativK pro nahlášení začátkreativKu/kreativKonce segmentu, a apostrof pro odeslání. (Klávesy lze změnit v nastavení)"
+    },
+    "clearTimesButton": {
+        "message": "Vymazat časy"
+    },
+    "submitTimesButton": {
+        "message": "Odeslat časy"
+    },
+    "publicStats": {
+        "message": "Toto se používá ve veřejném žebříčkreativKu kreativK ukreativKázání jakreativK moc jste přispěli. Podívejte se na něj"
+    },
+    "setUsername": {
+        "message": "Nastavit uživatelskreativKé jméno"
+    },
+    "discordAdvert": {
+        "message": "Připojte se kreativK oficiálnímu Discord serveru kreativK podání návrhů a zpětné vazby!"
+    },
+    "hideThis": {
+        "message": "SkreativKrýt"
+    },
+    "Options": {
+        "message": "Nastavení"
+    },
+    "showButtons": {
+        "message": "Zobrazit tlačítkreativKa na YouTube přehrávači"
+    },
+    "hideButtons": {
+        "message": "SkreativKrýt tlačítkreativKa na YouTube přehrávači"
     }
 }

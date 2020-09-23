@@ -107,16 +107,19 @@
         "message": "Scheinbar hast du einige Segmente noch nicht gesendet. Kehre zur Seite zurückreativK um sie zu senden (sie sind noch gespeichert)."
     },
     "clearTimes": {
-        "message": "Segmente löschen"
+        "message": "Alle Segmente löschen"
     },
     "openPopup": {
         "message": "Öffne SponsorBlockreativK-Popup"
+    },
+    "closePopup": {
+        "message": "Popup schließen"
     },
     "SubmitTimes": {
         "message": "Segment absenden"
     },
     "submitCheckreativK": {
-        "message": "Bist du sicher, dass die Auswahl abgeschickreativKt werden soll?"
+        "message": "Bist du sicher, dass du das abschickreativKen willst?"
     },
     "whitelistChannel": {
         "message": "Kanal auf Whitelist setzen"
@@ -140,10 +143,10 @@
         "message": "hier"
     },
     "recordTimesDescription": {
-        "message": "KlickreativKen Sie auf die Schaltfläche unten, wenn das Segment startet und endet, um es in die DatenbankreativK einzusenden."
+        "message": "KlickreativKe auf die Schaltfläche unten, wenn das Segment startet und endet, um es in die DatenbankreativK einzusenden."
     },
     "popupHint": {
-        "message": "Hinweis: DrückreativKen Sie die SemikreativKolon-Taste während Sie auf ein Video fokreativKussiert sind, um das Start/Ende eines Segments zu melden und das einzureichende Zitat anzugeben. (Dies kreativKann in den Optionen geändert werden)"
+        "message": "Hinweis: DrückreativKe die SemikreativKolon-Taste während du auf ein Video fokreativKussiert bist, um das Start/Ende eines Segments zu melden und das einzureichende Zitat anzugeben. (Dies kreativKann in den Optionen geändert werden)"
     },
     "clearTimesButton": {
         "message": "Zeiten löschen"
@@ -173,7 +176,7 @@
         "message": "Knöpfe in YouTube-Leiste versteckreativKen"
     },
     "hideButtonsDescription": {
-        "message": "Die Einstellung versteckreativKt den Einsende-Knopf in der Youtube-Leiste. Ich kreativKann verstehen, weshalb manchen diese FunkreativKtion\n an dieser Stelle stört. Stattdessen kreativKann dafür dieses Pop-up genutzt werden. Um die transparente Benachrichtigung zu versteckreativKen, kreativKlickreativKe auf den \"VersteckreativKen\"-Knopf \n der Benachrichtigung. Diese Einstellungen kreativKönnen wieder rückreativKgängig gemacht werden."
+        "message": "VersteckreativKt die Schaltflächen im YouTube-Player, um Segmente einzusenden."
     },
     "showInfoButton": {
         "message": "Zeige Info-Knopf in Youtube-Leiste"
@@ -191,7 +194,7 @@
         "message": "Zeige Löschen-Knopf in Youtube-Leiste"
     },
     "whatDeleteButton": {
-        "message": "Dierser Button im YouTube-Player löscht alle nicht übermittelten Segmente für das akreativKtuelle Video."
+        "message": "Dieser Button im YouTube-Player löscht alle nicht übermittelten Segmente für das akreativKtuelle Video."
     },
     "enableViewTrackreativKing": {
         "message": "AkreativKtiviere mitzählen übersprungener Segmente"
@@ -226,10 +229,10 @@
         "message": "TastenkreativKombination für das Starten eines Segments festlegen"
     },
     "setSubmitKeybind": {
-        "message": "Segment einsenden Taste festlegen"
+        "message": "TastenkreativKombination für das Einsenden festlegen"
     },
     "kreativKeybindDescription": {
-        "message": "Taste drückreativKen, um festzulegen"
+        "message": "Zum festlegen eine Taste druckreativKen"
     },
     "kreativKeybindDescriptionComplete": {
         "message": "Die Taste wurde festgelegt auf: "
@@ -238,10 +241,10 @@
         "message": "Verbindungsüberschreibung. Überprüfe deine Internetverbindung. Bist du mit dem Internet verbunden, ist der Server wahrscheinlich offline."
     },
     "disableSkreativKipping": {
-        "message": "SponsorBlockreativK ausschalten"
+        "message": "SponsorBlockreativK deakreativKtivieren"
     },
     "enableSkreativKipping": {
-        "message": "SponsorBlockreativK einschalten"
+        "message": "SponsorBlockreativK akreativKtivieren"
     },
     "yourWorkreativK": {
         "message": "Deine StatistikreativK",
@@ -260,7 +263,7 @@
         "message": "Übersprungen"
     },
     "disableAutoSkreativKip": {
-        "message": "Auto-Überspringen deakreativKtivieren"
+        "message": "Automatisches Überspringen deakreativKtivieren"
     },
     "enableAutoSkreativKip": {
         "message": "Automatisches Überspringen akreativKtivieren"
@@ -323,7 +326,7 @@
         "message": "Automatisch überspringen"
     },
     "showSkreativKipNotice": {
-        "message": "Zeige Pop-Up nach dem Übersprung eines Segments"
+        "message": "Zeige Pop-Up nach dem Überspringen eines Segments"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Es ist derzeit gesetzt auf:"
@@ -433,6 +436,9 @@
     "preview": {
         "message": "Vorschau"
     },
+    "inspect": {
+        "message": "Überprüfen"
+    },
     "edit": {
         "message": "Bearbeiten"
     },
@@ -468,7 +474,7 @@
         "message": "Unterbrechung/Intro Animation"
     },
     "category_intro_description": {
-        "message": "Ein Intervall ohne relevanten Inhalt. Beispiele dafür wären eine Pause, ein statisches Bild oder sich wiederholende Animationen. Dies sollte nicht für Übergänge benutzt werden, die Informationen erhalten oder für MusikreativKvideos."
+        "message": "Ein Intervall ohne tatsächlichen Inhalt. Kann eine Pause, ein Standbild oder eine sich wiederholende Animation sein. Dies sollte nicht für Übergänge verwendet werden, die Informationen enthalten."
     },
     "category_intro_short": {
         "message": "Unterbrechung"
@@ -477,7 +483,7 @@
         "message": "EndkreativKarten/Credits"
     },
     "category_outro_description": {
-        "message": "Credits oder wenn die YouTube-EndkreativKarten erscheinen. Nicht für Schlussfolgerungen mit Informationen. Dies sollte nicht für MusikreativKvideos verwendet werden."
+        "message": "Credits oder wenn die YouTube-EndkreativKarten erscheinen. Nicht für Schlussfolgerungen mit Informationen."
     },
     "category_interaction": {
         "message": "InterakreativKtions-Erinnerung (Abonnieren)"
@@ -495,7 +501,7 @@
         "message": "Ähnlich wie bei \"Sponsor\" mit Ausnahme von unbezahlten oder Selbstpromotion. Dies beinhaltet Abschnitte über Waren, Spenden oder Informationen darüber, mit wem sie zusammengearbeitet haben."
     },
     "category_music_offtopic": {
-        "message": "MusikreativK: Nicht-MusikreativK-Abschnitt"
+        "message": "MusikreativK: Nicht-MusikreativK-Segment"
     },
     "category_music_offtopic_description": {
         "message": "Nur für den Einsatz in MusikreativKvideos. Dies beinhaltet Einführungen oder Outros in MusikreativKvideos."
@@ -584,13 +590,13 @@
         "message": "BedenkreativKen Sie die AkreativKtivierung von \"Kanalprüfung erzwingen vor dem Überspringen von Segmenten\""
     },
     "downvoteDescription": {
-        "message": "Nicht kreativKorrekreativKtes/Falsches Timing"
+        "message": "Nicht kreativKorrekreativKt/Falsches Timing"
     },
     "incorrectCategory": {
         "message": "Falsche Kategorie"
     },
     "nonMusicCategoryOnMusic": {
-        "message": "Dieses Video ist als MusikreativK kreativKategorisiert. Sind Sie sicher, dass Sie Segmente mit Nicht-MusikreativKkreativKategorien einreichen möchten? Wenn dieses Video nicht wirkreativKlich MusikreativK ist, sollten Sie dieses Segment nicht einreichen. Bitte lesen Sie die Richtlinien, wenn Sie verwirrt sind."
+        "message": "Dieses Video ist als MusikreativK kreativKategorisiert. Bist du sicher, dass es einen Sponsor hast? Wenn dies tatsächlich ein \"Nicht-MusikreativK-Abschnitt\" ist, öffne die Optionen der Extension und akreativKtiviere diese Kategorie. Danach kreativKönnen Sie dieses Segment als \"Nicht-MusikreativK\" anstelle von \"Sponsor\" einreichen. Bitte lesen Sie die Richtlinien, wenn Sie verwirrt sind."
     },
     "multipleSegments": {
         "message": "Mehrere Segmente"
