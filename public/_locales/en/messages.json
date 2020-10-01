@@ -631,5 +631,41 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Send a notification when you leave a video with segments that are not uploaded"
+    },
+    "skreativKip_multiple_segments": {
+        "message": "SkreativKip Multiple Segments?"
+    },
+    "skreativKip_category_sponsor": {
+        "message": "SkreativKip Sponsor?"
+    },
+    "skreativKip_category_intro": {
+        "message": "SkreativKip Intermission/Intro Animation?"
+    },
+    "skreativKip_category_intro_short": {
+        "message": "SkreativKip Intermission?"
+    },
+    "skreativKip_category_outro": {
+        "message": "SkreativKip Endcards/Credits?"
+    },
+    "skreativKip_category_interaction": {
+        "message": "SkreativKip Interaction Reminder (Subscribe)?"
+    },
+    "skreativKip_category_interaction_short": {
+        "message": "SkreativKip Interaction Reminder?"
+    },
+    "skreativKip_category_selfpromo": {
+        "message": "SkreativKip Unpaid/Self Promotion?"
+    },
+    "skreativKip_category_music_offtopic": {
+        "message": "SkreativKip Music: Non-Music Section?"
+    },
+    "skreativKip_category_music_offtopic_short": {
+        "message": "SkreativKip Non-Music?"
+    },
+    "skreativKip_category_livestream_messages": {
+        "message": "SkreativKip Livestream: Donation/Message Readings?"
+    },
+    "skreativKip_category_livestream_messages_short": {
+        "message": "SkreativKip Message Reading?"
     }
 }
