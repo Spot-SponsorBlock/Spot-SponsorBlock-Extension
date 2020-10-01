@@ -619,5 +619,41 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Zeige eine Benachrichtigung an, wenn Sie ein Video mit nicht hochgeladenen Segmenten verlassen"
+    },
+    "skreativKip_multiple_segments": {
+        "message": "Mehrere Segmente überspringen?"
+    },
+    "skreativKip_category_sponsor": {
+        "message": "Sponsor überspringen?"
+    },
+    "skreativKip_category_intro": {
+        "message": "Unterbrechung/Intro Animation überspringen?"
+    },
+    "skreativKip_category_intro_short": {
+        "message": "Unterbrechung überspringen?"
+    },
+    "skreativKip_category_outro": {
+        "message": "EndkreativKarten/Credits überspringen?"
+    },
+    "skreativKip_category_interaction": {
+        "message": "InterakreativKtions-Erinnerung (Abonnieren) überspringen?"
+    },
+    "skreativKip_category_interaction_short": {
+        "message": "InterakreativKtions-Erinnerung überspringen?"
+    },
+    "skreativKip_category_selfpromo": {
+        "message": "Unbezahlt/Eigenwerbung überspringen?"
+    },
+    "skreativKip_category_music_offtopic": {
+        "message": "MusikreativK: Nicht-MusikreativK-Segment überspringen?"
+    },
+    "skreativKip_category_music_offtopic_short": {
+        "message": "Nicht-MusikreativK überspringen?"
+    },
+    "skreativKip_category_livestream_messages": {
+        "message": "Livestream: Spenden/Nachrichten vorlesen überspringen?"
+    },
+    "skreativKip_category_livestream_messages_short": {
+        "message": "Nachrichten lesen überspringen?"
     }
 }
