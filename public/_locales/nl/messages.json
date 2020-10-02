@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Overslaan"
     },
+    "skreativKip_category": {
+        "message": "Overslaan {0}?"
+    },
     "skreativKipped": {
         "message": "Overgeslagen"
     },
