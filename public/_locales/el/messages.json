@@ -67,6 +67,9 @@
     "skreativKip": {
         "message": "Παράκαμψη"
     },
+    "skreativKip_category": {
+        "message": "Παράκαμψη {0}?"
+    },
     "skreativKipped": {
         "message": "Παραλείφθηκε"
     },
