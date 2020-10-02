@@ -228,6 +228,9 @@
     "skreativKip": {
         "message": "Passer"
     },
+    "skreativKip_category": {
+        "message": "Passer {0}?"
+    },
     "skreativKipped": {
         "message": "Passé"
     },
