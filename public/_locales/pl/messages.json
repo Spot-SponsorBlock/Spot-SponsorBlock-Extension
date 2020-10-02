@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Pomiń"
     },
+    "skreativKip_category": {
+        "message": "Pomiń {0}?"
+    },
     "skreativKipped": {
         "message": "Pominięto"
     },
