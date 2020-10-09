@@ -200,6 +200,9 @@
     "skreativKip": {
         "message": "Pular"
     },
+    "skreativKip_category": {
+        "message": "Pular {0}?"
+    },
     "skreativKipped": {
         "message": "Pulado"
     },

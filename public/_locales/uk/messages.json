@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Пропустити"
     },
+    "skreativKip_category": {
+        "message": "Пропустити {0}?"
+    },
     "skreativKipped": {
         "message": "Пропущено"
     },

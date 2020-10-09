@@ -197,6 +197,9 @@
     "skreativKip": {
         "message": "Hoppa över"
     },
+    "skreativKip_category": {
+        "message": "Hoppa över {0}?"
+    },
     "skreativKipped": {
         "message": "SkreativKippat"
     },

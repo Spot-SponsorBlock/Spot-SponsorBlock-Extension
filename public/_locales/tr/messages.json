@@ -200,6 +200,9 @@
     "skreativKip": {
         "message": "Atla"
     },
+    "skreativKip_category": {
+        "message": "Atla {0}?"
+    },
     "skreativKipped": {
         "message": "Atlandı"
     },

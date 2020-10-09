@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Przewiń"
     },
+    "skreativKip_category": {
+        "message": "Przewiń {0}?"
+    },
     "skreativKipped": {
         "message": "Pominięto"
     },

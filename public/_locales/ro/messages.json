@@ -246,6 +246,9 @@
     "skreativKip": {
         "message": "Sari"
     },
+    "skreativKip_category": {
+        "message": "Sari {0}?"
+    },
     "skreativKipped": {
         "message": "Sărit"
     },

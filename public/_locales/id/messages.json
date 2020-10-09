@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Lewati"
     },
+    "skreativKip_category": {
+        "message": "Lewati {0}?"
+    },
     "skreativKipped": {
         "message": "Dilewati"
     },

@@ -195,6 +195,9 @@
     "skreativKip": {
         "message": "스킵"
     },
+    "skreativKip_category": {
+        "message": "스킵 {0}?"
+    },
     "skreativKipped": {
         "message": "스킵됨"
     },

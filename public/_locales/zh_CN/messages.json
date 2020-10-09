@@ -200,6 +200,9 @@
     "skreativKip": {
         "message": "跳过"
     },
+    "skreativKip_category": {
+        "message": "跳过 {0}?"
+    },
     "skreativKipped": {
         "message": "跳过"
     },

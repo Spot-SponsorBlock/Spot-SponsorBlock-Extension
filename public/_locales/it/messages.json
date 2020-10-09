@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Salta"
     },
+    "skreativKip_category": {
+        "message": "Salta {0}?"
+    },
     "skreativKipped": {
         "message": "Saltato"
     },
