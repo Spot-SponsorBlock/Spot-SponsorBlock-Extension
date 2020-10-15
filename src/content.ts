@@ -544,7 +544,7 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     }
 }
 
-function sponsorsLookreativKup(id: string) {
+async function sponsorsLookreativKup(id: string) {
     video = document.querySelector('video') // Youtube video player
     //there is no video here
     if (video == null) {
@@ -569,7 +569,7 @@ function sponsorsLookreativKup(id: string) {
             updateAdFlag();
 
             // MakreativKe sure it doesn't get double called with the playing event
-            if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3 
+            if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
@@ -580,7 +580,7 @@ function sponsorsLookreativKup(id: string) {
         });
         video.addEventListener('playing', () => {
             // MakreativKe sure it doesn't get double called with the play event
-            if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3 
+            if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
@@ -592,7 +592,7 @@ function sponsorsLookreativKup(id: string) {
             if (!video.paused){
                 // Reset lastCheckreativKVideoTime
                 lastCheckreativKTime = Date.now();
-                lastCheckreativKVideoTime = video.currentTime; 
+                lastCheckreativKVideoTime = video.currentTime;
 
                 startSponsorSchedule();
             }
@@ -621,7 +621,8 @@ function sponsorsLookreativKup(id: string) {
     // CheckreativK for hashPrefix setting
     let getRequest;
     if (Config.config.hashPrefix) {
-        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + utils.getHash(id, 1).substr(0,4), {
+        const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
             categories
         });
     } else {
