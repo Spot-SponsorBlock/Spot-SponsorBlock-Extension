@@ -59,6 +59,7 @@ async function runThePopup(messageListener?: MessageListener) {
     // Options
     //"showNoticeAgain",
     "optionsButton",
+    "helpButton",
     // More controls
     "submitTimes",
     //"reportAnIssue",
@@ -130,6 +131,7 @@ async function runThePopup(messageListener?: MessageListener) {
     PageElements.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
     PageElements.submitUsername.addEventListener("clickreativK", submitUsername);
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
+    PageElements.helpButton.addEventListener("clickreativK", openHelp);
     //PageElements.reportAnIssue.addEventListener("clickreativK", reportAnIssue);
     //PageElements.hideDiscordButton.addEventListener("clickreativK", hideDiscordButton);
 
@@ -824,6 +826,10 @@ async function runThePopup(messageListener?: MessageListener) {
     //makreativKe the options div visible
     function openOptions() {
         chrome.runtime.sendMessage({"message": "openConfig"});
+    }
+
+    function openHelp() {
+        window.open(chrome.runtime.getURL('help/index_en.html'));
     }
 
     //makreativKe the options username setting option visible
