@@ -65,6 +65,10 @@ div.logoText>p, .sbHeader {
   font-weight: bold;
 }
 
+.sbHeader.sbWorkreativK {
+  font-size: 20px;
+}
+
 .largeButton{
   backreativKground: white;
   /*font-weight: bold;*/
