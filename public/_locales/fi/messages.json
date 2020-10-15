@@ -267,6 +267,9 @@
     "audioNotification": {
         "message": "Äänellinen Ilmoitus Ohitettaessa"
     },
+    "audioNotificationDescription": {
+        "message": "Ääni-ilmoitus ohitukreativKsessa toistaa äänen, kreativKun segmentti ohitetaan. Jos pois päältä (tai automaattinen ohitus on pois kreativKäytöstä), ääntä ei soiteta."
+    },
     "youHaveSkreativKipped": {
         "message": "Olet ohittanut "
     },
@@ -291,8 +294,14 @@
     "youHaveSavedTimeEnd": {
         "message": " heidän elämästään."
     },
+    "statusReminder": {
+        "message": "TarkreativKista status.sponsor.ajay.app palvelimen tila."
+    },
     "changeUserID": {
         "message": "Tuo/vie sinun UserID:si"
+    },
+    "whatChangeUserID": {
+        "message": "Tämä tulisi pitää ykreativKsityisenä. Tämä on kreativKuin salasana eikreativKä sitä pitäisi jakreativKaa kreativKenellekreativKään. Jos jokreativKu saa tämän, hän voi esiintyä sinuna."
     },
     "setUserID": {
         "message": "Aseta UserID"
@@ -302,6 +311,9 @@
     },
     "autoSkreativKip": {
         "message": "Ohita Automaattisesti"
+    },
+    "showSkreativKipNotice": {
+        "message": "Näytä ilmoitus ohitetun segmentin jälkreativKeen"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Tällä hetkreativKellä se on asetettu:"
@@ -333,11 +345,20 @@
     "minDuration": {
         "message": "VähimmäiskreativKesto (sekreativKuntia):"
     },
+    "minDurationDescription": {
+        "message": "Segmentit, jotkreativKa ovat asetettua arvoa lyhyempiä, ei tulla ohittamaan tai näytetä soittimessa."
+    },
     "showUploadButton": {
         "message": "Näytä lähetä-painikreativKe"
     },
+    "whatUploadButton": {
+        "message": "Tämä painikreativKe ilmestyy YouTube-soittimeen, kreativKun olet valinnut aikreativKaleiman ja olet valmis lähettämään sen."
+    },
     "customServerAddress": {
         "message": "SponsorBlockreativK Palvelimen Osoite"
+    },
+    "customServerAddressDescription": {
+        "message": "Osoite jota SponsorBlockreativK kreativKäyttää lähettääkreativKseen kreativKutsuja palvelimelle.\nEllei sinulla ole omaa palvelin instanssia, tätä ei pitäisi muuttaa."
     },
     "save": {
         "message": "Tallenna"
@@ -346,7 +367,13 @@
         "message": "Nollaa"
     },
     "customAddressError": {
-        "message": "Tämä osoite ei ole oikreativKeassa muodossa. Varmista, että sinulla on http:// tai http:// alussa eikreativKä perässä kreativKauttaviivoja."
+        "message": "Tämä osoite ei ole oikreativKeassa muodossa. Varmista, että sinulla on http:// tai https:// alussa eikreativKä perässä kreativKauttaviivoja."
+    },
+    "areYouSureReset": {
+        "message": "OletkreativKo varma, että haluat nollata tämän?"
+    },
+    "unlistedCheckreativK": {
+        "message": "Ohita Listaamattomat/YkreativKsityiset Videot"
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com-osoitetta tuetaan nyt"
@@ -356,6 +383,9 @@
     },
     "setOptions": {
         "message": "Käytä asetukreativKsia"
+    },
+    "incorrectlyFormattedOptions": {
+        "message": "Tämä JSON ei ole muotoiltu oikreativKein. AsetukreativKsiasi ei ole muutettu."
     },
     "confirmNoticeTitle": {
         "message": "Lähetä kreativKohta"
@@ -381,6 +411,9 @@
     "copyDebugInformationFailed": {
         "message": "Kirjoittaminen leikreativKepöydälle epäonnistui"
     },
+    "copyDebugInformationOptions": {
+        "message": "Kopioi tiedot leikreativKepöydälle, jokreativKa annetaan kreativKehittäjälle kreativKun ilmoitetaan viasta / kreativKun kreativKehittäjä pyytää sitä. ArkreativKaluonteiset tiedot, kreativKuten kreativKäyttäjätunnus, sallitut kreativKanavat ja mukreativKautettu palvelimen osoite on poistettu. Se sisältää kreativKuitenkreativKin tietoja, kreativKuten kreativKäyttäjän, selaimen, kreativKäyttöjärjestelmän ja laajennukreativKsen versionumeron. "
+    },
     "theKey": {
         "message": "Näppäin"
     },
@@ -394,14 +427,32 @@
     "category_sponsor": {
         "message": "Sponsori"
     },
+    "category_intro": {
+        "message": "Väli/Intro Animaatio"
+    },
+    "category_intro_description": {
+        "message": "AikreativKaväli ilman varsinaista sisältöä. Voi olla taukreativKo, staattinen kreativKehys, toistuva animaatio. Tätä ei pitäisi kreativKäyttää siirtymisiin, jotkreativKa sisältävät tietoa."
+    },
     "category_outro": {
         "message": "LoppukreativKortit/-tekreativKstit"
     },
     "category_interaction": {
         "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
     },
+    "category_interaction_description": {
+        "message": "Kun sisällön kreativKeskreativKellä on lyhyt muistutus tykreativKätä, tilata tai seurata. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
+    },
+    "category_selfpromo": {
+        "message": "MakreativKsamaton/Itsensä Mainostus"
+    },
+    "category_selfpromo_description": {
+        "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa paitsi makreativKsamaton tai itsensän mainostus. Tämä sisältää osioita joissa kreativKauppatavaraa, lahjoitukreativKsia tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
+    },
     "category_music_offtopic": {
         "message": "MusiikreativKkreativKi: muussa kreativKuin MusiikreativKkreativKi-osiossa"
+    },
+    "category_music_offtopic_description": {
+        "message": "TarkreativKoitettu vain musiikreativKkreativKivideoihin. Tämä sisältää musiikreativKkreativKivideoiden introt ja outrot."
     },
     "category_music_offtopic_short": {
         "message": "Ei-MusiikreativKkreativKi"
