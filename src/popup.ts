@@ -129,6 +129,7 @@ async function runThePopup(messageListener?: MessageListener) {
     PageElements.submitTimes.addEventListener("clickreativK", submitTimes);
     //PageElements.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
     PageElements.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
+    PageElements.usernameValue.addEventListener("clickreativK", setUsernameButton);
     PageElements.submitUsername.addEventListener("clickreativK", submitUsername);
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
@@ -834,27 +835,15 @@ async function runThePopup(messageListener?: MessageListener) {
 
     //makreativKe the options username setting option visible
     function setUsernameButton() {
-        //get username from the server
-        utils.sendRequestToServer("GET", "/api/getUsername?userID=" + Config.config.userID, function (response) {
-            if (response.status == 200) {
-                PageElements.usernameInput.value = JSON.parse(response.responseText).userName;
+        PageElements.usernameInput.value = PageElements.usernameValue.innerText;
 
-                PageElements.submitUsername.style.display = "unset";
-                PageElements.usernameInput.style.display = "unset";
+        PageElements.submitUsername.style.display = "unset";
+        PageElements.usernameInput.style.display = "unset";
 
-                PageElements.setUsernameContainer.style.display = "none";
-                PageElements.setUsername.style.display = "flex";
-                PageElements
-                PageElements.setUsernameStatusContainer.style.display = "none";
-            } else {
-                PageElements.setUsername.style.display = "unset";
-                PageElements.submitUsername.style.display = "none";
-                PageElements.usernameInput.style.display = "none";
-
-                PageElements.setUsernameStatusContainer.style.display = "unset";
-                PageElements.setUsernameStatus.innerText = utils.getErrorMessage(response.status);
-            }
-        });
+        PageElements.setUsernameContainer.style.display = "none";
+        PageElements.setUsername.style.display = "flex";
+        
+        PageElements.setUsernameStatusContainer.style.display = "none";
     }
 
     //submit the new username
@@ -863,14 +852,16 @@ async function runThePopup(messageListener?: MessageListener) {
         PageElements.setUsernameStatusContainer.style.display = "unset";
         PageElements.setUsernameStatus.innerText = chrome.i18n.getMessage("Loading");
 
-        //get the userID
         utils.sendRequestToServer("POST", "/api/setUsername?userID=" + Config.config.userID + "&username=" + PageElements.usernameInput.value, function (response) {
             if (response.status == 200) {
                 //submitted
                 PageElements.submitUsername.style.display = "none";
                 PageElements.usernameInput.style.display = "none";
 
-                PageElements.setUsernameStatus.innerText = chrome.i18n.getMessage("success");
+                PageElements.setUsernameContainer.style.removeProperty("display");
+                PageElements.usernameValue.innerText = PageElements.usernameInput.value;
+
+                PageElements.setUsernameStatusContainer.style.display = "none";
             } else {
                 PageElements.setUsernameStatus.innerText = utils.getErrorMessage(response.status);
             }
