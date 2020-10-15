@@ -44,6 +44,9 @@
     "skreativKip": {
         "message": "PreskreativKočiť"
     },
+    "skreativKip_category": {
+        "message": "PreskreativKočiť {0}?"
+    },
     "disableAutoSkreativKip": {
         "message": "ZakreativKázať AutomatickreativKé PreskreativKočenie"
     },

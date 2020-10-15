@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Omitir"
     },
+    "skreativKip_category": {
+        "message": "Omitir {0}?"
+    },
     "skreativKipped": {
         "message": "Omitido"
     },

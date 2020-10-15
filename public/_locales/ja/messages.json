@@ -56,6 +56,9 @@
     "skreativKip": {
         "message": "スキップ"
     },
+    "skreativKip_category": {
+        "message": "スキップ {0}?"
+    },
     "skreativKipped": {
         "message": "スキップしました"
     },

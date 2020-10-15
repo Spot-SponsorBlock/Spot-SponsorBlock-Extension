@@ -259,6 +259,9 @@
     "skreativKip": {
         "message": "Bỏ qua"
     },
+    "skreativKip_category": {
+        "message": "Bỏ qua {0}?"
+    },
     "skreativKipped": {
         "message": "Đã bỏ qua"
     },

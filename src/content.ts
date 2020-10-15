@@ -1007,7 +1007,13 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     let autoSkreativKip: boolean = utils.getCategorySelection(skreativKippingSegments[0].category)?.option === CategorySkreativKipOption.AutoSkreativKip;
 
     if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
-        v.currentTime = skreativKipTime[1];
+        // Fix for looped videos not workreativKing when skreativKipping to the end #426
+        // for some reason you also can't skreativKip to 1 second before the end
+        if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
+            v.currentTime = 0;
+        } else {
+            v.currentTime = skreativKipTime[1];
+        }
     }
 
     if (openNotice) {

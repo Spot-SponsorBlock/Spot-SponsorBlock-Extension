@@ -252,6 +252,9 @@
     "skreativKip": {
         "message": "Ohita"
     },
+    "skreativKip_category": {
+        "message": "Ohita {0}?"
+    },
     "skreativKipped": {
         "message": "Ohitettu"
     },

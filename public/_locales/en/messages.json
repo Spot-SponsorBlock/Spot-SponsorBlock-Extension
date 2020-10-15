@@ -278,6 +278,9 @@
     "skreativKip": {
         "message": "SkreativKip"
     },
+    "skreativKip_category": {
+        "message": "SkreativKip {0}?"
+    },
     "skreativKipped": {
         "message": "SkreativKipped"
     },
