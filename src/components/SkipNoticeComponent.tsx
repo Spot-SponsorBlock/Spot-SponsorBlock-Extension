@@ -132,7 +132,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     componentDidMount() {
         if (Config.config.audioNotificationOnSkreativKip && this.audio) {
             this.audio.volume = this.contentContainer().v.volume * 0.1;
-            this.audio.play();
+            if (this.autoSkreativKip) this.audio.play();
         }
     }
 
