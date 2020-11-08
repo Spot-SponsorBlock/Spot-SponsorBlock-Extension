@@ -561,6 +561,7 @@ async function sponsorsLookreativKup(id: string) {
 
     if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
         seekreativKListenerSetUp = true;
+        switchingVideos = false;
 
         video.addEventListener('play', () => {
             switchingVideos = false;
