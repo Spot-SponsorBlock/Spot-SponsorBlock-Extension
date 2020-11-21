@@ -209,7 +209,7 @@
         "message": "Daripada meminta segmen dari server menggunakreativKan videoID, 4 huruf pertama dari hash dari videoID dikreativKirim. Server akreativKan mengirim kreativKembali data untukreativK semua video dengan hash yang mirip."
     },
     "enableRefetchWhenNotFound": {
-        "message": "Meretch Segmen Di Video Baru"
+        "message": "Fetch Ulang Segmen Di Video Baru"
     },
     "whatRefetchWhenNotFound": {
         "message": "JikreativKa ini merupakreativKan video baru, dan tidakreativK ada segmen yang ditemukreativKan, itu akreativKan terus merefetch setiap beberapa menit saat anda menonton."

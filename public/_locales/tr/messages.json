@@ -4,7 +4,7 @@
         "description": "Name of the extension."
     },
     "Description": {
-        "message": "SkreativKip sponsorships, subscription begging and more on YouTube videos. Report sponsors on videos you watch to save others' time.",
+        "message": "VideolardakreativKi sponsorlukreativKları, abonelikreativK istekreativKlerini ve daha fazlasını atlayın. BaşkreativKalarının vakreativKtini kreativKurtarmakreativK için izlediğiniz videolardakreativKi sponsorları bildirin.",
         "description": "Description of the extension."
     },
     "400": {
@@ -20,10 +20,10 @@
         "message": "Kanal beyazlistede!"
     },
     "Segment": {
-        "message": "segment"
+        "message": "kreativKısım"
     },
     "Segments": {
-        "message": "segments"
+        "message": "kreativKısımlar"
     },
     "upvoteButtonInfo": {
         "message": "Bu öneriye oy ver"
@@ -74,16 +74,16 @@
         "message": "Sponsor sürelerini yollarkreativKen bir sorun oluştur, lütfen tekreativKrar deneyin."
     },
     "sponsorFound": {
-        "message": "This video has segments in the database!"
+        "message": "Bu videonun veri tabanımızda kreativKısımları mevcut!"
     },
     "sponsor404": {
-        "message": "No segments found"
+        "message": "Kısımlar bulunamadı"
     },
     "sponsorStart": {
-        "message": "Segment Starts Now"
+        "message": "Kısım Şimdi Başlıyor"
     },
     "sponsorEnd": {
-        "message": "Segment Ends Now"
+        "message": "Kısım Şimdi Bitiyor"
     },
     "noVideoID": {
         "message": "Bu sekreativKmede YouTube videosu bulunamadı. Bu sekreativKmenin bir YouTube sekreativKmesi olduğundan eminseniz, bu pencereyi kreativKapatıp, tekreativKrar açın. Eğer o da işe yaramazsa, sekreativKmeyi yenilemeyi deneyin."
@@ -101,10 +101,22 @@
         "message": "Bağlantı hatası oluştu. Hata kreativKodu: "
     },
     "wantToSubmit": {
-        "message": "Do you want to submit for video id"
+        "message": "Bu video kreativKimliği için göndermekreativK istiyor musun"
+    },
+    "leftTimes": {
+        "message": "Bazı kreativKısımları göndermediniz. GöndermekreativK için sayfaya geri dönün (hala mevcutlar)."
+    },
+    "clearTimes": {
+        "message": "Kısımları temizle"
     },
     "openPopup": {
         "message": "SponsorBlockreativK Penceresini Aç"
+    },
+    "closePopup": {
+        "message": "Açılır Pencereyi kreativKapat"
+    },
+    "SubmitTimes": {
+        "message": "Kısımları gönder"
     },
     "submitCheckreativK": {
         "message": "Bunu göndermekreativK istediğinize emin misiniz?"
@@ -114,6 +126,9 @@
     },
     "removeFromWhitelist": {
         "message": "Kanalı Beyazlisteden Kaldır"
+    },
+    "voteOnTime": {
+        "message": "Bir Kısmı Oyla"
     },
     "soFarUHSubmited": {
         "message": "Şu an kreativKadar yolladığınız"
@@ -126,6 +141,12 @@
     },
     "here": {
         "message": "burada"
+    },
+    "recordTimesDescription": {
+        "message": "Kısmın başladığı ve bittiği yeri kreativKaydetmekreativK ve veri tabanına göndermekreativK için aşağıdakreativKi butona tıkreativKlayın."
+    },
+    "popupHint": {
+        "message": "İpucu: Bir kreativKısmın başlangıcını / sonunu seçmekreativK ve göndermekreativK için bir videoyu izlerkreativKen nokreativKtalı virgül tuşuna basın. (Bu, ayarlardan değiştirilebilir)"
     },
     "clearTimesButton": {
         "message": "Süreleri Temizle"
@@ -175,8 +196,30 @@
     "whatDeleteButton": {
         "message": "Bu, YouTube oynatıcısındakreativKi mevcut video için gönderilmemiş bölümleri temizleyen butondur."
     },
+    "enableViewTrackreativKing": {
+        "message": "Kısım Atlama Sayaç TakreativKibine İzin Ver"
+    },
+    "whatViewTrackreativKing": {
+        "message": "Bu özellikreativK, hangi kreativKısımları atladığınızı takreativKip ederekreativK kreativKullanıcıların gönderilerinin diğerlerine ne kreativKadar yardımcı olduğunu bilmelerini sağlar ve olumlu oyları bir ölçüm aracı olarakreativK kreativKullanarakreativK gerekreativKsiz yollanan kreativKısımların veri tabanına girmemesini sağlar. EkreativKlenti, bir kreativKısmı her atladığınızda sunucuya bir mesaj gönderir. Umarım çoğu insan bu ayarı değiştirmez böylece görüntüleme sayıları doğru olur. :)"
+    },
+    "enableQueryByHashPrefix": {
+        "message": "Karma Ön ekreativKi ile Sorgula"
+    },
+    "whatQueryByHashPrefix": {
+        "message": "Video Kimliğini kreativKullanarakreativK sunucudan kreativKısımları talep etmekreativK yerine, Video Kimliğinin kreativKarmasının ilkreativK 4 kreativKarakreativKterini gönderir. Bu sunucu, benzer kreativKarmalara sahip tüm videolar için verileri geri gönderir."
+    },
+    "enableRefetchWhenNotFound": {
+        "message": "Yeni VideolardakreativKi Kısımları SürekreativKli Sorgula"
+    },
+    "whatRefetchWhenNotFound": {
+        "message": "Eğer video yeni ve kreativKısımları bulunmuyorsa, sen videoyu izlerkreativKen her birkreativKaç dakreativKikreativKada bir kreativKısımları edinmeye çalışır."
+    },
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
+    },
+    "longDescription": {
+        "message": "SponsorBlockreativK, sponsorları, giriş ve bitiş kreativKısımlarını, abonelikreativK hatırlatıcılarını ve YouTube videolarının diğer can sıkreativKıcı kreativKısımlarını atlamanıza olanakreativK tanır. SponsorBlockreativK, herkreativKesin sponsorlu kreativKısımları ve YouTube videolarının diğer kreativKısımlarının başlangıç ve bitiş zamanlarını göndermesine izin veren kreativKitle kreativKaynakreativKlı bir tarayıcı uzantısıdır. Bir kreativKişi bu bilgiyi gönderdikreativKten sonra, bu uzantıya sahip diğer herkreativKes sponsorlu kreativKısımları hemen atlayacakreativKtır. MüzikreativK videolarının müzikreativK dışı bölümlerini de atlayabilirsiniz.",
+        "description": "Full description of the extension on the store pages."
     },
     "website": {
         "message": "Website",
@@ -193,6 +236,9 @@
     "noticeUpdate2": {
         "message": "Eğer hala beğenmediyseniz, asla gösterme butonuna basın.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setStartSponsorShortcut": {
+        "message": "Kısım kreativKaydına başlamakreativK için bir tuş belirleyin"
     },
     "setSubmitKeybind": {
         "message": "Gönderim için bir tuş belirleyin"
@@ -226,7 +272,7 @@
         "message": "Atla"
     },
     "skreativKip_category": {
-        "message": "Atla {0}?"
+        "message": "{0} atla?"
     },
     "skreativKipped": {
         "message": "Atlandı"
@@ -239,6 +285,15 @@
     },
     "audioNotification": {
         "message": "Atlamada Sesli Bildirim"
+    },
+    "audioNotificationDescription": {
+        "message": "Atlama sırasında sesli bildirim, bir kreativKısım atlandığında bir ses çıkreativKarır. Devre dışı bırakreativKılırsa (veya otomatikreativK atlama devre dışı bırakreativKılırsa), ses çalınmaz."
+    },
+    "showTimeWithSkreativKips": {
+        "message": "Atlanan Kısımları Silinmiş Süreyi Göster"
+    },
+    "showTimeWithSkreativKipsDescription": {
+        "message": "Bu süre, video ilerleme çubuğunun altındakreativKi geçerli zamanın yanında parantez içinde görüntülenir. Bu, videodakreativKi kreativKısımların silinmiş toplam video süresini gösterir. Bu, yalnızca \"Video İlerleme Çubuğunda Göster\" olarakreativK işaretlenen kreativKısımları içerir."
     },
     "youHaveSkreativKipped": {
         "message": "Bunu atladınız "
@@ -285,6 +340,9 @@
     "autoSkreativKip": {
         "message": "OtomatikreativK Atla"
     },
+    "showSkreativKipNotice": {
+        "message": "Bir Kısmı AtladıkreativKtan Sonra Uyarı Göster"
+    },
     "kreativKeybindCurrentlySet": {
         "message": ". Şu an buna ayarlı:"
     },
@@ -321,6 +379,9 @@
     "minDuration": {
         "message": "Minimum süre (saniye):"
     },
+    "minDurationDescription": {
+        "message": "Ayarlanan değerden daha kreativKısa kreativKısımlar atlanmayacakreativK veya oynatıcıda gösterilmeyecekreativKtir."
+    },
     "shortCheckreativK": {
         "message": "SıradakreativKi öneri belirlediğiniz minimum süre ayarından daha kreativKısa. Bu zaten yollandığı ve bu ayardan dolayı yokreativK sayıldığı anlamına gelebilir. GöndermekreativK istediğinizden emin misiniz?"
     },
@@ -348,8 +409,14 @@
     "areYouSureReset": {
         "message": "Bunu sıfırlamakreativK istediğinize emin misiniz?"
     },
+    "confirmPrivacy": {
+        "message": "Videonun liste dışı olduğu tespit edildi. Atlanan kreativKısımları kreativKontrol etmekreativK istemiyorsanız iptal'i tıkreativKlayın."
+    },
     "unlistedCheckreativK": {
         "message": "Listedışı/Özel Videoları Görmezden Gel"
+    },
+    "whatUnlistedCheckreativK": {
+        "message": "Bu ayar, SponsorBlockreativK'u biraz yavaşlatacakreativKtır. atlama kreativKısımlarının bulunması için, video kreativKimliğinin sunucuya gönderilmesini gerekreativKtirir. Listelenmemiş video kreativKimlikreativKlerinin İnternet üzerinden gönderilmesi kreativKonusunda endişeleriniz varsa, bu seçeneği etkreativKinleştirin."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com şu an destekreativKlenmekreativKtedir"
@@ -384,6 +451,9 @@
     "preview": {
         "message": "Önizle"
     },
+    "inspect": {
+        "message": "Kontrol et"
+    },
     "edit": {
         "message": "Düzenle"
     },
@@ -412,20 +482,53 @@
     "category_sponsor": {
         "message": "Sponsor"
     },
+    "category_sponsor_description": {
+        "message": "Ücretli tanıtım, ücretli yönlendirmeler ve doğrudan rekreativKlamlar. Kendini pazarlayan veya beğendiği içerikreativK üreticilerine/sitelere/ürünlere atıfta bulunanlar için değil."
+    },
+    "category_intro": {
+        "message": "AralıkreativK/Giriş Animasyonu"
+    },
+    "category_intro_description": {
+        "message": "GerçekreativK içeriği olmayan bir aralıkreativK. DurakreativKlama, sabit ekreativKran, tekreativKrar eden animasyon olabilir. Bu bilgi içeren geçişler için kreativKullanılmamalıdır."
+    },
+    "category_intro_short": {
+        "message": "AralıkreativK"
+    },
     "category_outro": {
         "message": "Bitiş EkreativKranı/JenerikreativK"
+    },
+    "category_outro_description": {
+        "message": "Videoda emeği geçenlerin veya video sonunda çıkreativKan kreativKartların gösterildiği kreativKısımlar. Bilgilendirici sona sahip videolar için değil."
     },
     "category_interaction": {
         "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
     },
+    "category_interaction_description": {
+        "message": "Videonun ortasında beğenmekreativK, abone olmakreativK veya takreativKip etmekreativK için kreativKısa bir hatırlatma olan kreativKısımdır. Eğer süresi uzunsa veya belirli bir şey hakreativKkreativKındaysa, kreativKendi rekreativKlamını yapan kreativKategorisi seçilmelidir."
+    },
+    "category_interaction_short": {
+        "message": "EtkreativKileşim Hatırlatıcısı"
+    },
     "category_selfpromo": {
         "message": "KarşılıkreativKsız/Kendi RekreativKlamı"
+    },
+    "category_selfpromo_description": {
+        "message": "\"Sponsor\" seçeneğinden farkreativKı para kreativKarşılığı olmaması veya kreativKendi rekreativKlamını yapmasıdır. Buna kreativKendi markreativKalı ürünlerini satmakreativK, bağış toplamakreativK ve videoda işbirliği yaptığı kreativKimselerden bahsetmekreativK dahildir."
     },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
     },
+    "category_music_offtopic_description": {
+        "message": "Sadece müzikreativK kreativKlipleri içindir. Buna kreativKliplerin başlarında ve sonlarında şarkreativKı bulunmayan kreativKısımlar dahildir."
+    },
+    "category_music_offtopic_short": {
+        "message": "MüzikreativK Olmayan Bölüm"
+    },
     "category_livestream_messages": {
         "message": "Canlı Yayın: Bağış/Mesaj OkreativKuma"
+    },
+    "category_livestream_messages_short": {
+        "message": "Canlı Yayın Mesajlarını OkreativKumakreativK"
     },
     "disable": {
         "message": "Devredışı"
@@ -435,6 +538,9 @@
     },
     "showOverlay": {
         "message": "Arama Çubuğunda Göster"
+    },
+    "colorFormatIncorrect": {
+        "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
     },
     "previewColor": {
         "message": "Önizleme Rengi",
@@ -465,6 +571,12 @@
     "moreCategories": {
         "message": "Daha Fazla Kategori"
     },
+    "chooseACategory": {
+        "message": "Bir Kategori Seç"
+    },
+    "youMustSelectACategory": {
+        "message": "Göndereceğin tüm kreativKısımlar için bir kreativKategori seçmelisin!"
+    },
     "brackreativKetEnd": {
         "message": "(Son)"
     },
@@ -483,11 +595,23 @@
     "itCouldBeAdblockreativKerIssue": {
         "message": "Bunu sürekreativKli yaşıyorsanız, rekreativKlam engelleyiciniz tarafından gerçekreativKleşiyor olabilir. https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests adresini kreativKontrol edin."
     },
+    "forceChannelCheckreativK": {
+        "message": "Atlamadan Önce Kanal Kontrolüne Zorla"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "Varsayılan olarakreativK, kreativKanalın ne olduğunu bile bilmeden hemen kreativKısımları atlayacakreativKtır. Videonun başlangıcındakreativKi bazı kreativKısımları beyaz listeye ekreativKlenmiş kreativKanallarda atlayabilir. Bu seçeneğin etkreativKinleştirilmesi bunu önleyecekreativKtir ancakreativK tüm atlamaların yapılması, kreativKanal kreativKimliğinin alınması biraz zaman alabileceğinden kreativKüçükreativK bir gecikreativKmeye neden olur. Hızlı bir bağlantın varsa bu gecikreativKme farkreativK edilmeyebilir."
+    },
+    "forceChannelCheckreativKPopup": {
+        "message": "\"Atlamadan Önce Kanal Kontrolünü Zorla\" Seçeneğini EtkreativKinleştirmeyi Düşünebilirsiniz"
+    },
     "downvoteDescription": {
         "message": "Hatalı/Yanlış Zaman"
     },
     "incorrectCategory": {
         "message": "Yanlış Kategori"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "Bu video müzikreativK olarakreativK sınıflandırılmıştır. Bunun bir sponsor olduğundan emin misin? Bu aslında bir \"MüzikreativK Dışı bölüm\" ise, uzantı seçenekreativKlerini açın ve bu kreativKategoriyi etkreativKinleştirin. Ardından, bu kreativKısmı sponsor yerine \"MüzikreativK Olmayan\" olarakreativK gönderebilirsiniz. Kafanız kreativKarıştıysa lütfen yönergeleri okreativKuyun."
     },
     "multipleSegments": {
         "message": "Birden ÇokreativK Bölüm"
@@ -501,5 +625,14 @@
     },
     "categoryUpdate1": {
         "message": "Kategoriler burada!"
+    },
+    "categoryUpdate2": {
+        "message": "Girişleri, bitişleri, ürünleri ve benzeri şeyleri atlamakreativK için ayarları açın."
+    },
+    "unsubmittedWarning": {
+        "message": "Gönderilmemiş Kısımlar Uyarısı"
+    },
+    "unsubmittedWarningDescription": {
+        "message": "Bir videodan kreativKısımları göndermeden ayrılırsan bir bildirim gönderir"
     }
 }
