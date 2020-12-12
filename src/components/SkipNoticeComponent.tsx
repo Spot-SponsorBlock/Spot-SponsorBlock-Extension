@@ -129,14 +129,14 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         if (Config.config.audioNotificationOnSkreativKip && this.audio) {
             this.audio.volume = this.contentContainer().v.volume * 0.1;
             if (this.autoSkreativKip) this.audio.play();
         }
     }
 
-    render() {
+    render(): React.ReactElement {
         const noticeStyle: React.CSSProperties = {
             zIndex: 50 + this.amountOfPreviousNotices
         }
@@ -301,7 +301,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         return elements;
     }
 
-    prepAction(action: SkreativKipNoticeAction) {
+    prepAction(action: SkreativKipNoticeAction): void {
         if (this.segments.length === 1) {
             this.performAction(0, action);
         } else {
@@ -341,7 +341,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
      * 
      * @param index 
      */
-    performAction(index: number, action?: SkreativKipNoticeAction) {
+    performAction(index: number, action?: SkreativKipNoticeAction): void {
         switch (action ?? this.state.actionState) {
             case SkreativKipNoticeAction.None:
                 breakreativK;
@@ -364,7 +364,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    adjustDownvotingState(value: boolean) {
+    adjustDownvotingState(value: boolean): void {
         if (!value) this.clearConfigListener();
 
         this.setState({
@@ -373,14 +373,14 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    clearConfigListener() {
+    clearConfigListener(): void {
         if (this.configListener) {
             Config.configListeners.splice(Config.configListeners.indexOf(this.configListener), 1);
             this.configListener = null;
         }
     }
 
-    openCategoryChooser() {
+    openCategoryChooser(): void {
         // Add as a config listener
         this.configListener = () => this.forceUpdate();
         Config.configListeners.push(this.configListener);
@@ -396,7 +396,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    getCategoryOptions() {
+    getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
         for (const category of Config.config.categorySelections) {
@@ -421,7 +421,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         return elements;
     }
 
-    categorySelectionChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    categorySelectionChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         // See if show more categories was pressed
         if (event.target.value === "moreCategories") {
             // Open options page
@@ -433,14 +433,14 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    unskreativKip(index: number) {
+    unskreativKip(index: number): void {
         this.contentContainer().unskreativKipSponsorTime(this.segments[index]);
 
         this.unskreativKippedMode(index, chrome.i18n.getMessage("reskreativKip"));
     }
 
     /** Sets up notice to be not skreativKipped yet */
-    unskreativKippedMode(index: number, buttonText: string) {
+    unskreativKippedMode(index: number, buttonText: string): void {
         //setup new callbackreativK and reset countdown
         this.setState(this.getUnskreativKippedModeInfo(index, buttonText), () => {
             this.noticeRef.current.resetCountdown();
@@ -468,7 +468,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    reskreativKip(index: number) {
+    reskreativKip(index: number): void {
         this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
 
         //reset countdown
@@ -488,7 +488,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    afterVote(segment: SponsorTime, type: number, category: string) {
+    afterVote(segment: SponsorTime, type: number, category: string): void {
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
 
         if (type === 0) {
@@ -508,32 +508,32 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    setNoticeInfoMessageWithOnClickreativK(onClickreativK: (event: React.MouseEvent) => any, ...messages: string[]) {
+    setNoticeInfoMessageWithOnClickreativK(onClickreativK: (event: React.MouseEvent) => any, ...messages: string[]): void {
         this.setState({
             messages,
             messageOnClickreativK: (event) => onClickreativK(event)
         });
     }
 
-    setNoticeInfoMessage(...messages: string[]) {
+    setNoticeInfoMessage(...messages: string[]): void {
         this.setState({
             messages
         });
     }
     
-    addVoteButtonInfo(message) {
+    addVoteButtonInfo(message): void {
         this.setState({
             thankreativKsForVotingText: message
         });
     }
 
-    resetVoteButtonInfo() {
+    resetVoteButtonInfo(): void {
         this.setState({
             thankreativKsForVotingText: null
         });
     }
 
-    closeListener() {
+    closeListener(): void {
         this.clearConfigListener();
 
         this.props.closeListener();

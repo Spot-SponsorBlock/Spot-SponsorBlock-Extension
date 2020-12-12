@@ -29,7 +29,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         }
     }
 
-    render() {
+    render(): React.ReactElement {
         let defaultOption = "disable";
         // Set the default opton properly
         for (const categorySelection of Config.config.categorySelections) {
@@ -160,7 +160,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         return elements;
     }
 
-    setColorState(event: React.FormEvent<HTMLInputElement>, preview: boolean) {
+    setColorState(event: React.FormEvent<HTMLInputElement>, preview: boolean): void {
         if (preview) {
             this.setState({
                 previewColor: event.currentTarget.value

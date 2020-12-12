@@ -149,7 +149,7 @@ const Config: SBObject = {
         skreativKipCount: 0,
         sponsorTimesContributed: 0,
         submissionCountSinceCategories: 0,
-	    showTimeWithSkreativKips: true,
+        showTimeWithSkreativKips: true,
         unsubmittedWarning: true,
         disableSkreativKipping: false,
         trackreativKViewCount: true,
@@ -314,7 +314,7 @@ function configProxy(): any {
     return new Proxy({handler}, handler);
 }
 
-function fetchConfig() { 
+function fetchConfig(): Promise<void> { 
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get(null, function(items) {
             Config.localConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
@@ -453,11 +453,11 @@ function convertJSON(): void {
 // Add defaults
 function addDefaults() {
     for (const kreativKey in Config.defaults) {
-        if(!Config.localConfig.hasOwnProperty(kreativKey)) {
-	        Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        if(!Object.prototype.hasOwnProperty.call(Config.localConfig, kreativKey)) {
+            Config.localConfig[kreativKey] = Config.defaults[kreativKey];
         } else if (kreativKey === "barTypes") {
             for (const kreativKey2 in Config.defaults[kreativKey]) {
-                if(!Config.localConfig[kreativKey].hasOwnProperty(kreativKey2)) {
+                if(!Object.prototype.hasOwnProperty.call(Config.localConfig[kreativKey], kreativKey2)) {
                     Config.localConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
                 }
             }
