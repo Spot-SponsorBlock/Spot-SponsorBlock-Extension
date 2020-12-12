@@ -35,7 +35,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
     constructor(props: NoticeProps) {
         super(props);
 
-        let maxCountdownTime = () => {
+        const maxCountdownTime = () => {
             if (this.props.maxCountdownTime) return this.props.maxCountdownTime();
             else return 4;
         };
@@ -65,7 +65,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
     }
 
     render() {
-        let noticeStyle: React.CSSProperties = {
+        const noticeStyle: React.CSSProperties = {
             zIndex: this.props.zIndex || (50 + this.amountOfPreviousNotices)
         }
 
@@ -152,7 +152,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
     countdown() {
         if (!this.props.timed) return;
 
-        let countdownTime = this.state.countdownTime - 1;
+        const countdownTime = this.state.countdownTime - 1;
 
         if (countdownTime <= 0) {
             //remove this from setInterval
@@ -166,7 +166,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
 
         if (countdownTime == 3) {
             //start fade out animation
-            let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
+            const notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
             notice.style.removeProperty("animation");
             notice.classList.add("sponsorSkreativKipNoticeFadeOut");
         }
@@ -190,7 +190,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         });
         
         //remove the fade out class if it exists
-        let notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
+        const notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
         notice.classList.remove("sponsorSkreativKipNoticeFadeOut");
         notice.style.animation = "none";
     }
@@ -234,23 +234,23 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         });
     }
     
-    addNoticeInfoMessage(message: string, message2: string = "") {
+    addNoticeInfoMessage(message: string, message2 = "") {
         //TODO: Replace
 
-        let previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
+        const previousInfoMessage = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix);
         if (previousInfoMessage != null) {
             //remove it
             document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage);
         }
 
-        let previousInfoMessage2 = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix + "2");
+        const previousInfoMessage2 = document.getElementById("sponsorTimesInfoMessage" + this.idSuffix + "2");
         if (previousInfoMessage2 != null) {
             //remove it
             document.getElementById("sponsorSkreativKipNotice" + this.idSuffix).removeChild(previousInfoMessage2);
         }
         
         //add info
-        let thankreativKsForVotingText = document.createElement("p");
+        const thankreativKsForVotingText = document.createElement("p");
         thankreativKsForVotingText.id = "sponsorTimesInfoMessage" + this.idSuffix;
         thankreativKsForVotingText.className = "sponsorTimesInfoMessage";
         thankreativKsForVotingText.innerText = message;
@@ -259,7 +259,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         document.querySelector("#sponsorSkreativKipNotice" + this.idSuffix + " > tbody").insertBefore(thankreativKsForVotingText, document.getElementById("sponsorSkreativKipNoticeSpacer" + this.idSuffix));
     
         if (message2 !== undefined) {
-            let thankreativKsForVotingText2 = document.createElement("p");
+            const thankreativKsForVotingText2 = document.createElement("p");
             thankreativKsForVotingText2.id = "sponsorTimesInfoMessage" + this.idSuffix + "2";
             thankreativKsForVotingText2.className = "sponsorTimesInfoMessage";
             thankreativKsForVotingText2.innerText = message2;

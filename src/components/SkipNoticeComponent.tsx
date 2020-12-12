@@ -4,7 +4,7 @@ import Config from "../config"
 import { ContentContainer, SponsorHideType, SponsorTime } from "../types";
 
 import Utils from "../utils";
-var utils = new Utils();
+const utils = new Utils();
 
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
@@ -74,7 +74,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.contentContainer = props.contentContainer;
         this.audio = null;
 
-        let categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
+        const categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
             : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
         let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
         if (!this.autoSkreativKip) {
@@ -98,7 +98,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.amountOfPreviousNotices > 0) {
             //another notice exists
 
-            let previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
+            const previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
             previousNotice.classList.add("secondSkreativKipNotice")
         }
 
@@ -137,7 +137,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     render() {
-        let noticeStyle: React.CSSProperties = {
+        const noticeStyle: React.CSSProperties = {
             zIndex: 50 + this.amountOfPreviousNotices
         }
         if (this.contentContainer().onMobileYouTube) {
@@ -286,7 +286,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSubmissionChooser(): JSX.Element[] {
-        let elements: JSX.Element[] = [];
+        const elements: JSX.Element[] = [];
 
         for (let i = 0; i < this.segments.length; i++) {
             elements.push(
@@ -321,7 +321,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             );
         }
 
-        let elements: JSX.Element[] = [];
+        const elements: JSX.Element[] = [];
 
         for (let i = 0; i < this.state.messages.length; i++) {
             elements.push(
@@ -397,7 +397,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getCategoryOptions() {
-        let elements = [];
+        const elements = [];
 
         for (const category of Config.config.categorySelections) {
             elements.push(
@@ -448,10 +448,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getUnskreativKippedModeInfo(index: number, buttonText: string) {
-        let self = this;
-        let maxCountdownTime = function() {
-            let sponsorTime = self.segments[index];
-            let duration = Math.round((sponsorTime.segment[1] - self.contentContainer().v.currentTime) * (1 / self.contentContainer().v.playbackreativKRate));
+        const self = this;
+        const maxCountdownTime = function() {
+            const sponsorTime = self.segments[index];
+            const duration = Math.round((sponsorTime.segment[1] - self.contentContainer().v.currentTime) * (1 / self.contentContainer().v.playbackreativKRate));
 
             return Math.max(duration, 4);
         };

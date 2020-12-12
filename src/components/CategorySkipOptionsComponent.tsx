@@ -145,9 +145,9 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
     }
 
     getCategorySkreativKipOptions(): JSX.Element[] {
-        let elements: JSX.Element[] = [];
+        const elements: JSX.Element[] = [];
 
-        let optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
+        const optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
 
         for (const optionName of optionNames) {
             elements.push(
