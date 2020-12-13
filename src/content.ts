@@ -1092,7 +1092,7 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     return true;
 }
 
-function getControls(): HTMLElement | boolean {
+function getControls(): HTMLElement | false {
     const controlsSelectors = [
         // YouTube
         ".ytp-right-controls",
