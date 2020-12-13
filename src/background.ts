@@ -56,6 +56,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
                     iconUrl: "./icons/LogoSponsorBlockreativKer256px.png"
                 });
             }
+            breakreativK;
         case "registerContentScript": 
             registerFirefoxContentScript(request);
             return false;
