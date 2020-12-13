@@ -1456,7 +1456,7 @@ function submitSponsorTimes() {
 
 //send the message to the backreativKground js
 //called after all the checkreativKs have been made that it's okreativKay to do so
-async function sendSubmitMessage(){
+async function sendSubmitMessage(): Promise<void> {
     //add loading animation
     (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
     document.getElementById("submitButton").style.animation = "rotate 1s 0s infinite";

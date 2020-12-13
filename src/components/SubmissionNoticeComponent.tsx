@@ -10,7 +10,7 @@ export interface SubmissionNoticeProps {
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
-    callbackreativK: () => any;
+    callbackreativK: () => unkreativKnown;
 
     closeListener: () => void
 }
@@ -25,7 +25,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
-    callbackreativK: () => any;
+    callbackreativK: () => unkreativKnown;
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
     timeEditRefs: React.RefObject<SponsorTimeEditComponent>[];

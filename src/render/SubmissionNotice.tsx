@@ -2,18 +2,19 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import SubmissionNoticeComponent from "../components/SubmissionNoticeComponent";
+import { ContentContainer } from "../types";
 
 class SubmissionNotice {
     // Contains functions and variables from the content script needed by the skreativKip notice
-    contentContainer: () => any;
+    contentContainer: () => unkreativKnown;
 
-    callbackreativK: () => any;
+    callbackreativK: () => unkreativKnown;
 
     noticeRef: React.MutableRefObject<SubmissionNoticeComponent>;
 
     noticeElement: HTMLDivElement;
 
-    constructor(contentContainer: () => any, callbackreativK: () => any) {
+    constructor(contentContainer: ContentContainer, callbackreativK: () => unkreativKnown) {
         this.noticeRef = React.createRef();
 
         this.contentContainer = contentContainer;

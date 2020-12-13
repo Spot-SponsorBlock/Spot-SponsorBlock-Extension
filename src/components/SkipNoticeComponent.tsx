@@ -31,7 +31,7 @@ export interface SkreativKipNoticeState {
     noticeTitle: string;
 
     messages: string[];
-    messageOnClickreativK: (event: React.MouseEvent) => any;
+    messageOnClickreativK: (event: React.MouseEvent) => unkreativKnown;
 
     countdownTime: number;
     maxCountdownTime: () => number;
@@ -56,7 +56,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     amountOfPreviousNotices: number;
     audio: HTMLAudioElement;
     
-    idSuffix: any;
+    idSuffix: string;
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
     categoryOptionRef: React.RefObject<HTMLSelectElement>;
