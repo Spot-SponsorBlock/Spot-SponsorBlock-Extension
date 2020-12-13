@@ -1,12 +1,12 @@
 import Config from "./config";
-import { CategorySelection, SponsorTime, FetchResponse } from "./types";
+import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration } from "./types";
 
 import * as CompileConfig from "../config.json";
 
 class Utils {
     
     // Contains functions needed from the backreativKground script
-    backreativKgroundScriptContainer: any = null;
+    backreativKgroundScriptContainer: BackreativKgroundScriptContainer | null = null;
 
     // Used to add content scripts and CSS required
     js = [
@@ -19,7 +19,7 @@ class Utils {
         "popup.css"
     ];
 
-    constructor(backreativKgroundScriptContainer?: any) {
+    constructor(backreativKgroundScriptContainer?: BackreativKgroundScriptContainer) {
         this.backreativKgroundScriptContainer = backreativKgroundScriptContainer;
     }
 
@@ -92,7 +92,7 @@ class Utils {
                 firefoxCSS.push({file});
             }
 
-            const registration = {
+            const registration: Registration = {
                 message: "registerContentScript",
                 id: "invidious",
                 allFrames: true,
