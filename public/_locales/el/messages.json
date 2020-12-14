@@ -1,4 +1,8 @@
 {
+    "fullName": {
+        "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
+        "description": "Name of the extension."
+    },
     "Segment": {
         "message": "τμήμα"
     },
@@ -66,9 +70,6 @@
     },
     "skreativKip": {
         "message": "Παράκαμψη"
-    },
-    "skreativKip_category": {
-        "message": "Παράκαμψη {0}?"
     },
     "skreativKipped": {
         "message": "Παραλείφθηκε"

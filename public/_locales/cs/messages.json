@@ -1,6 +1,6 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK pro YouTube - PřeskreativKoč Sponzorství",
+        "message": "SponsorBlockreativK pro YouTube - PřeskreativKoč sponzorství",
         "description": "Name of the extension."
     },
     "Description": {
@@ -23,7 +23,7 @@
         "message": "segment"
     },
     "Segments": {
-        "message": "segmenty"
+        "message": "segmentů"
     },
     "upvoteButtonInfo": {
         "message": "Hlasovat pro tento příspěvekreativK"
@@ -275,7 +275,7 @@
         "message": "PřeskreativKočit {0}?"
     },
     "skreativKipped": {
-        "message": "PřeskreativKočeno"
+        "message": "- přeskreativKočeno"
     },
     "disableAutoSkreativKip": {
         "message": "ZakreativKázat automatickreativKé přeskreativKočení"

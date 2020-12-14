@@ -1,4 +1,8 @@
 {
+    "fullName": {
+        "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
+        "description": "Name of the extension."
+    },
     "channelWhitelisted": {
         "message": "Kanál bol pridaný do whitelistu!"
     },

@@ -252,9 +252,6 @@
     "skreativKip": {
         "message": "Ohita"
     },
-    "skreativKip_category": {
-        "message": "Ohita {0}?"
-    },
     "skreativKipped": {
         "message": "Ohitettu"
     },
@@ -268,7 +265,7 @@
         "message": "Äänellinen Ilmoitus Ohitettaessa"
     },
     "audioNotificationDescription": {
-        "message": "Ääni-ilmoitus ohitukreativKsessa toistaa äänen, kreativKun segmentti ohitetaan. Jos pois päältä (tai automaattinen ohitus on pois kreativKäytöstä), ääntä ei soiteta."
+        "message": "Ääni-ilmoitus ohittaessa toistaa äänen kreativKun segmentti ohitetaan. Jos asetus on pois päältä (tai automaattinen ohitus on pois kreativKäytöstä), ääntä ei soiteta."
     },
     "youHaveSkreativKipped": {
         "message": "Olet ohittanut "
@@ -295,7 +292,7 @@
         "message": " heidän elämästään."
     },
     "statusReminder": {
-        "message": "TarkreativKista status.sponsor.ajay.app palvelimen tila."
+        "message": "TarkreativKista palvelimen tila osoitteessa status.sponsor.ajay.app."
     },
     "changeUserID": {
         "message": "Tuo/vie sinun UserID:si"
@@ -346,7 +343,7 @@
         "message": "VähimmäiskreativKesto (sekreativKuntia):"
     },
     "minDurationDescription": {
-        "message": "Segmentit, jotkreativKa ovat asetettua arvoa lyhyempiä, ei tulla ohittamaan tai näytetä soittimessa."
+        "message": "Segmenttejä jotkreativKa ovat asetettua arvoa lyhyempiä ei ohiteta tai näytetä soittimessa."
     },
     "showUploadButton": {
         "message": "Näytä lähetä-painikreativKe"
@@ -358,7 +355,7 @@
         "message": "SponsorBlockreativK Palvelimen Osoite"
     },
     "customServerAddressDescription": {
-        "message": "Osoite jota SponsorBlockreativK kreativKäyttää lähettääkreativKseen kreativKutsuja palvelimelle.\nEllei sinulla ole omaa palvelin instanssia, tätä ei pitäisi muuttaa."
+        "message": "Osoite jota SponsorBlockreativK kreativKäyttää lähettääkreativKseen kreativKutsuja palvelimelle.\nEllei sinulla ole omaa palvelininstanssia, tätä ei pitäisi muuttaa."
     },
     "save": {
         "message": "Tallenna"
@@ -373,7 +370,7 @@
         "message": "OletkreativKo varma, että haluat nollata tämän?"
     },
     "unlistedCheckreativK": {
-        "message": "Ohita Listaamattomat/YkreativKsityiset Videot"
+        "message": "Ohita listaamattomat/ykreativKsityiset videot"
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com-osoitetta tuetaan nyt"
@@ -428,7 +425,7 @@
         "message": "Sponsori"
     },
     "category_intro": {
-        "message": "Väli/Intro Animaatio"
+        "message": "Väli- tai introanimaatio"
     },
     "category_intro_description": {
         "message": "AikreativKaväli ilman varsinaista sisältöä. Voi olla taukreativKo, staattinen kreativKehys, toistuva animaatio. Tätä ei pitäisi kreativKäyttää siirtymisiin, jotkreativKa sisältävät tietoa."
