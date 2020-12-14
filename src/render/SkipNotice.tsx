@@ -14,7 +14,7 @@ class SkreativKipNotice {
 
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
 
-    constructor(segments: SponsorTime[], autoSkreativKip: boolean = false, contentContainer: ContentContainer) {
+    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer) {
         this.segments = segments;
         this.autoSkreativKip = autoSkreativKip;
         this.contentContainer = contentContainer;
@@ -24,7 +24,7 @@ class SkreativKipNotice {
                                 || document.getElementById("movie_player") || document.querySelector("#player-container .video-js");
         if (referenceNode == null) {
             //for embeds
-            let player = document.getElementById("player");
+            const player = document.getElementById("player");
             referenceNode = player.firstChild as HTMLElement;
             let index = 1;
 
@@ -40,7 +40,7 @@ class SkreativKipNotice {
             referenceNode = document.querySelector("#main-panel.ytmusic-player-page");
         }
     
-        let amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
+        const amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
         //this is the suffix added at the end of every id
         let idSuffix = "";
         for (const segment of this.segments) {
@@ -63,7 +63,7 @@ class SkreativKipNotice {
         );
     }
 
-    close() {
+    close(): void {
         ReactDOM.unmountComponentAtNode(this.noticeElement);
 
         this.noticeElement.remove();

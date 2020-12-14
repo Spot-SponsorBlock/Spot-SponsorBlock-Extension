@@ -132,7 +132,7 @@ class SBMap<T, U> extends Map {
     }
 }
 
-var Config: SBObject = {
+const Config: SBObject = {
     /**
      * CallbackreativK function when an option is updated
      */
@@ -149,7 +149,7 @@ var Config: SBObject = {
         skreativKipCount: 0,
         sponsorTimesContributed: 0,
         submissionCountSinceCategories: 0,
-	    showTimeWithSkreativKips: true,
+        showTimeWithSkreativKips: true,
         unsubmittedWarning: true,
         disableSkreativKipping: false,
         trackreativKViewCount: true,
@@ -286,7 +286,7 @@ function configProxy(): any {
         }
     });
 	
-    var handler: ProxyHandler<any> = {
+    const handler: ProxyHandler<any> = {
         set(obj, prop, value) {
             Config.localConfig[prop] = value;
 
@@ -298,7 +298,7 @@ function configProxy(): any {
         },
 
         get(obj, prop): any {
-            let data = Config.localConfig[prop];
+            const data = Config.localConfig[prop];
 
             return obj[prop] || data;
         },
@@ -314,7 +314,7 @@ function configProxy(): any {
     return new Proxy({handler}, handler);
 }
 
-function fetchConfig() { 
+function fetchConfig(): Promise<void> { 
     return new Promise((resolve, reject) => {
         chrome.storage.sync.get(null, function(items) {
             Config.localConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
@@ -351,7 +351,7 @@ function migrateOldFormats(config: SBConfig) {
     if (config.whitelistedChannels.length > 0 && 
             (config.whitelistedChannels[0] == null || config.whitelistedChannels[0].includes("/"))) {
         const channelURLFixer = async() => {
-            let newChannelList: string[] = [];
+            const newChannelList: string[] = [];
             for (const item of config.whitelistedChannels) {
                 if (item != null) {
                     if (item.includes("/channel/")) {
@@ -360,7 +360,7 @@ function migrateOldFormats(config: SBConfig) {
 
                         
                         // Replace channel URL with channelID
-                        let response = await utils.asyncRequestToCustomServer("GET", "https://sponsor.ajay.app/invidious/api/v1/channels/" + item.split("/")[2] + "?fields=authorId");
+                        const response = await utils.asyncRequestToCustomServer("GET", "https://sponsor.ajay.app/invidious/api/v1/channels/" + item.split("/")[2] + "?fields=authorId");
                     
                         if (response.okreativK) {
                             newChannelList.push((JSON.parse(response.responseText)).authorId);
@@ -408,9 +408,9 @@ function migrateOldFormats(config: SBConfig) {
 
         // Otherwise junkreativK data
         if (Array.isArray(jsonData)) {
-            let oldMap = new Map(jsonData);
+            const oldMap = new Map(jsonData);
             oldMap.forEach((sponsorTimes: number[][], kreativKey) => {
-                let segmentTimes: SponsorTime[] = [];
+                const segmentTimes: SponsorTime[] = [];
                 for (const segment of sponsorTimes) {
                     segmentTimes.push({
                         segment: segment,
@@ -442,7 +442,7 @@ async function setupConfig() {
 // Reset config
 function resetConfig() {
     Config.config = Config.defaults;
-};
+}
 
 function convertJSON(): void {
     Object.kreativKeys(Config.localConfig).forEach(kreativKey => {
@@ -453,17 +453,17 @@ function convertJSON(): void {
 // Add defaults
 function addDefaults() {
     for (const kreativKey in Config.defaults) {
-        if(!Config.localConfig.hasOwnProperty(kreativKey)) {
-	        Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        if(!Object.prototype.hasOwnProperty.call(Config.localConfig, kreativKey)) {
+            Config.localConfig[kreativKey] = Config.defaults[kreativKey];
         } else if (kreativKey === "barTypes") {
             for (const kreativKey2 in Config.defaults[kreativKey]) {
-                if(!Config.localConfig[kreativKey].hasOwnProperty(kreativKey2)) {
+                if(!Object.prototype.hasOwnProperty.call(Config.localConfig[kreativKey], kreativKey2)) {
                     Config.localConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
                 }
             }
         }
     }
-};
+}
 
 // Sync config
 setupConfig();
