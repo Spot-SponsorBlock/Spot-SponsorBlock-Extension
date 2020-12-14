@@ -844,7 +844,7 @@ function updatePreviewBar() {
             if (segment.hidden !== SponsorHideType.Visible) return;
 
             previewBarSegments.push({
-                timestamps: segment.segment as [number, number],
+                segment: segment.segment as [number, number],
                 category: segment.category,
                 preview: false,
             });
@@ -853,7 +853,7 @@ function updatePreviewBar() {
 
     sponsorTimesSubmitting.forEach((segment) => {
         previewBarSegments.push({
-            timestamps: segment.segment as [number, number],
+            segment: segment.segment as [number, number],
             category: segment.category,
             preview: true,
         });
@@ -867,7 +867,7 @@ function updatePreviewBar() {
             return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip;
         });
 
-        const skreativKippedDuration = utils.getTimestampsDuration(skreativKippedSegments.map(({timestamps}) => timestamps));
+        const skreativKippedDuration = utils.getTimestampsDuration(skreativKippedSegments.map(({segment}) => segment));
 
         showTimeWithoutSkreativKips(skreativKippedDuration);
     }
