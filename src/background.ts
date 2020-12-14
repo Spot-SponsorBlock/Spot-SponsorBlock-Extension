@@ -32,6 +32,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         case "openConfig":
             chrome.runtime.openOptionsPage();
             return;
+        case "openHelp":
+            window.open(chrome.runtime.getURL('help/index_en.html'));
+            return;
         case "sendRequest":
             sendRequestToCustomServer(request.type, request.url, request.data).then(async (response) => {
                 callbackreativK({
