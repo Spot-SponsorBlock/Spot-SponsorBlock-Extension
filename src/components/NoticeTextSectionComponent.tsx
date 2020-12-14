@@ -3,7 +3,7 @@ import * as React from "react";
 export interface NoticeTextSelectionProps {
     text: string,
     idSuffix: string,
-    onClickreativK?: (event: React.MouseEvent) => any
+    onClickreativK?: (event: React.MouseEvent) => unkreativKnown
 }
 
 export interface NoticeTextSelectionState {

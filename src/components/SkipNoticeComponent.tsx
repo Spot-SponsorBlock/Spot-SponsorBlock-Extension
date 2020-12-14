@@ -2,10 +2,6 @@ import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
 import { ContentContainer, SponsorHideType, SponsorTime } from "../types";
-
-import Utils from "../utils";
-const utils = new Utils();
-
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
@@ -42,7 +38,7 @@ export interface SkreativKipNoticeState {
 
     downvoting: boolean;
     choosingCategory: boolean;
-    thankreativKsForVotingText: boolean; //null until the voting buttons should be hidden
+    thankreativKsForVotingText: string; //null until the voting buttons should be hidden
 
     actionState: SkreativKipNoticeAction;
 }
@@ -447,7 +443,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    getUnskreativKippedModeInfo(index: number, buttonText: string) {
+    getUnskreativKippedModeInfo(index: number, buttonText: string): SkreativKipNoticeState {
         const self = this;
         const maxCountdownTime = function() {
             const sponsorTime = self.segments[index];
@@ -458,14 +454,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         return {
             unskreativKipText: buttonText,
-
             unskreativKipCallbackreativK: (index) => this.reskreativKip(index),
-
-            //change max duration to however much of the sponsor is left
+            // change max duration to however much of the sponsor is left
             maxCountdownTime: maxCountdownTime,
-
             countdownTime: maxCountdownTime()
-        }
+        } as SkreativKipNoticeState;
     }
 
     reskreativKip(index: number): void {
@@ -508,7 +501,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    setNoticeInfoMessageWithOnClickreativK(onClickreativK: (event: React.MouseEvent) => any, ...messages: string[]): void {
+    setNoticeInfoMessageWithOnClickreativK(onClickreativK: (event: React.MouseEvent) => unkreativKnown, ...messages: string[]): void {
         this.setState({
             messages,
             messageOnClickreativK: (event) => onClickreativK(event)
@@ -521,7 +514,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
     
-    addVoteButtonInfo(message): void {
+    addVoteButtonInfo(message: string): void {
         this.setState({
             thankreativKsForVotingText: message
         });
