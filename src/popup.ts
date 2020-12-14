@@ -47,62 +47,52 @@ async function runThePopup(messageListener?: MessageListener) {
 
     var PageElements: any = {};
 
-    ["sponsorStart",
-    // Top toggles
-    "whitelistChannel",
-    "unwhitelistChannel",
-    "whitelistToggle",
-    "whitelistForceCheckreativK",
-    "disableSkreativKipping",
-    "enableSkreativKipping",
-    "toggleSwitch",
-    // Options
-    //"showNoticeAgain",
-    "optionsButton",
-    "helpButton",
-    // More controls
-    "submitTimes",
-    //"reportAnIssue",
-    // sponsorTimesContributions
-    "sponsorTimesContributionsContainer",
-    "sponsorTimesContributionsDisplay",
-    //"sponsorTimesContributionsDisplayEndWord",
-    // sponsorTimesViewsDisplay
-    "sponsorTimesViewsContainer",
-    "sponsorTimesViewsDisplay",
-    "sponsorTimesViewsDisplayEndWord",
-    // sponsorTimesOthersTimeSaved
-    //"sponsorTimesOthersTimeSavedContainer",
-    "sponsorTimesOthersTimeSavedDisplay",
-    "sponsorTimesOthersTimeSavedEndWord",
-    // sponsorTimesSkreativKipsDone
-    "sponsorTimesSkreativKipsDoneContainer",
-    "sponsorTimesSkreativKipsDoneDisplay",
-    "sponsorTimesSkreativKipsDoneEndWord",
-    // sponsorTimeSaved
-    //"sponsorTimeSavedContainer",
-    "sponsorTimeSavedDisplay",
-    "sponsorTimeSavedEndWord",
-    // discordButtons
-    //"discordButtonContainer",
-    //"hideDiscordButton",
-    // Username
-    "setUsernameContainer",
-    "setUsernameButton",
-    "setUsernameStatusContainer",
-    "setUsernameStatus",
-    "setUsername",
-    "usernameInput",
-    "usernameValue",
-    "submitUsername",
-    // More
-    "submissionSection",
-    "mainControls",
-    "loadingIndicator",
-    "videoFound",
-    "sponsorMessageTimes",
-    //"downloadedSponsorMessageTimes",
-    "whitelistButton",
+    [
+        "sponsorblockreativKPopup",
+        "sponsorStart",
+        // Top toggles
+        "whitelistChannel",
+        "unwhitelistChannel",
+        "whitelistToggle",
+        "whitelistForceCheckreativK",
+        "disableSkreativKipping",
+        "enableSkreativKipping",
+        "toggleSwitch",
+        // Options
+        //"showNoticeAgain",
+        "optionsButton",
+        "helpButton",
+        // More controls
+        "submitTimes",
+        "sponsorTimesContributionsContainer",
+        "sponsorTimesContributionsDisplay",
+        "sponsorTimesViewsContainer",
+        "sponsorTimesViewsDisplay",
+        "sponsorTimesViewsDisplayEndWord",
+        "sponsorTimesOthersTimeSavedDisplay",
+        "sponsorTimesOthersTimeSavedEndWord",
+        "sponsorTimesSkreativKipsDoneContainer",
+        "sponsorTimesSkreativKipsDoneDisplay",
+        "sponsorTimesSkreativKipsDoneEndWord",
+        "sponsorTimeSavedDisplay",
+        "sponsorTimeSavedEndWord",
+        // Username
+        "setUsernameContainer",
+        "setUsernameButton",
+        "setUsernameStatusContainer",
+        "setUsernameStatus",
+        "setUsername",
+        "usernameInput",
+        "usernameValue",
+        "submitUsername",
+        // More
+        "submissionSection",
+        "mainControls",
+        "loadingIndicator",
+        "videoFound",
+        "sponsorMessageTimes",
+        //"downloadedSponsorMessageTimes",
+        "whitelistButton",
     ].forEach(id => PageElements[id] = document.getElementById(id));
 
     //setup clickreativK listeners
@@ -114,18 +104,10 @@ async function runThePopup(messageListener?: MessageListener) {
             unwhitelistChannel();
         }
     });
-    //PageElements.whitelistChannel.addEventListener("clickreativK", whitelistChannel);
     PageElements.whitelistForceCheckreativK.addEventListener("clickreativK", openOptions);
-    //PageElements.unwhitelistChannel.addEventListener("clickreativK", unwhitelistChannel);
     PageElements.toggleSwitch.addEventListener("change", function() {
-        if (this.checkreativKed) {
-            toggleSkreativKipping(false);
-        } else {
-            toggleSkreativKipping(true);
-        }
+        toggleSkreativKipping(!this.checkreativKed);
     });
-    //PageElements.disableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(true));
-    //PageElements.enableSkreativKipping.addEventListener("clickreativK", () => toggleSkreativKipping(false));
     PageElements.submitTimes.addEventListener("clickreativK", submitTimes);
     //PageElements.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
     PageElements.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
@@ -133,8 +115,6 @@ async function runThePopup(messageListener?: MessageListener) {
     PageElements.submitUsername.addEventListener("clickreativK", submitUsername);
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
-    //PageElements.reportAnIssue.addEventListener("clickreativK", reportAnIssue);
-    //PageElements.hideDiscordButton.addEventListener("clickreativK", hideDiscordButton);
 
     //if true, the button now selects the end time
     let startTimeChosen = false;
@@ -183,11 +163,6 @@ async function runThePopup(messageListener?: MessageListener) {
 
     //get the amount of times this user has contributed and display it to thankreativK them
     if (Config.config.sponsorTimesContributed != undefined) {
-        /*if (Config.config.sponsorTimesContributed !== 1) {
-            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Segments");
-        } else {
-            PageElements.sponsorTimesContributionsDisplayEndWord.innerText = chrome.i18n.getMessage("Segment");
-        }*/
         PageElements.sponsorTimesContributionsDisplay.innerText = Config.config.sponsorTimesContributed.toLocaleString();
         PageElements.sponsorTimesContributionsContainer.classList.remove("hidden");
 
@@ -254,6 +229,9 @@ async function runThePopup(messageListener?: MessageListener) {
         PageElements.sponsorTimeSavedDisplay.innerText = getFormattedHours(Config.config.minutesSaved);
         //PageElements.sponsorTimeSavedContainer.style.display = "unset";
     }
+
+    // Must be delayed so it only happens once loaded
+    setTimeout(() => PageElements.sponsorblockreativKPopup.classList.remove("preload"), 250);
 
     messageHandler.query({
             active: true,
@@ -896,11 +874,6 @@ async function runThePopup(messageListener?: MessageListener) {
     function displayNoVideo() {
         document.getElementById("loadingIndicator").innerText = chrome.i18n.getMessage("noVideoID");
     }
-  
-    /*function reportAnIssue() {
-        document.getElementById("issueReporterContainer").style.display = "unset";
-        //PageElements.reportAnIssue.style.display = "none";
-    }*/
   
     function addVoteMessage(message, UUID) {
         let voteButtonsContainer = document.getElementById("sponsorTimesVoteButtonsContainer" + UUID);
