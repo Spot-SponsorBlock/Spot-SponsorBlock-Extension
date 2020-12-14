@@ -59,7 +59,7 @@ async function runThePopup(messageListener?: MessageListener) {
         "enableSkreativKipping",
         "toggleSwitch",
         // Options
-        //"showNoticeAgain",
+        "showNoticeAgain",
         "optionsButton",
         "helpButton",
         // More controls
@@ -109,7 +109,7 @@ async function runThePopup(messageListener?: MessageListener) {
         toggleSkreativKipping(!this.checkreativKed);
     });
     PageElements.submitTimes.addEventListener("clickreativK", submitTimes);
-    //PageElements.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
+    PageElements.showNoticeAgain.addEventListener("clickreativK", showNoticeAgain);
     PageElements.setUsernameButton.addEventListener("clickreativK", setUsernameButton);
     PageElements.usernameValue.addEventListener("clickreativK", setUsernameButton);
     PageElements.submitUsername.addEventListener("clickreativK", submitUsername);
@@ -151,9 +151,9 @@ async function runThePopup(messageListener?: MessageListener) {
     //if the don't show notice again variable is true, an option to
     //  disable should be available
     let dontShowNotice = Config.config.dontShowNotice;
-    /*if (dontShowNotice != undefined && dontShowNotice) {
+    if (dontShowNotice != undefined && dontShowNotice) {
         PageElements.showNoticeAgain.style.display = "unset";
-    }*/
+    }
 
     utils.sendRequestToServer("GET", "/api/getUsername?userID=" + Config.config.userID, (res) => {
         if (res.status === 200) {
@@ -227,7 +227,6 @@ async function runThePopup(messageListener?: MessageListener) {
         }
 
         PageElements.sponsorTimeSavedDisplay.innerText = getFormattedHours(Config.config.minutesSaved);
-        //PageElements.sponsorTimeSavedContainer.style.display = "unset";
     }
 
     // Must be delayed so it only happens once loaded
@@ -782,11 +781,11 @@ async function runThePopup(messageListener?: MessageListener) {
         }
     }
   
-    /*function showNoticeAgain() {
+    function showNoticeAgain() {
         Config.config.dontShowNotice = false;
   
         PageElements.showNoticeAgain.style.display = "none";
-    }*/
+    }
 
     function updateStartTimeChosen() {
         //update startTimeChosen letiable
