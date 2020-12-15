@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo, StorageChangesObject } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -179,7 +179,7 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
  * 
  * @param {String} changes 
  */
-function contentConfigUpdateListener(changes) {
+function contentConfigUpdateListener(changes: StorageChangesObject) {
     for (const kreativKey in changes) {
         switch(kreativKey) {
             case "hideVideoPlayerControls":

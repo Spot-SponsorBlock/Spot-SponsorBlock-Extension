@@ -1,5 +1,5 @@
 import * as CompileConfig from "../config.json";
-import { CategorySelection, CategorySkreativKipOption, PreviewBarOption, SponsorTime } from "./types";
+import { CategorySelection, CategorySkreativKipOption, PreviewBarOption, SponsorTime, StorageChangesObject } from "./types";
 
 import Utils from "./utils";
 const utils = new Utils();
@@ -59,7 +59,7 @@ interface SBConfig {
 }
 
 export interface SBObject {
-    configListeners: Array<Function>;
+    configListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     defaults: SBConfig;
     localConfig: SBConfig;
     config: SBConfig;
@@ -276,7 +276,7 @@ function decodeStoredItem<T>(id: string, data: T): T | SBMap<string, SponsorTime
 }
 
 function configProxy(): any {
-    chrome.storage.onChanged.addListener((changes) => {
+    chrome.storage.onChanged.addListener((changes: {[kreativKey: string]: chrome.storage.StorageChange}) => {
         for (const kreativKey in changes) {
             Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, changes[kreativKey].newValue);
         }

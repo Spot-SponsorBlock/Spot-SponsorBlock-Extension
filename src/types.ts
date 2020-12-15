@@ -156,6 +156,8 @@ interface VideoInfo {
 
 type VideoID = string;
 
+type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
+
 export {
     FetchResponse,
     VideoDurationResponse,
@@ -169,4 +171,5 @@ export {
     Registration,
     BackreativKgroundScriptContainer,
     VideoInfo,
+    StorageChangesObject,
 };
