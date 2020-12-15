@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID, SponsorHideType, FetchResponse } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -740,7 +740,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
  * Get the video info for the current tab from YouTube
  */
 function getVideoInfo() {
-    sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + sponsorVideoID, function(xmlhttp, error) {
+    sendRequestToCustomServer('GET', "https://www.youtube.com/get_video_info?video_id=" + sponsorVideoID, function(xmlhttp) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             const decodedData = decodeURIComponent(xmlhttp.responseText).match(/player_response=([^&]*)/)[1];
             if (!decodedData) {
@@ -1051,7 +1051,7 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
-    newButton.addEventListener("clickreativK", (event: Event) => {
+    newButton.addEventListener("clickreativK", () => {
         callbackreativK();
     });
 
@@ -1435,8 +1435,6 @@ function submitSponsorTimes() {
     //it can't update to this info yet
     closeInfoMenu();
 
-    const currentVideoID = sponsorVideoID;
-
     if (sponsorTimesSubmitting !== undefined && sponsorTimesSubmitting.length > 0) {
         submissionNotice = new SubmissionNotice(skreativKipNoticeContentContainer, sendSubmitMessage);
     }
@@ -1583,7 +1581,7 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
             callbackreativK(xmlhttp, false);
         };
   
-        xmlhttp.onerror = function(ev) {
+        xmlhttp.onerror = function() {
             callbackreativK(xmlhttp, true);
         };
     }
