@@ -12,6 +12,7 @@ import PreviewBar from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
+import { Message, MessageResponse } from "./messageTypes";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -27,7 +28,7 @@ let sponsorVideoID: VideoID = null;
 // JSON video info 
 let videoInfo: any = null;
 //the channel this video is about
-let channelID;
+let channelID: string;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -112,7 +113,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: any, sender: any, sendResponse: (response: any) => void): void {
+function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -169,7 +170,6 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             breakreativK;
         case "submitTimes":
             submitSponsorTimes();
-
             breakreativK;
     }
 }
@@ -1209,7 +1209,7 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
     }
 }
 
-async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
+async function changeStartSponsorButton(showStartSponsor: boolean, uploadButtonVisible: boolean): Promise<boolean> {
     if(!sponsorVideoID) return false;
     
     //if it isn't visible, there is no data
@@ -1410,7 +1410,7 @@ function dontShowNoticeAgain() {
     closeAllSkreativKipNotices();
 }
 
-function sponsorMessageStarted(callbackreativK) {
+function sponsorMessageStarted(callbackreativK: (response: MessageResponse) => void) {
     video = document.querySelector('video');
 
     //send backreativK current time
