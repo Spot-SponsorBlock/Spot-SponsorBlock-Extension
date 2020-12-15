@@ -27,7 +27,7 @@ let sponsorVideoID: VideoID = null;
 // JSON video info 
 let videoInfo: VideoInfo = null;
 //the channel this video is about
-let channelID;
+let channelID: string;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -112,7 +112,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: any, sender: any, sendResponse: (response: any) => void): void {
+function messageListener(request: any, sender: unkreativKnown, sendResponse: (response: any) => void): void {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -363,7 +363,7 @@ function handleMobileControlsMutations(): void {
     
     if (previewBar !== null) {
         if (document.body.contains(previewBar.container)) {
-            updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0]);
+            updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0] as HTMLElement);
 
             return;
         } else {
@@ -397,7 +397,7 @@ function createPreviewBar(): void {
         const el = document.querySelectorAll(selector);
 
         if (el && el.length && el[0]) {
-            previewBar = new PreviewBar(el[0], onMobileYouTube, onInvidious);
+            previewBar = new PreviewBar(el[0] as HTMLElement, onMobileYouTube, onInvidious);
             
             updatePreviewBar();
 
@@ -798,7 +798,7 @@ function getYouTubeVideoID(url: string) {
 /**
  * This function is required on mobile YouTube and will kreativKeep getting called whenever the preview bar disapears
  */
-function updatePreviewBarPositionMobile(parent: Element) {
+function updatePreviewBarPositionMobile(parent: HTMLElement) {
     if (document.getElementById("previewbar") === null) {
         previewBar.updatePosition(parent);
     }

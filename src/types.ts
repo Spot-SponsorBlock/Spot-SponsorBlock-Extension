@@ -3,7 +3,7 @@ import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent"
 
 interface ContentContainer {
     (): {
-        vote: (type: any, UUID: any, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
+        vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (segment: SponsorTime) => void,
         sponsorTimes: SponsorTime[],
@@ -15,9 +15,9 @@ interface ContentContainer {
         onMobileYouTube: boolean,
         sponsorSubmissionNotice: SubmissionNotice,
         resetSponsorSubmissionNotice: () => void,
-        changeStartSponsorButton: (showStartSponsor: any, uploadButtonVisible: any) => Promise<boolean>,
+        changeStartSponsorButton: (showStartSponsor: boolean, uploadButtonVisible: boolean) => Promise<boolean>,
         previewTime: (time: number, unpause?: boolean) => void,
-        videoInfo: any,
+        videoInfo: VideoInfo,
         getRealCurrentTime: () => number
     }
 }
