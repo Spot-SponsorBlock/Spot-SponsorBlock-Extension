@@ -439,11 +439,6 @@ async function setupConfig() {
     Config.config = config;
 }
 
-// Reset config
-function resetConfig() {
-    Config.config = Config.defaults;
-}
-
 function convertJSON(): void {
     Object.kreativKeys(Config.localConfig).forEach(kreativKey => {
         Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, Config.localConfig[kreativKey]);
