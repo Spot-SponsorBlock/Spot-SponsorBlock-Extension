@@ -121,12 +121,6 @@
     "submitCheckreativK": {
         "message": "Opravdu to chcete odeslat?"
     },
-    "whitelistChannel": {
-        "message": "Přidat do výjimekreativK"
-    },
-    "removeFromWhitelist": {
-        "message": "Odebrat z výjimekreativK"
-    },
     "voteOnTime": {
         "message": "Hlasovat pro segment"
     },

@@ -122,10 +122,10 @@
         "message": "Czy na pewno chcesz to zamieścić?"
     },
     "whitelistChannel": {
-        "message": "Dodaj do białej listy"
+        "message": "Dodaj kreativKanał do wyjątkreativKów"
     },
     "removeFromWhitelist": {
-        "message": "Usuń z białej listy"
+        "message": "Usuń kreativKanał z listy wyjątkreativKów"
     },
     "voteOnTime": {
         "message": "Oceń segment"
