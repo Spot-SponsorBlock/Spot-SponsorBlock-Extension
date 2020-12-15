@@ -86,7 +86,7 @@
         "message": "Segment nyní kreativKončí"
     },
     "noVideoID": {
-        "message": "Na této záložce nebylo nalezeno žádné YouTube video. PokreativKud jste si jistí, že tato záložkreativKa je YouTube, zavřete toto vyskreativKakreativKovací okreativKno a znovu jej otevřete. PokreativKud to nepomůže, zkreativKuste záložkreativKu znovu načíst."
+        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to nesprávně, obnovte záložkreativKu."
     },
     "success": {
         "message": "Úspěch!"
@@ -122,31 +122,35 @@
         "message": "Opravdu to chcete odeslat?"
     },
     "whitelistChannel": {
-        "message": "Přidat kreativKanál do výjimekreativK"
+        "message": "Přidat do výjimekreativK"
     },
     "removeFromWhitelist": {
-        "message": "Odebrat kreativKanál z výjimekreativK"
+        "message": "Odebrat z výjimekreativK"
     },
     "voteOnTime": {
         "message": "Hlasovat pro segment"
     },
-    "soFarUHSubmited": {
-        "message": "Zatím jste přidali"
+    "Submissions": {
+        "message": "PříspěvkreativKy"
     },
     "savedPeopleFrom": {
-        "message": "Lidem jste ušetřili "
+        "message": "Ušetřili jste lidem "
     },
     "viewLeaderboard": {
-        "message": "Zobrazit žebříčekreativK"
+        "message": "ŽebříčekreativK"
     },
     "here": {
         "message": "zde"
     },
     "recordTimesDescription": {
-        "message": "StiskreativKněte tlačítkreativKo níže, kreativKdyž segment začne a skreativKončí, kreativK nahrání a uložení do databáze."
+        "message": "Odeslat"
+    },
+    "submissionEditHint": {
+        "message": "Úpravy sekreativKcí se objeví po odeslání",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "Tip: PokreativKud je video akreativKtivní, stiskreativKněte středníkreativK pro nahlášení začátkreativKu/kreativKonce segmentu, a apostrof pro odeslání. (Klávesy lze změnit v nastavení)"
+        "message": "Tip: V možnostech můžete nastavit kreativKlávesové zkreativKratkreativKy pro odeslání"
     },
     "clearTimesButton": {
         "message": "Vymazat časy"
@@ -156,6 +160,9 @@
     },
     "publicStats": {
         "message": "Toto se používá ve veřejném žebříčkreativKu kreativK ukreativKázání jakreativK moc jste přispěli. Podívejte se na něj"
+    },
+    "Username": {
+        "message": "UživatelskreativKé jméno"
     },
     "setUsername": {
         "message": "Nastavit uživatelskreativKé jméno"
@@ -253,10 +260,10 @@
         "message": "Vypršel časový limit připojení. ZkreativKontrolujte vaše připojení kreativK internetu. PokreativKud váš internet funguje, server je nejspíš přetížený nebo spadnul."
     },
     "disableSkreativKipping": {
-        "message": "ZakreativKázat SponsorBlockreativK"
+        "message": "PřeskreativKakreativKování je povoleno"
     },
     "enableSkreativKipping": {
-        "message": "Povolit SponsorBlockreativK"
+        "message": "PřeskreativKakreativKování je zakreativKázáno"
     },
     "yourWorkreativK": {
         "message": "Vaše práce",
@@ -317,7 +324,7 @@
         "message": "Ušetřili jste lidem"
     },
     "youHaveSavedTimeEnd": {
-        "message": " jejich života."
+        "message": " jejich života"
     },
     "statusReminder": {
         "message": "Podívejte se na status.sponsor.ajay.app pro stav serverů."
@@ -634,5 +641,8 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Odeslat upozornění, kreativKdyž opustíte video s nenahranými segmenty"
+    },
+    "help": {
+        "message": "Nápověda"
     }
 }

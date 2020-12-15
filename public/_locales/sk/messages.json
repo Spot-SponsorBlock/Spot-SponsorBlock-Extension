@@ -101,12 +101,6 @@
     "0": {
         "message": "Spojenie vypršalo. SkreativKontrolujte svoje internetové pripojenie. AkreativK váš internet funguje, server je pravdepodobne preťažený alebo nefunkreativKčný."
     },
-    "disableSkreativKipping": {
-        "message": "Vypnúť SponsorBlockreativK"
-    },
-    "enableSkreativKipping": {
-        "message": "Zapnúť SponsorBlockreativK"
-    },
     "yourWorkreativK": {
         "message": "Vaša Práca",
         "description": "Used to describe the section that will show you the statistics from your submissions."
