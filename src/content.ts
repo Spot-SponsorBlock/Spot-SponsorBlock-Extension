@@ -1052,6 +1052,8 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
     video.currentTime = segment.segment[1];
+
+    startSponsorSchedule(true, segment.segment[1], false);
 }
 
 function createButton(baseID, title, callbackreativK, imageName, isDraggable=false): boolean {
