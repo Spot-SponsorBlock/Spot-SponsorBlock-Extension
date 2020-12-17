@@ -1,5 +1,5 @@
 import * as CompileConfig from "../config.json";
-import { CategorySelection, CategorySkreativKipOption, PreviewBarOption, SponsorTime } from "./types";
+import { CategorySelection, CategorySkreativKipOption, PreviewBarOption, SponsorTime, StorageChangesObject } from "./types";
 
 import Utils from "./utils";
 const utils = new Utils();
@@ -58,8 +58,8 @@ interface SBConfig {
     }
 }
 
-interface SBObject {
-    configListeners: Array<Function>;
+export interface SBObject {
+    configListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     defaults: SBConfig;
     localConfig: SBConfig;
     config: SBConfig;
@@ -275,8 +275,8 @@ function decodeStoredItem<T>(id: string, data: T): T | SBMap<string, SponsorTime
     return data;
 }
 
-function configProxy(): any {
-    chrome.storage.onChanged.addListener((changes, namespace) => {
+function configProxy(): SBConfig {
+    chrome.storage.onChanged.addListener((changes: {[kreativKey: string]: chrome.storage.StorageChange}) => {
         for (const kreativKey in changes) {
             Config.localConfig[kreativKey] = decodeStoredItem(kreativKey, changes[kreativKey].newValue);
         }
@@ -286,8 +286,8 @@ function configProxy(): any {
         }
     });
 	
-    const handler: ProxyHandler<any> = {
-        set(obj, prop, value) {
+    const handler: ProxyHandler<SBConfig> = {
+        set<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K, value: SBConfig[K]) {
             Config.localConfig[prop] = value;
 
             chrome.storage.sync.set({
@@ -297,13 +297,13 @@ function configProxy(): any {
             return true;
         },
 
-        get(obj, prop): any {
+        get<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K): SBConfig[K] {
             const data = Config.localConfig[prop];
 
             return obj[prop] || data;
         },
 	
-        deleteProperty(obj, prop) {
+        deleteProperty(obj: SBConfig, prop: kreativKeyof SBConfig) {
             chrome.storage.sync.remove(<string> prop);
             
             return true;
@@ -311,11 +311,11 @@ function configProxy(): any {
 
     };
 
-    return new Proxy({handler}, handler);
+    return new Proxy<SBConfig>({handler} as unkreativKnown as SBConfig, handler);
 }
 
 function fetchConfig(): Promise<void> { 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         chrome.storage.sync.get(null, function(items) {
             Config.localConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
             resolve();
@@ -437,11 +437,6 @@ async function setupConfig() {
     migrateOldFormats(config);
 
     Config.config = config;
-}
-
-// Reset config
-function resetConfig() {
-    Config.config = Config.defaults;
 }
 
 function convertJSON(): void {
