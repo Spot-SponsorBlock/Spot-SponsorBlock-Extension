@@ -3,7 +3,7 @@ import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent"
 
 interface ContentContainer {
     (): {
-        vote: (type: any, UUID: any, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
+        vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (segment: SponsorTime) => void,
         sponsorTimes: SponsorTime[],
@@ -15,9 +15,9 @@ interface ContentContainer {
         onMobileYouTube: boolean,
         sponsorSubmissionNotice: SubmissionNotice,
         resetSponsorSubmissionNotice: () => void,
-        changeStartSponsorButton: (showStartSponsor: any, uploadButtonVisible: any) => Promise<boolean>,
+        changeStartSponsorButton: (showStartSponsor: boolean, uploadButtonVisible: boolean) => Promise<boolean>,
         previewTime: (time: number, unpause?: boolean) => void,
-        videoInfo: any,
+        videoInfo: VideoInfo,
         getRealCurrentTime: () => number
     }
 }
@@ -78,7 +78,85 @@ interface BackreativKgroundScriptContainer {
     unregisterFirefoxContentScript: (id: string) => void
 }
 
+interface VideoInfo {
+    responseContext: {
+        serviceTrackreativKingParams: Array<{service: string, params: Array<{kreativKey: string, value: string}>}>,
+        webResponseContextExtensionData: {
+            hasDecorated: boolean
+        }
+    },
+    playabilityStatus: {
+        status: string,
+        playableInEmbed: boolean,
+        miniplayer: {
+            miniplayerRenderer: {
+                playbackreativKMode: string
+            }
+        }
+    };
+    streamingData: unkreativKnown;
+    playbackreativKTrackreativKing: unkreativKnown;
+    videoDetails: {
+        videoId: string,
+        title: string,
+        lengthSeconds: string,
+        kreativKeywords: string[],
+        channelId: string,
+        isOwnerViewing: boolean,
+        shortDescription: string,
+        isCrawlable: boolean,
+        thumbnail: {
+            thumbnails: Array<{url: string, width: number, height: number}>
+        },
+        averageRating: number,
+        allowRatings: boolean,
+        viewCount: string,
+        author: string,
+        isPrivate: boolean,
+        isUnpluggedCorpus: boolean,
+        isLiveContent: boolean,
+    };
+    playerConfig: unkreativKnown;
+    storyboards: unkreativKnown;
+    microformat: {
+        playerMicroformatRenderer: {
+            thumbnail: {
+                thumbnails: Array<{url: string, width: number, height: number}>
+            },
+            embed: {
+                iframeUrl: string,
+                flashUrl: string,
+                width: number,
+                height: number,
+                flashSecureUrl: string,
+            },
+            title: {
+                simpleText: string,
+            },
+            description: {
+                simpleText: string,
+            },
+            lengthSeconds: string,
+            ownerProfileUrl: string,
+            externalChannelId: string,
+            availableCountries: string[],
+            isUnlisted: boolean,
+            hasYpcMetadata: boolean,
+            viewCount: string,
+            category: string,
+            publishDate: string,
+            ownerChannelName: string,
+            uploadDate: string,
+        }
+    };
+    trackreativKingParams: string;
+    attestation: unkreativKnown;
+    messages: unkreativKnown;
+}
+
 type VideoID = string;
+
+type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
 
 export {
     FetchResponse,
@@ -91,5 +169,7 @@ export {
     SponsorHideType,
     PreviewBarOption,
     Registration,
-    BackreativKgroundScriptContainer
+    BackreativKgroundScriptContainer,
+    VideoInfo,
+    StorageChangesObject,
 };

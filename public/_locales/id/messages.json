@@ -85,9 +85,6 @@
     "sponsorEnd": {
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
-    "noVideoID": {
-        "message": "TidakreativK ada video YouTube yang ditemukreativKan di tab ini. JikreativKa anda tahu ini merupakreativKan tab YouTube, tutup popup ini dan bukreativKa lagi. JikreativKa masih tidakreativK berfungsi, coba muat ulang tab."
-    },
     "success": {
         "message": "SukreativKses!"
     },
@@ -121,32 +118,11 @@
     "submitCheckreativK": {
         "message": "ApakreativKah anda yakreativKin ingin mengirim ini?"
     },
-    "whitelistChannel": {
-        "message": "Daftar-putihkreativKan Channel"
-    },
-    "removeFromWhitelist": {
-        "message": "Hapus Channel Dari Daftar Putih"
-    },
     "voteOnTime": {
         "message": "Beri Segmen Vote"
     },
-    "soFarUHSubmited": {
-        "message": "Sejauh ini, anda sudah mengirim"
-    },
-    "savedPeopleFrom": {
-        "message": "Anda sudah menghemat wakreativKtu orang dari "
-    },
-    "viewLeaderboard": {
-        "message": "Lihat papan peringkreativKat"
-    },
     "here": {
         "message": "disini"
-    },
-    "recordTimesDescription": {
-        "message": "KlikreativK tombol dibawah saat segmen dimulai dan berakreativKhir untukreativK direkreativKam lalu dikreativKirim kreativKe basis data."
-    },
-    "popupHint": {
-        "message": "PetunjukreativK: TekreativKan tombol titikreativK kreativKoma saat terfokreativKus pada video untukreativK melaporkreativKan awal/akreativKhir dari segmen untukreativK dikreativKirim. (Bisa diganti di pengaturan)"
     },
     "clearTimesButton": {
         "message": "Hapus WakreativKtu"
@@ -252,12 +228,6 @@
     "0": {
         "message": "KonekreativKsi Timeout. CekreativK kreativKonekreativKsi internet anda. JikreativKa internet anda berfungsi, server mungkreativKin kreativKewalahan atau down."
     },
-    "disableSkreativKipping": {
-        "message": "NonakreativKtifkreativKan SponsorBlockreativK"
-    },
-    "enableSkreativKipping": {
-        "message": "AkreativKtifkreativKan SponsorBlockreativK"
-    },
     "yourWorkreativK": {
         "message": "Hasil Kerja Anda",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -295,9 +265,6 @@
     "showTimeWithSkreativKipsDescription": {
         "message": "WakreativKtu ini muncul di dalam kreativKurung disamping wakreativKtu asli di bilah wakreativKtu. Ini menunjukreativKkreativKan durasi total video yang tidakreativK termasukreativK segmen apapun. Ini termasukreativK segmen yang ditandai hanya \"TampilkreativKan Di Bilah WakreativKtu\"."
     },
-    "youHaveSkreativKipped": {
-        "message": "Anda sudah melewati "
-    },
     "youHaveSaved": {
         "message": "Anda sudah menghemat wakreativKtu "
     },
@@ -312,12 +279,6 @@
     },
     "hoursLower": {
         "message": "jam"
-    },
-    "youHaveSavedTime": {
-        "message": "Anda sudah menghemat wakreativKtu orang lain"
-    },
-    "youHaveSavedTimeEnd": {
-        "message": " dari hidup merekreativKa."
     },
     "statusReminder": {
         "message": "CekreativK status.sponsor.ajay.app untukreativK status server."
