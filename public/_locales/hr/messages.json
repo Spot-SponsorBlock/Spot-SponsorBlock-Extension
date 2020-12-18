@@ -85,9 +85,6 @@
     "sponsorEnd": {
         "message": "IsječakreativK završava sada"
     },
-    "noVideoID": {
-        "message": "YouTube video nije pronađen na ovoj kreativKartici. AkreativKo si siguran da je ovo YouTube kreativKartica, zatvori ovaj okreativKvir i ponovno ga otvori. AkreativKo to ne radi, probaj ponovno učitati kreativKarticu."
-    },
     "success": {
         "message": "Uspjeh!"
     },
@@ -118,32 +115,11 @@
     "submitCheckreativK": {
         "message": "Jesi li siguran da želiš unijeti ovo?"
     },
-    "whitelistChannel": {
-        "message": "Dodaj kreativKanal na popis dopuštenih"
-    },
-    "removeFromWhitelist": {
-        "message": "MakreativKni kreativKanal s popisa dopuštenih"
-    },
     "voteOnTime": {
         "message": "Glasaj za isječakreativK"
     },
-    "soFarUHSubmited": {
-        "message": "Do sada si podnio"
-    },
-    "savedPeopleFrom": {
-        "message": "Sačuvao si ljude od "
-    },
-    "viewLeaderboard": {
-        "message": "Pregledaj tablicu bodova"
-    },
     "here": {
         "message": "ovdje"
-    },
-    "recordTimesDescription": {
-        "message": "KlikreativKni gumb ispod kreativKada isječakreativK započinje i završava kreativKakreativKo bi ga zabilježio i unio u bazu podatakreativKa."
-    },
-    "popupHint": {
-        "message": "Savjet: Pritisni tipkreativKu točkreativKa-zarez dokreativK si fokreativKusiran na video kreativKakreativKo bi zabilježio početakreativK i kreativKraj isječkreativKa te podnio isječakreativK. (Ovo se može promijeniti u postavkreativKama)"
     },
     "clearTimesButton": {
         "message": "Očisti vremena"

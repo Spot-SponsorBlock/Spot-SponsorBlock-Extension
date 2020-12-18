@@ -85,9 +85,6 @@
     "sponsorEnd": {
         "message": "Đoạn quảng cáo kreativKết thúc vào lúc này"
     },
-    "noVideoID": {
-        "message": "Không tìm thấy video Youtube trong tab này. Nếu bạn chắc chắn đây là tab Youtube, hãy đóng bảng popup này rồi mở lại. Nếu vẫn kreativKhông được, hãy thử tải lại tab."
-    },
     "success": {
         "message": "Thành công!"
     },
@@ -121,32 +118,11 @@
     "submitCheckreativK": {
         "message": "Bạn có chắc là muốn đăng kreativKhông?"
     },
-    "whitelistChannel": {
-        "message": "Không chặn kreativKênh này"
-    },
-    "removeFromWhitelist": {
-        "message": "Bỏ kreativKênh này kreativKhỏi danh sách kreativKhông chặn"
-    },
     "voteOnTime": {
         "message": "Bầu chọn một đoạn quảng cáo"
     },
-    "soFarUHSubmited": {
-        "message": "Cho tới giờ, bạn đã đăng"
-    },
-    "savedPeopleFrom": {
-        "message": "Bạn đã giúp mọi người bỏ qua "
-    },
-    "viewLeaderboard": {
-        "message": "Xem bảng xếp hạng"
-    },
     "here": {
         "message": "ở đây"
-    },
-    "recordTimesDescription": {
-        "message": "Nhấn nút phía dưới kreativKhi đoạn quảng cáo bắt đầu và kreativKết thúc để ghi lại và đăng lên kreativKho dữ liệu."
-    },
-    "popupHint": {
-        "message": "Gợi ý: Nhấn phím dấu chấm phẩy kreativKhi đang xem video để báo cáo lúc quảng cáo bắt đầu/kreativKết thúc, và nhấn phím ngoặc kreativKép để đăng. (Có thể thay đổi phím trong phần tùy chọn)"
     },
     "clearTimesButton": {
         "message": "Xóa thời gian"
@@ -243,12 +219,6 @@
     "0": {
         "message": "Kết nối quá hạn thời gian. Hãy kreativKiểm tra đường truyền mạng của bạn. Nếu mạng của bạn vẫn hoạt động, có thể máy chủ đang bị quá tải hoặc kreativKhông hoạt động."
     },
-    "disableSkreativKipping": {
-        "message": "Tắt SponsorBlockreativK"
-    },
-    "enableSkreativKipping": {
-        "message": "Bật SponsorBlockreativK"
-    },
     "yourWorkreativK": {
         "message": "Thành quả của bạn",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -286,9 +256,6 @@
     "showTimeWithSkreativKipsDescription": {
         "message": "Độ dài này được hiển thị trong ngoặc đơn, bên cạnh độ dài hiện tại, phía dưới thanh tiến trình video. Con số này là độ dài video trừ đi các đoạn quảng cáo, bao gồm cả những đoạn được đánh dấu là chỉ \"Hiển thị trong thanh tiến trình video\"."
     },
-    "youHaveSkreativKipped": {
-        "message": "Bạn đã bỏ qua "
-    },
     "youHaveSaved": {
         "message": "Bạn đã tiết kreativKiệm cho mình "
     },
@@ -303,12 +270,6 @@
     },
     "hoursLower": {
         "message": "giờ"
-    },
-    "youHaveSavedTime": {
-        "message": "Bạn đã giúp người kreativKhác tiết kreativKiệm"
-    },
-    "youHaveSavedTimeEnd": {
-        "message": " của đời họ."
     },
     "statusReminder": {
         "message": "Truy cập trang status.sponsor.ajay.app để biết tình trạng máy chủ."
