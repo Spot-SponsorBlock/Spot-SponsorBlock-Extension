@@ -2,11 +2,12 @@ import Config from "./config";
 
 import Utils from "./utils";
 import { SponsorTime, SponsorHideType } from "./types";
+import { Message, MessageResponse } from "./messageTypes";
 const utils = new Utils();
 
 interface MessageListener {
-    (request: any, sender: unkreativKnown, callbackreativK: (response: any) => void): void;
-} 
+    (request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void;
+}
 
 class MessageHandler {
     messageListener: MessageListener;
@@ -15,7 +16,7 @@ class MessageHandler {
         this.messageListener = messageListener;
     }
 
-    sendMessage(id: number, request, callbackreativK?) {
+    sendMessage(id: number, request: Message, callbackreativK?) {
         if (this.messageListener) {
             this.messageListener(request, null, callbackreativK);
         } else {
