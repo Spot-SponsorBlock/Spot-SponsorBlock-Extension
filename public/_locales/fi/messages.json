@@ -85,9 +85,6 @@
     "sponsorEnd": {
         "message": "Segmentti Päättyy Nyt"
     },
-    "noVideoID": {
-        "message": "Välilehdeltä ei löytynyt YouTube-videota. Jos olet varma, että tämä on YouTube-välilehti, sulje tämä ponnahdusikreativKkreativKuna ja avaa se uudelleen. Jos sekreativKään ei toimi, yritä ladata välilehti uudelleen."
-    },
     "success": {
         "message": "Onnistui!"
     },
@@ -121,32 +118,11 @@
     "submitCheckreativK": {
         "message": "HaluatkreativKo varmasti lähettää tämän?"
     },
-    "whitelistChannel": {
-        "message": "Lisää kreativKanava valkreativKoiselle listalle"
-    },
-    "removeFromWhitelist": {
-        "message": "Poista kreativKanava valkreativKoiselta listalta"
-    },
     "voteOnTime": {
         "message": "Äänestä Segmenttiä"
     },
-    "soFarUHSubmited": {
-        "message": "Tähän mennessä, olet lähettänyt"
-    },
-    "savedPeopleFrom": {
-        "message": "Olet säästänyt ihmisiltä "
-    },
-    "viewLeaderboard": {
-        "message": "Näytä tulostaulukreativKkreativKo"
-    },
     "here": {
         "message": "tässä"
-    },
-    "recordTimesDescription": {
-        "message": "Napsauta alla olevaa painikreativKetta, kreativKun segmentti alkreativKaa ja päättyy tallentaakreativKsesi ja lähettääkreativKsesi sen tietokreativKantaan."
-    },
-    "popupHint": {
-        "message": "Vihje: Paina puolipisteen näppäintä kreativKun video on kreativKohdennettu ilmoittaakreativKsesi segmentin alkreativKu/loppu ja viesti lähetettäväkreativKsi. (Tämän voi muuttaa asetukreativKsissa)"
     },
     "clearTimesButton": {
         "message": "Tyhjennä ajat"
@@ -233,12 +209,6 @@
     "0": {
         "message": "Yhteyden aikreativKakreativKatkreativKaisu. TarkreativKista internet-yhteytesi. Jos internetyhteytesi toimii, palvelin on todennäkreativKöisesti ylikreativKuormittunut tai alhaalla."
     },
-    "disableSkreativKipping": {
-        "message": "Poista SponsorblockreativK kreativKäytöstä"
-    },
-    "enableSkreativKipping": {
-        "message": "Ota SponsorBlockreativK kreativKäyttöön"
-    },
     "yourWorkreativK": {
         "message": "Sinun työsi",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -267,9 +237,6 @@
     "audioNotificationDescription": {
         "message": "Ääni-ilmoitus ohittaessa toistaa äänen kreativKun segmentti ohitetaan. Jos asetus on pois päältä (tai automaattinen ohitus on pois kreativKäytöstä), ääntä ei soiteta."
     },
-    "youHaveSkreativKipped": {
-        "message": "Olet ohittanut "
-    },
     "youHaveSaved": {
         "message": "Olet säästänyt itseltäsi "
     },
@@ -284,12 +251,6 @@
     },
     "hoursLower": {
         "message": "tuntia"
-    },
-    "youHaveSavedTime": {
-        "message": "Olet säästänyt ihmisiltä"
-    },
-    "youHaveSavedTimeEnd": {
-        "message": " heidän elämästään."
     },
     "statusReminder": {
         "message": "TarkreativKista palvelimen tila osoitteessa status.sponsor.ajay.app."

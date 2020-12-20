@@ -85,9 +85,6 @@
     "sponsorEnd": {
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
-    "noVideoID": {
-        "message": "TidakreativK terdapat video YouTube di tab ini. SekreativKiranya anda tahu ini adalah tab YouTube, tutup pop timbul ini dan bukreativKa lagi. SekreativKiranya tidakreativK berjaya, cuba muat semula tab."
-    },
     "success": {
         "message": "Berjaya!"
     },
@@ -121,32 +118,11 @@
     "submitCheckreativK": {
         "message": "AdakreativKah anda pasti mahu menghantarnya?"
     },
-    "whitelistChannel": {
-        "message": "Saluran Senarai Putih"
-    },
-    "removeFromWhitelist": {
-        "message": "Alih kreativKeluar Saluran Dari Senarai Putih"
-    },
     "voteOnTime": {
         "message": "Undi Segmen"
     },
-    "soFarUHSubmited": {
-        "message": "SetakreativKat ini, anda telah menghantar"
-    },
-    "savedPeopleFrom": {
-        "message": "Anda telah menyelamatkreativKan orang dari "
-    },
-    "viewLeaderboard": {
-        "message": "Lihat papan pendahulu"
-    },
     "here": {
         "message": "di sini"
-    },
-    "recordTimesDescription": {
-        "message": "KlikreativK butang di bawah apabila segmen bermula dan berakreativKhir untukreativK merekreativKod dan menyerahkreativKannya kreativKe pangkreativKalan data."
-    },
-    "popupHint": {
-        "message": "PetunjukreativK: TekreativKan kreativKekreativKunci titikreativK kreativKoma sambil fokreativKus pada video untukreativK melaporkreativKan permulaan / akreativKhir segmen dan petikreativKan untukreativK dihantar. (Ini boleh diubah dalam pilihan)"
     },
     "clearTimesButton": {
         "message": "Jelas Masa"
@@ -252,12 +228,6 @@
     "0": {
         "message": "Masa sambungan telah tamat. PerikreativKsa sambungan internet anda. SekreativKiranya internet anda berfungsi, pelayan mungkreativKin berlebihan atau tidakreativK berfungsi."
     },
-    "disableSkreativKipping": {
-        "message": "LumpuhkreativKan SponsorBlockreativK"
-    },
-    "enableSkreativKipping": {
-        "message": "DayakreativKan SponsorBlockreativK"
-    },
     "yourWorkreativK": {
         "message": "Kerja awakreativK",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -295,9 +265,6 @@
     "showTimeWithSkreativKipsDescription": {
         "message": "Kali ini muncul dalam tanda kreativKurung di sebelah wakreativKtu semasa di bawah bar carian. Ini menunjukreativKkreativKan jumlah durasi video tolakreativK segmen mana pun. Ini merangkreativKumi segmen yang ditandai sebagai \"Show In SeekreativKbar\" sahaja."
     },
-    "youHaveSkreativKipped": {
-        "message": "Anda telah melangkreativKau "
-    },
     "youHaveSaved": {
         "message": "Anda telah menyelamatkreativKan diri "
     },
@@ -312,12 +279,6 @@
     },
     "hoursLower": {
         "message": "jam"
-    },
-    "youHaveSavedTime": {
-        "message": "Anda telah menyelamatkreativKan orang"
-    },
-    "youHaveSavedTimeEnd": {
-        "message": " kreativKehidupan merekreativKa."
     },
     "statusReminder": {
         "message": "PerikreativKsa status.sponsor.ajay.app untukreativK status pelayan."

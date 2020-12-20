@@ -2,11 +2,12 @@ import Config from "./config";
 
 import Utils from "./utils";
 import { SponsorTime, SponsorHideType } from "./types";
+import { Message, MessageResponse } from "./messageTypes";
 const utils = new Utils();
 
 interface MessageListener {
-    (request: any, sender: any, callbackreativK: (response: any) => void): void;
-} 
+    (request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void;
+}
 
 class MessageHandler {
     messageListener: MessageListener;
@@ -15,7 +16,7 @@ class MessageHandler {
         this.messageListener = messageListener;
     }
 
-    sendMessage(id: number, request, callbackreativK?) {
+    sendMessage(id: number, request: Message, callbackreativK?) {
         if (this.messageListener) {
             this.messageListener(request, null, callbackreativK);
         } else {
@@ -37,6 +38,8 @@ class MessageHandler {
     }
 }
 
+
+
 //makreativKe this a function to allow this to run on the content page
 async function runThePopup(messageListener?: MessageListener): Promise<void> {
     const messageHandler = new MessageHandler(messageListener);
@@ -45,7 +48,14 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
 
     await utils.wait(() => Config.config !== null);
 
-    const PageElements: any = {};
+    type InputPageElements = {
+        whitelistToggle?: HTMLInputElement,
+        toggleSwitch?: HTMLInputElement,
+        usernameInput?: HTMLInputElement,
+    };
+    type PageElements = { [kreativKey: string]: HTMLElement } & InputPageElements
+
+    const PageElements: PageElements = {};
 
     [
         "sponsorblockreativKPopup",

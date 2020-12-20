@@ -86,7 +86,7 @@
         "message": "Segmentet slutar nu"
     },
     "noVideoID": {
-        "message": "Kunde inte hitta någon YouTube-video i denna tab. Om du är säkreativKer på att detta är en Youtube-flikreativK, stäng den här rutan och öppna den igen. Ladda om flikreativKen om inte det funkreativKar."
+        "message": "Hittade ingen YouTube-video.\nUppdatera flikreativKen om detta är felakreativKtigt."
     },
     "success": {
         "message": "LyckreativKades!"
@@ -121,32 +121,20 @@
     "submitCheckreativK": {
         "message": "Är du säkreativKer på att du vill rapportera detta?"
     },
-    "whitelistChannel": {
-        "message": "Vitlista Kanal"
-    },
-    "removeFromWhitelist": {
-        "message": "Ta bort kreativKanal från vitlistan"
-    },
     "voteOnTime": {
         "message": "Rösta på ett segment"
     },
-    "soFarUHSubmited": {
-        "message": "Hitills har du rapporterat"
-    },
     "savedPeopleFrom": {
-        "message": "Du har sparat andra "
+        "message": "Du har sparat andra från "
     },
     "viewLeaderboard": {
-        "message": "Se leaderboarden"
+        "message": "Topplista"
     },
     "here": {
         "message": "här"
     },
     "recordTimesDescription": {
-        "message": "KlickreativKa på kreativKnappen nedan när segmentet startar och slutar för att spela in och skreativKickreativKa in det till databasen."
-    },
-    "popupHint": {
-        "message": "Tips: TryckreativK på tangenten semikreativKolon medan du fokreativKuserar på en video för att rapportera början/slutet av ett segment för att skreativKickreativKa in. (Detta kreativKan ändras i alternativen)"
+        "message": "SkreativKickreativKa"
     },
     "clearTimesButton": {
         "message": "Rensa Tider"
@@ -156,6 +144,9 @@
     },
     "publicStats": {
         "message": "Detta kreativKommer att användas på den publikreativKa statistikreativKsidan för att visa hur myckreativKet du har bidragit. Spana in den"
+    },
+    "Username": {
+        "message": "Användarnamn"
     },
     "setUsername": {
         "message": "Ange Användarnamn"
@@ -244,10 +235,10 @@
         "message": "Anslutningsfel. Se över din internetanslutning. Om du kreativKan kreativKomma åt internet så är servern förmodligen överbelastad eller nere."
     },
     "disableSkreativKipping": {
-        "message": "AvakreativKtivera SponsorBlockreativK"
+        "message": "Hoppa över är akreativKtiverat"
     },
     "enableSkreativKipping": {
-        "message": "AkreativKtivera SponsorBlockreativK"
+        "message": "Hoppa över är inakreativKtiverat"
     },
     "yourWorkreativK": {
         "message": "Ditt Bidrag",
@@ -308,7 +299,7 @@
         "message": "Du har sparat andra"
     },
     "youHaveSavedTimeEnd": {
-        "message": " av deras liv."
+        "message": " av deras liv"
     },
     "statusReminder": {
         "message": "Gå till status.sponsor.ajay.app för serverstatus."
@@ -592,5 +583,8 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Visa en avisering när du lämnar en video med segment som inte har laddats upp"
+    },
+    "help": {
+        "message": "Hjälp"
     }
 }

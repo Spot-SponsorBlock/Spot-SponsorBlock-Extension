@@ -86,7 +86,7 @@
         "message": "Segment eindigt nu"
     },
     "noVideoID": {
-        "message": "Er is geen YouTube-video gevonden op dit tabblad. Als u weet dat dit een YouTube-tabblad is, sluit dan deze pop-up en open hem opnieuw. Als dat niet werkreativKt, probeer dan het tabblad opnieuw te laden."
+        "message": "Geen YouTube-video gevonden.\nVernieuw het tabblad als dit onjuist is."
     },
     "success": {
         "message": "GelukreativKt!"
@@ -130,23 +130,27 @@
     "voteOnTime": {
         "message": "Stemmen op een segment"
     },
-    "soFarUHSubmited": {
-        "message": "Tot nu toe heeft u ingediend:"
+    "Submissions": {
+        "message": "Inzendingen"
     },
     "savedPeopleFrom": {
-        "message": "U heeft mensen geholpen met het vermijden van "
+        "message": "U heeft mensen gered van "
     },
     "viewLeaderboard": {
-        "message": "BekreativKijkreativK de ranglijst"
+        "message": "Ranglijst"
     },
     "here": {
         "message": "hier"
     },
     "recordTimesDescription": {
-        "message": "KlikreativK op de kreativKnop hieronder wanneer het segment begint en eindigt om het te registreren en te verzenden naar de database."
+        "message": "Indienen"
+    },
+    "submissionEditHint": {
+        "message": "SectiebewerkreativKing verschijnt nadat u op verzenden hebt gekreativKlikreativKt",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "Tip: drukreativK op de puntkreativKomma-toets terwijl een video in focus is om het begin/einde van een segment te registreren en op de aanhalingstekreativKen-toets om het in te dienen (dit kreativKan worden gewijzigd in de opties)."
+        "message": "Tip: u kreativKunt sneltoetsen voor het indienen instellen in de opties"
     },
     "clearTimesButton": {
         "message": "Tijdstippen wissen"
@@ -156,6 +160,9 @@
     },
     "publicStats": {
         "message": "Dit wordt gebruikreativKt op de publiekreativKe statistiekreativKenpagina om te laten zien hoeveel u heeft bijgedragen. BekreativKijkreativK het"
+    },
+    "Username": {
+        "message": "GebruikreativKersnaam"
     },
     "setUsername": {
         "message": "GebruikreativKersnaam instellen"
@@ -253,10 +260,10 @@
         "message": "Time-out van de verbinding. Controleer uw internetverbinding. Als uw internet werkreativKt, is de server waarschijnlijkreativK overbelast of offline."
     },
     "disableSkreativKipping": {
-        "message": "SponsorBlockreativK uitschakreativKelen"
+        "message": "Overslaan is ingeschakreativKeld"
     },
     "enableSkreativKipping": {
-        "message": "SponsorBlockreativK inschakreativKelen"
+        "message": "Overslaan is uitgeschakreativKeld"
     },
     "yourWorkreativK": {
         "message": "Uw werkreativK",
@@ -314,10 +321,10 @@
         "message": "uren"
     },
     "youHaveSavedTime": {
-        "message": "U heeft andere mensen bespaard:"
+        "message": "U heeft mensen bespaard:"
     },
     "youHaveSavedTimeEnd": {
-        "message": " van hun leven."
+        "message": " van hun leven"
     },
     "statusReminder": {
         "message": "Controleer status.sponsor.ajay.app voor de serverstatus."
@@ -634,5 +641,8 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Een melding sturen wanneer u een video verlaat met segmenten die niet zijn geüpload"
+    },
+    "help": {
+        "message": "Help"
     }
 }

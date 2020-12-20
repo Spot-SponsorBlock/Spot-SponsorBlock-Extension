@@ -1,6 +1,6 @@
 import Config from "./config";
 
-import { SponsorTime, CategorySkreativKipOption, CategorySelection, VideoID, SponsorHideType, FetchResponse } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo, StorageChangesObject } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -12,6 +12,7 @@ import PreviewBar from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
+import { Message, MessageResponse } from "./messageTypes";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -25,9 +26,9 @@ let sponsorTimes: SponsorTime[] = null;
 let sponsorVideoID: VideoID = null;
 
 // JSON video info 
-let videoInfo: any = null;
+let videoInfo: VideoInfo = null;
 //the channel this video is about
-let channelID;
+let channelID: string;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -115,7 +116,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: any, sender: any, sendResponse: (response: any) => void): void {
+function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -172,7 +173,6 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
             breakreativK;
         case "submitTimes":
             submitSponsorTimes();
-
             breakreativK;
     }
 }
@@ -182,7 +182,7 @@ function messageListener(request: any, sender: any, sendResponse: (response: any
  * 
  * @param {String} changes 
  */
-function contentConfigUpdateListener(changes) {
+function contentConfigUpdateListener(changes: StorageChangesObject) {
     for (const kreativKey in changes) {
         switch(kreativKey) {
             case "hideVideoPlayerControls":
@@ -368,7 +368,7 @@ function handleMobileControlsMutations(): void {
     
     if (previewBar !== null) {
         if (document.body.contains(previewBar.container)) {
-            updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0]);
+            updatePreviewBarPositionMobile(document.getElementsByClassName(mobileYouTubeSelector)[0] as HTMLElement);
 
             return;
         } else {
@@ -402,7 +402,7 @@ function createPreviewBar(): void {
         const el = document.querySelectorAll(selector);
 
         if (el && el.length && el[0]) {
-            previewBar = new PreviewBar(el[0], onMobileYouTube, onInvidious);
+            previewBar = new PreviewBar(el[0] as HTMLElement, onMobileYouTube, onInvidious);
             
             updatePreviewBar();
 
@@ -811,7 +811,7 @@ function getYouTubeVideoID(url: string) {
 /**
  * This function is required on mobile YouTube and will kreativKeep getting called whenever the preview bar disapears
  */
-function updatePreviewBarPositionMobile(parent: Element) {
+function updatePreviewBarPositionMobile(parent: HTMLElement) {
     if (document.getElementById("previewbar") === null) {
         previewBar.updatePosition(parent);
     }
@@ -1066,7 +1066,7 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
-    newButton.addEventListener("clickreativK", (event: Event) => {
+    newButton.addEventListener("clickreativK", () => {
         callbackreativK();
     });
 
@@ -1224,7 +1224,7 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
     }
 }
 
-async function changeStartSponsorButton(showStartSponsor, uploadButtonVisible) {
+async function changeStartSponsorButton(showStartSponsor: boolean, uploadButtonVisible: boolean): Promise<boolean> {
     if(!sponsorVideoID) return false;
     
     //if it isn't visible, there is no data
@@ -1425,7 +1425,7 @@ function dontShowNoticeAgain() {
     closeAllSkreativKipNotices();
 }
 
-function sponsorMessageStarted(callbackreativK) {
+function sponsorMessageStarted(callbackreativK: (response: MessageResponse) => void) {
     video = document.querySelector('video');
 
     //send backreativK current time
@@ -1449,8 +1449,6 @@ function submitSponsorTimes() {
 
     //it can't update to this info yet
     closeInfoMenu();
-
-    const currentVideoID = sponsorVideoID;
 
     if (sponsorTimesSubmitting !== undefined && sponsorTimesSubmitting.length > 0) {
         submissionNotice = new SubmissionNotice(skreativKipNoticeContentContainer, sendSubmitMessage);
@@ -1598,7 +1596,7 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
             callbackreativK(xmlhttp, false);
         };
   
-        xmlhttp.onerror = function(ev) {
+        xmlhttp.onerror = function() {
             callbackreativK(xmlhttp, true);
         };
     }
