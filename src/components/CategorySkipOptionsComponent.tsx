@@ -2,9 +2,6 @@ import * as React from "react";
 
 import Config from "../config"
 import { CategorySkreativKipOption } from "../types";
-import Utils from "../utils";
-
-const utils = new Utils();
 
 export interface CategorySkreativKipOptionsProps { 
     category: string;
