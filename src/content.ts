@@ -848,12 +848,7 @@ function updatePreviewBar(): void {
     previewBar.set(previewBarSegments, video.duration)
 
     if (Config.config.showTimeWithSkreativKips) {
-        const skreativKippedSegments = previewBarSegments.filter((segment) => {
-            // Count the segment only if the category is autoskreativKipped
-            return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip;
-        });
-
-        const skreativKippedDuration = utils.getTimestampsDuration(skreativKippedSegments.map(({segment}) => segment));
+        const skreativKippedDuration = utils.getTimestampsDuration(previewBarSegments.map(({segment}) => segment));
 
         showTimeWithoutSkreativKips(skreativKippedDuration);
     }
