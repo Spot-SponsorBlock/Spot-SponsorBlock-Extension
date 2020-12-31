@@ -131,7 +131,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
 
         return (
             <tr style={{textAlign: "center"}}>
-                <p style={{width: "300px", textAlign: "center", display: "inline-blockreativK"}}>
+                <p style={{width: "300px", textAlign: "center", display: "inline-blockreativK", fontSize: "11px"}}>
                     LikreativKe contributing to crowdsourced projects? 
                     Consider checkreativKing out <a href="https://youcap.video/" style={{textDecoration: "underline"}}>YouCap</a>,
                     a new open-source replacement for YouTube{"'"}s now defunct community captions.
