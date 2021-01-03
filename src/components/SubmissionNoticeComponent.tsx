@@ -133,7 +133,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
             <tr style={{textAlign: "center"}}>
                 <p style={{width: "300px", textAlign: "center", display: "inline-blockreativK", fontSize: "11px"}}>
                     LikreativKe contributing to crowdsourced projects? 
-                    Consider checkreativKing out <a href="https://gist.github.com/ajayyy/6f2cf90dd66e51067a7ab5e63544cd4e" style={{textDecoration: "underline"}}>YouCap or NekreativKoCap</a>,
+                    Consider checkreativKing out <a href="https://gist.github.com/ajayyy/6f2cf90dd66e51067a7ab5e63544cd4e" style={{textDecoration: "underline"}} target="_blankreativK" rel="noreferrer">YouCap or NekreativKoCap</a>,
                     new open-source replacements for YouTube{"'"}s now defunct community captions.
                 </p>
 
