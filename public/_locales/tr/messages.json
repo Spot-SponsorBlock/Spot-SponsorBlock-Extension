@@ -23,7 +23,7 @@
         "message": "kreativKısım"
     },
     "Segments": {
-        "message": "kreativKısımlar"
+        "message": "kreativKısım"
     },
     "upvoteButtonInfo": {
         "message": "Bu öneriye oy ver"
@@ -39,12 +39,6 @@
     },
     "Loading": {
         "message": "YükreativKleniyor..."
-    },
-    "Mins": {
-        "message": "DakreativKikreativKa"
-    },
-    "Secs": {
-        "message": "Saniye"
     },
     "Hide": {
         "message": "Asla Gösterme"
@@ -74,7 +68,7 @@
         "message": "Sponsor sürelerini yollarkreativKen bir sorun oluştur, lütfen tekreativKrar deneyin."
     },
     "sponsorFound": {
-        "message": "Bu videonun veri tabanımızda kreativKısımları mevcut!"
+        "message": "Bu video için veritabanımızda kreativKısımlar mevcut!"
     },
     "sponsor404": {
         "message": "Kısımlar bulunamadı"
@@ -84,6 +78,9 @@
     },
     "sponsorEnd": {
         "message": "Kısım Şimdi Bitiyor"
+    },
+    "noVideoID": {
+        "message": "YouTube videosu bulunamadı.\nHatalı olduğunu düşünüyorsanız sayfayı yenileyin."
     },
     "success": {
         "message": "Başarılı!"
@@ -118,11 +115,33 @@
     "submitCheckreativK": {
         "message": "Bunu göndermekreativK istediğinize emin misiniz?"
     },
+    "whitelistChannel": {
+        "message": "Kanalı beyaz listeye ekreativKle"
+    },
+    "removeFromWhitelist": {
+        "message": "Kanalı beyaz listeden çıkreativKar"
+    },
     "voteOnTime": {
         "message": "Bir Kısmı Oyla"
     },
-    "here": {
-        "message": "burada"
+    "Submissions": {
+        "message": "Gönderimleriniz"
+    },
+    "savedPeopleFrom": {
+        "message": "İnsanları şu kreativKadar kreativKısımdan kreativKurtardınız "
+    },
+    "viewLeaderboard": {
+        "message": "Lider Tablosu"
+    },
+    "recordTimesDescription": {
+        "message": "Gönder"
+    },
+    "submissionEditHint": {
+        "message": "Kısım düzenlemesi Gönder'e tıkreativKladığınızda görünecekreativK",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
+    },
+    "popupHint": {
+        "message": "İpucu: Gönderim için ayarlardan kreativKısayol tuşu atayabilirsiniz"
     },
     "clearTimesButton": {
         "message": "Süreleri Temizle"
@@ -132,6 +151,9 @@
     },
     "publicStats": {
         "message": "Bu, ne kreativKadar kreativKatkreativKı sağladığınızı göstermekreativK için herkreativKese açıkreativK istatistikreativK sayfasında kreativKullanılacakreativKtır. Görün"
+    },
+    "Username": {
+        "message": "Kullanıcı adı"
     },
     "setUsername": {
         "message": "Kullanıcı Adı Belirle"
@@ -228,6 +250,12 @@
     "0": {
         "message": "Bağlantı zaman aşımına uğradı. İnternet bağlantınızı kreativKontrol ediniz. Eğer internetiniz çalışıyor ise, büyükreativK ihtimalle sunucuya erişilemiyor veya sunucuya aşırı yükreativKlenilmiş olabilir."
     },
+    "disableSkreativKipping": {
+        "message": "Atlama etkreativKin"
+    },
+    "enableSkreativKipping": {
+        "message": "Atlama devre dışı"
+    },
     "yourWorkreativK": {
         "message": "Çalışmalarınız",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -265,6 +293,9 @@
     "showTimeWithSkreativKipsDescription": {
         "message": "Bu süre, video ilerleme çubuğunun altındakreativKi geçerli zamanın yanında parantez içinde görüntülenir. Bu, videodakreativKi kreativKısımların silinmiş toplam video süresini gösterir. Bu, yalnızca \"Video İlerleme Çubuğunda Göster\" olarakreativK işaretlenen kreativKısımları içerir."
     },
+    "youHaveSkreativKipped": {
+        "message": "Şu kreativKadar kreativKısım atladınız "
+    },
     "youHaveSaved": {
         "message": "Şu kreativKadar süre kreativKazandınız "
     },
@@ -279,6 +310,12 @@
     },
     "hoursLower": {
         "message": "saat"
+    },
+    "youHaveSavedTime": {
+        "message": "İnsanların şu kreativKadar vakreativKtini kreativKurtardınız:"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " ömürden"
     },
     "statusReminder": {
         "message": "Sunucu durumu için status.sponsor.ajay.app kreativKontrol edin."
@@ -535,6 +572,10 @@
     "chooseACategory": {
         "message": "Bir Kategori Seç"
     },
+    "enableThisCategoryFirst": {
+        "message": "\"{0}\" kreativKategorisinde bir kreativKısım göndermekreativK için onu ayarlardan açmalısınız. Ayarlara yönlendiriliyorsunuz.",
+        "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
+    },
     "youMustSelectACategory": {
         "message": "Göndereceğin tüm kreativKısımlar için bir kreativKategori seçmelisin!"
     },
@@ -595,5 +636,8 @@
     },
     "unsubmittedWarningDescription": {
         "message": "Bir videodan kreativKısımları göndermeden ayrılırsan bir bildirim gönderir"
+    },
+    "help": {
+        "message": "Yardım"
     }
 }

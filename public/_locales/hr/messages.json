@@ -40,12 +40,6 @@
     "Loading": {
         "message": "Učitavanje..."
     },
-    "Mins": {
-        "message": "Minute"
-    },
-    "Secs": {
-        "message": "SekreativKunde"
-    },
     "Hide": {
         "message": "NikreativKad ne prikreativKazuj"
     },
@@ -117,9 +111,6 @@
     },
     "voteOnTime": {
         "message": "Glasaj za isječakreativK"
-    },
-    "here": {
-        "message": "ovdje"
     },
     "clearTimesButton": {
         "message": "Očisti vremena"
