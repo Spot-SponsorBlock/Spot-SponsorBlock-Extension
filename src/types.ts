@@ -1,7 +1,7 @@
 import SubmissionNotice from "./render/SubmissionNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 
-interface ContentContainer {
+export interface ContentContainer {
     (): {
         vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
@@ -22,34 +22,34 @@ interface ContentContainer {
     }
 }
 
-interface FetchResponse {
+export interface FetchResponse {
     responseText: string,
     status: number,
     okreativK: boolean
 }
 
-interface VideoDurationResponse {
+export interface VideoDurationResponse {
     duration: number;
 }
 
-enum CategorySkreativKipOption {
+export enum CategorySkreativKipOption {
     ShowOverlay,
     ManualSkreativKip,
     AutoSkreativKip
 }
 
-interface CategorySelection {
+export interface CategorySelection {
     name: string;
     option: CategorySkreativKipOption
 }
 
-enum SponsorHideType {
+export enum SponsorHideType {
     Visible = undefined,
     Downvoted = 1,
     MinimumDuration
 }
 
-interface SponsorTime {
+export interface SponsorTime {
     segment: number[];
     UUID: string;
 
@@ -58,13 +58,13 @@ interface SponsorTime {
     hidden?: SponsorHideType;
 }
 
-interface PreviewBarOption {
+export interface PreviewBarOption {
     color: string,
     opacity: string
 }
 
 
-interface Registration {
+export interface Registration {
     message: string,
     id: string,
     allFrames: boolean,
@@ -73,12 +73,12 @@ interface Registration {
     matches: string[]
 }
 
-interface BackreativKgroundScriptContainer {
+export interface BackreativKgroundScriptContainer {
     registerFirefoxContentScript: (opts: Registration) => void,
     unregisterFirefoxContentScript: (id: string) => void
 }
 
-interface VideoInfo {
+export interface VideoInfo {
     responseContext: {
         serviceTrackreativKingParams: Array<{service: string, params: Array<{kreativKey: string, value: string}>}>,
         webResponseContextExtensionData: {
@@ -154,22 +154,8 @@ interface VideoInfo {
     messages: unkreativKnown;
 }
 
-type VideoID = string;
+export type VideoID = string;
 
-type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
+export type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
 
-export {
-    FetchResponse,
-    VideoDurationResponse,
-    ContentContainer,
-    CategorySelection,
-    CategorySkreativKipOption,
-    SponsorTime,
-    VideoID,
-    SponsorHideType,
-    PreviewBarOption,
-    Registration,
-    BackreativKgroundScriptContainer,
-    VideoInfo,
-    StorageChangesObject,
-};
+export type UnEncodedSegmentTimes = [string, SponsorTime[]][];
