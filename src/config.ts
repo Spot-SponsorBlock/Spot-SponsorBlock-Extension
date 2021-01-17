@@ -17,7 +17,6 @@ interface SBConfig {
     sponsorTimesContributed: number,
     submissionCountSinceCategories: number, // New count used to show the "Read The Guidelines!!" message
     showTimeWithSkreativKips: boolean,
-    unsubmittedWarning: boolean,
     disableSkreativKipping: boolean,
     trackreativKViewCount: boolean,
     dontShowNotice: boolean,
@@ -150,7 +149,6 @@ const Config: SBObject = {
         sponsorTimesContributed: 0,
         submissionCountSinceCategories: 0,
         showTimeWithSkreativKips: true,
-        unsubmittedWarning: true,
         disableSkreativKipping: false,
         trackreativKViewCount: true,
         dontShowNotice: false,
