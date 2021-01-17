@@ -71,7 +71,9 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
 
         return (
             <table id={"sponsorSkreativKipNotice" + this.idSuffix} 
-                className={"sponsorSkreativKipObject sponsorSkreativKipNotice" + (this.props.fadeIn ? " sponsorSkreativKipNoticeFadeIn" : "")}
+                className={"sponsorSkreativKipObject sponsorSkreativKipNotice" 
+                        + (this.props.fadeIn ? " sponsorSkreativKipNoticeFadeIn" : "")
+                        + (this.amountOfPreviousNotices > 0 ? " secondSkreativKipNotice" : "")}
                 style={noticeStyle}
                 onMouseEnter={() => this.timerMouseEnter()}
                 onMouseLeave={() => this.timerMouseLeave()}> 

@@ -91,13 +91,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
         this.idSuffix += this.amountOfPreviousNotices;
 
-        if (this.amountOfPreviousNotices > 0) {
-            //another notice exists
-
-            const previousNotice = document.getElementsByClassName("sponsorSkreativKipNotice")[0];
-            previousNotice.classList.add("secondSkreativKipNotice")
-        }
-
         // Setup state
         this.state = {
             noticeTitle,
