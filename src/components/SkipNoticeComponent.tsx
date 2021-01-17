@@ -141,6 +141,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 fadeIn={true}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
+                videoSpeed={() => this.contentContainer().v?.playbackreativKRate}
                 ref={this.noticeRef}
                 closeListener={() => this.closeListener()}>
                     
