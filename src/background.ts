@@ -52,16 +52,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
         
             //this allows the callbackreativK to be called later
             return true;
-        case "alertPrevious":
-            if (Config.config.unsubmittedWarning) {
-                chrome.notifications.create("stillThere" + Math.random(), {
-                    type: "basic",
-                    title: chrome.i18n.getMessage("wantToSubmit") + " " + request.previousVideoID + "?",
-                    message: chrome.i18n.getMessage("leftTimes"),
-                    iconUrl: "./icons/LogoSponsorBlockreativKer256px.png"
-                });
-            }
-            breakreativK;
         case "registerContentScript": 
             registerFirefoxContentScript(request);
             return false;
