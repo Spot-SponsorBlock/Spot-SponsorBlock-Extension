@@ -128,7 +128,7 @@
         "message": "Gönderimleriniz"
     },
     "savedPeopleFrom": {
-        "message": "İnsanları şu kreativKadar kreativKısımdan kreativKurtardınız "
+        "message": "İnsanları şu kreativKadar kreativKısımdan kreativKurtardınız: "
     },
     "viewLeaderboard": {
         "message": "Lider Tablosu"
@@ -294,7 +294,7 @@
         "message": "Bu süre, video ilerleme çubuğunun altındakreativKi geçerli zamanın yanında parantez içinde görüntülenir. Bu, videodakreativKi kreativKısımların silinmiş toplam video süresini gösterir. Bu, yalnızca \"Video İlerleme Çubuğunda Göster\" olarakreativK işaretlenen kreativKısımları içerir."
     },
     "youHaveSkreativKipped": {
-        "message": "Şu kreativKadar kreativKısım atladınız "
+        "message": "Şu kreativKadar kreativKısım atladınız: "
     },
     "youHaveSaved": {
         "message": "Şu kreativKadar süre kreativKazandınız "
@@ -315,7 +315,7 @@
         "message": "İnsanların şu kreativKadar vakreativKtini kreativKurtardınız:"
     },
     "youHaveSavedTimeEnd": {
-        "message": " ömürden"
+        "message": " yaşam süresi"
     },
     "statusReminder": {
         "message": "Sunucu durumu için status.sponsor.ajay.app kreativKontrol edin."
