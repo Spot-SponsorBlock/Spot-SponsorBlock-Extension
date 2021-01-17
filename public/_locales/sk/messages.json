@@ -24,12 +24,6 @@
     "Loading": {
         "message": "Načítavanie..."
     },
-    "Mins": {
-        "message": "Minúty"
-    },
-    "Secs": {
-        "message": "SekreativKundy"
-    },
     "Hide": {
         "message": "NikreativKdy nezobrazovať"
     },
@@ -71,9 +65,6 @@
     },
     "closePopup": {
         "message": "Zavrieť okreativKno"
-    },
-    "here": {
-        "message": "tu"
     },
     "hideThis": {
         "message": "SkreativKryť"

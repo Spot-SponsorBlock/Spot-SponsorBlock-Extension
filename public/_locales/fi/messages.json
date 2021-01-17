@@ -40,12 +40,6 @@
     "Loading": {
         "message": "Ladataan..."
     },
-    "Mins": {
-        "message": "Minuuttia"
-    },
-    "Secs": {
-        "message": "SekreativKuntia"
-    },
     "Hide": {
         "message": "Älä näytä kreativKoskreativKaan"
     },
@@ -120,9 +114,6 @@
     },
     "voteOnTime": {
         "message": "Äänestä Segmenttiä"
-    },
-    "here": {
-        "message": "tässä"
     },
     "clearTimesButton": {
         "message": "Tyhjennä ajat"

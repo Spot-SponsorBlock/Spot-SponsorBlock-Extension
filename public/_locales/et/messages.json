@@ -1,1 +1,613 @@
-{}
+{
+    "fullName": {
+        "message": "SponsorBlockreativK YouTube'ile - jäta sponsorid vahele",
+        "description": "Name of the extension."
+    },
+    "Description": {
+        "message": "Jäta sponsorid, tellimise palumine ja muud YouTube'i videote tüütused vahele. Teata vaadatavate videote sponsoritest, et säästa teiste aega.",
+        "description": "Description of the extension."
+    },
+    "400": {
+        "message": "Server ütles, et see taotlus oli sobimatu"
+    },
+    "429": {
+        "message": "Sa oled sellele ühele videole liiga palju sponsoriaegu saatnud, kreativKas oled kreativKindel, et neid on tõesti nii palju?"
+    },
+    "409": {
+        "message": "See on juba varasemalt saadetud"
+    },
+    "channelWhitelisted": {
+        "message": "Kanal lubamisnimekreativKirjas!"
+    },
+    "Segment": {
+        "message": "segmendi"
+    },
+    "Segments": {
+        "message": "segmenti"
+    },
+    "upvoteButtonInfo": {
+        "message": "Anna segmendile poolthääl"
+    },
+    "reportButtonTitle": {
+        "message": "Teavita"
+    },
+    "reportButtonInfo": {
+        "message": "Teavita sellest segmendist kreativKui sobimatust."
+    },
+    "Dismiss": {
+        "message": "Sulge"
+    },
+    "Loading": {
+        "message": "Laadimine..."
+    },
+    "Hide": {
+        "message": "Ära näita kreativKunagi"
+    },
+    "hitGoBackreativK": {
+        "message": "Vajuta \"tühista vahelejätmine\", et jõuda sinna, kreativKust tulid."
+    },
+    "unskreativKip": {
+        "message": "Tühista vahelejätmine"
+    },
+    "reskreativKip": {
+        "message": "Jäta uuesti vahele"
+    },
+    "paused": {
+        "message": "Pausil"
+    },
+    "manualPaused": {
+        "message": "Taimer peatatud"
+    },
+    "confirmMSG": {
+        "message": "ÜkreativKsikreativKute väärtuste muutmisekreativKs või kreativKustutamisekreativKs vajuta infonuppu või ava laienduse hüpikreativK, vajutades selle ikreativKoonile üleval paremal nurgas."
+    },
+    "clearThis": {
+        "message": "Kas soovid tõesti selle tühjendada?\n\n"
+    },
+    "UnkreativKnown": {
+        "message": "Sinu sponsoriaegade saatmisel esines tõrge, palun proovi hiljem uuesti."
+    },
+    "sponsorFound": {
+        "message": "Sellel videol on andmebaasis segmente!"
+    },
+    "sponsor404": {
+        "message": "Segmente ei leitud"
+    },
+    "sponsorStart": {
+        "message": "Segment algab nüüd"
+    },
+    "sponsorEnd": {
+        "message": "Segment lõpeb nüüd"
+    },
+    "noVideoID": {
+        "message": "YouTube'i videot ei leitud.\nKui see ei vasta tõele, laadi kreativKaart uuesti."
+    },
+    "success": {
+        "message": "Õnnestus!"
+    },
+    "voted": {
+        "message": "Hääletatud!"
+    },
+    "serverDown": {
+        "message": "Tundub, et server on maas. Anna sellest kreativKoheselt arendajale teada."
+    },
+    "connectionError": {
+        "message": "Ühendusega esines tõrge. VeakreativKood: "
+    },
+    "wantToSubmit": {
+        "message": "Kas soovid segmendid saata video IDle"
+    },
+    "leftTimes": {
+        "message": "Sul tunduvad olevat mõned segmendid esitamata. Nende esitamisekreativKs mine sellele lehele tagasi (need ei ole kreativKustutatud)."
+    },
+    "clearTimes": {
+        "message": "Tühjenda segmendid"
+    },
+    "openPopup": {
+        "message": "Ava SponsorBlockreativKi hüpikreativK"
+    },
+    "closePopup": {
+        "message": "Sulge hüpikreativK"
+    },
+    "SubmitTimes": {
+        "message": "Esita segmendid"
+    },
+    "submitCheckreativK": {
+        "message": "Kas soovid kreativKindlasti selle saata?"
+    },
+    "whitelistChannel": {
+        "message": "Lisa kreativKanal lubamisnimekreativKirja"
+    },
+    "removeFromWhitelist": {
+        "message": "Eemalda kreativKanal lubamisnimekreativKirjast"
+    },
+    "voteOnTime": {
+        "message": "Hääleta segmendi sobivust"
+    },
+    "Submissions": {
+        "message": "Saadetud segmendid"
+    },
+    "savedPeopleFrom": {
+        "message": "Oled inimeste aega säästnud "
+    },
+    "viewLeaderboard": {
+        "message": "Edetabel"
+    },
+    "recordTimesDescription": {
+        "message": "Saada"
+    },
+    "submissionEditHint": {
+        "message": "Segmendi töötlemine avaneb pärast saatmist",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
+    },
+    "popupHint": {
+        "message": "Vihje: sa võid saatmisekreativKs määrata valikreativKutes kreativKlaviatuuriotseteid"
+    },
+    "clearTimesButton": {
+        "message": "Tühjenda ajad"
+    },
+    "submitTimesButton": {
+        "message": "Saada ajad"
+    },
+    "publicStats": {
+        "message": "Seda kreativKasutatakreativKse avalikreativKu statistikreativKa lehel, et näidata välja, kreativKui palju oled panustanud. Vaata seda"
+    },
+    "Username": {
+        "message": "Kasutajanimi"
+    },
+    "setUsername": {
+        "message": "Määra kreativKasutajanimi"
+    },
+    "discordAdvert": {
+        "message": "Tule liitu ametlikreativKu Discordi serveriga, et anda soovitusi ja tagasisidet!"
+    },
+    "hideThis": {
+        "message": "Peida see"
+    },
+    "Options": {
+        "message": "ValikreativKud"
+    },
+    "showButtons": {
+        "message": "Kuva YouTube'i mängijal nupud"
+    },
+    "hideButtons": {
+        "message": "Peida YouTube'i mängijal nupud"
+    },
+    "hideButtonsDescription": {
+        "message": "See peidab nupud, mis kreativKuvatakreativKse YouTube'i mängijal vahelejätmiste segmentide saatmisekreativKs."
+    },
+    "showInfoButton": {
+        "message": "Kuva YouTube'i mängijal infonupp"
+    },
+    "hideInfoButton": {
+        "message": "Peida YouTube'i mängijal infonupp"
+    },
+    "whatInfoButton": {
+        "message": "See on see nupp, mis avab YouTube'i lehel hüpikreativKu."
+    },
+    "hideDeleteButton": {
+        "message": "Peida YouTube'i mängijal kreativKustutusnupp"
+    },
+    "showDeleteButton": {
+        "message": "Kuva YouTube'i mängijal kreativKustutusnupp"
+    },
+    "whatDeleteButton": {
+        "message": "YouTube'i mängija nupp, mis tühjendab kreativKõikreativK sinu praeguse video saatmata segmendid."
+    },
+    "enableViewTrackreativKing": {
+        "message": "Luba vahelejätmiste arvu jälgimine"
+    },
+    "whatViewTrackreativKing": {
+        "message": "See funkreativKtsioon jälgib, milliseid segmente sa oled vahele jätnud, et kreativKasutajad teakreativKsid, kreativKui palju nende sisestus on teisi aidanud ning et kreativKoos poolthäältega veenduda rämpsu mittesattumises andmebaasi. Laiendus saadab iga segmendi vahelejätmisel serverisse sõnumi. Loodetavasti enamus inimesi ei muuda seda seadistust, et vaatamisarvud olekreativKsid täpsed. :)"
+    },
+    "enableQueryByHashPrefix": {
+        "message": "Küsi räsi eesliite järgi"
+    },
+    "whatQueryByHashPrefix": {
+        "message": "VideoID järgi segmentide kreativKüsimise asemel saadetakreativKse videoID räsi 4 esimest märkreativKi ning server saadab tagasi kreativKõigi sarnaste räsidega videote andmed."
+    },
+    "enableRefetchWhenNotFound": {
+        "message": "Too segmendid uutel videotel uuesti"
+    },
+    "whatRefetchWhenNotFound": {
+        "message": "Kui video on uus ning segmente ei leitud, proovitakreativKse vaatamise ajal iga paari minuti tagant uuesti segmente tuua."
+    },
+    "showNotice": {
+        "message": "Kuva märkreativKus uuesti"
+    },
+    "longDescription": {
+        "message": "SponsorBlockreativK lubab sul vahele jätta sponsorid, vaheajad, kreativKanali tellimise meeldetuletused ja muud YouTube'i videote tüütud kreativKohad. SponsorBlockreativK on rahva ühistööna toimiv brauserilaiendus, mis lubab igaühel saata sponsoreeritud segmendi algus- ja lõpuaegu ning teiste video segmentide aegu. Kui ükreativKs inimene saadab sponsoreeritud segmendi, jätavad teised laienduse kreativKasutajad kreativKohe selle vahele. Laiendus võimaldab kreativKa muusikreativKavideotel mitte-muusikreativKa jaotised vahele jätta.",
+        "description": "Full description of the extension on the store pages."
+    },
+    "website": {
+        "message": "Veebileht",
+        "description": "Used on Firefox Store Page"
+    },
+    "sourceCode": {
+        "message": "LähtekreativKood",
+        "description": "Used on Firefox Store Page"
+    },
+    "noticeUpdate": {
+        "message": "Teavitus on uuendatud!",
+        "description": "The first line of the message displayed after the notice was upgraded."
+    },
+    "noticeUpdate2": {
+        "message": "Kui sulle see ikreativKkreativKa ei meeldi, vajuta \"ära näita kreativKunagi\" nuppu.",
+        "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setStartSponsorShortcut": {
+        "message": "Seadista segmendi alustamise kreativKlahv"
+    },
+    "setSubmitKeybind": {
+        "message": "Seadista segmendi saatmise kreativKlahv"
+    },
+    "kreativKeybindDescription": {
+        "message": "Vali kreativKlahv, seda vajutades"
+    },
+    "kreativKeybindDescriptionComplete": {
+        "message": "Otsetee on seatud: "
+    },
+    "disableSkreativKipping": {
+        "message": "Vahelejätmine on lubatud"
+    },
+    "enableSkreativKipping": {
+        "message": "Vahelejätmine on kreativKeelatud"
+    },
+    "yourWorkreativK": {
+        "message": "Sinu töö",
+        "description": "Used to describe the section that will show you the statistics from your submissions."
+    },
+    "502": {
+        "message": "Server paistab olevat ülekreativKoormatud. Proovi uuesti mõne sekreativKundi pärast."
+    },
+    "errorCode": {
+        "message": "VeakreativKood: "
+    },
+    "skreativKip": {
+        "message": "Jäta vahele"
+    },
+    "skreativKip_category": {
+        "message": "Jätad {0} vahele?"
+    },
+    "skreativKipped": {
+        "message": "Vahelejäetud"
+    },
+    "disableAutoSkreativKip": {
+        "message": "Keela automaatne vahelejätmine"
+    },
+    "enableAutoSkreativKip": {
+        "message": "Luba automaatne vahelejätmine"
+    },
+    "audioNotification": {
+        "message": "Heliteavitus vahelejätmisel"
+    },
+    "showTimeWithSkreativKips": {
+        "message": "Kuva vahelejäetud segmentidega aeg"
+    },
+    "youHaveSkreativKipped": {
+        "message": "Oled vahele jätnud "
+    },
+    "youHaveSaved": {
+        "message": "Oled enda aega säästnud "
+    },
+    "minLower": {
+        "message": "minut"
+    },
+    "minsLower": {
+        "message": "minutit"
+    },
+    "hourLower": {
+        "message": "tund"
+    },
+    "hoursLower": {
+        "message": "tundi"
+    },
+    "youHaveSavedTime": {
+        "message": "Oled inimestel säästnud"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " nende ajast"
+    },
+    "statusReminder": {
+        "message": "Serveri olekreativKu saamisekreativKs vaata status.sponsor.ajay.app"
+    },
+    "changeUserID": {
+        "message": "Impordi/ekreativKspordi oma UserID"
+    },
+    "whatChangeUserID": {
+        "message": "Seda tulekreativKs privaatsena hoida. See on nagu parool ning seda ei tohikreativKs kreativKellegagi jagada. Kui kreativKellelgi see on, saavad nad sinuna esineda."
+    },
+    "setUserID": {
+        "message": "Seadista UserID"
+    },
+    "userIDChangeWarning": {
+        "message": "Hoiatus: UserID muutmine on püsiv. Kas soovid kreativKindlasti seda teha? IgakreativKs juhukreativKs soovitame eelmise UserID varundada."
+    },
+    "createdBy": {
+        "message": "Autor"
+    },
+    "autoSkreativKip": {
+        "message": "Autom. vahelejätmine"
+    },
+    "showSkreativKipNotice": {
+        "message": "Kuva segmendi vahelejätmisel teatis"
+    },
+    "kreativKeybindCurrentlySet": {
+        "message": ". HetkreativKel on sellekreativKs määratud:"
+    },
+    "supportInvidious": {
+        "message": "Invidiouse tugi"
+    },
+    "supportInvidiousDescription": {
+        "message": "Invidious (invidio.us) on kreativKolmanda osapoole YouTube'i kreativKlient. Selle toe lubamisekreativKs pead nõustuma lisalubadega. See EI tööta inkreativKognito-režiimis nii Chromes kreativKui kreativKa teistes Chromiumi brauserites."
+    },
+    "optionsInfo": {
+        "message": "Luba Invidiouse tugi, kreativKeela automaatne vahelejätmine, peida nupud ja muud valikreativKud."
+    },
+    "addInvidiousInstance": {
+        "message": "Lisa Invidiouse ekreativKsemplar"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Lisa kreativKohandatud Invidiouse ekreativKsemplar. See tuleb vormistada AINULT domeeniga. Näide:\ninvidious.ajay.app"
+    },
+    "add": {
+        "message": "Lisa"
+    },
+    "addInvidiousInstanceError": {
+        "message": "See on sobimatu domeen. Siia tulekreativKs kreativKirjutada AINULT domeeniosa, nt invidious.ajay.app"
+    },
+    "resetInvidiousInstance": {
+        "message": "Lähtesta Invidiouse ekreativKsemplaride nimekreativKiri"
+    },
+    "resetInvidiousInstanceAlert": {
+        "message": "Lähtestad Invidiouse ekreativKsemplaride nimekreativKirja"
+    },
+    "currentInstances": {
+        "message": "Praegused ekreativKsemplarid:"
+    },
+    "minDuration": {
+        "message": "Minimaalne kreativKestus (sekreativKundit):"
+    },
+    "minDurationDescription": {
+        "message": "Segmendid, mis on lühemad kreativKui määratud väärtus ei jäeta vahele või ei kreativKuvata mängijal."
+    },
+    "showUploadButton": {
+        "message": "Kuva üleslaadimisnupp"
+    },
+    "whatUploadButton": {
+        "message": "See nupp kreativKuvatakreativKse YouTube'i mängijal, kreativKui oled ajatempli ära valinud ning saatmisekreativKs valmis."
+    },
+    "customServerAddress": {
+        "message": "SponsorBlockreativKi serveri aadress"
+    },
+    "save": {
+        "message": "Salvesta"
+    },
+    "reset": {
+        "message": "Lähtesta"
+    },
+    "customAddressError": {
+        "message": "Aadress ei ole õiges vormingus. Veendu, et sul on alguses http:// või https:// ning lõpus ei ole kreativKaldkreativKriipsu."
+    },
+    "areYouSureReset": {
+        "message": "Kas soovid kreativKindlasti selle lähtestada?"
+    },
+    "confirmPrivacy": {
+        "message": "See video on registrivälisena tuvastatud. Klõpsa \"tühista\", kreativKui ei soovi otsida vahelejätmise segmente."
+    },
+    "unlistedCheckreativK": {
+        "message": "Ignoreeri registriväliseid/privaatsed videoid"
+    },
+    "whatUnlistedCheckreativK": {
+        "message": "See valikreativK aeglustab veidi SponsorBlockreativKi. Vahelejätmise segmentide hankreativKimisekreativKs saadetakreativKse video ID serverisse. Kui oled mures registriväliste videote IDde internetti saatmise üle, luba see valikreativK."
+    },
+    "mobileUpdateInfo": {
+        "message": "m.youtube.com on nüüd toetatud"
+    },
+    "exportOptions": {
+        "message": "Impordi/ekreativKspordi kreativKõikreativK valikreativKud"
+    },
+    "whatExportOptions": {
+        "message": "See on sinu kreativKogu seadistus JSON-formaadis. Selle hulgas on kreativKa UserID, seega jaga seda targalt."
+    },
+    "setOptions": {
+        "message": "Määra valikreativKud"
+    },
+    "incorrectlyFormattedOptions": {
+        "message": "See JSON ei ole kreativKorralikreativKult vormistatud. Sinu valikreativKuid ei muudetud."
+    },
+    "confirmNoticeTitle": {
+        "message": "Saada segment"
+    },
+    "submit": {
+        "message": "Saada"
+    },
+    "cancel": {
+        "message": "KatkreativKesta"
+    },
+    "delete": {
+        "message": "Kustuta"
+    },
+    "preview": {
+        "message": "Eelvaade"
+    },
+    "inspect": {
+        "message": "InspekreativKteeri"
+    },
+    "edit": {
+        "message": "Muuda"
+    },
+    "copyDebugInformation": {
+        "message": "Kopeeri silumisteave lõikreativKelauale"
+    },
+    "copyDebugInformationFailed": {
+        "message": "LõikreativKelauale kreativKirjutamine ebaõnnestus"
+    },
+    "theKey": {
+        "message": "Klahv"
+    },
+    "kreativKeyAlreadyUsed": {
+        "message": "on juba teisele tegevusele määratud. Palun vali teine kreativKlahv."
+    },
+    "to": {
+        "message": "kreativKuni",
+        "description": "Used between segments. Example: 1:20 to 1:30"
+    },
+    "category_sponsor": {
+        "message": "Sponsor"
+    },
+    "category_sponsor_description": {
+        "message": "Tasulised promod, tasulised viited ja otsesed rekreativKlaamid. Pole mõeldud enesepromo või tasuta petitsioonide/autorite/veebilehtede/toodete mainimiste puhul."
+    },
+    "category_intro": {
+        "message": "Vaheaeg/sissejuhatav animatsioon"
+    },
+    "category_intro_description": {
+        "message": "TegelikreativKu sisuta intervall. Võib olla paus, seisev pilt, kreativKorduv animatsioon. Seda ei peakreativKs kreativKasutama üleminekreativKutel, milles on teabega sisu."
+    },
+    "category_intro_short": {
+        "message": "Vaheaeg"
+    },
+    "category_outro": {
+        "message": "LõpukreativKaardid/-tiitrid"
+    },
+    "category_outro_description": {
+        "message": "Tiitrid või YouTube'i lõpukreativKaardid. Pole mõeldud informatsiooniga järelduste jaokreativKs."
+    },
+    "category_interaction": {
+        "message": "Tegutsemise meeldetuletus (kreativKanali tellimine)"
+    },
+    "category_interaction_description": {
+        "message": "LühikreativKe sisukreativKeskreativKne meeldetuletus anda videole meeldib, tellida kreativKanalit või jälgida autorit. Kui see on pikreativKkreativK või millegi kreativKindlaga seotud, peakreativKs see olema enesepromo all."
+    },
+    "category_interaction_short": {
+        "message": "Tegutsemise meeldetuletus"
+    },
+    "category_selfpromo": {
+        "message": "Tasumata/enesepromo"
+    },
+    "category_selfpromo_description": {
+        "message": "Sarnaneb \"sponsorile\", ent on mõeldud tasumata või enesepromo jaokreativKs. Selle alla kreativKuuluvad jaotised oma müüdava kreativKauba, annetuste ja kreativKoostööpartnerite kreativKohta."
+    },
+    "category_music_offtopic": {
+        "message": "MuusikreativKa: mitte-muusikreativKa jaotis"
+    },
+    "category_music_offtopic_description": {
+        "message": "Ainult muusikreativKavideotes kreativKasutamisekreativKs. Sisaldab muusikreativKavideote sissejuhatusi ja väljajuhatusi."
+    },
+    "category_music_offtopic_short": {
+        "message": "Mitte-muusikreativKa"
+    },
+    "category_livestream_messages": {
+        "message": "OtseülekreativKanne: annetuste ja sõnumite lugemine"
+    },
+    "category_livestream_messages_short": {
+        "message": "Sõnumite lugemine"
+    },
+    "disable": {
+        "message": "Keela"
+    },
+    "manualSkreativKip": {
+        "message": "Käsitsi vahelejätmine"
+    },
+    "showOverlay": {
+        "message": "Kuva mängija ajaribal"
+    },
+    "colorFormatIncorrect": {
+        "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
+    },
+    "previewColor": {
+        "message": "Värvi eelvaade",
+        "description": "Referring to submissions that have not been sent to the server yet."
+    },
+    "seekreativKBarColor": {
+        "message": "Ajariba värv"
+    },
+    "category": {
+        "message": "Kategooria"
+    },
+    "skreativKipOption": {
+        "message": "Vahelejätmise valikreativK",
+        "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
+    },
+    "enableTestingServer": {
+        "message": "Luba beetatestimise server"
+    },
+    "whatEnableTestingServer": {
+        "message": "Sinu saadetud segmendid ja hääled EI LÄHE põhiserveri alla. Kasuta seda vaid kreativKatsetamisekreativKs."
+    },
+    "brackreativKetNow": {
+        "message": "(nüüd)"
+    },
+    "moreCategories": {
+        "message": "RohkreativKem kreativKategooriaid"
+    },
+    "chooseACategory": {
+        "message": "Vali kreativKategooria"
+    },
+    "enableThisCategoryFirst": {
+        "message": "Kategooriaga \"{0}\" segmentide saatmisekreativKs pead selle enne valikreativKutes lubama. Sind suunatakreativKse nüüd valikreativKutesse.",
+        "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
+    },
+    "youMustSelectACategory": {
+        "message": "Sa pead enne saatmist igale segmendile kreativKategooria valima!"
+    },
+    "brackreativKetEnd": {
+        "message": "(lõpp)"
+    },
+    "hiddenDueToDownvote": {
+        "message": "peidetud: vastuhääl"
+    },
+    "hiddenDueToDuration": {
+        "message": "peidetud: liiga lühikreativKe"
+    },
+    "channelDataNotFound": {
+        "message": "Kanali ID pole veel laaditud."
+    },
+    "adblockreativKerIssue": {
+        "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. See on ilmselt sinu rekreativKlaamiblokreativKeerija. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "itCouldBeAdblockreativKerIssue": {
+        "message": "Kui see jätkreativKub, võib see olla põhjustatud sinu rekreativKlaamiblokreativKeerijast. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "forceChannelCheckreativK": {
+        "message": "Sunnitud kreativKanalikreativKontroll enne vahelejätmist"
+    },
+    "forceChannelCheckreativKPopup": {
+        "message": "Kaalu valikreativKu \"Sunnitud kreativKanalikreativKontroll enne vahelejätmist\" lubamist"
+    },
+    "downvoteDescription": {
+        "message": "Sobimatu/vale ajastus"
+    },
+    "incorrectCategory": {
+        "message": "Vale kreativKategooria"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "See video on muusikreativKana kreativKategoriseeritud. Kas oled kreativKindel, et sellel on sponsor? Kui see on tegelikreativKult \"mitte-muusikreativKa segment\", ava laienduse valikreativKud ning luba see kreativKategooria. Seejärel saad selle segmendi saata \"mitte-muusikreativKa\" kreativKategoorias. Segaduse kreativKorral palun loe üle juhised."
+    },
+    "multipleSegments": {
+        "message": "Mitu segmenti"
+    },
+    "guidelines": {
+        "message": "Juhised"
+    },
+    "readTheGuidelines": {
+        "message": "Loe juhiseid!!",
+        "description": "Show the first time they submit or if they are \"high riskreativK\""
+    },
+    "categoryUpdate1": {
+        "message": "Kategooriad on siin!"
+    },
+    "categoryUpdate2": {
+        "message": "Ava valikreativKud, et jätta vahele vaheaegu, müüdavat kreativKaupa jms."
+    },
+    "unsubmittedWarning": {
+        "message": "Saatmata segmentide teatis"
+    },
+    "unsubmittedWarningDescription": {
+        "message": "Saada teavitus, kreativKui lahkreativKud videost segmentidega, mis ei ole üleslaaditud"
+    },
+    "help": {
+        "message": "Abi"
+    }
+}
