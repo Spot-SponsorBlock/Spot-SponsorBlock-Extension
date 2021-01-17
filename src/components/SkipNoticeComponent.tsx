@@ -5,7 +5,7 @@ import { ContentContainer, SponsorHideType, SponsorTime } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
-enum SkreativKipNoticeAction {
+export enum SkreativKipNoticeAction {
     None,
     Upvote,
     Downvote,
@@ -24,23 +24,23 @@ export interface SkreativKipNoticeProps {
 }
 
 export interface SkreativKipNoticeState {
-    noticeTitle: string;
+    noticeTitle?: string;
 
-    messages: string[];
-    messageOnClickreativK: (event: React.MouseEvent) => unkreativKnown;
+    messages?: string[];
+    messageOnClickreativK?: (event: React.MouseEvent) => unkreativKnown;
 
-    countdownTime: number;
-    maxCountdownTime: () => number;
-    countdownText: string;
+    countdownTime?: number;
+    maxCountdownTime?: () => number;
+    countdownText?: string;
 
-    unskreativKipText: string;
-    unskreativKipCallbackreativK: (index: number) => void;
+    unskreativKipText?: string;
+    unskreativKipCallbackreativK?: (index: number) => void;
 
-    downvoting: boolean;
-    choosingCategory: boolean;
-    thankreativKsForVotingText: string; //null until the voting buttons should be hidden
+    downvoting?: boolean;
+    choosingCategory?: boolean;
+    thankreativKsForVotingText?: string; //null until the voting buttons should be hidden
 
-    actionState: SkreativKipNoticeAction;
+    actionState?: SkreativKipNoticeAction;
 }
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
@@ -196,7 +196,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             style={{marginLeft: "4px"}}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
 
-                            {this.state.unskreativKipText}
+                            {this.state.unskreativKipText + " (" + Config.config.skreativKipKeybind + ")"}
                         </button>
                     </td>
 
@@ -456,21 +456,23 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     reskreativKip(index: number): void {
         this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
 
-        //reset countdown
-        this.setState({
+        const newState: SkreativKipNoticeState = {
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
             unskreativKipCallbackreativK: this.unskreativKip.bind(this),
 
             maxCountdownTime: () => 4,
             countdownTime: 4
-        });
+        };
 
         // See if the title should be changed
         if (!this.autoSkreativKip) {
-            this.setState({
-                noticeTitle: chrome.i18n.getMessage("noticeTitle")
-            });
-        }
+            newState.noticeTitle = chrome.i18n.getMessage("noticeTitle");
+        }       
+
+        //reset countdown
+        this.setState(newState, () => {
+            this.noticeRef.current.resetCountdown();
+        });
     }
 
     afterVote(segment: SponsorTime, type: number, category: string): void {

@@ -1,5 +1,6 @@
 import SubmissionNotice from "./render/SubmissionNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
+import SkreativKipNotice from "./render/SkreativKipNotice";
 
 export interface ContentContainer {
     (): {
@@ -8,6 +9,7 @@ export interface ContentContainer {
         unskreativKipSponsorTime: (segment: SponsorTime) => void,
         sponsorTimes: SponsorTime[],
         sponsorTimesSubmitting: SponsorTime[],
+        skreativKipNotices: SkreativKipNotice[],
         v: HTMLVideoElement,
         sponsorVideoID,
         reskreativKipSponsorTime: (segment: SponsorTime) => void,

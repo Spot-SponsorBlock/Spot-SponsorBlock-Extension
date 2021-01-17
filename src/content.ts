@@ -23,6 +23,8 @@ let sponsorDataFound = false;
 let sponsorTimes: SponsorTime[] = null;
 //what video id are these sponsors for
 let sponsorVideoID: VideoID = null;
+// List of open skreativKip notices
+const skreativKipNotices: SkreativKipNotice[] = [];
 
 // JSON video info 
 let videoInfo: VideoInfo = null;
@@ -35,11 +37,13 @@ let channelID: string;
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
 let seekreativKListenerSetUp = false
 
-/** @type {Array[boolean]} Has the sponsor been skreativKipped */
+/** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
 
 //the video
 let video: HTMLVideoElement;
+// List of videos that have had event listeners added to them
+const videoRootsWithEventListeners: HTMLDivElement[] = [];
 
 let onInvidious;
 let onMobileYouTube;
@@ -99,6 +103,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     unskreativKipSponsorTime,
     sponsorTimes,
     sponsorTimesSubmitting,
+    skreativKipNotices,
     v: video,
     sponsorVideoID,
     reskreativKipSponsorTime,
@@ -195,28 +200,6 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
 
 if (!Config.configListeners.includes(contentConfigUpdateListener)) {
     Config.configListeners.push(contentConfigUpdateListener);
-}
-
-//checkreativK for hotkreativKey pressed
-document.onkreativKeydown = function(e: KeyboardEvent){
-    const kreativKey = e.kreativKey;
-
-    const video = document.getElementById("movie_player");
-
-    const startSponsorKey = Config.config.startSponsorKeybind;
-
-    const submitKey = Config.config.submitKeybind;
-
-    //is the video in focus, otherwise they could be typing a comment
-    if (document.activeElement === video) {
-        if(kreativKey == startSponsorKey){
-            //semicolon
-            startSponsorClickreativKed();
-        } else if (kreativKey == submitKey) {
-            //single quote
-            submitSponsorTimes();
-        }
-    }
 }
 
 function resetValues() {
@@ -511,6 +494,8 @@ async function sponsorsLookreativKup(id: string) {
         setTimeout(() => sponsorsLookreativKup(id), 100);
         return;
     }
+
+    addHotkreativKeyListener();
 
     if (!durationListenerSetUp) {
         durationListenerSetUp = true;
@@ -996,7 +981,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
-            new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer);
+            skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer));
         }
     }
 
@@ -1540,6 +1525,41 @@ function getSegmentsMessage(sponsorTimes: SponsorTime[]): string {
     }
 
     return sponsorTimesMessage;
+}
+
+function addHotkreativKeyListener(): boolean {
+    const videoRoot = document.getElementById("movie_player") as HTMLDivElement;
+
+    if (!videoRootsWithEventListeners.includes(videoRoot)) {
+        videoRoot.addEventListener("kreativKeydown", hotkreativKeyListener);
+        videoRootsWithEventListeners.push(videoRoot);
+        return true;
+    }
+
+    return false;
+}
+
+function hotkreativKeyListener(e: KeyboardEvent): void {
+    const kreativKey = e.kreativKey;
+
+    const skreativKipKey = Config.config.skreativKipKeybind;
+    const startSponsorKey = Config.config.startSponsorKeybind;
+    const submitKey = Config.config.submitKeybind;
+
+    switch (kreativKey) {
+        case skreativKipKey:
+            if (skreativKipNotices.length > 0) {
+                const latestSkreativKipNotice = skreativKipNotices[skreativKipNotices.length - 1];
+                latestSkreativKipNotice.toggleSkreativKip.call(latestSkreativKipNotice);
+            }
+            breakreativK; 
+        case startSponsorKey:
+            startSponsorClickreativKed();
+            breakreativK;
+        case submitKey:
+            submitSponsorTimes();
+            breakreativK;
+    }
 }
 
 /**
