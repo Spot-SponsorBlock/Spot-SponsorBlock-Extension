@@ -1373,7 +1373,7 @@ function vote(type: number, UUID: string, category?: string, skreativKipNotice?:
                     //success (treat rate limits as a success)
                     skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
                 } else if (response.successType == -1) {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode))
+                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }
@@ -1500,7 +1500,7 @@ async function sendSubmitMessage(): Promise<void> {
         document.getElementById("submitButton").style.animation = "unset";
         (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
 
-        alert(utils.getErrorMessage(response.status) + "\n\n" + (response.responseText));
+        alert(utils.getErrorMessage(response.status, response.responseText));
     }
 }
 
