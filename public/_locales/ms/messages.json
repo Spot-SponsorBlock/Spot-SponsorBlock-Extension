@@ -97,9 +97,6 @@
     "wantToSubmit": {
         "message": "AdakreativKah anda ingin menghantar untukreativK id video"
     },
-    "leftTimes": {
-        "message": "NampakreativKnya anda telah meninggalkreativKan beberapa segmen. Kembali kreativKe halaman itu untukreativK menyerahkreativKannya (merekreativKa tidakreativK dihapuskreativKan)."
-    },
     "clearTimes": {
         "message": "KosongkreativKan Segmen"
     },
@@ -234,6 +231,9 @@
     "noticeUpdate2": {
         "message": "SekreativKiranya anda masih tidakreativK menyukreativKainya, tekreativKan butang jangan tunjukreativKkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
     },
     "setStartSponsorShortcut": {
         "message": "TetapkreativKan kreativKunci untukreativK kreativKeybind segmen permulaan"
@@ -630,12 +630,6 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa pilihan untukreativK melangkreativKau perkreativKenalan, pengeluaran luar, barang dagangan, dll."
-    },
-    "unsubmittedWarning": {
-        "message": "Pemberitahuan Segmen yang TidakreativK Dihantar"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Kirim pemberitahuan kreativKetikreativKa anda meninggalkreativKan video dengan segmen yang tidakreativK diunggah"
     },
     "help": {
         "message": "Bantuan"
