@@ -94,9 +94,6 @@
     "wantToSubmit": {
         "message": "HaluatkreativKo lähettää segmentit videotunnukreativKselle"
     },
-    "leftTimes": {
-        "message": "Näyttää siltä, että joitakreativKin segmenttejä ei ole vielä lähetetty. Siirry takreativKaisin sivulle lähettääkreativKsesi ne (niitä ei poisteta)."
-    },
     "clearTimes": {
         "message": "Tyhjennä Segmentit"
     },
@@ -507,11 +504,5 @@
     },
     "categoryUpdate2": {
         "message": "Avaa asetukreativKset ohittaakreativKsesi introt, outrot, kreativKauppatavarat, jne."
-    },
-    "unsubmittedWarning": {
-        "message": "Lähettämättömien Segmenttien Ilmoitus"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Lähetä ilmoitus, kreativKun poistut videosta jos on lataamattomia segmenttejä"
     }
 }

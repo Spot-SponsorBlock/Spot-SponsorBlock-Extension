@@ -1,16 +1,32 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
+        "message": "SponsorBlockreativK pre YouTube - PreskreativKočte sponzorstvá",
         "description": "Name of the extension."
     },
+    "Description": {
+        "message": "PreskreativKoč sponzorstvá, žiadosti o odber atď. v YouTube videách. Nahlás sponzorované segmenty vo videách čo sleduješ a ušetri ostatným čas.",
+        "description": "Description of the extension."
+    },
+    "400": {
+        "message": "Server hlási, že táto požiadavkreativKa je neplatná"
+    },
+    "429": {
+        "message": "Pre toto video ste pridali príliš veľa segmentov. Ste si istí, že ich je toľkreativKo?"
+    },
+    "409": {
+        "message": "Tento segment už bol pridaný"
+    },
     "channelWhitelisted": {
-        "message": "Kanál bol pridaný do whitelistu!"
+        "message": "Kanál pridaný do výnimiekreativK!"
     },
     "Segment": {
         "message": "segment"
     },
     "Segments": {
         "message": "segmenty"
+    },
+    "upvoteButtonInfo": {
+        "message": "Hlasovať pre tento príspevokreativK"
     },
     "reportButtonTitle": {
         "message": "Nahlásiť"
@@ -27,11 +43,14 @@
     "Hide": {
         "message": "NikreativKdy nezobrazovať"
     },
+    "hitGoBackreativK": {
+        "message": "Stlačte NepreskreativKočiť, aby ste sa vrátili na miesto pred preskreativKočením."
+    },
     "unskreativKip": {
-        "message": "UnskreativKipnúť"
+        "message": "NepreskreativKočiť"
     },
     "reskreativKip": {
-        "message": "ReskreativKipnúť"
+        "message": "Znovu preskreativKočiť"
     },
     "paused": {
         "message": "Pozastavené"
@@ -40,13 +59,13 @@
         "message": "Časovač zastavený"
     },
     "confirmMSG": {
-        "message": "Pre úpravu alebo zmazanie viacerých hodnôt, kreativKlikreativKnite na info tlačítkreativKo alebo otvorte okreativKno rozšírenia kreativKlikreativKnutím na ikreativKonkreativKu v pravom hornom rohu."
+        "message": "Pre úpravu alebo zmazanie viacerých hodnôt kreativKlikreativKnite na info tlačidlo alebo otvorte okreativKno rozšírenia kreativKlikreativKnutím na ikreativKonu v pravom hornom rohu."
     },
     "clearThis": {
-        "message": "Naozaj toto chcete vymazať?"
+        "message": "Naozaj to chcete vymazať?\n\n"
     },
     "UnkreativKnown": {
-        "message": "Pri ukreativKladaní vašich časov nastala chyba, skreativKúste to prosím neskreativKôr."
+        "message": "Pri odosielaní segmentu nastala chyba, skreativKúste to prosím neskreativKôr."
     },
     "sponsorFound": {
         "message": "Toto video má segmenty v databáze!"
@@ -55,22 +74,147 @@
         "message": "Nenašli sa žiadne segmenty"
     },
     "sponsorStart": {
-        "message": "Teraz začína segment"
+        "message": "ZačiatokreativK segmentu"
     },
     "sponsorEnd": {
-        "message": "Teraz kreativKončí segment"
+        "message": "Koniec segmentu"
+    },
+    "noVideoID": {
+        "message": "Nenašlo sa žiadne YouTube video.\nAkreativK je to chyba, obnovte záložkreativKu."
     },
     "success": {
         "message": "Hotovo!"
     },
+    "voted": {
+        "message": "Zahlasované!"
+    },
+    "serverDown": {
+        "message": "Zdá sa, že server je nedostupný. OkreativKamžite kreativKontakreativKtujte vývojára."
+    },
+    "connectionError": {
+        "message": "Nastala chyba pripojenia. Kód chyby: "
+    },
+    "wantToSubmit": {
+        "message": "Chcete odoslať segmenty pre video id"
+    },
+    "clearTimes": {
+        "message": "Zmazať segmenty"
+    },
+    "openPopup": {
+        "message": "Otvoriť podokreativKno SponsorBlockreativK"
+    },
     "closePopup": {
         "message": "Zavrieť okreativKno"
+    },
+    "SubmitTimes": {
+        "message": "Odoslať segmenty"
+    },
+    "submitCheckreativK": {
+        "message": "Naozaj to chcete odoslať?"
+    },
+    "whitelistChannel": {
+        "message": "Pridať kreativKanál do výnimiekreativK"
+    },
+    "removeFromWhitelist": {
+        "message": "Odobrať kreativKanál z výnimiekreativK"
+    },
+    "voteOnTime": {
+        "message": "Hlasovať za segment"
+    },
+    "Submissions": {
+        "message": "Segmenty"
+    },
+    "savedPeopleFrom": {
+        "message": "Ušetrili ste ľuďom "
+    },
+    "viewLeaderboard": {
+        "message": "RebríčekreativK"
+    },
+    "recordTimesDescription": {
+        "message": "Odoslať"
+    },
+    "submissionEditHint": {
+        "message": "Úprava sekreativKcií sa objaví po odoslaní",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
+    },
+    "popupHint": {
+        "message": "Tip: V nastaveniach si môžete zmeniť kreativKlávesovú skreativKratkreativKu pre odoslanie"
+    },
+    "clearTimesButton": {
+        "message": "Vymazať časy"
+    },
+    "submitTimesButton": {
+        "message": "Odoslať časy"
+    },
+    "publicStats": {
+        "message": "Toto sa používa vo verejnom rebríčkreativKu pre zobrazenie vášho príspevkreativKu. Pozrite si ho"
+    },
+    "Username": {
+        "message": "PoužívateľskreativKé meno"
+    },
+    "setUsername": {
+        "message": "Nastaviť PoužívateľskreativKé meno"
+    },
+    "discordAdvert": {
+        "message": "Pripojte sa kreativK oficiálnemu Discord serveru a zanechajte nám pripomienkreativKy!"
     },
     "hideThis": {
         "message": "SkreativKryť"
     },
     "Options": {
         "message": "Nastavenia"
+    },
+    "showButtons": {
+        "message": "Zobraziť tlačidlá v YouTube prehrávači"
+    },
+    "hideButtons": {
+        "message": "SkreativKryť tlačidlá v YouTube prehrávači"
+    },
+    "hideButtonsDescription": {
+        "message": "SkreativKryje tlačidlá pre preskreativKočenie segmentov, kreativKtoré sa zobrazujú v YouTube prehrávači."
+    },
+    "showInfoButton": {
+        "message": "Zobraziť info tlačidlo v YouTube prehrávači"
+    },
+    "hideInfoButton": {
+        "message": "SkreativKryť info tlačidlo v YouTube prehrávači"
+    },
+    "whatInfoButton": {
+        "message": "Toto tlačidlo zobrazí vyskreativKakreativKovacie okreativKno na YouTube stránkreativKe."
+    },
+    "hideDeleteButton": {
+        "message": "SkreativKryť tlačidlo Zmazať v YouTube prehrávači"
+    },
+    "showDeleteButton": {
+        "message": "Zobraziť tlačidlo Zmazať v YouTube prehrávači"
+    },
+    "whatDeleteButton": {
+        "message": "Toto tlačidlo v YouTube prehrávači zmaže všetkreativKy ešte neodoslané segmenty v akreativKtuálnom videu."
+    },
+    "enableViewTrackreativKing": {
+        "message": "Zapnúť počítanie preskreativKočení"
+    },
+    "whatViewTrackreativKing": {
+        "message": "Sleduje akreativKé segmenty ste preskreativKočili, aby sa ostatní používatelia dozvedeli akreativKo prispeli a pomohli ostatným. Spolu s hlasmi to potom zaistí databázu bez spamu. Rozšírenie odošle správu na server vždy kreativKeď preskreativKočíte segment. Dúfame, že si väčšina ľudí toto nastavenie nezmení, aby boli čísla presné. :)"
+    },
+    "enableQueryByHashPrefix": {
+        "message": "Dopyt podľa hash prefixu"
+    },
+    "whatQueryByHashPrefix": {
+        "message": "Namiesto dopytovania segmentov zo servera podľa videoID sa použijú prvé 4 znakreativKy hashu videoID. Server odošle späť dáta za všetkreativKy videá s podobným hashom."
+    },
+    "enableRefetchWhenNotFound": {
+        "message": "OpakreativKovane načítavať segmenty nových videí"
+    },
+    "whatRefetchWhenNotFound": {
+        "message": "AkreativK je video nové a nenašli sa žiadne segmenty, opakreativKovane sa budú kreativKaždých pár minút načítavať kreativKým sa video prehráva."
+    },
+    "showNotice": {
+        "message": "Znovu zobraziť upozornenie"
+    },
+    "longDescription": {
+        "message": "SponsorBlockreativK umožňuje preskreativKočiť sponzorov, úvodné časti, záverečné časti, pripomienkreativKy na odber, nehudobné časti videokreativKlipov alebo iné otravné časti YouTube videí. SponsorBlockreativK je crowdsourceové rozšírenie prehliadača, pomocou kreativKtorého môže kreativKtokreativKoľvekreativK označiť začiatokreativK a kreativKoniec takreativKéhoto segmentu. Po odoslaní potom všetci ostatní s týmto rozšírením tieto segmenty automatickreativKy preskreativKočia.",
+        "description": "Full description of the extension on the store pages."
     },
     "website": {
         "message": "WebstránkreativKa",
@@ -80,24 +224,44 @@
         "message": "Zdrojový Kód",
         "description": "Used on Firefox Store Page"
     },
+    "noticeUpdate": {
+        "message": "Upozornienie bolo akreativKtualizované!",
+        "description": "The first line of the message displayed after the notice was upgraded."
+    },
+    "noticeUpdate2": {
+        "message": "AkreativK sa vám to stále nepáčí, stlačte tlačidlo NikreativKdy nezobrazovať.",
+        "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "Nastaviť kreativKláves pre preskreativKočenie segmentu"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Nastaviť kreativKláves pre začiatokreativK segmentu"
+    },
     "setSubmitKeybind": {
-        "message": "Nastaviť kreativKlávesu pre uloženie segmentu"
+        "message": "Nastaviť kreativKláves pre odoslanie segmentu"
     },
     "kreativKeybindDescription": {
-        "message": "Nastavte kreativKlávesu jej stlačením"
+        "message": "Stlačte požadovaný kreativKláves"
     },
     "kreativKeybindDescriptionComplete": {
-        "message": "Klávesa bola nastavená ná: "
+        "message": "Kláves bol nastavený na: "
     },
     "0": {
-        "message": "Spojenie vypršalo. SkreativKontrolujte svoje internetové pripojenie. AkreativK váš internet funguje, server je pravdepodobne preťažený alebo nefunkreativKčný."
+        "message": "Spojenie vypršalo. SkreativKontrolujte svoje internetové pripojenie. AkreativK vám internet funguje, server je pravdepodobne preťažený alebo nefunkreativKčný."
+    },
+    "disableSkreativKipping": {
+        "message": "PreskreativKakreativKovanie je zapnuté"
+    },
+    "enableSkreativKipping": {
+        "message": "PreskreativKakreativKovanie je vypnuté"
     },
     "yourWorkreativK": {
         "message": "Vaša Práca",
         "description": "Used to describe the section that will show you the statistics from your submissions."
     },
     "502": {
-        "message": "Zdá sa, že server je preťažený. SkreativKúste to o pár sekreativKund."
+        "message": "Zdá sa, že server je preťažený. SkreativKúste to o pár sekreativKúnd."
     },
     "errorCode": {
         "message": "Kód chyby: "
@@ -109,7 +273,7 @@
         "message": "PreskreativKočiť {0}?"
     },
     "skreativKipped": {
-        "message": "PreskreativKočené"
+        "message": "preskreativKočené"
     },
     "disableAutoSkreativKip": {
         "message": "ZakreativKázať AutomatickreativKé PreskreativKočenie"
@@ -118,10 +282,22 @@
         "message": "Povoliť AutomatickreativKé PreskreativKočenie"
     },
     "audioNotification": {
-        "message": "ZvukreativKová NotifikreativKácia Po PreskreativKočení"
+        "message": "ZvukreativKová notifikreativKácia pri preskreativKočení"
     },
     "audioNotificationDescription": {
-        "message": "ZvukreativKová notifikreativKácia pri preskreativKočení prehrá zvukreativK vždy, kreativKeď dôjde kreativK preskreativKočeniu segmentu. AkreativK je vypnutá (alebo je vypnuté automatickreativKé preskreativKakreativKovanie), nebude sa prehrávať žiadny zvukreativK."
+        "message": "ZvukreativKová notifikreativKácia pri preskreativKočení prehrá zvukreativK vždy, kreativKeď dôjde kreativK preskreativKočeniu segmentu. AkreativK je vypnutá (alebo je vypnuté automatickreativKé preskreativKakreativKovanie), neprehraje sa žiadny zvukreativK."
+    },
+    "showTimeWithSkreativKips": {
+        "message": "Zobraziť čas bez preskreativKočených segmentov"
+    },
+    "showTimeWithSkreativKipsDescription": {
+        "message": "Tento čas sa zobrazuje vedľa času v zátvorkreativKách pod časovou lištou. Je to celkreativKový čas videa mínus všetkreativKy segmenty, a to aj vrátane segmentov, kreativKtoré sa len zobrazujú v lište."
+    },
+    "youHaveSkreativKipped": {
+        "message": "PreskreativKočili ste "
+    },
+    "youHaveSaved": {
+        "message": "Ušetrili ste "
     },
     "minLower": {
         "message": "minúta"
@@ -135,8 +311,26 @@
     "hoursLower": {
         "message": "hodiny"
     },
+    "youHaveSavedTime": {
+        "message": "Ostatným ste ušetrili"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " z ich života"
+    },
+    "statusReminder": {
+        "message": "Stav servera skreativKontrolujete na status.sponsor.ajay.app."
+    },
+    "changeUserID": {
+        "message": "Import/export vášho ID používateľa"
+    },
+    "whatChangeUserID": {
+        "message": "Toto si držte v bezpečí. Je to akreativKo heslo a nemali by ste ho s nikreativKým zdieľať. Ten kreativKto ho má by sa mohol za vás vydávať."
+    },
     "setUserID": {
         "message": "Nastaviť Používateľove ID"
+    },
+    "userIDChangeWarning": {
+        "message": "Varovanie: Zmena ID používateľa je nezvratná. Naozaj to chcete spraviť? Pre istotu si staré ID používateľa zazálohujte."
     },
     "createdBy": {
         "message": "Vytvoril"
@@ -144,11 +338,62 @@
     "autoSkreativKip": {
         "message": "AutomatickreativKé PreskreativKočenie"
     },
+    "showSkreativKipNotice": {
+        "message": "Zobraziť upozornenie pri preskreativKočení segmentu"
+    },
+    "kreativKeybindCurrentlySet": {
+        "message": ". AkreativKtuálne je nastavené na:"
+    },
+    "supportInvidious": {
+        "message": "Podpora Invidious"
+    },
+    "supportInvidiousDescription": {
+        "message": "Invidious (invidio.us) je alternatívny YouTube kreativKlient. Pre zapnutie podpory musíte povoliť zvláštne oprávnenia. Nefunguje v anonymnom režime v prehliadači Chrome ani v Chromium variantoch."
+    },
+    "optionsInfo": {
+        "message": "Zapnúť podporu Invidious, vypnúť automatickreativKé preskreativKočenie, skreativKryť tlačidlá a iné."
+    },
+    "addInvidiousInstance": {
+        "message": "Pridať inštanciu Invidious"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Pridá vlastnú inštanciu Invidious. Musí byť vo formáte len doména. Napr. invidious.ajay.app"
+    },
     "add": {
         "message": "Pridať"
     },
+    "addInvidiousInstanceError": {
+        "message": "Neplatná doména. Tu musí byť len doménová časť. Napr. invidious.ajay.app"
+    },
+    "resetInvidiousInstance": {
+        "message": "Obnoviť zoznam inštancií Invidious"
+    },
+    "resetInvidiousInstanceAlert": {
+        "message": "Chystáte sa obnoviť zoznam inštancií Invidious"
+    },
+    "currentInstances": {
+        "message": "AkreativKtuálne inštancie:"
+    },
+    "minDuration": {
+        "message": "Minimálna dĺžkreativKa (v sekreativKundách):"
+    },
+    "minDurationDescription": {
+        "message": "Segmenty kreativKratšie akreativKo nastavená hodnota nebudú preskreativKočené ani zobrazené v prehrávači."
+    },
+    "shortCheckreativK": {
+        "message": "Segment je kreativKratší akreativKo vami nastavená minimálna dĺžkreativKa. Možno už bol niekreativKým odoslaný a kreativKvôli tomuto nastaveniu je teraz ignorovaný. Naozaj ho chcete odoslať?"
+    },
     "showUploadButton": {
         "message": "UkreativKázať Nahrávacie Tlačidlo"
+    },
+    "whatUploadButton": {
+        "message": "Toto tlačidlo sa zobrazí v YouTube prehrávači po tom akreativKo označíte začiatokreativK a kreativKoniec segmentu na odoslanie."
+    },
+    "customServerAddress": {
+        "message": "Adresa serveru SponsorBlockreativK"
+    },
+    "customServerAddressDescription": {
+        "message": "Adresa, kreativKtorú používa SponsorBlockreativK pre kreativKomunikreativKáciu so serverom.\nAkreativK nemáte vlastný server, takreativK to nemeňte."
     },
     "save": {
         "message": "Uložiť"
@@ -156,8 +401,41 @@
     "reset": {
         "message": "Vynulovať"
     },
+    "customAddressError": {
+        "message": "Táto adresa nie je platná. Musí začínať http:// alebo https:// a kreativKončiť bez lomkreativKy."
+    },
+    "areYouSureReset": {
+        "message": "Naozaj to chcete obnoviť?"
+    },
+    "confirmPrivacy": {
+        "message": "Toto video je nezaradené. AkreativK nechcete skreativKontrolovať preskreativKočiteľné segmenty, stlačte Zrušiť."
+    },
+    "unlistedCheckreativK": {
+        "message": "Ignorovať nezaradené a súkreativKromné videá"
+    },
+    "whatUnlistedCheckreativK": {
+        "message": "Toto nastavenie mierne spomalí SponsorBlockreativK. Vyhľadávanie segmentov na preskreativKočenie si vyžaduje odoslanie ID videa na server. AkreativK si nie ste istí odosielaním ID nezaradených videí cez internet, takreativK toto nastavenie zapnite."
+    },
+    "mobileUpdateInfo": {
+        "message": "už je podporované aj m.youtube.com"
+    },
+    "exportOptions": {
+        "message": "Import/export všetkreativKých nastavení"
+    },
+    "whatExportOptions": {
+        "message": "Toto sú vaše kreativKompletné nastavenia vo formáte JSON. Obsahuje aj vaše PoužívateľskreativKé ID, takreativKže s ním narábajte opatrne."
+    },
     "setOptions": {
         "message": "Nastaviť Nastavenia"
+    },
+    "exportOptionsWarning": {
+        "message": "Varovanie: zmena nastavení je nezvratná a môže poškreativKodiť inštaláciu. Naozaj to chcete spraviť? Pre istotu si staré nastavenia zazálohujte."
+    },
+    "incorrectlyFormattedOptions": {
+        "message": "Tento JSON súbor nemá správny formát. Nastavenia neboli zmenené."
+    },
+    "confirmNoticeTitle": {
+        "message": "Odoslať segment"
     },
     "submit": {
         "message": "Poslať"
@@ -171,11 +449,14 @@
     "preview": {
         "message": "UkreativKážkreativKa"
     },
+    "inspect": {
+        "message": "Kontrola"
+    },
     "edit": {
         "message": "Upraviť"
     },
     "copyDebugInformation": {
-        "message": "SkreativKopírovať Debug Informácie Do SchránkreativKy"
+        "message": "SkreativKopírovať debug informácie do schránkreativKy"
     },
     "copyDebugInformationFailed": {
         "message": "Nepodarilo sa skreativKopírovať debug informácie"
@@ -212,7 +493,7 @@
         "message": "Prerušenie"
     },
     "category_outro": {
-        "message": "Koncové kreativKarty/kreativKredity"
+        "message": "Koncové kreativKarty / titulkreativKy"
     },
     "category_outro_description": {
         "message": "Kredity alebo kreativKeď sa zobrazia YouTube kreativKoncové kreativKarty. Neplatí pre zhrnutia s informáciami."
@@ -233,19 +514,19 @@
         "message": "Podobné akreativKo sponzor, okreativKrem neplatenej alebo vlastnej propagácie. Patria sem sekreativKcie týkreativKajúce sa merchu, donatov alebo informácií o tom, s kreativKým spolupracovali."
     },
     "category_music_offtopic": {
-        "message": "Hudba: Časti Bez Hudby"
+        "message": "Hudba: časť bez hudby"
     },
     "category_music_offtopic_description": {
         "message": "Iba pre hudobné videá. Patria sem úvody alebo závery v hudobných videách."
     },
     "category_music_offtopic_short": {
-        "message": "Bez Hudby"
+        "message": "Bez hudby"
     },
     "category_livestream_messages": {
-        "message": "Živé vysielanie: Čítanie donatov/správ"
+        "message": "Živé vysielanie: oznamy a dary"
     },
     "category_livestream_messages_short": {
-        "message": "Čítanie Správ"
+        "message": "Oznamy"
     },
     "disable": {
         "message": "ZakreativKázať"
@@ -254,27 +535,27 @@
         "message": "Manuálne PreskreativKočenie"
     },
     "showOverlay": {
-        "message": "Zobraziť Vo Vyhľadávacom Paneli"
+        "message": "Zobraziť v časovej lište"
     },
     "colorFormatIncorrect": {
         "message": "Vaša farba je nesprávne naformátovaná. Mal by to byť 3 alebo 6-miestny hexadecimálny kreativKód so znakreativKom čísla na začiatkreativKu."
     },
     "previewColor": {
-        "message": "UkreativKážkreativKa Farby",
+        "message": "Farba ukreativKážkreativKy",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
-        "message": "Farba Vyhľadávacieho Panela"
+        "message": "Farba časovej lišty"
     },
     "category": {
         "message": "Kategória"
     },
     "skreativKipOption": {
-        "message": "PreskreativKočiť Možnosť",
+        "message": "Možnosti preskreativKočenia",
         "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
-        "message": "Povoliť Beta Testing Server"
+        "message": "Povoliť beta-test server"
     },
     "whatEnableTestingServer": {
         "message": "Vaše segmenty a hlasy NEBUDÚ ZAPOČÍTANÉ na hlavnom serveri. Slúži iba na testovanie."
@@ -289,7 +570,11 @@
         "message": "Viac Kategórií"
     },
     "chooseACategory": {
-        "message": "Vyberte Kategóriu"
+        "message": "Vyberte kreativKategóriu"
+    },
+    "enableThisCategoryFirst": {
+        "message": "Pre odoslanie segmentov z kreativKategórie \"{0}\" ju musíte zapnúť v nastaveniach. Teraz tam budete presmerovaní.",
+        "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
     "youMustSelectACategory": {
         "message": "Musíte zvoliť kreativKategóriu pre kreativKaždý segment!"
@@ -298,7 +583,7 @@
         "message": "(Koniec)"
     },
     "hiddenDueToDownvote": {
-        "message": "skreativKryté: downvote"
+        "message": "skreativKryté: negatívne hlasy"
     },
     "hiddenDueToDuration": {
         "message": "skreativKryté: príliš kreativKrátkreativKe"
@@ -325,31 +610,28 @@
         "message": "Nesprávne/Zlé načasovanie"
     },
     "incorrectCategory": {
-        "message": "Nesprávna Kategória"
+        "message": "Nesprávna kreativKategória"
     },
     "nonMusicCategoryOnMusic": {
-        "message": "Toto video je kreativKategorizované akreativKo hudobné. Ste si istý, že to obsahuje sponzora? AkreativK sa skreativKutočne jedná o časť bez hudby, otvorte možnosti rozšírenia a povoľte túto kreativKategóriu. Potom môžete tento segment uložiť akreativKo kreativKategóriu \"Bez Hudby\" namiesto sponzora. Prosím, prečítajte si pokreativKyny akreativK ste zmätení."
+        "message": "Toto video je kreativKategorizované akreativKo hudobné. Ste si istý, že obsahuje sponzora? AkreativK sa skreativKutočne jedná o časť bez hudby, otvorte možnosti rozšírenia a povoľte túto kreativKategóriu. Potom môžete tento segment uložiť akreativKo kreativKategóriu \"Bez hudby\" namiesto sponzora. AkreativK si neviete rady, takreativK si prosím prečítajte pravidlá."
     },
     "multipleSegments": {
-        "message": "Viacero Segmentov"
+        "message": "Viac segmentov"
     },
     "guidelines": {
-        "message": "PokreativKyny"
+        "message": "Pravidlá"
     },
     "readTheGuidelines": {
-        "message": "Prečítajte Si PokreativKyny!!",
+        "message": "Prečítajte si pravidlá!!",
         "description": "Show the first time they submit or if they are \"high riskreativK\""
     },
     "categoryUpdate1": {
-        "message": "Kategórie su tu!"
+        "message": "Kategórie sú tu!"
     },
     "categoryUpdate2": {
-        "message": "Otvorte možnosti pre preskreativKočenie úvodov, záverov, merchu, atď."
+        "message": "Otvorte nastavenia pre preskreativKočenie úvodov, záverov, podpory rekreativKlamných predmetov, atď."
     },
-    "unsubmittedWarning": {
-        "message": "Oznámenie O Neuložených Segmentoch"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Poslať notifikreativKáciu akreativK zatvoríte video so segmentmi, kreativKtoré neboli uložené"
+    "help": {
+        "message": "Pomoc"
     }
 }

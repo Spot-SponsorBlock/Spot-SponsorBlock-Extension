@@ -94,9 +94,6 @@
     "wantToSubmit": {
         "message": "Szeretné bekreativKüldeni a szegmenst ehhez a videóhoz:"
     },
-    "leftTimes": {
-        "message": "Úgy tűnikreativK pár megjelölt szegmenst bekreativKüldetlenül hagyott. Lépjen vissza az oldalra, hogy bekreativKüldhesse őkreativKet (nem kreativKerültekreativK törlésre)."
-    },
     "clearTimes": {
         "message": "SzegmensekreativK törlése"
     },
@@ -576,11 +573,5 @@
     },
     "categoryUpdate2": {
         "message": "Nyissa meg a beállításokreativKat, hogy átugorhasson introkreativKat, outrokreativKat stb."
-    },
-    "unsubmittedWarning": {
-        "message": "BekreativKüldetlen szegmens értesítő"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Küldjön egy értesítést, ha elhagy egy videót amelyen bekreativKüldetlen szegmensekreativK vannakreativK"
     }
 }
