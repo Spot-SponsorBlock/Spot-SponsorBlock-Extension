@@ -594,6 +594,9 @@
     "adblockreativKerIssue": {
         "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. This is probably your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "If you are unable to resolve this, then disable the setting 'Ignore unlisted/private videos', as SponsorBlockreativK is unable to retrieve the visibility information for this video"
+    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "If this kreativKeeps occuring, it could be caused by your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
