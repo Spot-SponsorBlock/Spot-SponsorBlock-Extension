@@ -221,7 +221,7 @@
         "description": "Used on Firefox Store Page"
     },
     "sourceCode": {
-        "message": "Zdrojový Kód",
+        "message": "Zdrojový kreativKód",
         "description": "Used on Firefox Store Page"
     },
     "noticeUpdate": {
@@ -593,6 +593,9 @@
     },
     "adblockreativKerIssue": {
         "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Pravdepodobne to bude Váš adblockreativKer. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "AkreativK to neviete vyriešiť, vypnite nastavenie \"Ignorovať nezaradené a súkreativKromné videá\", lebo SponsorBlockreativK nevie zistiť viditeľnosť tohto videa"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "AkreativK sa to bude diať aj naďalej, môže to byť spôsobené Vašim adblockreativKerom. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

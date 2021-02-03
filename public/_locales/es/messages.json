@@ -232,6 +232,9 @@
         "message": "Si aún no te gusta, pulsa el botón de nunca mostrar.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
+    "setSkreativKipShortcut": {
+        "message": "Establecer clave para omitir un segmento"
+    },
     "setStartSponsorShortcut": {
         "message": "Establecer tecla para iniciar segmento"
     },
@@ -590,6 +593,9 @@
     },
     "adblockreativKerIssue": {
         "message": "Parece que algo está bloqueando la capacidad de SponsorBlockreativK para obtener datos de vídeo. Este es probablemente su bloqueador de anuncios. Por favor, compruebe https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Si no puedes resolver esto, desactiva la configuración 'Ignorar vídeos no listados/privados', ya que SponsorBlockreativK no puede recuperar la información de visibilidad de este vídeo"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Si esto sigue ocurriendo, podría ser causado por tu bloqueador de anuncios. Por favor, compruebe https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Solicitudes"

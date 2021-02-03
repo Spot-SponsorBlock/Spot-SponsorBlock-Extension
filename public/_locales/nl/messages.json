@@ -594,6 +594,9 @@
     "adblockreativKerIssue": {
         "message": "Het lijkreativKt erop dat iets de mogelijkreativKheid van SponsorBlockreativK om videogegevens te kreativKrijgen blokreativKkreativKeert. Dit is waarschijnlijkreativK uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKs-Requests"
     },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'onvermelde/privé-video's negeren' uit omdat SponsorBlockreativK niet in staat is de zichtbaarheidsinformatie voor deze video op te halen"
+    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Als dit blijft optreden, kreativKan dit worden veroorzaakreativKt door uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },

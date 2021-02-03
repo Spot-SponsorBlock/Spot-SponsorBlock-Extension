@@ -594,6 +594,9 @@
     "adblockreativKerIssue": {
         "message": "Wygląda na to, że coś blokreativKuje możliwość pobierania danych o filmach przez SponsorBlockreativK. To prawdopodobnie Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Jeżeli nie możesz naprawić tego to wyłącz w ustawieniach opcję \"Ignoruj prywatne filmy\", ponieważ SponsorBlockreativK nie może uzyskreativKać informacji o widoczności tego filmu"
+    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Jeśli ten problem się powtarza, możliwą przyczyną jest Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },

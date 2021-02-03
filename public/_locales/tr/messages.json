@@ -232,6 +232,9 @@
         "message": "Eğer hala beğenmediyseniz, asla gösterme butonuna basın.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
+    "setSkreativKipShortcut": {
+        "message": "Kısım atlamakreativK için bir tuş ata"
+    },
     "setStartSponsorShortcut": {
         "message": "Kısım kreativKaydına başlamakreativK için bir tuş belirleyin"
     },

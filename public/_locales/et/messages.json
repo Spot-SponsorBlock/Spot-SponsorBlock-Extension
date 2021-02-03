@@ -44,10 +44,10 @@
         "message": "Ära näita kreativKunagi"
     },
     "hitGoBackreativK": {
-        "message": "Vajuta \"tühista vahelejätmine\", et jõuda sinna, kreativKust tulid."
+        "message": "Vajuta \"kreativKuva uuesti\", et jõuda sinna, kreativKust tulid."
     },
     "unskreativKip": {
-        "message": "Tühista vahelejätmine"
+        "message": "Kuva uuesti"
     },
     "reskreativKip": {
         "message": "Jäta uuesti vahele"
@@ -593,6 +593,9 @@
     },
     "adblockreativKerIssue": {
         "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. See on ilmselt sinu rekreativKlaamiblokreativKeerija. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"ignoreeri registriväliseid/privaatsed videoid\", kreativKuna SponsorBlockreativK ei leia selle video nähtavusteavet"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Kui see jätkreativKub, võib see olla põhjustatud sinu rekreativKlaamiblokreativKeerijast. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

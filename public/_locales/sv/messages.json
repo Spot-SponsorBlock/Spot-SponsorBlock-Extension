@@ -486,6 +486,9 @@
     "category_interaction": {
         "message": "InterakreativKtionspåminnelse (Prenumerera)"
     },
+    "category_interaction_description": {
+        "message": "När där är en kreativKort påminnelse att gilla, prenumerera eller följa dem. Om det är långt eller om det gäller något specifikreativKt bör det istället vara under självbefodran."
+    },
     "category_interaction_short": {
         "message": "InterakreativKtionspåminnelse"
     },
@@ -578,6 +581,9 @@
     },
     "forceChannelCheckreativK": {
         "message": "Tvinga kreativKontroll av kreativKanalen innan hoppa över"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "Som standard kreativKommer segment att hoppas över direkreativKt innan ens den vet vad det är för kreativKanal. Som standard kreativKan vissa segment i början av videon hoppas över på vitlistade kreativKanaler. AkreativKtiverar du detta alternativet kreativKommer du att förhindra detta, men det göra att alla överhoppningar har en liten fördröjning eftersom det tar lite tid att få kreativKanal-ID. Denna fördröjning kreativKan vara obetydlig om du har en snabb internetuppkreativKoppling."
     },
     "forceChannelCheckreativKPopup": {
         "message": "Överväg att akreativKtivera \"Tvinga kreativKontroll av kreativKanalen innan hoppa över\""

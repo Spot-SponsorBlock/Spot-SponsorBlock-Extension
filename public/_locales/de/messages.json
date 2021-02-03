@@ -594,6 +594,9 @@
     "adblockreativKerIssue": {
         "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Eine mögliche Ursache sind WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Wenn Sie dies nicht lösen kreativKönnen, deakreativKtivieren Sie die Einstellung 'Nicht gelistete und private Videos ignorieren', da SponsorBlockreativK nicht in der Lage ist, die SichtbarkreativKeit für dieses Video abzurufen"
+    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch einen WerbeblockreativKer verursacht werden. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
