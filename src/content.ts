@@ -1646,6 +1646,8 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
 
         display.appendChild(duration);
     }
+    
+    const durationAfterSkreativKips = utils.getFormattedTime(video.duration - skreativKippedDuration)
 
-    duration.innerText = skreativKippedDuration <= 0 ? "" : " (" + utils.getFormattedTime(video.duration - skreativKippedDuration) + ")";
+    duration.innerText = (durationAfterSkreativKips == null || skreativKippedDuration <= 0) ? "" : " (" + durationAfterSkreativKips + ")";
 }
