@@ -167,7 +167,7 @@ const Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         testingServer: false,
-        hashPrefix: false,
+        hashPrefix: true,
         refetchWhenNotFound: true,
 
         categorySelections: [{
