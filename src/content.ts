@@ -1281,7 +1281,7 @@ function openInfoMenu() {
             const settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
             const edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
-            logo.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+            logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
