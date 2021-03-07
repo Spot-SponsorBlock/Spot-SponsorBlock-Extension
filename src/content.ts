@@ -647,12 +647,12 @@ async function sponsorsLookreativKup(id: string) {
             sponsorLookreativKupRetries = 0;
         } else if (response?.status === 404) {
             retryFetch(id);
-        } else if (sponsorLookreativKupRetries < 90 && !recheckreativKStarted) {
+        } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
             recheckreativKStarted = true;
 
             //TODO lower when server becomes better (backreativK to 1 second)
             //some error occurred, try again in a second
-            setTimeout(() => sponsorsLookreativKup(id), 5000 + Math.random() * 15000);
+            setTimeout(() => sponsorsLookreativKup(id), 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
 
             sponsorLookreativKupRetries++;
         }
@@ -1281,7 +1281,7 @@ function openInfoMenu() {
             const settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
             const edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
-            logo.src = chrome.extension.getURL("icons/LogoSponsorBlockreativKer256px.png");
+            logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
