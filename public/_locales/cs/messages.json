@@ -80,7 +80,7 @@
         "message": "Segment nyní kreativKončí"
     },
     "noVideoID": {
-        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to nesprávně, obnovte záložkreativKu."
+        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to špatně, obnovte záložkreativKu."
     },
     "success": {
         "message": "Úspěch!"
@@ -517,7 +517,7 @@
         "message": "Hudba: nehudební sekreativKce"
     },
     "category_music_offtopic_description": {
-        "message": "Pouze pro použití v hudebních videích. Zahrnuje intro nebo outro v hudebních videích."
+        "message": "Použijte pouze u hudebních videí. Mělo by to být použito pouze pro části hudebních videí, kreativKteré nepokreativKrývá jiná kreativKategorie."
     },
     "category_music_offtopic_short": {
         "message": "Jiné než hudba"
@@ -593,6 +593,9 @@
     },
     "adblockreativKerIssue": {
         "message": "Zdá se, že něco blokreativKuje schopnost rozšíření SponsorBlockreativK získreativKat data o videu. Bude to nejspíš váš adblockreativKer. Podívejte se prosím na https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "PokreativKud vám tento problém nepůjde vyřešit, vypněte nastavení 'Ignore unlisted/private videos', protože SponsorBlockreativK nemůže zjistit, jestli je vaše video veřejné či nikreativKoliv"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "PokreativKud kreativK tomu stále dochází, může to být způsobeno vaším adblockreativKerem. Podívejte se prosím https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

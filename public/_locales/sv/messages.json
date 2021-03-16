@@ -498,9 +498,6 @@
     "category_music_offtopic": {
         "message": "MusikreativK: IckreativKe-musikreativKavsnitt"
     },
-    "category_music_offtopic_description": {
-        "message": "Endast för användning i musikreativKvideor. Detta inkreativKluderar intros och outros i musikreativKvideor."
-    },
     "category_music_offtopic_short": {
         "message": "IckreativKe-musikreativK"
     },
@@ -609,6 +606,9 @@
     },
     "categoryUpdate1": {
         "message": "Kategorier finns här!"
+    },
+    "categoryUpdate2": {
+        "message": "Öppna inställningarna för att skreativKippa intros, outros, merch, osv."
     },
     "help": {
         "message": "Hjälp"

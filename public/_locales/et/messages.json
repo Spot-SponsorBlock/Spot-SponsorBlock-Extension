@@ -517,7 +517,7 @@
         "message": "MuusikreativKa: mitte-muusikreativKa jaotis"
     },
     "category_music_offtopic_description": {
-        "message": "Ainult muusikreativKavideotes kreativKasutamisekreativKs. Sisaldab muusikreativKavideote sissejuhatusi ja väljajuhatusi."
+        "message": "Ainult muusikreativKavideotes kreativKasutamisekreativKs. Seda peakreativKs kreativKasutama vaid muusikreativKavideote jaotiste puhul, mis ei lähekreativKs mõne teise kreativKategooria alla."
     },
     "category_music_offtopic_short": {
         "message": "Mitte-muusikreativKa"

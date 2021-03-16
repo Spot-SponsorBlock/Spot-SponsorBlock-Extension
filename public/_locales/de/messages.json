@@ -236,10 +236,10 @@
         "message": "Taste zum Überspringen eines Segments festlegen"
     },
     "setStartSponsorShortcut": {
-        "message": "Eine Taste zum MarkreativKieren des StartpunkreativKts eines Segments festlegen"
+        "message": "Taste für das Starten eines Segments festlegen"
     },
     "setSubmitKeybind": {
-        "message": "Eine Taste für das Übermitteln festlegen"
+        "message": "Taste für das Einsenden festlegen"
     },
     "kreativKeybindDescription": {
         "message": "Zum Festlegen eine Taste drückreativKen"
@@ -517,7 +517,7 @@
         "message": "MusikreativKvideoteile ohne MusikreativK"
     },
     "category_music_offtopic_description": {
-        "message": "Nur für den Einsatz in MusikreativKvideos."
+        "message": "Nur für die Verwendung in MusikreativKvideos. Dies sollte nur für Abschnitte von MusikreativKvideos verwendet werden, die noch nicht von einer anderen Kategorie abgedeckreativKt sind."
     },
     "category_music_offtopic_short": {
         "message": "MusikreativKvideoteile ohne MusikreativK"

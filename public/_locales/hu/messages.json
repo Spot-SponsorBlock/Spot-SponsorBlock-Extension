@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Szegmens vége"
     },
+    "noVideoID": {
+        "message": "Nem találtunkreativK YouTube videót.\nHa ez helytelen, frissítsd a lapot."
+    },
     "success": {
         "message": "SikreativKer!"
     },
@@ -109,8 +112,23 @@
     "submitCheckreativK": {
         "message": "Biztosan be akreativKarja kreativKüldeni?"
     },
+    "whitelistChannel": {
+        "message": "Csatorna fehérlistára tétele"
+    },
+    "removeFromWhitelist": {
+        "message": "Csatorna törlése fehérlistáról"
+    },
     "voteOnTime": {
         "message": "Szavazzon a szegmensről"
+    },
+    "Submissions": {
+        "message": "BekreativKüldésekreativK"
+    },
+    "viewLeaderboard": {
+        "message": "Ranglista"
+    },
+    "recordTimesDescription": {
+        "message": "Küldés"
     },
     "clearTimesButton": {
         "message": "IdőpontokreativK törlése"
@@ -120,6 +138,9 @@
     },
     "publicStats": {
         "message": "Ezt használja a nyilvános ranglistán, hogy megmutassa mennyit járult hozzá. Nézze meg"
+    },
+    "Username": {
+        "message": "Felhasználónév"
     },
     "setUsername": {
         "message": "Felhasználónév megadása"
@@ -215,6 +236,12 @@
     },
     "0": {
         "message": "Kapcsolati időtúllépés. Ellenőrizze az internetkreativKapcsolatot. Ha az internet műkreativKödikreativK, a kreativKiszolgáló valószínűleg túlterhelt vagy leállt."
+    },
+    "disableSkreativKipping": {
+        "message": "Átugrás bekreativKapcsolva"
+    },
+    "enableSkreativKipping": {
+        "message": "Átugrás kreativKikreativKapcsolva"
     },
     "yourWorkreativK": {
         "message": "Te munkreativKád",
@@ -466,9 +493,6 @@
     },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
-    },
-    "category_music_offtopic_description": {
-        "message": "CsakreativK zenei videókreativKon. BeletartoznakreativK a zenei videókreativK intro és outro részei is."
     },
     "category_music_offtopic_short": {
         "message": "Nem-Zene"
