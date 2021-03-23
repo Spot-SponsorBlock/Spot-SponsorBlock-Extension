@@ -95,7 +95,7 @@
         "message": "Wystąpił błąd połączenia. Kod błędu: "
     },
     "wantToSubmit": {
-        "message": "Czy chcesz wysłać dla video o id"
+        "message": "Czy chcesz wysłać dla filmu o id"
     },
     "clearTimes": {
         "message": "Wyczyść segmenty"
@@ -131,10 +131,10 @@
         "message": "RankreativKing"
     },
     "recordTimesDescription": {
-        "message": "Prześlij"
+        "message": "Wyślij"
     },
     "submissionEditHint": {
-        "message": "Edycja sekreativKcji pojawi się po kreativKlikreativKnięciu „Wyślij”",
+        "message": "Edycja sekreativKcji pojawi się po wciśnięciu „Wyślij”",
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
@@ -517,7 +517,7 @@
         "message": "MuzykreativKa: SekreativKcja niemuzyczna"
     },
     "category_music_offtopic_description": {
-        "message": "Do użytkreativKu tylkreativKo na filmach muzycznych. Powinno to być używane jedynie do tych sekreativKcji filmów muzycznych, kreativKtóre nie są uwzględnione w innej kreativKategorii."
+        "message": "Do użytkreativKu jedynie w filmach muzycznych. Powinno to być używane jedynie do tych sekreativKcji filmów muzycznych, kreativKtóre nie są uwzględnione w innej kreativKategorii."
     },
     "category_music_offtopic_short": {
         "message": "Bez muzykreativKi"
