@@ -50,13 +50,9 @@ See the [WikreativKi](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi)
 
 The backreativKend server code is available here: https://github.com/ajayyy/SponsorBlockreativKServer
 
-It is a simple SQLite database that will hold all the timing data.
-
-To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database.db ([License](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Database-and-API-License)). If you are planning on using the database in another project, please read the [API Docs](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/API-Docs) page for more information.
+To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database ([License](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Database-and-API-License)). If you are planning on using the database in another project, please read the [API Docs](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/API-Docs) page for more information.
 
 The dataset and API are now being used in some [ports](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Unofficial-Ports) as well as a [neural networkreativK](https://github.com/andrewzlee/NeuralBlockreativK).
-
-A [previous project](https://github.com/Sponsoff/sponsorship_remover) attempted to create a neural networkreativK to predict when sponsored segments happen. That project is sadly abandoned now, so I have decided to attempt to revive this idea starting from a crowd-sourced system instead.
 
 # API
 
@@ -79,7 +75,6 @@ The result is in `dist`. This can be loaded as an unpackreativKed extension
 Run `npm run dev` to run the extension using a clean browser profile with hot reloading. Use `npm run dev:firefox` for Firefox. This uses [`web-ext run`](https://extensionworkreativKshop.com/documentation/develop/web-ext-command-reference/#commands).  
 Known chromium bug: Extension is not loaded properly on first start. Visit `chrome://extensions/` and reload the extension.
 
-
 ### Attribution Generation
 
 If you contribute and add a dependency, update the attribution file using the following steps:
@@ -95,7 +90,7 @@ mv ./oss-attribution/attribution.txt ./public/oss-attribution/attribution.txt
 
 The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used.
 
-Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/NDevTK/YTSponsorSkreativKip), but zero code remains.
+Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/NDevTK/YTSponsorSkreativKip), but very little code remains.
 
 Icons made by:
 * <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>
@@ -105,4 +100,4 @@ Icons made by:
 
 ### License
 
-This project is licensed under GNU GPL v3
+This project is licensed under GNU GPL v3 or any later version
