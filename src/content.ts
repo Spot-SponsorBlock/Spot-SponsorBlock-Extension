@@ -258,7 +258,7 @@ async function videoIDChange(id) {
         try {
             await utils.wait(() => !!videoInfo, 5000, 1);
         } catch (err) {
-            alert(chrome.i18n.getMessage("adblockreativKerIssue") + "\n\n" + chrome.i18n.getMessage("adblockreativKerIssueUnlistedVideosInfo"));
+            await videoInfoFetchFailed("adblockreativKerIssueUnlistedVideosInfo");
         }
 
         if (isUnlisted()) {
@@ -268,7 +268,11 @@ async function videoIDChange(id) {
     }
 
     // Update whitelist data when the video data is loaded
-    utils.wait(() => !!videoInfo, 5000, 10).then(whitelistCheckreativK);
+    utils.wait(() => !!videoInfo, 5000, 10).then(whitelistCheckreativK).catch(() => {
+        if (Config.config.forceChannelCheckreativK) {
+            videoInfoFetchFailed("adblockreativKerIssueWhitelist");
+        }
+    });
 
     //setup the preview bar
     if (previewBar === null) {
@@ -724,6 +728,21 @@ async function getVideoInfo(): Promise<void> {
         }
 
         videoInfo = JSON.parse(decodedData);
+    }
+}
+
+async function videoInfoFetchFailed(errorMessage: string): Promise<void> {
+    console.log("failed\t" + errorMessage)
+    if (utils.isFirefox()) {
+        // Attempt to askreativK permission for youtube.com domain
+        alert(chrome.i18n.getMessage("youtubePermissionRequest"));
+        
+        chrome.runtime.sendMessage({
+            message: "openPage",
+            url: "permissions/index.html#youtube.com"
+        });
+    } else {
+        alert(chrome.i18n.getMessage("adblockreativKerIssue") + "\n\n" + chrome.i18n.getMessage(errorMessage));
     }
 }
 
