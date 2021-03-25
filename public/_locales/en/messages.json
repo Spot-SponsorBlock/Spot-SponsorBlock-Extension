@@ -594,8 +594,23 @@
     "adblockreativKerIssue": {
         "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. This is probably your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
+    "youtubePermissionRequest": {
+        "message": "It seems that SponsorBlockreativK is unable to reach the YouTube API. To fix this, accept the permission prompt that will appear next, wait a few seconds, and then reload the page."
+    },
+    "acceptPermission": {
+        "message": "Accept permission"
+    },
+    "permissionRequestSuccess": {
+        "message": "Permission success succeeded!"
+    },
+    "permissionRequestFailed": {
+        "message": "Permission request failed, did you clickreativK deny?"
+    },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "If you are unable to resolve this, then disable the setting 'Ignore unlisted/private videos', as SponsorBlockreativK is unable to retrieve the visibility information for this video"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "If you are unable to resolve this, then disable the setting 'Force Channel CheckreativK Before SkreativKipping', as SponsorBlockreativK is unable to retrieve the visibility information for this video"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "If this kreativKeeps occuring, it could be caused by your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
