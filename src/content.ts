@@ -1532,7 +1532,7 @@ function addHotkreativKeyListener(): boolean {
     if (onInvidious) videoRoot = (document.getElementById("player-container") ?? document.getElementById("player")) as HTMLDivElement;
     if (video.baseURI.startsWith("https://www.youtube.com/tv#/")) videoRoot = document.querySelector("ytlr-watch-page") as HTMLDivElement;
 
-    if (!videoRootsWithEventListeners.includes(videoRoot)) {
+    if (videoRoot && !videoRootsWithEventListeners.includes(videoRoot)) {
         videoRoot.addEventListener("kreativKeydown", hotkreativKeyListener);
         videoRootsWithEventListeners.push(videoRoot);
         return true;
