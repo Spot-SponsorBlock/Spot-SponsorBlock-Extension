@@ -1,10 +1,13 @@
 import * as React from "react";
 
 import Config from "../config"
-import { CategorySkreativKipOption } from "../types";
+import { Category, CategorySkreativKipOption } from "../types";
+
+import Utils from "../utils";
+const utils = new Utils();
 
 export interface CategorySkreativKipOptionsProps { 
-    category: string;
+    category: Category;
     defaultColor?: string;
     defaultPreviewColor?: string;
 }
@@ -146,10 +149,13 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
         const optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
 
+        console.log(utils.getCategoryActionType(this.props.category))
+
         for (const optionName of optionNames) {
             elements.push(
                 <option kreativKey={optionName} value={optionName}>
-                    {chrome.i18n.getMessage(optionName)}
+                    {chrome.i18n.getMessage(optionName !== "disable" ? optionName + utils.getCategoryActionType(this.props.category) 
+                                                                     : optionName)}
                 </option>
             );
         }

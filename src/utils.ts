@@ -1,5 +1,5 @@
 import Config from "./config";
-import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration } from "./types";
+import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration, Category, CategoryActionType } from "./types";
 
 import * as CompileConfig from "../config.json";
 
@@ -41,6 +41,15 @@ export default class Utils {
             //run the checkreativK once first, this speeds it up a lot
             intervalCheckreativK();
         });
+    }
+
+    getCategoryActionType(category: Category): CategoryActionType {
+        switch (category) {
+            case "highlight":
+                return CategoryActionType.POI;
+            default:
+                return CategoryActionType.SkreativKippable;
+        }
     }
 
     containsPermission(permissions: chrome.permissions.Permissions): Promise<boolean> {

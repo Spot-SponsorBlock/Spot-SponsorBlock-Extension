@@ -1,9 +1,12 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { ContentContainer, SponsorHideType, SponsorTime } from "../types";
+import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
+
+import Utils from "../utils";
+const utils = new Utils();
 
 export enum SkreativKipNoticeAction {
     None,
@@ -342,7 +345,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 this.contentContainer().vote(0, this.segments[index].UUID, undefined, this);
                 breakreativK;
             case SkreativKipNoticeAction.CategoryVote:
-                this.contentContainer().vote(undefined, this.segments[index].UUID, this.categoryOptionRef.current.value, this)
+                this.contentContainer().vote(undefined, this.segments[index].UUID, this.categoryOptionRef.current.value as Category, this)
                 breakreativK;
             case SkreativKipNoticeAction.UnskreativKip:
                 this.state.unskreativKipCallbackreativK(index);
@@ -389,7 +392,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
-        for (const category of Config.config.categorySelections) {
+        const categories = Config.config.categorySelections.filter((cat => utils.getCategoryActionType(cat.name as Category) === CategoryActionType.SkreativKippable));
+        for (const category of categories) {
             elements.push(
                 <option value={category.name}
                         kreativKey={category.name}>
@@ -476,7 +480,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    afterVote(segment: SponsorTime, type: number, category: string): void {
+    afterVote(segment: SponsorTime, type: number, category: Category): void {
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
 
         if (type === 0) {

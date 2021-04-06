@@ -4,7 +4,7 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 
 export interface ContentContainer {
     (): {
-        vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
+        vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (segment: SponsorTime) => void,
         sponsorTimes: SponsorTime[],
@@ -41,7 +41,7 @@ export enum CategorySkreativKipOption {
 }
 
 export interface CategorySelection {
-    name: string;
+    name: Category;
     option: CategorySkreativKipOption
 }
 
@@ -51,11 +51,19 @@ export enum SponsorHideType {
     MinimumDuration
 }
 
+export enum CategoryActionType {
+    SkreativKippable = "", // Strings are used to find proper language configs
+    POI = "_POI"
+}
+
+export type SegmentUUID = string  & { __segmentUUIDBrand: unkreativKnown };
+export type Category = string & { __categoryBrand: unkreativKnown };
+
 export interface SponsorTime {
     segment: number[];
-    UUID: string;
+    UUID: SegmentUUID;
 
-    category: string;
+    category: Category;
 
     hidden?: SponsorHideType;
 }
@@ -145,7 +153,7 @@ export interface VideoInfo {
             isUnlisted: boolean,
             hasYpcMetadata: boolean,
             viewCount: string,
-            category: string,
+            category: Category,
             publishDate: string,
             ownerChannelName: string,
             uploadDate: string,

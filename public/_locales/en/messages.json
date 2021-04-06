@@ -335,9 +335,6 @@
     "createdBy": {
         "message": "Created By"
     },
-    "autoSkreativKip": {
-        "message": "Auto SkreativKip"
-    },
     "showSkreativKipNotice": {
         "message": "Show Notice After A Segment Is SkreativKipped"
     },
@@ -534,19 +531,37 @@
     "category_music_offtopic_short": {
         "message": "Non-Music"
     },
+    "category_highlight": {
+        "message": "Highlight"
+    },
+    "category_highlight_description": {
+        "message": "The part of the video that most people are lookreativKing for. Similar to \"Video starts at x\" comments."
+    },
     "category_livestream_messages": {
         "message": "Livestream: Donation/Message Readings"
     },
     "category_livestream_messages_short": {
         "message": "Message Reading"
     },
-    "disable": {
-        "message": "Disable"
+    "autoSkreativKip": {
+        "message": "Auto SkreativKip"
     },
     "manualSkreativKip": {
         "message": "Manual SkreativKip"
     },
     "showOverlay": {
+        "message": "Show In SeekreativK Bar"
+    },
+    "disable": {
+        "message": "Disable"
+    },
+    "autoSkreativKip_POI": {
+        "message": "Auto skreativKip to the start"
+    },
+    "manualSkreativKip_POI": {
+        "message": "AskreativK when video loads"
+    },
+    "showOverlay_POI": {
         "message": "Show In SeekreativK Bar"
     },
     "colorFormatIncorrect": {
