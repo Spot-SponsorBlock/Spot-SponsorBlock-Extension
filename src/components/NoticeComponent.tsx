@@ -96,6 +96,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                             </img>
 
                             <span id={"sponsorSkreativKipMessage" + this.idSuffix}
+                                style={{float: "left"}}
                                 className="sponsorSkreativKipMessage sponsorSkreativKipObject">
                                 
                                 {this.state.noticeTitle}
