@@ -346,7 +346,7 @@ function migrateOldFormats(config: SBConfig) {
 
         config.categorySelections.push({
             name: "highlight" as Category,
-            option: CategorySkreativKipOption.AutoSkreativKip
+            option: CategorySkreativKipOption.ManualSkreativKip
         });
 
         config.categorySelections = config.categorySelections;
