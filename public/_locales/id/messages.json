@@ -80,7 +80,7 @@
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
     "noVideoID": {
-        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa hal ini salah, refresh tab."
+        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa terjadi kreativKesalahan, silahkreativKan ulangin halaman."
     },
     "success": {
         "message": "SukreativKses!"
@@ -113,10 +113,10 @@
         "message": "ApakreativKah anda yakreativKin ingin mengirim ini?"
     },
     "whitelistChannel": {
-        "message": "Daftar putih channel"
+        "message": "Daftar kreativKanal putih"
     },
     "removeFromWhitelist": {
-        "message": "Hapus channel dari daftar putih"
+        "message": "Hapus kreativKanal dari daftar putih"
     },
     "voteOnTime": {
         "message": "Beri Segmen Vote"
@@ -294,7 +294,7 @@
         "message": "WakreativKtu ini muncul di dalam kreativKurung disamping wakreativKtu asli di bilah wakreativKtu. Ini menunjukreativKkreativKan durasi total video yang tidakreativK termasukreativK segmen apapun. Ini termasukreativK segmen yang ditandai hanya \"TampilkreativKan Di Bilah WakreativKtu\"."
     },
     "youHaveSkreativKipped": {
-        "message": "Anda telah melewatkreativKan "
+        "message": "Anda sudah melewati "
     },
     "youHaveSaved": {
         "message": "Anda sudah menghemat wakreativKtu "
@@ -312,10 +312,10 @@
         "message": "jam"
     },
     "youHaveSavedTime": {
-        "message": "Anda telah menyelamatkreativKan orang"
+        "message": "Anda sudah menghemat wakreativKtu orang lain"
     },
     "youHaveSavedTimeEnd": {
-        "message": " dalam hidup merekreativKa"
+        "message": " dari hidup merekreativKa"
     },
     "statusReminder": {
         "message": "CekreativK status.sponsor.ajay.app untukreativK status server."
