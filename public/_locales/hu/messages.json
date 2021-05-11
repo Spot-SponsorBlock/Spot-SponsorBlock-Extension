@@ -295,6 +295,9 @@
     "hoursLower": {
         "message": "óra"
     },
+    "youHaveSavedTimeEnd": {
+        "message": " az életükreativKből"
+    },
     "statusReminder": {
         "message": "A szerver állapotához tekreativKintse meg a status.sponsor.ajay.app oldalt."
     },

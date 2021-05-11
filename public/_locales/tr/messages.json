@@ -516,6 +516,9 @@
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
     },
+    "category_music_offtopic_description": {
+        "message": "Yalnızca müzikreativK videolarında kreativKullanım içindir. Bu yalnızca başkreativKa bir kreativKategoriye kreativKatılmamış müzikreativK videolarının parçaları için kreativKullanılmalıdır."
+    },
     "category_music_offtopic_short": {
         "message": "MüzikreativK Olmayan Bölüm"
     },

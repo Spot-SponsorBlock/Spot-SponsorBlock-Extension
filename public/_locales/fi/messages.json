@@ -41,7 +41,7 @@
         "message": "Ladataan..."
     },
     "Hide": {
-        "message": "Älä näytä kreativKoskreativKaan"
+        "message": "Älä Näytä KoskreativKaan"
     },
     "hitGoBackreativK": {
         "message": "Paina 'älä ohita' mennäkreativKsesi takreativKaisin kreativKohtaan jossa olit."
@@ -104,7 +104,7 @@
         "message": "Avaa SponsorBlockreativK-ponnahdusikreativKkreativKuna"
     },
     "closePopup": {
-        "message": "Sulje Ponnahdus-ikreativKkreativKuna"
+        "message": "Sulje PonnahdusikreativKkreativKuna"
     },
     "SubmitTimes": {
         "message": "Lähetä Segmentit"
@@ -165,7 +165,7 @@
         "message": "AsetukreativKset"
     },
     "showButtons": {
-        "message": "Näytä painikreativKkreativKeet YouTuben soittimessa"
+        "message": "Näytä PainikreativKkreativKeet YouTuben Soittimessa"
     },
     "hideButtons": {
         "message": "Piilota painikreativKkreativKeet YouTuben soittimessa"
@@ -174,7 +174,7 @@
         "message": "Tämä piilottaa YouTuben soittimessa näkreativKyvät, ohitettavien aikreativKojen lähettämiseen kreativKäytetyt painikreativKkreativKeet."
     },
     "showInfoButton": {
-        "message": "Näytä info-painikreativKe YouTuben soittimessa"
+        "message": "Näytä Info-PainikreativKe YouTuben Soittimessa"
     },
     "hideInfoButton": {
         "message": "Piilota info-painikreativKe YouTuben soittimessa"
@@ -186,7 +186,7 @@
         "message": "Piilota poista-painikreativKe YouTuben soittimessa"
     },
     "showDeleteButton": {
-        "message": "Näytä poista-painikreativKe YouTuben soittimessa"
+        "message": "Näytä Poista-PainikreativKe YouTuben Soittimessa"
     },
     "whatDeleteButton": {
         "message": "Tämä on YouTuben soittimen painikreativKe, jokreativKa poistaa kreativKaikreativKkreativKi kreativKyseisen videon sponsorointikreativKohdat, joita et ole vielä lähettänyt."
@@ -229,7 +229,7 @@
         "description": "The first line of the message displayed after the notice was upgraded."
     },
     "noticeUpdate2": {
-        "message": "Jos et vieläkreativKään pidä siitä, paina \"älä kreativKoskreativKaan näytä\" -painikreativKetta.",
+        "message": "Jos et vieläkreativKään pidä siitä, paina \"älä näytä kreativKoskreativKaan\" -painikreativKetta.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
@@ -408,7 +408,7 @@
         "message": "OletkreativKo varma, että haluat nollata tämän?"
     },
     "confirmPrivacy": {
-        "message": "Video on havaittu piilotetukreativKsi. Paina peruuta jos et halua tarkreativKistaa ohitettavia segmenttejä."
+        "message": "Video on havaittu piilotetukreativKsi. Paina peruuta, jos et halua tarkreativKistaa ohitettavia segmenttejä."
     },
     "unlistedCheckreativK": {
         "message": "Ohita Piilotetut/YkreativKsityiset Videot"
@@ -511,10 +511,10 @@
         "message": "MakreativKsamaton/Itsensä Mainostus"
     },
     "category_selfpromo_description": {
-        "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa paitsi makreativKsamaton tai itsensä mainostus. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
+        "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
     },
     "category_music_offtopic": {
-        "message": "MusiikreativKkreativKi: muussa kreativKuin MusiikreativKkreativKi-osiossa"
+        "message": "MusiikreativKkreativKi: Ei-MusiikreativKkreativKi-Osio"
     },
     "category_music_offtopic_description": {
         "message": "Vain kreativKäytettävissä musiikreativKkreativKivideoissa. Tätä tulee kreativKäyttää vain musiikreativKkreativKivideoiden osissa, jotkreativKa eivät jo kreativKuulu toiseen kreativKategoriaan."
