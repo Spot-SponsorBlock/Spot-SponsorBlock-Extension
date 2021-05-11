@@ -47,7 +47,8 @@ class SubmissionNotice {
                 contentContainer={contentContainer}
                 callbackreativK={callbackreativK} 
                 ref={this.noticeRef}
-                closeListener={() => this.close()} />,
+                closeListener={() => this.close()}
+                smaller={true} />,
             this.noticeElement
         );
     }

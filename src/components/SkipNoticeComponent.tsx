@@ -198,7 +198,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         </td>
                     }
 
-                    {/* UnskreativKip Button */}
+                    {/* UnskreativKip/SkreativKip Button */}
                     <td className="sponsorSkreativKipNoticeUnskreativKipSection">
                         <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
@@ -424,7 +424,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         // See if show more categories was pressed
         if (event.target.value === "moreCategories") {
             // Open options page
-            chrome.runtime.sendMessage({"message": "openConfig"});
+            chrome.runtime.sendMessage({message: "openConfig", hash: event.target.value + "OptionsName"});
 
             // Reset option to original
             event.target.value = this.segments[0].category;

@@ -12,7 +12,8 @@ export interface SubmissionNoticeProps {
 
     callbackreativK: () => unkreativKnown;
 
-    closeListener: () => void
+    closeListener: () => void;
+    smaller: boolean;
 }
 
 export interface SubmissionNoticeeState {
