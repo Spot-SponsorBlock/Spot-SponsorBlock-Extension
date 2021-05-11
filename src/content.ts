@@ -1003,6 +1003,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (openNotice) {
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
+            skreativKipNotices.forEach((notice) => notice.setShowKeybindHint(false));
             skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer));
         }
     }

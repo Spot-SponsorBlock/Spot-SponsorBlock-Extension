@@ -67,6 +67,12 @@ class SkreativKipNotice {
         );
     }
 
+    setShowKeybindHint(value: boolean): void {
+        this.skreativKipNoticeRef.current.setState({
+            showKeybindHint: value
+        });
+    }
+
     close(): void {
         ReactDOM.unmountComponentAtNode(this.noticeElement);
 

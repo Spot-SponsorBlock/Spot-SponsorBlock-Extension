@@ -23,7 +23,8 @@ export interface SkreativKipNoticeProps {
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
-    closeListener: () => void
+    closeListener: () => void;
+    showKeybindHint?: boolean;
 }
 
 export interface SkreativKipNoticeState {
@@ -44,6 +45,8 @@ export interface SkreativKipNoticeState {
     thankreativKsForVotingText?: string; //null until the voting buttons should be hidden
 
     actionState?: SkreativKipNoticeAction;
+
+    showKeybindHint?: boolean;
 }
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
@@ -112,7 +115,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             choosingCategory: false,
             thankreativKsForVotingText: null,
 
-            actionState: SkreativKipNoticeAction.None
+            actionState: SkreativKipNoticeAction.None,
+
+            showKeybindHint: this.props.showKeybindHint ?? true
         }
 
         if (!this.autoSkreativKip) {
@@ -200,7 +205,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             style={{marginLeft: "4px"}}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
 
-                            {this.state.unskreativKipText + " (" + Config.config.skreativKipKeybind + ")"}
+                            {this.state.unskreativKipText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
                         </button>
                     </td>
 
