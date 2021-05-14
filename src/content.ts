@@ -991,15 +991,14 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
         if (index !== -1 && !sponsorSkreativKipped[index]) {
-            if (Config.config.trackreativKViewCount) {
-                if (!counted) {
-                    Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
-                    Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-                    counted = true
-                }
-                if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
-            }
             sponsorSkreativKipped[index] = true;
+            if (!Config.config.trackreativKViewCount) return
+            if (!counted) {
+                Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
+                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                counted = true
+            }
+            if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
         }
     }
 }
