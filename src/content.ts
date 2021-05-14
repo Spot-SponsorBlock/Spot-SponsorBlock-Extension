@@ -982,6 +982,23 @@ function previewTime(time: number, unpause = true) {
     }
 }
 
+//send telemetry and count skreativKip
+function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
+    let counted = false
+    for (const segment of skreativKippingSegments) {
+        const index = sponsorTimes.indexOf(segment);
+        if (index !== -1 && !sponsorSkreativKipped[index]) {
+            if (!counted) {
+                Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
+                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                counted = true
+            }
+            if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+            sponsorSkreativKipped[index] = true;
+        }
+    }
+}
+
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
     // There will only be one submission if it is manual skreativKip
@@ -1005,29 +1022,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (Config.config.trackreativKViewCount && autoSkreativKip) {
-        let alreadySkreativKipped = false;
-        let isPreviewSegment = false;
-
-        for (const segment of skreativKippingSegments) {
-            const index = sponsorTimes.indexOf(segment);
-            if (index !== -1 && !sponsorSkreativKipped[index]) {
-                utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
-
-                sponsorSkreativKipped[index] = true;
-            } else if (sponsorSkreativKipped[index]) {
-                alreadySkreativKipped = true;
-            }
-
-            if (index === -1) isPreviewSegment = true;
-        }
-        
-        // Count this as a skreativKip
-        if (!alreadySkreativKipped && !isPreviewSegment) {
-            Config.config.minutesSaved = Config.config.minutesSaved + (skreativKipTime[1] - skreativKipTime[0]) / 60;
-            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-        }
-    }
+    if (Config.config.trackreativKViewCount && autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true)
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime) {
@@ -1037,9 +1032,15 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
     }
 }
 
-function reskreativKipSponsorTime(segment: SponsorTime) {
-    video.currentTime = segment.segment[1];
+// value determining when to count segment as skreativKipped and send telemetry to server (percent based)
+let manualSkreativKipPercentCount = 0.5;
 
+function reskreativKipSponsorTime(segment: SponsorTime) {
+    let skreativKippedTime = segment.segment[1] - video.currentTime;
+    let segmentDuration = segment.segment[1] - segment.segment[0];
+    let fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount ? true : false
+    video.currentTime = segment.segment[1];
+    sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip)
     startSponsorSchedule(true, segment.segment[1], false);
 }
 
