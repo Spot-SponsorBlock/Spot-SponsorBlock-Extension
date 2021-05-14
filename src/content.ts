@@ -117,6 +117,9 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     getRealCurrentTime: getRealCurrentTime
 });
 
+// value determining when to count segment as skreativKipped and send telemetry to server (percent based)
+const manualSkreativKipPercentCount = 0.5;
+
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
@@ -988,12 +991,14 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
         if (index !== -1 && !sponsorSkreativKipped[index]) {
-            if (!counted) {
-                Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
-                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-                counted = true
+            if (Config.config.trackreativKViewCount) {
+                if (!counted) {
+                    Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
+                    Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                    counted = true
+                }
+                if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
             }
-            if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
             sponsorSkreativKipped[index] = true;
         }
     }
@@ -1022,7 +1027,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (Config.config.trackreativKViewCount && autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true)
+    if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true)
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime) {
@@ -1032,13 +1037,10 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
     }
 }
 
-// value determining when to count segment as skreativKipped and send telemetry to server (percent based)
-let manualSkreativKipPercentCount = 0.5;
-
 function reskreativKipSponsorTime(segment: SponsorTime) {
-    let skreativKippedTime = segment.segment[1] - video.currentTime;
-    let segmentDuration = segment.segment[1] - segment.segment[0];
-    let fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount ? true : false
+    const skreativKippedTime = segment.segment[1] - video.currentTime;
+    const segmentDuration = segment.segment[1] - segment.segment[0];
+    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount ? true : false
     video.currentTime = segment.segment[1];
     sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip)
     startSponsorSchedule(true, segment.segment[1], false);
