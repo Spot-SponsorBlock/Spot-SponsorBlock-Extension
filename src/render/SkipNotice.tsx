@@ -62,7 +62,8 @@ class SkreativKipNotice {
                 autoSkreativKip={autoSkreativKip} 
                 contentContainer={contentContainer}
                 ref={this.skreativKipNoticeRef}
-                closeListener={() => this.close()} />,
+                closeListener={() => this.close()}
+                smaller={true} />,
             this.noticeElement
         );
     }
