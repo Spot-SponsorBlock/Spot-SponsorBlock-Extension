@@ -1028,7 +1028,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true)
+    if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime) {
