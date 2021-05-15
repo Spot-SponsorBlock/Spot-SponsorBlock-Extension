@@ -987,17 +987,19 @@ function previewTime(time: number, unpause = true) {
 
 //send telemetry and count skreativKip
 function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
+    if (!Config.config.trackreativKViewCount) return;
+    
     let counted = false
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
         if (index !== -1 && !sponsorSkreativKipped[index]) {
             sponsorSkreativKipped[index] = true;
-            if (!Config.config.trackreativKViewCount) return
             if (!counted) {
                 Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
                 Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-                counted = true
+                counted = true;
             }
+            
             if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
         }
     }
@@ -1037,11 +1039,12 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
-    const skreativKippedTime = segment.segment[1] - video.currentTime;
+    const skreativKippedTime = Math.max(segment.segment[1] - video.currentTime, 0);
     const segmentDuration = segment.segment[1] - segment.segment[0];
-    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount ? true : false
+    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
+    
     video.currentTime = segment.segment[1];
-    sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip)
+    sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip);
     startSponsorSchedule(true, segment.segment[1], false);
 }
 
