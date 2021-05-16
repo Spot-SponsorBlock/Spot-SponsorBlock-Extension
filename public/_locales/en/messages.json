@@ -591,8 +591,8 @@
     "channelDataNotFound": {
         "message": "Channel ID not loaded yet."
     },
-    "adblockreativKerIssue": {
-        "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. This is probably your ad blockreativKer. Please checkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "It seems that something is blockreativKing SponsorBlockreativK's ability to get video data. Please see https://github.com/ajayyy/SponsorBlockreativK/issues/741 for more info."
     },
     "youtubePermissionRequest": {
         "message": "It seems that SponsorBlockreativK is unable to reach the YouTube API. To fix this, accept the permission prompt that will appear next, wait a few seconds, and then reload the page."
