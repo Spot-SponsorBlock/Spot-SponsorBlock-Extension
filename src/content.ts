@@ -989,7 +989,7 @@ function previewTime(time: number, unpause = true) {
 function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
     if (!Config.config.trackreativKViewCount) return;
     
-    let counted = false
+    let counted = false;
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
         if (index !== -1 && !sponsorSkreativKipped[index]) {
