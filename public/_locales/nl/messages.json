@@ -517,7 +517,7 @@
         "message": "MuziekreativK: sectie niet-muziekreativK"
     },
     "category_music_offtopic_description": {
-        "message": "Alleen voor gebruikreativK in muziekreativKvideo's. Dit is inclusief introducties of outro's in muziekreativKvideo's."
+        "message": "Alleen voor gebruikreativK in muziekreativKvideo's. Dit mag alleen worden gebruikreativKt voor secties van muziekreativKvideo's die nog niet door een andere categorie worden bedekreativKt."
     },
     "category_music_offtopic_short": {
         "message": "Niet-muziekreativK"
@@ -593,6 +593,9 @@
     },
     "adblockreativKerIssue": {
         "message": "Het lijkreativKt erop dat iets de mogelijkreativKheid van SponsorBlockreativK om videogegevens te kreativKrijgen blokreativKkreativKeert. Dit is waarschijnlijkreativK uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKs-Requests"
+    },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'onvermelde/privé-video's negeren' uit omdat SponsorBlockreativK niet in staat is de zichtbaarheidsinformatie voor deze video op te halen"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Als dit blijft optreden, kreativKan dit worden veroorzaakreativKt door uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

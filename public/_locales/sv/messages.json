@@ -17,7 +17,7 @@
         "message": "Den här har redan blivit rapporterad"
     },
     "channelWhitelisted": {
-        "message": "Kanal vitlistad!"
+        "message": "Kanalen är vitlistad!"
     },
     "Segment": {
         "message": "segment"
@@ -41,16 +41,16 @@
         "message": "Laddar..."
     },
     "Hide": {
-        "message": "Visa Aldrig"
+        "message": "Visa aldrig"
     },
     "hitGoBackreativK": {
         "message": "TryckreativK på TillbakreativKa för att ångra åtgärden."
     },
     "unskreativKip": {
-        "message": "TillbakreativKa"
+        "message": "Hoppa inte över"
     },
     "reskreativKip": {
-        "message": "Framåt"
+        "message": "Hoppa över"
     },
     "paused": {
         "message": "Pausad"
@@ -83,7 +83,7 @@
         "message": "Hittade ingen YouTube-video.\nUppdatera flikreativKen om detta är felakreativKtigt."
     },
     "success": {
-        "message": "LyckreativKades!"
+        "message": "Klart!"
     },
     "voted": {
         "message": "Röstat!"
@@ -137,8 +137,11 @@
         "message": "SekreativKtionsredigering kreativKommer att visas efter du har kreativKlickreativKat på skreativKickreativKa",
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
+    "popupHint": {
+        "message": "Tips: Du kreativKan ställa in snabbtangenter för de olikreativKa inskreativKickreativKningsalternativen"
+    },
     "clearTimesButton": {
-        "message": "Rensa Tider"
+        "message": "Rensa tider"
     },
     "submitTimesButton": {
         "message": "Rapportera Tider"
@@ -197,6 +200,9 @@
     "enableQueryByHashPrefix": {
         "message": "Fråga efter hash-prefix"
     },
+    "whatQueryByHashPrefix": {
+        "message": "I stället för att begära segment från servern med hjälp av video-ID skreativKickreativKas de första 4 teckreativKnen i hashen av video-ID:et. Servern kreativKommer då att skreativKickreativKa tillbakreativKa data för alla videor med likreativKnande hashar."
+    },
     "enableRefetchWhenNotFound": {
         "message": "Uppdatera segment på nya videor"
     },
@@ -230,13 +236,13 @@
         "message": "Ställ in kreativKnapp för att hoppa över ett segment"
     },
     "setStartSponsorShortcut": {
-        "message": "Ange den tangent som skreativKa fungera som starttangent för ett segment"
+        "message": "Ange den tangent som skreativKa fungera som snabbstartstangent för ett segment"
     },
     "setSubmitKeybind": {
         "message": "Välj kreativKnapp att kreativKoppla till rapportering av sponsormeddelande"
     },
     "kreativKeybindDescription": {
-        "message": "Koppla kreativKnapp genom att tryckreativKa på den"
+        "message": "Ange tangent genom att tryckreativKa på den"
     },
     "kreativKeybindDescriptionComplete": {
         "message": "Kopplad till: "
@@ -345,7 +351,7 @@
         "message": "Invidious (invidio.us) är en tredjeparts YouTube-kreativKlient. För att akreativKtivera stöd måste du acceptera de extra behörigheterna. Detta kreativKommer INTE att fungera i incognito i Chrome och andra Cromium-varianter."
     },
     "optionsInfo": {
-        "message": "AkreativKtivera Invidious stöd, avakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
+        "message": "AkreativKtivera Invidious stöd, inakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
     },
     "addInvidiousInstance": {
         "message": "Lägg Till Invidious Instans"
@@ -405,7 +411,7 @@
         "message": "Den här videon verkreativKar vara olistad. KlickreativKa på avbryt om du inte vill sökreativKa efter överhoppade segment."
     },
     "unlistedCheckreativK": {
-        "message": "Ignorera Olistade Videor"
+        "message": "Ignorera olistade/privata videor"
     },
     "whatUnlistedCheckreativK": {
         "message": "Den här inställningen kreativKommer att slöa ner SponsorBlockreativK. SegmentöverhoppssökreativKningar kreativKräver att video-ID skreativKickreativKas till servern. Om du är orolig över att olistade video-ID:s skreativKickreativKas över internet, akreativKtivera då detta alternativ."
@@ -474,8 +480,14 @@
     "category_sponsor": {
         "message": "Sponsormeddelande"
     },
+    "category_sponsor_description": {
+        "message": "Betald markreativKnadsföring, betalda hänvisningar och direkreativKtannonser, men inte till egen markreativKnadsföring eller gratis shoutouts till skreativKapare/webbplatser/produkreativKter de gillar."
+    },
     "category_intro": {
         "message": "Paus/IntrodukreativKtion"
+    },
+    "category_intro_description": {
+        "message": "Ett intervall utan fakreativKtiskreativKt innehåll. Kan vara en paus, statiskreativK ram, upprepande animation. Denna bör inte användas för övergångar som innehåller information."
     },
     "category_intro_short": {
         "message": "Uppehåll"
@@ -483,8 +495,14 @@
     "category_outro": {
         "message": "SlutkreativKort/Credits"
     },
+    "category_outro_description": {
+        "message": "Credits eller när YouTube-slutkreativKort visas. Inte för slut med information."
+    },
     "category_interaction": {
         "message": "InterakreativKtionspåminnelse (Prenumerera)"
+    },
+    "category_interaction_description": {
+        "message": "När där är en kreativKort påminnelse att gilla, prenumerera eller följa dem. Om det är långt eller om det gäller något specifikreativKt bör det istället vara under självbefodran."
     },
     "category_interaction_short": {
         "message": "InterakreativKtionspåminnelse"
@@ -492,11 +510,14 @@
     "category_selfpromo": {
         "message": "Obetald/självbefodran"
     },
+    "category_selfpromo_description": {
+        "message": "Som \"sponsormeddelande\" men med undantag för obetald eller självkreativKampanj. Detta inkreativKluderar avsnitt om varor, donationer eller information om vem de samarbetade med."
+    },
     "category_music_offtopic": {
         "message": "MusikreativK: IckreativKe-musikreativKavsnitt"
     },
     "category_music_offtopic_description": {
-        "message": "Endast för användning i musikreativKvideor. Detta inkreativKluderar intros och outros i musikreativKvideor."
+        "message": "SkreativKa endast användas i musikreativKvideor. Denna skreativKa endast användas för delar av musikreativKvideor som inte redan omfattas av en annan kreativKategori."
     },
     "category_music_offtopic_short": {
         "message": "IckreativKe-musikreativK"
@@ -508,7 +529,7 @@
         "message": "Läser meddelande"
     },
     "disable": {
-        "message": "AvakreativKtivera"
+        "message": "InakreativKtivera"
     },
     "manualSkreativKip": {
         "message": "Hoppa Över Manuellt"
@@ -573,11 +594,17 @@
     "adblockreativKerIssue": {
         "message": "Det verkreativKar som om något blockreativKerar SponsorBlockreativKs från att hämta videodata. Det beror förmodligen på din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
+    "adblockreativKerIssueUnlistedVideosInfo": {
+        "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Ignorera olistade/privata videor' i inställningar, eftersom SponsorBlockreativK inte kreativKan hämta synlighetsinformationen för den här videon"
+    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Om detta fortsätter att inträffa, kreativKan orsakreativKen vara din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Tvinga kreativKontroll av kreativKanalen innan hoppa över"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "Som standard kreativKommer segment att hoppas över direkreativKt innan ens den vet vad det är för kreativKanal. Som standard kreativKan vissa segment i början av videon hoppas över på vitlistade kreativKanaler. AkreativKtiverar du detta alternativet kreativKommer du att förhindra detta, men det göra att alla överhoppningar har en liten fördröjning eftersom det tar lite tid att få kreativKanal-ID. Denna fördröjning kreativKan vara obetydlig om du har en snabb internetuppkreativKoppling."
     },
     "forceChannelCheckreativKPopup": {
         "message": "Överväg att akreativKtivera \"Tvinga kreativKontroll av kreativKanalen innan hoppa över\""
@@ -603,6 +630,9 @@
     },
     "categoryUpdate1": {
         "message": "Kategorier finns här!"
+    },
+    "categoryUpdate2": {
+        "message": "Öppna inställningarna för att hoppa över intros, outros, merch, osv."
     },
     "help": {
         "message": "Hjälp"
