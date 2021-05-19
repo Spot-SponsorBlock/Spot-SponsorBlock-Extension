@@ -591,11 +591,23 @@
     "channelDataNotFound": {
         "message": "ID kreativKanálu ještě nebylo načteno."
     },
-    "adblockreativKerIssue": {
-        "message": "Zdá se, že něco blokreativKuje schopnost rozšíření SponsorBlockreativK získreativKat data o videu. Bude to nejspíš váš adblockreativKer. Podívejte se prosím na https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "youtubePermissionRequest": {
+        "message": "Vypadá to, že se SponsorBlockreativK nemůže připojit kreativK YouTube API. Pro opravení tohoto problému přijměte žádost o oprávnění, kreativKterá se dále objeví, a poté znovu načtěte stránkreativKu."
+    },
+    "acceptPermission": {
+        "message": "Přijmout oprávnění"
+    },
+    "permissionRequestSuccess": {
+        "message": "Žádost o oprávnění byla úspěšná!"
+    },
+    "permissionRequestFailed": {
+        "message": "Žádost o oprávnění se nezdařila, nekreativKlikreativKli jste na Odmítnout?"
     },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "PokreativKud vám tento problém nepůjde vyřešit, vypněte nastavení 'Ignore unlisted/private videos', protože SponsorBlockreativK nemůže zjistit, jestli je vaše video veřejné či nikreativKoliv"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "PokreativKud vám tento problém nepůjde vyřešit, vypněte nastavení 'Vynutit kreativKontrolu kreativKanálu před přeskreativKočením', protože SponsorBlockreativK nemůže zjistit informace o kreativKanálu"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "PokreativKud kreativK tomu stále dochází, může to být způsobeno vaším adblockreativKerem. Podívejte se prosím https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

@@ -591,9 +591,6 @@
     "channelDataNotFound": {
         "message": "L'ID de la chaîne n'a pas encore été chargé."
     },
-    "adblockreativKerIssue": {
-        "message": "Il semble que quelque chose empêche SponsorBlockreativK de récupérer les données de la vidéo. C'est probablement votre bloqueur de publicités. Veuillez consulter https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "Si vous ne pouvez pas résoudre ça, désactivé le paramètre 'Ignorer vidéos privées ou pas listées\", car SponsorBlockreativK ne peux pas trouver cette vidéo"
     },

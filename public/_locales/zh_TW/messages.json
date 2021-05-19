@@ -588,11 +588,23 @@
     "channelDataNotFound": {
         "message": "頻道 ID 尚未載入"
     },
-    "adblockreativKerIssue": {
-        "message": "似乎某些東西正在阻止 SponsorBlockreativK 獲取影片資料的功能。它很可能是您的廣告攔截器。請查看 https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "似乎有東西在阻止 SponsorBlockreativK 獲取影片資料。請查看 https://github.com/ajayyy/SponsorBlockreativK/issues/741 以了解更多資訊。"
+    },
+    "acceptPermission": {
+        "message": "允許權限"
+    },
+    "permissionRequestSuccess": {
+        "message": "成功允許權限！"
+    },
+    "permissionRequestFailed": {
+        "message": "允許權限失敗，您是不是按到拒絕了？"
     },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "如果您沒辦法解決這個問題，請停用\"忽略私人或不公開影片\"，因為 SponsorBlockreativK 無法獲取這部影片的可見性資料。"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "如果您沒辦法解決這個問題，請停用\"強制在跳過前檢查頻道\"，因為 SponsorBlockreativK 無法獲取這部影片的頻道資料。"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "如果這種情況不斷發生，它可能是由您的廣告攔截器引起的。請查看 https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

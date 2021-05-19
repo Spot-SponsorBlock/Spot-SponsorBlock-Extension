@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Segmentet slutar nu"
     },
+    "sponsorCancel": {
+        "message": "Avbryt skreativKapandet av segmentet"
+    },
     "noVideoID": {
         "message": "Hittade ingen YouTube-video.\nUppdatera flikreativKen om detta är felakreativKtigt."
     },
@@ -591,11 +594,26 @@
     "channelDataNotFound": {
         "message": "Kanal-ID är inte inladdat än."
     },
-    "adblockreativKerIssue": {
-        "message": "Det verkreativKar som om något blockreativKerar SponsorBlockreativKs från att hämta videodata. Det beror förmodligen på din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Det verkreativKar som om något blockreativKerar SponsorBlockreativK från att hämta videodata. Gå till https://github.com/ajayyy/SponsorBlockreativK/issues/741 för mer info."
+    },
+    "youtubePermissionRequest": {
+        "message": "Det verkreativKar som att SponsorBlockreativK inte kreativKan nå YouTube-API:t. För att åtgärda problemet skreativKa du acceptera behörighetsfrågan som visas härnäst och vänta några sekreativKunder och sedan ladda om sidan."
+    },
+    "acceptPermission": {
+        "message": "GodkreativKänn behörighet"
+    },
+    "permissionRequestSuccess": {
+        "message": "Behörighet godkreativKänd!"
+    },
+    "permissionRequestFailed": {
+        "message": "Behörighetsbegäran misslyckreativKades, tryckreativKte du på förnekreativKa?"
     },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Ignorera olistade/privata videor' i inställningar, eftersom SponsorBlockreativK inte kreativKan hämta synlighetsinformationen för den här videon"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Tvinga kreativKontroll av kreativKanalen innan hoppa över' i inställningarna, eftersom SponsorBlockreativK inte kreativKan hämta kreativKanalinformationen för den här videon"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Om detta fortsätter att inträffa, kreativKan orsakreativKen vara din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

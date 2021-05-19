@@ -128,7 +128,7 @@
         "message": "Zgłoszenia"
     },
     "savedPeopleFrom": {
-        "message": "Oszczędzono innym "
+        "message": "Oszczędziłeś innym "
     },
     "viewLeaderboard": {
         "message": "RankreativKing"
@@ -594,8 +594,17 @@
     "channelDataNotFound": {
         "message": "ID kreativKanału nie zostało pókreativKi co załadowane."
     },
-    "adblockreativKerIssue": {
-        "message": "Wygląda na to, że coś blokreativKuje możliwość pobierania danych o filmach przez SponsorBlockreativK. To prawdopodobnie Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "youtubePermissionRequest": {
+        "message": "Wygląda na to, że SponsorBlockreativK nie jest w stanie połączyć się z API YouTube. Aby to naprawić, zaakreativKceptuj monit o pozwolenie, kreativKtóry pojawi się za chwilę, odczekreativKaj kreativKilkreativKa sekreativKund, a następnie odśwież stronę."
+    },
+    "acceptPermission": {
+        "message": "ZaakreativKceptuj uprawnienie"
+    },
+    "permissionRequestSuccess": {
+        "message": "UzyskreativKano uprawnienia!"
+    },
+    "permissionRequestFailed": {
+        "message": "Prośba odrzucona. Może kreativKlikreativKnięto „Odmów”?"
     },
     "adblockreativKerIssueUnlistedVideosInfo": {
         "message": "Jeżeli nie możesz naprawić tego to wyłącz w ustawieniach opcję \"Ignoruj prywatne filmy\", ponieważ SponsorBlockreativK nie może uzyskreativKać informacji o widoczności tego filmu"

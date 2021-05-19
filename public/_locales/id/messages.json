@@ -79,8 +79,11 @@
     "sponsorEnd": {
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
+    "sponsorCancel": {
+        "message": "BatalkreativKan Membuat Segmen"
+    },
     "noVideoID": {
-        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa terjadi kreativKesalahan, silahkreativKan ulangin halaman."
+        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa terjadi kreativKesalahan, segarkreativKan halaman."
     },
     "success": {
         "message": "SukreativKses!"
@@ -113,10 +116,10 @@
         "message": "ApakreativKah anda yakreativKin ingin mengirim ini?"
     },
     "whitelistChannel": {
-        "message": "Daftar kreativKanal putih"
+        "message": "Daftar putih channel"
     },
     "removeFromWhitelist": {
-        "message": "Hapus kreativKanal dari daftar putih"
+        "message": "Hapus channel dari daftar putih"
     },
     "voteOnTime": {
         "message": "Beri Segmen Vote"
@@ -207,7 +210,7 @@
         "message": "Fetch Ulang Segmen Di Video Baru"
     },
     "whatRefetchWhenNotFound": {
-        "message": "JikreativKa ini merupakreativKan video baru, dan tidakreativK ada segmen yang ditemukreativKan, itu akreativKan terus merefetch setiap beberapa menit saat anda menonton."
+        "message": "JikreativKa ini merupakreativKan video baru, dan tidakreativK ada segmen yang ditemukreativKan, SponsorBlockreativK akreativKan terus merefetch setiap beberapa menit saat anda menonton."
     },
     "showNotice": {
         "message": "TampilkreativKan Pemberitahuan Lagi"
@@ -591,11 +594,26 @@
     "channelDataNotFound": {
         "message": "ID Channel belum dimuat."
     },
-    "adblockreativKerIssue": {
-        "message": "Sepertinya ada sesuatu yang memblokreativKir kreativKemampuan SponsorBlockreativK untukreativK mendapatkreativKan data video. KemungkreativKinan kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Sepertinya sesuatu memnghalangi abilitas SponsorBlockreativK untukreativK mendapatkreativKan data video. SilahkreativKan lihat https://github.com/ajayyy/SponsorBlockreativK/issues/741 untukreativK info lebih lanjut."
+    },
+    "youtubePermissionRequest": {
+        "message": "Sepertinya SponsorBlockreativK tidakreativK dapat menjangkreativKau API YouTube. UntukreativK menyelesaikreativKan masalah ini, terima permintaan izin yang akreativKan muncul selanjutnya, tunggu beberapa detikreativK, dan muat ulang halaman ini."
+    },
+    "acceptPermission": {
+        "message": "Terima permintaan izin"
+    },
+    "permissionRequestSuccess": {
+        "message": "Permintaan izin berhasil!"
+    },
+    "permissionRequestFailed": {
+        "message": "Permintaan izin gagal, apakreativKah anda mengkreativKlikreativK tolakreativK?"
     },
     "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "JikreativKa anda tidakreativK bisa menyelesaikreativKan ini, makreativKa nonakreativKtifkreativKan pengaturan 'AbaikreativKan video tidakreativK terdaftar/privat', kreativKarena SponsorBlockreativK tidakreativK bisa mendapatkreativKan informasi visibilitas untukreativK video ini"
+        "message": "JikreativKa anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'AbaikreativKan video tidakreativK terdaftar/privat', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi visibilitas untukreativK video ini"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Apabila anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'PakreativKsa CekreativK Channel Sebelum Melewati', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi channel untukreativK video ini"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "JikreativKa ini terus terjadi, kreativKemungkreativKinan terjadi kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

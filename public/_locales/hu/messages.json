@@ -561,9 +561,6 @@
     "channelDataNotFound": {
         "message": "A csatorna azonosító még nem töltődött be."
     },
-    "adblockreativKerIssue": {
-        "message": "Valami meggátolja a SponsorBlockreativKot a videó adatainakreativK megszerzésében. Valószínűleg az ad-blockreativKere. Kérem ellenőrizze: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Ha ez folyamatosan előfordul, lehet hogy az ad-blockreativKere okreativKozza. Kérem nézzen utána: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
