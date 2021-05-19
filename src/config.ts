@@ -35,7 +35,6 @@ interface SBConfig {
     audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
     testingServer: boolean,
-    hashPrefix: boolean,
     refetchWhenNotFound: boolean,
     ytInfoPermissionGranted: boolean,
 
@@ -169,7 +168,6 @@ const Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         testingServer: false,
-        hashPrefix: true,
         refetchWhenNotFound: true,
         ytInfoPermissionGranted: false,
 
