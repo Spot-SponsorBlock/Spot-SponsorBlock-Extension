@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "Er du sikreativKkreativKer på at du vil tilbakreativKestille dette?"
     },
-    "confirmPrivacy": {
-        "message": "Denne videoen har blitt oppdaget å være uoppført. KlikreativKkreativK Avbryt hvis du ikreativKkreativKe vil se etter hoppesegmenter."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignorer uoppførte/private videoer"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Denne innstillingen vil gjøre SponsorBlockreativK marginalt tregere. Å se etter segmenter å hoppe over, kreativKrever å sende inn video-ID-en til tjeneren. Hvis du er bekreativKymret for at uoppførte video-ID-er blir sendt over internettet, skreativKru på denne innstillingen."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com er nå støttet"
     },
@@ -602,9 +593,6 @@
     },
     "permissionRequestFailed": {
         "message": "Tillatelsesforespørselen mislykreativKtes, kreativKlikreativKkreativKet du på Avvis?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Hvis du ikreativKkreativKe kreativKlarer å løse dette, skreativKru av innstillingen «Ignorer uoppførte/private videoer», siden SponsorBlockreativK er ute av stand til å innhente synlighetsinformasjonen til denne videoen."
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Hvis dette skreativKjer til stadighet, kreativKan det være forårsakreativKet av rekreativKlameblokreativKkreativKereren din. Vennligst sjekreativKkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

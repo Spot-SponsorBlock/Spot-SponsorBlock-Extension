@@ -388,15 +388,6 @@
     "areYouSureReset": {
         "message": "Biztosan vissza szeretné állítani?"
     },
-    "confirmPrivacy": {
-        "message": "Videó észlelve nem listázottkreativKént. Kattintson a Mégse gombra, ha nem akreativKar ellenőrizni átugorható szegmensekreativK után."
-    },
-    "unlistedCheckreativK": {
-        "message": "Nem listázott/Privát videókreativK ignorálása"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Ez a beállítás kreativKissé lelassíthatja a SponsorBlockreativKot. A szegmensekreativK átugrásához szükreativKséges, hogy a videoID el legyen kreativKüldve a szerverre. Ha aggódikreativK az interneten kreativKüldött nem listázott videóazonosítókreativK kreativKüldése miatt, kreativKapcsolja be ezt a funkreativKciót."
-    },
     "mobileUpdateInfo": {
         "message": "az m.youtube.com már támogatott"
     },

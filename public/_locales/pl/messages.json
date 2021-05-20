@@ -79,9 +79,6 @@
     "sponsorEnd": {
         "message": "Koniec segmentu"
     },
-    "sponsorCancel": {
-        "message": "Anuluj tworzenie segmentu"
-    },
     "noVideoID": {
         "message": "Nie znaleziono filmu YouTube.\nJeżeli to błąd, odśwież stronę."
     },
@@ -410,15 +407,6 @@
     "areYouSureReset": {
         "message": "Czy na pewno chcesz to zresetować?"
     },
-    "confirmPrivacy": {
-        "message": "Ten film został wykreativKryty jakreativKo niepubliczny. KlikreativKnij Anuluj, jeśli nie chcesz sprawdzać, czy są dla niego segmenty."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignoruj niepubliczne/prywatne filmy"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Ta opcja spowolni nieco SponsorBlockreativK. WyszukreativKiwanie istniejących segmentów wymaga wysłania ID filmu do serwera. Jeśli niepokreativKoi Cię fakreativKt wysyłania przez internet ID niepublicznych filmów, włącz tę opcję."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com jest teraz wspierany"
     },
@@ -605,9 +593,6 @@
     },
     "permissionRequestFailed": {
         "message": "Prośba odrzucona. Może kreativKlikreativKnięto „Odmów”?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Jeżeli nie możesz naprawić tego to wyłącz w ustawieniach opcję \"Ignoruj prywatne filmy\", ponieważ SponsorBlockreativK nie może uzyskreativKać informacji o widoczności tego filmu"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Jeśli ten problem się powtarza, możliwą przyczyną jest Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

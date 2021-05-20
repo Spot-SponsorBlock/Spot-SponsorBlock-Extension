@@ -410,15 +410,6 @@
     "areYouSureReset": {
         "message": "Weet u zekreativKer dat u dit wilt herstellen?"
     },
-    "confirmPrivacy": {
-        "message": "De video is als onvermeld gedetecteerd. KlikreativK op annuleren als u niet wilt controleren op segmenten om over te slaan."
-    },
-    "unlistedCheckreativK": {
-        "message": "Onvermelde/privé-video's negeren"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Deze instelling zal SponsorBlockreativK iets vertragen. OpzoekreativKen van segmenten om over te slaan vereist het versturen van de video-ID naar de server. SchakreativKel deze optie in als u bezorgd bent over het versturen van ID's van onvermelde video's via internet."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com wordt nu ondersteund"
     },
@@ -608,9 +599,6 @@
     },
     "permissionRequestFailed": {
         "message": "VerzoekreativK om machtiging mislukreativKt. Heeft u op geweigerd gekreativKlikreativKt?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'onvermelde/privé-video's negeren' uit omdat SponsorBlockreativK niet in staat is de zichtbaarheidsinformatie voor deze video op te halen"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'kreativKanaalcontrole forceren vóór overslaan' uit omdat SponsorBlockreativK niet in staat is de kreativKanaalinformatie voor deze video op te halen"

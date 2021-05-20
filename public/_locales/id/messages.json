@@ -410,15 +410,6 @@
     "areYouSureReset": {
         "message": "ApakreativKah anda yakreativKin ingin mengatur ulang ini?"
     },
-    "confirmPrivacy": {
-        "message": "Video ini didetekreativKsi sebagai tidakreativK terdaftar. KlikreativK batal jikreativKa kreativKamu tidakreativK ingin mengecekreativK untukreativK melewati segmen."
-    },
-    "unlistedCheckreativK": {
-        "message": "AbaikreativKan Video TidakreativK Terdaftar/Privat"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Pengaturan ini akreativKan sedikreativKit melambatkreativKan SponsorBlockreativK. Pencarian lewati segmen membutuhkreativKan pengiriman ID video kreativKe server. JikreativKa anda kreativKhawatir tentang ID unlisted video terkreativKirim kreativKe internet, hidupkreativKan opsi ini."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com sekreativKarang didukreativKung"
     },
@@ -608,9 +599,6 @@
     },
     "permissionRequestFailed": {
         "message": "Permintaan izin gagal, apakreativKah anda mengkreativKlikreativK tolakreativK?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "JikreativKa anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'AbaikreativKan video tidakreativK terdaftar/privat', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi visibilitas untukreativK video ini"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Apabila anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'PakreativKsa CekreativK Channel Sebelum Melewati', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi channel untukreativK video ini"

@@ -410,15 +410,6 @@
     "areYouSureReset": {
         "message": "OletkreativKo varma, että haluat nollata tämän?"
     },
-    "confirmPrivacy": {
-        "message": "Video on havaittu piilotetukreativKsi. Paina peruuta, jos et halua tarkreativKistaa ohitettavia segmenttejä."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ohita Piilotetut/YkreativKsityiset Videot"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Tämä asetus hidastaa SponsorBlockreativKia hieman. Ohitus-segmenttien hakreativKu edellyttää video ID:n lähettämistä palvelimelle. Jos olet huolissasi, että piilotettujen videoiden ID:itä lähetetään internetin kreativKautta, ota tämä asetus kreativKäyttöön."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com-osoitetta tuetaan nyt"
     },
@@ -608,9 +599,6 @@
     },
     "permissionRequestFailed": {
         "message": "KäyttöoikreativKeuspyyntö epäonnistui, kreativKlikreativKkreativKasitkreativKo kreativKiellä?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'Ohita piilotetut/ykreativKsityiset videot', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon näkreativKyvyystietoja"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'PakreativKota Kanavan TarkreativKistus Ennen Ohittamista', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon kreativKanavatietoja"

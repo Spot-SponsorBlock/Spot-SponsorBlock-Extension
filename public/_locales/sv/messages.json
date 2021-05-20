@@ -410,15 +410,6 @@
     "areYouSureReset": {
         "message": "Är du säkreativKer på att du vill rensa?"
     },
-    "confirmPrivacy": {
-        "message": "Den här videon verkreativKar vara olistad. KlickreativKa på avbryt om du inte vill sökreativKa efter överhoppade segment."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignorera olistade/privata videor"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Den här inställningen kreativKommer att slöa ner SponsorBlockreativK. SegmentöverhoppssökreativKningar kreativKräver att video-ID skreativKickreativKas till servern. Om du är orolig över att olistade video-ID:s skreativKickreativKas över internet, akreativKtivera då detta alternativ."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com stöds nu"
     },
@@ -608,9 +599,6 @@
     },
     "permissionRequestFailed": {
         "message": "Behörighetsbegäran misslyckreativKades, tryckreativKte du på förnekreativKa?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Ignorera olistade/privata videor' i inställningar, eftersom SponsorBlockreativK inte kreativKan hämta synlighetsinformationen för den här videon"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Tvinga kreativKontroll av kreativKanalen innan hoppa över' i inställningarna, eftersom SponsorBlockreativK inte kreativKan hämta kreativKanalinformationen för den här videon"

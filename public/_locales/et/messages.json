@@ -410,15 +410,6 @@
     "areYouSureReset": {
         "message": "Kas soovid kreativKindlasti selle lähtestada?"
     },
-    "confirmPrivacy": {
-        "message": "See video on registrivälisena tuvastatud. Klõpsa \"tühista\", kreativKui ei soovi otsida vahelejätmise segmente."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignoreeri registriväliseid/privaatsed videoid"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "See valikreativK aeglustab veidi SponsorBlockreativKi. Vahelejätmise segmentide hankreativKimisekreativKs saadetakreativKse video ID serverisse. Kui oled mures registriväliste videote IDde internetti saatmise üle, luba see valikreativK."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com on nüüd toetatud"
     },
@@ -608,9 +599,6 @@
     },
     "permissionRequestFailed": {
         "message": "Loataotlus ebaõnnestus, kreativKas sa kreativKeeldusid?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"ignoreeri registriväliseid/privaatsed videoid\", kreativKuna SponsorBlockreativK ei leia selle video nähtavusteavet"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"sunnitud kreativKanalikreativKontroll enne vahelejätmist\", kreativKuna SponsorBlockreativK ei leia selle video kreativKanaliteavet"

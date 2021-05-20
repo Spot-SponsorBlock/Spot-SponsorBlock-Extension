@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "Bist du dir sicher, dass du das zurückreativKsetzen möchtest?"
     },
-    "confirmPrivacy": {
-        "message": "Das Video wurde als \"nicht gelistet\" erkreativKannt. KlickreativKe auf \"Abbrechen\", wenn du nicht nach Segmenten suchen möchtest."
-    },
-    "unlistedCheckreativK": {
-        "message": "Nicht gelistete und private Videos ignorieren"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Diese Einstellung wird SponsorBlockreativK leicht verlangsamen. Das Abfragen von überspringbaren Videosegmenten erfordert das Senden der Video-ID an den Server. Wenn du dir Sorgen darüber machst, dass IDs von nicht gelisteten Videos über das Internet gesendet werden, akreativKtiviere diese Option."
-    },
     "mobileUpdateInfo": {
         "message": "https://m.youtube.com wird jetzt unterstützt"
     },
@@ -602,9 +593,6 @@
     },
     "permissionRequestFailed": {
         "message": "Berechtigungsanfrage fehlgeschlagen, haben Sie \"Ablehnen\" angekreativKlickreativKt?"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Wenn Sie dies nicht lösen kreativKönnen, deakreativKtivieren Sie die Einstellung 'Nicht gelistete und private Videos ignorieren', da SponsorBlockreativK nicht in der Lage ist, die SichtbarkreativKeit für dieses Video abzurufen"
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Wenn Sie dies nicht lösen kreativKönnen, deakreativKtivieren Sie die Einstellung 'Kanalprüfung vor dem Überspringen von Segmenten erzwingen', da SponsorBlockreativK nicht in der Lage ist, die SichtbarkreativKeit für dieses Video abzurufen."

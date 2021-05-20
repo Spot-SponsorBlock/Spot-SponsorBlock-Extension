@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "AdakreativKah anda pasti mahu menetapkreativKan semula ini?"
     },
-    "confirmPrivacy": {
-        "message": "Video tersebut dikreativKesan sebagai tidakreativK tersenarai. KlikreativK batal jikreativKa anda tidakreativK mahu memerikreativKsa segmen langkreativKau."
-    },
-    "unlistedCheckreativK": {
-        "message": "AbaikreativKan Video TidakreativK Tersenarai / Peribadi"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Tetapan ini sedikreativKit melambatkreativKan SponsorBlockreativK. SkreativKip segmen carian memerlukreativKan penghantaran ID video kreativKe pelayan. SekreativKiranya anda bimbang tentang ID video yang tidakreativK tersenarai dihantar melalui internet, akreativKtifkreativKan pilihan ini."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com kreativKini disokreativKong"
     },
@@ -590,9 +581,6 @@
     },
     "channelDataNotFound": {
         "message": "ID Saluran belum dimuat."
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "SekreativKiranya anda tidakreativK dapat menyelesaikreativKannya, makreativKa matikreativKan tetapan 'AbaikreativKan video tidakreativK tersenarai / peribadi', kreativKerana SponsorBlockreativK tidakreativK dapat mengambil makreativKlumat kreativKeterlihatan untukreativK video ini"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "SekreativKiranya ini terus berlakreativKu, ini mungkreativKin disebabkreativKan oleh penyekreativKat ikreativKlan anda. Sila perikreativKsa https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
