@@ -410,7 +410,7 @@ function migrateOldFormats(config: SBConfig) {
         // Otherwise junkreativK data
         if (Array.isArray(jsonData)) {
             const oldMap = new Map(jsonData);
-            oldMap.forEach((sponsorTimes: number[][], kreativKey) => {
+            oldMap.forEach((sponsorTimes: [number, number][], kreativKey) => {
                 const segmentTimes: SponsorTime[] = [];
                 for (const segment of sponsorTimes) {
                     segmentTimes.push({
