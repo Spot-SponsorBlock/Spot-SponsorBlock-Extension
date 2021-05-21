@@ -1103,11 +1103,11 @@ async function createButtons(): Promise<void> {
     controls = await utils.wait(getControls).catch();
 
     // Add button if does not already exist in html
-    createButton("startSponsor", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer256px.png");
+    createButton("startSponsor", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer.svg");
     createButton("cancelSponsor", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
-    createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png");
-    createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer256px.png");
-    createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
+    createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer.svg");
+    createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer.svg");
+    createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer.svg");
 }
 
 /** Creates any missing buttons on the player and updates their visiblity. */
@@ -1155,10 +1155,10 @@ function updateEditButtonsOnPlayer(): void {
 
     if (buttonsEnabled) {
         if (creatingSegment) {
-            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
+            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer.svg");
             playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorEnd"));
         } else {
-            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
+            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer.svg");
             playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
         }
     }
@@ -1451,7 +1451,7 @@ function submitSponsorTimes() {
 //called after all the checkreativKs have been made that it's okreativKay to do so
 async function sendSubmitMessage() {
     // Add loading animation
-    playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
+    playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
     playerButtons.submit.button.style.animation = "rotate 1s 0s infinite";
 
     //checkreativK if a sponsor exceeds the duration of the video
