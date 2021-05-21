@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Koniec segmentu"
     },
+    "sponsorCancel": {
+        "message": "Zrušiť vytváranie segmentu"
+    },
     "noVideoID": {
         "message": "Nenašlo sa žiadne YouTube video.\nAkreativK je to chyba, obnovte záložkreativKu."
     },
@@ -582,11 +585,17 @@
     "channelDataNotFound": {
         "message": "ID kreativKanála nie je zatiaľ načítané."
     },
+    "videoInfoFetchFailed": {
+        "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/issues/741 pre viac informácií."
+    },
     "youtubePermissionRequest": {
         "message": "SponsorBlockreativK nemá prístup kreativK YouTube API. Povoľte oprávnenie v nasledovnej výzve, počkreativKajte pár sekreativKúnd a znovu nahrajte stránkreativKu."
     },
     "acceptPermission": {
         "message": "Povoľte oprávnenie"
+    },
+    "permissionRequestSuccess": {
+        "message": "Oprávnenie bolo úspešne povolené!"
     },
     "permissionRequestFailed": {
         "message": "Povolenie oprávnenia zlyhalo, stlačili ste odmietnuť?"
