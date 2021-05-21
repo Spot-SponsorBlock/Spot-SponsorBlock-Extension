@@ -1104,7 +1104,7 @@ async function createButtons(): Promise<void> {
 
     // Add button if does not already exist in html
     createButton("startSponsor", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer256px.png");
-    createButton("cancelSponsor", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+    createButton("cancelSponsor", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
     createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png");
     createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer256px.png");
     createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png");
@@ -1520,7 +1520,7 @@ async function sendSubmitMessage() {
     } else {
         // Show that the upload failed
         playerButtons.submit.button.style.animation = "unset";
-        playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+        playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
 
         alert(utils.getErrorMessage(response.status, response.responseText));
     }
