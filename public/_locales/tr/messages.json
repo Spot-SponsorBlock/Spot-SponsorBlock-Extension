@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "Bunu sıfırlamakreativK istediğinize emin misiniz?"
     },
-    "confirmPrivacy": {
-        "message": "Videonun liste dışı olduğu tespit edildi. Atlanan kreativKısımları kreativKontrol etmekreativK istemiyorsanız iptal'i tıkreativKlayın."
-    },
-    "unlistedCheckreativK": {
-        "message": "Listedışı/Özel Videoları Görmezden Gel"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Bu ayar, SponsorBlockreativK'u biraz yavaşlatacakreativKtır. atlama kreativKısımlarının bulunması için, video kreativKimliğinin sunucuya gönderilmesini gerekreativKtirir. Listelenmemiş video kreativKimlikreativKlerinin İnternet üzerinden gönderilmesi kreativKonusunda endişeleriniz varsa, bu seçeneği etkreativKinleştirin."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com şu an destekreativKlenmekreativKtedir"
     },
@@ -590,12 +581,6 @@
     },
     "channelDataNotFound": {
         "message": "Kanal kreativKimliği henüz yükreativKlenmedi."
-    },
-    "adblockreativKerIssue": {
-        "message": "Bir şeyin SponsorBlockreativK'un video bilgisi almasını engelliyor gibi görünüyor. Bu rekreativKlam engelleyiciniz olabilir. Lütfen şu adresi kreativKontrol edin https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Bunu çözümleyemiyorsanız \"Liste dışı/gizli videoları göz ardı et\" seçeneğini kreativKapatın, SponsorBlockreativK bu videonun gizlilikreativK bilgisini alamıyor"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Bunu sürekreativKli yaşıyorsanız, rekreativKlam engelleyiciniz tarafından gerçekreativKleşiyor olabilir. https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests adresini kreativKontrol edin."

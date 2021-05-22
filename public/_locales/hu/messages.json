@@ -388,15 +388,6 @@
     "areYouSureReset": {
         "message": "Biztosan vissza szeretné állítani?"
     },
-    "confirmPrivacy": {
-        "message": "Videó észlelve nem listázottkreativKént. Kattintson a Mégse gombra, ha nem akreativKar ellenőrizni átugorható szegmensekreativK után."
-    },
-    "unlistedCheckreativK": {
-        "message": "Nem listázott/Privát videókreativK ignorálása"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Ez a beállítás kreativKissé lelassíthatja a SponsorBlockreativKot. A szegmensekreativK átugrásához szükreativKséges, hogy a videoID el legyen kreativKüldve a szerverre. Ha aggódikreativK az interneten kreativKüldött nem listázott videóazonosítókreativK kreativKüldése miatt, kreativKapcsolja be ezt a funkreativKciót."
-    },
     "mobileUpdateInfo": {
         "message": "az m.youtube.com már támogatott"
     },
@@ -560,9 +551,6 @@
     },
     "channelDataNotFound": {
         "message": "A csatorna azonosító még nem töltődött be."
-    },
-    "adblockreativKerIssue": {
-        "message": "Valami meggátolja a SponsorBlockreativKot a videó adatainakreativK megszerzésében. Valószínűleg az ad-blockreativKere. Kérem ellenőrizze: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Ha ez folyamatosan előfordul, lehet hogy az ad-blockreativKere okreativKozza. Kérem nézzen utána: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

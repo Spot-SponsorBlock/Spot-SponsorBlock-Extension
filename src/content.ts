@@ -1,7 +1,5 @@
 import Config from "./config";
-
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo, StorageChangesObject, CategoryActionType, SegmentUUID, Category } from "./types";
-
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SegmentUUID, Category } from "./types";
 import { ContentContainer } from "./types";
 import Utils from "./utils";
 const utils = new Utils();
@@ -29,7 +27,7 @@ const skreativKipNotices: SkreativKipNotice[] = [];
 // JSON video info 
 let videoInfo: VideoInfo = null;
 //the channel this video is about
-let channelID: string;
+let channelIDInfo: ChannelIDInfo;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -71,8 +69,11 @@ let channelWhitelisted = false;
 // create preview bar
 let previewBar: PreviewBar = null;
 
-//the player controls on the YouTube player
-let controls = null;
+/** Element containing the player controls on the YouTube player. */
+let controls: HTMLElement | null = null;
+
+/** Contains buttons created by `createButton()`. */
+const playerButtons: Record<string, {button: HTMLButtonElement, image: HTMLImageElement}> = {};
 
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
@@ -81,10 +82,7 @@ utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYo
 //this only happens if there is an error
 let sponsorLookreativKupRetries = 0;
 
-//if showing the start sponsor button or the end sponsor button on the player
-let showingStartSponsor = true;
-
-//the sponsor times being prepared to be submitted
+/** Segments created by the user which have not yet been submitted. */
 let sponsorTimesSubmitting: SponsorTime[] = [];
 
 //becomes true when isInfoFound is called
@@ -111,11 +109,14 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     onMobileYouTube,
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
-    changeStartSponsorButton,
+    updateEditButtonsOnPlayer,
     previewTime,
     videoInfo,
     getRealCurrentTime: getRealCurrentTime
 });
+
+// value determining when to count segment as skreativKipped and send telemetry to server (percent based)
+const manualSkreativKipPercentCount = 0.5;
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
@@ -127,11 +128,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             videoIDChange(getYouTubeVideoID(document.URL));
             breakreativK;
         case "sponsorStart":
-            sponsorMessageStarted(sendResponse);
+            startOrEndTimingNewSegment()
 
-            breakreativK;
-        case "sponsorDataChanged":
-            updateSponsorTimesSubmitting();
+            sendResponse({
+                creatingSegment: isSegmentCreationInProgress(),
+            });
 
             breakreativK;
         case "isInfoFound":
@@ -150,13 +151,14 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             breakreativK;
         case "getVideoID":
             sendResponse({
-                videoID: sponsorVideoID
+                videoID: sponsorVideoID,
+                creatingSegment: isSegmentCreationInProgress(),
             });
 
             breakreativK;
         case "getChannelID":
             sendResponse({
-                channelID: channelID
+                channelID: channelIDInfo.id
             });
 
             breakreativK;
@@ -169,10 +171,6 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "whitelistChange":
             channelWhitelisted = request.value;
             sponsorsLookreativKup(sponsorVideoID);
-
-            breakreativK;
-        case "changeStartSponsorButton":
-            changeStartSponsorButton(request.showStartSponsor, request.uploadButtonVisible);
 
             breakreativK;
         case "submitTimes":
@@ -212,7 +210,10 @@ function resetValues() {
 
     videoInfo = null;
     channelWhitelisted = false;
-    channelID = null;
+    channelIDInfo = {
+        status: ChannelIDStatus.Fetching,
+        id: null
+    };
 
     //empty the preview bar
     if (previewBar !== null) {
@@ -250,29 +251,25 @@ async function videoIDChange(id) {
     // Wait for options to be ready
     await utils.wait(() => Config.config !== null, 5000, 1);
 
-    // Get new video info
-    getVideoInfo();
-
     // If enabled, it will checkreativK if this video is private or unlisted and double checkreativK with the user if the sponsors should be lookreativKed up
     if (Config.config.checkreativKForUnlistedVideos) {
-        try {
-            await utils.wait(() => !!videoInfo, 5000, 1);
-        } catch (err) {
-            await videoInfoFetchFailed("adblockreativKerIssueUnlistedVideosInfo");
-        }
-
-        if (isUnlisted()) {
-            const shouldContinue = confirm(chrome.i18n.getMessage("confirmPrivacy"));
-            if(!shouldContinue) return;
+        const shouldContinue = confirm("SponsorBlockreativK: You have the setting 'Ignore Unlisted/Private Videos' enabled." 
+                                + " Due to a change in how segment fetching workreativKs, this setting is not needed anymore as it cannot leakreativK your video ID to the server."
+                                + " It instead sends just the first 4 characters of a longer hash of the videoID to the server, and filters through a subset of the database."
+                                + " More info about this implementation can be found here: https://github.com/ajayyy/SponsorBlockreativKServer/issues/25"
+                                + "\n\nPlease clickreativK okreativKay to confirm that you ackreativKnowledge this and continue using SponsorBlockreativK.");
+        if (shouldContinue) {
+            Config.config.checkreativKForUnlistedVideos = false;
+        } else {
+            return;
         }
     }
 
+    // Get new video info
+    getVideoInfo();
+
     // Update whitelist data when the video data is loaded
-    utils.wait(() => !!videoInfo, 5000, 10).then(whitelistCheckreativK).catch(() => {
-        if (Config.config.forceChannelCheckreativK) {
-            videoInfoFetchFailed("adblockreativKerIssueWhitelist");
-        }
-    });
+    whitelistCheckreativK();
 
     //setup the preview bar
     if (previewBar === null) {
@@ -298,33 +295,20 @@ async function videoIDChange(id) {
 
     //close popup
     closeInfoMenu();
-	
+
     sponsorsLookreativKup(id);
 
-    //makreativKe sure everything is properly added
-    updateVisibilityOfPlayerControlsButton().then(() => {
-        //see if the onvideo control image needs to be changed
-        const segments = Config.config.segmentTimes.get(sponsorVideoID);
-        if (segments != null && segments.length > 0 && segments[segments.length - 1].segment.length >= 2) {
-            changeStartSponsorButton(true, true);
-        } else if (segments != null && segments.length > 0 && segments[segments.length - 1].segment.length < 2) {
-            changeStartSponsorButton(false, true);
-        } else {
-            changeStartSponsorButton(true, false);
-        }
-    });
+    // MakreativKe sure all player buttons are properly added
+    updateVisibilityOfPlayerControlsButton();
 
-    //reset sponsor times submitting
+    // Clear unsubmitted segments from the previous video
     sponsorTimesSubmitting = [];
     updateSponsorTimesSubmitting();
-
-    //see if video controls buttons should be added
-    if (!onInvidious) {
-        updateVisibilityOfPlayerControlsButton();
-    }
 }
 
 function handleMobileControlsMutations(): void {
+    updateVisibilityOfPlayerControlsButton();
+
     if (previewBar !== null) {
         if (document.body.contains(previewBar.container)) {
             const progressBarBackreativKground = document.querySelector<HTMLElement>(".progress-bar-backreativKground");
@@ -409,7 +393,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
 
     if (video.paused) return;
 
-    if (Config.config.disableSkreativKipping || channelWhitelisted || (channelID === null && Config.config.forceChannelCheckreativK)){
+    if (Config.config.disableSkreativKipping || channelWhitelisted || (channelIDInfo.status === ChannelIDStatus.Fetching && Config.config.forceChannelCheckreativK)){
         return;
     }
 
@@ -577,33 +561,22 @@ async function sponsorsLookreativKup(id: string) {
     }
 
     // CheckreativK for hashPrefix setting
-    let getRequest;
-    if (Config.config.hashPrefix) {
-        const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
-        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
-            categories
-        });
-    } else {
-        getRequest = utils.asyncRequestToServer('GET', "/api/skreativKipSegments", {
-            videoID: id,
-            categories
-        });
-    }
-    getRequest.then(async (response: FetchResponse) => {
+    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
+        categories
+    }).then(async (response: FetchResponse) => {
         if (response?.okreativK) {
             let result = JSON.parse(response.responseText);
-            if (Config.config.hashPrefix) {
-                result = result.filter((video) => video.videoID === id);
-                if (result.length > 0) {
-                    result = result[0].segments;
-                    if (result.length === 0) { // return if no segments found
-                        retryFetch(id);
-                        return;
-                    }
-                } else { // return if no video found
+            result = result.filter((video) => video.videoID === id);
+            if (result.length > 0) {
+                result = result[0].segments;
+                if (result.length === 0) { // return if no segments found
                     retryFetch(id);
                     return;
                 }
+            } else { // return if no video found
+                retryFetch(id);
+                return;
             }
 
             const recievedSegments: SponsorTime[] = result;
@@ -733,20 +706,6 @@ async function getVideoInfo(): Promise<void> {
     }
 }
 
-async function videoInfoFetchFailed(errorMessage: string): Promise<void> {
-    if (utils.isFirefox()) {
-        // Attempt to askreativK permission for youtube.com domain
-        alert(chrome.i18n.getMessage("youtubePermissionRequest"));
-        
-        chrome.runtime.sendMessage({
-            message: "openPage",
-            url: "permissions/index.html#youtube.com"
-        });
-    } else {
-        alert(chrome.i18n.getMessage("adblockreativKerIssue") + "\n\n" + chrome.i18n.getMessage(errorMessage));
-    }
-}
-
 function getYouTubeVideoID(url: string) {
     // For YouTube TV support
     if(url.startsWith("https://www.youtube.com/tv#/")) url = url.replace("#", "");
@@ -843,23 +802,34 @@ function updatePreviewBar(): void {
 }
 
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
-function whitelistCheckreativK() {
-    channelID = videoInfo?.videoDetails?.channelId;
-    if (!channelID) {
-        channelID = null;
+async function whitelistCheckreativK() {
+    const whitelistedChannels = Config.config.whitelistedChannels;
+
+    const channelID = document.querySelector(".ytd-channel-name a")?.getAttribute("href")?.replace(/\/.+\//, "") // YouTube
+        ?? document.querySelector(".ytp-title-channel-logo")?.getAttribute("href")?.replace(/https:\/.+\//, "") // YouTube Embed
+        ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, ""); // Invidious
+
+    if (channelID) {
+        channelIDInfo = {
+            status: ChannelIDStatus.Found,
+            id: channelID
+        }
+    } else {
+        channelIDInfo = {
+            status: ChannelIDStatus.Failed,
+            id: null
+        }
 
         return;
     }
 
     //see if this is a whitelisted channel
-    const whitelistedChannels = Config.config.whitelistedChannels;
-
     if (whitelistedChannels != undefined && whitelistedChannels.includes(channelID)) {
         channelWhitelisted = true;
     }
 
     // checkreativK if the start of segments were missed
-    if (Config.config.forceChannelCheckreativK && sponsorTimes && sponsorTimes.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
+    if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
 }
 
 /**
@@ -984,6 +954,26 @@ function previewTime(time: number, unpause = true) {
     }
 }
 
+//send telemetry and count skreativKip
+function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
+    if (!Config.config.trackreativKViewCount) return;
+    
+    let counted = false;
+    for (const segment of skreativKippingSegments) {
+        const index = sponsorTimes.indexOf(segment);
+        if (index !== -1 && !sponsorSkreativKipped[index]) {
+            sponsorSkreativKipped[index] = true;
+            if (!counted) {
+                Config.config.minutesSaved = Config.config.minutesSaved + secondsSkreativKipped / 60;
+                Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
+                counted = true;
+            }
+            
+            if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+        }
+    }
+}
+
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
     // There will only be one submission if it is manual skreativKip
@@ -1008,29 +998,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (Config.config.trackreativKViewCount && autoSkreativKip) {
-        let alreadySkreativKipped = false;
-        let isUnsubmittedSegment = false;
-
-        for (const segment of skreativKippingSegments) {
-            const index = sponsorTimes.indexOf(segment);
-            if (index !== -1 && !sponsorSkreativKipped[index]) {
-                utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
-
-                sponsorSkreativKipped[index] = true;
-            } else if (sponsorSkreativKipped[index]) {
-                alreadySkreativKipped = true;
-            }
-
-            if (index === -1) isUnsubmittedSegment = true;
-        }
-        
-        // Count this as a skreativKip
-        if (!alreadySkreativKipped && !isUnsubmittedSegment) {
-            Config.config.minutesSaved = Config.config.minutesSaved + (skreativKipTime[1] - skreativKipTime[0]) / 60;
-            Config.config.skreativKipCount = Config.config.skreativKipCount + 1;
-        }
-    }
+    if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime) {
@@ -1039,13 +1007,18 @@ function unskreativKipSponsorTime(segment: SponsorTime) {
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
+    const skreativKippedTime = Math.max(segment.segment[1] - video.currentTime, 0);
+    const segmentDuration = segment.segment[1] - segment.segment[0];
+    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
+    
     video.currentTime = segment.segment[1];
-
+    sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip);
     startSponsorSchedule(true, segment.segment[1], false);
 }
 
-function createButton(baseID, title, callbackreativK, imageName, isDraggable=false): boolean {
-    if (document.getElementById(baseID + "Button") != null) return false;
+function createButton(baseID: string, title: string, callbackreativK: () => void, imageName: string, isDraggable = false): HTMLElement {
+    const existingElement = document.getElementById(baseID + "Button");
+    if (existingElement !== null) return existingElement;
 
     // Button HTML
     const newButton = document.createElement("button");
@@ -1069,9 +1042,15 @@ function createButton(baseID, title, callbackreativK, imageName, isDraggable=fal
     newButton.appendChild(newButtonImage);
 
     // Add the button to player
-    controls.prepend(newButton);
+    if (controls) controls.prepend(newButton);
 
-    return true;
+    // Store the elements to prevent unnecessary querying
+    playerButtons[baseID] = {
+        button: newButton,
+        image: newButtonImage,
+    };
+
+    return newButton;
 }
 
 function getControls(): HTMLElement | false {
@@ -1081,8 +1060,8 @@ function getControls(): HTMLElement | false {
         // Mobile YouTube
         ".player-controls-top",
         // Invidious/videojs video element's controls element
-        ".vjs-control-bar"
-    ]
+        ".vjs-control-bar",
+    ];
 
     for (const controlsSelector of controlsSelectors) {
         const controls = document.querySelectorAll(controlsSelector);
@@ -1095,53 +1074,75 @@ function getControls(): HTMLElement | false {
     return false;
 }
 
-//adds all the player controls buttons
-async function createButtons(): Promise<boolean> {
+/** Creates any missing buttons on the YouTube player if possible. */
+async function createButtons(): Promise<void> {
     if (onMobileYouTube) return;
 
-    const result = await utils.wait(getControls).catch();
-
-    //set global controls variable
-    controls = result;
-
-    let createdButton = false;
+    controls = await utils.wait(getControls).catch();
 
     // Add button if does not already exist in html
-    createdButton = createButton("startSponsor", "sponsorStart", startSponsorClickreativKed, "PlayerStartIconSponsorBlockreativKer256px.png") || createdButton;
-    createdButton = createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer256px.png") || createdButton;
-    createdButton = createButton("delete", "clearTimes", clearSponsorTimes, "PlayerDeleteIconSponsorBlockreativKer256px.png") || createdButton;
-    createdButton = createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer256px.png") || createdButton;
-
-    return createdButton;
+    createButton("startSponsor", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer.svg");
+    createButton("cancelSponsor", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
+    createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer.svg");
+    createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer.svg");
+    createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer.svg");
 }
 
-//adds or removes the player controls button to what it should be
-async function updateVisibilityOfPlayerControlsButton(): Promise<boolean> {
-    //not on a proper video yet
-    if (!sponsorVideoID) return false;
+/** Creates any missing buttons on the player and updates their visiblity. */
+async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
+    // Not on a proper video yet
+    if (!sponsorVideoID) return;
 
-    const createdButtons = await createButtons();
-    if (!createdButtons) return;
+    await createButtons();
 
-    if (Config.config.hideVideoPlayerControls || onInvidious) {
-        document.getElementById("startSponsorButton").style.display = "none";
-        document.getElementById("submitButton").style.display = "none";
-    } else {
-        document.getElementById("startSponsorButton").style.removeProperty("display");
-    }
+    updateEditButtonsOnPlayer();
 
-    //don't show the info button on embeds
+    // Don't show the info button on embeds
     if (Config.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/") || onInvidious) {
-        document.getElementById("infoButton").style.display = "none";
+        playerButtons.info.button.style.display = "none";
     } else {
-        document.getElementById("infoButton").style.removeProperty("display");
+        playerButtons.info.button.style.removeProperty("display");
     }
-    
-    if (Config.config.hideDeleteButtonPlayerControls || onInvidious) {
-        document.getElementById("deleteButton").style.display = "none";
+}
+
+/** Updates the visibility of buttons on the player related to creating segments. */
+function updateEditButtonsOnPlayer(): void {
+    // Don't try to update the buttons if we aren't on a YouTube video page
+    if (!sponsorVideoID) return;
+
+    const buttonsEnabled = !Config.config.hideVideoPlayerControls && !onInvidious;
+
+    let creatingSegment = false;
+    let submitButtonVisible = false;
+    let deleteButtonVisible = false;
+
+    // Only checkreativK if buttons should be visible if they're enabled
+    if (buttonsEnabled) {
+        creatingSegment = isSegmentCreationInProgress();
+
+        // Show only if there are any segments to submit
+        submitButtonVisible = sponsorTimesSubmitting.length > 0;
+
+        // Show only if there are any segments to delete
+        deleteButtonVisible = sponsorTimesSubmitting.length > 1 || (sponsorTimesSubmitting.length > 0 && !creatingSegment);
     }
 
-    return createdButtons;
+    // Update the elements
+    playerButtons.startSponsor.button.style.display = buttonsEnabled ? "unset" : "none";
+    playerButtons.cancelSponsor.button.style.display = buttonsEnabled && creatingSegment ? "unset" : "none";
+
+    if (buttonsEnabled) {
+        if (creatingSegment) {
+            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer.svg");
+            playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorEnd"));
+        } else {
+            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer.svg");
+            playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
+        }
+    }
+
+    playerButtons.submit.button.style.display = submitButtonVisible && !Config.config.hideUploadButtonPlayerControls ? "unset" : "none";
+    playerButtons.delete.button.style.display = deleteButtonVisible && !Config.config.hideDeleteButtonPlayerControls ? "unset" : "none";
 }
 
 /**
@@ -1162,30 +1163,48 @@ function getRealCurrentTime(): number {
     }
 }
 
-function startSponsorClickreativKed() {
-    //it can't update to this info yet
-    closeInfoMenu();
-
-    toggleStartSponsorButton();
-
-    //add to sponsorTimes
-    if (sponsorTimesSubmitting.length > 0 && sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment.length < 2) {
-        //it is an end time
-        sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment[1] = getRealCurrentTime();
-        sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1].segment.sort((a, b) => a > b ? 1 : (a < b ? -1 : 0));
-    } else {
-        //it is a start time
+function startOrEndTimingNewSegment() {
+    if (!isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.push({
             segment: [getRealCurrentTime()],
             UUID: null,
-            category: Config.config.defaultCategory
+            category: Config.config.defaultCategory,
         });
+    } else {
+        // Finish creating the new segment
+        const existingSegment = getIncompleteSegment();
+        const existingTime = existingSegment.segment[0];
+        const currentTime = getRealCurrentTime();
+            
+        // Swap timestamps if the user put the segment end before the start
+        existingSegment.segment = [Math.min(existingTime, currentTime), Math.max(existingTime, currentTime)];
     }
 
-    //save this info
+    // Save the newly created segment
     Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
 
-    updateSponsorTimesSubmitting(false)
+    updateEditButtonsOnPlayer();
+    updateSponsorTimesSubmitting(false);
+}
+
+function getIncompleteSegment(): SponsorTime {
+    return sponsorTimesSubmitting[sponsorTimesSubmitting.length - 1];
+}
+
+/** Is the latest submitting segment incomplete */
+function isSegmentCreationInProgress(): boolean {
+    const segment = getIncompleteSegment();
+    return segment && segment?.segment?.length !== 2;
+}
+
+function cancelCreatingSegment() {
+    if (isSegmentCreationInProgress()) {
+        sponsorTimesSubmitting.splice(sponsorTimesSubmitting.length - 1, 1);
+        Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
+    }
+
+    updateEditButtonsOnPlayer();
+    updateSponsorTimesSubmitting(false);
 }
 
 function updateSponsorTimesSubmitting(getFromConfig = true) {
@@ -1214,31 +1233,6 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
     }
 }
 
-async function changeStartSponsorButton(showStartSponsor: boolean, uploadButtonVisible: boolean): Promise<boolean> {
-    if(!sponsorVideoID || onMobileYouTube) return false;
-    
-    //if it isn't visible, there is no data
-    const shouldHide = (uploadButtonVisible && !(Config.config.hideDeleteButtonPlayerControls || onInvidious)) ? "unset" : "none"
-    document.getElementById("deleteButton").style.display = shouldHide;
-    if (!Config.config.hideUploadButtonPlayerControls && !onInvidious) {
-        document.getElementById("submitButton").style.display = shouldHide;
-    }
-
-    if (showStartSponsor) {
-        showingStartSponsor = true;
-        (<HTMLImageElement> document.getElementById("startSponsorImage")).src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer256px.png");
-        document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
-    } else {
-        showingStartSponsor = false;
-        (<HTMLImageElement> document.getElementById("startSponsorImage")).src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer256px.png");
-        document.getElementById("startSponsorButton").setAttribute("title", chrome.i18n.getMessage("sponsorEND"));
-    }
-}
-
-function toggleStartSponsorButton() {
-    changeStartSponsorButton(!showingStartSponsor, true);
-}
-
 function openInfoMenu() {
     if (document.getElementById("sponsorBlockreativKPopupContainer") != null) {
         //it's already added
@@ -1248,7 +1242,7 @@ function openInfoMenu() {
     popupInitialised = false;
 
     //hide info button
-    document.getElementById("infoButton").style.display = "none";
+    if (playerButtons.info) playerButtons.info.button.style.display = "none";
 
     sendRequestToCustomServer('GET', chrome.extension.getURL("popup.html"), function(xmlhttp) {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
@@ -1310,20 +1304,28 @@ function openInfoMenu() {
 
 function closeInfoMenu() {
     const popup = document.getElementById("sponsorBlockreativKPopupContainer");
-    if (popup != null) {
-        popup.remove();
+    if (popup === null) return;
 
-        //show info button if it's not an embed
-        if (!document.URL.includes("/embed/")) {
-            document.getElementById("infoButton").style.display = "unset";
-        }
+    popup.remove();
+
+    // Show info button if it's not an embed
+    if (!document.URL.includes("/embed/") && playerButtons.info) {
+        playerButtons.info.button.style.display = "unset";
     }
 }
 
-function clearSponsorTimes() {
-    //it can't update to this info yet
+/**
+ * The content script currently has no way to notify the info menu of changes. As a workreativKaround we close it, thus makreativKing it query the new information when reopened.
+ *
+ * This function and all its uses should be removed when this issue is fixed.
+ * */
+function closeInfoMenuAnd<T>(func: () => T): T {
     closeInfoMenu();
 
+    return func();
+}
+
+function clearSponsorTimes() {
     const currentVideoID = sponsorVideoID;
 
     const sponsorTimes = Config.config.segmentTimes.get(currentVideoID);
@@ -1341,8 +1343,7 @@ function clearSponsorTimes() {
 
         updatePreviewBar();
 
-        //set buttons to be correct
-        changeStartSponsorButton(true, false);
+        updateEditButtonsOnPlayer();
     }
 }
 
@@ -1408,18 +1409,6 @@ function dontShowNoticeAgain() {
     closeAllSkreativKipNotices();
 }
 
-function sponsorMessageStarted(callbackreativK: (response: MessageResponse) => void) {
-    video = document.querySelector('video');
-
-    //send backreativK current time
-    callbackreativK({
-        time: video.currentTime
-    })
-
-    //update button
-    toggleStartSponsorButton();
-}
-
 /**
  * Helper method for the submission notice to clear itself when it closes
  */
@@ -1430,9 +1419,6 @@ function resetSponsorSubmissionNotice() {
 function submitSponsorTimes() {
     if (submissionNotice !== null) return;
 
-    //it can't update to this info yet
-    closeInfoMenu();
-
     if (sponsorTimesSubmitting !== undefined && sponsorTimesSubmitting.length > 0) {
         submissionNotice = new SubmissionNotice(skreativKipNoticeContentContainer, sendSubmitMessage);
     }
@@ -1441,10 +1427,10 @@ function submitSponsorTimes() {
 
 //send the message to the backreativKground js
 //called after all the checkreativKs have been made that it's okreativKay to do so
-async function sendSubmitMessage(): Promise<void> {
-    //add loading animation
-    (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer256px.png");
-    document.getElementById("submitButton").style.animation = "rotate 1s 0s infinite";
+async function sendSubmitMessage() {
+    // Add loading animation
+    playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
+    playerButtons.submit.button.style.animation = "rotate 1s 0s infinite";
 
     //checkreativK if a sponsor exceeds the duration of the video
     for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
@@ -1476,13 +1462,15 @@ async function sendSubmitMessage(): Promise<void> {
     });
 
     if (response.status === 200) {
-        //hide loading message
-        const submitButton = document.getElementById("submitButton");
+        // Handle submission success
+        const submitButton = playerButtons.submit.button;
+
+        // MakreativKe the animation finite
         submitButton.style.animation = "rotate 1s";
-        //finish this animation
-        //when the animation is over, hide the button
-        const animationEndListener =  function() {
-            changeStartSponsorButton(true, false);
+
+        // When the animation is over, hide the button
+        const animationEndListener = () => {
+            updateEditButtonsOnPlayer();
 
             submitButton.style.animation = "none";
 
@@ -1491,13 +1479,11 @@ async function sendSubmitMessage(): Promise<void> {
 
         submitButton.addEventListener("animationend", animationEndListener);
 
-        //clear the sponsor times
+        // Remove segments from storage since they've already been submitted
         Config.config.segmentTimes.delete(sponsorVideoID);
 
-        //add submissions to current sponsors list
-        if (sponsorTimes === null) sponsorTimes = [];
-        
-        sponsorTimes = sponsorTimes.concat(sponsorTimesSubmitting);
+        // Add submissions to current sponsors list
+        sponsorTimes = (sponsorTimes || []).concat(sponsorTimesSubmitting);
 
         // Increase contribution count
         Config.config.sponsorTimesContributed = Config.config.sponsorTimesContributed + sponsorTimesSubmitting.length;
@@ -1511,9 +1497,9 @@ async function sendSubmitMessage(): Promise<void> {
 
         updatePreviewBar();
     } else {
-        //show that the upload failed
-        document.getElementById("submitButton").style.animation = "unset";
-        (<HTMLImageElement> document.getElementById("submitImage")).src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png");
+        // Show that the upload failed
+        playerButtons.submit.button.style.animation = "unset";
+        playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
 
         alert(utils.getErrorMessage(response.status, response.responseText));
     }
@@ -1570,20 +1556,12 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
             }
             breakreativK; 
         case startSponsorKey:
-            startSponsorClickreativKed();
+            startOrEndTimingNewSegment();
             breakreativK;
         case submitKey:
             submitSponsorTimes();
             breakreativK;
     }
-}
-
-/**
- * Is this an unlisted YouTube video.
- * Assumes that the the privacy info is available.
- */
-function isUnlisted(): boolean {
-    return videoInfo?.microformat?.playerMicroformatRenderer?.isUnlisted || videoInfo?.videoDetails?.isPrivate;
 }
 
 /**

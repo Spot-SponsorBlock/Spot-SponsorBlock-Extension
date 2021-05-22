@@ -3,6 +3,7 @@ import { Category, CategorySelection, CategorySkreativKipOption, PreviewBarOptio
 
 interface SBConfig {
     userID: string,
+    /** Contains unsubmitted segments that the user has created. */
     segmentTimes: SBMap<string, SponsorTime[]>,
     defaultCategory: Category,
     whitelistedChannels: string[],
@@ -31,8 +32,8 @@ interface SBConfig {
     audioNotificationOnSkreativKip,
     checkreativKForUnlistedVideos: boolean,
     testingServer: boolean,
-    hashPrefix: boolean,
     refetchWhenNotFound: boolean,
+    ytInfoPermissionGranted: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -168,8 +169,8 @@ const Config: SBObject = {
         audioNotificationOnSkreativKip: false,
         checkreativKForUnlistedVideos: false,
         testingServer: false,
-        hashPrefix: true,
         refetchWhenNotFound: true,
+        ytInfoPermissionGranted: false,
 
         categorySelections: [{
             name: "sponsor" as Category,

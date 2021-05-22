@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Koniec segmentu"
     },
+    "sponsorCancel": {
+        "message": "Zrušiť vytváranie segmentu"
+    },
     "noVideoID": {
         "message": "Nenašlo sa žiadne YouTube video.\nAkreativK je to chyba, obnovte záložkreativKu."
     },
@@ -407,15 +410,6 @@
     "areYouSureReset": {
         "message": "Naozaj to chcete obnoviť?"
     },
-    "confirmPrivacy": {
-        "message": "Toto video je nezaradené. AkreativK nechcete skreativKontrolovať preskreativKočiteľné segmenty, stlačte Zrušiť."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignorovať nezaradené a súkreativKromné videá"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Toto nastavenie mierne spomalí SponsorBlockreativK. Vyhľadávanie segmentov na preskreativKočenie si vyžaduje odoslanie ID videa na server. AkreativK si nie ste istí odosielaním ID nezaradených videí cez internet, takreativK toto nastavenie zapnite."
-    },
     "mobileUpdateInfo": {
         "message": "už je podporované aj m.youtube.com"
     },
@@ -591,23 +585,35 @@
     "channelDataNotFound": {
         "message": "ID kreativKanála nie je zatiaľ načítané."
     },
-    "adblockreativKerIssue": {
-        "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Pravdepodobne to bude Váš adblockreativKer. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/issues/741 pre viac informácií."
     },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "AkreativK to neviete vyriešiť, vypnite nastavenie \"Ignorovať nezaradené a súkreativKromné videá\", lebo SponsorBlockreativK nevie zistiť viditeľnosť tohto videa"
+    "youtubePermissionRequest": {
+        "message": "SponsorBlockreativK nemá prístup kreativK YouTube API. Povoľte oprávnenie v nasledovnej výzve, počkreativKajte pár sekreativKúnd a znovu nahrajte stránkreativKu."
+    },
+    "acceptPermission": {
+        "message": "Povoľte oprávnenie"
+    },
+    "permissionRequestSuccess": {
+        "message": "Oprávnenie bolo úspešne povolené!"
+    },
+    "permissionRequestFailed": {
+        "message": "Povolenie oprávnenia zlyhalo, stlačili ste odmietnuť?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "AkreativK to neviete vyriešiť, vypnite nastavenie \"Vynútiť kreativKontrolu kreativKanála pred preskreativKočením\", lebo SponsorBlockreativK nevie zistiť informácie o kreativKanále tohto videa"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "AkreativK sa to bude diať aj naďalej, môže to byť spôsobené Vašim adblockreativKerom. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
-        "message": "Vynútiť Kontrolu Kanála Pred PreskreativKočením"
+        "message": "Vynútiť kreativKontrolu kreativKanála pred preskreativKočením"
     },
     "whatForceChannelCheckreativK": {
         "message": "V predvolenom nastavení sa preskreativKočia segmenty hneď bez kreativKontroly kreativKanálu. V predvolenom nastavení môžu byť niekreativKtoré segmenty na začiatkreativKu videa na kreativKanáloch pridaných na whitelist preskreativKočené. Povolením tejto možnosti tomu zabránite, ale všetkreativKy preskreativKakreativKovania budú mať mierne oneskreativKorenie, pretože získreativKanie ID kreativKanála môže chvíľu trvať. Toto oneskreativKorenie nemusí byť viditeľné, akreativK máte rýchly internet."
     },
     "forceChannelCheckreativKPopup": {
-        "message": "Zvážte Povolenie \"Vynútiť Kontrolu Kanála Pred PreskreativKočením\""
+        "message": "Zvážte povolenie \"Vynútiť kreativKontrolu kreativKanála pred preskreativKočením\""
     },
     "downvoteDescription": {
         "message": "Nesprávne/Zlé načasovanie"

@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Segmentti Päättyy Nyt"
     },
+    "sponsorCancel": {
+        "message": "Peruuta Segmentin Luominen"
+    },
     "noVideoID": {
         "message": "YouTube-videota ei löytynyt.\nJos tämä on väärässä, päivitä välilehti."
     },
@@ -407,15 +410,6 @@
     "areYouSureReset": {
         "message": "OletkreativKo varma, että haluat nollata tämän?"
     },
-    "confirmPrivacy": {
-        "message": "Video on havaittu piilotetukreativKsi. Paina peruuta, jos et halua tarkreativKistaa ohitettavia segmenttejä."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ohita Piilotetut/YkreativKsityiset Videot"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Tämä asetus hidastaa SponsorBlockreativKia hieman. Ohitus-segmenttien hakreativKu edellyttää video ID:n lähettämistä palvelimelle. Jos olet huolissasi, että piilotettujen videoiden ID:itä lähetetään internetin kreativKautta, ota tämä asetus kreativKäyttöön."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com-osoitetta tuetaan nyt"
     },
@@ -591,11 +585,23 @@
     "channelDataNotFound": {
         "message": "Kanavatunnusta ei ole vielä ladattu."
     },
-    "adblockreativKerIssue": {
-        "message": "Näyttää siltä, että jokreativKin estää SponsorBlockreativKin kreativKykreativKyä saada videotietoja. Tämä on luultavasti mainosten esto-ohjelmasi. TarkreativKista https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Näyttää siltä, että jokreativKin estää SponsorBlockreativKin kreativKykreativKyä saada videotietoja. Katso https://github.com/ajayyy/SponsorBlockreativK/issues/741 lisätietoja varten."
     },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'Ohita piilotetut/ykreativKsityiset videot', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon näkreativKyvyystietoja"
+    "youtubePermissionRequest": {
+        "message": "Näyttää siltä, että SponsorBlockreativK ei pysty saavuttamaan YouTube-APIa. KorjatakreativKsesi tämän, hyväkreativKsy seuraavakreativKsi ilmestyvä kreativKäyttöoikreativKeusilmoitus, odota muutama sekreativKunti ja lataa sitten sivu uudelleen."
+    },
+    "acceptPermission": {
+        "message": "HyväkreativKsy kreativKäyttöoikreativKeus"
+    },
+    "permissionRequestSuccess": {
+        "message": "KäyttöoikreativKeuspyyntö onnistui!"
+    },
+    "permissionRequestFailed": {
+        "message": "KäyttöoikreativKeuspyyntö epäonnistui, kreativKlikreativKkreativKasitkreativKo kreativKiellä?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'PakreativKota Kanavan TarkreativKistus Ennen Ohittamista', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon kreativKanavatietoja"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Jos tämä toistuu, mainosten esto-ohjelmasi voi olla syynä. Katso https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

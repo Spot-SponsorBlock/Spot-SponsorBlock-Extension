@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "Er du sikreativKkreativKer på at du vil tilbakreativKestille dette?"
     },
-    "confirmPrivacy": {
-        "message": "Denne videoen har blitt oppdaget å være uoppført. KlikreativKkreativK Avbryt hvis du ikreativKkreativKe vil se etter hoppesegmenter."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignorer uoppførte/private videoer"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Denne innstillingen vil gjøre SponsorBlockreativK marginalt tregere. Å se etter segmenter å hoppe over, kreativKrever å sende inn video-ID-en til tjeneren. Hvis du er bekreativKymret for at uoppførte video-ID-er blir sendt over internettet, skreativKru på denne innstillingen."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com er nå støttet"
     },
@@ -591,11 +582,17 @@
     "channelDataNotFound": {
         "message": "Kanal-ID-en er ikreativKkreativKe lastet inn enda."
     },
-    "adblockreativKerIssue": {
-        "message": "Det ser ut som noe blokreativKkreativKerer SponsorBlockreativK sin evne til å innhente videodata. Det er sannsynligvis rekreativKlameblokreativKkreativKereren din. Vennligst sjekreativKkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "youtubePermissionRequest": {
+        "message": "Det ser ut til at SponsorBlockreativK ikreativKkreativKe kreativKlarer å nå YouTube-API-en. For å fikreativKse dette, godta tillatelsesspørringen som dukreativKkreativKer opp etter dette, vent noen sekreativKunder, og så last inn siden på nytt."
     },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Hvis du ikreativKkreativKe kreativKlarer å løse dette, skreativKru av innstillingen «Ignorer uoppførte/private videoer», siden SponsorBlockreativK er ute av stand til å innhente synlighetsinformasjonen til denne videoen."
+    "acceptPermission": {
+        "message": "Godta tillatelse"
+    },
+    "permissionRequestSuccess": {
+        "message": "Tillatelsesforespørselen lykreativKtes!"
+    },
+    "permissionRequestFailed": {
+        "message": "Tillatelsesforespørselen mislykreativKtes, kreativKlikreativKkreativKet du på Avvis?"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Hvis dette skreativKjer til stadighet, kreativKan det være forårsakreativKet av rekreativKlameblokreativKkreativKereren din. Vennligst sjekreativKkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"

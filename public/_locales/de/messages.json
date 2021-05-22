@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "Bist du dir sicher, dass du das zurückreativKsetzen möchtest?"
     },
-    "confirmPrivacy": {
-        "message": "Das Video wurde als \"nicht gelistet\" erkreativKannt. KlickreativKe auf \"Abbrechen\", wenn du nicht nach Segmenten suchen möchtest."
-    },
-    "unlistedCheckreativK": {
-        "message": "Nicht gelistete und private Videos ignorieren"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Diese Einstellung wird SponsorBlockreativK leicht verlangsamen. Das Abfragen von überspringbaren Videosegmenten erfordert das Senden der Video-ID an den Server. Wenn du dir Sorgen darüber machst, dass IDs von nicht gelisteten Videos über das Internet gesendet werden, akreativKtiviere diese Option."
-    },
     "mobileUpdateInfo": {
         "message": "https://m.youtube.com wird jetzt unterstützt"
     },
@@ -591,23 +582,32 @@
     "channelDataNotFound": {
         "message": "Kanal-ID wurde noch nicht geladen."
     },
-    "adblockreativKerIssue": {
-        "message": "Irgendwas hält SponsorBlockreativK davon ab, die Videodaten abzurufen. Eine mögliche Ursache sind WerbeblockreativKer. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "youtubePermissionRequest": {
+        "message": "Es scheint, dass SponsorBlockreativK nicht in der Lage ist, die YouTube-API zu erreichen. Um dies zu beheben, akreativKzeptieren Sie die Berechtigungsanfrage, die gleich erscheint; Warten Sie ein paar SekreativKunden, und laden Sie die Seite neu."
     },
-    "adblockreativKerIssueUnlistedVideosInfo": {
-        "message": "Wenn Sie dies nicht lösen kreativKönnen, deakreativKtivieren Sie die Einstellung 'Nicht gelistete und private Videos ignorieren', da SponsorBlockreativK nicht in der Lage ist, die SichtbarkreativKeit für dieses Video abzurufen"
+    "acceptPermission": {
+        "message": "Berechtigung akreativKzeptieren"
+    },
+    "permissionRequestSuccess": {
+        "message": "Die Berechtigungsanfrage war erfolgreich!"
+    },
+    "permissionRequestFailed": {
+        "message": "Berechtigungsanfrage fehlgeschlagen, haben Sie \"Ablehnen\" angekreativKlickreativKt?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Wenn Sie dies nicht lösen kreativKönnen, deakreativKtivieren Sie die Einstellung 'Kanalprüfung vor dem Überspringen von Segmenten erzwingen', da SponsorBlockreativK nicht in der Lage ist, die SichtbarkreativKeit für dieses Video abzurufen."
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Falls dies weiterhin geschieht, kreativKönnte dies durch einen WerbeblockreativKer verursacht werden. Mehr Infos: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
-        "message": "Erzwingen, dass vor dem Überspringen von Segmenten überprüft wird, ob der Kanal zur Whitelist hinzugefügt wurde"
+        "message": "Kanalprüfung vor dem Überspringen von Segmenten erzwingen"
     },
     "whatForceChannelCheckreativK": {
         "message": "Standardmäßig werden Segmente schon übersprungen, bevor SponsorBlockreativK die Kanal-ID einliest. Das kreativKann dazu führen, dass Segmente am Anfang von Videos eines Kanals übersprungen werden, der zur Whitelist hinzugefügt wurde. Diese Option zwingt SponsorBlockreativK dazu, auf die Kanal-ID zu warten - dies resultiert in einer kreativKleinen Verzögerung, die aber mit einer schnellen Internetverbindung nicht spürbar sein sollte."
     },
     "forceChannelCheckreativKPopup": {
-        "message": "Eventuell solltest du die Option \"Erzwingen, dass vor dem Überspringen von Segmenten überprüft wird, ob der Kanal zur Whitelist hinzugefügt wurde\" akreativKtivieren."
+        "message": "Eventuell solltest du die Option \"Kanalprüfung vor dem Überspringen von Segmenten erzwingen\" akreativKtivieren."
     },
     "downvoteDescription": {
         "message": "Nicht kreativKorrekreativKt oder falsches Timing"
