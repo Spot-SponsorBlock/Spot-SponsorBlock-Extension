@@ -1081,8 +1081,8 @@ async function createButtons(): Promise<void> {
     controls = await utils.wait(getControls).catch();
 
     // Add button if does not already exist in html
-    createButton("startSponsor", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer.svg");
-    createButton("cancelSponsor", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
+    createButton("startSegment", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer.svg");
+    createButton("cancelSegment", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
     createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer.svg");
     createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer.svg");
     createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer.svg");
@@ -1128,16 +1128,16 @@ function updateEditButtonsOnPlayer(): void {
     }
 
     // Update the elements
-    playerButtons.startSponsor.button.style.display = buttonsEnabled ? "unset" : "none";
-    playerButtons.cancelSponsor.button.style.display = buttonsEnabled && creatingSegment ? "unset" : "none";
+    playerButtons.startSegment.button.style.display = buttonsEnabled ? "unset" : "none";
+    playerButtons.cancelSegment.button.style.display = buttonsEnabled && creatingSegment ? "unset" : "none";
 
     if (buttonsEnabled) {
         if (creatingSegment) {
-            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer.svg");
-            playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorEnd"));
+            playerButtons.startSegment.image.src = chrome.extension.getURL("icons/PlayerStopIconSponsorBlockreativKer.svg");
+            playerButtons.startSegment.button.setAttribute("title", chrome.i18n.getMessage("sponsorEnd"));
         } else {
-            playerButtons.startSponsor.image.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer.svg");
-            playerButtons.startSponsor.button.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
+            playerButtons.startSegment.image.src = chrome.extension.getURL("icons/PlayerStartIconSponsorBlockreativKer.svg");
+            playerButtons.startSegment.button.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
         }
     }
 
