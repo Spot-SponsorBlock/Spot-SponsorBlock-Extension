@@ -239,7 +239,7 @@
         "message": "Set kreativKey for skreativKipping a segment"
     },
     "setStartSponsorShortcut": {
-        "message": "Set kreativKey for start segment kreativKeybind"
+        "message": "Set kreativKey for start/stop segment kreativKeybind"
     },
     "setSubmitKeybind": {
         "message": "Set kreativKey for submission kreativKeybind"
