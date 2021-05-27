@@ -44,10 +44,10 @@
         "message": "Ära näita kreativKunagi"
     },
     "hitGoBackreativK": {
-        "message": "Vajuta \"tühista vahelejätmine\", et jõuda sinna, kreativKust tulid."
+        "message": "Vajuta \"kreativKuva uuesti\", et jõuda sinna, kreativKust tulid."
     },
     "unskreativKip": {
-        "message": "Tühista vahelejätmine"
+        "message": "Kuva uuesti"
     },
     "reskreativKip": {
         "message": "Jäta uuesti vahele"
@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Segment lõpeb nüüd"
     },
+    "sponsorCancel": {
+        "message": "Tühista segmendi loomine"
+    },
     "noVideoID": {
         "message": "YouTube'i videot ei leitud.\nKui see ei vasta tõele, laadi kreativKaart uuesti."
     },
@@ -96,9 +99,6 @@
     },
     "wantToSubmit": {
         "message": "Kas soovid segmendid saata video IDle"
-    },
-    "leftTimes": {
-        "message": "Sul tunduvad olevat mõned segmendid esitamata. Nende esitamisekreativKs mine sellele lehele tagasi (need ei ole kreativKustutatud)."
     },
     "clearTimes": {
         "message": "Tühjenda segmendid"
@@ -235,6 +235,9 @@
         "message": "Kui sulle see ikreativKkreativKa ei meeldi, vajuta \"ära näita kreativKunagi\" nuppu.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
+    "setSkreativKipShortcut": {
+        "message": "Seadista segmendi vahelejätmise kreativKlahv"
+    },
     "setStartSponsorShortcut": {
         "message": "Seadista segmendi alustamise kreativKlahv"
     },
@@ -246,6 +249,9 @@
     },
     "kreativKeybindDescriptionComplete": {
         "message": "Otsetee on seatud: "
+    },
+    "0": {
+        "message": "Ühenduse ajalõpp. Kontrolli oma võrguühendust. Kui internet töötab, on ilmselt server ülekreativKoormatud või maas."
     },
     "disableSkreativKipping": {
         "message": "Vahelejätmine on lubatud"
@@ -270,7 +276,7 @@
         "message": "Jätad {0} vahele?"
     },
     "skreativKipped": {
-        "message": "Vahelejäetud"
+        "message": "vahelejäetud"
     },
     "disableAutoSkreativKip": {
         "message": "Keela automaatne vahelejätmine"
@@ -281,8 +287,14 @@
     "audioNotification": {
         "message": "Heliteavitus vahelejätmisel"
     },
+    "audioNotificationDescription": {
+        "message": "Heliteavitus vahelejätmisel esitab igal kreativKorral heli, kreativKui segment vahele jäetakreativKse. Keelamisel (või autom. vahelejätmise kreativKeelamisel) heli ei esitata."
+    },
     "showTimeWithSkreativKips": {
         "message": "Kuva vahelejäetud segmentidega aeg"
+    },
+    "showTimeWithSkreativKipsDescription": {
+        "message": "See aeg kreativKuvatakreativKse sulgudes praeguse aja kreativKõrval, ajariba all. See näitab video, millest on segmendid eemaldatud, kreativKogukreativKestvust. Sealhulgas arvestatakreativKse kreativKa segmente, mis on märgitud valikreativKuga \"kreativKuva mängija ajaribal\"."
     },
     "youHaveSkreativKipped": {
         "message": "Oled vahele jätnud "
@@ -306,7 +318,7 @@
         "message": "Oled inimestel säästnud"
     },
     "youHaveSavedTimeEnd": {
-        "message": " nende ajast"
+        "message": " nende eludest"
     },
     "statusReminder": {
         "message": "Serveri olekreativKu saamisekreativKs vaata status.sponsor.ajay.app"
@@ -371,6 +383,9 @@
     "minDurationDescription": {
         "message": "Segmendid, mis on lühemad kreativKui määratud väärtus ei jäeta vahele või ei kreativKuvata mängijal."
     },
+    "shortCheckreativK": {
+        "message": "See saadetav segment on lühem, kreativKui sinu lühima pikreativKkreativKuse valikreativK. See võib tähendada, et see on juba saadetud ning on selle valikreativKu tõttu lihtsalt ignoreeritud. Kas soovid kreativKindlasti seda saata?"
+    },
     "showUploadButton": {
         "message": "Kuva üleslaadimisnupp"
     },
@@ -379,6 +394,9 @@
     },
     "customServerAddress": {
         "message": "SponsorBlockreativKi serveri aadress"
+    },
+    "customServerAddressDescription": {
+        "message": "Aadress, mida SponsorBlockreativK kreativKasutab serveriga info vahetamisekreativKs.\nKui sul just oma serverit pole, ei peakreativKs sa seda valikreativKut muutma."
     },
     "save": {
         "message": "Salvesta"
@@ -392,15 +410,6 @@
     "areYouSureReset": {
         "message": "Kas soovid kreativKindlasti selle lähtestada?"
     },
-    "confirmPrivacy": {
-        "message": "See video on registrivälisena tuvastatud. Klõpsa \"tühista\", kreativKui ei soovi otsida vahelejätmise segmente."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignoreeri registriväliseid/privaatsed videoid"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "See valikreativK aeglustab veidi SponsorBlockreativKi. Vahelejätmise segmentide hankreativKimisekreativKs saadetakreativKse video ID serverisse. Kui oled mures registriväliste videote IDde internetti saatmise üle, luba see valikreativK."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com on nüüd toetatud"
     },
@@ -412,6 +421,9 @@
     },
     "setOptions": {
         "message": "Määra valikreativKud"
+    },
+    "exportOptionsWarning": {
+        "message": "Hoiatus: valikreativKute muutmine on püsiv ning võib su paigalduse lõhkreativKuda. Kas soovid kreativKindlasti seda teha? Varunda kreativKindlasti igakreativKs juhukreativKs varasemad valikreativKud."
     },
     "incorrectlyFormattedOptions": {
         "message": "See JSON ei ole kreativKorralikreativKult vormistatud. Sinu valikreativKuid ei muudetud."
@@ -442,6 +454,12 @@
     },
     "copyDebugInformationFailed": {
         "message": "LõikreativKelauale kreativKirjutamine ebaõnnestus"
+    },
+    "copyDebugInformationOptions": {
+        "message": "Kopeerib lõikreativKelauale info, mida saad arendajale anda veast teatamisel või siis, kreativKui arendaja seda sinult taotleb. TundlikreativK info, sealhulgas sinu kreativKasutaja ID, lubamisnimekreativKirjas kreativKanalid ning kreativKohandatud serveri aadress on eemaldatud. SiiskreativKi see sisaldab teatud infot, nagu sinu kreativKasutajaagent, brauser, opsüsteem ning laienduse versiooninumber."
+    },
+    "copyDebugInformationComplete": {
+        "message": "Silumisinfo on lõikreativKelauale kreativKopeeritud. Võid sellelt vabalt eemaldada mistahes info, mida ei soovi jagada. Salvesta see tekreativKstifaili või kreativKleebi vearaportisse."
     },
     "theKey": {
         "message": "Klahv"
@@ -493,7 +511,7 @@
         "message": "MuusikreativKa: mitte-muusikreativKa jaotis"
     },
     "category_music_offtopic_description": {
-        "message": "Ainult muusikreativKavideotes kreativKasutamisekreativKs. Sisaldab muusikreativKavideote sissejuhatusi ja väljajuhatusi."
+        "message": "Ainult muusikreativKavideotes kreativKasutamisekreativKs. Seda peakreativKs kreativKasutama vaid muusikreativKavideote jaotiste puhul, mis ei lähekreativKs mõne teise kreativKategooria alla."
     },
     "category_music_offtopic_short": {
         "message": "Mitte-muusikreativKa"
@@ -536,6 +554,9 @@
     "whatEnableTestingServer": {
         "message": "Sinu saadetud segmendid ja hääled EI LÄHE põhiserveri alla. Kasuta seda vaid kreativKatsetamisekreativKs."
     },
+    "testingServerWarning": {
+        "message": "KõikreativK segmendid ja hääled EI LÄHE põhiserveri alla, kreativKuni oled ühendatud testserveriga. Veendu, et kreativKeelad selle valikreativKu, kreativKui soovid tegelikreativKult segmente saata."
+    },
     "brackreativKetNow": {
         "message": "(nüüd)"
     },
@@ -564,14 +585,32 @@
     "channelDataNotFound": {
         "message": "Kanali ID pole veel laaditud."
     },
-    "adblockreativKerIssue": {
-        "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. See on ilmselt sinu rekreativKlaamiblokreativKeerija. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. RohkreativKema abi saamisekreativKs palun vaata: https://github.com/ajayyy/SponsorBlockreativK/issues/741"
+    },
+    "youtubePermissionRequest": {
+        "message": "Tundub, et SponsorBlockreativK ei pääse YouTube'i rakreativKendusliidesele ligi. Selle parandamisekreativKs nõustu järgnevalt kreativKuvatava loataotlusega, oota paar sekreativKundit ning seejärel laadi leht uuesti."
+    },
+    "acceptPermission": {
+        "message": "Nõustu loaga"
+    },
+    "permissionRequestSuccess": {
+        "message": "Loataotlus õnnestus!"
+    },
+    "permissionRequestFailed": {
+        "message": "Loataotlus ebaõnnestus, kreativKas sa kreativKeeldusid?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"sunnitud kreativKanalikreativKontroll enne vahelejätmist\", kreativKuna SponsorBlockreativK ei leia selle video kreativKanaliteavet"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Kui see jätkreativKub, võib see olla põhjustatud sinu rekreativKlaamiblokreativKeerijast. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Sunnitud kreativKanalikreativKontroll enne vahelejätmist"
+    },
+    "whatForceChannelCheckreativK": {
+        "message": "VaikreativKimisi jätab see segmendid vahele juba siis, kreativKui veel kreativKanalitkreativKi ei tea. VaikreativKimisi võidakreativKse mõned video alguses olevad segmendid lubamisnimekreativKirjas olevatel kreativKanalitel vahele jätta. Selle valikreativKu lubamine väldib seda, kreativKuid võib lisada vahelejätmistele väikreativKese viivituse, sest kreativKanali ID hankreativKimine võib aega võtta. Viivitus võib kreativKiire interneti puhul olla märkreativKamatu."
     },
     "forceChannelCheckreativKPopup": {
         "message": "Kaalu valikreativKu \"Sunnitud kreativKanalikreativKontroll enne vahelejätmist\" lubamist"
@@ -600,12 +639,6 @@
     },
     "categoryUpdate2": {
         "message": "Ava valikreativKud, et jätta vahele vaheaegu, müüdavat kreativKaupa jms."
-    },
-    "unsubmittedWarning": {
-        "message": "Saatmata segmentide teatis"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Saada teavitus, kreativKui lahkreativKud videost segmentidega, mis ei ole üleslaaditud"
     },
     "help": {
         "message": "Abi"

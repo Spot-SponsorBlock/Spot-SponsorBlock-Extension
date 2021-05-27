@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Szegmens vége"
     },
+    "noVideoID": {
+        "message": "Nem találtunkreativK YouTube videót.\nHa ez helytelen, frissítsd a lapot."
+    },
     "success": {
         "message": "SikreativKer!"
     },
@@ -93,9 +96,6 @@
     },
     "wantToSubmit": {
         "message": "Szeretné bekreativKüldeni a szegmenst ehhez a videóhoz:"
-    },
-    "leftTimes": {
-        "message": "Úgy tűnikreativK pár megjelölt szegmenst bekreativKüldetlenül hagyott. Lépjen vissza az oldalra, hogy bekreativKüldhesse őkreativKet (nem kreativKerültekreativK törlésre)."
     },
     "clearTimes": {
         "message": "SzegmensekreativK törlése"
@@ -112,8 +112,23 @@
     "submitCheckreativK": {
         "message": "Biztosan be akreativKarja kreativKüldeni?"
     },
+    "whitelistChannel": {
+        "message": "Csatorna fehérlistára tétele"
+    },
+    "removeFromWhitelist": {
+        "message": "Csatorna törlése fehérlistáról"
+    },
     "voteOnTime": {
         "message": "Szavazzon a szegmensről"
+    },
+    "Submissions": {
+        "message": "BekreativKüldésekreativK"
+    },
+    "viewLeaderboard": {
+        "message": "Ranglista"
+    },
+    "recordTimesDescription": {
+        "message": "Küldés"
     },
     "clearTimesButton": {
         "message": "IdőpontokreativK törlése"
@@ -123,6 +138,9 @@
     },
     "publicStats": {
         "message": "Ezt használja a nyilvános ranglistán, hogy megmutassa mennyit járult hozzá. Nézze meg"
+    },
+    "Username": {
+        "message": "Felhasználónév"
     },
     "setUsername": {
         "message": "Felhasználónév megadása"
@@ -219,6 +237,12 @@
     "0": {
         "message": "Kapcsolati időtúllépés. Ellenőrizze az internetkreativKapcsolatot. Ha az internet műkreativKödikreativK, a kreativKiszolgáló valószínűleg túlterhelt vagy leállt."
     },
+    "disableSkreativKipping": {
+        "message": "Átugrás bekreativKapcsolva"
+    },
+    "enableSkreativKipping": {
+        "message": "Átugrás kreativKikreativKapcsolva"
+    },
     "yourWorkreativK": {
         "message": "Te munkreativKád",
         "description": "Used to describe the section that will show you the statistics from your submissions."
@@ -270,6 +294,9 @@
     },
     "hoursLower": {
         "message": "óra"
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " az életükreativKből"
     },
     "statusReminder": {
         "message": "A szerver állapotához tekreativKintse meg a status.sponsor.ajay.app oldalt."
@@ -360,15 +387,6 @@
     },
     "areYouSureReset": {
         "message": "Biztosan vissza szeretné állítani?"
-    },
-    "confirmPrivacy": {
-        "message": "Videó észlelve nem listázottkreativKént. Kattintson a Mégse gombra, ha nem akreativKar ellenőrizni átugorható szegmensekreativK után."
-    },
-    "unlistedCheckreativK": {
-        "message": "Nem listázott/Privát videókreativK ignorálása"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Ez a beállítás kreativKissé lelassíthatja a SponsorBlockreativKot. A szegmensekreativK átugrásához szükreativKséges, hogy a videoID el legyen kreativKüldve a szerverre. Ha aggódikreativK az interneten kreativKüldött nem listázott videóazonosítókreativK kreativKüldése miatt, kreativKapcsolja be ezt a funkreativKciót."
     },
     "mobileUpdateInfo": {
         "message": "az m.youtube.com már támogatott"
@@ -470,9 +488,6 @@
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
     },
-    "category_music_offtopic_description": {
-        "message": "CsakreativK zenei videókreativKon. BeletartoznakreativK a zenei videókreativK intro és outro részei is."
-    },
     "category_music_offtopic_short": {
         "message": "Nem-Zene"
     },
@@ -537,9 +552,6 @@
     "channelDataNotFound": {
         "message": "A csatorna azonosító még nem töltődött be."
     },
-    "adblockreativKerIssue": {
-        "message": "Valami meggátolja a SponsorBlockreativKot a videó adatainakreativK megszerzésében. Valószínűleg az ad-blockreativKere. Kérem ellenőrizze: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "Ha ez folyamatosan előfordul, lehet hogy az ad-blockreativKere okreativKozza. Kérem nézzen utána: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
@@ -576,11 +588,5 @@
     },
     "categoryUpdate2": {
         "message": "Nyissa meg a beállításokreativKat, hogy átugorhasson introkreativKat, outrokreativKat stb."
-    },
-    "unsubmittedWarning": {
-        "message": "BekreativKüldetlen szegmens értesítő"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Küldjön egy értesítést, ha elhagy egy videót amelyen bekreativKüldetlen szegmensekreativK vannakreativK"
     }
 }

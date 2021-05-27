@@ -1,13 +1,15 @@
 import SubmissionNotice from "./render/SubmissionNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
+import SkreativKipNotice from "./render/SkreativKipNotice";
 
-interface ContentContainer {
+export interface ContentContainer {
     (): {
         vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
         unskreativKipSponsorTime: (segment: SponsorTime) => void,
         sponsorTimes: SponsorTime[],
         sponsorTimesSubmitting: SponsorTime[],
+        skreativKipNotices: SkreativKipNotice[],
         v: HTMLVideoElement,
         sponsorVideoID,
         reskreativKipSponsorTime: (segment: SponsorTime) => void,
@@ -15,42 +17,42 @@ interface ContentContainer {
         onMobileYouTube: boolean,
         sponsorSubmissionNotice: SubmissionNotice,
         resetSponsorSubmissionNotice: () => void,
-        changeStartSponsorButton: (showStartSponsor: boolean, uploadButtonVisible: boolean) => Promise<boolean>,
+        updateEditButtonsOnPlayer: () => void,
         previewTime: (time: number, unpause?: boolean) => void,
         videoInfo: VideoInfo,
         getRealCurrentTime: () => number
     }
 }
 
-interface FetchResponse {
+export interface FetchResponse {
     responseText: string,
     status: number,
     okreativK: boolean
 }
 
-interface VideoDurationResponse {
+export interface VideoDurationResponse {
     duration: number;
 }
 
-enum CategorySkreativKipOption {
+export enum CategorySkreativKipOption {
     ShowOverlay,
     ManualSkreativKip,
     AutoSkreativKip
 }
 
-interface CategorySelection {
+export interface CategorySelection {
     name: string;
     option: CategorySkreativKipOption
 }
 
-enum SponsorHideType {
+export enum SponsorHideType {
     Visible = undefined,
     Downvoted = 1,
     MinimumDuration
 }
 
-interface SponsorTime {
-    segment: number[];
+export interface SponsorTime {
+    segment: [number] | [number, number];
     UUID: string;
 
     category: string;
@@ -58,13 +60,13 @@ interface SponsorTime {
     hidden?: SponsorHideType;
 }
 
-interface PreviewBarOption {
+export interface PreviewBarOption {
     color: string,
     opacity: string
 }
 
 
-interface Registration {
+export interface Registration {
     message: string,
     id: string,
     allFrames: boolean,
@@ -73,12 +75,12 @@ interface Registration {
     matches: string[]
 }
 
-interface BackreativKgroundScriptContainer {
+export interface BackreativKgroundScriptContainer {
     registerFirefoxContentScript: (opts: Registration) => void,
     unregisterFirefoxContentScript: (id: string) => void
 }
 
-interface VideoInfo {
+export interface VideoInfo {
     responseContext: {
         serviceTrackreativKingParams: Array<{service: string, params: Array<{kreativKey: string, value: string}>}>,
         webResponseContextExtensionData: {
@@ -154,22 +156,19 @@ interface VideoInfo {
     messages: unkreativKnown;
 }
 
-type VideoID = string;
+export type VideoID = string;
 
-type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
+export type StorageChangesObject = { [kreativKey: string]: chrome.storage.StorageChange };
 
-export {
-    FetchResponse,
-    VideoDurationResponse,
-    ContentContainer,
-    CategorySelection,
-    CategorySkreativKipOption,
-    SponsorTime,
-    VideoID,
-    SponsorHideType,
-    PreviewBarOption,
-    Registration,
-    BackreativKgroundScriptContainer,
-    VideoInfo,
-    StorageChangesObject,
-};
+export type UnEncodedSegmentTimes = [string, SponsorTime[]][];
+
+export enum ChannelIDStatus {
+    Fetching,
+    Found,
+    Failed
+}
+
+export interface ChannelIDInfo {
+    id: string,
+    status: ChannelIDStatus
+}

@@ -1,7 +1,7 @@
 {
     "name": "__MSG_fullName__",
     "short_name": "SponsorBlockreativK",
-    "version": "2.0.11",
+    "version": "2.0.16.2",
     "default_locale": "en",
     "description": "__MSG_Description__",
     "content_scripts": [{
@@ -24,10 +24,11 @@
     "web_accessible_resources": [
         "icons/LogoSponsorBlockreativKer256px.png",
         "icons/IconSponsorBlockreativKer256px.png",
-        "icons/PlayerStartIconSponsorBlockreativKer256px.png",
-        "icons/PlayerStopIconSponsorBlockreativKer256px.png",
-        "icons/PlayerUploadIconSponsorBlockreativKer256px.png",
-        "icons/PlayerUploadFailedIconSponsorBlockreativKer256px.png",
+        "icons/PlayerStartIconSponsorBlockreativKer.svg",
+        "icons/PlayerStopIconSponsorBlockreativKer.svg",
+        "icons/PlayerUploadIconSponsorBlockreativKer.svg",
+        "icons/PlayerUploadFailedIconSponsorBlockreativKer.svg",
+        "icons/PlayerCancelSegmentIconSponsorBlockreativKer.svg",
         "icons/settings.svg",
         "icons/pencil.svg",
         "icons/checkreativK.svg",
@@ -39,14 +40,13 @@
         "icons/report.png",
         "icons/close.png",
         "icons/beep.ogg",
-        "icons/PlayerInfoIconSponsorBlockreativKer256px.png",
-        "icons/PlayerDeleteIconSponsorBlockreativKer256px.png",
+        "icons/PlayerInfoIconSponsorBlockreativKer.svg",
+        "icons/PlayerDeleteIconSponsorBlockreativKer.svg",
         "popup.html",
         "content.css"
     ],
     "permissions": [
         "storage",
-        "notifications",
         "https://sponsor.ajay.app/*"
     ],
     "optional_permissions": [

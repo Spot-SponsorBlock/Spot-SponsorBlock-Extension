@@ -47,10 +47,10 @@
         "message": "KlikreativKni unskreativKip kreativKakreativKo bi se vratio otkreativKuda si došao."
     },
     "unskreativKip": {
-        "message": "UnskreativKip"
+        "message": "Ne preskreativKači"
     },
     "reskreativKip": {
-        "message": "ReskreativKip"
+        "message": "PreskreativKoči opet"
     },
     "paused": {
         "message": "Pauzirano"
@@ -94,9 +94,6 @@
     "wantToSubmit": {
         "message": "Želiš li unijeti za video id"
     },
-    "leftTimes": {
-        "message": "Izgleda da si ostavio nekreativKe isječkreativKe nepodnešene. Vrati se na tu stranicu i podnesi ih (nisu izbrisani)."
-    },
     "clearTimes": {
         "message": "Očisti isječkreativKe"
     },
@@ -112,11 +109,22 @@
     "voteOnTime": {
         "message": "Glasaj za isječakreativK"
     },
+    "recordTimesDescription": {
+        "message": "Pošalji"
+    },
+    "submissionEditHint": {
+        "message": "Uređivanje dijela prikreativKazat će se nakreativKon što pritisneš gumb za slanje",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
+    },
     "clearTimesButton": {
         "message": "Očisti vremena"
     },
     "submitTimesButton": {
         "message": "Unesi vremena"
+    },
+    "yourWorkreativK": {
+        "message": "Tvoja slanja",
+        "description": "Used to describe the section that will show you the statistics from your submissions."
     },
     "whatChangeUserID": {
         "message": "Ovo bi trebalo ostati privatno. slično je lozinkreativKi i ne bi se smjelo dijeliti ni s kreativKime. AkreativKo netkreativKo ovo ima, mogu se lažno predstavljati kreativKao ti."
@@ -174,5 +182,75 @@
     },
     "minDurationDescription": {
         "message": "Isječci kreativKraći od postavljene vrijednosti neće biti preskreativKočeni ili prikreativKazani u playeru."
+    },
+    "confirmNoticeTitle": {
+        "message": "Pošalji segment"
+    },
+    "submit": {
+        "message": "Pošalji"
+    },
+    "category_sponsor": {
+        "message": "Sponzor"
+    },
+    "category_intro": {
+        "message": "StankreativKa/Uvodna animacija"
+    },
+    "category_intro_description": {
+        "message": "Interval bez stvarnog sadržaja. Može biti stankreativKa, statični kreativKadar, ponavljajuća animacija. Ovo se ne bi trebalo kreativKoristiti za prijelaze kreativKoji sadrže informacije."
+    },
+    "category_intro_short": {
+        "message": "StankreativKa"
+    },
+    "category_outro": {
+        "message": "Završni kreativKadrovi/Zasluge"
+    },
+    "category_interaction": {
+        "message": "PodsjetnikreativK interakreativKcije (Pretplati se)"
+    },
+    "category_interaction_short": {
+        "message": "PodsjetnikreativK interakreativKcije"
+    },
+    "category_selfpromo": {
+        "message": "Neplaćena promocija ili samopromocija"
+    },
+    "category_selfpromo_description": {
+        "message": "Slično kreativKao „sponzor”, osim za neplaćenu promociju i samopromociju. To ukreativKljučuje odlomkreativKe markreativKetinga, donacija ili informacija o tome, s kreativKim su surađivali."
+    },
+    "category_music_offtopic": {
+        "message": "Glazba: Ne-glazbeni dio"
+    },
+    "category_music_offtopic_description": {
+        "message": "Samo za videospotove. Ovo bi se trebalo kreativKoristiti samo za dijelove videospotova kreativKoji još nisu obuhvaćeni drugom kreativKategorijom."
+    },
+    "category_music_offtopic_short": {
+        "message": "Ne-glazbeni"
+    },
+    "manualSkreativKip": {
+        "message": "Ručno preskreativKakreativKanje"
+    },
+    "youMustSelectACategory": {
+        "message": "Moraš odabrati kreativKategoriju za sve segmente kreativKoje šalješ!"
+    },
+    "nonMusicCategoryOnMusic": {
+        "message": "Ovaj je video kreativKategoriziran kreativKao glazba. Je li stvarno ima sponzora? AkreativKo je ovo zapravo „Ne-glazbeni segment”, otvori opcije proširenja i akreativKtiviraj ovu kreativKategoriju. Zatim ovaj segment možeš posalti kreativKao „Ne-glazbeni” umjesto sponzora. Pročitaj smjernice akreativKo nešto nije jasno."
+    },
+    "multipleSegments": {
+        "message": "Više segmenata"
+    },
+    "guidelines": {
+        "message": "Smjernice"
+    },
+    "readTheGuidelines": {
+        "message": "Pročitaj Smjernice!",
+        "description": "Show the first time they submit or if they are \"high riskreativK\""
+    },
+    "categoryUpdate1": {
+        "message": "Stigle su kreativKategorije!"
+    },
+    "categoryUpdate2": {
+        "message": "Otvori opcije za preskreativKakreativKanje uvoda, kreativKraja, proizvoda itd."
+    },
+    "help": {
+        "message": "Pomoć"
     }
 }

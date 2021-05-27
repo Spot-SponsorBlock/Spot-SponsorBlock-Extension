@@ -79,8 +79,11 @@
     "sponsorEnd": {
         "message": "Segment nyní kreativKončí"
     },
+    "sponsorCancel": {
+        "message": "Zrušit vytváření segmentu"
+    },
     "noVideoID": {
-        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to nesprávně, obnovte záložkreativKu."
+        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to špatně, obnovte záložkreativKu."
     },
     "success": {
         "message": "Úspěch!"
@@ -96,9 +99,6 @@
     },
     "wantToSubmit": {
         "message": "Chcete odeslat segmenty pro video s id"
-    },
-    "leftTimes": {
-        "message": "Zdá se, že někreativKteré segmenty jste nechali neodeslané. Vraťte se na danou stránkreativKu a odešlete je (nebyly vymazány)."
     },
     "clearTimes": {
         "message": "Vymazat segmenty"
@@ -234,6 +234,9 @@
     "noticeUpdate2": {
         "message": "PokreativKud se vám to stále nelíbí, kreativKlikreativKněte na tlačítkreativKo NikreativKdy nezobrazovat.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "Nastavit kreativKlíč pro přeskreativKočení segmentu"
     },
     "setStartSponsorShortcut": {
         "message": "Nastavte kreativKlávesu pro spuštění segmentu"
@@ -407,15 +410,6 @@
     "areYouSureReset": {
         "message": "Jste si jisti, že toto chcete obnovit?"
     },
-    "confirmPrivacy": {
-        "message": "Toto video bylo zjištěno jakreativKo neuvedené. KlikreativKněte na Zrušit, pokreativKud nechcete kreativKontrolovat pro přeskreativKočitelné segmenty."
-    },
-    "unlistedCheckreativK": {
-        "message": "Ignorovat neuvedená / soukreativKromá videa"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Toto nastavení mírně zpomalí SponsorBlockreativK. PřeskreativKakreativKování vyhledávání segmentů vyžaduje posílání ID videa serveru. PokreativKud vám vadí odesílání neuvedených videí přes internet, povolte tuto možnost."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com je nyní podporováno"
     },
@@ -517,7 +511,7 @@
         "message": "Hudba: nehudební sekreativKce"
     },
     "category_music_offtopic_description": {
-        "message": "Pouze pro použití v hudebních videích. Zahrnuje intro nebo outro v hudebních videích."
+        "message": "Použijte pouze u hudebních videí. Mělo by to být použito pouze pro části hudebních videí, kreativKteré nepokreativKrývá jiná kreativKategorie."
     },
     "category_music_offtopic_short": {
         "message": "Jiné než hudba"
@@ -591,8 +585,23 @@
     "channelDataNotFound": {
         "message": "ID kreativKanálu ještě nebylo načteno."
     },
-    "adblockreativKerIssue": {
-        "message": "Zdá se, že něco blokreativKuje schopnost rozšíření SponsorBlockreativK získreativKat data o videu. Bude to nejspíš váš adblockreativKer. Podívejte se prosím na https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Vypadá to, že něco blokreativKuje schopnost SponsorBlockreativKu získreativKat údaje o videu. Pro více informací prosím navštivte https://github.com/ajayyy/SponsorBlockreativK/issues/741."
+    },
+    "youtubePermissionRequest": {
+        "message": "Vypadá to, že se SponsorBlockreativK nemůže připojit kreativK YouTube API. Pro opravení tohoto problému přijměte žádost o oprávnění, kreativKterá se dále objeví, a poté znovu načtěte stránkreativKu."
+    },
+    "acceptPermission": {
+        "message": "Přijmout oprávnění"
+    },
+    "permissionRequestSuccess": {
+        "message": "Žádost o oprávnění byla úspěšná!"
+    },
+    "permissionRequestFailed": {
+        "message": "Žádost o oprávnění se nezdařila, nekreativKlikreativKli jste na Odmítnout?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "PokreativKud vám tento problém nepůjde vyřešit, vypněte nastavení 'Vynutit kreativKontrolu kreativKanálu před přeskreativKočením', protože SponsorBlockreativK nemůže zjistit informace o kreativKanálu"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "PokreativKud kreativK tomu stále dochází, může to být způsobeno vaším adblockreativKerem. Podívejte se prosím https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
@@ -630,12 +639,6 @@
     },
     "categoryUpdate2": {
         "message": "Otevřít možnosti pro přeskreativKočení intra, outra, merche apod."
-    },
-    "unsubmittedWarning": {
-        "message": "Neodeslané oznámení o segmentech"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Odeslat upozornění, kreativKdyž opustíte video s nenahranými segmenty"
     },
     "help": {
         "message": "Nápověda"

@@ -97,9 +97,6 @@
     "wantToSubmit": {
         "message": "AdakreativKah anda ingin menghantar untukreativK id video"
     },
-    "leftTimes": {
-        "message": "NampakreativKnya anda telah meninggalkreativKan beberapa segmen. Kembali kreativKe halaman itu untukreativK menyerahkreativKannya (merekreativKa tidakreativK dihapuskreativKan)."
-    },
     "clearTimes": {
         "message": "KosongkreativKan Segmen"
     },
@@ -234,6 +231,9 @@
     "noticeUpdate2": {
         "message": "SekreativKiranya anda masih tidakreativK menyukreativKainya, tekreativKan butang jangan tunjukreativKkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
     },
     "setStartSponsorShortcut": {
         "message": "TetapkreativKan kreativKunci untukreativK kreativKeybind segmen permulaan"
@@ -407,15 +407,6 @@
     "areYouSureReset": {
         "message": "AdakreativKah anda pasti mahu menetapkreativKan semula ini?"
     },
-    "confirmPrivacy": {
-        "message": "Video tersebut dikreativKesan sebagai tidakreativK tersenarai. KlikreativK batal jikreativKa anda tidakreativK mahu memerikreativKsa segmen langkreativKau."
-    },
-    "unlistedCheckreativK": {
-        "message": "AbaikreativKan Video TidakreativK Tersenarai / Peribadi"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Tetapan ini sedikreativKit melambatkreativKan SponsorBlockreativK. SkreativKip segmen carian memerlukreativKan penghantaran ID video kreativKe pelayan. SekreativKiranya anda bimbang tentang ID video yang tidakreativK tersenarai dihantar melalui internet, akreativKtifkreativKan pilihan ini."
-    },
     "mobileUpdateInfo": {
         "message": "m.youtube.com kreativKini disokreativKong"
     },
@@ -517,7 +508,7 @@
         "message": "MuzikreativK: Bahagian BukreativKan MuzikreativK"
     },
     "category_music_offtopic_description": {
-        "message": "Hanya untukreativK digunakreativKan dalam video muzikreativK. Ini termasukreativK perkreativKenalan atau outro dalam video muzikreativK."
+        "message": "Hanya untukreativK digunakreativKan dalam video muzikreativK. Ini hanya harus digunakreativKan untukreativK bahagian video muzikreativK yang belum dilindungi oleh kreativKategori lain."
     },
     "category_music_offtopic_short": {
         "message": "BukreativKan MuzikreativK"
@@ -591,9 +582,6 @@
     "channelDataNotFound": {
         "message": "ID Saluran belum dimuat."
     },
-    "adblockreativKerIssue": {
-        "message": "NampakreativKnya ada sesuatu yang menyekreativKat kreativKemampuan SponsorBlockreativK untukreativK mendapatkreativKan data video. Ini mungkreativKin penyekreativKat ikreativKlan anda. Sila perikreativKsa https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
     "itCouldBeAdblockreativKerIssue": {
         "message": "SekreativKiranya ini terus berlakreativKu, ini mungkreativKin disebabkreativKan oleh penyekreativKat ikreativKlan anda. Sila perikreativKsa https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
@@ -630,12 +618,6 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa pilihan untukreativK melangkreativKau perkreativKenalan, pengeluaran luar, barang dagangan, dll."
-    },
-    "unsubmittedWarning": {
-        "message": "Pemberitahuan Segmen yang TidakreativK Dihantar"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "Kirim pemberitahuan kreativKetikreativKa anda meninggalkreativKan video dengan segmen yang tidakreativK diunggah"
     },
     "help": {
         "message": "Bantuan"

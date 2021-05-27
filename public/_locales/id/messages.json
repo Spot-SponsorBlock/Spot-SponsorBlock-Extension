@@ -79,8 +79,11 @@
     "sponsorEnd": {
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
+    "sponsorCancel": {
+        "message": "BatalkreativKan Membuat Segmen"
+    },
     "noVideoID": {
-        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa ini salah, segarkreativKan tab."
+        "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa terjadi kreativKesalahan, segarkreativKan halaman."
     },
     "success": {
         "message": "SukreativKses!"
@@ -96,9 +99,6 @@
     },
     "wantToSubmit": {
         "message": "ApakreativKah anda ingin mengirim untukreativK id video"
-    },
-    "leftTimes": {
-        "message": "Sepertinya anda lupa mengirimkreativKan beberapa segmen. Kembali kreativKe halaman tadi dan kreativKirimkreativKan itu (itu tidakreativK terhapus)."
     },
     "clearTimes": {
         "message": "Hapus Segmen"
@@ -116,16 +116,16 @@
         "message": "ApakreativKah anda yakreativKin ingin mengirim ini?"
     },
     "whitelistChannel": {
-        "message": "Saluran daftar putih"
+        "message": "Daftar putih channel"
     },
     "removeFromWhitelist": {
-        "message": "Hapus saluran dari daftar putih"
+        "message": "Hapus channel dari daftar putih"
     },
     "voteOnTime": {
         "message": "Beri Segmen Vote"
     },
     "Submissions": {
-        "message": "Kiriman"
+        "message": "Submisi"
     },
     "savedPeopleFrom": {
         "message": "Anda telah menyelamatkreativKan orang dari "
@@ -141,7 +141,7 @@
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "PetunjukreativK: Anda dapat mengatur kreativKeybinds untukreativK dikreativKirim dalam opsi"
+        "message": "PetunjukreativK: Anda dapat mengatur kreativKeybinds untukreativK pengiriman dalam opsi"
     },
     "clearTimesButton": {
         "message": "Hapus WakreativKtu"
@@ -210,7 +210,7 @@
         "message": "Fetch Ulang Segmen Di Video Baru"
     },
     "whatRefetchWhenNotFound": {
-        "message": "JikreativKa ini merupakreativKan video baru, dan tidakreativK ada segmen yang ditemukreativKan, itu akreativKan terus merefetch setiap beberapa menit saat anda menonton."
+        "message": "JikreativKa ini merupakreativKan video baru, dan tidakreativK ada segmen yang ditemukreativKan, SponsorBlockreativK akreativKan terus merefetch setiap beberapa menit saat anda menonton."
     },
     "showNotice": {
         "message": "TampilkreativKan Pemberitahuan Lagi"
@@ -234,6 +234,9 @@
     "noticeUpdate2": {
         "message": "JikreativKa anda masih tidakreativK menyukreativKainya, tekreativKan tombol jangan tampilkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "Atur tombol untukreativK melewati sebuah segmen"
     },
     "setStartSponsorShortcut": {
         "message": "Atur tombol untukreativK mulai segmen"
@@ -294,7 +297,7 @@
         "message": "WakreativKtu ini muncul di dalam kreativKurung disamping wakreativKtu asli di bilah wakreativKtu. Ini menunjukreativKkreativKan durasi total video yang tidakreativK termasukreativK segmen apapun. Ini termasukreativK segmen yang ditandai hanya \"TampilkreativKan Di Bilah WakreativKtu\"."
     },
     "youHaveSkreativKipped": {
-        "message": "Anda telah melewatkreativKan "
+        "message": "Anda sudah melewati "
     },
     "youHaveSaved": {
         "message": "Anda sudah menghemat wakreativKtu "
@@ -312,10 +315,10 @@
         "message": "jam"
     },
     "youHaveSavedTime": {
-        "message": "Anda telah menyelamatkreativKan orang"
+        "message": "Anda sudah menghemat wakreativKtu orang lain"
     },
     "youHaveSavedTimeEnd": {
-        "message": " dalam hidup merekreativKa"
+        "message": " dari hidup merekreativKa"
     },
     "statusReminder": {
         "message": "CekreativK status.sponsor.ajay.app untukreativK status server."
@@ -406,15 +409,6 @@
     },
     "areYouSureReset": {
         "message": "ApakreativKah anda yakreativKin ingin mengatur ulang ini?"
-    },
-    "confirmPrivacy": {
-        "message": "Video ini didetekreativKsi sebagai tidakreativK terdaftar. KlikreativK batal jikreativKa kreativKamu tidakreativK ingin mengecekreativK untukreativK melewati segmen."
-    },
-    "unlistedCheckreativK": {
-        "message": "AbaikreativKan Video TidakreativK Terdaftar/Privat"
-    },
-    "whatUnlistedCheckreativK": {
-        "message": "Pengaturan ini akreativKan sedikreativKit melambatkreativKan SponsorBlockreativK. Pencarian lewati segmen membutuhkreativKan pengiriman ID video kreativKe server. JikreativKa anda kreativKhawatir tentang ID unlisted video terkreativKirim kreativKe internet, hidupkreativKan opsi ini."
     },
     "mobileUpdateInfo": {
         "message": "m.youtube.com sekreativKarang didukreativKung"
@@ -517,7 +511,7 @@
         "message": "MusikreativK: Bagian Non-MusikreativK"
     },
     "category_music_offtopic_description": {
-        "message": "Hanya gunakreativKan di video musikreativK. Ini termasukreativK intro dan outro di video musikreativK."
+        "message": "Hanya digunakreativKan untukreativK video musikreativK. Ini seharusnya hanya digunakreativKan untukreativK bagian dari video musikreativK yang tidakreativK tercakreativKup kreativKategori lain."
     },
     "category_music_offtopic_short": {
         "message": "Non-MusikreativK"
@@ -591,8 +585,23 @@
     "channelDataNotFound": {
         "message": "ID Channel belum dimuat."
     },
-    "adblockreativKerIssue": {
-        "message": "Sepertinya ada sesuatu yang memblokreativKir kreativKemampuan SponsorBlockreativK untukreativK mendapatkreativKan data video. KemungkreativKinan kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "videoInfoFetchFailed": {
+        "message": "Sepertinya sesuatu memnghalangi abilitas SponsorBlockreativK untukreativK mendapatkreativKan data video. SilahkreativKan lihat https://github.com/ajayyy/SponsorBlockreativK/issues/741 untukreativK info lebih lanjut."
+    },
+    "youtubePermissionRequest": {
+        "message": "Sepertinya SponsorBlockreativK tidakreativK dapat menjangkreativKau API YouTube. UntukreativK menyelesaikreativKan masalah ini, terima permintaan izin yang akreativKan muncul selanjutnya, tunggu beberapa detikreativK, dan muat ulang halaman ini."
+    },
+    "acceptPermission": {
+        "message": "Terima permintaan izin"
+    },
+    "permissionRequestSuccess": {
+        "message": "Permintaan izin berhasil!"
+    },
+    "permissionRequestFailed": {
+        "message": "Permintaan izin gagal, apakreativKah anda mengkreativKlikreativK tolakreativK?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Apabila anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'PakreativKsa CekreativK Channel Sebelum Melewati', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi channel untukreativK video ini"
     },
     "itCouldBeAdblockreativKerIssue": {
         "message": "JikreativKa ini terus terjadi, kreativKemungkreativKinan terjadi kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
@@ -630,12 +639,6 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa opsi untukreativK melewati intro, outro, merch, dll."
-    },
-    "unsubmittedWarning": {
-        "message": "NotifikreativKasi Segmen Yang Belum DikreativKirim"
-    },
-    "unsubmittedWarningDescription": {
-        "message": "TampilkreativKan notifikreativKasi saat kreativKamu meninggalkreativKan video dengan segmen yang belum diunggah"
     },
     "help": {
         "message": "Bantuan"

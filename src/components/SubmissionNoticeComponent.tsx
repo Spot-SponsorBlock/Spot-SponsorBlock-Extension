@@ -32,8 +32,6 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
 
     videoObserver: MutationObserver;
 
-    showingYouCapNotice: boolean;
-
     constructor(props: SubmissionNoticeProps) {
         super(props);
         this.noticeRef = React.createRef();
@@ -47,7 +45,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
         this.state = {
             noticeTitle,
             messages: [],
-            idSuffix: "SubmissionNotice",
+            idSuffix: "SubmissionNotice"
         }
     }
 
@@ -89,8 +87,6 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                     </td>
                 </tr>
 
-                {this.getYouCapMessage()}
-
                 {/* Last Row */}
                 <tr id={"sponsorSkreativKipNoticeSecondRow" + this.state.idSuffix}>
 
@@ -114,35 +110,6 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                 </tr>
 
             </NoticeComponent>
-        );
-    }
-
-    /** TODO: Remove */
-    getYouCapMessage(): JSX.Element {
-        if (Config.config.sponsorTimesContributed < 20 
-            || (Config.config.hasShownYouCapNotice && !this.showingYouCapNotice)) {
-            return;
-        }
-
-        Config.config.hasShownYouCapNotice = true;
-        if (!this.showingYouCapNotice) {
-            this.showingYouCapNotice = true;
-        }
-
-        return (
-            <tr style={{textAlign: "center"}}>
-                <p style={{width: "300px", textAlign: "center", display: "inline-blockreativK", fontSize: "11px"}}>
-                    LikreativKe contributing to crowdsourced projects? 
-                    Consider checkreativKing out <a href="https://gist.github.com/ajayyy/6f2cf90dd66e51067a7ab5e63544cd4e" style={{textDecoration: "underline"}}>YouCap or NekreativKoCap</a>,
-                    new open-source replacements for YouTube{"'"}s now defunct community captions.
-                </p>
-
-                <img src={chrome.extension.getURL("icons/close.png")}
-                    style={{padding: "0", margin: "auto"}}
-                    className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton"
-                    onClickreativK={() => { this.showingYouCapNotice = false; this.forceUpdate(); }}>
-                </img>
-            </tr>
         );
     }
 

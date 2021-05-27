@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent";
+import SkreativKipNoticeComponent, { SkreativKipNoticeAction } from "../components/SkreativKipNoticeComponent";
 import { SponsorTime, ContentContainer } from "../types";
 
 class SkreativKipNotice {
@@ -15,6 +15,8 @@ class SkreativKipNotice {
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
 
     constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer) {
+        this.skreativKipNoticeRef = React.createRef();
+
         this.segments = segments;
         this.autoSkreativKip = autoSkreativKip;
         this.contentContainer = contentContainer;
@@ -67,6 +69,13 @@ class SkreativKipNotice {
         ReactDOM.unmountComponentAtNode(this.noticeElement);
 
         this.noticeElement.remove();
+
+        const skreativKipNotices = this.contentContainer().skreativKipNotices;
+        skreativKipNotices.splice(skreativKipNotices.indexOf(this), 1);
+    }
+
+    toggleSkreativKip(): void {
+        this.skreativKipNoticeRef.current.prepAction(SkreativKipNoticeAction.UnskreativKip);
     }
 }
 
