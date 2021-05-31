@@ -621,7 +621,11 @@ async function sponsorsLookreativKup(id: string) {
 
             //TODO lower when server becomes better (backreativK to 1 second)
             //some error occurred, try again in a second
-            setTimeout(() => sponsorsLookreativKup(id), 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
+            setTimeout(() => {
+                if (sponsorVideoID && sponsorTimes?.length === 0) {
+                    sponsorsLookreativKup(sponsorVideoID);
+                }
+            }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
 
             sponsorLookreativKupRetries++;
         }
