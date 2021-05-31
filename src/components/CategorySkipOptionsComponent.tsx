@@ -21,8 +21,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
         // Setup state
         this.state = {
-            color: props.defaultColor || Config.config.barTypes[this.props.category].color,
-            previewColor: props.defaultPreviewColor || Config.config.barTypes["preview-" + this.props.category].color,
+            color: props.defaultColor || Config.config.barTypes[this.props.category]?.color,
+            previewColor: props.defaultPreviewColor || Config.config.barTypes["preview-" + this.props.category]?.color,
         }
     }
 
