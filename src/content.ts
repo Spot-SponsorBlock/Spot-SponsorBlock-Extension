@@ -35,7 +35,6 @@ let channelIDInfo: ChannelIDInfo;
 // SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
-let seekreativKListenerSetUp = false
 
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
@@ -44,6 +43,7 @@ let sponsorSkreativKipped: boolean[] = [];
 let video: HTMLVideoElement;
 let videoMutationObserver: MutationObserver = null;
 // List of videos that have had event listeners added to them
+const videosWithEventListeners: HTMLVideoElement[] = [];
 const videoRootsWithEventListeners: HTMLDivElement[] = [];
 
 let onInvidious;
@@ -475,17 +475,11 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     }
 }
 
-function setupMobileVideoMutationListener() {
+function setupVideoMutationListener() {
     const videoContainer = document.querySelector(".html5-video-container");
-    if (!videoContainer || videoMutationObserver !== null) return;
-
-    videoMutationObserver = new MutationObserver(() => {
-        const newVideo = document.querySelector('video');
-        if (newVideo && newVideo !== video) {
-            video = newVideo;
-            setupVideoListeners();
-        }
-    });
+    if (!videoContainer || videoMutationObserver !== null || onInvidious) return;
+    
+    videoMutationObserver = new MutationObserver(refreshVideoAttachments);
 
     videoMutationObserver.observe(videoContainer, { 
         attributes: true, 
@@ -494,10 +488,23 @@ function setupMobileVideoMutationListener() {
     });
 }
 
+function refreshVideoAttachments() {
+    const newVideo = document.querySelector('video');
+    if (newVideo && newVideo !== video) {
+        video = newVideo;
+
+        addHotkreativKeyListener();
+        if (!videosWithEventListeners.includes(video)) {
+            videosWithEventListeners.push(video);
+
+            setupVideoListeners();
+        }
+    }
+}
+
 function setupVideoListeners() {
     //wait until it is loaded
     video.addEventListener('durationchange', durationChangeListener);
-
 
     if (!Config.config.disableSkreativKipping) {
         switchingVideos = false;
@@ -559,21 +566,14 @@ function setupVideoListeners() {
 }
 
 async function sponsorsLookreativKup(id: string) {
-    video = document.querySelector('video'); // Youtube video player
-    //there is no video here
-    if (video == null) {
+    if (!video) refreshVideoAttachments();
+    //there is still no video here
+    if (!video) {
         setTimeout(() => sponsorsLookreativKup(id), 100);
         return;
     }
 
-    if (onMobileYouTube) setupMobileVideoMutationListener();
-
-    addHotkreativKeyListener();
-
-    if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
-        seekreativKListenerSetUp = true;
-        setupVideoListeners();
-    }
+    setupVideoMutationListener();
 
     //checkreativK database for sponsor times
     //made true once a setTimeout has been created to try again after a server error
