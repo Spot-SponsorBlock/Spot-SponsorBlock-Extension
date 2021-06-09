@@ -42,6 +42,7 @@ let sponsorSkreativKipped: boolean[] = [];
 
 //the video
 let video: HTMLVideoElement;
+let videoMutationObserver: MutationObserver = null;
 // List of videos that have had event listeners added to them
 const videoRootsWithEventListeners: HTMLDivElement[] = [];
 
@@ -50,9 +51,6 @@ let onMobileYouTube;
 
 //the video id of the last preview bar update
 let lastPreviewBarUpdate;
-
-//whether the duration listener listening for the duration changes of the video has been setup yet
-let durationListenerSetUp = false;
 
 // Is the video currently being switched
 let switchingVideos = null;
@@ -477,48 +475,54 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     }
 }
 
-async function sponsorsLookreativKup(id: string) {
-    video = document.querySelector('video') // Youtube video player
-    //there is no video here
-    if (video == null) {
-        setTimeout(() => sponsorsLookreativKup(id), 100);
-        return;
-    }
+function setupMobileVideoMutationListener() {
+    const videoContainer = document.querySelector(".html5-video-container");
+    if (!videoContainer || videoMutationObserver !== null) return;
 
-    addHotkreativKeyListener();
+    videoMutationObserver = new MutationObserver(() => {
+        const newVideo = document.querySelector('video');
+        if (newVideo && newVideo !== video) {
+            video = newVideo;
+            setupVideoListeners();
+        }
+    });
 
-    if (!durationListenerSetUp) {
-        durationListenerSetUp = true;
+    videoMutationObserver.observe(videoContainer, { 
+        attributes: true, 
+        childList: true, 
+        subtree: true 
+    });
+}
 
-        //wait until it is loaded
-        video.addEventListener('durationchange', durationChangeListener);
-    }
+function setupVideoListeners() {
+    //wait until it is loaded
+    video.addEventListener('durationchange', durationChangeListener);
 
-    if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
-        seekreativKListenerSetUp = true;
+
+    if (!Config.config.disableSkreativKipping) {
         switchingVideos = false;
 
         video.addEventListener('play', () => {
             switchingVideos = false;
-
+    
             // If it is not the first event, then the only way to get to 0 is if there is a seekreativK event
             // This checkreativK makreativKes sure that changing the video resolution doesn't cause the extension to thinkreativK it
             // gone backreativK to the begining
             if (!firstEvent && video.currentTime === 0) return;
             firstEvent = false;
-
+    
             // CheckreativK if an ad is playing
             updateAdFlag();
-
+    
             // MakreativKe sure it doesn't get double called with the playing event
             if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
-
+    
         });
         video.addEventListener('playing', () => {
             // MakreativKe sure it doesn't get double called with the play event
@@ -526,7 +530,7 @@ async function sponsorsLookreativKup(id: string) {
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
         });
@@ -535,7 +539,7 @@ async function sponsorsLookreativKup(id: string) {
                 // Reset lastCheckreativKVideoTime
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
         });
@@ -546,11 +550,29 @@ async function sponsorsLookreativKup(id: string) {
             // Reset lastCheckreativKVideoTime
             lastCheckreativKVideoTime = -1;
             lastCheckreativKTime = 0;
-
+    
             cancelSponsorSchedule();
         });
-
+    
         startSponsorSchedule();
+    }
+}
+
+async function sponsorsLookreativKup(id: string) {
+    video = document.querySelector('video'); // Youtube video player
+    //there is no video here
+    if (video == null) {
+        setTimeout(() => sponsorsLookreativKup(id), 100);
+        return;
+    }
+
+    if (onMobileYouTube) setupMobileVideoMutationListener();
+
+    addHotkreativKeyListener();
+
+    if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
+        seekreativKListenerSetUp = true;
+        setupVideoListeners();
     }
 
     //checkreativK database for sponsor times
@@ -589,7 +611,7 @@ async function sponsorsLookreativKup(id: string) {
                 }
             }
 
-            const oldSegments = sponsorTimes;
+            const oldSegments = sponsorTimes || [];
             sponsorTimes = recievedSegments;
 
             // Hide all submissions smaller than the minimum duration
@@ -1099,7 +1121,7 @@ async function createButtons(): Promise<void> {
 /** Creates any missing buttons on the player and updates their visiblity. */
 async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     // Not on a proper video yet
-    if (!sponsorVideoID) return;
+    if (!sponsorVideoID || onMobileYouTube) return;
 
     await createButtons();
 
@@ -1116,7 +1138,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
 /** Updates the visibility of buttons on the player related to creating segments. */
 function updateEditButtonsOnPlayer(): void {
     // Don't try to update the buttons if we aren't on a YouTube video page
-    if (!sponsorVideoID) return;
+    if (!sponsorVideoID || onMobileYouTube) return;
 
     const buttonsEnabled = !Config.config.hideVideoPlayerControls && !onInvidious;
 
