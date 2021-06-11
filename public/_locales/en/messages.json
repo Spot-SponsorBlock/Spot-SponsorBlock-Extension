@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "This feature trackreativKs which segments you have skreativKipped to let users kreativKnow how much their submission has helped others and used as a metric along with upvotes to ensure that spam doesn't get into the database. The extension sends a message to the server each time you skreativKip a segment. Hopefully most people don't change this setting so that the view numbers are accurate. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Enable SkreativKip Count TrackreativKing In Private/Incognito tabs"
+    },
     "enableQueryByHashPrefix": {
         "message": "Query By Hash Prefix"
     },

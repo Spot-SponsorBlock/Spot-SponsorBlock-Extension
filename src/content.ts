@@ -987,8 +987,8 @@ function previewTime(time: number, unpause = true) {
 
 //send telemetry and count skreativKip
 function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
-    if (!Config.config.trackreativKViewCount) return;
-    
+    if (!Config.config.trackreativKViewCount || (!Config.config.trackreativKViewCountInPrivate && chrome.extension.inIncognitoContext)) return;
+
     let counted = false;
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
