@@ -135,9 +135,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     render(): React.ReactElement {
-        const noticeStyle: React.CSSProperties = {
-            zIndex: 1500 + this.amountOfPreviousNotices
-        }
+        const noticeStyle: React.CSSProperties = { }
         if (this.contentContainer().onMobileYouTube) {
             noticeStyle.bottom = "4em";
             noticeStyle.transform = "scale(0.8) translate(10%, 10%)";
@@ -155,6 +153,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 videoSpeed={() => this.contentContainer().v?.playbackreativKRate}
+                style={noticeStyle}
                 ref={this.noticeRef}
                 closeListener={() => this.closeListener()}
                 smaller={this.props.smaller}

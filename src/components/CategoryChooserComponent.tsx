@@ -35,15 +35,18 @@ class CategoryChooserComponent extends React.Component<CategoryChooserProps, Cat
                             {chrome.i18n.getMessage("category")}
                         </td>
 
-                        <td id={"CategorySkreativKipOption"}>
+                        <td id={"CategorySkreativKipOption"}
+                            className="skreativKipOption">
                             {chrome.i18n.getMessage("skreativKipOption")}
                         </td>
 
-                        <td id={"CategoryColorOption"}>
+                        <td id={"CategoryColorOption"}
+                            className="colorOption">
                             {chrome.i18n.getMessage("seekreativKBarColor")}
                         </td>
 
-                        <td id={"CategoryPreviewColorOption"}>
+                        <td id={"CategoryPreviewColorOption"}
+                            className="previewColorOption">
                             {chrome.i18n.getMessage("previewColor")}
                         </td>
                     </tr>

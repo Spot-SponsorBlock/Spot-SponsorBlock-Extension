@@ -24,8 +24,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
         // Setup state
         this.state = {
-            color: props.defaultColor || Config.config.barTypes[this.props.category].color,
-            previewColor: props.defaultPreviewColor || Config.config.barTypes["preview-" + this.props.category].color,
+            color: props.defaultColor || Config.config.barTypes[this.props.category]?.color,
+            previewColor: props.defaultPreviewColor || Config.config.barTypes["preview-" + this.props.category]?.color,
         }
     }
 
@@ -59,7 +59,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             {chrome.i18n.getMessage("category_" + this.props.category)}
                     </td>
 
-                    <td id={this.props.category + "SkreativKipOption"}>
+                    <td id={this.props.category + "SkreativKipOption"}
+                        className="skreativKipOption">
                         <select
                             className="categoryOptionsSelector"
                             defaultValue={defaultOption}
@@ -68,7 +69,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                         </select>
                     </td>
                     
-                    <td id={this.props.category + "ColorOption"}>
+                    <td id={this.props.category + "ColorOption"}
+                        className="colorOption">
                         <input
                             className="categoryColorTextBox option-text-box"
                             type="color"
@@ -76,7 +78,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             value={this.state.color} />
                     </td>
 
-                    <td id={this.props.category + "PreviewColorOption"}>
+                    <td id={this.props.category + "PreviewColorOption"}
+                        className="previewColorOption">
                         <input
                             className="categoryColorTextBox option-text-box"
                             type="color"

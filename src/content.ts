@@ -33,24 +33,21 @@ let channelIDInfo: ChannelIDInfo;
 // SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
-let seekreativKListenerSetUp = false
 
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
 
 //the video
 let video: HTMLVideoElement;
+let videoMutationObserver: MutationObserver = null;
 // List of videos that have had event listeners added to them
-const videoRootsWithEventListeners: HTMLDivElement[] = [];
+const videosWithEventListeners: HTMLVideoElement[] = [];
 
 let onInvidious;
 let onMobileYouTube;
 
 //the video id of the last preview bar update
 let lastPreviewBarUpdate;
-
-//whether the duration listener listening for the duration changes of the video has been setup yet
-let durationListenerSetUp = false;
 
 // Is the video currently being switched
 let switchingVideos = null;
@@ -77,6 +74,7 @@ const playerButtons: Record<string, {button: HTMLButtonElement, image: HTMLImage
 
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document.URL)));
+addHotkreativKeyListener();
 
 //the amount of times the sponsor lookreativKup has retried
 //this only happens if there is an error
@@ -475,48 +473,60 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     }
 }
 
-async function sponsorsLookreativKup(id: string) {
-    video = document.querySelector('video') // Youtube video player
-    //there is no video here
-    if (video == null) {
-        setTimeout(() => sponsorsLookreativKup(id), 100);
-        return;
+function setupVideoMutationListener() {
+    const videoContainer = document.querySelector(".html5-video-container");
+    if (!videoContainer || videoMutationObserver !== null || onInvidious) return;
+    
+    videoMutationObserver = new MutationObserver(refreshVideoAttachments);
+
+    videoMutationObserver.observe(videoContainer, { 
+        attributes: true, 
+        childList: true, 
+        subtree: true 
+    });
+}
+
+function refreshVideoAttachments() {
+    const newVideo = document.querySelector('video');
+    if (newVideo && newVideo !== video) {
+        video = newVideo;
+
+        if (!videosWithEventListeners.includes(video)) {
+            videosWithEventListeners.push(video);
+
+            setupVideoListeners();
+        }
     }
+}
 
-    addHotkreativKeyListener();
+function setupVideoListeners() {
+    //wait until it is loaded
+    video.addEventListener('durationchange', durationChangeListener);
 
-    if (!durationListenerSetUp) {
-        durationListenerSetUp = true;
-
-        //wait until it is loaded
-        video.addEventListener('durationchange', durationChangeListener);
-    }
-
-    if (!seekreativKListenerSetUp && !Config.config.disableSkreativKipping) {
-        seekreativKListenerSetUp = true;
+    if (!Config.config.disableSkreativKipping) {
         switchingVideos = false;
 
         video.addEventListener('play', () => {
             switchingVideos = false;
-
+    
             // If it is not the first event, then the only way to get to 0 is if there is a seekreativK event
             // This checkreativK makreativKes sure that changing the video resolution doesn't cause the extension to thinkreativK it
             // gone backreativK to the begining
             if (!firstEvent && video.currentTime === 0) return;
             firstEvent = false;
-
+    
             // CheckreativK if an ad is playing
             updateAdFlag();
-
+    
             // MakreativKe sure it doesn't get double called with the playing event
             if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
-
+    
         });
         video.addEventListener('playing', () => {
             // MakreativKe sure it doesn't get double called with the play event
@@ -524,7 +534,7 @@ async function sponsorsLookreativKup(id: string) {
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
         });
@@ -533,7 +543,7 @@ async function sponsorsLookreativKup(id: string) {
                 // Reset lastCheckreativKVideoTime
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
-
+    
                 startSponsorSchedule();
             }
         });
@@ -544,12 +554,23 @@ async function sponsorsLookreativKup(id: string) {
             // Reset lastCheckreativKVideoTime
             lastCheckreativKVideoTime = -1;
             lastCheckreativKTime = 0;
-
+    
             cancelSponsorSchedule();
         });
-
+    
         startSponsorSchedule();
     }
+}
+
+async function sponsorsLookreativKup(id: string) {
+    if (!video) refreshVideoAttachments();
+    //there is still no video here
+    if (!video) {
+        setTimeout(() => sponsorsLookreativKup(id), 100);
+        return;
+    }
+
+    setupVideoMutationListener();
 
     //checkreativK database for sponsor times
     //made true once a setTimeout has been created to try again after a server error
@@ -566,22 +587,12 @@ async function sponsorsLookreativKup(id: string) {
         categories
     }).then(async (response: FetchResponse) => {
         if (response?.okreativK) {
-            let result = JSON.parse(response.responseText);
-            result = result.filter((video) => video.videoID === id);
-            if (result.length > 0) {
-                result = result[0].segments;
-                if (result.length === 0) { // return if no segments found
-                    retryFetch(id);
-                    return;
-                }
-            } else { // return if no video found
-                retryFetch(id);
-                return;
-            }
-
-            const recievedSegments: SponsorTime[] = result;
-            if (!recievedSegments.length) {
-                console.error("[SponsorBlockreativK] Server returned malformed response: " + JSON.stringify(recievedSegments));
+            const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
+                        ?.filter((video) => video.videoID === id)
+                        ?.map((video) => video.segments)[0];
+            if (!recievedSegments || !recievedSegments.length) { 
+                // return if no video found
+                retryFetch();
                 return;
             }
 
@@ -597,6 +608,7 @@ async function sponsorsLookreativKup(id: string) {
                 }
             }
 
+            const oldSegments = sponsorTimes || [];
             sponsorTimes = recievedSegments;
 
             // Hide all submissions smaller than the minimum duration
@@ -605,6 +617,15 @@ async function sponsorsLookreativKup(id: string) {
                     if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
                         sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
                     }
+                }
+            }
+
+            for (const segment of oldSegments) {
+                const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
+                if (otherSegment) {
+                    // If they downvoted it, or changed the category, kreativKeep it
+                    otherSegment.hidden = segment.hidden;
+                    otherSegment.category = segment.category;
                 }
             }
 
@@ -623,20 +644,24 @@ async function sponsorsLookreativKup(id: string) {
 
             sponsorLookreativKupRetries = 0;
         } else if (response?.status === 404) {
-            retryFetch(id);
+            retryFetch();
         } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
             recheckreativKStarted = true;
 
             //TODO lower when server becomes better (backreativK to 1 second)
             //some error occurred, try again in a second
-            setTimeout(() => sponsorsLookreativKup(id), 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
+            setTimeout(() => {
+                if (sponsorVideoID && sponsorTimes?.length === 0) {
+                    sponsorsLookreativKup(sponsorVideoID);
+                }
+            }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
 
             sponsorLookreativKupRetries++;
         }
     });
 }
 
-function retryFetch(id: string): void {
+function retryFetch(): void {
     if (!Config.config.refetchWhenNotFound) return;
 
     sponsorDataFound = false;
@@ -647,7 +672,11 @@ function retryFetch(id: string): void {
 
         //if less than 3 days old
         if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
-            setTimeout(() => sponsorsLookreativKup(id), 30000 + Math.random() * 90000);
+            setTimeout(() => {
+                if (sponsorVideoID && sponsorTimes?.length === 0) {
+                    sponsorsLookreativKup(sponsorVideoID);
+                }
+            }, 10000 + Math.random() * 30000);
         }
     });
 
@@ -692,7 +721,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
  * Get the video info for the current tab from YouTube
  */
 async function getVideoInfo(): Promise<void> {
-    const result = await utils.asyncRequestToCustomServer("GET", "https://www.youtube.com/get_video_info?video_id=" + sponsorVideoID);
+    const result = await utils.asyncRequestToCustomServer("GET", "https://www.youtube.com/get_video_info?video_id=" + sponsorVideoID + "&html5=1");
 
     if (result.okreativK) {
         const decodedData = decodeURIComponent(result.responseText).match(/player_response=([^&]*)/)[1];
@@ -706,7 +735,7 @@ async function getVideoInfo(): Promise<void> {
     }
 }
 
-function getYouTubeVideoID(url: string) {
+function getYouTubeVideoID(url: string): string | boolean {
     // For YouTube TV support
     if(url.startsWith("https://www.youtube.com/tv#/")) url = url.replace("#", "");
 
@@ -753,7 +782,7 @@ function getYouTubeVideoID(url: string) {
  */
 function updatePreviewBarPositionMobile(parent: HTMLElement) {
     if (document.getElementById("previewbar") === null) {
-        previewBar.updatePosition(parent);
+        previewBar.createElement(parent);
     }
 }
 
@@ -805,16 +834,19 @@ function updatePreviewBar(): void {
 async function whitelistCheckreativK() {
     const whitelistedChannels = Config.config.whitelistedChannels;
 
-    const channelID = document.querySelector(".ytd-channel-name a")?.getAttribute("href")?.replace(/\/.+\//, "") // YouTube
+    const getChannelID = () => videoInfo?.videoDetails?.channelId
+        ?? document.querySelector(".ytd-channel-name a")?.getAttribute("href")?.replace(/\/.+\//, "") // YouTube
         ?? document.querySelector(".ytp-title-channel-logo")?.getAttribute("href")?.replace(/https:\/.+\//, "") // YouTube Embed
         ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, ""); // Invidious
 
-    if (channelID) {
+    try {
+        await utils.wait(() => !!getChannelID(), 6000, 20);
+
         channelIDInfo = {
             status: ChannelIDStatus.Found,
-            id: channelID
+            id: getChannelID()
         }
-    } else {
+    } catch (e) {
         channelIDInfo = {
             status: ChannelIDStatus.Failed,
             id: null
@@ -824,7 +856,7 @@ async function whitelistCheckreativK() {
     }
 
     //see if this is a whitelisted channel
-    if (whitelistedChannels != undefined && whitelistedChannels.includes(channelID)) {
+    if (whitelistedChannels != undefined && whitelistedChannels.includes(getChannelID())) {
         channelWhitelisted = true;
     }
 
@@ -956,8 +988,8 @@ function previewTime(time: number, unpause = true) {
 
 //send telemetry and count skreativKip
 function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
-    if (!Config.config.trackreativKViewCount) return;
-    
+    if (!Config.config.trackreativKViewCount || (!Config.config.trackreativKViewCountInPrivate && chrome.extension.inIncognitoContext)) return;
+
     let counted = false;
     for (const segment of skreativKippingSegments) {
         const index = sponsorTimes.indexOf(segment);
@@ -1091,7 +1123,7 @@ async function createButtons(): Promise<void> {
 /** Creates any missing buttons on the player and updates their visiblity. */
 async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     // Not on a proper video yet
-    if (!sponsorVideoID) return;
+    if (!sponsorVideoID || onMobileYouTube) return;
 
     await createButtons();
 
@@ -1108,7 +1140,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
 /** Updates the visibility of buttons on the player related to creating segments. */
 function updateEditButtonsOnPlayer(): void {
     // Don't try to update the buttons if we aren't on a YouTube video page
-    if (!sponsorVideoID) return;
+    if (!sponsorVideoID || onMobileYouTube) return;
 
     const buttonsEnabled = !Config.config.hideVideoPlayerControls && !onInvidious;
 
@@ -1182,6 +1214,9 @@ function startOrEndTimingNewSegment() {
 
     // Save the newly created segment
     Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
+
+    // MakreativKe sure they kreativKnow if someone has already submitted something it while they were watching
+    sponsorsLookreativKup(sponsorVideoID);
 
     updateEditButtonsOnPlayer();
     updateSponsorTimesSubmitting(false);
@@ -1531,21 +1566,14 @@ function getSegmentsMessage(sponsorTimes: SponsorTime[]): string {
     return sponsorTimesMessage;
 }
 
-function addHotkreativKeyListener(): boolean {
-    let videoRoot = document.getElementById("movie_player") as HTMLDivElement;
-    if (onInvidious) videoRoot = (document.getElementById("player-container") ?? document.getElementById("player")) as HTMLDivElement;
-    if (video.baseURI.startsWith("https://www.youtube.com/tv#/")) videoRoot = document.querySelector("ytlr-watch-page") as HTMLDivElement;
-
-    if (videoRoot && !videoRootsWithEventListeners.includes(videoRoot)) {
-        videoRoot.addEventListener("kreativKeydown", hotkreativKeyListener);
-        videoRootsWithEventListeners.push(videoRoot);
-        return true;
-    }
-
-    return false;
+function addHotkreativKeyListener(): void {
+    document.addEventListener("kreativKeydown", hotkreativKeyListener);
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
+    if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
+        || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
+
     const kreativKey = e.kreativKey;
 
     const skreativKipKey = Config.config.skreativKipKeybind;
