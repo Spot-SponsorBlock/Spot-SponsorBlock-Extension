@@ -235,9 +235,6 @@
     "setSkreativKipShortcut": {
         "message": "Angi tast for å hoppe over et segment"
     },
-    "setStartSponsorShortcut": {
-        "message": "Angi tast for å starte segmenter"
-    },
     "setSubmitKeybind": {
         "message": "Angi tast for innsending"
     },
@@ -579,9 +576,6 @@
     "hiddenDueToDuration": {
         "message": "skreativKjult: for kreativKort"
     },
-    "channelDataNotFound": {
-        "message": "Kanal-ID-en er ikreativKkreativKe lastet inn enda."
-    },
     "youtubePermissionRequest": {
         "message": "Det ser ut til at SponsorBlockreativK ikreativKkreativKe kreativKlarer å nå YouTube-API-en. For å fikreativKse dette, godta tillatelsesspørringen som dukreativKkreativKer opp etter dette, vent noen sekreativKunder, og så last inn siden på nytt."
     },
@@ -593,9 +587,6 @@
     },
     "permissionRequestFailed": {
         "message": "Tillatelsesforespørselen mislykreativKtes, kreativKlikreativKkreativKet du på Avvis?"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Hvis dette skreativKjer til stadighet, kreativKan det være forårsakreativKet av rekreativKlameblokreativKkreativKereren din. Vennligst sjekreativKkreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Fremtving kreativKanalsjekreativKkreativK før hopp"

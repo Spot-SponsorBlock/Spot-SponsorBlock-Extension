@@ -235,9 +235,6 @@
     "setSkreativKipShortcut": {
         "message": "Setați cheia pentru omiterea unui segment"
     },
-    "setStartSponsorShortcut": {
-        "message": "Setează tasta pentru pornirea segmentului"
-    },
     "setSubmitKeybind": {
         "message": "Setează tasta pentru trimiterea sponsorizării"
     },
@@ -575,12 +572,6 @@
     },
     "hiddenDueToDuration": {
         "message": "ascuns: prea scurt"
-    },
-    "channelDataNotFound": {
-        "message": "ID-ul Canalului nu a fost încărcat încă."
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Dacă acest lucru continuă să se întample, ar putea fi cauzat de adblockreativKer-ul dumneavoastră. Vă rugăm să verificați \nhttps://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Forțează verificarea canalului înainte de a sări"

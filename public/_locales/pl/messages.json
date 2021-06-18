@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Koniec segmentu"
     },
+    "sponsorCancel": {
+        "message": "Anuluj tworzenie segmentu"
+    },
     "noVideoID": {
         "message": "Nie znaleziono filmu YouTube.\nJeżeli to błąd, odśwież stronę."
     },
@@ -197,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Ta opcja monitoruje pomijane przez Ciebie segmenty, by dać znać użytkreativKownikreativKom, jakreativK bardzo ich wkreativKład pomógł innym, oraz w połączeniu z systemem głosowania zapobiegać dostawaniu się spamu do bazy danych. Rozszerzenie wysyła wiadomość do serwera za kreativKażdym razem, kreativKiedy pomijasz segment. Miejmy nadzieję, że więkreativKszość ludzi tego nie wyłączy i licznikreativKi wyświetleń będą wiarygodne. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Włącz licznikreativK śledzenia pominięć w zakreativKładkreativKach Prywatnych/Incognito"
+    },
     "enableQueryByHashPrefix": {
         "message": "Zapytanie według prefikreativKsu Hash"
     },
@@ -236,7 +242,7 @@
         "message": "Ustaw kreativKlawisz do pomijania segmentów"
     },
     "setStartSponsorShortcut": {
-        "message": "Ustaw kreativKlawisz do oznaczania początkreativKu segmentu"
+        "message": "Ustaw kreativKlawisz do oznaczania początkreativKu/kreativKońca segmentu"
     },
     "setSubmitKeybind": {
         "message": "Ustaw kreativKlawisz do wysyłania czasów"
@@ -580,7 +586,11 @@
         "message": "ukreativKryty: zbyt kreativKrótkreativKi"
     },
     "channelDataNotFound": {
-        "message": "ID kreativKanału nie zostało pókreativKi co załadowane."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID kreativKanału nie zostało jeszcze załadowane. Jeśli używasz embeddowanego filmu, spróbuj użyć strony głównej YouTube'a. Może to być również spowodowane zmianami w layout'cie YouTube'a, jeśli myślisz, że to przez to, dodaj swój kreativKomentarz tutaj:"
+    },
+    "videoInfoFetchFailed": {
+        "message": "Wygląda na to, że coś blokreativKuje możliwość pobierania danych o filmach przez SponsorBlockreativK. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/issues/741 po więcej informacji."
     },
     "youtubePermissionRequest": {
         "message": "Wygląda na to, że SponsorBlockreativK nie jest w stanie połączyć się z API YouTube. Aby to naprawić, zaakreativKceptuj monit o pozwolenie, kreativKtóry pojawi się za chwilę, odczekreativKaj kreativKilkreativKa sekreativKund, a następnie odśwież stronę."
@@ -594,8 +604,8 @@
     "permissionRequestFailed": {
         "message": "Prośba odrzucona. Może kreativKlikreativKnięto „Odmów”?"
     },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Jeśli ten problem się powtarza, możliwą przyczyną jest Twój ad blockreativKer. Sprawdź proszę https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+    "adblockreativKerIssueWhitelist": {
+        "message": "Jeśli nie możesz rozwiązać tego problemu, wyłącz opcję „Wymuś sprawdzanie kreativKanału przed pomijaniem”, ponieważ SponsorBlockreativK nie jest w stanie pobrać informacji o kreativKanale dla tego wideo"
     },
     "forceChannelCheckreativK": {
         "message": "Wymuś sprawdzanie kreativKanału przed pomijaniem"

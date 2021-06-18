@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Tato vlastnost sleduje, jakreativKé segmenty jste přeskreativKočili, abychom dali uživatelům vědět, jakreativK moc jejich příspěvekreativK pomohl ostatním a může být použita jakreativKo sledování společně s hlasy pro zajištění, že se spam nedostane do databáze. Toto rozšíření posílá zprávu serveru pokreativKaždé kreativKdyž přeskreativKočíte segment. Doufejme, že si moc lidí nezmění toto nastavení, aby byla zobrazená čísla přesná. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Povolit sledování počtu přeskreativKočení v soukreativKromých/anonymních okreativKnech"
+    },
     "enableQueryByHashPrefix": {
         "message": "Dotaz podle hash předpony"
     },
@@ -239,7 +242,7 @@
         "message": "Nastavit kreativKlíč pro přeskreativKočení segmentu"
     },
     "setStartSponsorShortcut": {
-        "message": "Nastavte kreativKlávesu pro spuštění segmentu"
+        "message": "Nastavte kreativKlávesu pro spuštění/zastavení segmentu"
     },
     "setSubmitKeybind": {
         "message": "Nastavte kreativKlávesu pro odeslání"
@@ -583,7 +586,8 @@
         "message": "skreativKryté: moc kreativKrátkreativKé"
     },
     "channelDataNotFound": {
-        "message": "ID kreativKanálu ještě nebylo načteno."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID kreativKanálu ještě není načteno. PokreativKud používáte vložené video, zkreativKuste místo toho použít domovskreativKou stránkreativKu YouTube. Toto může být takreativKé způsobeno změnami v rozložení YouTube, pokreativKud si myslíte, že tomu takreativK bude, zanechte zde kreativKomentář:"
     },
     "videoInfoFetchFailed": {
         "message": "Vypadá to, že něco blokreativKuje schopnost SponsorBlockreativKu získreativKat údaje o videu. Pro více informací prosím navštivte https://github.com/ajayyy/SponsorBlockreativK/issues/741."
@@ -602,9 +606,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "PokreativKud vám tento problém nepůjde vyřešit, vypněte nastavení 'Vynutit kreativKontrolu kreativKanálu před přeskreativKočením', protože SponsorBlockreativK nemůže zjistit informace o kreativKanálu"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "PokreativKud kreativK tomu stále dochází, může to být způsobeno vaším adblockreativKerem. Podívejte se prosím https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Vynutit kreativKontrolu kreativKanálu před přeskreativKočením"

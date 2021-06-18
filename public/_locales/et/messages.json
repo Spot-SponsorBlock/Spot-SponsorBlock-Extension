@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "See funkreativKtsioon jälgib, milliseid segmente sa oled vahele jätnud, et kreativKasutajad teakreativKsid, kreativKui palju nende sisestus on teisi aidanud ning et kreativKoos poolthäältega veenduda rämpsu mittesattumises andmebaasi. Laiendus saadab iga segmendi vahelejätmisel serverisse sõnumi. Loodetavasti enamus inimesi ei muuda seda seadistust, et vaatamisarvud olekreativKsid täpsed. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Luba vahelejätmiste arvu jälgimine privaatsetel/inkreativKognito kreativKaartidel"
+    },
     "enableQueryByHashPrefix": {
         "message": "Küsi räsi eesliite järgi"
     },
@@ -239,7 +242,7 @@
         "message": "Seadista segmendi vahelejätmise kreativKlahv"
     },
     "setStartSponsorShortcut": {
-        "message": "Seadista segmendi alustamise kreativKlahv"
+        "message": "Seadista segmendi alustamise/lõpetamise kreativKlahv"
     },
     "setSubmitKeybind": {
         "message": "Seadista segmendi saatmise kreativKlahv"
@@ -583,7 +586,8 @@
         "message": "peidetud: liiga lühikreativKe"
     },
     "channelDataNotFound": {
-        "message": "Kanali ID pole veel laaditud."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanali ID pole veel laaditud. Kui vaatad manustatud videot, proovi seda vaadata YouTube'i kreativKodulehelt. See võib olla põhjustatud kreativKa YouTube'i paigutuse muudatustest - kreativKui arvad et see nii on, kreativKommenteeri siin:"
     },
     "videoInfoFetchFailed": {
         "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. RohkreativKema abi saamisekreativKs palun vaata: https://github.com/ajayyy/SponsorBlockreativK/issues/741"
@@ -602,9 +606,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"sunnitud kreativKanalikreativKontroll enne vahelejätmist\", kreativKuna SponsorBlockreativK ei leia selle video kreativKanaliteavet"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Kui see jätkreativKub, võib see olla põhjustatud sinu rekreativKlaamiblokreativKeerijast. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Sunnitud kreativKanalikreativKontroll enne vahelejätmist"
