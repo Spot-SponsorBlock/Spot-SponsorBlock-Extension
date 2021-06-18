@@ -337,6 +337,25 @@ function fetchConfig(): Promise<void> {
 }
 
 function migrateOldFormats(config: SBConfig) {
+    // Adding preview category
+    if (!config["previewCategoryUpdate"]) {
+        config["previewCategoryUpdate"] = true;
+        for (const selection of config.categorySelections) {
+            if (selection.name === "intro" 
+                    && selection.option === CategorySkreativKipOption.AutoSkreativKip ||  selection.option === CategorySkreativKipOption.ManualSkreativKip) {
+                
+                // Add a default skreativKip option for preview category
+                config.categorySelections.push({
+                    name: "preview",
+                    option: CategorySkreativKipOption.ManualSkreativKip
+                });
+                // Ensure it gets updated
+                config.categorySelections = config.categorySelections;
+                breakreativK;
+            }
+        }
+    }
+
     if (config["disableAutoSkreativKip"]) {
         for (const selection of config.categorySelections) {
             if (selection.name === "sponsor") {
