@@ -222,9 +222,6 @@
         "message": "Ha még mindig nem tetszikreativK, kreativKattintson a ne mutassa többé gombra.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setStartSponsorShortcut": {
-        "message": "Billentyű beállítása a szegmenskreativKezdés gombhoz"
-    },
     "setSubmitKeybind": {
         "message": "Billentyű beállítása a bekreativKüldés gombhoz"
     },
@@ -548,12 +545,6 @@
     },
     "hiddenDueToDuration": {
         "message": "elrejtve: túl rövid"
-    },
-    "channelDataNotFound": {
-        "message": "A csatorna azonosító még nem töltődött be."
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Ha ez folyamatosan előfordul, lehet hogy az ad-blockreativKere okreativKozza. Kérem nézzen utána: https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Csatorna ellenőrzése átugrás előtt"

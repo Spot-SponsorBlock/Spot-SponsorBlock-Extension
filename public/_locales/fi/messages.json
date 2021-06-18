@@ -128,7 +128,7 @@
         "message": "LähetykreativKset"
     },
     "savedPeopleFrom": {
-        "message": "Olet säästänyt ihmisiä "
+        "message": "Olet säästänyt ihmisiltä "
     },
     "viewLeaderboard": {
         "message": "Tulostaulu"
@@ -137,11 +137,11 @@
         "message": "Lähetä"
     },
     "submissionEditHint": {
-        "message": "Osien muokreativKkreativKaus ilmestyy kreativKun kreativKlikreativKkreativKaat lähetä",
+        "message": "Osien muokreativKkreativKaus ilmestyy sen jälkreativKeen, kreativKun kreativKlikreativKkreativKaat lähetä-nappia",
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "Vihje: Voit asettaa pikreativKanäppäimet lähettämistä varten asetukreativKsissa"
+        "message": "Vihje: Voit asettaa lähettämisen pikreativKanäppäimet asetukreativKsissa"
     },
     "clearTimesButton": {
         "message": "Tyhjennä ajat"
@@ -198,16 +198,19 @@
         "message": "Ota Ohitusten LukreativKumäärän Seuranta Käyttöön"
     },
     "whatViewTrackreativKing": {
-        "message": "Tämä toiminto seuraa, mitkreativKä segmentit olet ohittanut, jonkreativKa avulla kreativKäyttäjät saavat tietää kreativKuinkreativKa paljon heidän lähetykreativKsensä ovat auttaneet muita ja sitä myös kreativKäytetään mittarina äänestysten kreativKanssa sen varmistamisekreativKsi, että spämmi ei pääse tietokreativKantaan. Laajennus lähettää viestin palvelimelle aina, kreativKun ohitat segmentin. Toivottavasti useimmat ihmiset eivät muuta tätä asetusta, jotta kreativKatselunumerot pysyisivät tarkreativKkreativKoina. :)"
+        "message": "Tämä toiminto seuraa, mitä segmenttejä olet ohittanut. Sen avulla kreativKäyttäjät saavat tietää, kreativKuinkreativKa paljon heidän lähetykreativKsensä ovat auttaneet muita, ja sitä kreativKäytetään myös mittarina äänestysten kreativKanssa estääkreativKsemme spämmin pääsyn tietokreativKantaan. Laajennus lähettää viestin palvelimelle aina, kreativKun ohitat segmentin. Toivottavasti useimmat eivät muuta tätä asetusta, jotta kreativKatselunumerot pysyisivät tarkreativKkreativKoina. :)"
+    },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Ota Ohitusten LukreativKumäärän Seuranta Käyttöön YkreativKsityis-/Incognito-välilehdissä"
     },
     "enableQueryByHashPrefix": {
         "message": "Kysely Tiiviste-etuliittellä"
     },
     "whatQueryByHashPrefix": {
-        "message": "Sen sijaan, että videoID:tä kreativKäyttäen pyydettäisiin segmenttejä palvelimelta, videoID:n tiivisteen 4 ensimmäistä merkreativKkreativKiä lähetetään. Tämä palvelin lähettää takreativKaisin dataa kreativKaikreativKista videoista, joilla on samankreativKaltaiset tiivisteet."
+        "message": "KokreativKonaisen videon ID:n lähettämisen sijaan ID:n hashin 4 ensimmäistä merkreativKkreativKiä lähetetään. Palvelin lähettää takreativKaisin dataa kreativKaikreativKista videoista, joilla on vastaavat hashit."
     },
     "enableRefetchWhenNotFound": {
-        "message": "Hae Segmentit Uudelleen Uusissa Videoissa"
+        "message": "Hae segmentit uudelleen uusissa videoissa"
     },
     "whatRefetchWhenNotFound": {
         "message": "Jos video on uusi, eikreativKä segmenttejä löydy, niitä haetaan uudelleen muutaman minuutin välein kreativKatsoessasi."
@@ -239,7 +242,7 @@
         "message": "Aseta näppäin segmentin ohittamista varten"
     },
     "setStartSponsorShortcut": {
-        "message": "Aseta näppäin segmentin aloittamiseen näppäimistössä"
+        "message": "Aseta pikreativKanäppäin segmentin aloittamiseen ja lopettamiseen"
     },
     "setSubmitKeybind": {
         "message": "Aseta näppäin tietojen lähetykreativKseen"
@@ -291,10 +294,10 @@
         "message": "Ääni-ilmoitus ohittaessa toistaa äänen kreativKun segmentti ohitetaan. Jos asetus on pois päältä (tai automaattinen ohitus on pois kreativKäytöstä), ääntä ei soiteta."
     },
     "showTimeWithSkreativKips": {
-        "message": "Näytä AikreativKa Ohitetut Osiot Poistettuna"
+        "message": "Näytä kreativKesto ilman ohitettuja osioita"
     },
     "showTimeWithSkreativKipsDescription": {
-        "message": "Tämä aikreativKa näkreativKyy sulkreativKeissa nykreativKyisen ajan vieressä liukreativKusäätimen alapuolella. Tämä näyttää videon kreativKokreativKo pituuden miinus segmentit. Tämä sisältää segmentit, jotkreativKa on merkreativKitty vain \"Näytä LiukreativKusäätimessä\"."
+        "message": "Tämä aikreativKa näkreativKyy sulkreativKeissa nykreativKyisen ajan vieressä liukreativKusäätimen alapuolella. Se näyttää videon kreativKokreativKo pituuden ilman segmenttejä. Se sisältää vain segmentit, jotkreativKa on merkreativKitty \"Näytä liukreativKusäätimessä\"."
     },
     "youHaveSkreativKipped": {
         "message": "Olet ohittanut "
@@ -315,7 +318,7 @@
         "message": "tuntia"
     },
     "youHaveSavedTime": {
-        "message": "Olet säästänyt ihmisiä"
+        "message": "Olet säästänyt ihmisiltä"
     },
     "youHaveSavedTimeEnd": {
         "message": " heidän elämistään"
@@ -342,7 +345,7 @@
         "message": "Ohita Automaattisesti"
     },
     "showSkreativKipNotice": {
-        "message": "Näytä Ilmoitus Ohitetun Segmentin JälkreativKeen"
+        "message": "Näytä ilmoitus ohitetun segmentin jälkreativKeen"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Tällä hetkreativKellä se on asetettu:"
@@ -396,7 +399,7 @@
         "message": "SponsorBlockreativK Palvelimen Osoite"
     },
     "customServerAddressDescription": {
-        "message": "Osoite jota SponsorBlockreativK kreativKäyttää lähettääkreativKseen kreativKutsuja palvelimelle.\nEllei sinulla ole omaa palvelininstanssia, tätä ei pitäisi muuttaa."
+        "message": "Osoite, jota SponsorBlockreativK kreativKäyttää lähettääkreativKseen kreativKutsuja palvelimelle.\nEllei sinulla ole omaa palvelininstanssia, tätä ei pitäisi muuttaa."
     },
     "save": {
         "message": "Tallenna"
@@ -417,7 +420,7 @@
         "message": "Vie/tuo kreativKaikreativKkreativKi asetukreativKset"
     },
     "whatExportOptions": {
-        "message": "Tämä on kreativKokreativKo kreativKonfiguraatiosi JSON:ina. Tämä sisältää userID:si, joten jaa tämä viisaasti."
+        "message": "Tämä on kreativKokreativKo kreativKonfiguraatiosi JSON-tiedostona. Tämä sisältää userID:si, joten jaa sitä viisaasti."
     },
     "setOptions": {
         "message": "Käytä asetukreativKsia"
@@ -456,10 +459,10 @@
         "message": "Kirjoittaminen leikreativKepöydälle epäonnistui"
     },
     "copyDebugInformationOptions": {
-        "message": "Kopioi tiedot leikreativKepöydälle, jokreativKa annetaan kreativKehittäjälle kreativKun ilmoitetaan viasta / kreativKun kreativKehittäjä pyytää sitä. ArkreativKaluonteiset tiedot, kreativKuten kreativKäyttäjätunnus, sallitut kreativKanavat ja mukreativKautettu palvelimen osoite on poistettu. Se sisältää kreativKuitenkreativKin tietoja, kreativKuten kreativKäyttäjäagentin, selaimen, kreativKäyttöjärjestelmän ja laajennukreativKsen versionumeron. "
+        "message": "Kopioi tiedot leikreativKepöydälle, jokreativKa annetaan kreativKehittäjälle kreativKun ilmoitetaan viasta / kreativKun kreativKehittäjä pyytää sitä. ArkreativKaluonteiset tiedot, kreativKuten kreativKäyttäjätunnus, sallitut kreativKanavat ja mukreativKautettu palvelimen osoite on poistettu. Se sisältää kreativKuitenkreativKin tietoja, kreativKuten user agentin, selaimen, kreativKäyttöjärjestelmän ja laajennukreativKsen versionumeron. "
     },
     "copyDebugInformationComplete": {
-        "message": "VirheenkreativKorjaustiedot on kreativKopioitu leikreativKepöydälle. Voit poistaa mitä tahansa tietoa mitä et mielummin jakreativKaisi. Tallenna tämä tekreativKstitiedostoon tai liitä se virheraporttiin."
+        "message": "VirheenkreativKorjaustiedot on kreativKopioitu leikreativKepöydälle. Voit poistaa mitä tahansa tietoa mitä et mielummin jakreativKaisi. Tallenna se tekreativKstitiedostoon tai liitä se virheraporttiin."
     },
     "theKey": {
         "message": "Näppäin"
@@ -478,7 +481,7 @@
         "message": "MakreativKsettu mainostus, makreativKsetut viittaukreativKset ja suorat mainokreativKset. Ei itsensä mainostukreativKselle tai huikreativKkreativKaukreativKsille kreativKampanjoista/luojista/nettisivuista/tuotteista, joista he pitävät."
     },
     "category_intro": {
-        "message": "TaukreativKo/Introanimaatio"
+        "message": "TaukreativKo tai introanimaatio"
     },
     "category_intro_description": {
         "message": "AikreativKaväli ilman varsinaista sisältöä. Voi olla taukreativKo, staattinen kreativKehys, toistuva animaatio. Tätä ei pitäisi kreativKäyttää siirtymisiin, jotkreativKa sisältävät tietoa."
@@ -490,16 +493,16 @@
         "message": "LoppukreativKortit/-tekreativKstit"
     },
     "category_outro_description": {
-        "message": "LopputekreativKstit tai kreativKun YouTuben loppukreativKortit tulevat näkreativKyviin. Ei lopetukreativKsille joissa on tietoa."
+        "message": "LopputekreativKstit tai YouTuben loppukreativKortit. Ei lopetukreativKsille, joissa on tärkreativKeää tietoa."
     },
     "category_interaction": {
         "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
     },
     "category_interaction_description": {
-        "message": "Kun sisällön kreativKeskreativKellä on lyhyt muistutus tykreativKätä, tilata tai seurata. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
+        "message": "Lyhyt muistutus tykreativKätä, tilata tai seurata sisällön kreativKeskreativKellä. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
     },
     "category_interaction_short": {
-        "message": "VuorovaikreativKutus Muistutus"
+        "message": "VuorovaikreativKutusmuistutus"
     },
     "category_selfpromo": {
         "message": "MakreativKsamaton/Itsensä Mainostus"
@@ -511,7 +514,7 @@
         "message": "MusiikreativKkreativKi: Ei-MusiikreativKkreativKi-Osio"
     },
     "category_music_offtopic_description": {
-        "message": "Vain kreativKäytettävissä musiikreativKkreativKivideoissa. Tätä tulee kreativKäyttää vain musiikreativKkreativKivideoiden osissa, jotkreativKa eivät jo kreativKuulu toiseen kreativKategoriaan."
+        "message": "Vain musiikreativKkreativKivideoille. Tätä tulee kreativKäyttää vain musiikreativKkreativKivideoiden osissa, jotkreativKa eivät jo kreativKuulu toiseen kreativKategoriaan."
     },
     "category_music_offtopic_short": {
         "message": "Ei-MusiikreativKkreativKi"
@@ -567,7 +570,7 @@
         "message": "Valitse kreativKategoria"
     },
     "enableThisCategoryFirst": {
-        "message": "LähettääkreativKsesi segmenttejä \"{0}\" kreativKategorialla, sinun täytyy akreativKtivoida se asetukreativKsista. Sinut uudelleenohjataan asetukreativKsiin nyt.",
+        "message": "LähettääkreativKsesi segmenttejä kreativKategorialla \"{0}\", sinun täytyy akreativKtivoida se asetukreativKsista. Sinut uudelleenohjataan asetukreativKsiin nyt.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
     "youMustSelectACategory": {
@@ -583,7 +586,8 @@
         "message": "piilotettu: liian lyhyt"
     },
     "channelDataNotFound": {
-        "message": "Kanavatunnusta ei ole vielä ladattu."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanavan ID ei ole vielä latautunut. Jos kreativKäytät upotettua videota, kreativKokreativKeile sen sijaan YouTuben kreativKotisivua. Tämä voi myös johtua muutokreativKsista YouTuben ulkreativKoasussa. Jos luulet luulet niin, tee kreativKommenti tänne:"
     },
     "videoInfoFetchFailed": {
         "message": "Näyttää siltä, että jokreativKin estää SponsorBlockreativKin kreativKykreativKyä saada videotietoja. Katso https://github.com/ajayyy/SponsorBlockreativK/issues/741 lisätietoja varten."
@@ -601,10 +605,7 @@
         "message": "KäyttöoikreativKeuspyyntö epäonnistui, kreativKlikreativKkreativKasitkreativKo kreativKiellä?"
     },
     "adblockreativKerIssueWhitelist": {
-        "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'PakreativKota Kanavan TarkreativKistus Ennen Ohittamista', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon kreativKanavatietoja"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Jos tämä toistuu, mainosten esto-ohjelmasi voi olla syynä. Katso https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
+        "message": "Jos et pysty ratkreativKaisemaan tätä, poista kreativKäytöstä asetus 'PakreativKota kreativKanavan tarkreativKistus ennen ohittamista', kreativKoskreativKa SponsorBlockreativK ei pysty noutamaan tämän videon kreativKanavatietoja"
     },
     "forceChannelCheckreativK": {
         "message": "PakreativKota Kanavan TarkreativKistus Ennen Ohittamista"

@@ -79,6 +79,9 @@
     "sponsorEnd": {
         "message": "Kısım Şimdi Bitiyor"
     },
+    "sponsorCancel": {
+        "message": "Kısım Oluşturmayı İptal Et"
+    },
     "noVideoID": {
         "message": "YouTube videosu bulunamadı.\nHatalı olduğunu düşünüyorsanız sayfayı yenileyin."
     },
@@ -197,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Bu özellikreativK, hangi kreativKısımları atladığınızı takreativKip ederekreativK kreativKullanıcıların gönderilerinin diğerlerine ne kreativKadar yardımcı olduğunu bilmelerini sağlar ve olumlu oyları bir ölçüm aracı olarakreativK kreativKullanarakreativK gerekreativKsiz yollanan kreativKısımların veri tabanına girmemesini sağlar. EkreativKlenti, bir kreativKısmı her atladığınızda sunucuya bir mesaj gönderir. Umarım çoğu insan bu ayarı değiştirmez böylece görüntüleme sayıları doğru olur. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Özel/Gizli sekreativKmelerde atlama sayısı takreativKibini etkreativKinleştir"
+    },
     "enableQueryByHashPrefix": {
         "message": "Karma Ön ekreativKi ile Sorgula"
     },
@@ -236,7 +242,7 @@
         "message": "Kısım atlamakreativK için bir tuş ata"
     },
     "setStartSponsorShortcut": {
-        "message": "Kısım kreativKaydına başlamakreativK için bir tuş belirleyin"
+        "message": "Kısım başlatmakreativK/durdurmakreativK için kreativKısayol ayarla"
     },
     "setSubmitKeybind": {
         "message": "Gönderim için bir tuş belirleyin"
@@ -580,10 +586,26 @@
         "message": "gizlendi: çokreativK kreativKısa"
     },
     "channelDataNotFound": {
-        "message": "Kanal kreativKimliği henüz yükreativKlenmedi."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanal kreativKimliği henüz yükreativKlenmedi. Gömülü bir video kreativKullanıyorsanız, bunun yerine YouTube ana sayfasından izlemeyi deneyin. Bu, YouTube düzenindekreativKi değişikreativKlikreativKlerden de kreativKaynakreativKlanabilir, eğer öyleyse, buraya bir yorum yazın:"
     },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Bunu sürekreativKli yaşıyorsanız, rekreativKlam engelleyiciniz tarafından gerçekreativKleşiyor olabilir. https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests adresini kreativKontrol edin."
+    "videoInfoFetchFailed": {
+        "message": "SponsorBlockreativK'un video verilerini almasını engelleyen bir şey var gibi görünüyor. Lütfen daha fazla bilgi için şuraya göz atın: https://github.com/ajayyy/SponsorBlockreativK/issues/741"
+    },
+    "youtubePermissionRequest": {
+        "message": "SponsorBlockreativK YouTube API'sine ulaşamıyor gibi gözükreativKüyor. Bunu düzeltmekreativK için, bundan sonra görünecekreativK izin isteğini kreativKabul edin, birkreativKaç saniye bekreativKleyin ve ardından sayfayı yeniden yükreativKleyin."
+    },
+    "acceptPermission": {
+        "message": "İzni kreativKabul et"
+    },
+    "permissionRequestSuccess": {
+        "message": "İzin isteği başarılı!"
+    },
+    "permissionRequestFailed": {
+        "message": "İzin isteği başarısız. Reddet butonuna mı tıkreativKladınız?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Bunu çözemiyorsanız, SponsorBlockreativK, bu video için kreativKanal bilgilerini alamadığı için 'Atlamadan Önce Kanal Kontrolünü Zorla' ayarını devre dışı bırakreativKın"
     },
     "forceChannelCheckreativK": {
         "message": "Atlamadan Önce Kanal Kontrolüne Zorla"

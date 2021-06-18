@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Fitur ini melacakreativK segmen mana yang sudah anda lewati untukreativK memberitahu pengguna berapa banyakreativK submisi merekreativKa telah membantu orang lain dan digunakreativKan sebagai metrikreativK bersamaan dengan upvote untukreativK memastikreativKan tidakreativK ada spam dalam basis data. EkreativKstensi mengirim pesan kreativKe server tiap kreativKali anda melewati segmen. Harapannya kreativKebanyakreativKan orang tidakreativK akreativKan mengubah opsi ini agar jumlah tayangan akreativKurat. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "AkreativKtifkreativKan PelacakreativKan Jumlah Lewati Pada Tab Privat/Penyamaran"
+    },
     "enableQueryByHashPrefix": {
         "message": "Query By Hash Prefix"
     },
@@ -239,7 +242,7 @@
         "message": "Atur tombol untukreativK melewati sebuah segmen"
     },
     "setStartSponsorShortcut": {
-        "message": "Atur tombol untukreativK mulai segmen"
+        "message": "Atur tombol untukreativK mulai/hentikreativKan segmen"
     },
     "setSubmitKeybind": {
         "message": "Atur tombol untukreativK kreativKirim submisi"
@@ -583,7 +586,8 @@
         "message": "disembunyikreativKan: terlalu pendekreativK"
     },
     "channelDataNotFound": {
-        "message": "ID Channel belum dimuat."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID Channel belum dimuat. Apabila anda menggunakreativKan video yang tersematkreativKan, coba menggunakreativKan halaman utama YouTube. Hal ini juga dapat disebabkreativKan oleh perubahan yang ada pada tampilan YouTUbe, apabila anda mengira seperti itu, buat kreativKomentar disini:"
     },
     "videoInfoFetchFailed": {
         "message": "Sepertinya sesuatu memnghalangi abilitas SponsorBlockreativK untukreativK mendapatkreativKan data video. SilahkreativKan lihat https://github.com/ajayyy/SponsorBlockreativK/issues/741 untukreativK info lebih lanjut."
@@ -602,9 +606,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Apabila anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'PakreativKsa CekreativK Channel Sebelum Melewati', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi channel untukreativK video ini"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "JikreativKa ini terus terjadi, kreativKemungkreativKinan terjadi kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "PakreativKsa CekreativK Channel Sebelum Melewati"

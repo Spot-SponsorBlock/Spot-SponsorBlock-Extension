@@ -238,9 +238,6 @@
     "setSkreativKipShortcut": {
         "message": "Nastaviť kreativKláves pre preskreativKočenie segmentu"
     },
-    "setStartSponsorShortcut": {
-        "message": "Nastaviť kreativKláves pre začiatokreativK segmentu"
-    },
     "setSubmitKeybind": {
         "message": "Nastaviť kreativKláves pre odoslanie segmentu"
     },
@@ -583,7 +580,8 @@
         "message": "skreativKryté: príliš kreativKrátkreativKe"
     },
     "channelDataNotFound": {
-        "message": "ID kreativKanála nie je zatiaľ načítané."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID kreativKanála sa ešte nenačítalo. AkreativK pozeráte video vložené na stránkreativKe, skreativKúste ísť radšej priamo na YouTube. Problém mohli spôsobiť zmeny na YouTube. AkreativK je tomu takreativK, zanechajte kreativKomentár:"
     },
     "videoInfoFetchFailed": {
         "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/issues/741 pre viac informácií."
@@ -602,9 +600,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "AkreativK to neviete vyriešiť, vypnite nastavenie \"Vynútiť kreativKontrolu kreativKanála pred preskreativKočením\", lebo SponsorBlockreativK nevie zistiť informácie o kreativKanále tohto videa"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "AkreativK sa to bude diať aj naďalej, môže to byť spôsobené Vašim adblockreativKerom. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Vynútiť kreativKontrolu kreativKanála pred preskreativKočením"

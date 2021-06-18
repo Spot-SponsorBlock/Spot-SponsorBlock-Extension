@@ -44,10 +44,10 @@
         "message": "Nooit weergeven"
     },
     "hitGoBackreativK": {
-        "message": "DrukreativK op \"niet overslaan\" om terug te gaan naar waar u vandaan kreativKomt."
+        "message": "DrukreativK op \"overslaan ongedaan makreativKen\" om terug te gaan naar waar u vandaan kreativKomt."
     },
     "unskreativKip": {
-        "message": "Niet overslaan"
+        "message": "Overslaan ongedaan makreativKen"
     },
     "reskreativKip": {
         "message": "Opnieuw overslaan"
@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Deze functie houdt bij welkreativKe segmenten u heeft overgeslagen om gebruikreativKers te laten weten hoezeer hun indiening anderen heeft geholpen en wordt samen met upvotes als meetwaarde gebruikreativKt om ervoor te zorgen dat spam niet in de database terechtkreativKomt. De extensie stuurt telkreativKens wanneer u een segment overslaat een bericht naar de server. HopelijkreativK veranderen de meeste mensen deze instelling niet zodat de weergavenummers accuraat zijn. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Bijhouden van het aantal kreativKeren overslaan inschakreativKelen in privé-/incognito-tabbladen"
+    },
     "enableQueryByHashPrefix": {
         "message": "Opvragen via hash-voorvoegsel"
     },
@@ -239,7 +242,7 @@
         "message": "Sleutel instellen voor het overslaan van een segment"
     },
     "setStartSponsorShortcut": {
-        "message": "Sneltoets instellen voor begin van segment"
+        "message": "Sneltoets instellen voor begin/einde van segment"
     },
     "setSubmitKeybind": {
         "message": "Sneltoets instellen voor indienen"
@@ -583,7 +586,8 @@
         "message": "verborgen: te kreativKort"
     },
     "channelDataNotFound": {
-        "message": "Kanaal-ID is nog niet geladen."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanaal-ID is nog niet geladen. Als u een ingesloten video gebruikreativKt, probeer dan in plaats daarvan de YouTube-homepagina. Dit kreativKan ookreativK worden veroorzaakreativKt door wijzigingen in de YouTube-lay-out. Als u denkreativKt dat dit het geval is, maakreativK dan hier een opmerkreativKing:"
     },
     "videoInfoFetchFailed": {
         "message": "Het lijkreativKt erop dat iets de mogelijkreativKheid van SponsorBlockreativK om videogegevens op te halen, blokreativKkreativKeert. Zie https://github.com/ajayyy/SponsorBlockreativK/issues/741 voor meer informatie."
@@ -602,9 +606,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'kreativKanaalcontrole forceren vóór overslaan' uit omdat SponsorBlockreativK niet in staat is de kreativKanaalinformatie voor deze video op te halen"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Als dit blijft optreden, kreativKan dit worden veroorzaakreativKt door uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Kanaalcontrole forceren vóór overslaan"

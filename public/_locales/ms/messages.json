@@ -235,9 +235,6 @@
     "setSkreativKipShortcut": {
         "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
     },
-    "setStartSponsorShortcut": {
-        "message": "TetapkreativKan kreativKunci untukreativK kreativKeybind segmen permulaan"
-    },
     "setSubmitKeybind": {
         "message": "TetapkreativKan kreativKunci untukreativK pengikreativKat kreativKunci penyerahan"
     },
@@ -578,12 +575,6 @@
     },
     "hiddenDueToDuration": {
         "message": "tersembunyi: terlalu pendekreativK"
-    },
-    "channelDataNotFound": {
-        "message": "ID Saluran belum dimuat."
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "SekreativKiranya ini terus berlakreativKu, ini mungkreativKin disebabkreativKan oleh penyekreativKat ikreativKlan anda. Sila perikreativKsa https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "PakreativKai PemerikreativKsaan Saluran Sebelum MelangkreativKau"

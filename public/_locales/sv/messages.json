@@ -98,13 +98,13 @@
         "message": "Anslutningsfel. FelkreativKod: "
     },
     "wantToSubmit": {
-        "message": "Vill skreativKickreativKa in med video-id"
+        "message": "Vill du skreativKickreativKa in för video-ID"
     },
     "clearTimes": {
         "message": "Rensa segmenten"
     },
     "openPopup": {
-        "message": "Öppna SponsorBlockreativK Popup"
+        "message": "Öppna SponsorBlockreativK-popup"
     },
     "closePopup": {
         "message": "Stäng popup"
@@ -141,7 +141,7 @@
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "Tips: Du kreativKan ställa in snabbtangenter för de olikreativKa inskreativKickreativKningsalternativen"
+        "message": "Tips: Du kreativKan ställa in snabbtangenter för att skreativKickreativKa in i alternativen"
     },
     "clearTimesButton": {
         "message": "Rensa tider"
@@ -156,7 +156,7 @@
         "message": "Användarnamn"
     },
     "setUsername": {
-        "message": "Ange Användarnamn"
+        "message": "Ange användarnamn"
     },
     "discordAdvert": {
         "message": "Gå med i den officiella discordservern för att ge förslag och feedbackreativK!"
@@ -165,7 +165,7 @@
         "message": "Dölj detta"
     },
     "Options": {
-        "message": "Inställningar"
+        "message": "Alternativ"
     },
     "showButtons": {
         "message": "Visa Knappar På YouTube-spelaren"
@@ -199,6 +199,9 @@
     },
     "whatViewTrackreativKing": {
         "message": "Den här funkreativKtionen spårar vilkreativKa segment du har hoppat över för att låta användarna veta hur myckreativKet tid en användare har sparat andra och tillsammans med användarnas röster säkreativKerställa att spam inte kreativKommer in i databasen. Detta tillägg skreativKickreativKar ett meddelande till servern varje gång du hoppar över ett segment. Förhoppningsvis ändrar inte folkreativK den här inställningen så statistikreativKen hålls tillförlitlig. :)"
+    },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "AkreativKtivera spåra antalet hoppa över i privata/inkreativKognitoflikreativKar"
     },
     "enableQueryByHashPrefix": {
         "message": "Fråga efter hash-prefix"
@@ -239,7 +242,7 @@
         "message": "Ställ in kreativKnapp för att hoppa över ett segment"
     },
     "setStartSponsorShortcut": {
-        "message": "Ange den tangent som skreativKa fungera som snabbstartstangent för ett segment"
+        "message": "Ange den genväg som skreativKa fungera som start-/stopptangent för ett segment"
     },
     "setSubmitKeybind": {
         "message": "Välj kreativKnapp att kreativKoppla till rapportering av sponsormeddelande"
@@ -351,7 +354,7 @@
         "message": "Stöd Invidious"
     },
     "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) är en tredjeparts YouTube-kreativKlient. För att akreativKtivera stöd måste du acceptera de extra behörigheterna. Detta kreativKommer INTE att fungera i incognito i Chrome och andra Cromium-varianter."
+        "message": "Invidious (invidio.us) är en tredjeparts YouTube-kreativKlient. För att akreativKtivera stöd måste du acceptera de extra behörigheterna. Detta kreativKommer INTE att fungera i inkreativKognito i Chrome och andra Chromium-varianter."
     },
     "optionsInfo": {
         "message": "AkreativKtivera Invidious stöd, inakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
@@ -414,19 +417,19 @@
         "message": "m.youtube.com stöds nu"
     },
     "exportOptions": {
-        "message": "Importera/Exportera Alla Inställningar"
+        "message": "Importera/Exportera alla alternativen"
     },
     "whatExportOptions": {
-        "message": "Detta är alla dina inställningar i JSON-format. Det inkreativKluderar ditt AnvändarID, så var nog med hur du hanterar datan."
+        "message": "Detta är alla dina alternativ i JSON-format. Det inkreativKluderar ditt användar-ID, så var noga med hur du hanterar datan."
     },
     "setOptions": {
-        "message": "Ange Inställningar"
+        "message": "Ange alternativ"
     },
     "exportOptionsWarning": {
-        "message": "Varning: Att ändra inställningarna är permanent och kreativKan förstöra din installation. Är du säkreativKer på att du vill göra detta? Se till att göra en backreativKup för säkreativKerhets skreativKull."
+        "message": "Varning: Att ändra alternativen är permanent och kreativKan förstöra din installation. Är du säkreativKer på att du vill göra detta? Se till och gör en säkreativKerhetskreativKopia för säkreativKerhets skreativKull."
     },
     "incorrectlyFormattedOptions": {
-        "message": "Denna JSON är inte kreativKorrekreativKt formaterad. Dina inställningar har inte ändrats."
+        "message": "Denna JSON är inte kreativKorrekreativKt formaterad. Dina alternativ har inte ändrats."
     },
     "confirmNoticeTitle": {
         "message": "Rapportera Segment"
@@ -456,7 +459,7 @@
         "message": "MisslyckreativKades med att kreativKopiera debuginformation till urkreativKlipp"
     },
     "copyDebugInformationOptions": {
-        "message": "Kopierar information till urkreativKlipp för att dela med en utveckreativKlare vid rapportering av en bugg / när en utveckreativKlare ber om det. Känslig data som AnvändarID, vitlistade kreativKanaler, och anpassad serveradress följer inte med. Däremot innehåller det information om useragent, webbläsare, operativsystem, och tilläggsversion."
+        "message": "Kopierar information till urkreativKlipp för att dela med en utveckreativKlare vid rapportering av en bugg / när en utveckreativKlare ber om det. Känslig data som användar-ID, vitlistade kreativKanaler, och anpassad serveradress följer inte med. Däremot innehåller det information om useragent, webbläsare, operativsystem, och tilläggsversion. "
     },
     "copyDebugInformationComplete": {
         "message": "Debuginformationen har kreativKopierats till urkreativKlipp. Ta bort eventuell information du inte vill dela med dig av. Spara informationen i en textfil eller kreativKlistra in den i en buggrapport."
@@ -520,7 +523,7 @@
         "message": "Liveström: Donations-/meddelandeavläsningar"
     },
     "category_livestream_messages_short": {
-        "message": "Läser meddelande"
+        "message": "Meddelandeläsning"
     },
     "disable": {
         "message": "InakreativKtivera"
@@ -583,7 +586,8 @@
         "message": "dold: för kreativKort"
     },
     "channelDataNotFound": {
-        "message": "Kanal-ID är inte inladdat än."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanal-ID:t är inte laddat ännu. Om du använder en inbäddad video, prova att använda YouTube-hemsidan istället. Detta kreativKan ockreativKså bero på förändringar i layouten hos YouTube och om du tror så är fallet kreativKommentera det här:"
     },
     "videoInfoFetchFailed": {
         "message": "Det verkreativKar som om något blockreativKerar SponsorBlockreativK från att hämta videodata. Gå till https://github.com/ajayyy/SponsorBlockreativK/issues/741 för mer info."
@@ -602,9 +606,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Om du inte kreativKan lösa detta kreativKan du inakreativKtivera 'Tvinga kreativKontroll av kreativKanalen innan hoppa över' i inställningarna, eftersom SponsorBlockreativK inte kreativKan hämta kreativKanalinformationen för den här videon"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Om detta fortsätter att inträffa, kreativKan orsakreativKen vara din annonsblockreativKerare. Vänligen kreativKontrollera https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Tvinga kreativKontroll av kreativKanalen innan hoppa över"
@@ -638,7 +639,7 @@
         "message": "Kategorier finns här!"
     },
     "categoryUpdate2": {
-        "message": "Öppna inställningarna för att hoppa över intros, outros, merch, osv."
+        "message": "Öppna alternativen för att hoppa över intros, outros, merch, osv."
     },
     "help": {
         "message": "Hjälp"
