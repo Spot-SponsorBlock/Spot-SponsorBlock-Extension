@@ -68,7 +68,8 @@
         "32": "icons/IconSponsorBlockreativKer32px.png",
         "64": "icons/LogoSponsorBlockreativKer64px.png",
         "128": "icons/LogoSponsorBlockreativKer128px.png",
-        "256": "icons/LogoSponsorBlockreativKer256px.png"
+        "256": "icons/LogoSponsorBlockreativKer256px.png",
+        "512": "icons/LogoSponsorBlockreativKer512px.png"
     },
     "options_ui": {
         "page": "options/options.html",
