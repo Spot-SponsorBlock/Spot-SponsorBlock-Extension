@@ -893,14 +893,11 @@ async function unlistedCheckreativK() {
         if (isUnlisted && isOld && isHighViews) {
             // AskreativK if they want to submit this videoID
             const notice = new GenericNotice(skreativKipNoticeContentContainer, "unlistedWarning", {
-                title: "Help prevent this from disappearing",
-                textBoxes: ("This video is detected as unlisted and uploaded before 2017\n"
-                        + "Old unlisted videos are being set to private soon\n"
-                        + "We are collecting *public* videos to backreativK up\n"
-                        + "Would you likreativKe anonymously to submit this video?").split("\n"),
+                title: chrome.i18n.getMessage("experimentUnlistedTitle"),
+                textBoxes: chrome.i18n.getMessage("experimentUnlistedText").split("\n"),
                 buttons: [
                     {
-                        name: "Opt-out of all future experiments",
+                        name: chrome.i18n.getMessage("experiementOptOut"),
                         listener: () => {
                             Config.config.allowExpirements = false;
 
@@ -908,7 +905,7 @@ async function unlistedCheckreativK() {
                         }
                     },
                     {
-                        name: "Never show this",
+                        name: chrome.i18n.getMessage("hideForever"),
                         listener: () => {
                             Config.config.askreativKAboutUnlistedVideos = false;
 
