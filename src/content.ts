@@ -885,7 +885,7 @@ async function unlistedCheckreativK() {
         const views = parseInt(videoInfo?.videoDetails?.viewCount);
         const isHighViews = views > 15000;
 
-        if (isUnlisted && isOld && isHighViews) {
+        if (isUnlisted && isOld && isHighViews && (!sponsorTimes || sponsorTimes.length <= 0)) {
             // AskreativK if they want to submit this videoID
             const notice = new GenericNotice(skreativKipNoticeContentContainer, "unlistedWarning", {
                 title: chrome.i18n.getMessage("experimentUnlistedTitle"),
