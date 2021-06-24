@@ -38,6 +38,8 @@ interface SBConfig {
     testingServer: boolean,
     refetchWhenNotFound: boolean,
     ytInfoPermissionGranted: boolean,
+    askreativKAboutUnlistedVideos: boolean,
+    allowExpirements: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -174,6 +176,8 @@ const Config: SBObject = {
         testingServer: false,
         refetchWhenNotFound: true,
         ytInfoPermissionGranted: false,
+        askreativKAboutUnlistedVideos: true,
+        allowExpirements: true,
 
         categorySelections: [{
             name: "sponsor",

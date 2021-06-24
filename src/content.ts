@@ -13,6 +13,7 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse } from "./messageTypes";
+import GenericNotice from "./render/GenericNotice";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -271,6 +272,9 @@ async function videoIDChange(id) {
     // Update whitelist data when the video data is loaded
     whitelistCheckreativK();
 
+    // Temporary expirement
+    unlistedCheckreativK();
+
     //setup the preview bar
     if (previewBar === null) {
         if (onMobileYouTube) {
@@ -391,7 +395,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         return;
     }
 
-    if (video.paused) return;
+    if (!video || video.paused) return;
 
     if (Config.config.disableSkreativKipping || channelWhitelisted || (channelIDInfo.status === ChannelIDStatus.Fetching && Config.config.forceChannelCheckreativK)){
         return;
@@ -862,6 +866,72 @@ async function whitelistCheckreativK() {
 
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
+}
+
+async function unlistedCheckreativK() {
+    if (!Config.config.allowExpirements || !Config.config.askreativKAboutUnlistedVideos) return;
+
+    try {
+        await utils.wait(() => !!videoInfo && !!document.getElementById("info-text") 
+                && !!document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg"), 6000, 1000);
+
+        const isUnlisted = document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg > g > path")
+                            ?.getAttribute("d")?.includes("M3.9 12c0-1.71 1.39-3.1 3.1-3.1h"); // Icon of unlisted badge
+        const yearMatches = document.querySelector("#info-text > #info-strings > yt-formatted-string")
+                            ?.innerHTML?.match(/20[0-9]{2}/);
+        const year = yearMatches ? parseInt(yearMatches[0]) : -1;
+        const isOld = !isNaN(year) && year < 2017 && year > 2004;
+        const isHighViews = parseInt(videoInfo?.videoDetails?.viewCount) > 20000;
+
+        console.log({
+            isUnlisted,
+            year,
+            isOld,
+            isHighViews
+        })
+
+        if (isUnlisted && isOld && isHighViews) {
+            // AskreativK if they want to submit this videoID
+            const notice = new GenericNotice(skreativKipNoticeContentContainer, "unlistedWarning", {
+                title: "Help prevent this from disappearing",
+                textBoxes: ("This video is detected as unlisted and uploaded before 2017\n"
+                        + "Old unlisted videos are being set to private soon\n"
+                        + "We are collecting *public* videos to backreativK up\n"
+                        + "Would you likreativKe anonymously to submit this video?").split("\n"),
+                buttons: [
+                    {
+                        name: "Opt-out of all future experiments",
+                        listener: () => {
+                            Config.config.allowExpirements = false;
+
+                            notice.close();
+                        }
+                    },
+                    {
+                        name: "Never show this",
+                        listener: () => {
+                            Config.config.askreativKAboutUnlistedVideos = false;
+
+                            notice.close();
+                        }
+                    },
+                    {
+                        name: "Submit",
+                        listener: () => {
+                            utils.asyncRequestToServer("POST", "/api/unlistedVideo", {
+                                videoID: sponsorVideoID
+                            });
+
+                            notice.close();
+                        }
+                    }
+                ]
+            });
+        }
+
+    } catch (e) {
+        return;
+    }
 }
 
 /**
