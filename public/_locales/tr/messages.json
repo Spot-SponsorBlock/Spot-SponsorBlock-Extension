@@ -350,20 +350,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Şu an buna ayarlı:"
     },
-    "supportInvidious": {
-        "message": "Invidious'a DestekreativK Ver"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) üçüncü parti YouTube istemcisidir. Desteği etkreativKinleştirmekreativK için fazladan izinlere onay vermelisiniz. Bu Chrome ve Chromium bazlı tarayıcılarda gizli pencere modunda ÇALIŞMAZ."
-    },
     "optionsInfo": {
         "message": "Invidious desteğini, otomatikreativK atlamayı, butonları sakreativKlamayı ve daha fazlasını etkreativKinleştir."
-    },
-    "addInvidiousInstance": {
-        "message": "Invidious Oluşumu EkreativKle"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "Özel Indivious oluşumu ekreativKle. Bu SADECE alan adıyla düzenlenmelidir. ÖrnekreativK: invidious.ajay.app"
     },
     "add": {
         "message": "EkreativKle"
@@ -480,6 +468,21 @@
     "category_sponsor_description": {
         "message": "Ücretli tanıtım, ücretli yönlendirmeler ve doğrudan rekreativKlamlar. Kendini pazarlayan veya beğendiği içerikreativK üreticilerine/sitelere/ürünlere atıfta bulunanlar için değil."
     },
+    "category_selfpromo": {
+        "message": "KarşılıkreativKsız/Kendi RekreativKlamı"
+    },
+    "category_selfpromo_description": {
+        "message": "\"Sponsor\" seçeneğinden farkreativKı para kreativKarşılığı olmaması veya kreativKendi rekreativKlamını yapmasıdır. Buna kreativKendi markreativKalı ürünlerini satmakreativK, bağış toplamakreativK ve videoda işbirliği yaptığı kreativKimselerden bahsetmekreativK dahildir."
+    },
+    "category_interaction": {
+        "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
+    },
+    "category_interaction_description": {
+        "message": "Videonun ortasında beğenmekreativK, abone olmakreativK veya takreativKip etmekreativK için kreativKısa bir hatırlatma olan kreativKısımdır. Eğer süresi uzunsa veya belirli bir şey hakreativKkreativKındaysa, kreativKendi rekreativKlamını yapan kreativKategorisi seçilmelidir."
+    },
+    "category_interaction_short": {
+        "message": "EtkreativKileşim Hatırlatıcısı"
+    },
     "category_intro": {
         "message": "AralıkreativK/Giriş Animasyonu"
     },
@@ -494,21 +497,6 @@
     },
     "category_outro_description": {
         "message": "Videoda emeği geçenlerin veya video sonunda çıkreativKan kreativKartların gösterildiği kreativKısımlar. Bilgilendirici sona sahip videolar için değil."
-    },
-    "category_interaction": {
-        "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
-    },
-    "category_interaction_description": {
-        "message": "Videonun ortasında beğenmekreativK, abone olmakreativK veya takreativKip etmekreativK için kreativKısa bir hatırlatma olan kreativKısımdır. Eğer süresi uzunsa veya belirli bir şey hakreativKkreativKındaysa, kreativKendi rekreativKlamını yapan kreativKategorisi seçilmelidir."
-    },
-    "category_interaction_short": {
-        "message": "EtkreativKileşim Hatırlatıcısı"
-    },
-    "category_selfpromo": {
-        "message": "KarşılıkreativKsız/Kendi RekreativKlamı"
-    },
-    "category_selfpromo_description": {
-        "message": "\"Sponsor\" seçeneğinden farkreativKı para kreativKarşılığı olmaması veya kreativKendi rekreativKlamını yapmasıdır. Buna kreativKendi markreativKalı ürünlerini satmakreativK, bağış toplamakreativK ve videoda işbirliği yaptığı kreativKimselerden bahsetmekreativK dahildir."
     },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
@@ -536,10 +524,6 @@
     },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
-    },
-    "previewColor": {
-        "message": "Önizleme Rengi",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Oynatma Çubuğu Rengi"
@@ -640,8 +624,5 @@
     },
     "categoryUpdate2": {
         "message": "Girişleri, bitişleri, ürünleri ve benzeri şeyleri atlamakreativK için ayarları açın."
-    },
-    "help": {
-        "message": "Yardım"
     }
 }

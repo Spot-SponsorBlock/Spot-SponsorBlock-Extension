@@ -74,7 +74,7 @@
         "message": "Segmenttejä ei löytynyt"
     },
     "sponsorStart": {
-        "message": "Segmentti AlkreativKaa Nyt"
+        "message": "Segmentti alkreativKaa nyt"
     },
     "sponsorEnd": {
         "message": "Segmentti Päättyy Nyt"
@@ -242,7 +242,7 @@
         "message": "Aseta näppäin segmentin ohittamista varten"
     },
     "setStartSponsorShortcut": {
-        "message": "Aseta pikreativKanäppäin segmentin aloittamiseen ja lopettamiseen"
+        "message": "Aseta pikreativKanäppäin segmentin aloittamiseen/lopettamiseen"
     },
     "setSubmitKeybind": {
         "message": "Aseta näppäin tietojen lähetykreativKseen"
@@ -350,20 +350,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Tällä hetkreativKellä se on asetettu:"
     },
-    "supportInvidious": {
-        "message": "Tue Invidious:ta"
+    "supportOtherSites": {
+        "message": "Tue Kolmansien Osapuolien YouTube-sivustoja"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) on kreativKolmannen osapuolen YouTube-ohjelmisto. Jotta voit ottaa kreativKäyttöön tuen, sinun täytyy hyväkreativKsyä lisäkreativKäyttöoikreativKeudet. Tämä EI toimi incognitossa Chromessa ja muissa Chromiumin versioissa."
+    "supportOtherSitesDescription": {
+        "message": "Tue kreativKolmannen osapuolen YouTube-asiakreativKasohjelmia. Jotta voit ottaa kreativKäyttöön tuen, sinun täytyy hyväkreativKsyä lisäkreativKäyttöoikreativKeudet. Tämä EI toimi incognitossa Chromessa ja muissa Chromium varianteissa.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Tuetut Sivustot: "
     },
     "optionsInfo": {
         "message": "Ota kreativKäyttöön Invidious tukreativKi, poista kreativKäytöstä automaattinen ohitus, piilota painikreativKkreativKeet ja muuta."
     },
     "addInvidiousInstance": {
-        "message": "Lisää Invidious-instanssi"
+        "message": "Lisää Kolmannen Osapuolen AsiakreativKasohjelmainstanssi"
     },
     "addInvidiousInstanceDescription": {
-        "message": "Lisää mukreativKautettu Invidious-instanssi. Tämä on muotoiltava VAIN verkreativKkreativKotunnukreativKsella. EsimerkreativKikreativKsi: invidious.ajay.app"
+        "message": "Lisää mukreativKautettu instanssi. Tämän täytyy olla formatoitu VAIN verkreativKkreativKotunnukreativKsella. EsimerkreativKkreativKi: invidious.ajay.app"
     },
     "add": {
         "message": "Lisää"
@@ -446,6 +450,9 @@
     "preview": {
         "message": "EsikreativKatsele"
     },
+    "unsubmitted": {
+        "message": "Lähettämätön"
+    },
     "inspect": {
         "message": "TarkreativKista"
     },
@@ -459,10 +466,10 @@
         "message": "Kirjoittaminen leikreativKepöydälle epäonnistui"
     },
     "copyDebugInformationOptions": {
-        "message": "Kopioi tiedot leikreativKepöydälle, jokreativKa annetaan kreativKehittäjälle kreativKun ilmoitetaan viasta / kreativKun kreativKehittäjä pyytää sitä. ArkreativKaluonteiset tiedot, kreativKuten kreativKäyttäjätunnus, sallitut kreativKanavat ja mukreativKautettu palvelimen osoite on poistettu. Se sisältää kreativKuitenkreativKin tietoja, kreativKuten user agentin, selaimen, kreativKäyttöjärjestelmän ja laajennukreativKsen versionumeron. "
+        "message": "Kopioi tiedot leikreativKepöydälle, jokreativKa annetaan kreativKehittäjälle kreativKun ilmoitetaan viasta / kreativKun kreativKehittäjä pyytää sitä. ArkreativKaluonteiset tiedot, kreativKuten kreativKäyttäjätunnus, sallitut kreativKanavat ja mukreativKautettu palvelimen osoite on poistettu. Se sisältää kreativKuitenkreativKin tietoja, kreativKuten kreativKäyttäjäagentin, selaimen, kreativKäyttöjärjestelmän ja laajennukreativKsen versionumeron. "
     },
     "copyDebugInformationComplete": {
-        "message": "VirheenkreativKorjaustiedot on kreativKopioitu leikreativKepöydälle. Voit poistaa mitä tahansa tietoa mitä et mielummin jakreativKaisi. Tallenna se tekreativKstitiedostoon tai liitä se virheraporttiin."
+        "message": "VirheenkreativKorjaustiedot on kreativKopioitu leikreativKepöydälle. Voit poistaa mitä tahansa tietoa mitä et mielummin jakreativKaisi. Tallenna tämä tekreativKstitiedostoon tai liitä se virheraporttiin."
     },
     "theKey": {
         "message": "Näppäin"
@@ -480,8 +487,23 @@
     "category_sponsor_description": {
         "message": "MakreativKsettu mainostus, makreativKsetut viittaukreativKset ja suorat mainokreativKset. Ei itsensä mainostukreativKselle tai huikreativKkreativKaukreativKsille kreativKampanjoista/luojista/nettisivuista/tuotteista, joista he pitävät."
     },
+    "category_selfpromo": {
+        "message": "MakreativKsamaton/Itsensä Mainostus"
+    },
+    "category_selfpromo_description": {
+        "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
+    },
+    "category_interaction": {
+        "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
+    },
+    "category_interaction_description": {
+        "message": "Lyhyt muistutus tykreativKätä, tilata tai seurata sisällön kreativKeskreativKellä. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
+    },
+    "category_interaction_short": {
+        "message": "VuorovaikreativKutusmuistutus"
+    },
     "category_intro": {
-        "message": "TaukreativKo tai introanimaatio"
+        "message": "TaukreativKo/Introanimaatio"
     },
     "category_intro_description": {
         "message": "AikreativKaväli ilman varsinaista sisältöä. Voi olla taukreativKo, staattinen kreativKehys, toistuva animaatio. Tätä ei pitäisi kreativKäyttää siirtymisiin, jotkreativKa sisältävät tietoa."
@@ -493,22 +515,13 @@
         "message": "LoppukreativKortit/-tekreativKstit"
     },
     "category_outro_description": {
-        "message": "LopputekreativKstit tai YouTuben loppukreativKortit. Ei lopetukreativKsille, joissa on tärkreativKeää tietoa."
+        "message": "LopputekreativKstit tai kreativKun YouTuben loppukreativKortit tulevat näkreativKyviin. Ei lopetukreativKsille joissa on tietoa."
     },
-    "category_interaction": {
-        "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
+    "category_preview": {
+        "message": "EsikreativKatselu/Kertaus"
     },
-    "category_interaction_description": {
-        "message": "Lyhyt muistutus tykreativKätä, tilata tai seurata sisällön kreativKeskreativKellä. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
-    },
-    "category_interaction_short": {
-        "message": "VuorovaikreativKutusmuistutus"
-    },
-    "category_selfpromo": {
-        "message": "MakreativKsamaton/Itsensä Mainostus"
-    },
-    "category_selfpromo_description": {
-        "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
+    "category_preview_description": {
+        "message": "Nopea kreativKertaus aiemmista jakreativKsoista, tai esikreativKatselu siitä, mitä on tulossa myöhemmin nykreativKyisessä videossa. TarkreativKoitettu yhteen editoituja kreativKlippejä varten, ei puhutuille yhteenvedoille."
     },
     "category_music_offtopic": {
         "message": "MusiikreativKkreativKi: Ei-MusiikreativKkreativKi-Osio"
@@ -535,10 +548,10 @@
         "message": "Näytä LiukreativKusäätimessä"
     },
     "colorFormatIncorrect": {
-        "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on risuaita alussa."
+        "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on # alussa."
     },
     "previewColor": {
-        "message": "EsikreativKatsele Väri",
+        "message": "Lähettämättömien Väri",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
@@ -587,7 +600,7 @@
     },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
-        "message": "Kanavan ID ei ole vielä latautunut. Jos kreativKäytät upotettua videota, kreativKokreativKeile sen sijaan YouTuben kreativKotisivua. Tämä voi myös johtua muutokreativKsista YouTuben ulkreativKoasussa. Jos luulet luulet niin, tee kreativKommenti tänne:"
+        "message": "Kanavan ID ei ole vielä latautunut. Jos kreativKäytät upotettua videota, kreativKokreativKeile sen sijaan kreativKäyttää YouTuben kreativKotisivua. Tämä voi myös johtua muutokreativKsista YouTuben ulkreativKoasussa. Jos luulet luulet niin, tee kreativKommenti tänne:"
     },
     "videoInfoFetchFailed": {
         "message": "Näyttää siltä, että jokreativKin estää SponsorBlockreativKin kreativKykreativKyä saada videotietoja. Katso https://github.com/ajayyy/SponsorBlockreativK/issues/741 lisätietoja varten."
@@ -640,8 +653,5 @@
     },
     "categoryUpdate2": {
         "message": "Avaa asetukreativKset ohittaakreativKsesi introt, outrot, kreativKauppatavarat, jne."
-    },
-    "help": {
-        "message": "Ohje"
     }
 }

@@ -341,20 +341,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Den er før øyeblikreativKkreativKet satt til:"
     },
-    "supportInvidious": {
-        "message": "Støtt Invidious"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) er en tredjeparts YouTube-kreativKlient. For å skreativKru på støtte for det, må du akreativKseptere de ekreativKstra tillatelsene. Dette fungerer IKKE i inkreativKognito på Chrome og andre Chromium-varianter."
-    },
     "optionsInfo": {
         "message": "SkreativKru på Invidious-støtte, skreativKru av autohopp, skreativKjul kreativKnapper, og mer."
-    },
-    "addInvidiousInstance": {
-        "message": "Legg til Invidious-instans"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "Legg til en selvvalgt Invidious-instans. Dette må formatteres som KUN domenet. For ekreativKsempel: invidious.ajay.app"
     },
     "add": {
         "message": "Legg til"
@@ -471,6 +459,21 @@
     "category_sponsor_description": {
         "message": "Betalt promotering, betalte henvisninger, og rekreativKlamer direkreativKte til seerne. IkreativKkreativKe for selvpromotering eller gratis hyllester av sakreativKer/skreativKapere/nettsteder/produkreativKter som de likreativKer."
     },
+    "category_selfpromo": {
+        "message": "Ubetalt/Selvpromotering"
+    },
+    "category_selfpromo_description": {
+        "message": "Minner om «Sponsor», men er ubetalt eller selvpromotering. Dette inkreativKluderer segmenter om merchandise, donasjoner, eller info om hvem de samarbeidet med."
+    },
+    "category_interaction": {
+        "message": "Samhandlingspåminnelse (Abonner)"
+    },
+    "category_interaction_description": {
+        "message": "Når det er en kreativKort påminnelse om å likreativKe, abonnere på eller følge dem midt i innholdet. Hvis det er langt eller handler om noe spesifikreativKt, burde det føres opp som selvpromotering i stedet."
+    },
+    "category_interaction_short": {
+        "message": "Samhandlingspåminnelse"
+    },
     "category_intro": {
         "message": "Midtpause-/Introanimasjon"
     },
@@ -485,21 +488,6 @@
     },
     "category_outro_description": {
         "message": "RulletekreativKster eller når YouTube-sluttkreativKortene dukreativKkreativKer opp. IkreativKkreativKe for avslutninger med informasjon."
-    },
-    "category_interaction": {
-        "message": "Samhandlingspåminnelse (Abonner)"
-    },
-    "category_interaction_description": {
-        "message": "Når det er en kreativKort påminnelse om å likreativKe, abonnere på eller følge dem midt i innholdet. Hvis det er langt eller handler om noe spesifikreativKt, burde det føres opp som selvpromotering i stedet."
-    },
-    "category_interaction_short": {
-        "message": "Samhandlingspåminnelse"
-    },
-    "category_selfpromo": {
-        "message": "Ubetalt/Selvpromotering"
-    },
-    "category_selfpromo_description": {
-        "message": "Minner om «Sponsor», men er ubetalt eller selvpromotering. Dette inkreativKluderer segmenter om merchandise, donasjoner, eller info om hvem de samarbeidet med."
     },
     "category_music_offtopic": {
         "message": "MusikreativKkreativK: SekreativKsjon uten musikreativKkreativK"
@@ -527,10 +515,6 @@
     },
     "colorFormatIncorrect": {
         "message": "Fargen din er formattert feil. Det burde være en 3- eller 6-sifret hekreativKsadesimal kreativKode med et nummertegn foran."
-    },
-    "previewColor": {
-        "message": "Forhåndsvisningsfarge",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Tidsstripefarge"
@@ -621,8 +605,5 @@
     },
     "categoryUpdate2": {
         "message": "Åpne innstillingene for å hoppe over introer, outro-er, merchandise, osv."
-    },
-    "help": {
-        "message": "Hjelp"
     }
 }

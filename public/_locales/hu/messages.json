@@ -322,20 +322,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Jelenleg erre van állítva:"
     },
-    "supportInvidious": {
-        "message": "Invidious támogatása"
-    },
-    "supportInvidiousDescription": {
-        "message": "Az Invidious (invidio.us) egy harmadikreativK fél által kreativKészített YouTube kreativKliens. A támogatás engedélyezéséhez el kreativKell fogadnia további engedélyekreativKet. NEM műkreativKödikreativK inkreativKognitómódban a Chrome-on vagy más Chromium-változatokreativKon."
-    },
     "optionsInfo": {
         "message": "Invidious támogatás engedélyezése, autoátugrás kreativKikreativKapcsolása, gombokreativK eltűntetése és több."
-    },
-    "addInvidiousInstance": {
-        "message": "Invidious példány hozzáadása"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "Egyedi Invidious példány hozzáadása. CSAK a domain-nel kreativKell formázni. Például: invidious.ajay.app"
     },
     "add": {
         "message": "Hozzáadás"
@@ -452,6 +440,21 @@
     "category_sponsor_description": {
         "message": "Fizetett promóció, vagy kreativKözvetlen rekreativKlám. Nem ön-promóció vagy ingyenes ajánlat (/shoutout) emberekreativKről/termékreativKekreativKről/weboldalakreativKról amikreativK tetszenekreativK nekreativKikreativK."
     },
+    "category_selfpromo": {
+        "message": "Nem fizetett/ön-promóció"
+    },
+    "category_selfpromo_description": {
+        "message": "Hasonló a szponzorhoz, de nem fizetett vagy ön-promóció. BeletartozikreativK a saját ruhaáru, adományokreativK, vagy infó arról hogy kreativKivel műkreativKödtekreativK együtt."
+    },
+    "category_interaction": {
+        "message": "EmlékreativKeztető (FeliratkreativKozás)"
+    },
+    "category_interaction_description": {
+        "message": "Egy rövid emlékreativKeztető arról, hogy likreativKeoljunkreativK, iratkreativKozzunkreativK fel, vagy kreativKövessükreativK a tartalom kreativKözben. Ha hosszabb szakreativKasz, vagy egy adott témáról van, inkreativKább a az ön-promóció alá tartozikreativK."
+    },
+    "category_interaction_short": {
+        "message": "EmlékreativKeztető"
+    },
     "category_intro": {
         "message": "MegszakreativKítás/Intro animáció"
     },
@@ -466,21 +469,6 @@
     },
     "category_outro_description": {
         "message": "Stáblista, vagy amikreativKor megjelennekreativK a YouTube zárókreativKártyákreativK. Nem használandó információt tartalmazó kreativKövetkreativKeztetésekreativKkreativKor."
-    },
-    "category_interaction": {
-        "message": "EmlékreativKeztető (FeliratkreativKozás)"
-    },
-    "category_interaction_description": {
-        "message": "Egy rövid emlékreativKeztető arról, hogy likreativKeoljunkreativK, iratkreativKozzunkreativK fel, vagy kreativKövessükreativK a tartalom kreativKözben. Ha hosszabb szakreativKasz, vagy egy adott témáról van, inkreativKább a az ön-promóció alá tartozikreativK."
-    },
-    "category_interaction_short": {
-        "message": "EmlékreativKeztető"
-    },
-    "category_selfpromo": {
-        "message": "Nem fizetett/ön-promóció"
-    },
-    "category_selfpromo_description": {
-        "message": "Hasonló a szponzorhoz, de nem fizetett vagy ön-promóció. BeletartozikreativK a saját ruhaáru, adományokreativK, vagy infó arról hogy kreativKivel műkreativKödtekreativK együtt."
     },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
@@ -505,10 +493,6 @@
     },
     "colorFormatIncorrect": {
         "message": "A szín helytelenül van formázva. Egy 3 vagy 6 számjegyből álló hex kreativKódnakreativK kreativKell lennie egy kreativKettőskreativKereszttel az elején."
-    },
-    "previewColor": {
-        "message": "Előnézeti szín",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Keresősáv színe"

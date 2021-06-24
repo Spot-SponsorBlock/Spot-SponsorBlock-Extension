@@ -350,20 +350,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Saat ini diatur pada:"
     },
-    "supportInvidious": {
-        "message": "DukreativKungan Invidious"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) adalah layanan kreativKlien YouTube pihakreativK kreativKetiga. UntukreativK mengakreativKtifkreativKan dukreativKungan, anda harus menerima izin tambahan. Ini TIDAK dapat bekreativKerja di mode penyamaran Chrome dan peramban berbasis Chromium lainnya."
-    },
     "optionsInfo": {
         "message": "AkreativKtifkreativKan dukreativKungan Invidious, nonakreativKtifkreativKan lewati otomatis, tombol sembunyi dan lainnya."
-    },
-    "addInvidiousInstance": {
-        "message": "Tambah Instansi Invidious"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "TambahkreativKan instansi kreativKhusus Invidious. Ini harus diformat dengan HANYA domainnya. Contoh: invidious.ajay.app"
     },
     "add": {
         "message": "Tambah"
@@ -480,6 +468,21 @@
     "category_sponsor_description": {
         "message": "Promosi dibayar, tautan dibayar dan ikreativKlan langsung. TidakreativK untukreativK promosi diri sendiri atau dukreativKungan gratis untukreativK gerakreativKan/kreativKreator/situs/produkreativK yang merekreativKa sukreativKa."
     },
+    "category_selfpromo": {
+        "message": "Promosi Diri Sendiri/TidakreativK Dibayar"
+    },
+    "category_selfpromo_description": {
+        "message": "Mirip dengan \"sponsor\" kreativKecuali ini tidakreativK dibayar atau promosi diri sendiri. Ini termasukreativK merchandise, donasi, atau informasi tentang siapa yang berkreativKolaborasi dengan merekreativKa."
+    },
+    "category_interaction": {
+        "message": "Pengingat InterakreativKsi (Berlangganan)"
+    },
+    "category_interaction_description": {
+        "message": "Saat ada pengingat singkreativKat untukreativK meminta sukreativKa, berlangganan atau mengikreativKuti merekreativKa di tengah kreativKonten. JikreativKa panjang atau tentang sesuatu yang spesifikreativK, sebaikreativKnya pakreativKai kreativKategori promosi diri sendiri."
+    },
+    "category_interaction_short": {
+        "message": "Pengingat InterakreativKsi"
+    },
     "category_intro": {
         "message": "Jeda/Animasi Intro"
     },
@@ -494,21 +497,6 @@
     },
     "category_outro_description": {
         "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi."
-    },
-    "category_interaction": {
-        "message": "Pengingat InterakreativKsi (Berlangganan)"
-    },
-    "category_interaction_description": {
-        "message": "Saat ada pengingat singkreativKat untukreativK meminta sukreativKa, berlangganan atau mengikreativKuti merekreativKa di tengah kreativKonten. JikreativKa panjang atau tentang sesuatu yang spesifikreativK, sebaikreativKnya pakreativKai kreativKategori promosi diri sendiri."
-    },
-    "category_interaction_short": {
-        "message": "Pengingat InterakreativKsi"
-    },
-    "category_selfpromo": {
-        "message": "Promosi Diri Sendiri/TidakreativK Dibayar"
-    },
-    "category_selfpromo_description": {
-        "message": "Mirip dengan \"sponsor\" kreativKecuali ini tidakreativK dibayar atau promosi diri sendiri. Ini termasukreativK merchandise, donasi, atau informasi tentang siapa yang berkreativKolaborasi dengan merekreativKa."
     },
     "category_music_offtopic": {
         "message": "MusikreativK: Bagian Non-MusikreativK"
@@ -536,10 +524,6 @@
     },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan benar. Harusnya terdiri dari 3 atau 6 digit kreativKode hekreativKsa dengan tagar di awal."
-    },
-    "previewColor": {
-        "message": "Warna Pratinjau",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Warna Bilah WakreativKtu"
@@ -640,8 +624,5 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa opsi untukreativK melewati intro, outro, merch, dll."
-    },
-    "help": {
-        "message": "Bantuan"
     }
 }

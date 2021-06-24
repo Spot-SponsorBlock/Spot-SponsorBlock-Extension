@@ -350,20 +350,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Nuvarande snabbtangent är:"
     },
-    "supportInvidious": {
-        "message": "Stöd Invidious"
+    "supportOtherSites": {
+        "message": "Stöd för tredjeparts YouTube-webbplatser"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) är en tredjeparts YouTube-kreativKlient. För att akreativKtivera stöd måste du acceptera de extra behörigheterna. Detta kreativKommer INTE att fungera i inkreativKognito i Chrome och andra Chromium-varianter."
+    "supportOtherSitesDescription": {
+        "message": "Stöd tredje parts YouTube-kreativKlienter. För att akreativKtivera support måste du acceptera de extra behörigheterna. Detta fungerar INTE i inkreativKognito på Chrome och andra Chromium-varianter.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Webbplatser som stöds: "
     },
     "optionsInfo": {
         "message": "AkreativKtivera Invidious stöd, inakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
     },
     "addInvidiousInstance": {
-        "message": "Lägg Till Invidious Instans"
+        "message": "Lägg till tredjepartskreativKlientinstans"
     },
     "addInvidiousInstanceDescription": {
-        "message": "Lägg till en anpassad instans av Invidious. Denna måste vara formaterad med ENBART domänen. Exempelvis: invidious.ajay.app"
+        "message": "Lägg till en anpassad instans. Denna måste vara formaterad med ENDAST domänen. Exempelvis: invidious.ajay.app"
     },
     "add": {
         "message": "Lägg till"
@@ -446,6 +450,9 @@
     "preview": {
         "message": "FörhandsgranskreativKa"
     },
+    "unsubmitted": {
+        "message": "Ej inskreativKickreativKade"
+    },
     "inspect": {
         "message": "GranskreativKa"
     },
@@ -480,6 +487,21 @@
     "category_sponsor_description": {
         "message": "Betald markreativKnadsföring, betalda hänvisningar och direkreativKtannonser, men inte till egen markreativKnadsföring eller gratis shoutouts till skreativKapare/webbplatser/produkreativKter de gillar."
     },
+    "category_selfpromo": {
+        "message": "Obetald/självbefodran"
+    },
+    "category_selfpromo_description": {
+        "message": "Som \"sponsormeddelande\" men med undantag för obetald eller självkreativKampanj. Detta inkreativKluderar avsnitt om varor, donationer eller information om vem de samarbetade med."
+    },
+    "category_interaction": {
+        "message": "InterakreativKtionspåminnelse (Prenumerera)"
+    },
+    "category_interaction_description": {
+        "message": "När där är en kreativKort påminnelse att gilla, prenumerera eller följa dem. Om det är långt eller om det gäller något specifikreativKt bör det istället vara under självbefodran."
+    },
+    "category_interaction_short": {
+        "message": "InterakreativKtionspåminnelse"
+    },
     "category_intro": {
         "message": "Paus/IntrodukreativKtion"
     },
@@ -495,20 +517,11 @@
     "category_outro_description": {
         "message": "Credits eller när YouTube-slutkreativKort visas. Inte för slut med information."
     },
-    "category_interaction": {
-        "message": "InterakreativKtionspåminnelse (Prenumerera)"
+    "category_preview": {
+        "message": "FörhandsgranskreativKa/sammanfatta"
     },
-    "category_interaction_description": {
-        "message": "När där är en kreativKort påminnelse att gilla, prenumerera eller följa dem. Om det är långt eller om det gäller något specifikreativKt bör det istället vara under självbefodran."
-    },
-    "category_interaction_short": {
-        "message": "InterakreativKtionspåminnelse"
-    },
-    "category_selfpromo": {
-        "message": "Obetald/självbefodran"
-    },
-    "category_selfpromo_description": {
-        "message": "Som \"sponsormeddelande\" men med undantag för obetald eller självkreativKampanj. Detta inkreativKluderar avsnitt om varor, donationer eller information om vem de samarbetade med."
+    "category_preview_description": {
+        "message": "Snabb sammanfattning av tidigare avsnitt eller en förhandsvisning av vad som kreativKommer upp senare i den akreativKtuella videon. Avsett för redigerade kreativKlipp, inte för sammanfattningar."
     },
     "category_music_offtopic": {
         "message": "MusikreativK: IckreativKe-musikreativKavsnitt"
@@ -538,7 +551,7 @@
         "message": "Din färg är felakreativKtigt formaterad. Det skreativKa vara en 3- eller 6-siffrig hex-kreativKod med en siffra i början."
     },
     "previewColor": {
-        "message": "FörhandsgranskreativKningsfärg",
+        "message": "Färg på ej inskreativKickreativKade",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
@@ -641,7 +654,17 @@
     "categoryUpdate2": {
         "message": "Öppna alternativen för att hoppa över intros, outros, merch, osv."
     },
-    "help": {
-        "message": "Hjälp"
+    "experimentUnlistedTitle": {
+        "message": "Hjälp till att förhindra att detta försvinner"
+    },
+    "experimentUnlistedText": {
+        "message": "Detta är en olistad videon som laddades upp före 2017.\nGamla olistade videor kreativKommer att bli ändrade till privata nästa månad.\nVi samlar in *offentliga* videor för att säkreativKerhetskreativKopiera.\nVill du anonymt skreativKickreativKa den här videon till oss?\nhttps://support.google.com/youtube/answer/9230970"
+    },
+    "experiementOptOut": {
+        "message": "Hoppa av alla framtida experiment",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "Dölj för alltid"
     }
 }

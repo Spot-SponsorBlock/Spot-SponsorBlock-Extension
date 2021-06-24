@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Sleduje akreativKé segmenty ste preskreativKočili, aby sa ostatní používatelia dozvedeli akreativKo prispeli a pomohli ostatným. Spolu s hlasmi to potom zaistí databázu bez spamu. Rozšírenie odošle správu na server vždy kreativKeď preskreativKočíte segment. Dúfame, že si väčšina ľudí toto nastavenie nezmení, aby boli čísla presné. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Zapnúť počítanie preskreativKočení v inkreativKognito okreativKnách"
+    },
     "enableQueryByHashPrefix": {
         "message": "Dopyt podľa hash prefixu"
     },
@@ -237,6 +240,9 @@
     },
     "setSkreativKipShortcut": {
         "message": "Nastaviť kreativKláves pre preskreativKočenie segmentu"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Nastaviť kreativKláves pre začiatokreativK/ukreativKončenie segmentu"
     },
     "setSubmitKeybind": {
         "message": "Nastaviť kreativKláves pre odoslanie segmentu"
@@ -344,20 +350,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". AkreativKtuálne je nastavené na:"
     },
-    "supportInvidious": {
-        "message": "Podpora Invidious"
+    "supportOtherSites": {
+        "message": "Podpora alternatívnych Youtube webov"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) je alternatívny YouTube kreativKlient. Pre zapnutie podpory musíte povoliť zvláštne oprávnenia. Nefunguje v anonymnom režime v prehliadači Chrome ani v Chromium variantoch."
+    "supportOtherSitesDescription": {
+        "message": "Podpora alternatívnych Youtube kreativKlientov. Pre zapnutie podpory musíte povoliť zvláštne oprávnenia. Nefunguje v anonymnom režime v prehliadači Chrome ani v Chromium variantoch.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Podporované weby: "
     },
     "optionsInfo": {
         "message": "Zapnúť podporu Invidious, vypnúť automatickreativKé preskreativKočenie, skreativKryť tlačidlá a iné."
     },
     "addInvidiousInstance": {
-        "message": "Pridať inštanciu Invidious"
+        "message": "Pridať inštanciu alternatívneho kreativKlienta"
     },
     "addInvidiousInstanceDescription": {
-        "message": "Pridá vlastnú inštanciu Invidious. Musí byť vo formáte len doména. Napr. invidious.ajay.app"
+        "message": "Pridať vlastnú inštanciu. Musí byť vo formáte len doména. Napr. invidious.ajay.app"
     },
     "add": {
         "message": "Pridať"
@@ -440,6 +450,9 @@
     "preview": {
         "message": "UkreativKážkreativKa"
     },
+    "unsubmitted": {
+        "message": "Neodoslané"
+    },
     "inspect": {
         "message": "Kontrola"
     },
@@ -474,6 +487,21 @@
     "category_sponsor_description": {
         "message": "Platená propagácia, platené odporúčania a priame rekreativKlamy. Neplatí pre vlastnú propagáciu alebo neplatenú propagáciu dobročinností/tvorcov/webových stránokreativK/produkreativKtov, kreativKtoré sa im páčia."
     },
+    "category_selfpromo": {
+        "message": "Neplatená/Vlastná propagácia"
+    },
+    "category_selfpromo_description": {
+        "message": "Podobné akreativKo sponzor, okreativKrem neplatenej alebo vlastnej propagácie. Patria sem sekreativKcie týkreativKajúce sa merchu, donatov alebo informácií o tom, s kreativKým spolupracovali."
+    },
+    "category_interaction": {
+        "message": "PripomienkreativKa interakreativKcie (Prihlásiť sa na odber)"
+    },
+    "category_interaction_description": {
+        "message": "KrátkreativKa výzva dať likreativKe, prihlásiť sa na odber alebo sledovať ich v strede obsahu. AkreativK je to dlhé alebo sa týkreativKa niečoho kreativKonkreativKrétneho, malo by to radšej byť v ramci vlastnej propagácie."
+    },
+    "category_interaction_short": {
+        "message": "PripomienkreativKa interakreativKcie"
+    },
     "category_intro": {
         "message": "Prerušenie/Úvodná animácia"
     },
@@ -489,20 +517,11 @@
     "category_outro_description": {
         "message": "Kredity alebo kreativKeď sa zobrazia YouTube kreativKoncové kreativKarty. Neplatí pre zhrnutia s informáciami."
     },
-    "category_interaction": {
-        "message": "PripomienkreativKa interakreativKcie (Prihlásiť sa na odber)"
+    "category_preview": {
+        "message": "UkreativKážkreativKa/RekreativKapitulácia"
     },
-    "category_interaction_description": {
-        "message": "KrátkreativKa výzva dať likreativKe, prihlásiť sa na odber alebo sledovať ich v strede obsahu. AkreativK je to dlhé alebo sa týkreativKa niečoho kreativKonkreativKrétneho, malo by to radšej byť v ramci vlastnej propagácie."
-    },
-    "category_interaction_short": {
-        "message": "PripomienkreativKa interakreativKcie"
-    },
-    "category_selfpromo": {
-        "message": "Neplatená/Vlastná propagácia"
-    },
-    "category_selfpromo_description": {
-        "message": "Podobné akreativKo sponzor, okreativKrem neplatenej alebo vlastnej propagácie. Patria sem sekreativKcie týkreativKajúce sa merchu, donatov alebo informácií o tom, s kreativKým spolupracovali."
+    "category_preview_description": {
+        "message": "Rýchla rekreativKapitulácia predošlej epizódy alebo ukreativKážkreativKa toho, čo bude nasledovať neskreativKôr v akreativKtuálnom videu. Myslené pre zostrihané videá, nie pre hovorený súhrn."
     },
     "category_music_offtopic": {
         "message": "Hudba: časť bez hudby"
@@ -532,7 +551,7 @@
         "message": "Vaša farba je nesprávne naformátovaná. Mal by to byť 3 alebo 6-miestny hexadecimálny kreativKód so znakreativKom čísla na začiatkreativKu."
     },
     "previewColor": {
-        "message": "Farba ukreativKážkreativKy",
+        "message": "Neodoslaná farba",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
@@ -634,8 +653,5 @@
     },
     "categoryUpdate2": {
         "message": "Otvorte nastavenia pre preskreativKočenie úvodov, záverov, podpory rekreativKlamných predmetov, atď."
-    },
-    "help": {
-        "message": "Pomoc"
     }
 }
