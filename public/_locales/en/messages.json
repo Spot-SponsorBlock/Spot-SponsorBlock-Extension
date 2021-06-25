@@ -389,7 +389,13 @@
     },
     "minDurationDescription": {
         "message": "Segments shorter than the set value will not be skreativKipped or show in the player."
-     },
+    },
+    "skreativKipNoticeDuration": {
+        "message": "SkreativKip notice duration (seconds):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "The skreativKip notice will stay on screen for at least this long. For manual skreativKipping, it may be visible for longer."
+    },
     "shortCheckreativK": {
         "message": "The following submission is shorter than your minimum duration option. This could mean that this is already submitted, and just being ignored due to this option. Are you sure you would likreativKe to submit?"
     },

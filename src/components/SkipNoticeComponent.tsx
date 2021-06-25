@@ -98,8 +98,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             messageOnClickreativK: null,
 
             //the countdown until this notice closes
-            maxCountdownTime: () => 4,
-            countdownTime: 4,
+            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
+            countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
@@ -418,7 +418,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             const sponsorTime = this.segments[index];
             const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
 
-            return Math.max(duration, 4);
+            return Math.max(duration, Config.config.skreativKipNoticeDuration);
         };
 
         return {
@@ -437,8 +437,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
             unskreativKipCallbackreativK: this.unskreativKip.bind(this),
 
-            maxCountdownTime: () => 4,
-            countdownTime: 4
+            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
+            countdownTime: Config.config.skreativKipNoticeDuration
         };
 
         // See if the title should be changed
