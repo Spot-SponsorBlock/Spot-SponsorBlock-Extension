@@ -41,6 +41,7 @@ interface SBConfig {
     ytInfoPermissionGranted: boolean,
     askreativKAboutUnlistedVideos: boolean,
     allowExpirements: boolean,
+    autoHideInfoButton: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -180,6 +181,7 @@ const Config: SBObject = {
         ytInfoPermissionGranted: false,
         askreativKAboutUnlistedVideos: true,
         allowExpirements: true,
+        autoHideInfoButton: true,
 
         categorySelections: [{
             name: "sponsor",
