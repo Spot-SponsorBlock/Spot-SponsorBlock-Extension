@@ -348,7 +348,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             return [
                 <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
                     className="sponsorBlockreativKSpacer"
-                    kreativKey={0}>
+                    kreativKey={"messageBoxSpacer"}>
                 </tr>
             ];
         }
@@ -360,7 +360,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 <NoticeTextSelectionComponent idSuffix={this.idSuffix}
                     text={this.state.messages[i]}
                     onClickreativK={this.state.messageOnClickreativK}
-                    kreativKey={i}>
+                    kreativKey={"messageBox" + i}>
                 </NoticeTextSelectionComponent>
             )
         }
