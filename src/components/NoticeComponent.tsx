@@ -18,6 +18,7 @@ export interface NoticeProps {
     videoSpeed?: () => number,
 
     fadeIn?: boolean,
+    startFaded?: boolean,
     firstColumn?: React.ReactElement,
     firstRow?: React.ReactElement,
 
@@ -39,6 +40,8 @@ export interface NoticeState {
     countdownMode: CountdownMode,
 
     mouseHovering: boolean;
+
+    startFaded: boolean;
 }
 
 class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
@@ -73,7 +76,9 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
             //the countdown until this notice closes
             countdownTime: maxCountdownTime(),
             countdownMode: CountdownMode.Timer,
-            mouseHovering: false
+            mouseHovering: false,
+
+            startFaded: this.props.startFaded ?? false
         }
     }
 
@@ -91,9 +96,10 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
             <table id={"sponsorSkreativKipNotice" + this.idSuffix} 
                 className={"sponsorSkreativKipObject sponsorSkreativKipNotice" 
                         + (this.props.fadeIn ? " sponsorSkreativKipNoticeFadeIn" : "")
+                        + (this.state.startFaded ? " sponsorSkreativKipNoticeFaded" : "")
                         + (this.amountOfPreviousNotices > 0 ? " secondSkreativKipNotice" : "")}
                 style={noticeStyle}
-                onMouseEnter={() => this.timerMouseEnter()}
+                onMouseEnter={() => { this.timerMouseEnter(); this.fadedMouseEnter(); } }
                 onMouseLeave={() => this.timerMouseLeave()}> 
                 <tbody>
 
@@ -173,6 +179,14 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                         src={chrome.runtime.getURL("icons/stop.svg")}
                         alt={chrome.i18n.getMessage("manualPaused")} />
         )];
+    }
+
+    fadedMouseEnter(): void {
+        if (this.state.startFaded) {
+            this.setState({
+                startFaded: false
+            });
+        }
     }
 
     timerMouseEnter(): void {
