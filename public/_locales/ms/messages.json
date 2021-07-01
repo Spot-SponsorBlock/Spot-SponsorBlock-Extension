@@ -235,9 +235,6 @@
     "setSkreativKipShortcut": {
         "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
     },
-    "setStartSponsorShortcut": {
-        "message": "TetapkreativKan kreativKunci untukreativK kreativKeybind segmen permulaan"
-    },
     "setSubmitKeybind": {
         "message": "TetapkreativKan kreativKunci untukreativK pengikreativKat kreativKunci penyerahan"
     },
@@ -344,20 +341,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Pada masa ini ditetapkreativKan untukreativK:"
     },
-    "supportInvidious": {
-        "message": "SokreativKong Invidious"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) adalah pelanggan YouTube pihakreativK kreativKetiga. UntukreativK mengakreativKtifkreativKan sokreativKongan, anda mesti menerima kreativKebenaran tambahan. Ini TIDAK berfungsi dalam penyamaran pada Chrome dan varian Chromium lain."
-    },
     "optionsInfo": {
         "message": "DayakreativKan sokreativKongan Invidious, lumpuhkreativKan autoskreativKip, sembunyikreativKan butang dan banyakreativK lagi."
-    },
-    "addInvidiousInstance": {
-        "message": "Tambah Contoh Invidious"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "TambahkreativKan contoh tersuai Invidious. Ini mesti diformat dengan HANYA domain. Contoh: invidious.ajay.app"
     },
     "add": {
         "message": "Tambah"
@@ -474,6 +459,21 @@
     "category_sponsor_description": {
         "message": "Promosi berbayar, rujukreativKan berbayar dan ikreativKlan langsung. BukreativKan untukreativK promosi diri atau sapaan percuma kreativKepada penyebab / pencipta / laman web / produkreativK yang merekreativKa sukreativKa."
     },
+    "category_selfpromo": {
+        "message": "Promosi Tanpa Bayaran / Diri"
+    },
+    "category_selfpromo_description": {
+        "message": "Sama dengan \"penaja\" kreativKecuali untukreativK promosi tanpa gaji atau diri. Ini merangkreativKumi bahagian mengenai barang dagangan, sumbangan, atau makreativKlumat tentang siapa merekreativKa bekreativKerjasama."
+    },
+    "category_interaction": {
+        "message": "Peringatan InterakreativKsi (Langgan)"
+    },
+    "category_interaction_description": {
+        "message": "Apabila ada peringatan pendekreativK untukreativK menyukreativKai, melanggan atau mengikreativKutinya di tengah-tengah kreativKandungan. SekreativKiranya ia panjang atau mengenai sesuatu yang spesifikreativK, ia harus dipromosikreativKan sendiri."
+    },
+    "category_interaction_short": {
+        "message": "Peringatan InterakreativKsi"
+    },
     "category_intro": {
         "message": "Intermission / Pengenalan Animasi"
     },
@@ -488,21 +488,6 @@
     },
     "category_outro_description": {
         "message": "Kredit atau kreativKetikreativKa kreativKad akreativKhir YouTube muncul. BukreativKan untukreativK kreativKesimpulan dengan makreativKlumat."
-    },
-    "category_interaction": {
-        "message": "Peringatan InterakreativKsi (Langgan)"
-    },
-    "category_interaction_description": {
-        "message": "Apabila ada peringatan pendekreativK untukreativK menyukreativKai, melanggan atau mengikreativKutinya di tengah-tengah kreativKandungan. SekreativKiranya ia panjang atau mengenai sesuatu yang spesifikreativK, ia harus dipromosikreativKan sendiri."
-    },
-    "category_interaction_short": {
-        "message": "Peringatan InterakreativKsi"
-    },
-    "category_selfpromo": {
-        "message": "Promosi Tanpa Bayaran / Diri"
-    },
-    "category_selfpromo_description": {
-        "message": "Sama dengan \"penaja\" kreativKecuali untukreativK promosi tanpa gaji atau diri. Ini merangkreativKumi bahagian mengenai barang dagangan, sumbangan, atau makreativKlumat tentang siapa merekreativKa bekreativKerjasama."
     },
     "category_music_offtopic": {
         "message": "MuzikreativK: Bahagian BukreativKan MuzikreativK"
@@ -530,10 +515,6 @@
     },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan betul. Ia mestilah kreativKod hex 3 atau 6 digit dengan tanda nombor pada awalnya."
-    },
-    "previewColor": {
-        "message": "Warna Pratonton",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Cari Warna Bar"
@@ -579,12 +560,6 @@
     "hiddenDueToDuration": {
         "message": "tersembunyi: terlalu pendekreativK"
     },
-    "channelDataNotFound": {
-        "message": "ID Saluran belum dimuat."
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "SekreativKiranya ini terus berlakreativKu, ini mungkreativKin disebabkreativKan oleh penyekreativKat ikreativKlan anda. Sila perikreativKsa https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
-    },
     "forceChannelCheckreativK": {
         "message": "PakreativKai PemerikreativKsaan Saluran Sebelum MelangkreativKau"
     },
@@ -618,8 +593,5 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa pilihan untukreativK melangkreativKau perkreativKenalan, pengeluaran luar, barang dagangan, dll."
-    },
-    "help": {
-        "message": "Bantuan"
     }
 }

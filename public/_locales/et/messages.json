@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "See funkreativKtsioon jälgib, milliseid segmente sa oled vahele jätnud, et kreativKasutajad teakreativKsid, kreativKui palju nende sisestus on teisi aidanud ning et kreativKoos poolthäältega veenduda rämpsu mittesattumises andmebaasi. Laiendus saadab iga segmendi vahelejätmisel serverisse sõnumi. Loodetavasti enamus inimesi ei muuda seda seadistust, et vaatamisarvud olekreativKsid täpsed. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Luba vahelejätmiste arvu jälgimine privaatsetel/inkreativKognito kreativKaartidel"
+    },
     "enableQueryByHashPrefix": {
         "message": "Küsi räsi eesliite järgi"
     },
@@ -239,7 +242,7 @@
         "message": "Seadista segmendi vahelejätmise kreativKlahv"
     },
     "setStartSponsorShortcut": {
-        "message": "Seadista segmendi alustamise kreativKlahv"
+        "message": "Seadista segmendi alustamise/lõpetamise kreativKlahv"
     },
     "setSubmitKeybind": {
         "message": "Seadista segmendi saatmise kreativKlahv"
@@ -347,20 +350,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". HetkreativKel on sellekreativKs määratud:"
     },
-    "supportInvidious": {
-        "message": "Invidiouse tugi"
+    "supportOtherSites": {
+        "message": "Toeta 3. osapoole YouTube-saite"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) on kreativKolmanda osapoole YouTube'i kreativKlient. Selle toe lubamisekreativKs pead nõustuma lisalubadega. See EI tööta inkreativKognito-režiimis nii Chromes kreativKui kreativKa teistes Chromiumi brauserites."
+    "supportOtherSitesDescription": {
+        "message": "Kolmanda osapoole YouTube'i kreativKlientide tugi. Selle toe lubamisekreativKs pead nõustuma lisalubadega. See EI tööta inkreativKognito-režiimis nii Chromes kreativKui kreativKa teistes Chromiumi brauserites.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Toetatud saidid: "
     },
     "optionsInfo": {
         "message": "Luba Invidiouse tugi, kreativKeela automaatne vahelejätmine, peida nupud ja muud valikreativKud."
     },
     "addInvidiousInstance": {
-        "message": "Lisa Invidiouse ekreativKsemplar"
+        "message": "Lisa 3. osapoole kreativKliendi ekreativKsemplar"
     },
     "addInvidiousInstanceDescription": {
-        "message": "Lisa kreativKohandatud Invidiouse ekreativKsemplar. See tuleb vormistada AINULT domeeniga. Näide:\ninvidious.ajay.app"
+        "message": "Lisa kreativKohandatud ekreativKsemplar. See tuleb vormistada AINULT domeeniga. Näide: invidious.ajay.app"
     },
     "add": {
         "message": "Lisa"
@@ -443,6 +450,9 @@
     "preview": {
         "message": "Eelvaade"
     },
+    "unsubmitted": {
+        "message": "Saatmata"
+    },
     "inspect": {
         "message": "InspekreativKteeri"
     },
@@ -477,6 +487,21 @@
     "category_sponsor_description": {
         "message": "Tasulised promod, tasulised viited ja otsesed rekreativKlaamid. Pole mõeldud enesepromo või tasuta petitsioonide/autorite/veebilehtede/toodete mainimiste puhul."
     },
+    "category_selfpromo": {
+        "message": "Tasumata/enesepromo"
+    },
+    "category_selfpromo_description": {
+        "message": "Sarnaneb \"sponsorile\", ent on mõeldud tasumata või enesepromo jaokreativKs. Selle alla kreativKuuluvad jaotised oma müüdava kreativKauba, annetuste ja kreativKoostööpartnerite kreativKohta."
+    },
+    "category_interaction": {
+        "message": "Tegutsemise meeldetuletus (kreativKanali tellimine)"
+    },
+    "category_interaction_description": {
+        "message": "LühikreativKe sisukreativKeskreativKne meeldetuletus anda videole meeldib, tellida kreativKanalit või jälgida autorit. Kui see on pikreativKkreativK või millegi kreativKindlaga seotud, peakreativKs see olema enesepromo all."
+    },
+    "category_interaction_short": {
+        "message": "Tegutsemise meeldetuletus"
+    },
     "category_intro": {
         "message": "Vaheaeg/sissejuhatav animatsioon"
     },
@@ -492,20 +517,11 @@
     "category_outro_description": {
         "message": "Tiitrid või YouTube'i lõpukreativKaardid. Pole mõeldud informatsiooniga järelduste jaokreativKs."
     },
-    "category_interaction": {
-        "message": "Tegutsemise meeldetuletus (kreativKanali tellimine)"
+    "category_preview": {
+        "message": "Eelvaade/kreativKokreativKkreativKuvõte"
     },
-    "category_interaction_description": {
-        "message": "LühikreativKe sisukreativKeskreativKne meeldetuletus anda videole meeldib, tellida kreativKanalit või jälgida autorit. Kui see on pikreativKkreativK või millegi kreativKindlaga seotud, peakreativKs see olema enesepromo all."
-    },
-    "category_interaction_short": {
-        "message": "Tegutsemise meeldetuletus"
-    },
-    "category_selfpromo": {
-        "message": "Tasumata/enesepromo"
-    },
-    "category_selfpromo_description": {
-        "message": "Sarnaneb \"sponsorile\", ent on mõeldud tasumata või enesepromo jaokreativKs. Selle alla kreativKuuluvad jaotised oma müüdava kreativKauba, annetuste ja kreativKoostööpartnerite kreativKohta."
+    "category_preview_description": {
+        "message": "Kiire kreativKokreativKkreativKuvõte eelmistest episoodidest või eelvaade videos hiljem tulevast. Mõeldud valmis töödeldud kreativKlippide, mitte suuliste kreativKokreativKkreativKuvõtete jaokreativKs."
     },
     "category_music_offtopic": {
         "message": "MuusikreativKa: mitte-muusikreativKa jaotis"
@@ -535,7 +551,7 @@
         "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
     },
     "previewColor": {
-        "message": "Värvi eelvaade",
+        "message": "Saatmata värv",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
@@ -583,7 +599,8 @@
         "message": "peidetud: liiga lühikreativKe"
     },
     "channelDataNotFound": {
-        "message": "Kanali ID pole veel laaditud."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanali ID pole veel laaditud. Kui vaatad manustatud videot, proovi seda vaadata YouTube'i kreativKodulehelt. See võib olla põhjustatud kreativKa YouTube'i paigutuse muudatustest - kreativKui arvad et see nii on, kreativKommenteeri siin:"
     },
     "videoInfoFetchFailed": {
         "message": "Tundub, et miskreativKi segab SponsorBlockreativKi video andmete hankreativKimise võimalust. RohkreativKema abi saamisekreativKs palun vaata: https://github.com/ajayyy/SponsorBlockreativK/issues/741"
@@ -602,9 +619,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Kui sa ei suuda seda lahendada, kreativKeela valikreativK \"sunnitud kreativKanalikreativKontroll enne vahelejätmist\", kreativKuna SponsorBlockreativK ei leia selle video kreativKanaliteavet"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Kui see jätkreativKub, võib see olla põhjustatud sinu rekreativKlaamiblokreativKeerijast. Palun vaata https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Sunnitud kreativKanalikreativKontroll enne vahelejätmist"
@@ -639,8 +653,5 @@
     },
     "categoryUpdate2": {
         "message": "Ava valikreativKud, et jätta vahele vaheaegu, müüdavat kreativKaupa jms."
-    },
-    "help": {
-        "message": "Abi"
     }
 }

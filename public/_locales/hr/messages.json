@@ -122,9 +122,62 @@
     "submitTimesButton": {
         "message": "Unesi vremena"
     },
+    "Username": {
+        "message": "KorisničkreativKo ime"
+    },
+    "setUsername": {
+        "message": "Postavi kreativKorisničkreativKo ime"
+    },
+    "Options": {
+        "message": "Opcije"
+    },
+    "website": {
+        "message": "Web-stranica",
+        "description": "Used on Firefox Store Page"
+    },
+    "sourceCode": {
+        "message": "Izvorni kreativKod",
+        "description": "Used on Firefox Store Page"
+    },
+    "disableSkreativKipping": {
+        "message": "PreskreativKakreativKanje je akreativKtivirano"
+    },
+    "enableSkreativKipping": {
+        "message": "PreskreativKakreativKanje je deakreativKtivirano"
+    },
     "yourWorkreativK": {
         "message": "Tvoja slanja",
         "description": "Used to describe the section that will show you the statistics from your submissions."
+    },
+    "errorCode": {
+        "message": "Kȏd greškreativKe: "
+    },
+    "skreativKip": {
+        "message": "PreskreativKoči"
+    },
+    "skreativKip_category": {
+        "message": "PreskreativKočiti {0}?"
+    },
+    "skreativKipped": {
+        "message": "PreskreativKočeno"
+    },
+    "disableAutoSkreativKip": {
+        "message": "DeakreativKtiviraj automatskreativKo preskreativKakreativKanje"
+    },
+    "enableAutoSkreativKip": {
+        "message": "AkreativKtiviraj automatskreativKo preskreativKakreativKanje"
+    },
+    "minLower": {
+        "message": "min"
+    },
+    "minsLower": {
+        "message": "min"
+    },
+    "hourLower": {
+        "message": "h"
+    },
+    "hoursLower": {
+        "message": "h"
     },
     "whatChangeUserID": {
         "message": "Ovo bi trebalo ostati privatno. slično je lozinkreativKi i ne bi se smjelo dijeliti ni s kreativKime. AkreativKo netkreativKo ovo ima, mogu se lažno predstavljati kreativKao ti."
@@ -147,20 +200,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Trenutno je postavljeno na:"
     },
-    "supportInvidious": {
-        "message": "Podrži Invidious"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) je YouTube client treće strane. KakreativKo bi omogućio podrškreativKu, moraš prihvatiti dodatna dopuštenja. Ovo NE radi u privatnoj kreativKartici na Chrome-u ili drugim carijantama Chromiuma."
-    },
     "optionsInfo": {
         "message": "Omogući podržavanje Invidiousa, onemogući automatskreativKo preskreativKakreativKanje, sakreativKrij gumbe i drugo."
-    },
-    "addInvidiousInstance": {
-        "message": "Dodaj instancu Invidiousa"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "Dodaj prilagođenu instancu Invidiousa. Ona mora biti formatirana sa samom domenom. Primjer: invidious.ajay.app"
     },
     "add": {
         "message": "Dodaj"
@@ -183,14 +224,50 @@
     "minDurationDescription": {
         "message": "Isječci kreativKraći od postavljene vrijednosti neće biti preskreativKočeni ili prikreativKazani u playeru."
     },
+    "save": {
+        "message": "Spremi"
+    },
+    "reset": {
+        "message": "Resetiraj"
+    },
+    "setOptions": {
+        "message": "Postavi opcije"
+    },
     "confirmNoticeTitle": {
         "message": "Pošalji segment"
     },
     "submit": {
         "message": "Pošalji"
     },
+    "cancel": {
+        "message": "Odustani"
+    },
+    "delete": {
+        "message": "Izbriši"
+    },
+    "preview": {
+        "message": "Pregledaj"
+    },
+    "inspect": {
+        "message": "Provjeri"
+    },
+    "edit": {
+        "message": "Uredi"
+    },
     "category_sponsor": {
         "message": "Sponzor"
+    },
+    "category_selfpromo": {
+        "message": "Neplaćena promocija ili samopromocija"
+    },
+    "category_selfpromo_description": {
+        "message": "Slično kreativKao „sponzor”, osim za neplaćenu promociju i samopromociju. To ukreativKljučuje odlomkreativKe markreativKetinga, donacija ili informacija o tome, s kreativKim su surađivali."
+    },
+    "category_interaction": {
+        "message": "PodsjetnikreativK interakreativKcije (Pretplati se)"
+    },
+    "category_interaction_short": {
+        "message": "PodsjetnikreativK interakreativKcije"
     },
     "category_intro": {
         "message": "StankreativKa/Uvodna animacija"
@@ -204,18 +281,6 @@
     "category_outro": {
         "message": "Završni kreativKadrovi/Zasluge"
     },
-    "category_interaction": {
-        "message": "PodsjetnikreativK interakreativKcije (Pretplati se)"
-    },
-    "category_interaction_short": {
-        "message": "PodsjetnikreativK interakreativKcije"
-    },
-    "category_selfpromo": {
-        "message": "Neplaćena promocija ili samopromocija"
-    },
-    "category_selfpromo_description": {
-        "message": "Slično kreativKao „sponzor”, osim za neplaćenu promociju i samopromociju. To ukreativKljučuje odlomkreativKe markreativKetinga, donacija ili informacija o tome, s kreativKim su surađivali."
-    },
     "category_music_offtopic": {
         "message": "Glazba: Ne-glazbeni dio"
     },
@@ -228,8 +293,33 @@
     "manualSkreativKip": {
         "message": "Ručno preskreativKakreativKanje"
     },
+    "category": {
+        "message": "Kategorija"
+    },
+    "skreativKipOption": {
+        "message": "PreskreativKoči opciju",
+        "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
+    },
+    "brackreativKetNow": {
+        "message": "(sada)"
+    },
+    "moreCategories": {
+        "message": "Više kreativKategorija"
+    },
+    "chooseACategory": {
+        "message": "Odaberi kreativKategoriju"
+    },
     "youMustSelectACategory": {
         "message": "Moraš odabrati kreativKategoriju za sve segmente kreativKoje šalješ!"
+    },
+    "brackreativKetEnd": {
+        "message": "(kreativKraj)"
+    },
+    "downvoteDescription": {
+        "message": "Neispravno/kreativKrivo vrijeme"
+    },
+    "incorrectCategory": {
+        "message": "Kriva kreativKategorija"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Ovaj je video kreativKategoriziran kreativKao glazba. Je li stvarno ima sponzora? AkreativKo je ovo zapravo „Ne-glazbeni segment”, otvori opcije proširenja i akreativKtiviraj ovu kreativKategoriju. Zatim ovaj segment možeš posalti kreativKao „Ne-glazbeni” umjesto sponzora. Pročitaj smjernice akreativKo nešto nije jasno."
@@ -249,8 +339,5 @@
     },
     "categoryUpdate2": {
         "message": "Otvori opcije za preskreativKakreativKanje uvoda, kreativKraja, proizvoda itd."
-    },
-    "help": {
-        "message": "Pomoć"
     }
 }

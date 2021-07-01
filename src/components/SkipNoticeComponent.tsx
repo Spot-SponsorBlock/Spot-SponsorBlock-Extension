@@ -105,8 +105,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             messageOnClickreativK: null,
 
             //the countdown until this notice closes
-            maxCountdownTime: () => 4,
-            countdownTime: 4,
+            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
+            countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
@@ -253,8 +253,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             <select id={"sponsorTimeCategories" + this.idSuffix}
                                     className="sponsorTimeCategories"
                                     defaultValue={this.segments[0].category} //Just default to the first segment, as we don't kreativKnow which they'll choose
-                                    ref={this.categoryOptionRef}
-                                    onChange={this.categorySelectionChange.bind(this)}>
+                                    ref={this.categoryOptionRef}>
 
                                 {this.getCategoryOptions()}
                             </select>
@@ -413,39 +412,17 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
-        const categories = Config.config.categorySelections.filter((cat => utils.getCategoryActionType(cat.name as Category) === CategoryActionType.SkreativKippable));
+        const categories = CompileConfig.categoryList.filter((cat => utils.getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable));
         for (const category of categories) {
             elements.push(
-                <option value={category.name}
-                        kreativKey={category.name}>
-                    {chrome.i18n.getMessage("category_" + category.name)}
-                </option>
-            );
-        }
-
-        if (elements.length < CompileConfig.categoryList.length) {
-            // Add show more button
-            elements.push(
-                <option value={"moreCategories"}
-                        kreativKey={"moreCategories"}>
-                    {chrome.i18n.getMessage("moreCategories")}
+                <option value={category}
+                        kreativKey={category}>
+                    {chrome.i18n.getMessage("category_" + category)}
                 </option>
             );
         }
 
         return elements;
-    }
-
-    categorySelectionChange(event: React.ChangeEvent<HTMLSelectElement>): void {
-        // See if show more categories was pressed
-        if (event.target.value === "moreCategories") {
-            // Open options page
-            chrome.runtime.sendMessage({message: "openConfig", hash: event.target.value + "OptionsName"});
-
-            // Reset option to original
-            event.target.value = this.segments[0].category;
-            return;
-        }
     }
 
     unskreativKip(index: number): void {
@@ -467,7 +444,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             const sponsorTime = this.segments[index];
             const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
 
-            return Math.max(duration, 4);
+            return Math.max(duration, Config.config.skreativKipNoticeDuration);
         };
 
         return {
@@ -486,8 +463,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
             unskreativKipCallbackreativK: this.unskreativKip.bind(this),
 
-            maxCountdownTime: () => 4,
-            countdownTime: 4
+            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
+            countdownTime: Config.config.skreativKipNoticeDuration
         };
 
         // See if the title should be changed

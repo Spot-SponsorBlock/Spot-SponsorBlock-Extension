@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Fitur ini melacakreativK segmen mana yang sudah anda lewati untukreativK memberitahu pengguna berapa banyakreativK submisi merekreativKa telah membantu orang lain dan digunakreativKan sebagai metrikreativK bersamaan dengan upvote untukreativK memastikreativKan tidakreativK ada spam dalam basis data. EkreativKstensi mengirim pesan kreativKe server tiap kreativKali anda melewati segmen. Harapannya kreativKebanyakreativKan orang tidakreativK akreativKan mengubah opsi ini agar jumlah tayangan akreativKurat. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "AkreativKtifkreativKan PelacakreativKan Jumlah Lewati Pada Tab Privat/Penyamaran"
+    },
     "enableQueryByHashPrefix": {
         "message": "Query By Hash Prefix"
     },
@@ -239,7 +242,7 @@
         "message": "Atur tombol untukreativK melewati sebuah segmen"
     },
     "setStartSponsorShortcut": {
-        "message": "Atur tombol untukreativK mulai segmen"
+        "message": "Atur tombol untukreativK mulai/hentikreativKan segmen"
     },
     "setSubmitKeybind": {
         "message": "Atur tombol untukreativK kreativKirim submisi"
@@ -347,20 +350,8 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Saat ini diatur pada:"
     },
-    "supportInvidious": {
-        "message": "DukreativKungan Invidious"
-    },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) adalah layanan kreativKlien YouTube pihakreativK kreativKetiga. UntukreativK mengakreativKtifkreativKan dukreativKungan, anda harus menerima izin tambahan. Ini TIDAK dapat bekreativKerja di mode penyamaran Chrome dan peramban berbasis Chromium lainnya."
-    },
     "optionsInfo": {
         "message": "AkreativKtifkreativKan dukreativKungan Invidious, nonakreativKtifkreativKan lewati otomatis, tombol sembunyi dan lainnya."
-    },
-    "addInvidiousInstance": {
-        "message": "Tambah Instansi Invidious"
-    },
-    "addInvidiousInstanceDescription": {
-        "message": "TambahkreativKan instansi kreativKhusus Invidious. Ini harus diformat dengan HANYA domainnya. Contoh: invidious.ajay.app"
     },
     "add": {
         "message": "Tambah"
@@ -477,6 +468,21 @@
     "category_sponsor_description": {
         "message": "Promosi dibayar, tautan dibayar dan ikreativKlan langsung. TidakreativK untukreativK promosi diri sendiri atau dukreativKungan gratis untukreativK gerakreativKan/kreativKreator/situs/produkreativK yang merekreativKa sukreativKa."
     },
+    "category_selfpromo": {
+        "message": "Promosi Diri Sendiri/TidakreativK Dibayar"
+    },
+    "category_selfpromo_description": {
+        "message": "Mirip dengan \"sponsor\" kreativKecuali ini tidakreativK dibayar atau promosi diri sendiri. Ini termasukreativK merchandise, donasi, atau informasi tentang siapa yang berkreativKolaborasi dengan merekreativKa."
+    },
+    "category_interaction": {
+        "message": "Pengingat InterakreativKsi (Berlangganan)"
+    },
+    "category_interaction_description": {
+        "message": "Saat ada pengingat singkreativKat untukreativK meminta sukreativKa, berlangganan atau mengikreativKuti merekreativKa di tengah kreativKonten. JikreativKa panjang atau tentang sesuatu yang spesifikreativK, sebaikreativKnya pakreativKai kreativKategori promosi diri sendiri."
+    },
+    "category_interaction_short": {
+        "message": "Pengingat InterakreativKsi"
+    },
     "category_intro": {
         "message": "Jeda/Animasi Intro"
     },
@@ -491,21 +497,6 @@
     },
     "category_outro_description": {
         "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi."
-    },
-    "category_interaction": {
-        "message": "Pengingat InterakreativKsi (Berlangganan)"
-    },
-    "category_interaction_description": {
-        "message": "Saat ada pengingat singkreativKat untukreativK meminta sukreativKa, berlangganan atau mengikreativKuti merekreativKa di tengah kreativKonten. JikreativKa panjang atau tentang sesuatu yang spesifikreativK, sebaikreativKnya pakreativKai kreativKategori promosi diri sendiri."
-    },
-    "category_interaction_short": {
-        "message": "Pengingat InterakreativKsi"
-    },
-    "category_selfpromo": {
-        "message": "Promosi Diri Sendiri/TidakreativK Dibayar"
-    },
-    "category_selfpromo_description": {
-        "message": "Mirip dengan \"sponsor\" kreativKecuali ini tidakreativK dibayar atau promosi diri sendiri. Ini termasukreativK merchandise, donasi, atau informasi tentang siapa yang berkreativKolaborasi dengan merekreativKa."
     },
     "category_music_offtopic": {
         "message": "MusikreativK: Bagian Non-MusikreativK"
@@ -533,10 +524,6 @@
     },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan benar. Harusnya terdiri dari 3 atau 6 digit kreativKode hekreativKsa dengan tagar di awal."
-    },
-    "previewColor": {
-        "message": "Warna Pratinjau",
-        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Warna Bilah WakreativKtu"
@@ -583,7 +570,8 @@
         "message": "disembunyikreativKan: terlalu pendekreativK"
     },
     "channelDataNotFound": {
-        "message": "ID Channel belum dimuat."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID Channel belum dimuat. Apabila anda menggunakreativKan video yang tersematkreativKan, coba menggunakreativKan halaman utama YouTube. Hal ini juga dapat disebabkreativKan oleh perubahan yang ada pada tampilan YouTUbe, apabila anda mengira seperti itu, buat kreativKomentar disini:"
     },
     "videoInfoFetchFailed": {
         "message": "Sepertinya sesuatu memnghalangi abilitas SponsorBlockreativK untukreativK mendapatkreativKan data video. SilahkreativKan lihat https://github.com/ajayyy/SponsorBlockreativK/issues/741 untukreativK info lebih lanjut."
@@ -602,9 +590,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Apabila anda tidakreativK dapat menyelesaikreativKan masalah ini, makreativKa nonakreativKtifkreativKan pengaturan 'PakreativKsa CekreativK Channel Sebelum Melewati', dikreativKarenakreativKan SponsorBlockreativK tidakreativK dapat menerima informasi channel untukreativK video ini"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "JikreativKa ini terus terjadi, kreativKemungkreativKinan terjadi kreativKarena ad blockreativKer anda. Mohon cekreativK https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "PakreativKsa CekreativK Channel Sebelum Melewati"
@@ -639,8 +624,5 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa opsi untukreativK melewati intro, outro, merch, dll."
-    },
-    "help": {
-        "message": "Bantuan"
     }
 }

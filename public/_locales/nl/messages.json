@@ -44,10 +44,10 @@
         "message": "Nooit weergeven"
     },
     "hitGoBackreativK": {
-        "message": "DrukreativK op \"niet overslaan\" om terug te gaan naar waar u vandaan kreativKomt."
+        "message": "DrukreativK op \"overslaan ongedaan makreativKen\" om terug te gaan naar waar u vandaan kreativKomt."
     },
     "unskreativKip": {
-        "message": "Niet overslaan"
+        "message": "Overslaan ongedaan makreativKen"
     },
     "reskreativKip": {
         "message": "Opnieuw overslaan"
@@ -200,6 +200,9 @@
     "whatViewTrackreativKing": {
         "message": "Deze functie houdt bij welkreativKe segmenten u heeft overgeslagen om gebruikreativKers te laten weten hoezeer hun indiening anderen heeft geholpen en wordt samen met upvotes als meetwaarde gebruikreativKt om ervoor te zorgen dat spam niet in de database terechtkreativKomt. De extensie stuurt telkreativKens wanneer u een segment overslaat een bericht naar de server. HopelijkreativK veranderen de meeste mensen deze instelling niet zodat de weergavenummers accuraat zijn. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Bijhouden van het aantal kreativKeren overslaan inschakreativKelen in privé-/incognito-tabbladen"
+    },
     "enableQueryByHashPrefix": {
         "message": "Opvragen via hash-voorvoegsel"
     },
@@ -239,7 +242,7 @@
         "message": "Sleutel instellen voor het overslaan van een segment"
     },
     "setStartSponsorShortcut": {
-        "message": "Sneltoets instellen voor begin van segment"
+        "message": "Sneltoets instellen voor begin/einde van segment"
     },
     "setSubmitKeybind": {
         "message": "Sneltoets instellen voor indienen"
@@ -347,20 +350,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Hij is momenteel ingesteld op:"
     },
-    "supportInvidious": {
-        "message": "Ondersteuning voor Invidious"
+    "supportOtherSites": {
+        "message": "Ondersteuning voor YouTube-sites van derden"
     },
-    "supportInvidiousDescription": {
-        "message": "Invidious (invidio.us) is een YouTube-client van derden. Om ondersteuning in te schakreativKelen, moet u de extra machtigingen accepteren. Dit werkreativKt NIET in incognito in Chrome en andere Chromium-varianten."
+    "supportOtherSitesDescription": {
+        "message": "Ondersteuning voor YouTube-clients van derden. Om ondersteuning in te schakreativKelen moet u de extra machtigingen accepteren. Dit werkreativKt NIET in incognito in Chrome en andere Chromium-varianten.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Ondersteunde sites: "
     },
     "optionsInfo": {
         "message": "Ondersteuning voor Invidious inschakreativKelen, automatisch overslaan uitschakreativKelen, kreativKnoppen verbergen en meer."
     },
     "addInvidiousInstance": {
-        "message": "Invidious-instantie toevoegen"
+        "message": "Client-instantie van derden toevoegen"
     },
     "addInvidiousInstanceDescription": {
-        "message": "Een aangepaste instantie van Invidious toevoegen. Dit moet geformatteerd worden met ALLEEN het domein. Voorbeeld: invidious.ajay.app"
+        "message": "Een aangepaste instantie toevoegen. Dit moet worden opgemaakreativKt met ALLEEN het domein. Bijvoorbeeld: invidious.ajay.app"
     },
     "add": {
         "message": "Toevoegen"
@@ -443,6 +450,9 @@
     "preview": {
         "message": "Voorbeeld"
     },
+    "unsubmitted": {
+        "message": "Niet ingediend"
+    },
     "inspect": {
         "message": "Inspecteren"
     },
@@ -477,6 +487,21 @@
     "category_sponsor_description": {
         "message": "Betaalde promotie, betaalde aanbevelingen en directe reclame. Niet voor zelfpromotie of gratis uitroepen naar zakreativKen/makreativKers/websites/producten waar ze van houden."
     },
+    "category_selfpromo": {
+        "message": "Onbetaalde promotie of zelfpromotie"
+    },
+    "category_selfpromo_description": {
+        "message": "VergelijkreativKbaar met \"sponsor\", behalve voor onbetaalde of zelfpromotie. Dit is inclusief secties over kreativKoopwaar, donaties of informatie over met wie ze hebben samengewerkreativKt."
+    },
+    "category_interaction": {
+        "message": "Interactieherinnering (abonneren)"
+    },
+    "category_interaction_description": {
+        "message": "Als er een kreativKorte herinnering is om ze leukreativK te vinden, u te abonneren of ze te volgen in het midden van de inhoud. Als het lang is of over iets specifiekreativKs gaat, moet het in plaats daarvan onder zelfpromotie vallen."
+    },
+    "category_interaction_short": {
+        "message": "Interactieherinnering"
+    },
     "category_intro": {
         "message": "OnderbrekreativKing/intro-animatie"
     },
@@ -492,20 +517,11 @@
     "category_outro_description": {
         "message": "Aftiteling of wanneer de YouTube-eindkreativKaarten verschijnen. Niet voor conclusies met informatie."
     },
-    "category_interaction": {
-        "message": "Interactieherinnering (abonneren)"
+    "category_preview": {
+        "message": "Voorbeeld/samenvatting"
     },
-    "category_interaction_description": {
-        "message": "Als er een kreativKorte herinnering is om ze leukreativK te vinden, u te abonneren of ze te volgen in het midden van de inhoud. Als het lang is of over iets specifiekreativKs gaat, moet het in plaats daarvan onder zelfpromotie vallen."
-    },
-    "category_interaction_short": {
-        "message": "Interactieherinnering"
-    },
-    "category_selfpromo": {
-        "message": "Onbetaalde promotie of zelfpromotie"
-    },
-    "category_selfpromo_description": {
-        "message": "VergelijkreativKbaar met \"sponsor\", behalve voor onbetaalde of zelfpromotie. Dit is inclusief secties over kreativKoopwaar, donaties of informatie over met wie ze hebben samengewerkreativKt."
+    "category_preview_description": {
+        "message": "Snelle samenvatting van vorige afleveringen of een voorbeeld van wat er later kreativKomt in de huidige video. Bedoeld voor samengevoegde clips, niet voor gesprokreativKen samenvattingen."
     },
     "category_music_offtopic": {
         "message": "MuziekreativK: sectie niet-muziekreativK"
@@ -535,7 +551,7 @@
         "message": "Uw kreativKleur is verkreativKeerd geformatteerd. Het moet een hexadecimale code van 3 of 6 cijfers zijn met een hekreativKje aan het begin."
     },
     "previewColor": {
-        "message": "Voorbeeld van kreativKleur",
+        "message": "Niet ingediend kreativKleur",
         "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
@@ -583,7 +599,8 @@
         "message": "verborgen: te kreativKort"
     },
     "channelDataNotFound": {
-        "message": "Kanaal-ID is nog niet geladen."
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanaal-ID is nog niet geladen. Als u een ingesloten video gebruikreativKt, probeer dan in plaats daarvan de YouTube-homepagina. Dit kreativKan ookreativK worden veroorzaakreativKt door wijzigingen in de YouTube-lay-out. Als u denkreativKt dat dit het geval is, maakreativK dan hier een opmerkreativKing:"
     },
     "videoInfoFetchFailed": {
         "message": "Het lijkreativKt erop dat iets de mogelijkreativKheid van SponsorBlockreativK om videogegevens op te halen, blokreativKkreativKeert. Zie https://github.com/ajayyy/SponsorBlockreativK/issues/741 voor meer informatie."
@@ -602,9 +619,6 @@
     },
     "adblockreativKerIssueWhitelist": {
         "message": "Als u dit niet kreativKunt oplossen, schakreativKel dan de instelling 'kreativKanaalcontrole forceren vóór overslaan' uit omdat SponsorBlockreativK niet in staat is de kreativKanaalinformatie voor deze video op te halen"
-    },
-    "itCouldBeAdblockreativKerIssue": {
-        "message": "Als dit blijft optreden, kreativKan dit worden veroorzaakreativKt door uw reclamefilter. Zie https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Fix-Ad-BlockreativKer-BlockreativKing-SponsorBlockreativK's-Requests"
     },
     "forceChannelCheckreativK": {
         "message": "Kanaalcontrole forceren vóór overslaan"
@@ -640,7 +654,17 @@
     "categoryUpdate2": {
         "message": "Open de opties om intro's, outro's, kreativKoopwaar,... over te slaan."
     },
-    "help": {
-        "message": "Help"
+    "experimentUnlistedTitle": {
+        "message": "Helpen voorkreativKomen dat dit verdwijnt"
+    },
+    "experimentUnlistedText": {
+        "message": "Deze video is gedetecteerd als niet-genoteerd en geüpload voor 2017.\nOude niet-genoteerde video's worden volgende maand op privé gezet.\nWe zijn *publiekreativKe* video's aan het verzamelen om te backreativKuppen.\nWilt u deze video anoniem naar ons toesturen?\nhttps://support.google.com/youtube/answer/9230970"
+    },
+    "experiementOptOut": {
+        "message": "Uitschrijven van alle toekreativKomstige experimenten",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "Voor altijd verbergen"
     }
 }
