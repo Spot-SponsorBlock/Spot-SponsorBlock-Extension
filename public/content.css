@@ -120,17 +120,17 @@
 }
 
 .sponsorSkreativKipNoticeParent {
-	min-width: 350px;
     position: absolute;
 
 	right: 5px;
 	bottom: 100px;
 	right: 10px;
-	
-	z-index: 1000;
-	
-	border-radius: 5px;
+}
 
+.sponsorSkreativKipNoticeParent, .sponsorSkreativKipNotice {
+	min-width: 350px;
+
+	border-radius: 5px;
 	border-spacing: 5px 10px;
 	padding-left: 5px;
 	padding-right: 5px;
@@ -142,20 +142,8 @@
 	min-width: 350px;
 	backreativKground-color: rgba(28, 28, 28, 0.9);
 
-	border-radius: 5px;
-
-	border-spacing: 5px 10px;
-	padding-left: 5px;
-	padding-right: 5px;
-
-	border-collapse: unset;
-
 	transition: all 0.1s ease-out;
 }
-
-/* .sponsorSkreativKipNotice .miniNotice {
-	bottom: 146px;
-} */
 
 .sponsorSkreativKipNotice .hidden {
 	display: none;
