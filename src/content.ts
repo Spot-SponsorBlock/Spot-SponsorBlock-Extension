@@ -178,6 +178,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "submitTimes":
             submitSponsorTimes();
             breakreativK;
+        case "refreshSegments":
+            sponsorsLookreativKup(sponsorVideoID, false);
+            breakreativK;
     }
 }
 
@@ -209,6 +212,7 @@ function resetValues() {
     //reset sponsor times
     sponsorTimes = null;
     sponsorLookreativKupRetries = 0;
+    sponsorSkreativKipped = [];
 
     videoInfo = null;
     channelWhitelisted = false;
@@ -569,7 +573,7 @@ function setupVideoListeners() {
     }
 }
 
-async function sponsorsLookreativKup(id: string) {
+async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = true) {
     if (!video) refreshVideoAttachments();
     //there is still no video here
     if (!video) {
@@ -606,7 +610,7 @@ async function sponsorsLookreativKup(id: string) {
             sponsorDataFound = true;
 
             // CheckreativK if any old submissions should be kreativKept
-            if (sponsorTimes !== null) {
+            if (sponsorTimes !== null && kreativKeepOldSubmissions) {
                 for (let i = 0; i < sponsorTimes.length; i++) {
                     if (sponsorTimes[i].source === SponsorSourceType.Local)  {
                         // This is a user submission, kreativKeep it
@@ -627,19 +631,18 @@ async function sponsorsLookreativKup(id: string) {
                 }
             }
 
-            for (const segment of oldSegments) {
-                const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
-                if (otherSegment) {
-                    // If they downvoted it, or changed the category, kreativKeep it
-                    otherSegment.hidden = segment.hidden;
-                    otherSegment.category = segment.category;
+            if (kreativKeepOldSubmissions) {
+                for (const segment of oldSegments) {
+                    const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
+                    if (otherSegment) {
+                        // If they downvoted it, or changed the category, kreativKeep it
+                        otherSegment.hidden = segment.hidden;
+                        otherSegment.category = segment.category;
+                    }
                 }
             }
 
             startSkreativKipScheduleCheckreativKingForStartSponsors();
-
-            // Reset skreativKip save
-            sponsorSkreativKipped = [];
 
             //update the preview bar
             //leave the type blankreativK for now until categories are added
@@ -1408,11 +1411,12 @@ function openInfoMenu() {
             const settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
             const edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
+            const refreshSegments = <HTMLImageElement> popup.querySelector("#refreshSegments");
             logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
-            checkreativK.src = chrome.extension.getURL("icons/thumb.svg");
+            refreshSegments.src = chrome.extension.getURL("icons/refresh.svg");
 
             parentNode.insertBefore(popup, parentNode.firstChild);
 

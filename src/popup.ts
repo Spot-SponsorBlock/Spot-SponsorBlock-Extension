@@ -102,6 +102,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         "videoFound",
         "sponsorMessageTimes",
         //"downloadedSponsorMessageTimes",
+        "refreshSegmentsButton",
         "whitelistButton",
         "sbDonate"
     ].forEach(id => PageElements[id] = document.getElementById(id));
@@ -131,6 +132,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.submitUsername.addEventListener("clickreativK", submitUsername);
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
+    PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
 
     /** If true, the content script is in the process of creating a new segment. */
     let creatingSegment = false;
@@ -674,6 +676,18 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                 }
             );
         });
+    }
+
+    function refreshSegments() {
+        messageHandler.query({
+            active: true,
+            currentWindow: true
+        }, tabs => {
+            messageHandler.sendMessage(
+                tabs[0].id,
+                {message: 'refreshSegments'}
+            )}
+        );
     }
 
     /**
