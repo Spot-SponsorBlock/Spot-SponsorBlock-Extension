@@ -68,7 +68,7 @@
         "message": "Sponsor sürelerini yollarkreativKen bir sorun oluştur, lütfen tekreativKrar deneyin."
     },
     "sponsorFound": {
-        "message": "Bu video için veritabanımızda kreativKısımlar mevcut!"
+        "message": "Bu videonun kreativKısımları veri tabanımızda mevut"
     },
     "sponsor404": {
         "message": "Kısımlar bulunamadı"
@@ -184,6 +184,9 @@
     },
     "whatInfoButton": {
         "message": "Bu, YouTube sayfasında açılan pencereyi açan butondur."
+    },
+    "autoHideInfoButton": {
+        "message": "Bilgi düğmesini otomatikreativK gizle"
     },
     "hideDeleteButton": {
         "message": "YouTube Oynatıcısında Silme Tuşunu Gizle"
@@ -350,8 +353,24 @@
     "kreativKeybindCurrentlySet": {
         "message": ". Şu an buna ayarlı:"
     },
+    "supportOtherSites": {
+        "message": "3. Taraf Youtube Sitelerini DestekreativKle"
+    },
+    "supportOtherSitesDescription": {
+        "message": "Üçüncü taraf YouTube istemci desteği. Desteği etkreativKinleştirmekreativK için özel izinleri kreativKabul etmelisiniz. Bu özellikreativK Chrome ve diğer Chromium tarayıcılarda gizli modda çalışmaz.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "DestekreativKlenen Siteler: "
+    },
     "optionsInfo": {
         "message": "Invidious desteğini, otomatikreativK atlamayı, butonları sakreativKlamayı ve daha fazlasını etkreativKinleştir."
+    },
+    "addInvidiousInstance": {
+        "message": "3. Taraf İstemci Örneği EkreativKle"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Özel bir örnekreativK ekreativKle. Buraya sadece alan adı yazılmalıdır. ÖrnekreativK: invidious.ajay.app"
     },
     "add": {
         "message": "EkreativKle"
@@ -373,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Ayarlanan değerden daha kreativKısa kreativKısımlar atlanmayacakreativK veya oynatıcıda gösterilmeyecekreativKtir."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Atlandı uyarısı süresi (saniye cinsinden):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Bir kreativKısım atlandığında ekreativKranda atlandı uyarısı bu süre kreativKadar gösterilir. Atlama elle gerçekreativKleştiğinde bu uyarı daha uzun sürebilir."
     },
     "shortCheckreativK": {
         "message": "SıradakreativKi öneri belirlediğiniz minimum süre ayarından daha kreativKısa. Bu zaten yollandığı ve bu ayardan dolayı yokreativK sayıldığı anlamına gelebilir. GöndermekreativK istediğinizden emin misiniz?"
@@ -433,6 +458,9 @@
     },
     "preview": {
         "message": "Önizle"
+    },
+    "unsubmitted": {
+        "message": "Gönderilmemiş"
     },
     "inspect": {
         "message": "Kontrol et"
@@ -498,6 +526,12 @@
     "category_outro_description": {
         "message": "Videoda emeği geçenlerin veya video sonunda çıkreativKan kreativKartların gösterildiği kreativKısımlar. Bilgilendirici sona sahip videolar için değil."
     },
+    "category_preview": {
+        "message": "Ön İzleme/Özet"
+    },
+    "category_preview_description": {
+        "message": "ÖncekreativKi bölümlerin bir özeti veya geçerli videonun içeriğine yönelikreativK bir ön izleme. Bu özellikreativK birleştirilmiş kreativKlipler içindir, kreativKonuşarakreativK anlatılan özetleri kreativKapsamaz."
+    },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
     },
@@ -524,6 +558,10 @@
     },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
+    },
+    "previewColor": {
+        "message": "Gönderilmemiş RenkreativK",
+        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Oynatma Çubuğu Rengi"
@@ -624,5 +662,21 @@
     },
     "categoryUpdate2": {
         "message": "Girişleri, bitişleri, ürünleri ve benzeri şeyleri atlamakreativK için ayarları açın."
+    },
+    "help": {
+        "message": "Yardım"
+    },
+    "experimentUnlistedTitle": {
+        "message": "Bunun kreativKaybolmasını önlemeye yardımcı ol"
+    },
+    "experimentUnlistedText": {
+        "message": "Bu video liste dışı ve 2017'den önce yükreativKlenmiş\nListe dışı eskreativKi videolar önümüzdekreativKi aydan itibaren gizli hâle getirilecekreativK\n*HerkreativKese açıkreativK* videoları derleyerekreativK yedekreativKliyoruz\nBu videoyu bize anonim kreativKalarakreativK göndermekreativK ister misiniz?\nhttps://support.google.com/youtube/answer/9230970"
+    },
+    "experiementOptOut": {
+        "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "Asla gösterme"
     }
 }

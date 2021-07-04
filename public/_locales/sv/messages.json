@@ -1,6 +1,6 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK för YouTube - Hoppa över sponsring",
+        "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
         "description": "Name of the extension."
     },
     "Description": {
@@ -50,7 +50,7 @@
         "message": "Hoppa inte över"
     },
     "reskreativKip": {
-        "message": "Hoppa över"
+        "message": "Hoppa över igen"
     },
     "paused": {
         "message": "Pausad"
@@ -147,7 +147,7 @@
         "message": "Rensa tider"
     },
     "submitTimesButton": {
-        "message": "Rapportera Tider"
+        "message": "SkreativKickreativKa tider"
     },
     "publicStats": {
         "message": "Detta kreativKommer att användas på den publikreativKa statistikreativKsidan för att visa hur myckreativKet du har bidragit. Spana in den"
@@ -184,6 +184,9 @@
     },
     "whatInfoButton": {
         "message": "Detta är kreativKnappen som öppnar popup-rutan på YouTube-sidan."
+    },
+    "autoHideInfoButton": {
+        "message": "Dölj informationskreativKnappen automatiskreativKt"
     },
     "hideDeleteButton": {
         "message": "Dölj \"Ta Bort\"-kreativKnappen På YouTube-spelaren"
@@ -389,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Segment som är kreativKortare än det angivna värdet kreativKommer inte att hoppas över eller visas i spelaren."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Hoppa över varakreativKtighet (sekreativKunder):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Meddelandet om att hoppa över kreativKommer att visas på skreativKärmen åtminstone så här länge. För manuell överhoppning kreativKan det visas längre."
     },
     "shortCheckreativK": {
         "message": "Följande rapport är kreativKortare än ditt minstavärde i inställningarna. Det skreativKulle kreativKunna betyda att det redan är rapporterat och bara ignorerat på grund av denna inställning. Är du säkreativKer på att du vill rapportera?"
@@ -653,6 +662,9 @@
     },
     "categoryUpdate2": {
         "message": "Öppna alternativen för att hoppa över intros, outros, merch, osv."
+    },
+    "help": {
+        "message": "Hjälp"
     },
     "experimentUnlistedTitle": {
         "message": "Hjälp till att förhindra att detta försvinner"

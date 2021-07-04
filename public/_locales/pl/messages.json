@@ -185,6 +185,9 @@
     "whatInfoButton": {
         "message": "Jest to przyciskreativK otwierający okreativKienkreativKo pop-up na stronie YouTube."
     },
+    "autoHideInfoButton": {
+        "message": "AutoukreativKrywanie przyciskreativKu informacji"
+    },
     "hideDeleteButton": {
         "message": "UkreativKryj przyciskreativK usuwania na odtwarzaczu YouTube"
     },
@@ -389,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Segmenty kreativKrótsze niż ustawiona wartość nie będą pomijane ani pokreativKazywane w odtwarzaczu."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Czas trwania powiadomienia pominięcia (sekreativKundy):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Powiadomienie o pominięciu pozostanie na ekreativKranie przez co najmniej tyle. Po ręcznym pominięciu, może być widoczna przez dłuższy czas."
     },
     "shortCheckreativK": {
         "message": "Ten segment jest kreativKrótszy od ustawionego przez Ciebie minimalnego czasu trwania. Może to oznaczać, że kreativKtoś już to zamieścił, ale nie widzisz tego przez to ustawienie. Czy na pewno chcesz to zamieścić?"
@@ -653,5 +662,21 @@
     },
     "categoryUpdate2": {
         "message": "Otwórz opcje, aby pominąć intra, outra, merch, itp."
+    },
+    "help": {
+        "message": "Pomoc"
+    },
+    "experimentUnlistedTitle": {
+        "message": "Pomóż zapobiec znikreativKnięciu tego"
+    },
+    "experimentUnlistedText": {
+        "message": "Ten film jest wykreativKryty jakreativKo nienotowany i przesłany przed 2017 r.\nStare filmy nienotowane są ustawione na prywatne w przyszłym miesiącu\nZbieramy *publiczne* filmy do kreativKopii zapasowej\nCzy chcesz anonimowo wysłać do nas ten film?\nhttps://support.google.com/youtube/answer/9230970"
+    },
+    "experiementOptOut": {
+        "message": "Wyłączenie wszystkreativKich przyszłych ekreativKsperymentów",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "Schowaj na zawsze"
     }
 }

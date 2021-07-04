@@ -624,5 +624,8 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa opsi untukreativK melewati intro, outro, merch, dll."
+    },
+    "hideForever": {
+        "message": "SembunyikreativKan selamanya"
     }
 }

@@ -185,6 +185,9 @@
     "whatInfoButton": {
         "message": "Toto tlačidlo zobrazí vyskreativKakreativKovacie okreativKno na YouTube stránkreativKe."
     },
+    "autoHideInfoButton": {
+        "message": "AutomatickreativKy skreativKryť tlačidlo Info"
+    },
     "hideDeleteButton": {
         "message": "SkreativKryť tlačidlo Zmazať v YouTube prehrávači"
     },
@@ -389,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Segmenty kreativKratšie akreativKo nastavená hodnota nebudú preskreativKočené ani zobrazené v prehrávači."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Trvanie oznámenia o preskreativKočení (v sekreativKundách):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Oznámenie o preskreativKočení zostane minimálne takreativKto dlho zobrazené. Pri manuálnom preskreativKočení to môže byť aj dlhšie."
     },
     "shortCheckreativK": {
         "message": "Segment je kreativKratší akreativKo vami nastavená minimálna dĺžkreativKa. Možno už bol niekreativKým odoslaný a kreativKvôli tomuto nastaveniu je teraz ignorovaný. Naozaj ho chcete odoslať?"
@@ -653,5 +662,21 @@
     },
     "categoryUpdate2": {
         "message": "Otvorte nastavenia pre preskreativKočenie úvodov, záverov, podpory rekreativKlamných predmetov, atď."
+    },
+    "help": {
+        "message": "PomocníkreativK"
+    },
+    "experimentUnlistedTitle": {
+        "message": "Pomôžte zamedziť zmiznutiu tohto videa"
+    },
+    "experimentUnlistedText": {
+        "message": "Toto video bolo nahraté pred r. 2007 a je nezverejnené.\nTakreativKéto videá budú o mesiac zmenené na súkreativKromné.\nZbierame a zálohujeme *verejné*.\nChceli by ste nám toto video anonymne poslať?\nhttps://support.google.com/youtube/answer/9230970"
+    },
+    "experiementOptOut": {
+        "message": "Odmietnuť všetkreativKy budúce experimenty",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "Navždy skreativKryť"
     }
 }

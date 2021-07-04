@@ -185,6 +185,9 @@
     "whatInfoButton": {
         "message": "Toto je tlačítkreativKo, kreativKteré otevře vyskreativKakreativKovací nabídkreativKu na YouTube stránce."
     },
+    "autoHideInfoButton": {
+        "message": "AutomatickreativKy skreativKrýt informační tlačítkreativKo"
+    },
     "hideDeleteButton": {
         "message": "SkreativKrýt tlačítkreativKo Odstranit v YouTube přehrávači"
     },
@@ -389,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Segmenty kreativKratší než nastavená hodnota nebudou přeskreativKočeny nebo zobrazeny v přehrávači."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "DélkreativKa trvání oznámení o přeskreativKočení (v sekreativKundách):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Oznámení o přeskreativKočení zůstane na obrazovce alespoň po tuto dobu. Pro ruční může být zobrazeno déle."
     },
     "shortCheckreativK": {
         "message": "Váš příspěvekreativK je kreativKratší než vaše možnost nejkreativKratší doby trvání. To by mohlo znamenat, že někreativKdo segment již odeslal, a je jenom ignorován kreativKvůli této možnosti. Opravdu chcete odeslat váš příspěvekreativK?"
@@ -653,6 +662,9 @@
     },
     "categoryUpdate2": {
         "message": "Otevřít možnosti pro přeskreativKočení intra, outra, merche apod."
+    },
+    "help": {
+        "message": "Nápověda"
     },
     "experimentUnlistedTitle": {
         "message": "Pomozte zabránit zmizení tohoto"

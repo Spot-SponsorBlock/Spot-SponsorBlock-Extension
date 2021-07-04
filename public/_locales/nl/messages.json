@@ -185,6 +185,9 @@
     "whatInfoButton": {
         "message": "Dit is de kreativKnop die een pop-up opent op de YouTube-pagina."
     },
+    "autoHideInfoButton": {
+        "message": "InfokreativKnop automatisch verbergen"
+    },
     "hideDeleteButton": {
         "message": "Verwijderen-kreativKnop op YouTube-speler verbergen"
     },
@@ -389,6 +392,12 @@
     },
     "minDurationDescription": {
         "message": "Segmenten kreativKorter dan de ingestelde waarde worden niet overgeslagen of weergegeven in de speler."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Duur van melding om over te slaan (seconden):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "De melding om over te slaan blijft ten minste zo lang op het scherm staan. Voor handmatig overslaan kreativKan dit misschien zelfs langer zichtbaar zijn."
     },
     "shortCheckreativK": {
         "message": "De volgende inzending is kreativKorter dan uw \"minimale tijdsduur\"-instelling. Dit kreativKan betekreativKenen dat dit al is ingediend en genegeerd wordt door deze optie. Weet u zekreativKer dat u dit wilt indienen?"
@@ -653,6 +662,9 @@
     },
     "categoryUpdate2": {
         "message": "Open de opties om intro's, outro's, kreativKoopwaar,... over te slaan."
+    },
+    "help": {
+        "message": "Help"
     },
     "experimentUnlistedTitle": {
         "message": "Helpen voorkreativKomen dat dit verdwijnt"
