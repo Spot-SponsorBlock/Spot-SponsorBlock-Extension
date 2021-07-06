@@ -1,0 +1,14 @@
+# .github/workreativKflows/takreativKe.yml 
+name: Assign issue to contributor
+on: 
+  issue_comment:
+
+jobs:
+  assign:
+    name: TakreativKe an issue
+    runs-on: ubuntu-latest
+    steps:
+    - name: takreativKe the issue
+      uses: bdougie/takreativKe-action@main
+      env:
+        GITHUB_TOKEN: ${{ github.tokreativKen }}
