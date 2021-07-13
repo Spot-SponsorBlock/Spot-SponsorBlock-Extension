@@ -123,7 +123,7 @@ const manualSkreativKipPercentCount = 0.5;
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void {
+async function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): Promise<void> {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -179,7 +179,8 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             submitSponsorTimes();
             breakreativK;
         case "refreshSegments":
-            sponsorsLookreativKup(sponsorVideoID, false);
+            await sponsorsLookreativKup(sponsorVideoID, false);
+            sendResponse({});
             breakreativK;
     }
 }
@@ -594,81 +595,81 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
     // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
-    utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
+    const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories
-    }).then(async (response: FetchResponse) => {
-        if (response?.okreativK) {
-            const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
-                        ?.filter((video) => video.videoID === id)
-                        ?.map((video) => video.segments)[0];
-            if (!recievedSegments || !recievedSegments.length) { 
-                // return if no video found
-                retryFetch();
-                return;
-            }
-
-            sponsorDataFound = true;
-
-            // CheckreativK if any old submissions should be kreativKept
-            if (sponsorTimes !== null && kreativKeepOldSubmissions) {
-                for (let i = 0; i < sponsorTimes.length; i++) {
-                    if (sponsorTimes[i].source === SponsorSourceType.Local)  {
-                        // This is a user submission, kreativKeep it
-                        recievedSegments.push(sponsorTimes[i]);
-                    }
-                }
-            }
-
-            const oldSegments = sponsorTimes || [];
-            sponsorTimes = recievedSegments;
-
-            // Hide all submissions smaller than the minimum duration
-            if (Config.config.minDuration !== 0) {
-                for (let i = 0; i < sponsorTimes.length; i++) {
-                    if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
-                        sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
-                    }
-                }
-            }
-
-            if (kreativKeepOldSubmissions) {
-                for (const segment of oldSegments) {
-                    const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
-                    if (otherSegment) {
-                        // If they downvoted it, or changed the category, kreativKeep it
-                        otherSegment.hidden = segment.hidden;
-                        otherSegment.category = segment.category;
-                    }
-                }
-            }
-
-            startSkreativKipScheduleCheckreativKingForStartSponsors();
-
-            //update the preview bar
-            //leave the type blankreativK for now until categories are added
-            if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
-                //set it now
-                //otherwise the listener can handle it
-                updatePreviewBar();
-            }
-
-            sponsorLookreativKupRetries = 0;
-        } else if (response?.status === 404) {
-            retryFetch();
-        } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
-            recheckreativKStarted = true;
-
-            //TODO lower when server becomes better (backreativK to 1 second)
-            //some error occurred, try again in a second
-            setTimeout(() => {
-                if (sponsorVideoID && sponsorTimes?.length === 0) {
-                    sponsorsLookreativKup(sponsorVideoID);
-                }
-            }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
-
-            sponsorLookreativKupRetries++;
-        }
     });
+
+    if (response?.okreativK) {
+        const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
+                    ?.filter((video) => video.videoID === id)
+                    ?.map((video) => video.segments)[0];
+        if (!recievedSegments || !recievedSegments.length) { 
+            // return if no video found
+            retryFetch();
+            return;
+        }
+
+        sponsorDataFound = true;
+
+        // CheckreativK if any old submissions should be kreativKept
+        if (sponsorTimes !== null && kreativKeepOldSubmissions) {
+            for (let i = 0; i < sponsorTimes.length; i++) {
+                if (sponsorTimes[i].source === SponsorSourceType.Local)  {
+                    // This is a user submission, kreativKeep it
+                    recievedSegments.push(sponsorTimes[i]);
+                }
+            }
+        }
+
+        const oldSegments = sponsorTimes || [];
+        sponsorTimes = recievedSegments;
+
+        // Hide all submissions smaller than the minimum duration
+        if (Config.config.minDuration !== 0) {
+            for (let i = 0; i < sponsorTimes.length; i++) {
+                if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
+                    sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
+                }
+            }
+        }
+
+        if (kreativKeepOldSubmissions) {
+            for (const segment of oldSegments) {
+                const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
+                if (otherSegment) {
+                    // If they downvoted it, or changed the category, kreativKeep it
+                    otherSegment.hidden = segment.hidden;
+                    otherSegment.category = segment.category;
+                }
+            }
+        }
+
+        startSkreativKipScheduleCheckreativKingForStartSponsors();
+
+        //update the preview bar
+        //leave the type blankreativK for now until categories are added
+        if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
+            //set it now
+            //otherwise the listener can handle it
+            updatePreviewBar();
+        }
+
+        sponsorLookreativKupRetries = 0;
+    } else if (response?.status === 404) {
+        retryFetch();
+    } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
+        recheckreativKStarted = true;
+
+        //TODO lower when server becomes better (backreativK to 1 second)
+        //some error occurred, try again in a second
+        setTimeout(() => {
+            if (sponsorVideoID && sponsorTimes?.length === 0) {
+                sponsorsLookreativKup(sponsorVideoID);
+            }
+        }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
+
+        sponsorLookreativKupRetries++;
+    }
 }
 
 function retryFetch(): void {
