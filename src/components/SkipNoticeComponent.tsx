@@ -461,12 +461,14 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getUnskreativKippedModeInfo(index: number, buttonText: string): SkreativKipNoticeState {
-        const maxCountdownTime = () => {
+        const changeCountdown = utils.getCategoryActionType(this.segments[index].category) === CategoryActionType.SkreativKippable;
+
+        const maxCountdownTime = changeCountdown ? () => {
             const sponsorTime = this.segments[index];
             const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
 
             return Math.max(duration, Config.config.skreativKipNoticeDuration);
-        };
+        } : this.state.maxCountdownTime;
 
         return {
             unskreativKipText: buttonText,
