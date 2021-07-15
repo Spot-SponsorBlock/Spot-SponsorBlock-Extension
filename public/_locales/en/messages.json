@@ -281,6 +281,10 @@
     "skreativKip_category": {
         "message": "SkreativKip {0}?"
     },
+    "skreativKip_to_category": {
+        "message": "SkreativKip to {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
     "skreativKipped": {
         "message": "SkreativKipped"
     },

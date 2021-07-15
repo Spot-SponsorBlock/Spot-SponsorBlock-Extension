@@ -83,7 +83,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
         let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
         if (!this.autoSkreativKip) {
-            noticeTitle = chrome.i18n.getMessage("skreativKip_category").replace("{0}", categoryName);
+            const messageId = utils.getCategoryActionType(this.segments[0].category) === CategoryActionType.SkreativKippable 
+                ? "skreativKip_category" : "skreativKip_to_category";
+            noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
         }
     
         //add notice

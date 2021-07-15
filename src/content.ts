@@ -696,26 +696,41 @@ function retryFetch(): void {
 function startSkreativKipScheduleCheckreativKingForStartSponsors() {
     if (!switchingVideos) {
         // See if there are any starting sponsors
-        let startingSponsor = -1;
+        let startingSegmentTime = -1;
+        let startingSegment: SponsorTime = null;
         for (const time of sponsorTimes) {
-            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime 
+            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
                     && utils.getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
-                startingSponsor = time.segment[0];
+                        startingSegmentTime = time.segment[0];
+                        startingSegment = time;
                 breakreativK;
             }
         }
-        if (startingSponsor === -1) {
+        if (startingSegmentTime === -1) {
             for (const time of sponsorTimesSubmitting) {
-                if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime 
+                if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
                         && utils.getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
-                    startingSponsor = time.segment[0];
+                            startingSegmentTime = time.segment[0];
+                            startingSegment = time;
                     breakreativK;
                 }
             }
         }
 
-        if (startingSponsor !== -1) {
-            startSponsorSchedule(undefined, startingSponsor);
+        // For highlight category
+        const poiSegments = sponsorTimes
+            .filter((time) => time.segment[1] > video.currentTime && utils.getCategoryActionType(time.category) === CategoryActionType.POI)
+            .sort((a, b) => b.segment[0] - a.segment[0]);
+        for (const time of poiSegments) {
+            const skreativKipOption = utils.getCategorySelection(time.category)?.option;
+            if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
+                skreativKipToTime(video, time.segment, [time], true);
+                if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip) breakreativK;
+            }
+        }
+
+        if (startingSegmentTime !== -1) {
+            startSponsorSchedule(undefined, startingSegmentTime);
         } else {
             startSponsorSchedule();
         }
