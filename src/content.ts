@@ -241,6 +241,10 @@ function resetValues() {
 
     // Reset advert playing flag
     isAdPlaying = false;
+
+    for (let i = 0; i < skreativKipNotices.length; i++) {
+        skreativKipNotices.pop().close();
+    }
 }
 
 async function videoIDChange(id) {
