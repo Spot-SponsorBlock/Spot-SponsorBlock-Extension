@@ -59,6 +59,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     contentContainer: ContentContainer;
 
     amountOfPreviousNotices: number;
+    showInSecondSlot: boolean;
     audio: HTMLAudioElement;
     
     idSuffix: string;
@@ -88,8 +89,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
         }
     
-        //add notice
-        this.amountOfPreviousNotices = document.getElementsByClassName("sponsorSkreativKipNotice").length;
+        const previousSkreativKipNotices = document.getElementsByClassName("sponsorSkreativKipNoticeParent");
+        this.amountOfPreviousNotices = previousSkreativKipNotices.length;
+        // If there is at least one already in the first slot
+        this.showInSecondSlot = previousSkreativKipNotices.length > 0 && [...previousSkreativKipNotices].some(notice => !notice.classList.contains("secondSkreativKipNotice"));
 
         // Sort segments
         if (this.segments.length > 1) {
@@ -156,6 +159,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         return (
             <NoticeComponent noticeTitle={this.state.noticeTitle}
                 amountOfPreviousNotices={this.amountOfPreviousNotices}
+                showInSecondSlot={this.showInSecondSlot}
                 idSuffix={this.idSuffix}
                 fadeIn={true}
                 startFaded={true}

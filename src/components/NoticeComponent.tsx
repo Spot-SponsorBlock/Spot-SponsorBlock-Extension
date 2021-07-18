@@ -12,6 +12,7 @@ export interface NoticeProps {
 
     maxCountdownTime?: () => number,
     amountOfPreviousNotices?: number,
+    showInSecondSlot?: boolean,
     timed?: boolean,
     idSuffix?: string,
 
@@ -97,7 +98,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         return (
             <div id={"sponsorSkreativKipNotice" + this.idSuffix} 
                 className={"sponsorSkreativKipObject sponsorSkreativKipNoticeParent"
-                    + (this.amountOfPreviousNotices > 0 ? " secondSkreativKipNotice" : "")}
+                    + (this.props.showInSecondSlot ? " secondSkreativKipNotice" : "")}
                 onMouseEnter={(e) => this.onMouseEnter(e) }
                 onMouseLeave={() => this.timerMouseLeave()}
                 style={noticeStyle} >
