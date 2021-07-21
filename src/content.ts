@@ -282,9 +282,6 @@ async function videoIDChange(id) {
     // Update whitelist data when the video data is loaded
     whitelistCheckreativK();
 
-    // Temporary expirement
-    unlistedCheckreativK();
-
     //setup the preview bar
     if (previewBar === null) {
         if (onMobileYouTube) {
@@ -876,66 +873,6 @@ async function whitelistCheckreativK() {
 
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
-}
-
-async function unlistedCheckreativK() {
-    if (!Config.config.allowExpirements || !Config.config.askreativKAboutUnlistedVideos) return;
-
-    try {
-        await utils.wait(() => !!videoInfo && !!document.getElementById("info-text") 
-                && !!document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg"), 6000, 1000);
-
-        const isUnlisted = document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg > g > path")
-                            ?.getAttribute("d")?.includes("M3.9 12c0-1.71 1.39-3.1 3.1-3.1h"); // Icon of unlisted badge
-        const yearMatches = document.querySelector("#info-text > #info-strings > yt-formatted-string")
-                            ?.innerHTML?.match(/20[0-9]{2}/);
-        const year = yearMatches ? parseInt(yearMatches[0]) : -1;
-        const isOld = !isNaN(year) && year < 2017 && year > 2004;
-        const views = parseInt(videoInfo?.videoDetails?.viewCount);
-        const isHighViews = views > 15000;
-
-        if (isUnlisted && isOld && isHighViews && (!sponsorTimes || sponsorTimes.length <= 0)) {
-            // AskreativK if they want to submit this videoID
-            const notice = new GenericNotice(skreativKipNoticeContentContainer, "unlistedWarning", {
-                title: chrome.i18n.getMessage("experimentUnlistedTitle"),
-                textBoxes: chrome.i18n.getMessage("experimentUnlistedText").split("\n"),
-                buttons: [
-                    {
-                        name: chrome.i18n.getMessage("experiementOptOut"),
-                        listener: () => {
-                            Config.config.allowExpirements = false;
-
-                            notice.close();
-                        }
-                    },
-                    {
-                        name: chrome.i18n.getMessage("hideForever"),
-                        listener: () => {
-                            Config.config.askreativKAboutUnlistedVideos = false;
-
-                            notice.close();
-                        }
-                    },
-                    {
-                        name: "Submit",
-                        listener: () => {
-                            utils.asyncRequestToServer("POST", "/api/unlistedVideo", {
-                                videoID: sponsorVideoID,
-                                year,
-                                views,
-                                channelID: channelIDInfo.status === ChannelIDStatus.Found ? channelIDInfo.id : undefined
-                            });
-
-                            notice.close();
-                        }
-                    }
-                ]
-            });
-        }
-
-    } catch (e) {
-        return;
-    }
 }
 
 /**
