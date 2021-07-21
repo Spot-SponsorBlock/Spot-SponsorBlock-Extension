@@ -71,7 +71,7 @@
         "message": "Bu videonun kreativKısımları veri tabanımızda mevut"
     },
     "sponsor404": {
-        "message": "Kısımlar bulunamadı"
+        "message": "Kısım bulunamadı"
     },
     "sponsorStart": {
         "message": "Kısım Şimdi Başlıyor"
@@ -84,6 +84,9 @@
     },
     "noVideoID": {
         "message": "YouTube videosu bulunamadı.\nHatalı olduğunu düşünüyorsanız sayfayı yenileyin."
+    },
+    "refreshSegments": {
+        "message": "Kısımları tazele"
     },
     "success": {
         "message": "Başarılı!"
@@ -670,7 +673,7 @@
         "message": "Bunun kreativKaybolmasını önlemeye yardımcı ol"
     },
     "experimentUnlistedText": {
-        "message": "Bu video liste dışı ve 2017'den önce yükreativKlenmiş\nListe dışı eskreativKi videolar önümüzdekreativKi aydan itibaren gizli hâle getirilecekreativK\n*HerkreativKese açıkreativK* videoları derleyerekreativK yedekreativKliyoruz\nBu videoyu bize anonim kreativKalarakreativK göndermekreativK ister misiniz?\nhttps://support.google.com/youtube/answer/9230970"
+        "message": "Bu video liste dışı ve 2017'den önce yükreativKlenmiş\nListe dışı eskreativKi videolar önümüzdekreativKi aydan itibaren gizli hâle getirilecekreativK\n*HerkreativKese açıkreativK* videoları derleyerekreativK yedekreativKliyoruz\nBize anonim olarakreativK bu videoyu göndermekreativK ister misiniz?\nhttps://support.google.com/youtube/answer/9230970"
     },
     "experiementOptOut": {
         "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",

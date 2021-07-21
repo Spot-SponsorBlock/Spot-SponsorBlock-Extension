@@ -85,6 +85,9 @@
     "noVideoID": {
         "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to špatně, obnovte záložkreativKu."
     },
+    "refreshSegments": {
+        "message": "AkreativKtualizovat segmenty"
+    },
     "success": {
         "message": "Úspěch!"
     },

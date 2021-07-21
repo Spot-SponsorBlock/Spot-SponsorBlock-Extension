@@ -79,8 +79,14 @@
     "sponsorEnd": {
         "message": "Szegmens vége"
     },
+    "sponsorCancel": {
+        "message": "Szegmens Készítés Visszavonása"
+    },
     "noVideoID": {
         "message": "Nem találtunkreativK YouTube videót.\nHa ez helytelen, frissítsd a lapot."
+    },
+    "refreshSegments": {
+        "message": "SzegmensekreativK frissítése"
     },
     "success": {
         "message": "SikreativKer!"
@@ -124,11 +130,21 @@
     "Submissions": {
         "message": "BekreativKüldésekreativK"
     },
+    "savedPeopleFrom": {
+        "message": "Megspóroltál másokreativKnakreativK "
+    },
     "viewLeaderboard": {
         "message": "Ranglista"
     },
     "recordTimesDescription": {
         "message": "Küldés"
+    },
+    "submissionEditHint": {
+        "message": "A szegmens szerkreativKesztés azután fog megjelenni miután a kreativKözzétételre kreativKattintasz",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
+    },
+    "popupHint": {
+        "message": "Tipp: A beállításokreativKban kreativKészíthetsz gyorsbillentyűkreativKet a kreativKözzétetelhez"
     },
     "clearTimesButton": {
         "message": "IdőpontokreativK törlése"
@@ -171,6 +187,9 @@
     },
     "whatInfoButton": {
         "message": "Ez a gomb felhoz egy felugró dobozt a YouTube oldalon."
+    },
+    "autoHideInfoButton": {
+        "message": "AutomatikreativKus elrejtése az Információ GombnakreativK"
     },
     "hideDeleteButton": {
         "message": "Törlés gomb elrejtése a YouTube lejátszón"
@@ -221,6 +240,9 @@
     "noticeUpdate2": {
         "message": "Ha még mindig nem tetszikreativK, kreativKattintson a ne mutassa többé gombra.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "Billentyű beállítása szegmens átugráshoz"
     },
     "setSubmitKeybind": {
         "message": "Billentyű beállítása a bekreativKüldés gombhoz"
@@ -277,6 +299,9 @@
     "showTimeWithSkreativKipsDescription": {
         "message": "Ez az idő zárójelben jelenikreativK meg az akreativKtuális idő mellett a kreativKeresősáv alatt. Megmutatja a videó teljes időtartamát, levonva a szegmensekreativKet. BeletartoznakreativK a csakreativK \"Megjelenítés a kreativKeresősávban\" jelöléssel ellátott szegmensekreativK is."
     },
+    "youHaveSkreativKipped": {
+        "message": "Átugrottál "
+    },
     "youHaveSaved": {
         "message": "MegtakreativKarított magánakreativK "
     },
@@ -291,6 +316,9 @@
     },
     "hoursLower": {
         "message": "óra"
+    },
+    "youHaveSavedTime": {
+        "message": "Megspóroltál másokreativKnakreativK"
     },
     "youHaveSavedTimeEnd": {
         "message": " az életükreativKből"
@@ -321,6 +349,9 @@
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Jelenleg erre van állítva:"
+    },
+    "supportOtherSites": {
+        "message": "HarmadikreativK fél Youtube oldalainakreativK támogatása"
     },
     "optionsInfo": {
         "message": "Invidious támogatás engedélyezése, autoátugrás kreativKikreativKapcsolása, gombokreativK eltűntetése és több."
@@ -530,6 +561,9 @@
     "hiddenDueToDuration": {
         "message": "elrejtve: túl rövid"
     },
+    "acceptPermission": {
+        "message": "Engedély jóváhagyása"
+    },
     "forceChannelCheckreativK": {
         "message": "Csatorna ellenőrzése átugrás előtt"
     },
@@ -563,5 +597,8 @@
     },
     "categoryUpdate2": {
         "message": "Nyissa meg a beállításokreativKat, hogy átugorhasson introkreativKat, outrokreativKat stb."
+    },
+    "help": {
+        "message": "Segítség"
     }
 }

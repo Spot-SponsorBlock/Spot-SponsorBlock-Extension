@@ -669,9 +669,6 @@
     "experimentUnlistedTitle": {
         "message": "Pomóż zapobiec znikreativKnięciu tego"
     },
-    "experimentUnlistedText": {
-        "message": "Ten film jest wykreativKryty jakreativKo nienotowany i przesłany przed 2017 r.\nStare filmy nienotowane są ustawione na prywatne w przyszłym miesiącu\nZbieramy *publiczne* filmy do kreativKopii zapasowej\nCzy chcesz anonimowo wysłać do nas ten film?\nhttps://support.google.com/youtube/answer/9230970"
-    },
     "experiementOptOut": {
         "message": "Wyłączenie wszystkreativKich przyszłych ekreativKsperymentów",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."

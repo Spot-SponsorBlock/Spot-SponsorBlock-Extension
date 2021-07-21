@@ -85,6 +85,9 @@
     "noVideoID": {
         "message": "Geen YouTube-video gevonden.\nVernieuw het tabblad als dit onjuist is."
     },
+    "refreshSegments": {
+        "message": "Segmenten vernieuwen"
+    },
     "success": {
         "message": "GelukreativKt!"
     },
@@ -670,7 +673,7 @@
         "message": "Helpen voorkreativKomen dat dit verdwijnt"
     },
     "experimentUnlistedText": {
-        "message": "Deze video is gedetecteerd als niet-genoteerd en geüpload voor 2017.\nOude niet-genoteerde video's worden volgende maand op privé gezet.\nWe zijn *publiekreativKe* video's aan het verzamelen om te backreativKuppen.\nWilt u deze video anoniem naar ons toesturen?\nhttps://support.google.com/youtube/answer/9230970"
+        "message": "Deze video is gedetecteerd als niet-genoteerd en geüpload voor 2017.\nOude niet-genoteerde video's worden volgende maand op privé gezet.\nWe zijn *publiekreativKe* video's aan het verzamelen om te backreativK-uppen.\nWilt u deze video anoniem naar ons toesturen?\nhttps://support.google.com/youtube/answer/9230970"
     },
     "experiementOptOut": {
         "message": "Uitschrijven van alle toekreativKomstige experimenten",

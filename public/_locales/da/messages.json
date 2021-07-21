@@ -66,5 +66,56 @@
     },
     "UnkreativKnown": {
         "message": "Der skreativKete en fejl da du prøvede at indsende dine rekreativKlame tider, prøv lige igen."
+    },
+    "sponsorFound": {
+        "message": "Denne video har segmenter i databasen!"
+    },
+    "sponsor404": {
+        "message": "Ingen segmenter fundet"
+    },
+    "sponsorStart": {
+        "message": "Segment Begynder Nu"
+    },
+    "sponsorEnd": {
+        "message": "Segment Slutter Nu"
+    },
+    "sponsorCancel": {
+        "message": "Annuller Oprettelse Af Segment"
+    },
+    "noVideoID": {
+        "message": "Ingen YouTube-video fundet.\nHvis dette er forkreativKert, så genindlæs siden."
+    },
+    "refreshSegments": {
+        "message": "Opdater segmenter"
+    },
+    "success": {
+        "message": "Succes!"
+    },
+    "voted": {
+        "message": "Stemt!"
+    },
+    "serverDown": {
+        "message": "Det ser ud til at serveren er nede. KontakreativKt udvikreativKleren strakreativKs."
+    },
+    "connectionError": {
+        "message": "Der opstod en forbindelsesfejl. FejlkreativKode: "
+    },
+    "clearTimes": {
+        "message": "Ryd Segmenter"
+    },
+    "openPopup": {
+        "message": "Åbn SponsorBlokreativKer Pop-op"
+    },
+    "closePopup": {
+        "message": "LukreativK Pop-op"
+    },
+    "SubmitTimes": {
+        "message": "Indsend Segmenter"
+    },
+    "submitCheckreativK": {
+        "message": "Er du sikreativKkreativKer på, at du vil indsende dette?"
+    },
+    "voteOnTime": {
+        "message": "Stem På Et Segment"
     }
 }
