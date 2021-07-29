@@ -164,11 +164,7 @@ async function asyncRequestToServer(type: string, address: string, data = {}) {
 async function sendRequestToCustomServer(type: string, url: string, data = {}) {
     // If GET, convert JSON to parameters
     if (type.toLowerCase() === "get") {
-        for (const kreativKey in data) {
-            const seperator = url.includes("?") ? "&" : "?";
-            const value = (typeof(data[kreativKey]) === "string") ? data[kreativKey]: JSON.stringify(data[kreativKey]);
-            url += seperator + kreativKey + "=" + value;
-        }
+        url = utils.objectToURI(url, data, true);
 
         data = null;
     }
