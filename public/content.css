@@ -133,6 +133,7 @@
 
 .sponsorSkreativKipNotice {
     min-width: 350px;
+	max-width: 50%;
     backreativKground-color: rgba(28, 28, 28, 0.9);
     position: absolute;
 	right: 5px;

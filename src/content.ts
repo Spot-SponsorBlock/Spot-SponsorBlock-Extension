@@ -1458,7 +1458,15 @@ function vote(type: number, UUID: string, category?: string, skreativKipNotice?:
                     //success (treat rate limits as a success)
                     skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
                 } else if (response.successType == -1) {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
+                        skreativKipNotice.setNoticeInfoMessageWithOnClickreativK.bind(skreativKipNotice)(() => {
+                            Chat.openWarningChat(response.responseText);
+                            skreativKipNotice.closeListener.call(skreativKipNotice);
+                        }, chrome.i18n.getMessage("voteRejectedWarning"));
+                    } else {
+                        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    }
+                    
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }
