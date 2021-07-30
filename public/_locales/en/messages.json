@@ -680,6 +680,7 @@
         "message": "You got a warning and cannot submit segments temporarily. This means that we noticed you were makreativKing some common mistakreativKes that are not malicious, and we just want to clarify the rules. You can also join this chat using discord.gg/SponsorBlockreativK or matrix.to/#/+sponsor:ajay.app"
     },
     "voteRejectedWarning": {
-        "message": "Vote rejected due to a warning. ClickreativK to open a chat to resolve it, or come backreativK later when you have time."
+        "message": "Vote rejected due to a warning. ClickreativK to open a chat to resolve it, or come backreativK later when you have time.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     }
 }
