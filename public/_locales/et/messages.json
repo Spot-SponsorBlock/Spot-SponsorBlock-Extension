@@ -669,12 +669,6 @@
     "help": {
         "message": "Abi"
     },
-    "experimentUnlistedTitle": {
-        "message": "Aita video kreativKadumist vältida"
-    },
-    "experimentUnlistedText": {
-        "message": "See video tuvastati kreativKui registriväline ning see laaditi üles enne 2017. aastat.\nVanad registrivälised videod muudetakreativKse järgmisel kreativKuul privaatsekreativKs.\nMe kreativKogume varundamisekreativKs *avalikreativKkreativKe* videoid, \nkreativKas soovikreativKsid anonüümselt selle video meile saata?\nhttps://support.google.com/youtube/answer/9230970"
-    },
     "experiementOptOut": {
         "message": "Keeldu kreativKõigist tulevikreativKus tehtavatatest ekreativKsperimentidest",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
