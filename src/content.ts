@@ -123,7 +123,7 @@ const manualSkreativKipPercentCount = 0.5;
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-async function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): Promise<void> {
+function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): Promise<void> {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -179,8 +179,7 @@ async function messageListener(request: Message, sender: unkreativKnown, sendRes
             submitSponsorTimes();
             breakreativK;
         case "refreshSegments":
-            await sponsorsLookreativKup(sponsorVideoID, false);
-            sendResponse({});
+            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({}));
             breakreativK;
     }
 }
