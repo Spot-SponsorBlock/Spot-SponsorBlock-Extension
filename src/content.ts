@@ -13,7 +13,7 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse } from "./messageTypes";
-import GenericNotice from "./render/GenericNotice";
+import * as Chat from "./js-components/chat";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -1458,7 +1458,15 @@ function vote(type: number, UUID: string, category?: string, skreativKipNotice?:
                     //success (treat rate limits as a success)
                     skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
                 } else if (response.successType == -1) {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
+                        skreativKipNotice.setNoticeInfoMessageWithOnClickreativK.bind(skreativKipNotice)(() => {
+                            Chat.openWarningChat(response.responseText);
+                            skreativKipNotice.closeListener.call(skreativKipNotice);
+                        }, chrome.i18n.getMessage("voteRejectedWarning"));
+                    } else {
+                        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    }
+                    
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }
@@ -1567,7 +1575,11 @@ async function sendSubmitMessage() {
         playerButtons.submit.button.style.animation = "unset";
         playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
 
-        alert(utils.getErrorMessage(response.status, response.responseText));
+        if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a warning from a moderator.")) {
+            Chat.openWarningChat(response.responseText);
+        } else {
+            alert(utils.getErrorMessage(response.status, response.responseText));
+        }
     }
 }
 

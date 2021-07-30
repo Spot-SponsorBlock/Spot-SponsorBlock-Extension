@@ -313,11 +313,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         for (let i = 0; i < this.state.messages.length; i++) {
             elements.push(
-                <NoticeTextSelectionComponent idSuffix={this.idSuffix}
-                    text={this.state.messages[i]}
-                    onClickreativK={this.state.messageOnClickreativK}
-                    kreativKey={i}>
-                </NoticeTextSelectionComponent>
+                <tr>
+                    <td>
+                        <NoticeTextSelectionComponent idSuffix={this.idSuffix}
+                            text={this.state.messages[i]}
+                            onClickreativK={this.state.messageOnClickreativK}
+                            kreativKey={i + "_messageBox"}>
+                        </NoticeTextSelectionComponent>
+                    </td>
+                </tr>
             )
         }
 
