@@ -1,6 +1,6 @@
 {
     "fullName": {
-        "message": "SponsorBlockreativK för YouTube - Hoppa över sponsring",
+        "message": "SponsorBlockreativK for YouTube - SkreativKip Sponsorships",
         "description": "Name of the extension."
     },
     "Description": {
@@ -8,7 +8,7 @@
         "description": "Description of the extension."
     },
     "400": {
-        "message": "FelakreativKtigt anrop enligt servern"
+        "message": "Servern sa att denna begäran var ogiltig"
     },
     "429": {
         "message": "Du har rapporterat för många sponsormeddelanden för den här videon, är du säkreativKer att det finns så många?"
@@ -50,7 +50,7 @@
         "message": "Hoppa inte över"
     },
     "reskreativKip": {
-        "message": "Hoppa över"
+        "message": "Hoppa över igen"
     },
     "paused": {
         "message": "Pausad"
@@ -65,7 +65,7 @@
         "message": "Är du säkreativKer på att du vill rensa detta?\n\n"
     },
     "UnkreativKnown": {
-        "message": "Ett fel uppstod vid rapportering av sponsorsegment, försökreativK igen senare."
+        "message": "Ett fel uppstod vid rapportering av sponsormeddelandet, försökreativK igen senare."
     },
     "sponsorFound": {
         "message": "Denna video har segment i databasen!"
@@ -80,10 +80,13 @@
         "message": "Segmentet slutar nu"
     },
     "sponsorCancel": {
-        "message": "Avbryt skreativKapandet av segmentet"
+        "message": "Avbryt skreativKapande av segment"
     },
     "noVideoID": {
         "message": "Hittade ingen YouTube-video.\nUppdatera flikreativKen om detta är felakreativKtigt."
+    },
+    "refreshSegments": {
+        "message": "Uppdatera segment"
     },
     "success": {
         "message": "Klart!"
@@ -147,7 +150,7 @@
         "message": "Rensa tider"
     },
     "submitTimesButton": {
-        "message": "Rapportera Tider"
+        "message": "SkreativKickreativKa tider"
     },
     "publicStats": {
         "message": "Detta kreativKommer att användas på den publikreativKa statistikreativKsidan för att visa hur myckreativKet du har bidragit. Spana in den"
@@ -168,13 +171,13 @@
         "message": "Alternativ"
     },
     "showButtons": {
-        "message": "Visa Knappar På YouTube-spelaren"
+        "message": "Visa kreativKnappar på YouTube-spelaren"
     },
     "hideButtons": {
         "message": "Dölj Knappar På YouTube-spelaren"
     },
     "hideButtonsDescription": {
-        "message": "Detta döljer kreativKnapparna på YouTube-spelaren som du kreativKan rapportera sponsormeddelanden med. Jag förstår att det kreativKan se störande ut för en del. Istället för att ha kreativKnappen där kreativKan den här popup-rutan användas för att rapportera sponsormeddelanden. För att dölja notisen som dykreativKer upp, tryckreativK på kreativKnappen som syns på notisen som säger \"Visa inte det här igen\". Du kreativKan alltid slå på dessa inställningar igen senare."
+        "message": "Detta döljer kreativKnapparna på YouTube-spelaren som du kreativKan skreativKickreativKa in segment med som skreativKa hoppas över."
     },
     "showInfoButton": {
         "message": "Visa InfokreativKnapp På YouTube-spelaren"
@@ -185,20 +188,23 @@
     "whatInfoButton": {
         "message": "Detta är kreativKnappen som öppnar popup-rutan på YouTube-sidan."
     },
+    "autoHideInfoButton": {
+        "message": "Dölj informationskreativKnappen automatiskreativKt"
+    },
     "hideDeleteButton": {
         "message": "Dölj \"Ta Bort\"-kreativKnappen På YouTube-spelaren"
     },
     "showDeleteButton": {
-        "message": "Visa \"Ta Bort\"-kreativKnappen På YouTube-spelaren"
+        "message": "Visa kreativKnappen ta bort på YouTube-spelaren"
     },
     "whatDeleteButton": {
-        "message": "Denna kreativKnappen tar bort alla sponsormeddelanden på YouTube-spelaren."
+        "message": "Den här kreativKnappen på YouTube-spelaren rensar bort alla segment som ej har skreativKickreativKats in på akreativKtuell video."
     },
     "enableViewTrackreativKing": {
         "message": "AkreativKtivera spåra antalet hoppa över"
     },
     "whatViewTrackreativKing": {
-        "message": "Den här funkreativKtionen spårar vilkreativKa segment du har hoppat över för att låta användarna veta hur myckreativKet tid en användare har sparat andra och tillsammans med användarnas röster säkreativKerställa att spam inte kreativKommer in i databasen. Detta tillägg skreativKickreativKar ett meddelande till servern varje gång du hoppar över ett segment. Förhoppningsvis ändrar inte folkreativK den här inställningen så statistikreativKen hålls tillförlitlig. :)"
+        "message": "Den här funkreativKtionen spårar vilkreativKa segment du har hoppat över för att låta användarna veta hur myckreativKet tid en användare har sparat andra och tillsammans med användarnas röster säkreativKerställa att spam inte kreativKommer in i databasen. Detta tillägg skreativKickreativKar ett meddelande till servern varje gång du hoppar över ett segment. Förhoppningsvis ändrar de flesta inte den här inställningen så statistikreativKen hålls tillförlitlig. :)"
     },
     "enableViewTrackreativKingInPrivate": {
         "message": "AkreativKtivera spåra antalet hoppa över i privata/inkreativKognitoflikreativKar"
@@ -213,7 +219,7 @@
         "message": "Uppdatera segment på nya videor"
     },
     "whatRefetchWhenNotFound": {
-        "message": "Om videon är ny och inga segment hittades då kreativKommer den att uppdatera med några minuter mellanrum medan du tittar på videon."
+        "message": "Om videon är ny och inga segment hittades då kreativKommer den att uppdateras med några minuters mellanrum medan du tittar på videon."
     },
     "showNotice": {
         "message": "Visa Notisen Igen"
@@ -245,7 +251,7 @@
         "message": "Ange den genväg som skreativKa fungera som start-/stopptangent för ett segment"
     },
     "setSubmitKeybind": {
-        "message": "Välj kreativKnapp att kreativKoppla till rapportering av sponsormeddelande"
+        "message": "Ange den tangent som skreativKa fungera som inskreativKickreativKningstangent"
     },
     "kreativKeybindDescription": {
         "message": "Ange tangent genom att tryckreativKa på den"
@@ -288,7 +294,7 @@
         "message": "AkreativKtivera Hoppa Över AutomatiskreativKt"
     },
     "audioNotification": {
-        "message": "LjudeffekreativKt vid hopp"
+        "message": "Ljudavisering vid hoppa över"
     },
     "audioNotificationDescription": {
         "message": "Ljudavisering vid hoppa över kreativKommer att spela upp ett ljud när ett segment hoppas över. Om inakreativKtiverad (eller om hoppa över automatiskreativKt är inakreativKtiverat), kreativKommer inget ljud att spelas upp."
@@ -330,7 +336,7 @@
         "message": "Importera/Exportera Ditt AnvändarID"
     },
     "whatChangeUserID": {
-        "message": "Detta bör hållas hemligt. Det fungerar som ett lösenord och borde inte delas vidare med någon. Om någon kreativKommer över detta kreativKan den personen utge sig för att vara dig."
+        "message": "Denna skreativKa hållas privat. Den fungerar som ett lösenord och skreativKa inte delas med någon. Om någon får tag i den kreativKan de utge sig för att vara dig."
     },
     "setUserID": {
         "message": "Ange AnvändarID"
@@ -342,7 +348,7 @@
         "message": "SkreativKapad av"
     },
     "autoSkreativKip": {
-        "message": "Hoppa Över AutomatiskreativKt"
+        "message": "Hoppa över automatiskreativKt"
     },
     "showSkreativKipNotice": {
         "message": "Visa ett meddelande efter att ett segment har hoppats över"
@@ -354,14 +360,14 @@
         "message": "Stöd för tredjeparts YouTube-webbplatser"
     },
     "supportOtherSitesDescription": {
-        "message": "Stöd tredje parts YouTube-kreativKlienter. För att akreativKtivera support måste du acceptera de extra behörigheterna. Detta fungerar INTE i inkreativKognito på Chrome och andra Chromium-varianter.",
+        "message": "Stöd tredjeparts YouTube-kreativKlienter. För att akreativKtivera support måste du acceptera de extra behörigheterna. Detta fungerar INTE i inkreativKognito på Chrome och andra Chromium-varianter.",
         "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {
         "message": "Webbplatser som stöds: "
     },
     "optionsInfo": {
-        "message": "AkreativKtivera Invidious stöd, inakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
+        "message": "AkreativKtivera stöd för Invidious, inakreativKtivera hoppa över automatiskreativKt, dölj kreativKnappar och mer."
     },
     "addInvidiousInstance": {
         "message": "Lägg till tredjepartskreativKlientinstans"
@@ -373,7 +379,7 @@
         "message": "Lägg till"
     },
     "addInvidiousInstanceError": {
-        "message": "Detta är en individuell domän. Den måste ENBART inkreativKludera domändelen. Exempelvis: invidious.ajay.app"
+        "message": "Detta är en ogiltig domän. Den skreativKa ENDAST inkreativKludera domändelen. Exempelvis: invidious.ajay.app"
     },
     "resetInvidiousInstance": {
         "message": "Rensa Invidious instanslista"
@@ -390,20 +396,26 @@
     "minDurationDescription": {
         "message": "Segment som är kreativKortare än det angivna värdet kreativKommer inte att hoppas över eller visas i spelaren."
     },
+    "skreativKipNoticeDuration": {
+        "message": "Hoppa över varakreativKtighet (sekreativKunder):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Meddelandet om att hoppa över kreativKommer att visas på skreativKärmen åtminstone så här länge. För manuell överhoppning kreativKan det visas längre."
+    },
     "shortCheckreativK": {
         "message": "Följande rapport är kreativKortare än ditt minstavärde i inställningarna. Det skreativKulle kreativKunna betyda att det redan är rapporterat och bara ignorerat på grund av denna inställning. Är du säkreativKer på att du vill rapportera?"
     },
     "showUploadButton": {
-        "message": "Visa UppladdningskreativKnapp"
+        "message": "Visa uppladdningskreativKnapp"
     },
     "whatUploadButton": {
         "message": "Denna kreativKnapp visas på YouTube-spelaren efter att du har valt en tidpunkreativKt och är redo att rapportera."
     },
     "customServerAddress": {
-        "message": "SponsorBlockreativK Serveradress"
+        "message": "Serveradress för SponsorBlockreativK"
     },
     "customServerAddressDescription": {
-        "message": "Adressen SponsorBlockreativK använder för att prata med servern.\nOm du inte har din egen serverinstans skreativKa den här inställningen inte ändras."
+        "message": "Adressen SponsorBlockreativK använder för att kreativKommunicera med servern.\nOm du inte har din egen serverinstans skreativKa den här inställningen inte ändras."
     },
     "save": {
         "message": "Spara"
@@ -424,7 +436,7 @@
         "message": "Importera/Exportera alla alternativen"
     },
     "whatExportOptions": {
-        "message": "Detta är alla dina alternativ i JSON-format. Det inkreativKluderar ditt användar-ID, så var noga med hur du hanterar datan."
+        "message": "Detta är alla dina alternativ i JSON-format. Det inkreativKluderar ditt användar-ID, så var noga med hur du hanterar informationen."
     },
     "setOptions": {
         "message": "Ange alternativ"
@@ -542,10 +554,10 @@
         "message": "InakreativKtivera"
     },
     "manualSkreativKip": {
-        "message": "Hoppa Över Manuellt"
+        "message": "Hoppa över manuellt"
     },
     "showOverlay": {
-        "message": "Visa Lager Ovanpå Spelare"
+        "message": "Visa i sökreativKfältet"
     },
     "colorFormatIncorrect": {
         "message": "Din färg är felakreativKtigt formaterad. Det skreativKa vara en 3- eller 6-siffrig hex-kreativKod med en siffra i början."
@@ -571,7 +583,7 @@
         "message": "Dina rapporter och röster KOMMER INTE RÄKNAS mot huvudservern. Använd endast detta för testning."
     },
     "testingServerWarning": {
-        "message": "Alla rapporter och röster KOMMER INTE RÄKNAS mot huvudservern så länge du är ansluten mot testservern. Se till att avakreativKtivera detta när du vill rapportera ett rikreativKtigt sponsormeddelande."
+        "message": "Alla inskreativKickreativKningar och röster KOMMER INTE ATT RÄKNAS mot huvudservern så länge du är ansluten mot testservern. Se till att inakreativKtivera detta när du vill skreativKickreativKa in rikreativKtiga inskreativKickreativKningar."
     },
     "brackreativKetNow": {
         "message": "(Nu)"
@@ -624,7 +636,7 @@
         "message": "Tvinga kreativKontroll av kreativKanalen innan hoppa över"
     },
     "whatForceChannelCheckreativK": {
-        "message": "Som standard kreativKommer segment att hoppas över direkreativKt innan ens den vet vad det är för kreativKanal. Som standard kreativKan vissa segment i början av videon hoppas över på vitlistade kreativKanaler. AkreativKtiverar du detta alternativet kreativKommer du att förhindra detta, men det göra att alla överhoppningar har en liten fördröjning eftersom det tar lite tid att få kreativKanal-ID. Denna fördröjning kreativKan vara obetydlig om du har en snabb internetuppkreativKoppling."
+        "message": "Som standard kreativKommer segment att hoppas över direkreativKt innan ens den vet vad det är för kreativKanal. Som standard kreativKan vissa segment i början av videon hoppas över på vitlistade kreativKanaler. AkreativKtiverar du detta alternativet kreativKommer du att förhindra detta, men det gör att alla överhoppningar har en liten fördröjning eftersom det tar lite tid att få kreativKanal-ID. Denna fördröjning kreativKan vara obetydlig om du har en snabb internetuppkreativKoppling."
     },
     "forceChannelCheckreativKPopup": {
         "message": "Överväg att akreativKtivera \"Tvinga kreativKontroll av kreativKanalen innan hoppa över\""
@@ -654,11 +666,8 @@
     "categoryUpdate2": {
         "message": "Öppna alternativen för att hoppa över intros, outros, merch, osv."
     },
-    "experimentUnlistedTitle": {
-        "message": "Hjälp till att förhindra att detta försvinner"
-    },
-    "experimentUnlistedText": {
-        "message": "Detta är en olistad videon som laddades upp före 2017.\nGamla olistade videor kreativKommer att bli ändrade till privata nästa månad.\nVi samlar in *offentliga* videor för att säkreativKerhetskreativKopiera.\nVill du anonymt skreativKickreativKa den här videon till oss?\nhttps://support.google.com/youtube/answer/9230970"
+    "help": {
+        "message": "Hjälp"
     },
     "experiementOptOut": {
         "message": "Hoppa av alla framtida experiment",

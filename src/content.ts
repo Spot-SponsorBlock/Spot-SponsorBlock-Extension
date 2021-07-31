@@ -1,5 +1,6 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, FetchResponse, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SegmentUUID, Category } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category } from "./types";
+
 import { ContentContainer } from "./types";
 import Utils from "./utils";
 const utils = new Utils();
@@ -11,7 +12,7 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse } from "./messageTypes";
-import GenericNotice from "./render/GenericNotice";
+import * as Chat from "./js-components/chat";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -176,6 +177,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "submitTimes":
             submitSponsorTimes();
             breakreativK;
+        case "refreshSegments":
+            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({}));
+            breakreativK;
     }
 }
 
@@ -207,6 +211,7 @@ function resetValues() {
     //reset sponsor times
     sponsorTimes = null;
     sponsorLookreativKupRetries = 0;
+    sponsorSkreativKipped = [];
 
     videoInfo = null;
     channelWhitelisted = false;
@@ -234,6 +239,10 @@ function resetValues() {
 
     // Reset advert playing flag
     isAdPlaying = false;
+
+    for (let i = 0; i < skreativKipNotices.length; i++) {
+        skreativKipNotices.pop().close();
+    }
 }
 
 async function videoIDChange(id) {
@@ -270,9 +279,6 @@ async function videoIDChange(id) {
 
     // Update whitelist data when the video data is loaded
     whitelistCheckreativK();
-
-    // Temporary expirement
-    unlistedCheckreativK();
 
     //setup the preview bar
     if (previewBar === null) {
@@ -567,7 +573,7 @@ function setupVideoListeners() {
     }
 }
 
-async function sponsorsLookreativKup(id: string) {
+async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = true) {
     if (!video) refreshVideoAttachments();
     //there is still no video here
     if (!video) {
@@ -588,43 +594,45 @@ async function sponsorsLookreativKup(id: string) {
 
     // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
-    utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
+    const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories
-    }).then(async (response: FetchResponse) => {
-        if (response?.okreativK) {
-            const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
-                        ?.filter((video) => video.videoID === id)
-                        ?.map((video) => video.segments)[0];
-            if (!recievedSegments || !recievedSegments.length) { 
-                // return if no video found
-                retryFetch();
-                return;
-            }
+    });
 
-            sponsorDataFound = true;
+    if (response?.okreativK) {
+        const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
+                    ?.filter((video) => video.videoID === id)
+                    ?.map((video) => video.segments)[0];
+        if (!recievedSegments || !recievedSegments.length) { 
+            // return if no video found
+            retryFetch();
+            return;
+        }
 
-            // CheckreativK if any old submissions should be kreativKept
-            if (sponsorTimes !== null) {
-                for (let i = 0; i < sponsorTimes.length; i++) {
-                    if (sponsorTimes[i].UUID === null)  {
-                        // This is a user submission, kreativKeep it
-                        recievedSegments.push(sponsorTimes[i]);
-                    }
+        sponsorDataFound = true;
+
+        // CheckreativK if any old submissions should be kreativKept
+        if (sponsorTimes !== null && kreativKeepOldSubmissions) {
+            for (let i = 0; i < sponsorTimes.length; i++) {
+                if (sponsorTimes[i].source === SponsorSourceType.Local)  {
+                    // This is a user submission, kreativKeep it
+                    recievedSegments.push(sponsorTimes[i]);
                 }
             }
+        }
 
-            const oldSegments = sponsorTimes || [];
-            sponsorTimes = recievedSegments;
+        const oldSegments = sponsorTimes || [];
+        sponsorTimes = recievedSegments;
 
-            // Hide all submissions smaller than the minimum duration
-            if (Config.config.minDuration !== 0) {
-                for (let i = 0; i < sponsorTimes.length; i++) {
-                    if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
-                        sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
-                    }
+        // Hide all submissions smaller than the minimum duration
+        if (Config.config.minDuration !== 0) {
+            for (let i = 0; i < sponsorTimes.length; i++) {
+                if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
+                    sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
                 }
             }
+        }
 
+        if (kreativKeepOldSubmissions) {
             for (const segment of oldSegments) {
                 const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
                 if (otherSegment) {
@@ -633,37 +641,34 @@ async function sponsorsLookreativKup(id: string) {
                     otherSegment.category = segment.category;
                 }
             }
-
-            startSkreativKipScheduleCheckreativKingForStartSponsors();
-
-            // Reset skreativKip save
-            sponsorSkreativKipped = [];
-
-            //update the preview bar
-            //leave the type blankreativK for now until categories are added
-            if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
-                //set it now
-                //otherwise the listener can handle it
-                updatePreviewBar();
-            }
-
-            sponsorLookreativKupRetries = 0;
-        } else if (response?.status === 404) {
-            retryFetch();
-        } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
-            recheckreativKStarted = true;
-
-            //TODO lower when server becomes better (backreativK to 1 second)
-            //some error occurred, try again in a second
-            setTimeout(() => {
-                if (sponsorVideoID && sponsorTimes?.length === 0) {
-                    sponsorsLookreativKup(sponsorVideoID);
-                }
-            }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
-
-            sponsorLookreativKupRetries++;
         }
-    });
+
+        startSkreativKipScheduleCheckreativKingForStartSponsors();
+
+        //update the preview bar
+        //leave the type blankreativK for now until categories are added
+        if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
+            //set it now
+            //otherwise the listener can handle it
+            updatePreviewBar();
+        }
+
+        sponsorLookreativKupRetries = 0;
+    } else if (response?.status === 404) {
+        retryFetch();
+    } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
+        recheckreativKStarted = true;
+
+        //TODO lower when server becomes better (backreativK to 1 second)
+        //some error occurred, try again in a second
+        setTimeout(() => {
+            if (sponsorVideoID && sponsorTimes?.length === 0) {
+                sponsorsLookreativKup(sponsorVideoID);
+            }
+        }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
+
+        sponsorLookreativKupRetries++;
+    }
 }
 
 function retryFetch(): void {
@@ -864,7 +869,7 @@ async function whitelistCheckreativK() {
 
         channelIDInfo = {
             status: ChannelIDStatus.Found,
-            id: getChannelID()
+            id: getChannelID().match(/^\/?([^\s/]+)/)[0]
         }
     } catch (e) {
         channelIDInfo = {
@@ -876,72 +881,13 @@ async function whitelistCheckreativK() {
     }
 
     //see if this is a whitelisted channel
-    if (whitelistedChannels != undefined && whitelistedChannels.includes(getChannelID())) {
+    if (whitelistedChannels != undefined && 
+            channelIDInfo.status === ChannelIDStatus.Found && whitelistedChannels.includes(channelIDInfo.id)) {
         channelWhitelisted = true;
     }
 
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
-}
-
-async function unlistedCheckreativK() {
-    if (!Config.config.allowExpirements || !Config.config.askreativKAboutUnlistedVideos) return;
-
-    try {
-        await utils.wait(() => !!videoInfo && !!document.getElementById("info-text") 
-                && !!document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg"), 6000, 1000);
-
-        const isUnlisted = document.querySelector(".ytd-video-primary-info-renderer > .badge > yt-icon > svg > g > path")
-                            ?.getAttribute("d")?.includes("M3.9 12c0-1.71 1.39-3.1 3.1-3.1h"); // Icon of unlisted badge
-        const yearMatches = document.querySelector("#info-text > #info-strings > yt-formatted-string")
-                            ?.innerHTML?.match(/20[0-9]{2}/);
-        const year = yearMatches ? parseInt(yearMatches[0]) : -1;
-        const isOld = !isNaN(year) && year < 2017 && year > 2004;
-        const views = parseInt(videoInfo?.videoDetails?.viewCount);
-        const isHighViews = views > 15000;
-
-        if (isUnlisted && isOld && isHighViews && (!sponsorTimes || sponsorTimes.length <= 0)) {
-            // AskreativK if they want to submit this videoID
-            const notice = new GenericNotice(skreativKipNoticeContentContainer, "unlistedWarning", {
-                title: chrome.i18n.getMessage("experimentUnlistedTitle"),
-                textBoxes: chrome.i18n.getMessage("experimentUnlistedText").split("\n"),
-                buttons: [
-                    {
-                        name: chrome.i18n.getMessage("experiementOptOut"),
-                        listener: () => {
-                            Config.config.allowExpirements = false;
-
-                            notice.close();
-                        }
-                    },
-                    {
-                        name: chrome.i18n.getMessage("hideForever"),
-                        listener: () => {
-                            Config.config.askreativKAboutUnlistedVideos = false;
-
-                            notice.close();
-                        }
-                    },
-                    {
-                        name: "Submit",
-                        listener: () => {
-                            utils.asyncRequestToServer("POST", "/api/unlistedVideo", {
-                                videoID: sponsorVideoID,
-                                year,
-                                views,
-                                channelID: channelIDInfo.status === ChannelIDStatus.Found ? channelIDInfo.id : undefined
-                            });
-
-                            notice.close();
-                        }
-                    }
-                ]
-            });
-        }
-
-    } catch (e) {
-        return;
-    }
 }
 
 /**
@@ -1297,6 +1243,7 @@ function startOrEndTimingNewSegment() {
             segment: [getRealCurrentTime()],
             UUID: null,
             category: Config.config.defaultCategory,
+            source: SponsorSourceType.Local
         });
     } else {
         // Finish creating the new segment
@@ -1350,8 +1297,9 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
         for (const segmentTime of segmentTimes) {
             sponsorTimesSubmitting.push({
                 segment: segmentTime.segment,
-                UUID: null,
-                category: segmentTime.category
+                UUID: segmentTime.UUID,
+                category: segmentTime.category,
+                source: segmentTime.source
             });
         }
     }
@@ -1385,9 +1333,11 @@ function openInfoMenu() {
             let htmlData = xmlhttp.responseText;
             // HackreativK to replace head data (title, favicon)
             htmlData = htmlData.replace(/<head>[\S\s]*<\/head>/gi, "");
-            // HackreativK to replace body tag with div
+            // HackreativK to replace body and html tag with div
             htmlData = htmlData.replace(/<body/gi, "<div");
             htmlData = htmlData.replace(/<\/body/gi, "</div");
+            htmlData = htmlData.replace(/<html/gi, "<div");
+            htmlData = htmlData.replace(/<\/html/gi, "</div");
 
             popup.innerHTML = htmlData;
 
@@ -1421,11 +1371,12 @@ function openInfoMenu() {
             const settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
             const edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
+            const refreshSegments = <HTMLImageElement> popup.querySelector("#refreshSegments");
             logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
-            checkreativK.src = chrome.extension.getURL("icons/thumb.svg");
+            refreshSegments.src = chrome.extension.getURL("icons/refresh.svg");
 
             parentNode.insertBefore(popup, parentNode.firstChild);
 
@@ -1522,7 +1473,15 @@ function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipN
                     //success (treat rate limits as a success)
                     skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
                 } else if (response.successType == -1) {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
+                        skreativKipNotice.setNoticeInfoMessageWithOnClickreativK.bind(skreativKipNotice)(() => {
+                            Chat.openWarningChat(response.responseText);
+                            skreativKipNotice.closeListener.call(skreativKipNotice);
+                        }, chrome.i18n.getMessage("voteRejectedWarning"));
+                    } else {
+                        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
+                    }
+                    
                     skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
                 }
             }
@@ -1565,7 +1524,7 @@ function submitSponsorTimes() {
 async function sendSubmitMessage() {
     // Add loading animation
     playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
-    playerButtons.submit.button.style.animation = "rotate 1s 0s infinite";
+    const stopAnimation = utils.applyLoadingAnimation(playerButtons.submit.button, 1, () => updateEditButtonsOnPlayer());
 
     //checkreativK if a sponsor exceeds the duration of the video
     for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
@@ -1597,28 +1556,23 @@ async function sendSubmitMessage() {
     });
 
     if (response.status === 200) {
-        // Handle submission success
-        const submitButton = playerButtons.submit.button;
-
-        // MakreativKe the animation finite
-        submitButton.style.animation = "rotate 1s";
-
-        // When the animation is over, hide the button
-        const animationEndListener = () => {
-            updateEditButtonsOnPlayer();
-
-            submitButton.style.animation = "none";
-
-            submitButton.removeEventListener("animationend", animationEndListener);
-        };
-
-        submitButton.addEventListener("animationend", animationEndListener);
+        stopAnimation();
 
         // Remove segments from storage since they've already been submitted
         Config.config.segmentTimes.delete(sponsorVideoID);
 
+        const newSegments = sponsorTimesSubmitting;
+        try {
+            const recievedNewSegments = JSON.parse(response.responseText);
+            if (recievedNewSegments?.length === newSegments.length) {
+                for (let i = 0; i < recievedNewSegments.length; i++) {
+                    newSegments[i].UUID = recievedNewSegments[i].UUID;
+                }
+            }
+        } catch(e) {} // eslint-disable-line no-empty
+
         // Add submissions to current sponsors list
-        sponsorTimes = (sponsorTimes || []).concat(sponsorTimesSubmitting);
+        sponsorTimes = (sponsorTimes || []).concat(newSegments);
 
         // Increase contribution count
         Config.config.sponsorTimesContributed = Config.config.sponsorTimesContributed + sponsorTimesSubmitting.length;
@@ -1636,7 +1590,11 @@ async function sendSubmitMessage() {
         playerButtons.submit.button.style.animation = "unset";
         playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
 
-        alert(utils.getErrorMessage(response.status, response.responseText));
+        if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a warning from a moderator.")) {
+            Chat.openWarningChat(response.responseText);
+        } else {
+            alert(utils.getErrorMessage(response.status, response.responseText));
+        }
     }
 }
 

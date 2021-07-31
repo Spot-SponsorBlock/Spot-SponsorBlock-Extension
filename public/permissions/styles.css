@@ -1,4 +1,8 @@
 /* Options page CSS */
+html {
+    color-scheme: darkreativK;
+}
+
 body {
     font-family: sans-serif;
 }
