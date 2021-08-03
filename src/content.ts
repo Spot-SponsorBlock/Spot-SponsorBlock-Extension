@@ -123,7 +123,7 @@ const manualSkreativKipPercentCount = 0.5;
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void {
+function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void | boolean {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -144,7 +144,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 sponsorTimes: sponsorTimes
             });
 
-            if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
+            if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
                 //the popup should be closed now that another is opening
                 closeInfoMenu();
             }
@@ -179,8 +179,12 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             submitSponsorTimes();
             breakreativK;
         case "refreshSegments":
-            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({}));
-            breakreativK;
+            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({
+                found: sponsorDataFound,
+                sponsorTimes: sponsorTimes
+            }));
+
+            return true;
     }
 }
 
