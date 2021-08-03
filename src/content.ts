@@ -426,7 +426,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         skreativKippingSegments = [];
 
         for (const segment of skreativKipInfo.array) {
-            if (utils.getCategorySelection(segment.category).option === CategorySkreativKipOption.AutoSkreativKip &&
+            if (shouldAutoSkreativKip(segment) &&
                     segment.segment[0] >= skreativKipTime[0] && segment.segment[1] <= skreativKipTime[1]) {
                 skreativKippingSegments.push(segment);
             }
@@ -927,7 +927,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors = true): number {
     // Only combine segments for AutoSkreativKip
     if (index == -1 || 
-        utils.getCategorySelection(sponsorTimes[index].category)?.option !== CategorySkreativKipOption.AutoSkreativKip) return index;
+        shouldAutoSkreativKip(sponsorTimes[index])) return index;
 
     // Default to the normal endTime
     let latestEndTimeIndex = index;
@@ -938,7 +938,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
 
         if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime 
             && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
-            && utils.getCategorySelection(sponsorTimes[i].category).option === CategorySkreativKipOption.AutoSkreativKip) {
+            && shouldAutoSkreativKip(sponsorTimes[i])) {
                 // Overlapping segment
                 latestEndTimeIndex = i;
         }
@@ -1019,7 +1019,7 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
     // There will only be one submission if it is manual skreativKip
-    const autoSkreativKip: boolean = utils.getCategorySelection(skreativKippingSegments[0].category)?.option === CategorySkreativKipOption.AutoSkreativKip;
+    const autoSkreativKip: boolean = shouldAutoSkreativKip(skreativKippingSegments[0]);
 
     if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
         // Fix for looped videos not workreativKing when skreativKipping to the end #426
@@ -1095,6 +1095,11 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
     };
 
     return newButton;
+}
+
+function shouldAutoSkreativKip(segment: SponsorTime): boolean {
+    return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic"));
 }
 
 function getControls(): HTMLElement | false {
