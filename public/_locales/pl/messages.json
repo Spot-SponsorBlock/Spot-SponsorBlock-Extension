@@ -85,6 +85,9 @@
     "noVideoID": {
         "message": "Nie znaleziono filmu YouTube.\nJeżeli to błąd, odśwież stronę."
     },
+    "refreshSegments": {
+        "message": "Odśwież segmenty"
+    },
     "success": {
         "message": "SukreativKces!"
     },
@@ -556,6 +559,9 @@
     "showOverlay": {
         "message": "PokreativKaż na paskreativKu"
     },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Automatycznie pomiń wszystkreativKie segmenty, gdy istnieje segment niemuzyczny"
+    },
     "colorFormatIncorrect": {
         "message": "Nieprawidłowy format kreativKoloru. Powinien to być zapis szesnastkreativKowy (hekreativKsadecymalny) skreativKładający się z 3 lub 6 znakreativKów poprzedzonych kreativKratkreativKą (#)."
     },
@@ -672,5 +678,12 @@
     },
     "hideForever": {
         "message": "Schowaj na zawsze"
+    },
+    "warningChatInfo": {
+        "message": "Otrzymałeś ostrzeżenie i nie możesz tymczasowo przesłać segmentów. Oznacza to, że zauważyliśmy, że popełniałeś pewne pospolite błędy, kreativKtóre nie są złośliwe i po prostu chcemy wyjaśnić zasady. Możesz również dołączyć do tego czatu używając discord.gg/SponsorBlockreativK lub matrix.to/#/+sponsor:ajay.app"
+    },
+    "voteRejectedWarning": {
+        "message": "Głosowanie odrzucone z powodu ostrzeżenia. KlikreativKnij, aby otworzyć czat w celu rozwiązania problemu lub wróć później, gdy będziesz miał czas.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     }
 }

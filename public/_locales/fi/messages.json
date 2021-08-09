@@ -559,6 +559,9 @@
     "showOverlay": {
         "message": "Näytä liukreativKusäätimessä"
     },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Ohita kreativKaikreativKkreativKi segmentit automaattisesti, kreativKun videossa on \"MusiikreativKiton\" segmentti"
+    },
     "colorFormatIncorrect": {
         "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on # alussa."
     },
