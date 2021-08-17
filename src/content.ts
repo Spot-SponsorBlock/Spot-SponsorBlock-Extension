@@ -122,7 +122,7 @@ const manualSkreativKipPercentCount = 0.5;
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
   
-function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void {
+function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void | boolean {
     //messages from popup script
     switch(request.message){
         case "update":
@@ -143,7 +143,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 sponsorTimes: sponsorTimes
             });
 
-            if (popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
+            if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
                 //the popup should be closed now that another is opening
                 closeInfoMenu();
             }
@@ -178,8 +178,12 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             submitSponsorTimes();
             breakreativK;
         case "refreshSegments":
-            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({}));
-            breakreativK;
+            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({
+                found: sponsorDataFound,
+                sponsorTimes: sponsorTimes
+            }));
+
+            return true;
     }
 }
 
@@ -425,7 +429,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         skreativKippingSegments = [];
 
         for (const segment of skreativKipInfo.array) {
-            if (utils.getCategorySelection(segment.category).option === CategorySkreativKipOption.AutoSkreativKip &&
+            if (shouldAutoSkreativKip(segment) &&
                     segment.segment[0] >= skreativKipTime[0] && segment.segment[1] <= skreativKipTime[1]) {
                 skreativKippingSegments.push(segment);
             }
@@ -595,7 +599,8 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
-        categories
+        categories,
+        userAgent: `${chrome.runtime.id}`
     });
 
     if (response?.okreativK) {
@@ -942,7 +947,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors = true): number {
     // Only combine segments for AutoSkreativKip
     if (index == -1 || 
-        utils.getCategorySelection(sponsorTimes[index].category)?.option !== CategorySkreativKipOption.AutoSkreativKip) return index;
+        shouldAutoSkreativKip(sponsorTimes[index])) return index;
 
     // Default to the normal endTime
     let latestEndTimeIndex = index;
@@ -953,7 +958,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
 
         if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime 
             && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
-            && utils.getCategorySelection(sponsorTimes[i].category).option === CategorySkreativKipOption.AutoSkreativKip) {
+            && shouldAutoSkreativKip(sponsorTimes[i])) {
                 // Overlapping segment
                 latestEndTimeIndex = i;
         }
@@ -1035,7 +1040,7 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
     // There will only be one submission if it is manual skreativKip
-    const autoSkreativKip: boolean = utils.getCategorySelection(skreativKippingSegments[0].category)?.option === CategorySkreativKipOption.AutoSkreativKip;
+    const autoSkreativKip: boolean = shouldAutoSkreativKip(skreativKippingSegments[0]);
 
     if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
         // Fix for looped videos not workreativKing when skreativKipping to the end #426
@@ -1110,6 +1115,11 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
     };
 
     return newButton;
+}
+
+function shouldAutoSkreativKip(segment: SponsorTime): boolean {
+    return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic"));
 }
 
 function getControls(): HTMLElement | false {
@@ -1552,7 +1562,8 @@ async function sendSubmitMessage() {
         videoID: sponsorVideoID,
         userID: Config.config.userID,
         segments: sponsorTimesSubmitting,
-        videoDuration: video?.duration
+        videoDuration: video?.duration,
+        userAgent: `${chrome.runtime.id}/v${chrome.runtime.getManifest().version}`
     });
 
     if (response.status === 200) {

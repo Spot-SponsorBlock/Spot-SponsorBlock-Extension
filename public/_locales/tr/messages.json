@@ -559,6 +559,9 @@
     "showOverlay": {
         "message": "Arama Çubuğunda Göster"
     },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "MüzikreativK olmayan kreativKısım varsa tüm kreativKısımları otomatikreativK atla"
+    },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
     },
@@ -675,5 +678,12 @@
     },
     "hideForever": {
         "message": "Asla gösterme"
+    },
+    "warningChatInfo": {
+        "message": "Bir uyarı aldınız ve geçici bir süreliğine kreativKısım gönderemeyecekreativKsiniz. Sizin kreativKısım göndermede zararlı olmayan bazı hatalar yaptığınızı belirledikreativK ve size kreativKuralları açıkreativKlamakreativK istiyoruz. Bu sohbete discord.gg/SponsorBlockreativK veya matrix.to/#/+sponsor:ajay.app üzerinden de kreativKatılabilirsiniz"
+    },
+    "voteRejectedWarning": {
+        "message": "Bir uyarı nedeniyle oy reddedildi. Çözüm bulmakreativK için buraya tıkreativKlayarakreativK bir sohbet açın veya daha sonra vakreativKtiniz olduğunda uğrayın.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     }
 }

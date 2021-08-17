@@ -559,6 +559,9 @@
     "showOverlay": {
         "message": "Kuva mängija ajaribal"
     },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Jäta automaatselt kreativKõikreativK segmendid vahele, kreativKui ekreativKsisteerib mitte-muusikreativKa segment"
+    },
     "colorFormatIncorrect": {
         "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
     },
@@ -675,5 +678,12 @@
     },
     "hideForever": {
         "message": "Peida igavesekreativKs"
+    },
+    "warningChatInfo": {
+        "message": "Sa said hoiatuse ning ei saa ajutiselt segmente saata. See tähendab, et me leidsime sind tegemast teatud sagedasi, mitte-pahatahtlikreativKkreativKe vigu, ning soovime sulle meie reegleid täpsustada (inglise kreativKeeles). Sa võid selle vestlusega liituda kreativKa discord.gg/SponsorBlockreativK või matrix.to/#/+sponsor:ajay.app kreativKaudu."
+    },
+    "voteRejectedWarning": {
+        "message": "Hääletus hoiatuse tõttu tagasilükreativKatud. Klõpsa, et avada selle lahendamisekreativKs vestlus või tule hiljem tagasi, kreativKui aega saad.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     }
 }

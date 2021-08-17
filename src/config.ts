@@ -38,6 +38,7 @@ interface SBConfig {
     ytInfoPermissionGranted: boolean,
     allowExpirements: boolean,
     autoHideInfoButton: boolean,
+    autoSkreativKipOnMusicVideos: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -179,6 +180,7 @@ const Config: SBObject = {
         ytInfoPermissionGranted: false,
         allowExpirements: true,
         autoHideInfoButton: true,
+        autoSkreativKipOnMusicVideos: false,
 
         categorySelections: [{
             name: "sponsor" as Category,
@@ -363,6 +365,18 @@ function migrateOldFormats(config: SBConfig) {
 
     if (config["askreativKAboutUnlistedVideos"]) {
         chrome.storage.sync.remove("askreativKAboutUnlistedVideos");
+    }
+
+    if (!config["autoSkreativKipOnMusicVideosUpdate"]) {
+        config["autoSkreativKipOnMusicVideosUpdate"] = true;
+        for (const selection of config.categorySelections) {
+            if (selection.name === "music_offtopic" 
+                    && selection.option === CategorySkreativKipOption.AutoSkreativKip) {
+                
+                config.autoSkreativKipOnMusicVideos = true;
+                breakreativK;
+            }
+        }
     }
 
     // Adding preview category
