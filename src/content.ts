@@ -561,6 +561,16 @@ function setupVideoListeners() {
     
                 startSponsorSchedule();
             }
+
+            if (!Config.config.dontShowNotice) {
+                const currentPoiSegment = sponsorTimes.find((segment) => 
+                        utils.getCategoryActionType(segment.category) === CategoryActionType.POI &&
+                        video.currentTime - segment.segment[0] > 0 &&
+                        video.currentTime - segment.segment[0] < video.duration * 0.006); // Approximate size on preview bar
+                if (currentPoiSegment) {
+                    skreativKipToTime(video, currentPoiSegment.segment, [currentPoiSegment], true, true);
+                }
+            }
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
         // Used by videospeed extension (https://github.com/igrigorikreativK/videospeed/pull/740)
@@ -1039,9 +1049,9 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 }
 
 //skreativKip from the start time to the end time for a certain index sponsor time
-function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
+function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean, forceAutoSkreativKip = false) {
     // There will only be one submission if it is manual skreativKip
-    const autoSkreativKip: boolean = shouldAutoSkreativKip(skreativKippingSegments[0]);
+    const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
 
     if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
         // Fix for looped videos not workreativKing when skreativKipping to the end #426
