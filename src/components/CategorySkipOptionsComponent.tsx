@@ -91,7 +91,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                 </tr>
 
                 <tr id={this.props.category + "DescriptionRow"}
-                    className="small-description">
+                    className="small-description categoryTableDescription">
                         <td
                             colSpan={2}>
                             {chrome.i18n.getMessage("category_" + this.props.category + "_description")}
