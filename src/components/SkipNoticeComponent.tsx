@@ -26,6 +26,8 @@ export interface SkreativKipNoticeProps {
     closeListener: () => void;
     showKeybindHint?: boolean;
     smaller: boolean;
+
+    unskreativKipTime?: number;
 }
 
 export interface SkreativKipNoticeState {
@@ -455,7 +457,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     unskreativKip(index: number): void {
-        this.contentContainer().unskreativKipSponsorTime(this.segments[index]);
+        this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime);
 
         this.unskreativKippedMode(index, chrome.i18n.getMessage("reskreativKip"));
     }

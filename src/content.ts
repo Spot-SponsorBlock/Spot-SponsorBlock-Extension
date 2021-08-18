@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -448,7 +448,12 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            skreativKipToTime(video, skreativKipTime, skreativKippingSegments, skreativKipInfo.openNotice);
+            skreativKipToTime({
+                v: video, 
+                skreativKipTime, 
+                skreativKippingSegments, 
+                openNotice: skreativKipInfo.openNotice
+            });
 
             if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip) {
                 forcedSkreativKipTime = skreativKipTime[0] + 0.001;
@@ -568,7 +573,13 @@ function setupVideoListeners() {
                         video.currentTime - segment.segment[0] > 0 &&
                         video.currentTime - segment.segment[0] < video.duration * 0.006); // Approximate size on preview bar
                 if (currentPoiSegment) {
-                    skreativKipToTime(video, currentPoiSegment.segment, [currentPoiSegment], true, true);
+                    skreativKipToTime({
+                        v: video, 
+                        skreativKipTime: currentPoiSegment.segment, 
+                        skreativKippingSegments: [currentPoiSegment], 
+                        openNotice: true, 
+                        forceAutoSkreativKip: true
+                    });
                 }
             }
         });
@@ -744,7 +755,13 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
         for (const time of poiSegments) {
             const skreativKipOption = utils.getCategorySelection(time.category)?.option;
             if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
-                skreativKipToTime(video, time.segment, [time], true);
+                skreativKipToTime({
+                    v: video,
+                    skreativKipTime: time.segment, 
+                    skreativKippingSegments: [time], 
+                    openNotice: true,
+                    unskreativKipTime: video.currentTime
+                });
                 if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip) breakreativK;
             }
         }
@@ -1049,7 +1066,7 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 }
 
 //skreativKip from the start time to the end time for a certain index sponsor time
-function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean, forceAutoSkreativKip = false) {
+function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNotice, forceAutoSkreativKip, unskreativKipTime}: SkreativKipToTimeParams): void {
     // There will only be one submission if it is manual skreativKip
     const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
 
@@ -1067,7 +1084,7 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
         //send out the message saying that a sponsor message was skreativKipped
         if (!Config.config.dontShowNotice || !autoSkreativKip) {
             skreativKipNotices.forEach((notice) => notice.setShowKeybindHint(false));
-            skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer));
+            skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime));
         }
     }
 
@@ -1075,9 +1092,10 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
-function unskreativKipSponsorTime(segment: SponsorTime) {
+function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null) {
     //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    video.currentTime = segment.segment[0] + 0.001;
+    console.log(unskreativKipTime)
+    video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {

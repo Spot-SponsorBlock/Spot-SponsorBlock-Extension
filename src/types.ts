@@ -6,7 +6,7 @@ export interface ContentContainer {
     (): {
         vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
-        unskreativKipSponsorTime: (segment: SponsorTime) => void,
+        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number) => void,
         sponsorTimes: SponsorTime[],
         sponsorTimesSubmitting: SponsorTime[],
         skreativKipNotices: SkreativKipNotice[],
@@ -185,4 +185,13 @@ export enum ChannelIDStatus {
 export interface ChannelIDInfo {
     id: string,
     status: ChannelIDStatus
+}
+
+export interface SkreativKipToTimeParams {
+    v: HTMLVideoElement, 
+    skreativKipTime: number[], 
+    skreativKippingSegments: SponsorTime[], 
+    openNotice: boolean, 
+    forceAutoSkreativKip?: boolean,
+    unskreativKipTime?: number
 }
