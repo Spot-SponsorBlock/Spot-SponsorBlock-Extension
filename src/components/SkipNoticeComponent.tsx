@@ -84,8 +84,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         const categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
             : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
-        let noticeTitle = categoryName + " " + chrome.i18n.getMessage("skreativKipped");
-        if (!this.autoSkreativKip) {
+        let noticeTitle = "";
+        if (this.autoSkreativKip) {
+            const messageId = utils.getCategoryActionType(this.segments[0].category) === CategoryActionType.SkreativKippable 
+                ? "skreativKipped" : "skreativKipped_to_category";
+            noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
+        } else {
             const messageId = utils.getCategoryActionType(this.segments[0].category) === CategoryActionType.SkreativKippable 
                 ? "skreativKip_category" : "skreativKip_to_category";
             noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
@@ -303,7 +307,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSkreativKipButton(): JSX.Element {
-        if (this.segments.length > 1 || utils.getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI) {
+        if (this.segments.length > 1 
+                || utils.getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
+                || this.props.unskreativKipTime) {
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}

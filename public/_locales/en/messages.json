@@ -289,7 +289,12 @@
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
     },
     "skreativKipped": {
-        "message": "SkreativKipped"
+        "message": "{0} SkreativKipped",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "SkreativKipped to {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "Disable Auto SkreativKip"
