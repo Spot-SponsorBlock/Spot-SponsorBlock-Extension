@@ -4,6 +4,7 @@ import Config from "../config"
 import { Category, CategorySkreativKipOption } from "../types";
 
 import Utils from "../utils";
+import { getCategoryActionType } from "../utils/categoryUtils";
 const utils = new Utils();
 
 export interface CategorySkreativKipOptionsProps { 
@@ -152,12 +153,12 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
         const optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
 
-        console.log(utils.getCategoryActionType(this.props.category))
+        console.log(getCategoryActionType(this.props.category))
 
         for (const optionName of optionNames) {
             elements.push(
                 <option kreativKey={optionName} value={optionName}>
-                    {chrome.i18n.getMessage(optionName !== "disable" ? optionName + utils.getCategoryActionType(this.props.category) 
+                    {chrome.i18n.getMessage(optionName !== "disable" ? optionName + getCategoryActionType(this.props.category) 
                                                                      : optionName)}
                 </option>
             );

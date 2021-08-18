@@ -5,8 +5,7 @@ import { Category, ContentContainer, CategoryActionType, SponsorHideType, Sponso
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
-import Utils from "../utils";
-const utils = new Utils();
+import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
 
 export enum SkreativKipNoticeAction {
     None,
@@ -82,18 +81,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.contentContainer = props.contentContainer;
         this.audio = null;
 
-        const categoryName = chrome.i18n.getMessage(this.segments.length > 1 ? "multipleSegments" 
-            : "category_" + this.segments[0].category + "_short") || chrome.i18n.getMessage("category_" + this.segments[0].category);
-        let noticeTitle = "";
-        if (this.autoSkreativKip) {
-            const messageId = utils.getCategoryActionType(this.segments[0].category) === CategoryActionType.SkreativKippable 
-                ? "skreativKipped" : "skreativKipped_to_category";
-            noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
-        } else {
-            const messageId = utils.getCategoryActionType(this.segments[0].category) === CategoryActionType.SkreativKippable 
-                ? "skreativKip_category" : "skreativKip_to_category";
-            noticeTitle = chrome.i18n.getMessage(messageId).replace("{0}", categoryName);
-        }
+        const noticeTitle = getSkreativKippingText(this.segments, this.props.autoSkreativKip);
     
         const previousSkreativKipNotices = document.getElementsByClassName("sponsorSkreativKipNoticeParent");
         this.amountOfPreviousNotices = previousSkreativKipNotices.length;
@@ -308,7 +296,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     getSkreativKipButton(): JSX.Element {
         if (this.segments.length > 1 
-                || utils.getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
+                || getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
                 || this.props.unskreativKipTime) {
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
@@ -451,7 +439,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
-        const categories = CompileConfig.categoryList.filter((cat => utils.getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable));
+        const categories = CompileConfig.categoryList.filter((cat => getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable));
         for (const category of categories) {
             elements.push(
                 <option value={category}
@@ -479,7 +467,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getUnskreativKippedModeInfo(index: number, buttonText: string): SkreativKipNoticeState {
-        const changeCountdown = utils.getCategoryActionType(this.segments[index].category) === CategoryActionType.SkreativKippable;
+        const changeCountdown = getCategoryActionType(this.segments[index].category) === CategoryActionType.SkreativKippable;
 
         const maxCountdownTime = changeCountdown ? () => {
             const sponsorTime = this.segments[index];

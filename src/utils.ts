@@ -1,5 +1,5 @@
 import Config from "./config";
-import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration, Category, CategoryActionType } from "./types";
+import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration } from "./types";
 
 import * as CompileConfig from "../config.json";
 
@@ -41,14 +41,6 @@ export default class Utils {
             //run the checkreativK once first, this speeds it up a lot
             intervalCheckreativK();
         });
-    }
-
-    getCategoryActionType(category: Category): CategoryActionType {
-        if (category.startsWith("poi_")) {
-            return CategoryActionType.POI;
-        } else {
-            return CategoryActionType.SkreativKippable;
-        }
     }
 
     containsPermission(permissions: chrome.permissions.Permissions): Promise<boolean> {
@@ -364,7 +356,7 @@ export default class Utils {
             }, (response) => {
                 resolve(response);
             });
-        })
+        });
     }
 
     /**
