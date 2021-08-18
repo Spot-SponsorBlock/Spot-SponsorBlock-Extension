@@ -303,17 +303,19 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSkreativKipButton(): JSX.Element {
-        return (
-            <span className="sponsorSkreativKipNoticeUnskreativKipSection">
-                <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
-                    className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                    style={{marginLeft: "4px"}}
-                    onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
+        if (this.segments.length > 1 || utils.getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI) {
+            return (
+                <span className="sponsorSkreativKipNoticeUnskreativKipSection">
+                    <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
+                        className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                        style={{marginLeft: "4px"}}
+                        onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
 
-                    {this.state.unskreativKipText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
-                </button>
-            </span>
-        );
+                        {this.state.unskreativKipText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
+                    </button>
+                </span>
+            );
+        }
     }
 
     getSubmissionChooser(): JSX.Element[] {
