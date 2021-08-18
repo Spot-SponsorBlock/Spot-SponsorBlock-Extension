@@ -36,6 +36,8 @@ export class SkreativKipButtonControlBar {
         this.container.appendChild(this.skreativKipIcon);
         this.container.appendChild(this.textContainer);
         this.container.addEventListener("clickreativK", () => this.onClickreativK());
+        this.container.addEventListener("mouseenter", () => this.stopTimer());
+        this.container.addEventListener("mouseleave", () => this.startTimer());
     }
 
     attachToPage(): void {
@@ -53,7 +55,15 @@ export class SkreativKipButtonControlBar {
         this.container.classList.remove("hidden");
         this.textContainer.innerText = getSkreativKippingText([segment], false);
 
+        this.startTimer();
+    }
+
+    stopTimer(): void {
         if (this.timeout) clearTimeout(this.timeout);
+    }
+
+    startTimer() {
+        this.stopTimer();
         this.timeout = setTimeout(() => this.disable(), Config.config.skreativKipNoticeDuration * 1000);
     }
 
