@@ -156,7 +156,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 showInSecondSlot={this.showInSecondSlot}
                 idSuffix={this.idSuffix}
                 fadeIn={true}
-                startFaded={true}
+                startFaded={false}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 videoSpeed={() => this.contentContainer().v?.playbackreativKRate}
