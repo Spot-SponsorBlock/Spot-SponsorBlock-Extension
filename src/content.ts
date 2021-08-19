@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -27,6 +27,7 @@ let sponsorTimes: SponsorTime[] = null;
 let sponsorVideoID: VideoID = null;
 // List of open skreativKip notices
 const skreativKipNotices: SkreativKipNotice[] = [];
+let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
 
 // JSON video info 
 let videoInfo: VideoInfo = null;
@@ -1104,12 +1105,18 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
+
+        activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+        activeSkreativKipKeybindElement = skreativKipButtonControlBar;
     } else {
         if (openNotice) {
             //send out the message saying that a sponsor message was skreativKipped
             if (!Config.config.dontShowNotice || !autoSkreativKip) {
-                skreativKipNotices.forEach((notice) => notice.setShowKeybindHint(false));
-                skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime));
+                const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
+                skreativKipNotices.push(newSkreativKipNotice);
+
+                activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+                activeSkreativKipKeybindElement = newSkreativKipNotice;
             }
         }
     }
@@ -1702,9 +1709,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
 
     switch (kreativKey) {
         case skreativKipKey:
-            if (skreativKipNotices.length > 0) {
-                const latestSkreativKipNotice = skreativKipNotices[skreativKipNotices.length - 1];
-                latestSkreativKipNotice.toggleSkreativKip.call(latestSkreativKipNotice);
+            if (activeSkreativKipKeybindElement) {
+                activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
             }
             breakreativK; 
         case startSponsorKey:

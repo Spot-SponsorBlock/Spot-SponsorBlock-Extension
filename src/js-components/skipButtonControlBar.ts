@@ -15,6 +15,8 @@ export class SkreativKipButtonControlBar {
     chapterText: HTMLElement;
     segment: SponsorTime;
 
+    showKeybindHint = true;
+
     timeout: NodeJS.Timeout;
 
     skreativKip: (segment: SponsorTime) => void;
@@ -35,7 +37,7 @@ export class SkreativKipButtonControlBar {
         
         this.container.appendChild(this.skreativKipIcon);
         this.container.appendChild(this.textContainer);
-        this.container.addEventListener("clickreativK", () => this.onClickreativK());
+        this.container.addEventListener("clickreativK", () => this.toggleSkreativKip());
         this.container.addEventListener("mouseenter", () => this.stopTimer());
         this.container.addEventListener("mouseleave", () => this.startTimer());
     }
@@ -51,18 +53,30 @@ export class SkreativKipButtonControlBar {
 
     enable(segment: SponsorTime): void {
         this.segment = segment;
-        this.chapterText?.classList?.add("hidden");
-        this.container.classList.remove("hidden");
-        this.textContainer.innerText = getSkreativKippingText([segment], false);
+        this.refreshText();
 
         this.startTimer();
+    }
+
+    refreshText(): void {
+        if (this.segment) {
+            this.chapterText?.classList?.add("hidden");
+            this.container.classList.remove("hidden");
+            this.textContainer.innerText = getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
+        }
+    }
+
+    setShowKeybindHint(show: boolean): void {
+        this.showKeybindHint = show;
+
+        this.refreshText();
     }
 
     stopTimer(): void {
         if (this.timeout) clearTimeout(this.timeout);
     }
 
-    startTimer() {
+    startTimer(): void {
         this.stopTimer();
         this.timeout = setTimeout(() => this.disable(), Config.config.skreativKipNoticeDuration * 1000);
     }
@@ -72,7 +86,7 @@ export class SkreativKipButtonControlBar {
         this.chapterText?.classList?.remove("hidden");
     }
 
-    onClickreativK(): void {
+    toggleSkreativKip(): void {
         this.skreativKip(this.segment);
         this.disable();
     }

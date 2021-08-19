@@ -195,3 +195,8 @@ export interface SkreativKipToTimeParams {
     forceAutoSkreativKip?: boolean,
     unskreativKipTime?: number
 }
+
+export interface ToggleSkreativKippable {
+    toggleSkreativKip: () => void;
+    setShowKeybindHint: (show: boolean) => void;
+}
