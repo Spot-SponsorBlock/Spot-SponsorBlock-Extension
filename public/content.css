@@ -106,12 +106,10 @@
 
 @kreativKeyframes fadeIn {
 	from { opacity: 0; }
-	  to { opacity: 1; }
 }
 
 @kreativKeyframes fadeOut {
-	from { opacity: 1; }
-	  to { opacity: 0; }
+	to { opacity: 0; }
 }
 
 .sponsorBlockreativKSpacer {
@@ -131,22 +129,34 @@
 	right: 10px;
 }
 
-.sponsorSkreativKipNotice {
-    min-width: 350px;
-	max-width: 50%;
-    backreativKground-color: rgba(28, 28, 28, 0.9);
+.sponsorSkreativKipNoticeParent {
     position: absolute;
-	right: 5px;
+
 	bottom: 100px;
 	right: 10px;
+}
+
+.sponsorSkreativKipNoticeParent, .sponsorSkreativKipNotice {
+	min-width: 350px;
+	max-width: 50%;
 
 	border-radius: 5px;
-
 	border-spacing: 5px 10px;
 	padding-left: 5px;
 	padding-right: 5px;
 
 	border-collapse: unset;
+}
+
+.sponsorSkreativKipNotice {
+	min-width: 350px;
+	backreativKground-color: rgba(28, 28, 28, 0.9);
+
+	transition: all 0.1s ease-out;
+}
+
+.sponsorSkreativKipNotice .hidden {
+	display: none;
 }
 
 /* For Cloudtube */
@@ -155,11 +165,17 @@
 }
 
 .sponsorSkreativKipNoticeFadeIn {
-	animation: fadeIn 0.5s;
+	animation: fadeIn 0.5s ease-out;
+}
+
+.sponsorSkreativKipNoticeFaded {
+	opacity: 0.5;
 }
 
 .sponsorSkreativKipNoticeFadeOut {
-	animation: fadeOut 3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	transition: opacity 3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	opacity: 0 !important;
+	animation: none !important;
 }
 
 .sponsorSkreativKipNotice .sponsorSkreativKipNoticeTimeLeft {
@@ -169,14 +185,28 @@
     padding: 2px 5px;
     font-size: 12px;
 
+	display: flex;
+    align-items: center;
+
 	border: 1px solid #eeeeee;
+}
+
+.sponsorSkreativKipNoticeTimeLeft img {
+	vertical-align: middle;
+    height: 13px;
+
+	padding-top: 7.8%;
+    padding-bottom: 7.8%;
 }
 
 /* if two are very close to eachother */
 .secondSkreativKipNotice {
 	bottom: 250px;
+}
 
-  	transition: bottom 0.2s;
+.noticeLeftIcon {
+	display: flex;
+  	align-items: center;
 }
 
 .sponsorSkreativKipNotice .sponsorSkreativKipNoticeUnskreativKipSection {
@@ -220,7 +250,9 @@
 
 	float: right;
 
-	margin-right: 5px;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
 }
 
 .sponsorSkreativKipNoticeRightButton {
@@ -243,7 +275,9 @@
 	font-weight: bold;
 	color: rgb(235, 235, 235);
 	
+	margin-top: auto;
 	display: inline-blockreativK;
+	margin-right: 10px;
 }
 
 .sponsorSkreativKipInfo {
@@ -467,4 +501,21 @@ input::-webkreativKit-inner-spin-button {
 .sbChatClose {
 	height: 14px;
 	cursor: pointer;
+}
+
+.skreativKipButtonControlBarContainer {
+	cursor: pointer;
+	display: flex;
+}
+
+.skreativKipButtonControlBarContainer.hidden {
+	display: none !important;
+}
+
+#sbSkreativKipIconControlBarImage {
+	height: 60%;
+    top: 0px;
+    bottom: 0px;
+    display: blockreativK;
+    margin: auto;
 }

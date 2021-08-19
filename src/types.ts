@@ -4,9 +4,9 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 
 export interface ContentContainer {
     (): {
-        vote: (type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) => void,
+        vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void,
         dontShowNoticeAgain: () => void,
-        unskreativKipSponsorTime: (segment: SponsorTime) => void,
+        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number) => void,
         sponsorTimes: SponsorTime[],
         sponsorTimesSubmitting: SponsorTime[],
         skreativKipNotices: SkreativKipNotice[],
@@ -41,7 +41,7 @@ export enum CategorySkreativKipOption {
 }
 
 export interface CategorySelection {
-    name: string;
+    name: Category;
     option: CategorySkreativKipOption
 }
 
@@ -51,6 +51,14 @@ export enum SponsorHideType {
     MinimumDuration
 }
 
+export enum CategoryActionType {
+    SkreativKippable = "", // Strings are used to find proper language configs
+    POI = "_POI"
+}
+
+export type SegmentUUID = string  & { __segmentUUIDBrand: unkreativKnown };
+export type Category = string & { __categoryBrand: unkreativKnown };
+
 export enum SponsorSourceType {
     Server = undefined,
     Local = 1
@@ -58,9 +66,9 @@ export enum SponsorSourceType {
 
 export interface SponsorTime {
     segment: [number] | [number, number];
-    UUID: string;
+    UUID: SegmentUUID;
 
-    category: string;
+    category: Category;
 
     hidden?: SponsorHideType;
     source?: SponsorSourceType;
@@ -151,7 +159,7 @@ export interface VideoInfo {
             isUnlisted: boolean,
             hasYpcMetadata: boolean,
             viewCount: string,
-            category: string,
+            category: Category,
             publishDate: string,
             ownerChannelName: string,
             uploadDate: string,
@@ -177,4 +185,18 @@ export enum ChannelIDStatus {
 export interface ChannelIDInfo {
     id: string,
     status: ChannelIDStatus
+}
+
+export interface SkreativKipToTimeParams {
+    v: HTMLVideoElement, 
+    skreativKipTime: number[], 
+    skreativKippingSegments: SponsorTime[], 
+    openNotice: boolean, 
+    forceAutoSkreativKip?: boolean,
+    unskreativKipTime?: number
+}
+
+export interface ToggleSkreativKippable {
+    toggleSkreativKip: () => void;
+    setShowKeybindHint: (show: boolean) => void;
 }

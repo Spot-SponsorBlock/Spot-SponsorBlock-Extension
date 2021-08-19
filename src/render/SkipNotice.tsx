@@ -17,7 +17,7 @@ class SkreativKipNotice {
 
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
 
-    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer) {
+    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, unskreativKipTime: number = null) {
         this.skreativKipNoticeRef = React.createRef();
 
         this.segments = segments;
@@ -44,9 +44,17 @@ class SkreativKipNotice {
                 autoSkreativKip={autoSkreativKip} 
                 contentContainer={contentContainer}
                 ref={this.skreativKipNoticeRef}
-                closeListener={() => this.close()} />,
+                closeListener={() => this.close()}
+                smaller={true}
+                unskreativKipTime={unskreativKipTime} />,
             this.noticeElement
         );
+    }
+
+    setShowKeybindHint(value: boolean): void {
+        this.skreativKipNoticeRef.current.setState({
+            showKeybindHint: value
+        });
     }
 
     close(): void {

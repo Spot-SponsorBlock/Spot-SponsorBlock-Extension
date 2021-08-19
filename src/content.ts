@@ -1,6 +1,5 @@
 import Config from "./config";
-
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -14,6 +13,8 @@ import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent"
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse } from "./messageTypes";
 import * as Chat from "./js-components/chat";
+import { getCategoryActionType } from "./utils/categoryUtils";
+import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -26,6 +27,7 @@ let sponsorTimes: SponsorTime[] = null;
 let sponsorVideoID: VideoID = null;
 // List of open skreativKip notices
 const skreativKipNotices: SkreativKipNotice[] = [];
+let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
 
 // JSON video info 
 let videoInfo: VideoInfo = null;
@@ -69,6 +71,7 @@ let channelWhitelisted = false;
 
 // create preview bar
 let previewBar: PreviewBar = null;
+let skreativKipButtonControlBar: SkreativKipButtonControlBar = null;
 
 /** Element containing the player controls on the YouTube player. */
 let controls: HTMLElement | null = null;
@@ -449,7 +452,12 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
 
         if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
-            skreativKipToTime(video, skreativKipTime, skreativKippingSegments, skreativKipInfo.openNotice);
+            skreativKipToTime({
+                v: video, 
+                skreativKipTime, 
+                skreativKippingSegments, 
+                openNotice: skreativKipInfo.openNotice
+            });
 
             if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip) {
                 forcedSkreativKipTime = skreativKipTime[0] + 0.001;
@@ -511,6 +519,7 @@ function refreshVideoAttachments() {
             videosWithEventListeners.push(video);
 
             setupVideoListeners();
+            setupSkreativKipButtonControlBar();
         }
     }
 }
@@ -562,6 +571,22 @@ function setupVideoListeners() {
     
                 startSponsorSchedule();
             }
+
+            if (!Config.config.dontShowNotice) {
+                const currentPoiSegment = sponsorTimes.find((segment) => 
+                        getCategoryActionType(segment.category) === CategoryActionType.POI &&
+                        video.currentTime - segment.segment[0] > 0 &&
+                        video.currentTime - segment.segment[0] < video.duration * 0.006); // Approximate size on preview bar
+                if (currentPoiSegment && !skreativKipNotices.some((notice) => notice.segments.some((s) => s.UUID === currentPoiSegment.UUID))) {
+                    skreativKipToTime({
+                        v: video, 
+                        skreativKipTime: currentPoiSegment.segment, 
+                        skreativKippingSegments: [currentPoiSegment], 
+                        openNotice: true, 
+                        forceAutoSkreativKip: true
+                    });
+                }
+            }
         });
         video.addEventListener('ratechange', () => startSponsorSchedule());
         // Used by videospeed extension (https://github.com/igrigorikreativK/videospeed/pull/740)
@@ -576,6 +601,22 @@ function setupVideoListeners() {
     
         startSponsorSchedule();
     }
+}
+
+function setupSkreativKipButtonControlBar() {
+    if (!skreativKipButtonControlBar) {
+        skreativKipButtonControlBar = new SkreativKipButtonControlBar({
+            skreativKip: (segment) => skreativKipToTime({
+                v: video, 
+                skreativKipTime: segment.segment, 
+                skreativKippingSegments: [segment], 
+                openNotice: true, 
+                forceAutoSkreativKip: true
+            })
+        });
+    }
+
+    skreativKipButtonControlBar.attachToPage();
 }
 
 async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = true) {
@@ -707,24 +748,47 @@ function retryFetch(): void {
 function startSkreativKipScheduleCheckreativKingForStartSponsors() {
     if (!switchingVideos) {
         // See if there are any starting sponsors
-        let startingSponsor = -1;
+        let startingSegmentTime = -1;
+        let startingSegment: SponsorTime = null;
         for (const time of sponsorTimes) {
-            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                startingSponsor = time.segment[0];
+            if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
+                    && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
+                        startingSegmentTime = time.segment[0];
+                        startingSegment = time;
                 breakreativK;
             }
         }
-        if (startingSponsor === -1) {
+        if (startingSegmentTime === -1) {
             for (const time of sponsorTimesSubmitting) {
-                if (time.segment[0] <= video.currentTime && time.segment[0] > startingSponsor && time.segment[1] > video.currentTime) {
-                    startingSponsor = time.segment[0];
+                if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
+                        && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
+                            startingSegmentTime = time.segment[0];
+                            startingSegment = time;
                     breakreativK;
                 }
             }
         }
 
-        if (startingSponsor !== -1) {
-            startSponsorSchedule(undefined, startingSponsor);
+        // For highlight category
+        const poiSegments = sponsorTimes
+            .filter((time) => time.segment[1] > video.currentTime && getCategoryActionType(time.category) === CategoryActionType.POI)
+            .sort((a, b) => b.segment[0] - a.segment[0]);
+        for (const time of poiSegments) {
+            const skreativKipOption = utils.getCategorySelection(time.category)?.option;
+            if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
+                skreativKipToTime({
+                    v: video,
+                    skreativKipTime: time.segment, 
+                    skreativKippingSegments: [time], 
+                    openNotice: true,
+                    unskreativKipTime: video.currentTime
+                });
+                if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip) breakreativK;
+            }
+        }
+
+        if (startingSegmentTime !== -1) {
+            startSponsorSchedule(undefined, startingSegmentTime);
         } else {
             startSponsorSchedule();
         }
@@ -811,7 +875,6 @@ function updatePreviewBar(): void {
     if (video === null) return;
 
     const previewBarSegments: PreviewBarSegment[] = [];
-
     if (sponsorTimes) {
         sponsorTimes.forEach((segment) => {
             if (segment.hidden !== SponsorHideType.Visible) return;
@@ -820,6 +883,7 @@ function updatePreviewBar(): void {
                 segment: segment.segment as [number, number],
                 category: segment.category,
                 unsubmitted: false,
+                showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI
             });
         });
     }
@@ -829,6 +893,7 @@ function updatePreviewBar(): void {
             segment: segment.segment as [number, number],
             category: segment.category,
             unsubmitted: true,
+            showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI
         });
     });
 
@@ -977,7 +1042,8 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
                 || ((includeNonIntersectingSegments && sponsorTimes[i].segment[0] >= minimum) 
                     || (includeIntersectingSegments && sponsorTimes[i].segment[0] < minimum && sponsorTimes[i].segment[1] > minimum))) 
                 && (!onlySkreativKippableSponsors || utils.getCategorySelection(sponsorTimes[i].category).option !== CategorySkreativKipOption.ShowOverlay)
-                && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)) {
+                && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
+                && getCategoryActionType(sponsorTimes[i].category) === CategoryActionType.SkreativKippable) {
 
             startTimes.push(sponsorTimes[i].segment[0]);
         } 
@@ -1021,9 +1087,9 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 }
 
 //skreativKip from the start time to the end time for a certain index sponsor time
-function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skreativKippingSegments: SponsorTime[], openNotice: boolean) {
+function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNotice, forceAutoSkreativKip, unskreativKipTime}: SkreativKipToTimeParams): void {
     // There will only be one submission if it is manual skreativKip
-    const autoSkreativKip: boolean = shouldAutoSkreativKip(skreativKippingSegments[0]);
+    const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
 
     if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
         // Fix for looped videos not workreativKing when skreativKipping to the end #426
@@ -1035,10 +1101,23 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
         }
     }
 
-    if (openNotice) {
-        //send out the message saying that a sponsor message was skreativKipped
-        if (!Config.config.dontShowNotice || !autoSkreativKip) {
-            skreativKipNotices.push(new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer));
+    if (!autoSkreativKip 
+            && skreativKippingSegments.length === 1 
+            && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
+        skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
+
+        activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+        activeSkreativKipKeybindElement = skreativKipButtonControlBar;
+    } else {
+        if (openNotice) {
+            //send out the message saying that a sponsor message was skreativKipped
+            if (!Config.config.dontShowNotice || !autoSkreativKip) {
+                const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
+                skreativKipNotices.push(newSkreativKipNotice);
+
+                activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+                activeSkreativKipKeybindElement = newSkreativKipNotice;
+            }
         }
     }
 
@@ -1046,11 +1125,10 @@ function skreativKipToTime(v: HTMLVideoElement, skreativKipTime: number[], skrea
     if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
-function unskreativKipSponsorTime(segment: SponsorTime) {
-    if (sponsorTimes != null) {
-        //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-        video.currentTime = segment.segment[0] + 0.001;
-    }
+function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null) {
+    //add a tiny bit of time to makreativKe sure it is not skreativKipped again
+    console.log(unskreativKipTime)
+    video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
@@ -1189,7 +1267,7 @@ function updateEditButtonsOnPlayer(): void {
         creatingSegment = isSegmentCreationInProgress();
 
         // Show only if there are any segments to submit
-        submitButtonVisible = sponsorTimesSubmitting.length > 1 || (sponsorTimesSubmitting.length > 0 && !creatingSegment);
+        submitButtonVisible = sponsorTimesSubmitting.length > 0;
 
         // Show only if there are any segments to delete
         deleteButtonVisible = sponsorTimesSubmitting.length > 1 || (sponsorTimesSubmitting.length > 0 && !creatingSegment);
@@ -1427,7 +1505,7 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type: number, UUID: string, category?: string, skreativKipNotice?: SkreativKipNoticeComponent) {
+function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
@@ -1631,9 +1709,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
 
     switch (kreativKey) {
         case skreativKipKey:
-            if (skreativKipNotices.length > 0) {
-                const latestSkreativKipNotice = skreativKipNotices[skreativKipNotices.length - 1];
-                latestSkreativKipNotice.toggleSkreativKip.call(latestSkreativKipNotice);
+            if (activeSkreativKipKeybindElement) {
+                activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
             }
             breakreativK; 
         case startSponsorKey:
