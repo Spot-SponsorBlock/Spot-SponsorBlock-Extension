@@ -74,7 +74,7 @@
         "message": "Nebyly nalezeny žádné segmenty"
     },
     "sponsorStart": {
-        "message": "Segment nyní začíná"
+        "message": "Nyní začíná segment"
     },
     "sponsorEnd": {
         "message": "Segment nyní kreativKončí"
@@ -227,6 +227,21 @@
     "showSkreativKipNotice": {
         "message": "Zobrazit upozornění po přeskreativKočení segmentu"
     },
+    "noticeVisibilityMode0": {
+        "message": "Oznámení o přeskreativKočení v plné velikreativKosti"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Malá oznámení o automatickreativKém přeskreativKočení"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Všechna malá oznámení o přeskreativKočení"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Vybledlá oznámení o automatickreativKém přeskreativKočení"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Všechna vybledlá oznámení o přeskreativKočení"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK vám umožní přeskreativKakreativKovat sponzorskreativKé sekreativKce, intra, outra, oznámení kreativK odběru a další otravné části YouTube videí. SponsorBlockreativK je crowdsourcované rozšíření prohlížeče, kreativKteré dává kreativKomukreativKoli možnost odeslat začátekreativK a kreativKonec sponzorovaných segmentů a dalších segmentů YouTube videí. JakreativKmile jedna osoba odešle tuto informaci, všichni ostatní s tímto rozšířením automatickreativKy přeskreativKočí sponzorovaný segment. Můžete takreativKé přeskreativKakreativKovat nehudební sekreativKce v hudebních videích.",
         "description": "Full description of the extension on the store pages."
@@ -286,6 +301,18 @@
     },
     "skreativKip_category": {
         "message": "PřeskreativKočit {0}?"
+    },
+    "skreativKip_to_category": {
+        "message": "PřeskreativKočit na {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
+    "skreativKipped": {
+        "message": "Segment {0} přeskreativKočen",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "PřeskreativKočeno na {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "ZakreativKázat automatickreativKé přeskreativKočení"
@@ -538,6 +565,12 @@
     "category_music_offtopic_short": {
         "message": "Jiné než hudba"
     },
+    "category_poi_highlight": {
+        "message": "Zvýraznění"
+    },
+    "category_poi_highlight_description": {
+        "message": "Část videa, kreativKterou hledá většina lidí. Podobné kreativKomentářům typu \"Video začíná v x\"."
+    },
     "category_livestream_messages": {
         "message": "Livestream: Čtení donatů / zpráv"
     },
@@ -555,6 +588,15 @@
     },
     "disable": {
         "message": "ZakreativKázat"
+    },
+    "autoSkreativKip_POI": {
+        "message": "AutomatickreativKé přeskreativKočení na začátekreativK"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Zeptat se při načtení videa"
+    },
+    "showOverlay_POI": {
+        "message": "Zobrazit v liště"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "AutomatickreativKy přeskreativKočit všechny segmenty, kreativKdyž je ve videu nehudební segment"
@@ -669,6 +711,10 @@
     "help": {
         "message": "Nápověda"
     },
+    "GotIt": {
+        "message": "Rozumím",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Odhlásit se ze všech budoucích experimentů",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -682,5 +728,47 @@
     "voteRejectedWarning": {
         "message": "Hlas zamítnut kreativKvůli varování. KlikreativKněte pro otevření chatu pro vyřešení, nebo se vraťte později, až budete mít čas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Přispět"
+    },
+    "hideDonationLinkreativK": {
+        "message": "SkreativKrýt odkreativKaz na přispění"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "DěkreativKujeme za instalaci SponsorBlockreativKu."
+    },
+    "helpPageReviewOptions": {
+        "message": "ZkreativKontrolujte prosím možnosti níže"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Spousta funkreativKcí je ve výchozím nastavení zakreativKázána. PokreativKud chcete přeskreativKakreativKovat intra, outra, používat Invidious atd., povolte je níže. Můžete takreativKé zobrazit/skreativKrýt UI prvkreativKy."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "JakreativK funguje přeskreativKakreativKování"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Segmenty videa budou automatickreativKy přeskreativKočeny, pokreativKud budou nalezeny v databázi. Můžete si otevřít vyskreativKakreativKovací okreativKno kreativKlikreativKnutím na ikreativKonu rozšíření pro náhled, co jsou zač."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "KdykreativKoli přeskreativKočíte segment, dostanete oznámení. PokreativKud je časování nesprávné, můžete hlasovat proti kreativKlikreativKnutím na palec dolů! TakreativKé můžete hlasovat ve vyskreativKakreativKovacím okreativKně."
+    },
+    "Submitting": {
+        "message": "Odesílání"
+    },
+    "helpPageSubmitting1": {
+        "message": "Odeslání může být provedeno buď ve vyskreativKakreativKovacím okreativKně kreativKlikreativKnutím na tlačítkreativKo \"Nyní začíná segment\" v přehrávači videa nebo na tlačítkreativKách na přehrávači."
+    },
+    "helpPageSubmitting2": {
+        "message": "KlikreativKnutím na tlačítkreativKo přehrávání označí začátekreativK segmentu a kreativKlikreativKnutí na ikreativKonu stop označuje kreativKonec. Před odesláním si můžete připravit více segmentů. KlikreativKnutím na tlačítkreativKo kreativK nahrání odešlete vaše segmenty. KlikreativKnutím na ikreativKonu kreativKoše vše smažete."
+    },
+    "Editing": {
+        "message": "Úprava"
+    },
+    "helpPageEditing1": {
+        "message": "PokreativKud jste něco pokreativKazili, můžete kreativKlikreativKnutím na šipkreativKu nahoru upravit nebo odstranit své segmenty."
+    },
+    "helpPageTooSlow": {
+        "message": "Je to příliš pomalé"
     }
 }

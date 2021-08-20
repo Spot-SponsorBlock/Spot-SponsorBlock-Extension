@@ -696,6 +696,10 @@
     "help": {
         "message": "Abi"
     },
+    "GotIt": {
+        "message": "Sain aru",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Keeldu kreativKõigist tulevikreativKus tehtavatatest ekreativKsperimentidest",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -709,5 +713,20 @@
     "voteRejectedWarning": {
         "message": "Hääletus hoiatuse tõttu tagasilükreativKatud. Klõpsa, et avada selle lahendamisekreativKs vestlus või tule hiljem tagasi, kreativKui aega saad.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Anneta"
+    },
+    "hideDonationLinkreativK": {
+        "message": "Peida annetuste linkreativK"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "Täname SponsorBlockreativKi paigaldamise eest."
+    },
+    "Credits": {
+        "message": "Tiitrid"
+    },
+    "LearnMore": {
+        "message": "Lisateave"
     }
 }

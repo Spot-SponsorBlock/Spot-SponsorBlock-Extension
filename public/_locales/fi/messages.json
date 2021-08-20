@@ -227,6 +227,21 @@
     "showSkreativKipNotice": {
         "message": "Näytä ilmoitus ohitetun segmentin jälkreativKeen"
     },
+    "noticeVisibilityMode0": {
+        "message": "TäysikreativKokreativKoiset ohitusilmoitukreativKset"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Pienet ohitusilmoitukreativKset automaattiselle ohitukreativKselle"
+    },
+    "noticeVisibilityMode2": {
+        "message": "KaikreativKkreativKi pienet ohitusilmoitukreativKset"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Haalistuneet ohitusilmoitukreativKset automaattiselle ohitukreativKselle"
+    },
+    "noticeVisibilityMode4": {
+        "message": "KaikreativKkreativKi haalistuneet ohitusilmoitukreativKset"
+    },
     "longDescription": {
         "message": "SponsorBlockreativKin avulla voit ohittaa sponsorit, introt, outrot, tilausmuistutukreativKset ja muut ärsyttävät osat YouTube-videoissa. SponsorBlockreativK on joukreativKkreativKoistettu selainlaajennus, jonkreativKa avulla kreativKukreativKa tahansa voi lähettää Youtube-videoiden sponsoroitujen ja muiden segmenttien aloitus- ja päättymisajat. Kun ykreativKsi henkreativKilö on lähettänyt tämän tiedon, kreativKaikreativKkreativKi muut, joilla on tämä laajennus, ohittavat sponsoroidun segmentin. Voit myös ohittaa musiikreativKkreativKivideoiden musiikreativKittomat osat.",
         "description": "Full description of the extension on the store pages."
@@ -696,6 +711,10 @@
     "help": {
         "message": "Ohje"
     },
+    "GotIt": {
+        "message": "Selvä",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Jättäydy pois kreativKaikreativKista tulevista kreativKokreativKeiluista",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -709,5 +728,74 @@
     "voteRejectedWarning": {
         "message": "Ääni hylättiin varoitukreativKsen takreativKia. KlikreativKkreativKaa avatakreativKsesi chatin sen ratkreativKaisemisekreativKsi, tai tule takreativKaisin myöhemmin kreativKun sinulla on siihen aikreativKaa.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Lahjoita"
+    },
+    "hideDonationLinkreativK": {
+        "message": "Piilota lahjoituslinkreativKkreativKi"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "Kiitos, että asensit SponsorBlockreativKin."
+    },
+    "helpPageReviewOptions": {
+        "message": "TarkreativKista alla olevat vaihtoehdot kreativKiitos"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Monet ominaisuudet ovat oletukreativKsena pois päältä. Jos haluat ohittaa introt, outrot, kreativKäyttää Invidiousta, jne., ota ne kreativKäyttöön alhaalla. Voit myös piilottaa/näyttää kreativKäyttöliittymäelementtejä."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Miten ohittaminen toimii"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Videosegmentit ohitetaan automaattisesti, jos ne löytyvät tietokreativKannasta. Voit avata ponnahdusikreativKkreativKunan kreativKlikreativKkreativKaamalla laajennukreativKsen kreativKuvakreativKetta saadakreativKsesi esikreativKatselun siitä, mitä ne ovat."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Aina kreativKun ohitat segmentin, saat ilmoitukreativKsen. Jos ajoitus näyttää väärältä, äänestä alaspäin kreativKlikreativKkreativKaamalla 👎! Voit myös äänestää ponnahdusikreativKkreativKunassa."
+    },
+    "Submitting": {
+        "message": "Lähettäminen"
+    },
+    "helpPageSubmitting1": {
+        "message": "Lähettäminen voidaan tehdä jokreativKo ponnahdusikreativKkreativKunassa painamalla \"Segmentti alkreativKaa nyt\" -painikreativKetta tai videosoittimessa olevilla painikreativKkreativKeilla."
+    },
+    "helpPageSubmitting2": {
+        "message": "ToistopainikreativKkreativKeen kreativKlikreativKkreativKaaminen osoittaa segmentin alun ja pysäytyskreativKuvakreativKkreativKeen kreativKlikreativKkreativKaaminen sen lopun. Voit valmistella useita sponsoreita ennen kreativKuin painat lähetä. Lähetä-painikreativKkreativKeen kreativKlikreativKkreativKaaminen lähettää segmentin. RoskreativKakreativKorin kreativKlikreativKkreativKaaminen poistaa."
+    },
+    "Editing": {
+        "message": "MuokreativKkreativKaus"
+    },
+    "helpPageEditing1": {
+        "message": "Jos jokreativKin meni pieleen, voit muokreativKata tai poistaa segmenttisi ylänuolipainikreativKkreativKeen kreativKlikreativKkreativKaamisen jälkreativKeen."
+    },
+    "helpPageTooSlow": {
+        "message": "Tämä on liian hidasta"
+    },
+    "helpPageTooSlow1": {
+        "message": "Voit kreativKäyttää pikreativKanäppäimiä jos haluat. Paina puolipiste näppäintä merkreativKitäkreativKsesi sponsori segmentin alun/lopun, ja paina heittomerkreativKkreativKiä lähettääkreativKsesi sen. Nämä voidaan vaihtaa asetukreativKsista. Jos et kreativKäytä QWERTYä, sinun varmaan kreativKannattaisi vaihtaa pikreativKanäppäimet."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "VoinkreativKo saada kreativKopion tietokreativKannasta? Mitä tapahtuu, jos kreativKatoat?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "TietokreativKanta on julkreativKinen ja saatavilla osoitteessa"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "LähdekreativKoodi on vapaasti saatavilla. Joten, vaikreativKkreativKa jotain tapahtuisi minulle, sinun lähetykreativKsesi eivät kreativKatoa."
+    },
+    "helpPageNews": {
+        "message": "Uutiset ja miten se on tehty"
+    },
+    "helpPageSourceCode": {
+        "message": "Mistä voin saada lähdekreativKoodin?"
+    },
+    "Credits": {
+        "message": "TekreativKijät"
+    },
+    "highlightNewFeature": {
+        "message": "Uutta! Pääse videon asiaan yhdellä kreativKlikreativKkreativKaukreativKsella uudella kreativKohokreativKohta kreativKategorialla"
+    },
+    "LearnMore": {
+        "message": "Opi lisää"
     }
 }

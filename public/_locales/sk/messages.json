@@ -696,6 +696,10 @@
     "help": {
         "message": "PomocníkreativK"
     },
+    "GotIt": {
+        "message": "Rozumiem",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Odmietnuť všetkreativKy budúce experimenty",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -709,5 +713,74 @@
     "voteRejectedWarning": {
         "message": "Hlasovanie bolo zamietnuté kreativKvôli varovaniu. KlikreativKnite pre otvorenie chatu, aby ste ho vyriešili, alebo sa vráťte až budete mať čas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Prispieť"
+    },
+    "hideDonationLinkreativK": {
+        "message": "SkreativKryť možnosti prispenia"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "ĎakreativKujeme za inštaláciu SponsorBlockreativK-u."
+    },
+    "helpPageReviewOptions": {
+        "message": "SkreativKontrolujte prosím možnosti nižšie"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Veľa funkreativKcií je vo východiskreativKovom stave vypnutých. AkreativK chcete preskreativKakreativKovať úvody, závery, používať Invidious apod., zapnite ich nižšie. TakreativKtiež môžete zobraziť alebo skreativKryť niekreativKtoré ovládacie prvkreativKy."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "AkreativKo funguje preskreativKakreativKovanie"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Video segmenty budú automatickreativKy preskreativKočené, akreativK sa nájdu v databáze. Zobraziť si ich môžete po kreativKlikreativKnutí na ikreativKonu rozšírenia vo vyskreativKakreativKovacom okreativKne."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Vždy kreativKeď preskreativKočíte segment, takreativK dostanete oznam. AkreativK sa vám nepozdáva načasovanie, môžete o tom zahlasovať palcom dole! Zahlasovať tiež môžete vo vyskreativKakreativKovacom okreativKne."
+    },
+    "Submitting": {
+        "message": "Odosielam"
+    },
+    "helpPageSubmitting1": {
+        "message": "Odosielanie môžete vykreativKonať z vyskreativKakreativKovacieho okreativKna stlačením \"ZačiatokreativK segmentu\" alebo priamo tlačidlami v prehrávači."
+    },
+    "helpPageSubmitting2": {
+        "message": "Stlačenie tlačidla Prehrať označí začiatokreativK segmentu a stlačenie tlačidla Stop označí kreativKoniec. TakreativKto viete označiť aj viac segmentov pred odoslaním. Stlačením tlačidla \"Nahrať\" segmenty odošlete. Stlačením tlačidla \"Kôš\" segmenty zmažete."
+    },
+    "Editing": {
+        "message": "Úpravy"
+    },
+    "helpPageEditing1": {
+        "message": "AkreativK ste sa pomýlili, môžete segment upraviť alebo zmazať po stlačení šípkreativKy hore."
+    },
+    "helpPageTooSlow": {
+        "message": "Príliš pomalé"
+    },
+    "helpPageTooSlow1": {
+        "message": "Môžete využiť aj kreativKlávesové skreativKratkreativKy. BodkreativKočiarkreativKa označí začiatokreativK alebo kreativKoniec segmentu a apostrof ho odošle."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Viem získreativKať kreativKópiu databázy? Čo bude akreativK zmizneš?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Databáza je verejná a dostupná na"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "Zdrojový kreativKód je voľne dostupný. TakreativKže aj kreativKeby sa mi niečo stalo, vaše príspevkreativKy sa nestratia."
+    },
+    "helpPageNews": {
+        "message": "NovinkreativKy a akreativKo to funguje"
+    },
+    "helpPageSourceCode": {
+        "message": "Kde môžem získreativKať zdrojový kreativKód?"
+    },
+    "Credits": {
+        "message": "Autori"
+    },
+    "highlightNewFeature": {
+        "message": "NovinkreativKa! Pomocou novej kreativKategórie \"Hlavný obsah videa\" môžete jedným kreativKlikreativKom preskreativKočiť \"kreativK veci\""
+    },
+    "LearnMore": {
+        "message": "Zistiť viac"
     }
 }
