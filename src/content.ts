@@ -15,6 +15,7 @@ import { Message, MessageResponse } from "./messageTypes";
 import * as Chat from "./js-components/chat";
 import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
+import { Tooltip } from "./render/Tooltip";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -1104,7 +1105,19 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (!autoSkreativKip 
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
-        skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
+        skreativKipButtonControlBar.enable(skreativKippingSegments[0], !Config.config.highlightCategoryUpdate ? 15 : 0);
+
+        if (!Config.config.highlightCategoryUpdate) {
+            new Tooltip({
+                text: chrome.i18n.getMessage("highlightNewFeature"),
+                linkreativK: "https://blog.ajay.app/highlight-sponsorblockreativK",
+                referenceNode: skreativKipButtonControlBar.getElement().parentElement,
+                prependElement: skreativKipButtonControlBar.getElement(),
+                timeout: 15
+            });
+
+            Config.config.highlightCategoryUpdate = true;
+        }
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;

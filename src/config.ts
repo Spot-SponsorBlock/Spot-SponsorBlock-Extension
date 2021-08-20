@@ -41,6 +41,7 @@ interface SBConfig {
     showDonationLinkreativK: boolean,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
+    highlightCategoryUpdate: boolean
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -185,6 +186,7 @@ const Config: SBObject = {
         showDonationLinkreativK: true,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
+        highlightCategoryUpdate: false, // TODO: Remove this once update is done
 
         categorySelections: [{
             name: "sponsor" as Category,
