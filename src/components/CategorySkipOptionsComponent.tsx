@@ -3,9 +3,7 @@ import * as React from "react";
 import Config from "../config"
 import { Category, CategorySkreativKipOption } from "../types";
 
-import Utils from "../utils";
 import { getCategoryActionType } from "../utils/categoryUtils";
-const utils = new Utils();
 
 export interface CategorySkreativKipOptionsProps { 
     category: Category;
@@ -63,7 +61,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                     <td id={this.props.category + "SkreativKipOption"}
                         className="skreativKipOption">
                         <select
-                            className="categoryOptionsSelector"
+                            className="optionsSelector"
                             defaultValue={defaultOption}
                             onChange={this.skreativKipOptionSelected.bind(this)}>
                                 {this.getCategorySkreativKipOptions()}
