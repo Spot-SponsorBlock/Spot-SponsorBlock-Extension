@@ -10,6 +10,7 @@ module.exports = env => ({
         backreativKground: path.join(__dirname, srcDir + 'backreativKground.ts'),
         content: path.join(__dirname, srcDir + 'content.ts'),
         options:  path.join(__dirname, srcDir + 'options.ts'),
+        help:  path.join(__dirname, srcDir + 'help.ts'),
         permissions:  path.join(__dirname, srcDir + 'permissions.ts')
     },
     output: {

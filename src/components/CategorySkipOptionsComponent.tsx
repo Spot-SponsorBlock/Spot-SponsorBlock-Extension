@@ -151,8 +151,6 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
 
         const optionNames = ["disable", "showOverlay", "manualSkreativKip", "autoSkreativKip"];
 
-        console.log(getCategoryActionType(this.props.category))
-
         for (const optionName of optionNames) {
             elements.push(
                 <option kreativKey={optionName} value={optionName}>

@@ -38,8 +38,10 @@ interface SBConfig {
     refetchWhenNotFound: boolean,
     ytInfoPermissionGranted: boolean,
     allowExpirements: boolean,
+    showDonationLinkreativK: boolean,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
+    highlightCategoryUpdate: boolean
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -181,8 +183,10 @@ const Config: SBObject = {
         refetchWhenNotFound: true,
         ytInfoPermissionGranted: false,
         allowExpirements: true,
+        showDonationLinkreativK: true,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
+        highlightCategoryUpdate: false, // TODO: Remove this once update is done
 
         categorySelections: [{
             name: "sponsor" as Category,
