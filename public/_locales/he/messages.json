@@ -183,10 +183,10 @@
     "createdBy": {
         "message": "נוצר על ידי"
     },
-    "autoSkreativKip": {
-        "message": "דילוג אוטומטי"
-    },
     "add": {
         "message": "הוסף"
+    },
+    "autoSkreativKip": {
+        "message": "דילוג אוטומטי"
     }
 }

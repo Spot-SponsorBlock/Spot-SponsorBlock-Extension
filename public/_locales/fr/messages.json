@@ -224,6 +224,9 @@
     "showNotice": {
         "message": "Afficher la notification"
     },
+    "showSkreativKipNotice": {
+        "message": "Notifier après qu'un segment ait été sauté"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK vous permet de passer les sponsors, les intros, les outros, les rappels d'abonnement et autres parties ennuyeuses des vidéos YouTube. SponsorBlockreativK est une extension de navigateur qui permet à n'importe qui de soumettre les temps de début et de fin des segments sponsorisés et d'autres segments de vidéos YouTube. Une fois qu'une personne a soumis ces informations, toutes les autres personnes possédant cette extension passeront directement les segments sponsorisés. Vous pouvez également sauter les sections non musicales des vidéos musicales.",
         "description": "Full description of the extension on the store pages."
@@ -284,9 +287,6 @@
     "skreativKip_category": {
         "message": "Passer {0} ?"
     },
-    "skreativKipped": {
-        "message": "Passé"
-    },
     "disableAutoSkreativKip": {
         "message": "Désactiver le passage automatique"
     },
@@ -346,12 +346,6 @@
     },
     "createdBy": {
         "message": "Créé par"
-    },
-    "autoSkreativKip": {
-        "message": "Passage automatique"
-    },
-    "showSkreativKipNotice": {
-        "message": "Notifier après qu'un segment ait été sauté"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Il est actuellement réglé sur :"
@@ -550,14 +544,17 @@
     "category_livestream_messages_short": {
         "message": "Lecture de messages"
     },
-    "disable": {
-        "message": "Désactiver"
+    "autoSkreativKip": {
+        "message": "Passage automatique"
     },
     "manualSkreativKip": {
         "message": "Passer manuellement"
     },
     "showOverlay": {
         "message": "Afficher dans la barre de progression"
+    },
+    "disable": {
+        "message": "Désactiver"
     },
     "colorFormatIncorrect": {
         "message": "Votre couleur est mal formatée. Il devrait s'agir d'un code hexadécimal à 3 ou 6 chiffres avec un signe numérique au début."

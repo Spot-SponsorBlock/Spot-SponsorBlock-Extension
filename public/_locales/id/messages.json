@@ -218,6 +218,9 @@
     "showNotice": {
         "message": "TampilkreativKan Pemberitahuan Lagi"
     },
+    "showSkreativKipNotice": {
+        "message": "TampilkreativKan pemberitahuan setelah melewati segmen"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK membuat anda melewati sponsor, intro, outro, pengingat berlangganan dan segmen mengganggu lainnya di video YouTube. SponsorBlockreativK adalah ekreativKstensi browser crowdsourced yang membolehkreativKan siapa saja mengirim wakreativKtu awal dan akreativKhir dari segmen sponsor dan segmen video YouTube lainnya. Setelah seseorang mengirim informasi ini, orang lain yang memakreativKai ekreativKstensi ini akreativKan melewati segmen sponsor di video yang sama. Anda juga dapat melewati bagian non-musikreativK di musikreativK video.",
         "description": "Full description of the extension on the store pages."
@@ -278,9 +281,6 @@
     "skreativKip_category": {
         "message": "Lewati {0}?"
     },
-    "skreativKipped": {
-        "message": "Dilewati"
-    },
     "disableAutoSkreativKip": {
         "message": "NonakreativKtifkreativKan Lewati Otomatis"
     },
@@ -340,12 +340,6 @@
     },
     "createdBy": {
         "message": "Dibuat Oleh"
-    },
-    "autoSkreativKip": {
-        "message": "Lewati Otomatis"
-    },
-    "showSkreativKipNotice": {
-        "message": "TampilkreativKan pemberitahuan setelah melewati segmen"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Saat ini diatur pada:"
@@ -513,14 +507,17 @@
     "category_livestream_messages_short": {
         "message": "Membaca Pesan Chat"
     },
-    "disable": {
-        "message": "NonakreativKtif"
+    "autoSkreativKip": {
+        "message": "Lewati Otomatis"
     },
     "manualSkreativKip": {
         "message": "Lewati Manual"
     },
     "showOverlay": {
         "message": "TampilkreativKan Di Bilah WakreativKtu"
+    },
+    "disable": {
+        "message": "NonakreativKtif"
     },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan benar. Harusnya terdiri dari 3 atau 6 digit kreativKode hekreativKsa dengan tagar di awal."

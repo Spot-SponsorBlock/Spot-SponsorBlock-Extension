@@ -224,6 +224,9 @@
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
     },
+    "showSkreativKipNotice": {
+        "message": "Bir Kısmı AtladıkreativKtan Sonra Uyarı Göster"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK, sponsorları, giriş ve bitiş kreativKısımlarını, abonelikreativK hatırlatıcılarını ve YouTube videolarının diğer can sıkreativKıcı kreativKısımlarını atlamanıza olanakreativK tanır. SponsorBlockreativK, herkreativKesin sponsorlu kreativKısımları ve YouTube videolarının diğer kreativKısımlarının başlangıç ve bitiş zamanlarını göndermesine izin veren kreativKitle kreativKaynakreativKlı bir tarayıcı uzantısıdır. Bir kreativKişi bu bilgiyi gönderdikreativKten sonra, bu uzantıya sahip diğer herkreativKes sponsorlu kreativKısımları hemen atlayacakreativKtır. MüzikreativK videolarının müzikreativK dışı bölümlerini de atlayabilirsiniz.",
         "description": "Full description of the extension on the store pages."
@@ -284,8 +287,17 @@
     "skreativKip_category": {
         "message": "{0} atla?"
     },
+    "skreativKip_to_category": {
+        "message": "{0} kreativKısmına atlansın mı?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
     "skreativKipped": {
-        "message": "Atlandı"
+        "message": "{0} Atlandı",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "{0} kreativKısmına atlandı",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "OtomatikreativK Atlamayı Devredışı BırakreativK"
@@ -346,12 +358,6 @@
     },
     "createdBy": {
         "message": "Oluşturan"
-    },
-    "autoSkreativKip": {
-        "message": "OtomatikreativK Atla"
-    },
-    "showSkreativKipNotice": {
-        "message": "Bir Kısmı AtladıkreativKtan Sonra Uyarı Göster"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Şu an buna ayarlı:"
@@ -550,13 +556,25 @@
     "category_livestream_messages_short": {
         "message": "Canlı Yayın Mesajlarını OkreativKumakreativK"
     },
-    "disable": {
-        "message": "Devredışı"
+    "autoSkreativKip": {
+        "message": "OtomatikreativK Atla"
     },
     "manualSkreativKip": {
         "message": "Elle Atla"
     },
     "showOverlay": {
+        "message": "Arama Çubuğunda Göster"
+    },
+    "disable": {
+        "message": "Devredışı"
+    },
+    "autoSkreativKip_POI": {
+        "message": "Başlangıca otomatikreativK atla"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Videonun başında sor"
+    },
+    "showOverlay_POI": {
         "message": "Arama Çubuğunda Göster"
     },
     "autoSkreativKipOnMusicVideos": {

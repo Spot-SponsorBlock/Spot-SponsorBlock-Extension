@@ -131,6 +131,9 @@
     "Options": {
         "message": "Opcije"
     },
+    "showSkreativKipNotice": {
+        "message": "PokreativKaži obavijest nakreativKon preskreativKakreativKanja isječkreativKa"
+    },
     "website": {
         "message": "Web-stranica",
         "description": "Used on Firefox Store Page"
@@ -157,9 +160,6 @@
     },
     "skreativKip_category": {
         "message": "PreskreativKočiti {0}?"
-    },
-    "skreativKipped": {
-        "message": "PreskreativKočeno"
     },
     "disableAutoSkreativKip": {
         "message": "DeakreativKtiviraj automatskreativKo preskreativKakreativKanje"
@@ -190,12 +190,6 @@
     },
     "createdBy": {
         "message": "Izradio"
-    },
-    "autoSkreativKip": {
-        "message": "AutomatskreativKo preskreativKakreativKanje"
-    },
-    "showSkreativKipNotice": {
-        "message": "PokreativKaži obavijest nakreativKon preskreativKakreativKanja isječkreativKa"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Trenutno je postavljeno na:"
@@ -289,6 +283,9 @@
     },
     "category_music_offtopic_short": {
         "message": "Ne-glazbeni"
+    },
+    "autoSkreativKip": {
+        "message": "AutomatskreativKo preskreativKakreativKanje"
     },
     "manualSkreativKip": {
         "message": "Ručno preskreativKakreativKanje"

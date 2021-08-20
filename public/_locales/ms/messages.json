@@ -212,6 +212,9 @@
     "showNotice": {
         "message": "TunjukreativKkreativKan Notis Lagi"
     },
+    "showSkreativKipNotice": {
+        "message": "TunjukreativKkreativKan MakreativKluman Setelah Segmen DilangkreativKau"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK membolehkreativKan anda melewati penaja, intro, outro, peringatan langganan, dan bahagian lain dari video YouTube yang menjengkreativKelkreativKan. SponsorBlockreativK adalah pelanjutan penyemakreativK imbas yang banyakreativK untukreativK membolehkreativKan sesiapa sahaja menghantar segmen tajaan dan masa tayangan dari segmen video YouTube yang lain. Setelah satu orang menyerahkreativKan makreativKlumat ini, semua orang yang mempunyai pelanjutan ini akreativKan melangkreativKau segmen yang ditaja. Anda juga boleh melangkreativKau bahagian muzikreativK video muzikreativK bukreativKan.",
         "description": "Full description of the extension on the store pages."
@@ -268,9 +271,6 @@
     },
     "skreativKip_category": {
         "message": "LangkreativKau {0}?"
-    },
-    "skreativKipped": {
-        "message": "LangkreativKau"
     },
     "disableAutoSkreativKip": {
         "message": "LumpuhkreativKan LangkreativKau Auto"
@@ -331,12 +331,6 @@
     },
     "createdBy": {
         "message": "Dicipta oleh"
-    },
-    "autoSkreativKip": {
-        "message": "LangkreativKau Auto"
-    },
-    "showSkreativKipNotice": {
-        "message": "TunjukreativKkreativKan MakreativKluman Setelah Segmen DilangkreativKau"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Pada masa ini ditetapkreativKan untukreativK:"
@@ -504,14 +498,17 @@
     "category_livestream_messages_short": {
         "message": "Bacaan Mesej"
     },
-    "disable": {
-        "message": "NyahakreativKtifkreativKan"
+    "autoSkreativKip": {
+        "message": "LangkreativKau Auto"
     },
     "manualSkreativKip": {
         "message": "LangkreativKau Manual"
     },
     "showOverlay": {
         "message": "TunjukreativKkreativKan Di Bar Mencari"
+    },
+    "disable": {
+        "message": "NyahakreativKtifkreativKan"
     },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan betul. Ia mestilah kreativKod hex 3 atau 6 digit dengan tanda nombor pada awalnya."

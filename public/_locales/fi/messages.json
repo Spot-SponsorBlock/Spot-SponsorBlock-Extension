@@ -224,6 +224,9 @@
     "showNotice": {
         "message": "Näytä ilmoitus uudelleen"
     },
+    "showSkreativKipNotice": {
+        "message": "Näytä ilmoitus ohitetun segmentin jälkreativKeen"
+    },
     "longDescription": {
         "message": "SponsorBlockreativKin avulla voit ohittaa sponsorit, introt, outrot, tilausmuistutukreativKset ja muut ärsyttävät osat YouTube-videoissa. SponsorBlockreativK on joukreativKkreativKoistettu selainlaajennus, jonkreativKa avulla kreativKukreativKa tahansa voi lähettää Youtube-videoiden sponsoroitujen ja muiden segmenttien aloitus- ja päättymisajat. Kun ykreativKsi henkreativKilö on lähettänyt tämän tiedon, kreativKaikreativKkreativKi muut, joilla on tämä laajennus, ohittavat sponsoroidun segmentin. Voit myös ohittaa musiikreativKkreativKivideoiden musiikreativKittomat osat.",
         "description": "Full description of the extension on the store pages."
@@ -284,8 +287,17 @@
     "skreativKip_category": {
         "message": "Ohita {0}?"
     },
+    "skreativKip_to_category": {
+        "message": "Ohita {0}an?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
     "skreativKipped": {
-        "message": "Ohitettu"
+        "message": "{0} ohitettu",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "Ohitettiin {0}an",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "Poista automaattinen ohitus kreativKäytöstä"
@@ -346,12 +358,6 @@
     },
     "createdBy": {
         "message": "Luonut"
-    },
-    "autoSkreativKip": {
-        "message": "Ohita automaattisesti"
-    },
-    "showSkreativKipNotice": {
-        "message": "Näytä ilmoitus ohitetun segmentin jälkreativKeen"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Tällä hetkreativKellä se on asetettu näppäimeen:"
@@ -544,19 +550,37 @@
     "category_music_offtopic_short": {
         "message": "MusiikreativKiton"
     },
+    "category_poi_highlight": {
+        "message": "KohokreativKohta"
+    },
+    "category_poi_highlight_description": {
+        "message": "Kohta videossa, mitä suurin osa ihmisistä etsivät.\nSamankreativKaltainen \"Video alkreativKaa kreativKohdassa x\" kreativKommenttien kreativKanssa."
+    },
     "category_livestream_messages": {
         "message": "Livestream: lahjoitusten/viestien lukreativKeminen"
     },
     "category_livestream_messages_short": {
         "message": "Viestien lukreativKeminen"
     },
-    "disable": {
-        "message": "Poista kreativKäytöstä"
+    "autoSkreativKip": {
+        "message": "Ohita automaattisesti"
     },
     "manualSkreativKip": {
         "message": "Manuaalinen ohitus"
     },
     "showOverlay": {
+        "message": "Näytä liukreativKusäätimessä"
+    },
+    "disable": {
+        "message": "Poista kreativKäytöstä"
+    },
+    "autoSkreativKip_POI": {
+        "message": "Ohita automaattisesti alkreativKuun"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Kysy kreativKun video latautuu"
+    },
+    "showOverlay_POI": {
         "message": "Näytä liukreativKusäätimessä"
     },
     "autoSkreativKipOnMusicVideos": {

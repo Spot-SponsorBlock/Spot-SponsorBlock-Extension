@@ -224,6 +224,9 @@
     "showNotice": {
         "message": "PokreativKaż informacje ponownie"
     },
+    "showSkreativKipNotice": {
+        "message": "PokreativKaż informację po pominięciu segmentu"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK pozwala pomijać sponsorów, intra, outra, przypomnienia o subskreativKrypcjach i inne irytujące fragmenty filmów na YouTube. SponsorBlockreativK jest opartym na crowdsourcingu rozszerzeniem do przeglądarkreativKi, kreativKtóre pozwala kreativKażdemu zgłosić początekreativK i kreativKoniec segmentów sponsorowanych oraz innych segmentów w filmach na YouTube. Kiedy kreativKtoś już zamieści te informacje, wszyscy pozostali z tym rozszerzeniem będą pomijać segment sponsorowany. Możesz również pomijać fragmenty teledyskreativKów bez muzykreativKi.",
         "description": "Full description of the extension on the store pages."
@@ -284,9 +287,6 @@
     "skreativKip_category": {
         "message": "Pominąć {0}?"
     },
-    "skreativKipped": {
-        "message": "Pominięto"
-    },
     "disableAutoSkreativKip": {
         "message": "Wyłącz autopomijanie"
     },
@@ -346,12 +346,6 @@
     },
     "createdBy": {
         "message": "Stworzony przez"
-    },
-    "autoSkreativKip": {
-        "message": "Autopomijanie"
-    },
-    "showSkreativKipNotice": {
-        "message": "PokreativKaż informację po pominięciu segmentu"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Obecnie ustawiony:"
@@ -550,14 +544,17 @@
     "category_livestream_messages_short": {
         "message": "Czytanie wiadomości"
     },
-    "disable": {
-        "message": "Wyłączone"
+    "autoSkreativKip": {
+        "message": "Autopomijanie"
     },
     "manualSkreativKip": {
         "message": "Ręczne pomijanie"
     },
     "showOverlay": {
         "message": "PokreativKaż na paskreativKu"
+    },
+    "disable": {
+        "message": "Wyłączone"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Automatycznie pomiń wszystkreativKie segmenty, gdy istnieje segment niemuzyczny"

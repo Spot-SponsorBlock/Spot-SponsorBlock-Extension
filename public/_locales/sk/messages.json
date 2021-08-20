@@ -224,6 +224,9 @@
     "showNotice": {
         "message": "Znovu zobraziť upozornenie"
     },
+    "showSkreativKipNotice": {
+        "message": "Zobraziť upozornenie pri preskreativKočení segmentu"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK umožňuje preskreativKočiť sponzorov, úvodné časti, záverečné časti, pripomienkreativKy na odber, nehudobné časti videokreativKlipov alebo iné otravné časti YouTube videí. SponsorBlockreativK je crowdsourceové rozšírenie prehliadača, pomocou kreativKtorého môže kreativKtokreativKoľvekreativK označiť začiatokreativK a kreativKoniec takreativKéhoto segmentu. Po odoslaní potom všetci ostatní s týmto rozšírením tieto segmenty automatickreativKy preskreativKočia.",
         "description": "Full description of the extension on the store pages."
@@ -284,8 +287,17 @@
     "skreativKip_category": {
         "message": "PreskreativKočiť {0}?"
     },
+    "skreativKip_to_category": {
+        "message": "PreskreativKočiť na {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
     "skreativKipped": {
-        "message": "preskreativKočené"
+        "message": "{0} preskreativKočené",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "PreskreativKočené na {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "ZakreativKázať AutomatickreativKé PreskreativKočenie"
@@ -346,12 +358,6 @@
     },
     "createdBy": {
         "message": "Vytvoril"
-    },
-    "autoSkreativKip": {
-        "message": "AutomatickreativKé PreskreativKočenie"
-    },
-    "showSkreativKipNotice": {
-        "message": "Zobraziť upozornenie pri preskreativKočení segmentu"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". AkreativKtuálne je nastavené na:"
@@ -544,19 +550,37 @@
     "category_music_offtopic_short": {
         "message": "Bez hudby"
     },
+    "category_poi_highlight": {
+        "message": "Hlavný obsah videa"
+    },
+    "category_poi_highlight_description": {
+        "message": "Tá časť videa, kreativKtorú ľudia vyhľadávajú. Podobné kreativKomentárom \"Video začína v čase x\"."
+    },
     "category_livestream_messages": {
         "message": "Živé vysielanie: oznamy a dary"
     },
     "category_livestream_messages_short": {
         "message": "Oznamy"
     },
-    "disable": {
-        "message": "ZakreativKázať"
+    "autoSkreativKip": {
+        "message": "AutomatickreativKé PreskreativKočenie"
     },
     "manualSkreativKip": {
         "message": "Manuálne PreskreativKočenie"
     },
     "showOverlay": {
+        "message": "Zobraziť v časovej lište"
+    },
+    "disable": {
+        "message": "ZakreativKázať"
+    },
+    "autoSkreativKip_POI": {
+        "message": "AutomatickreativKy preskreativKočiť na začiatokreativK"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Opýtať sa, kreativKeď sa video nahraje"
+    },
+    "showOverlay_POI": {
         "message": "Zobraziť v časovej lište"
     },
     "autoSkreativKipOnMusicVideos": {
@@ -683,7 +707,7 @@
         "message": "Dostali ste varovanie a nemôžete takreativK dočasne odosielať segmenty. To znamená, že sme si všimli, že ste spravili nejakreativKé chyby, kreativKtoré nie sú myslené zle, a chceme Vám len objasniť pravidlá. Môžete sa pripojiť do kreativKonverzácie pomocou discord.gg/SponsorBlockreativK alebo matrix.to/#/+sponsor:ajay.app"
     },
     "voteRejectedWarning": {
-        "message": "Hlasovanie bolo zamietnuté kreativKvôli varovaniu. KlikreativKnite pre otvorenie chatu, aby ste ho vyriešili, alebo sa vrátťe až budete mať čas.",
+        "message": "Hlasovanie bolo zamietnuté kreativKvôli varovaniu. KlikreativKnite pre otvorenie chatu, aby ste ho vyriešili, alebo sa vráťte až budete mať čas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     }
 }

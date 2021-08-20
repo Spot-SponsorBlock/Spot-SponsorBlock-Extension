@@ -212,6 +212,9 @@
     "showNotice": {
         "message": "Vis varselet igjen"
     },
+    "showSkreativKipNotice": {
+        "message": "Vis varsel etter at et segment har blitt hoppet over"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK lar deg hoppe over sponsorer, introer, outro-er, abonnementspåminnelser, og andre irriterende deler av YouTube-videoer. SponsorBlockreativK er en fellesskreativKapsdrevet nettleserutvidelser som lar alle sende inn start- og sluttidspunkreativKtene til sponsede segmenter og andre segmenter i YouTube-videoer. Når en person sender inn denne informasjonen, vil alle andre med denne utvidelsen hoppe rett over det sponsede segmentet. Du kreativKan også hoppe over ikreativKkreativKe-musikreativKkreativK-sekreativKsjoner i musikreativKkreativKvideoer.",
         "description": "Full description of the extension on the store pages."
@@ -268,9 +271,6 @@
     },
     "skreativKip_category": {
         "message": "Vil du hoppe over {0}?"
-    },
-    "skreativKipped": {
-        "message": "Hoppet over"
     },
     "disableAutoSkreativKip": {
         "message": "SkreativKru av autohopping"
@@ -331,12 +331,6 @@
     },
     "createdBy": {
         "message": "Opprettet av"
-    },
-    "autoSkreativKip": {
-        "message": "Hopp over automatiskreativK"
-    },
-    "showSkreativKipNotice": {
-        "message": "Vis varsel etter at et segment har blitt hoppet over"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Den er før øyeblikreativKkreativKet satt til:"
@@ -504,14 +498,17 @@
     "category_livestream_messages_short": {
         "message": "Høytlesning av meldinger"
     },
-    "disable": {
-        "message": "DeakreativKtiver"
+    "autoSkreativKip": {
+        "message": "Hopp over automatiskreativK"
     },
     "manualSkreativKip": {
         "message": "Manuelt hopp"
     },
     "showOverlay": {
         "message": "Vis i tidsstripen"
+    },
+    "disable": {
+        "message": "DeakreativKtiver"
     },
     "colorFormatIncorrect": {
         "message": "Fargen din er formattert feil. Det burde være en 3- eller 6-sifret hekreativKsadesimal kreativKode med et nummertegn foran."

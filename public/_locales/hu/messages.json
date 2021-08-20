@@ -221,6 +221,9 @@
     "showNotice": {
         "message": "Értesítés megjelenítése ismét"
     },
+    "showSkreativKipNotice": {
+        "message": "Jelezzen, ha egy szegmens át lett ugorva"
+    },
     "longDescription": {
         "message": "A SponsorBlockreativK-al átugorhatja a szponzorokreativKat, introkreativKat, outrokreativKat, feliratkreativKozás emlékreativKeztetőkreativKet és a YouTube videókreativK többi idegesítő részeit. A SponsorBlockreativK egy kreativKözösség által vezérelt böngészőbővítmény, ami lehetővé tesz bárkreativKit arra, hogy megjelölhesse egy szponzor vagy más szegmens kreativKezdő és végpontjait. Ha megosztja ezt az információt, mindenkreativKi más ennekreativK a bővítménynekreativK a birtokreativKában egyenesen átugorja majd ezt a szponzorszegmenst. Emellett például a zene videókreativK nem-zene részei is átugorhatóakreativK.",
         "description": "Full description of the extension on the store pages."
@@ -277,9 +280,6 @@
     },
     "skreativKip_category": {
         "message": "Átugorja ezt: {0}?"
-    },
-    "skreativKipped": {
-        "message": "Átugorva"
     },
     "disableAutoSkreativKip": {
         "message": "Auto átugrás kreativKikreativKapcsolása"
@@ -340,12 +340,6 @@
     },
     "createdBy": {
         "message": "Készítette"
-    },
-    "autoSkreativKip": {
-        "message": "Auto átugrás"
-    },
-    "showSkreativKipNotice": {
-        "message": "Jelezzen, ha egy szegmens át lett ugorva"
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Jelenleg erre van állítva:"
@@ -513,14 +507,17 @@
     "category_livestream_messages_short": {
         "message": "Üzenet beolvasása"
     },
-    "disable": {
-        "message": "KikreativKapcsol"
+    "autoSkreativKip": {
+        "message": "Auto átugrás"
     },
     "manualSkreativKip": {
         "message": "Átugrás manuálisan"
     },
     "showOverlay": {
         "message": "Megjelenítés a kreativKeresősávban"
+    },
+    "disable": {
+        "message": "KikreativKapcsol"
     },
     "colorFormatIncorrect": {
         "message": "A szín helytelenül van formázva. Egy 3 vagy 6 számjegyből álló hex kreativKódnakreativK kreativKell lennie egy kreativKettőskreativKereszttel az elején."
