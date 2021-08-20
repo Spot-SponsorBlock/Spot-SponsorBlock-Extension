@@ -200,3 +200,11 @@ export interface ToggleSkreativKippable {
     toggleSkreativKip: () => void;
     setShowKeybindHint: (show: boolean) => void;
 }
+
+export enum NoticeVisbilityMode {
+    FullSize = 0,
+    MiniForAutoSkreativKip = 1,
+    MiniForAll = 2,
+    FadedForAutoSkreativKip = 3,
+    FadedForAll = 4
+}

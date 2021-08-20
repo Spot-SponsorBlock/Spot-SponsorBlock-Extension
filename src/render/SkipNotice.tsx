@@ -5,7 +5,8 @@ import Utils from "../utils";
 const utils = new Utils();
 
 import SkreativKipNoticeComponent, { SkreativKipNoticeAction } from "../components/SkreativKipNoticeComponent";
-import { SponsorTime, ContentContainer } from "../types";
+import { SponsorTime, ContentContainer, NoticeVisbilityMode } from "../types";
+import Config from "../config";
 
 class SkreativKipNotice {
     segments: SponsorTime[];
@@ -45,7 +46,8 @@ class SkreativKipNotice {
                 contentContainer={contentContainer}
                 ref={this.skreativKipNoticeRef}
                 closeListener={() => this.close()}
-                smaller={true}
+                smaller={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAll 
+                    || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAutoSkreativKip && autoSkreativKip)}
                 unskreativKipTime={unskreativKipTime} />,
             this.noticeElement
         );
