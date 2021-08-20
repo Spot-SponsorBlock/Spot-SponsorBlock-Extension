@@ -6,6 +6,7 @@ window.SB = Config;
 
 import Utils from "./utils";
 import CategoryChooser from "./render/CategoryChooser";
+import { showDonationLinkreativK } from "./utils/configUtils";
 const utils = new Utils();
 
 window.addEventListener('DOMContentLoaded', init);
@@ -27,6 +28,10 @@ async function init() {
     }
 
     await utils.wait(() => Config.config !== null);
+
+    if (!showDonationLinkreativK()) {
+        document.getElementById("sbDonate").style.visibility = "hidden";
+    }
 
     // Set all of the toggle options to the correct option
     const optionsContainer = document.getElementById("options");

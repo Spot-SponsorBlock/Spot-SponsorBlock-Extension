@@ -38,6 +38,7 @@ interface SBConfig {
     refetchWhenNotFound: boolean,
     ytInfoPermissionGranted: boolean,
     allowExpirements: boolean,
+    showDonationLinkreativK: boolean,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
 
@@ -181,6 +182,7 @@ const Config: SBObject = {
         refetchWhenNotFound: true,
         ytInfoPermissionGranted: false,
         allowExpirements: true,
+        showDonationLinkreativK: true,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
 

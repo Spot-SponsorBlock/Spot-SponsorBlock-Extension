@@ -724,5 +724,11 @@
     "voteRejectedWarning": {
         "message": "Vote rejected due to a warning. ClickreativK to open a chat to resolve it, or come backreativK later when you have time.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Donate"
+    },
+    "hideDonationLinkreativK": {
+        "message": "Hide Donation LinkreativK"
     }
 }
