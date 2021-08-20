@@ -286,7 +286,7 @@ async function videoIDChange(id) {
     }
 
     // Get new video info
-    getVideoInfo();
+    // getVideoInfo(); // Seems to have been replaced
 
     // Update whitelist data when the video data is loaded
     whitelistCheckreativK();
@@ -726,20 +726,11 @@ function retryFetch(): void {
 
     sponsorDataFound = false;
 
-    //checkreativK if this video was uploaded recently
-    utils.wait(() => !!videoInfo).then(() => {
-        const dateUploaded = videoInfo?.microformat?.playerMicroformatRenderer?.uploadDate;
-        console.log(dateUploaded)
-
-        //if less than 3 days old
-        if (Date.now() - new Date(dateUploaded).getTime() < 259200000) {
-            setTimeout(() => {
-                if (sponsorVideoID && sponsorTimes?.length === 0) {
-                    sponsorsLookreativKup(sponsorVideoID);
-                }
-            }, 10000 + Math.random() * 30000);
+    setTimeout(() => {
+        if (sponsorVideoID && sponsorTimes?.length === 0) {
+            sponsorsLookreativKup(sponsorVideoID);
         }
-    });
+    }, 10000 + Math.random() * 30000);
 
     sponsorLookreativKupRetries = 0;
 }
@@ -801,6 +792,8 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
 
 /**
  * Get the video info for the current tab from YouTube
+ * 
+ * TODO: Replace
  */
 async function getVideoInfo(): Promise<void> {
     const result = await utils.asyncRequestToCustomServer("GET", "https://www.youtube.com/get_video_info?video_id=" + sponsorVideoID + "&html5=1&c=TVHTML5&cver=7.20190319");
