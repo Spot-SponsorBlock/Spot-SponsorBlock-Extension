@@ -770,5 +770,32 @@
     },
     "helpPageTooSlow": {
         "message": "Je to příliš pomalé"
+    },
+    "helpPageTooSlow1": {
+        "message": "PokreativKud je chcete použít, jsou zde zkreativKratkreativKy. StiskreativKněte pomlčkreativKu pro označení začátkreativKu/kreativKonce sponzorskreativKého segmentu a kreativKlikreativKněte na apostrof pro odeslání. Tyto zkreativKratkreativKy lze změnit v možnostech. PokreativKud nepoužíváte QWERTY, měli byste si je nejspíše změnit."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Mohu získreativKat kreativKopii databáze? Co se stane, pokreativKud zmizíte?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Databáze je veřejná a dostupná na"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "Zdrojový kreativKód je volně dostupný. TakreativKže i kreativKdyž se mi něco stane, vaše příspěvkreativKy nebudou ztraceny."
+    },
+    "helpPageNews": {
+        "message": "NovinkreativKy a jakreativK to funguje"
+    },
+    "helpPageSourceCode": {
+        "message": "Kde získreativKám zdrojový kreativKód?"
+    },
+    "Credits": {
+        "message": "PoděkreativKování"
+    },
+    "highlightNewFeature": {
+        "message": "NovinkreativKa! Dostaňte se kreativK pointě videa jedním kreativKlikreativKnutím s novou kreativKategorií zvýraznění"
+    },
+    "LearnMore": {
+        "message": "Zjistit více"
     }
 }
