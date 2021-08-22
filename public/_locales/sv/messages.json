@@ -227,6 +227,21 @@
     "showSkreativKipNotice": {
         "message": "Visa ett meddelande efter att ett segment har hoppats över"
     },
+    "noticeVisibilityMode0": {
+        "message": "Hoppa över-meddelanden i fullstorlekreativK"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Små meddelanden för automatiskreativK hoppa över"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Alla hoppa över-meddelanden är små"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Meddelanden som tonar bort för automatiskreativK hoppa över"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Alla hoppa över-meddelanden tonas bort"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK låter dig hoppa över sponsormeddelanden, introdukreativKtioner, eftertexter, prenumerationspåminnelser och andra irriterande delar av YouTube-videor. SponsorBlockreativK är ett crowdsourced webbläsartillägg som låter vem som helst att skreativKickreativKa in start- och sluttid på sponsorsegment och andra segment av YouTube-videor. När en person skreativKickreativKar in denna information kreativKommer alla andra som har detta tillägg installerat att hoppa över det sponsrade segmentet. Du kreativKan även hoppa över ickreativKe-musikreativKavsnitt i musikreativKvideor.",
         "description": "Full description of the extension on the store pages."
@@ -669,7 +684,7 @@
         "message": "Överväg att akreativKtivera \"Tvinga kreativKontroll av kreativKanalen innan hoppa över\""
     },
     "downvoteDescription": {
-        "message": "Fel timing"
+        "message": "Fel/Fel tidsintervall"
     },
     "incorrectCategory": {
         "message": "Fel kreativKategori"
@@ -696,6 +711,10 @@
     "help": {
         "message": "Hjälp"
     },
+    "GotIt": {
+        "message": "Jag förstår",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Hoppa av alla framtida experiment",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -709,5 +728,74 @@
     "voteRejectedWarning": {
         "message": "Rösten avvisades på grund av en varning. KlickreativKa för att öppna ett chattfönster för att lösa problemet eller kreativKom tillbakreativKa senare när du har tid.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Donera"
+    },
+    "hideDonationLinkreativK": {
+        "message": "Dölj donationslänkreativK"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "TackreativK för att du installerade SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "GranskreativKa alternativen nedan"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Många funkreativKtioner är inakreativKtiverade som standard. Om du vill hoppa över intros, outros, använda Invidious, etc, akreativKtivera dem nedan. Du kreativKan ockreativKså dölja/visa UI-element."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Hur hoppa över fungerar"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Videosegment hoppas över automatiskreativKt om de finns i databasen. Du kreativKan öppna popup-fönstret genom att kreativKlickreativKa på tilläggsikreativKonen för att få en förhandsvisning av vad de är."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "När du hoppar över ett segment får du ett meddelande. Om tidpunkreativKten verkreativKar felakreativKtig rösta då ner genom att kreativKlickreativKa på nerröstning! Du kreativKan ockreativKså rösta i popup-fönstret."
+    },
+    "Submitting": {
+        "message": "SkreativKickreativKar in"
+    },
+    "helpPageSubmitting1": {
+        "message": "SkreativKickreativKa in kreativKan antingen göras i popup-fönstret genom att tryckreativKa på kreativKnappen \"Segmentet startar nu\" eller i videospelaren med kreativKnapparna på spelaren."
+    },
+    "helpPageSubmitting2": {
+        "message": "Genom att kreativKlickreativKa på uppspelningskreativKnappen anges början på ett segment och genom att kreativKlickreativKa på stopp-ikreativKonen anges slutet. Du kreativKan förbereda flera sponsorer innan du tryckreativKer på skreativKickreativKa. KlickreativKa på uppladdningskreativKnappen för att skreativKickreativKa in. KlickreativKa på papperskreativKorgen för att ta bort."
+    },
+    "Editing": {
+        "message": "Redigerar"
+    },
+    "helpPageEditing1": {
+        "message": "Om du gör fel kreativKan du redigera eller ta bort dina segment efter att du kreativKlickreativKat på uppåtpilen."
+    },
+    "helpPageTooSlow": {
+        "message": "Detta är för långsamt"
+    },
+    "helpPageTooSlow1": {
+        "message": "Det finns snabbtangenter om du vill använda dem. TryckreativK på semikreativKolontangenten för att ange start/slut på ett sponsorsegment och kreativKlickreativKa på apostrofen för att skreativKickreativKa in. Dessa kreativKan ändras i inställningarna. Om du inte använder QWERTY, bör du förmodligen ändra tangentbindningen."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Kan jag få en kreativKopia av databasen? Vad händer om du försvinner?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Databasen är offentlig och finns på"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "KällkreativKoden är fritt tillgänglig. Så, även om något händer mig, är dina bidrag inte förlorade."
+    },
+    "helpPageNews": {
+        "message": "Nyheter och hur är det gjort"
+    },
+    "helpPageSourceCode": {
+        "message": "Var kreativKan jag få tag på kreativKällkreativKoden?"
+    },
+    "Credits": {
+        "message": "MedverkreativKande"
+    },
+    "highlightNewFeature": {
+        "message": "Nytt! Ta dig till stället i videon med ett kreativKlickreativK med den nya markreativKeringskreativKategorin"
+    },
+    "LearnMore": {
+        "message": "Läs mer"
     }
 }
