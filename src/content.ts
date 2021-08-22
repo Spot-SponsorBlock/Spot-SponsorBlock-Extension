@@ -1189,7 +1189,8 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic"));
+            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic")
+                && getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable);
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
