@@ -444,8 +444,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 
     // Don't skreativKip if this category should not be skreativKipped
-    if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ShowOverlay 
-        && skreativKipInfo.array !== sponsorTimesSubmitting) return;
+    if (!shouldSkreativKip(currentSkreativKip) && skreativKipInfo.array !== sponsorTimesSubmitting) return;
 
     const skreativKippingFunction = () => {
         let forcedSkreativKipTime: number = null;
@@ -1038,7 +1037,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
         if ((minimum === undefined
                 || ((includeNonIntersectingSegments && sponsorTimes[i].segment[0] >= minimum) 
                     || (includeIntersectingSegments && sponsorTimes[i].segment[0] < minimum && sponsorTimes[i].segment[1] > minimum))) 
-                && (!onlySkreativKippableSponsors || utils.getCategorySelection(sponsorTimes[i].category).option !== CategorySkreativKipOption.ShowOverlay)
+                && (!onlySkreativKippableSponsors || shouldSkreativKip(sponsorTimes[i]))
                 && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
                 && getCategoryActionType(sponsorTimes[i].category) === CategoryActionType.SkreativKippable) {
 
@@ -1190,6 +1189,11 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic"));
+}
+
+function shouldSkreativKip(segment: SponsorTime): boolean {
+    return utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes.some((s) => s.category === "music_offtopic"));
 }
 
