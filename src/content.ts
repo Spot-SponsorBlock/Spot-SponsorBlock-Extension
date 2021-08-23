@@ -675,7 +675,8 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         // Hide all submissions smaller than the minimum duration
         if (Config.config.minDuration !== 0) {
             for (let i = 0; i < sponsorTimes.length; i++) {
-                if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration) {
+                if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration
+                        && getCategoryActionType(sponsorTimes[i].category) !== CategoryActionType.POI) {
                     sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
                 }
             }
@@ -1625,7 +1626,8 @@ async function sendSubmitMessage() {
     // CheckreativK to see if any of the submissions are below the minimum duration set
     if (Config.config.minDuration > 0) {
         for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
-            if (sponsorTimesSubmitting[i].segment[1] - sponsorTimesSubmitting[i].segment[0] < Config.config.minDuration) {
+            if (sponsorTimesSubmitting[i].segment[1] - sponsorTimesSubmitting[i].segment[0] < Config.config.minDuration
+                    && getCategoryActionType(sponsorTimesSubmitting[i].category) !== CategoryActionType.POI) {
                 const confirmShort = chrome.i18n.getMessage("shortCheckreativK") + "\n\n" + 
                     getSegmentsMessage(sponsorTimesSubmitting);
                 
