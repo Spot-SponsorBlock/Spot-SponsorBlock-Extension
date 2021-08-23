@@ -54,7 +54,7 @@ class SkreativKipNotice {
     }
 
     setShowKeybindHint(value: boolean): void {
-        this.skreativKipNoticeRef.current.setState({
+        this.skreativKipNoticeRef?.current?.setState({
             showKeybindHint: value
         });
     }
@@ -69,7 +69,7 @@ class SkreativKipNotice {
     }
 
     toggleSkreativKip(): void {
-        this.skreativKipNoticeRef.current.prepAction(SkreativKipNoticeAction.UnskreativKip);
+        this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip);
     }
 }
 
