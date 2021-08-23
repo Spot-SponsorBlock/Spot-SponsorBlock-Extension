@@ -961,14 +961,14 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
     if ((minUnsubmittedSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) || 
             sponsorStartTimes[minSponsorTimeIndex] < unsubmittedSponsorStartTimes[minUnsubmittedSponsorTimeIndex]) {
         return {
-            array: sponsorTimes,
+            array: sponsorTimes.filter((segment) => getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable),
             index: minSponsorTimeIndex,
             endIndex: endTimeIndex,
             openNotice: true
         };
     } else {
         return {
-            array: sponsorTimesSubmitting,
+            array: sponsorTimesSubmitting.filter((segment) => getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable),
             index: minUnsubmittedSponsorTimeIndex,
             endIndex: previewEndTimeIndex,
             openNotice: false
