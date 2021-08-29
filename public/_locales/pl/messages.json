@@ -677,7 +677,7 @@
         "message": "Schowaj na zawsze"
     },
     "warningChatInfo": {
-        "message": "Otrzymałeś ostrzeżenie i nie możesz tymczasowo przesłać segmentów. Oznacza to, że zauważyliśmy, że popełniałeś pewne pospolite błędy, kreativKtóre nie są złośliwe i po prostu chcemy wyjaśnić zasady. Możesz również dołączyć do tego czatu używając discord.gg/SponsorBlockreativK lub matrix.to/#/+sponsor:ajay.app"
+        "message": "Otrzymałeś ostrzeżenie i nie możesz tymczasowo przesłać segmentów. Oznacza to, że zauważyliśmy, że popełniałeś pewne pospolite błędy, kreativKtóre nie są złośliwe i po prostu chcemy wyjaśnić zasady. Możesz również dołączyć do tego czatu używając discord.gg/SponsorBlockreativK lub matrix.to/#/#sponsor:ajay.app"
     },
     "voteRejectedWarning": {
         "message": "Głosowanie odrzucone z powodu ostrzeżenia. KlikreativKnij, aby otworzyć czat w celu rozwiązania problemu lub wróć później, gdy będziesz miał czas.",
