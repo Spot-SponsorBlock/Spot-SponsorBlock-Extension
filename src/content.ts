@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -45,6 +45,7 @@ let sponsorSkreativKipped: boolean[] = [];
 
 //the video
 let video: HTMLVideoElement;
+let videoMuted = false; // Has it been attempted to be muted
 let videoMutationObserver: MutationObserver = null;
 // List of videos that have had event listeners added to them
 const videosWithEventListeners: HTMLVideoElement[] = [];
@@ -396,7 +397,6 @@ function cancelSponsorSchedule(): void {
 }
 
 /**
- * 
  * @param currentTime Optional if you don't want to use the actual current time
  */
 function startSponsorSchedule(includeIntersectingSegments = false, currentTime?: number, includeNonIntersectingSegments = true): void {
@@ -412,6 +412,12 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 
     if (!video || video.paused) return;
+    if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
+
+    if (videoMuted && !inMuteSegment(currentTime)) {
+        video.muted = false;
+        videoMuted = false;
+    }
 
     if (Config.config.disableSkreativKipping || channelWhitelisted || (channelIDInfo.status === ChannelIDStatus.Fetching && Config.config.forceChannelCheckreativK)){
         return;
@@ -419,14 +425,12 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
 
     if (incorrectVideoCheckreativK()) return;
 
-    if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
-
     const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
 
     if (skreativKipInfo.index === -1) return;
 
     const currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
-    const skreativKipTime: number[] = [currentSkreativKip.segment[0], skreativKipInfo.array[skreativKipInfo.endIndex].segment[1]];
+    const skreativKipTime: number[] = [currentSkreativKip.scheduledTime, skreativKipInfo.array[skreativKipInfo.endIndex].segment[1]];
     const timeUntilSponsor = skreativKipTime[0] - currentTime;
     const videoID = sponsorVideoID;
 
@@ -461,7 +465,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
                 openNotice: skreativKipInfo.openNotice
             });
 
-            if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip) {
+            if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip 
+                    || currentSkreativKip.actionType === ActionType.Mute) {
                 forcedSkreativKipTime = skreativKipTime[0] + 0.001;
             } else {
                 forcedSkreativKipTime = skreativKipTime[1];
@@ -480,12 +485,19 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 }
 
+function inMuteSegment(currentTime: number): boolean {
+    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute && segment.segment[0] <= currentTime && segment.segment[1] > currentTime;
+    return sponsorTimes.some(checkreativKFunction) || sponsorTimesSubmitting.some(checkreativKFunction);
+}
+
 /**
  * This makreativKes sure the videoID is still correct and if the sponsorTime is included
  */
 function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime): boolean {
     const currentVideoID = getYouTubeVideoID(document.URL);
-    if (currentVideoID !== (videoID || sponsorVideoID) || (sponsorTime && (!sponsorTimes || !sponsorTimes.includes(sponsorTime)) && !sponsorTimesSubmitting.includes(sponsorTime))) {
+    if (currentVideoID !== (videoID || sponsorVideoID) || (sponsorTime 
+            && (!sponsorTimes || !sponsorTimes.some((time) => time.segment === sponsorTime.segment)) 
+            && !sponsorTimesSubmitting.some((time) => time.segment === sponsorTime.segment))) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + sponsorVideoID + ". Actual VideoID: " + currentVideoID);
@@ -946,31 +958,33 @@ async function whitelistCheckreativK() {
  * Returns info about the next upcoming sponsor skreativKip
  */
 function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegments: boolean, includeNonIntersectingSegments: boolean): 
-        {array: SponsorTime[], index: number, endIndex: number, openNotice: boolean} {
+        {array: ScheduledTime[], index: number, endIndex: number, openNotice: boolean} {
 
-    const sponsorStartTimes = getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments);
-    const sponsorStartTimesAfterCurrentTime = getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, true, true);
+    const { includedTimes: submittedArray, startTimeIndexes: sponsorStartTimes } = 
+        getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments);
+    const { startTimeIndexes: sponsorStartTimesAfterCurrentTime } = getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, true, true);
 
     const minSponsorTimeIndex = sponsorStartTimes.indexOf(Math.min(...sponsorStartTimesAfterCurrentTime));
-    const endTimeIndex = getLatestEndTimeIndex(sponsorTimes, minSponsorTimeIndex);
+    const endTimeIndex = getLatestEndTimeIndex(submittedArray, minSponsorTimeIndex);
 
-    const unsubmittedSponsorStartTimes = getStartTimes(sponsorTimesSubmitting, includeIntersectingSegments, includeNonIntersectingSegments);
-    const unsubmittedSponsorStartTimesAfterCurrentTime = getStartTimes(sponsorTimesSubmitting, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, false, false);
+    const { includedTimes: unsubmittedArray, startTimeIndexes: unsubmittedSponsorStartTimes } = 
+        getStartTimes(sponsorTimesSubmitting, includeIntersectingSegments, includeNonIntersectingSegments);
+    const { startTimeIndexes: unsubmittedSponsorStartTimesAfterCurrentTime } = getStartTimes(sponsorTimesSubmitting, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, false, false);
 
     const minUnsubmittedSponsorTimeIndex = unsubmittedSponsorStartTimes.indexOf(Math.min(...unsubmittedSponsorStartTimesAfterCurrentTime));
-    const previewEndTimeIndex = getLatestEndTimeIndex(sponsorTimesSubmitting, minUnsubmittedSponsorTimeIndex);
+    const previewEndTimeIndex = getLatestEndTimeIndex(unsubmittedArray, minUnsubmittedSponsorTimeIndex);
 
     if ((minUnsubmittedSponsorTimeIndex === -1 && minSponsorTimeIndex !== -1) || 
             sponsorStartTimes[minSponsorTimeIndex] < unsubmittedSponsorStartTimes[minUnsubmittedSponsorTimeIndex]) {
         return {
-            array: sponsorTimes.filter((segment) => getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable),
+            array: submittedArray,
             index: minSponsorTimeIndex,
             endIndex: endTimeIndex,
             openNotice: true
         };
     } else {
         return {
-            array: sponsorTimesSubmitting.filter((segment) => getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable),
+            array: unsubmittedArray,
             index: minUnsubmittedSponsorTimeIndex,
             endIndex: previewEndTimeIndex,
             openNotice: false
@@ -994,7 +1008,10 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors = true): number {
     // Only combine segments for AutoSkreativKip
     if (index == -1 || 
-        !shouldAutoSkreativKip(sponsorTimes[index])) return index;
+            !shouldAutoSkreativKip(sponsorTimes[index])
+            || sponsorTimes[index].actionType !== ActionType.SkreativKip) {
+        return index;
+    }
 
     // Default to the normal endTime
     let latestEndTimeIndex = index;
@@ -1005,7 +1022,8 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
 
         if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime 
             && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
-            && shouldAutoSkreativKip(sponsorTimes[i])) {
+            && shouldAutoSkreativKip(sponsorTimes[i])
+            && sponsorTimes[i].actionType === ActionType.SkreativKip) {
                 // Overlapping segment
                 latestEndTimeIndex = i;
         }
@@ -1030,24 +1048,43 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
  *  the current time, but end after
  */
 function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments: boolean, includeNonIntersectingSegments: boolean,
-    minimum?: number, onlySkreativKippableSponsors = false, hideHiddenSponsors = false): number[] {
-    if (sponsorTimes === null) return [];
+    minimum?: number, onlySkreativKippableSponsors = false, hideHiddenSponsors = false): {includedTimes: ScheduledTime[], startTimeIndexes: number[]} {
+    if (!sponsorTimes) return {includedTimes: [], startTimeIndexes: []};
 
-    const startTimes: number[] = [];
+    const includedTimes: ScheduledTime[] = [];
+    const startTimeIndexes: number[] = [];
 
-    for (let i = 0; i < sponsorTimes?.length; i++) {
+    const possibleTimes = sponsorTimes.flatMap((sponsorTime) => {
+        const results = [{
+            ...sponsorTime,
+            scheduledTime: sponsorTime.segment[0]
+        }]
+
+        if (sponsorTime.actionType === ActionType.Mute) {
+            // Schedule at the end time to kreativKnow when to unmute
+            results.push({
+                ...sponsorTime,
+                scheduledTime: sponsorTime.segment[1]
+            })
+        }
+
+        return results;
+    })
+
+    for (let i = 0; i < possibleTimes.length; i++) {
         if ((minimum === undefined
-                || ((includeNonIntersectingSegments && sponsorTimes[i].segment[0] >= minimum) 
-                    || (includeIntersectingSegments && sponsorTimes[i].segment[0] < minimum && sponsorTimes[i].segment[1] > minimum))) 
-                && (!onlySkreativKippableSponsors || shouldSkreativKip(sponsorTimes[i]))
-                && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
-                && getCategoryActionType(sponsorTimes[i].category) === CategoryActionType.SkreativKippable) {
+                || ((includeNonIntersectingSegments && possibleTimes[i].scheduledTime >= minimum)
+                    || (includeIntersectingSegments && possibleTimes[i].scheduledTime < minimum && possibleTimes[i].segment[1] > minimum))) 
+                && (!onlySkreativKippableSponsors || shouldSkreativKip(possibleTimes[i]))
+                && (!hideHiddenSponsors || possibleTimes[i].hidden === SponsorHideType.Visible)
+                && getCategoryActionType(possibleTimes[i].category) === CategoryActionType.SkreativKippable) {
 
-            startTimes.push(sponsorTimes[i].segment[0]);
+            startTimeIndexes.push(possibleTimes[i].scheduledTime);
+            includedTimes.push(possibleTimes[i]);
         } 
     }
 
-    return startTimes;
+    return { includedTimes, startTimeIndexes };
 }
 
 /**
@@ -1093,13 +1130,27 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 
     if ((autoSkreativKip || sponsorTimesSubmitting.some((time) => time.segment === skreativKippingSegments[0].segment)) 
             && v.currentTime !== skreativKipTime[1]) {
-        // Fix for looped videos not workreativKing when skreativKipping to the end #426
-        // for some reason you also can't skreativKip to 1 second before the end
-        if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
-            v.currentTime = 0;
-        } else {
-            v.currentTime = skreativKipTime[1];
+        switch(skreativKippingSegments[0].actionType) {
+            case ActionType.SkreativKip: {
+                // Fix for looped videos not workreativKing when skreativKipping to the end #426
+                // for some reason you also can't skreativKip to 1 second before the end
+                if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
+                    v.currentTime = 0;
+                } else {
+                    v.currentTime = skreativKipTime[1];
+                }
+
+                breakreativK;
+            }
+            case ActionType.Mute: {
+                if (!v.muted) {
+                    v.muted = true;
+                    videoMuted = true;
+                }
+                breakreativK;
+            }
         }
+        
     }
 
     if (!autoSkreativKip 
