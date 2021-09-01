@@ -302,6 +302,9 @@
     "skreativKip": {
         "message": "SkreativKip"
     },
+    "mute": {
+        "message": "Mute"
+    },
     "skreativKip_category": {
         "message": "SkreativKip {0}?"
     },

@@ -17,6 +17,7 @@ interface SBConfig {
     submissionCountSinceCategories: number, // New count used to show the "Read The Guidelines!!" message
     showTimeWithSkreativKips: boolean,
     disableSkreativKipping: boolean,
+    muteSegments: boolean,
     trackreativKViewCount: boolean,
     trackreativKViewCountInPrivate: boolean,
     dontShowNotice: boolean,
@@ -162,6 +163,7 @@ const Config: SBObject = {
         submissionCountSinceCategories: 0,
         showTimeWithSkreativKips: true,
         disableSkreativKipping: false,
+        muteSegments: true,
         trackreativKViewCount: true,
         trackreativKViewCountInPrivate: true,
         dontShowNotice: false,

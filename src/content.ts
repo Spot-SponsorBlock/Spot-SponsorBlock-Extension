@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -644,6 +644,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
+        actionTypes: Config.config.muteSegments ? [ActionType.SkreativKip, ActionType.Mute] : [ActionType.SkreativKip], 
         userAgent: `${chrome.runtime.id}`
     });
 
@@ -1333,6 +1334,7 @@ function startOrEndTimingNewSegment() {
             segment: [getRealCurrentTime()],
             UUID: null,
             category: Config.config.defaultCategory,
+            actionType: ActionType.SkreativKip,
             source: SponsorSourceType.Local
         });
     } else {
@@ -1389,6 +1391,7 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
                 segment: segmentTime.segment,
                 UUID: segmentTime.UUID,
                 category: segmentTime.category,
+                actionType: segmentTime.actionType,
                 source: segmentTime.source
             });
         }
