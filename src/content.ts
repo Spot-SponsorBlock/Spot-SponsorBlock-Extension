@@ -1090,7 +1090,8 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     // There will only be one submission if it is manual skreativKip
     const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
 
-    if ((autoSkreativKip || sponsorTimesSubmitting.includes(skreativKippingSegments[0])) && v.currentTime !== skreativKipTime[1]) {
+    if ((autoSkreativKip || sponsorTimesSubmitting.some((time) => time.segment === skreativKippingSegments[0].segment)) 
+            && v.currentTime !== skreativKipTime[1]) {
         // Fix for looped videos not workreativKing when skreativKipping to the end #426
         // for some reason you also can't skreativKip to 1 second before the end
         if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
