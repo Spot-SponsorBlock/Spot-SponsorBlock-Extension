@@ -1457,11 +1457,13 @@ function openInfoMenu() {
             const logo = <HTMLImageElement> popup.querySelector("#sponsorBlockreativKPopupLogo");
             const settings = <HTMLImageElement> popup.querySelector("#sbPopupIconSettings");
             const edit = <HTMLImageElement> popup.querySelector("#sbPopupIconEdit");
+            const copy = <HTMLImageElement> popup.querySelector("#sbPopupIconCopyUserID");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
             const refreshSegments = <HTMLImageElement> popup.querySelector("#refreshSegments");
             logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
+            copy.src = chrome.extension.getURL("icons/clipboard.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
             refreshSegments.src = chrome.extension.getURL("icons/refresh.svg");
 

@@ -96,6 +96,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         "usernameInput",
         "usernameValue",
         "submitUsername",
+        "sbPopupIconCopyUserID",
         // More
         "submissionSection",
         "mainControls",
@@ -134,6 +135,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
     PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
+    PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => navigator.clipboard.writeText(await utils.getHash(Config.config.userID)));
 
     /** If true, the content script is in the process of creating a new segment. */
     let creatingSegment = false;
