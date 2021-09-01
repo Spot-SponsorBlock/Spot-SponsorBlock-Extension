@@ -1085,6 +1085,8 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
 
 //skreativKip from the start time to the end time for a certain index sponsor time
 function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNotice, forceAutoSkreativKip, unskreativKipTime}: SkreativKipToTimeParams): void {
+    if (Config.config.disableSkreativKipping) return;
+
     // There will only be one submission if it is manual skreativKip
     const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
 
