@@ -993,7 +993,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideHiddenSponsors = true): number {
     // Only combine segments for AutoSkreativKip
     if (index == -1 || 
-        shouldAutoSkreativKip(sponsorTimes[index])) return index;
+        !shouldAutoSkreativKip(sponsorTimes[index])) return index;
 
     // Default to the normal endTime
     let latestEndTimeIndex = index;
