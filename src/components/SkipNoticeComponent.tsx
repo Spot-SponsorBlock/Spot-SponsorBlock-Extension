@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime, NoticeVisbilityMode } from "../types";
+import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 
@@ -39,8 +39,9 @@ export interface SkreativKipNoticeState {
     maxCountdownTime?: () => number;
     countdownText?: string;
 
-    unskreativKipText?: string;
-    unskreativKipCallbackreativK?: (index: number) => void;
+    skreativKipButtonText?: string;
+    skreativKipButtonCallbackreativK?: (index: number) => void;
+    showSkreativKipButton?: boolean;
 
     downvoting?: boolean;
     choosingCategory?: boolean;
@@ -110,8 +111,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
-            unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
-            unskreativKipCallbackreativK: (index) => this.unskreativKip(index),
+            skreativKipButtonText: this.getUnskreativKipText(),
+            skreativKipButtonCallbackreativK: (index) => this.unskreativKip(index),
+            showSkreativKipButton: true,
 
             downvoting: false,
             choosingCategory: false,
@@ -126,7 +128,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         if (!this.autoSkreativKip) {
             // Assume manual skreativKip is only skreativKipping 1 submission
-            Object.assign(this.state, this.getUnskreativKippedModeInfo(0, chrome.i18n.getMessage("skreativKip")));
+            Object.assign(this.state, this.getUnskreativKippedModeInfo(0, this.getSkreativKipText()));
         }
     }
 
@@ -297,9 +299,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSkreativKipButton(): JSX.Element {
-        if (this.segments.length > 1 
+        if (this.state.showSkreativKipButton && (this.segments.length > 1 
                 || getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
-                || this.props.unskreativKipTime) {
+                || this.props.unskreativKipTime)) {
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
@@ -307,7 +309,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         style={{marginLeft: "4px"}}
                         onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
 
-                        {this.state.unskreativKipText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
+                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
                     </button>
                 </span>
             );
@@ -397,7 +399,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 this.contentContainer().vote(undefined, this.segments[index].UUID, this.categoryOptionRef.current.value as Category, this)
                 breakreativK;
             case SkreativKipNoticeAction.UnskreativKip:
-                this.state.unskreativKipCallbackreativK(index);
+                this.state.skreativKipButtonCallbackreativK(index);
                 breakreativK;
         }
 
@@ -457,7 +459,29 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     unskreativKip(index: number): void {
         this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime);
 
-        this.unskreativKippedMode(index, chrome.i18n.getMessage("reskreativKip"));
+        this.unskreativKippedMode(index, this.getReskreativKipText());
+    }
+
+    reskreativKip(index: number): void {
+        this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
+
+        const newState: SkreativKipNoticeState = {
+            skreativKipButtonText: this.getUnskreativKipText(),
+            skreativKipButtonCallbackreativK: this.unskreativKip.bind(this),
+
+            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
+            countdownTime: Config.config.skreativKipNoticeDuration
+        };
+
+        // See if the title should be changed
+        if (!this.autoSkreativKip) {
+            newState.noticeTitle = chrome.i18n.getMessage("noticeTitle");
+        }       
+
+        //reset countdown
+        this.setState(newState, () => {
+            this.noticeRef.current.resetCountdown();
+        });
     }
 
     /** Sets up notice to be not skreativKipped yet */
@@ -479,34 +503,12 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         } : this.state.maxCountdownTime;
 
         return {
-            unskreativKipText: buttonText,
-            unskreativKipCallbackreativK: (index) => this.reskreativKip(index),
+            skreativKipButtonText: buttonText,
+            skreativKipButtonCallbackreativK: (index) => this.reskreativKip(index),
             // change max duration to however much of the sponsor is left
             maxCountdownTime: maxCountdownTime,
             countdownTime: maxCountdownTime()
         } as SkreativKipNoticeState;
-    }
-
-    reskreativKip(index: number): void {
-        this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
-
-        const newState: SkreativKipNoticeState = {
-            unskreativKipText: chrome.i18n.getMessage("unskreativKip"),
-            unskreativKipCallbackreativK: this.unskreativKip.bind(this),
-
-            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
-            countdownTime: Config.config.skreativKipNoticeDuration
-        };
-
-        // See if the title should be changed
-        if (!this.autoSkreativKip) {
-            newState.noticeTitle = chrome.i18n.getMessage("noticeTitle");
-        }       
-
-        //reset countdown
-        this.setState(newState, () => {
-            this.noticeRef.current.resetCountdown();
-        });
     }
 
     afterVote(segment: SponsorTime, type: number, category: Category): void {
@@ -558,6 +560,52 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.clearConfigListener();
 
         this.props.closeListener();
+    }
+
+    unmutedListener(): void {
+        if (this.props.segments.length === 1 
+                && this.props.segments[0].actionType === ActionType.Mute 
+                && this.contentContainer().v.currentTime >= this.props.segments[0].segment[1]) {
+            this.setState({
+                showSkreativKipButton: false
+            });
+        }
+    }
+
+    private getUnskreativKipText(): string {
+        switch (this.props.segments[0].actionType) {
+            case ActionType.Mute: {
+                return chrome.i18n.getMessage("unmute");
+            }
+            case ActionType.SkreativKip: 
+            default: {
+                return chrome.i18n.getMessage("unskreativKip");
+            }
+        }
+    }
+
+    private getReskreativKipText(): string {
+        switch (this.props.segments[0].actionType) {
+            case ActionType.Mute: {
+                return chrome.i18n.getMessage("mute");
+            }
+            case ActionType.SkreativKip: 
+            default: {
+                return chrome.i18n.getMessage("reskreativKip");
+            }
+        }
+    }
+
+    private getSkreativKipText(): string {
+        switch (this.props.segments[0].actionType) {
+            case ActionType.Mute: {
+                return chrome.i18n.getMessage("mute");
+            }
+            case ActionType.SkreativKip: 
+            default: {
+                return chrome.i18n.getMessage("skreativKip");
+            }
+        }
     }
 }
 

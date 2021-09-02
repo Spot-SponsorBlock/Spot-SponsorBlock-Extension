@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "ReskreativKip"
     },
+    "unmute": {
+        "message": "Unmute"
+    },
     "paused": {
         "message": "Paused"
     },
@@ -301,6 +304,9 @@
     },
     "skreativKip": {
         "message": "SkreativKip"
+    },
+    "mute": {
+        "message": "Mute"
     },
     "skreativKip_category": {
         "message": "SkreativKip {0}?"
@@ -603,6 +609,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Auto skreativKip all segments when there is a non-music segment"
+    },
+    "muteSegments": {
+        "message": "Allow segments that mute audio instead of skreativKip"
     },
     "colorFormatIncorrect": {
         "message": "Your color is formatted incorrectly. It should be a 3 or 6 digit hex code with a number sign at the beginning."
