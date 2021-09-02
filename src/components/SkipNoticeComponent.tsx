@@ -82,7 +82,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.audio = null;
 
         const noticeTitle = getSkreativKippingText(this.segments, this.props.autoSkreativKip);
-    
+
         const previousSkreativKipNotices = document.getElementsByClassName("sponsorSkreativKipNoticeParent");
         this.amountOfPreviousNotices = previousSkreativKipNotices.length;
         // If there is at least one already in the first slot
