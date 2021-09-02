@@ -41,6 +41,7 @@ export interface SkreativKipNoticeState {
 
     skreativKipButtonText?: string;
     skreativKipButtonCallbackreativK?: (index: number) => void;
+    showSkreativKipButton?: boolean;
 
     downvoting?: boolean;
     choosingCategory?: boolean;
@@ -112,6 +113,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             skreativKipButtonText: this.getUnskreativKipText(),
             skreativKipButtonCallbackreativK: (index) => this.unskreativKip(index),
+            showSkreativKipButton: true,
 
             downvoting: false,
             choosingCategory: false,
@@ -296,9 +298,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSkreativKipButton(): JSX.Element {
-        if (this.segments.length > 1 
+        if (this.state.showSkreativKipButton && (this.segments.length > 1 
                 || getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
-                || this.props.unskreativKipTime) {
+                || this.props.unskreativKipTime)) {
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
@@ -557,6 +559,16 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.clearConfigListener();
 
         this.props.closeListener();
+    }
+
+    unmutedListener(): void {
+        if (this.props.segments.length === 1 
+                && this.props.segments[0].actionType === ActionType.Mute 
+                && this.contentContainer().v.currentTime >= this.props.segments[0].segment[1]) {
+            this.setState({
+                showSkreativKipButton: false
+            });
+        }
     }
 
     private getUnskreativKipText(): string {

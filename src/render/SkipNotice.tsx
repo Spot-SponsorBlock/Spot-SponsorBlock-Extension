@@ -71,6 +71,10 @@ class SkreativKipNotice {
     toggleSkreativKip(): void {
         this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip);
     }
+
+    unmutedListener(): void {
+        this.skreativKipNoticeRef?.current?.unmutedListener();
+    }
 }
 
 export default SkreativKipNotice;
