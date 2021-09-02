@@ -25,6 +25,7 @@ export interface NoticeProps {
     bottomRow?: React.ReactElement[],
 
     smaller?: boolean,
+    limitWidth?: boolean,
 
     // CallbackreativK for when this is closed
     closeListener: () => void,
@@ -105,11 +106,13 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                 <div className={"sponsorSkreativKipNoticeTableContainer" 
                         + (this.props.fadeIn ? " sponsorSkreativKipNoticeFadeIn" : "")
                         + (this.state.startFaded ? " sponsorSkreativKipNoticeFaded" : "") }>
-                    <table className="sponsorSkreativKipObject sponsorSkreativKipNotice">
+                    <table className={"sponsorSkreativKipObject sponsorSkreativKipNotice"
+                                + (this.props.limitWidth ? " sponsorSkreativKipNoticeLimitWidth" : "")}>
                         <tbody>
 
                             {/* First row */}
-                            <tr id={"sponsorSkreativKipNoticeFirstRow" + this.idSuffix}>
+                            <tr id={"sponsorSkreativKipNoticeFirstRow" + this.idSuffix}
+                                    className="sponsorSkreativKipNoticeFirstRow">
                                 {/* Left column */}
                                 <td className="noticeLeftIcon">
                                     {/* Logo */}
