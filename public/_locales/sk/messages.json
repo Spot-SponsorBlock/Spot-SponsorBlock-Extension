@@ -161,6 +161,9 @@
     "setUsername": {
         "message": "Nastaviť PoužívateľskreativKé meno"
     },
+    "copyPublicID": {
+        "message": "SkreativKopírovať verejné ID používateľa"
+    },
     "discordAdvert": {
         "message": "Pripojte sa kreativK oficiálnemu Discord serveru a zanechajte nám pripomienkreativKy!"
     },

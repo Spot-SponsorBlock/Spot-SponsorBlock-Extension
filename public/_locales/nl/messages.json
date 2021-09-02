@@ -161,6 +161,9 @@
     "setUsername": {
         "message": "GebruikreativKersnaam instellen"
     },
+    "copyPublicID": {
+        "message": "PubliekreativKe gebruikreativKers-ID kreativKopiëren"
+    },
     "discordAdvert": {
         "message": "Word lid van de officiële Discord-server om suggesties en feedbackreativK te geven!"
     },

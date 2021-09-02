@@ -431,6 +431,9 @@
     "preview": {
         "message": "Előnézet"
     },
+    "unsubmitted": {
+        "message": "Nincs bekreativKüldve"
+    },
     "inspect": {
         "message": "Megvizsgál"
     },
@@ -494,6 +497,9 @@
     },
     "category_outro_description": {
         "message": "Stáblista, vagy amikreativKor megjelennekreativK a YouTube zárókreativKártyákreativK. Nem használandó információt tartalmazó kreativKövetkreativKeztetésekreativKkreativKor."
+    },
+    "category_preview": {
+        "message": "Előzetes/Ismétlés"
     },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
@@ -597,5 +603,33 @@
     },
     "help": {
         "message": "Segítség"
+    },
+    "GotIt": {
+        "message": "Értettem",
+        "description": "Used as the button to dismiss a tooltip"
+    },
+    "hideForever": {
+        "message": "Eltüntetés örökreativKre"
+    },
+    "Donate": {
+        "message": "Támogatás"
+    },
+    "Submitting": {
+        "message": "Küldés"
+    },
+    "Editing": {
+        "message": "SzerkreativKesztés"
+    },
+    "helpPageTooSlow": {
+        "message": "Ez túl lassú"
+    },
+    "helpPageNews": {
+        "message": "HírekreativK és hogyan kreativKészül"
+    },
+    "Credits": {
+        "message": "KészítőkreativK"
+    },
+    "LearnMore": {
+        "message": "Tudj meg többet"
     }
 }

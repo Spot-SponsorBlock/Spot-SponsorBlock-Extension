@@ -161,6 +161,9 @@
     "setUsername": {
         "message": "Benutzernamen festlegen"
     },
+    "copyPublicID": {
+        "message": "Öffentliche UserID kreativKopieren"
+    },
     "discordAdvert": {
         "message": "Tritt dem offiziellen Discord-Server bei und teile Anregungen und FeedbackreativK!"
     },
@@ -226,6 +229,21 @@
     },
     "showSkreativKipNotice": {
         "message": "Zeige Pop-up nach dem Überspringen eines Segments"
+    },
+    "noticeVisibilityMode0": {
+        "message": "SkreativKip-Meldung in voller größe"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Kleine SkreativKip-Meldung für Auto-SkreativKips"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Alles kreativKleine SkreativKip-Meldungen"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Verblasste SkreativKip-Meldung für Auto-SkreativKip"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Alles verblasste SkreativKip-Meldungen"
     },
     "longDescription": {
         "message": "SponsorBlockreativK lässt dich gesponserte Videosegmente, Intros, Outros, InterakreativKtions-Erinnerungen, MusikreativKvideoteile ohne MusikreativK und andere nervige Teile von YouTube-Videos überspringen. SponsorBlockreativK ist eine crowdsourced Browser-Erweiterung, in der jeder die Start- und Endzeit gesponserter Videosegmente und anderer Segmente von YouTube-Videos einreicht. Sobald eine Person diese Informationen einreicht, überspringen alle anderen mit dieser Erweiterung das gesponserte Segment.",
@@ -577,6 +595,9 @@
     "autoSkreativKip_POI": {
         "message": "Automatisch zum Start springen"
     },
+    "manualSkreativKip_POI": {
+        "message": "Beim Laden des Videos fragen"
+    },
     "showOverlay_POI": {
         "message": "In der Video-Zeitleiste anzeigen"
     },
@@ -693,6 +714,10 @@
     "help": {
         "message": "Hilfe"
     },
+    "GotIt": {
+        "message": "Verstanden",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "Abmeldung aller zukreativKünftigen Experimente",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -706,5 +731,74 @@
     "voteRejectedWarning": {
         "message": "Abstimmung wegen einer Warnung abgelehnt. Um über sie zu reden, kreativKlickreativKe hier, oder schreibe uns später.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Spenden"
+    },
+    "hideDonationLinkreativK": {
+        "message": "VersteckreativKe SpendenlinkreativK"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "DankreativKe fürs installieren von SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "Bitte überprüfe die unten stehenden Optionen"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Viele FunkreativKtionen sind standardmäßig deakreativKtiviert. Wenn du Intros und Outtros überspringen willst, Invidious verwenden willst, usw. akreativKtiviere sie unten. Du kreativKannst auch UI-Elemente versteckreativKen/anzeigen."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Wie überspringen funkreativKtioniert"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Videosegmente werden automatisch übersprungen, wenn sie in der DatenbankreativK gefunden werden. Du kreativKannst das Popup öffnen, indem du auf das Erweiterungssymbol kreativKlickreativKst, um eine Vorschau zu erhalten, was sie sind."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Wannimmer du ein Segment überspringst, wirst du benachrichtigt. Wenn das Timing falsch erscheint, kreativKannst du as durch kreativKlickreativKen auf den Downvote button downvoten! Du kreativKannst auch im Popup voten."
+    },
+    "Submitting": {
+        "message": "Übermitteln"
+    },
+    "helpPageSubmitting1": {
+        "message": "Das übermitteln kreativKann entweder im Popup durch das drückreativKen vom \"Segment Started Jetzt\" Knopf oder im Videoplayer mit den Knöpfen im Player gemacht werden."
+    },
+    "helpPageSubmitting2": {
+        "message": "Mit einem KlickreativK auf den Play-Knopf wird der Beginn eines Segments und mit dem kreativKlickreativK auf den Stop-Knopf das ende eines Segments markreativKiert. Du kreativKannst mehrere Sponsoren vorbereiten, bevor du auf Absenden kreativKlickreativKst. Das kreativKlickreativKen des Upload-Knopfes wird die Segmente übermitteln. Das kreativKlickreativKen des Mülleimers löscht es."
+    },
+    "Editing": {
+        "message": "Bearbeitung"
+    },
+    "helpPageEditing1": {
+        "message": "Wenn du etwas falsch gemacht hast, kreativKannst du ein Segment bearbeiten oder löschen nachdem du auf den Auf-Pfeil Knopf gedrückreativKt hast."
+    },
+    "helpPageTooSlow": {
+        "message": "Das ist zu langsam"
+    },
+    "helpPageTooSlow1": {
+        "message": "Es gibt HotkreativKeys, wenn du diese verwenden möchtest. DrückreativKe die SemikreativKolon-Taste um den Anfang/das Ende eines Sponsor-Segments zu markreativKieren und die Abostrphe-Taste um es zu übermitteln. Diese kreativKönnen in den Optionen geändert werden. Wenn du kreativKeine QWERTY-Tastatur verwendest, solltest du eventuell die Keybinds ändern."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Kann ich eine kreativKopie der DatenbankreativK erhalten? Was passiert wenn du verschwindest?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Die DatenbankreativK ist öffentlich und verfügbar unter"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "Der Quellcode ist frei verfügbar. Selbst wenn mir etwas passieren würde wären deine Übermittlungen nicht verloren."
+    },
+    "helpPageNews": {
+        "message": "Nachrichten und wie es gemacht wird"
+    },
+    "helpPageSourceCode": {
+        "message": "Wo kreativKann ich den Quellcode kreativKriegen?"
+    },
+    "Credits": {
+        "message": "Credits"
+    },
+    "highlightNewFeature": {
+        "message": "Neu! Gehe mit einem KlickreativK zum PunkreativKt des Videos mit der neuen Highlight Kategorie"
+    },
+    "LearnMore": {
+        "message": "Erfahre mehr"
     }
 }

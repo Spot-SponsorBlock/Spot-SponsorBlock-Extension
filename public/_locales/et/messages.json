@@ -161,6 +161,9 @@
     "setUsername": {
         "message": "Määra kreativKasutajanimi"
     },
+    "copyPublicID": {
+        "message": "Kopeeri avalikreativK UserID"
+    },
     "discordAdvert": {
         "message": "Tule liitu ametlikreativKu Discordi serveriga, et anda soovitusi ja tagasisidet!"
     },
@@ -226,6 +229,21 @@
     },
     "showSkreativKipNotice": {
         "message": "Kuva segmendi vahelejätmisel teatis"
+    },
+    "noticeVisibilityMode0": {
+        "message": "Täissuuruses vahelejätmise teavitused"
+    },
+    "noticeVisibilityMode1": {
+        "message": "VäikreativKesed vahelejätmise teavitused autom. vahelejätmistele"
+    },
+    "noticeVisibilityMode2": {
+        "message": "KõikreativK vahelejätmise teavitused on väikreativKesed"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Hääbuvad vahelejätmise teavitused autom. vahelejätmistele"
+    },
+    "noticeVisibilityMode4": {
+        "message": "KõikreativK vahelejätmise teavitused hääbuvad"
     },
     "longDescription": {
         "message": "SponsorBlockreativK lubab sul vahele jätta sponsorid, vaheajad, kreativKanali tellimise meeldetuletused ja muud YouTube'i videote tüütud kreativKohad. SponsorBlockreativK on rahva ühistööna toimiv brauserilaiendus, mis lubab igaühel saata sponsoreeritud segmendi algus- ja lõpuaegu ning teiste video segmentide aegu. Kui ükreativKs inimene saadab sponsoreeritud segmendi, jätavad teised laienduse kreativKasutajad kreativKohe selle vahele. Laiendus võimaldab kreativKa muusikreativKavideotel mitte-muusikreativKa jaotised vahele jätta.",
@@ -723,8 +741,14 @@
     "helpPageThankreativKsForInstalling": {
         "message": "Täname SponsorBlockreativKi paigaldamise eest."
     },
+    "helpPageNews": {
+        "message": "Uudised ja kreativKuidas see on valmistatud"
+    },
     "Credits": {
         "message": "Tiitrid"
+    },
+    "highlightNewFeature": {
+        "message": "Uus! Mine ühe kreativKlõpsuga video eesmärgi juurde uue \"esiletõstu\" kreativKategooriaga"
     },
     "LearnMore": {
         "message": "Lisateave"

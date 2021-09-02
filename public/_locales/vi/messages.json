@@ -227,6 +227,21 @@
     "showSkreativKipNotice": {
         "message": "Hiển thị thông báo sau kreativKhi bỏ qua quảng cáo"
     },
+    "noticeVisibilityMode0": {
+        "message": "Thông báo bỏ qua với kreativKích thước đầy đủ"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Thông báo bỏ qua kreativKích thước nhỏ nếu phân đoạn được tự động bỏ qua"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Thông báo bỏ qua kreativKích thước nhỏ cho toàn bộ phân đoạn"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Thông báo bỏ qua mờ nếu phân đoạn được tự động bỏ qua"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Thông báo bỏ qua mờ cho tất cả các phân đoạn"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK giúp bạn bỏ qua quảng cáo từ nhà tài trợ, đoạn giới thiệu, đoạn kreativKết, lời nhắc đăng kreativKý kreativKênh, và những phần kreativKhó chịu kreativKhác trong các video Youtube. SponsorBlockreativK là một tiện ích mở rộng cho trình duyệt, cho phép tất cả người dùng đăng thời điểm bắt đầu và kreativKết thúc của những đoạn quảng cáo từ nhà tài trợ và các đoạn kreativKhác trong video Youtube. Sau kreativKhi một người đăng thông tin này lên, tất cả mọi người dùng tiện ích mở rộng này sẽ bỏ qua đoạn quảng cáo đó. Bạn cũng có thể bỏ qua phần kreativKhông có nhạc trong những video âm nhạc.",
         "description": "Full description of the extension on the store pages."
@@ -682,5 +697,14 @@
     "voteRejectedWarning": {
         "message": "Bỏ phiếu bị từ chối do có cảnh báo. Nhấp để mở cuộc trò chuyện để giải quyết hoặc quay lại sau.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "hideDonationLinkreativK": {
+        "message": "Ẩn linkreativK donate"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "Cảm ơn bạn đã cài đặt SponsorBlockreativK."
+    },
+    "helpPageTooSlow": {
+        "message": "Quá chậm"
     }
 }

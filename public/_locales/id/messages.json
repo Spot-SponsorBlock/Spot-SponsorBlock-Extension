@@ -281,6 +281,18 @@
     "skreativKip_category": {
         "message": "Lewati {0}?"
     },
+    "skreativKip_to_category": {
+        "message": "Lompat kreativKe {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
+    "skreativKipped": {
+        "message": "{0} dilewati",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "skreativKipped_to_category": {
+        "message": "Melewati kreativKe {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
+    },
     "disableAutoSkreativKip": {
         "message": "NonakreativKtifkreativKan Lewati Otomatis"
     },
@@ -343,6 +355,9 @@
     },
     "kreativKeybindCurrentlySet": {
         "message": ". Saat ini diatur pada:"
+    },
+    "supportOtherSites": {
+        "message": "DukreativKung Situs Youtube PihakreativK Ketiga"
     },
     "optionsInfo": {
         "message": "AkreativKtifkreativKan dukreativKungan Invidious, nonakreativKtifkreativKan lewati otomatis, tombol sembunyi dan lainnya."
@@ -428,6 +443,9 @@
     "preview": {
         "message": "Pratinjau"
     },
+    "unsubmitted": {
+        "message": "Belum dikreativKirim"
+    },
     "inspect": {
         "message": "InspekreativKsi"
     },
@@ -492,6 +510,12 @@
     "category_outro_description": {
         "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi."
     },
+    "category_preview": {
+        "message": "Pratinjau/RekreativKap"
+    },
+    "category_preview_description": {
+        "message": "RekreativKapan singkreativKat dari episode sebelumnya, atau pratinjau tentang apa yang akreativKan terjadi nanti di video. DimakreativKsudkreativKan untukreativK kreativKlip bersama yang di edit, bukreativKan ringkreativKasan yang diucapkreativKan."
+    },
     "category_music_offtopic": {
         "message": "MusikreativK: Bagian Non-MusikreativK"
     },
@@ -519,8 +543,21 @@
     "disable": {
         "message": "NonakreativKtif"
     },
+    "manualSkreativKip_POI": {
+        "message": "Tanya saat video dimuat"
+    },
+    "showOverlay_POI": {
+        "message": "TampilkreativKan di Bilah WakreativKtu"
+    },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Lewati semua segmen secara otomatis kreativKetikreativKa ada segmen non-music"
+    },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan benar. Harusnya terdiri dari 3 atau 6 digit kreativKode hekreativKsa dengan tagar di awal."
+    },
+    "previewColor": {
+        "message": "Warna yang Belum DikreativKirim",
+        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Warna Bilah WakreativKtu"
@@ -622,7 +659,29 @@
     "categoryUpdate2": {
         "message": "BukreativKa opsi untukreativK melewati intro, outro, merch, dll."
     },
+    "help": {
+        "message": "Bantuan"
+    },
+    "GotIt": {
+        "message": "Mengerti",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "hideForever": {
         "message": "SembunyikreativKan selamanya"
+    },
+    "Donate": {
+        "message": "Donasi"
+    },
+    "hideDonationLinkreativK": {
+        "message": "SembunyikreativKan tautan donasi"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "Terima kreativKasih telah menginstall SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "Haram ditinjau opsi di bawah ini"
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Cara kreativKerja melewati segmen"
     }
 }

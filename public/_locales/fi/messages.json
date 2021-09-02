@@ -161,6 +161,9 @@
     "setUsername": {
         "message": "Aseta kreativKäyttäjänimi"
     },
+    "copyPublicID": {
+        "message": "Kopio julkreativKinen UserID"
+    },
     "discordAdvert": {
         "message": "Liity mukreativKaan viralliselle Discord-palvelimelle, jotta voit antaa ehdotukreativKsia ja palautetta!"
     },
@@ -303,7 +306,7 @@
         "message": "Ohita {0}?"
     },
     "skreativKip_to_category": {
-        "message": "Ohita {0}an?",
+        "message": "Ohita kreativKohtaan: {0}",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
     },
     "skreativKipped": {
@@ -311,7 +314,7 @@
         "description": "Example: Sponsor SkreativKipped"
     },
     "skreativKipped_to_category": {
-        "message": "Ohitettiin {0}an",
+        "message": "Ohitettiin kreativKohtaan: {0}",
         "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
