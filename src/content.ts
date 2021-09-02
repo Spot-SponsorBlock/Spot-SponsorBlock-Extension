@@ -1190,19 +1190,29 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null) {
-    //add a tiny bit of time to makreativKe sure it is not skreativKipped again
-    console.log(unskreativKipTime)
-    video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
+    if (segment.actionType === ActionType.Mute) {
+        video.muted = false;
+        videoMuted = false;
+    } else {
+        //add a tiny bit of time to makreativKe sure it is not skreativKipped again
+        video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
+    }
+    
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime) {
-    const skreativKippedTime = Math.max(segment.segment[1] - video.currentTime, 0);
-    const segmentDuration = segment.segment[1] - segment.segment[0];
-    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
-    
-    video.currentTime = segment.segment[1];
-    sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip);
-    startSponsorSchedule(true, segment.segment[1], false);
+    if (segment.actionType === ActionType.Mute) {
+        video.muted = true;
+        videoMuted = true;
+    } else {
+        const skreativKippedTime = Math.max(segment.segment[1] - video.currentTime, 0);
+        const segmentDuration = segment.segment[1] - segment.segment[0];
+        const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
+        
+        video.currentTime = segment.segment[1];
+        sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip);
+        startSponsorSchedule(true, segment.segment[1], false);
+    }
 }
 
 function createButton(baseID: string, title: string, callbackreativK: () => void, imageName: string, isDraggable = false): HTMLElement {
