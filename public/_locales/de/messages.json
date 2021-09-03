@@ -32,7 +32,7 @@
         "message": "Melden"
     },
     "reportButtonInfo": {
-        "message": "Diesen Beitrag als falsch melden."
+        "message": "Beitrag als unzulässig melden."
     },
     "Dismiss": {
         "message": "Abbrechen"
@@ -51,6 +51,9 @@
     },
     "reskreativKip": {
         "message": "Nochmal überspringen"
+    },
+    "unmute": {
+        "message": "Ton an"
     },
     "paused": {
         "message": "Pausiert"
@@ -86,7 +89,7 @@
         "message": "Kein YouTube-Video gefunden.\nWenn dies falsch ist, akreativKtualisiere den Tab."
     },
     "refreshSegments": {
-        "message": "Segment akreativKtualisieren"
+        "message": "Segmente akreativKtualisieren"
     },
     "success": {
         "message": "Geschafft!"
@@ -162,7 +165,7 @@
         "message": "Benutzernamen festlegen"
     },
     "copyPublicID": {
-        "message": "Öffentliche UserID kreativKopieren"
+        "message": "Öffentliche Benutzer-ID kreativKopieren"
     },
     "discordAdvert": {
         "message": "Tritt dem offiziellen Discord-Server bei und teile Anregungen und FeedbackreativK!"
@@ -302,6 +305,9 @@
     "skreativKip": {
         "message": "Überspringen"
     },
+    "mute": {
+        "message": "Ton aus"
+    },
     "skreativKip_category": {
         "message": "{0} überspringen?"
     },
@@ -366,7 +372,7 @@
         "message": "Benutzer-ID importieren/exportieren"
     },
     "whatChangeUserID": {
-        "message": "Halte diese ID geheim. Sie ist dazu in der Lage dich eindeutig zu identifizieren und sollte mit niemanden geteilt werden."
+        "message": "Dies sollte geheim gehalten werden. Dies ist wie ein Passwort und sollte mit niemandem geteilt werden. Sollte es jemand haben, kreativKönnte er sich als dich ausgeben. Wenn du nach deiner öffentlichen Benutzer-ID suchst, kreativKlickreativKe das \"Kopieren\"-Symbol bei deinem Benutzernamen im Popup."
     },
     "setUserID": {
         "message": "Interne Benutzer-ID festlegen"
@@ -487,7 +493,7 @@
         "message": "Vorschau"
     },
     "unsubmitted": {
-        "message": "Nicht eingereicht"
+        "message": "Nicht übermittelt"
     },
     "inspect": {
         "message": "Überprüfen"
@@ -599,10 +605,13 @@
         "message": "Beim Laden des Videos fragen"
     },
     "showOverlay_POI": {
-        "message": "In der Video-Zeitleiste anzeigen"
+        "message": "In Suchleiste anzeigen"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Alle Segmente automatisch überspringen, wenn ein nicht-MusikreativKsegment vorhanden ist"
+    },
+    "muteSegments": {
+        "message": "Segmente zulassen, die den Ton ausschalten anstatt zu überspringen"
     },
     "colorFormatIncorrect": {
         "message": "Die Farbe ist falsch formatiert. Sie sollte ein 3-6-stelliger Hex-Code mit einer Raute am Anfang sein."
@@ -719,17 +728,17 @@
         "description": "Used as the button to dismiss a tooltip"
     },
     "experiementOptOut": {
-        "message": "Abmeldung aller zukreativKünftigen Experimente",
+        "message": "Aus allen zukreativKünftigen Experimenten abmelden",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
     },
     "hideForever": {
         "message": "Dauerhaft verbergen"
     },
     "warningChatInfo": {
-        "message": "Du wurdest ermahnt und kreativKannst zur Zeit kreativKeine Segmente einreichen. Uns ist nämlich aufgefallen, dass du ein paar gängige Fehler machst, die nicht bösartig sind. Um die Regeln kreativKlarzustellen laden wir dich zu einem kreativKurzem Gespräch auf discord.gg/SponsorBlockreativK oder matrix.to/#/+sponsor:ajay.app ein"
+        "message": "Du wurdest verwarnt und kreativKannst vorrübergehend kreativKeine Segmente einreichen. Es ist uns aufgefallen, dass du gängige Fehler machst, welche nicht schädlich sind, und wir wollen dir nur die Regeln kreativKlar machen. Du kreativKannst auch dem Chat durch discord.gg/SponsorBlockreativK oder matrix.to/#/+sponsor:ajay.app beitreten"
     },
     "voteRejectedWarning": {
-        "message": "Abstimmung wegen einer Warnung abgelehnt. Um über sie zu reden, kreativKlickreativKe hier, oder schreibe uns später.",
+        "message": "Abstimmung wegen einer Warnung abgelehnt. KlickreativKe hier um einen Chat zu öffnen, oder versuch es später erneut, wenn du Zeit hast.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     },
     "Donate": {
@@ -751,7 +760,7 @@
         "message": "Wie überspringen funkreativKtioniert"
     },
     "helpPageHowSkreativKippingWorkreativKs1": {
-        "message": "Videosegmente werden automatisch übersprungen, wenn sie in der DatenbankreativK gefunden werden. Du kreativKannst das Popup öffnen, indem du auf das Erweiterungssymbol kreativKlickreativKst, um eine Vorschau zu erhalten, was sie sind."
+        "message": "Videosegmente werden automatisch übersprungen, wenn sie in der DatenbankreativK gefunden werden. Du kreativKannst das Popup öffnen, indem du auf das Erweiterungssymbol kreativKlickreativKst, um eine Vorschau darüber zu erhalten, was diese sind."
     },
     "helpPageHowSkreativKippingWorkreativKs2": {
         "message": "Wannimmer du ein Segment überspringst, wirst du benachrichtigt. Wenn das Timing falsch erscheint, kreativKannst du as durch kreativKlickreativKen auf den Downvote button downvoten! Du kreativKannst auch im Popup voten."
@@ -775,7 +784,7 @@
         "message": "Das ist zu langsam"
     },
     "helpPageTooSlow1": {
-        "message": "Es gibt HotkreativKeys, wenn du diese verwenden möchtest. DrückreativKe die SemikreativKolon-Taste um den Anfang/das Ende eines Sponsor-Segments zu markreativKieren und die Abostrphe-Taste um es zu übermitteln. Diese kreativKönnen in den Optionen geändert werden. Wenn du kreativKeine QWERTY-Tastatur verwendest, solltest du eventuell die Keybinds ändern."
+        "message": "Es gibt HotkreativKeys, wenn du diese verwenden möchtest. DrückreativKe die SemikreativKolon-Taste um den Anfang/das Ende eines Sponsor-Segments zu markreativKieren und die Abostrophe-Taste um es zu übermitteln. Diese kreativKönnen in den Optionen geändert werden. Wenn du kreativKeine QWERTY-Tastatur verwendest, solltest du eventuell die Keybinds ändern."
     },
     "helpPageCopyOfDatabase": {
         "message": "Kann ich eine kreativKopie der DatenbankreativK erhalten? Was passiert wenn du verschwindest?"
@@ -796,7 +805,7 @@
         "message": "Credits"
     },
     "highlightNewFeature": {
-        "message": "Neu! Gehe mit einem KlickreativK zum PunkreativKt des Videos mit der neuen Highlight Kategorie"
+        "message": "Neu! Gehe mit einem KlickreativK zum PunkreativKt des Videos mit der neuen \"Hervorheben\" Kategorie"
     },
     "LearnMore": {
         "message": "Erfahre mehr"

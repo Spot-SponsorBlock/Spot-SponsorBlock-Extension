@@ -179,9 +179,6 @@
     "hoursLower": {
         "message": "h"
     },
-    "whatChangeUserID": {
-        "message": "Ovo bi trebalo ostati privatno. slično je lozinkreativKi i ne bi se smjelo dijeliti ni s kreativKime. AkreativKo netkreativKo ovo ima, mogu se lažno predstavljati kreativKao ti."
-    },
     "setUserID": {
         "message": "Postavi UserID"
     },

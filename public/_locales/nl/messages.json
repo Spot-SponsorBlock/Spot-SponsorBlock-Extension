@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Opnieuw overslaan"
     },
+    "unmute": {
+        "message": "Niet meer dempen"
+    },
     "paused": {
         "message": "Gepauzeerd"
     },
@@ -302,6 +305,9 @@
     "skreativKip": {
         "message": "Overslaan"
     },
+    "mute": {
+        "message": "Dempen"
+    },
     "skreativKip_category": {
         "message": "{0} overslaan?"
     },
@@ -366,7 +372,7 @@
         "message": "Uw gebruikreativKers-ID importeren/exporteren"
     },
     "whatChangeUserID": {
-        "message": "Dit moet privé gehouden worden. Dit is als een wachtwoord en mag met niemand gedeeld worden. Als iemand dit heeft, kreativKan hij zich voordoen als u."
+        "message": "Dit moet privé gehouden worden. Dit is als een wachtwoord en mag met niemand gedeeld worden. Als iemand dit heeft, kreativKan hij zich voordoen als u. KlikreativK op het kreativKlembordpictogram in de popup als u op zoekreativK bent naar uw publiekreativKe gebrukreativKers-ID."
     },
     "setUserID": {
         "message": "GebruikreativKers-ID instellen"
@@ -603,6 +609,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Automatisch alle segmenten overslaan wanneer er een niet-muziekreativK-segment is"
+    },
+    "muteSegments": {
+        "message": "Segmenten toestaan die audio dempen in plaats van overslaan"
     },
     "colorFormatIncorrect": {
         "message": "Uw kreativKleur is verkreativKeerd geformatteerd. Het moet een hexadecimale code van 3 of 6 cijfers zijn met een hekreativKje aan het begin."

@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Ohita uudelleen"
     },
+    "unmute": {
+        "message": "Poista mykreativKistys"
+    },
     "paused": {
         "message": "Pysäytetty"
     },
@@ -302,6 +305,9 @@
     "skreativKip": {
         "message": "Ohita"
     },
+    "mute": {
+        "message": "MykreativKistä"
+    },
     "skreativKip_category": {
         "message": "Ohita {0}?"
     },
@@ -366,7 +372,7 @@
         "message": "Tuo/vie UserID:si"
     },
     "whatChangeUserID": {
-        "message": "Tämä tulisi pitää ykreativKsityisenä. Tämä on kreativKuin salasana eikreativKä sitä pitäisi jakreativKaa kreativKenellekreativKään. Jos jokreativKu saa tämän, hän voi esiintyä sinuna."
+        "message": "Tämä pitäisi pitää ykreativKsityisenä. Tämä on kreativKuin salasana, eikreativKä sitä pitäisi jakreativKaa kreativKenenkreativKään kreativKanssa. Jos jollakreativKulla on tämä, he voivat esiintyä sinuna. Jos etsit julkreativKista userID:täsi, napsauta leikreativKepöydän kreativKuvakreativKetta ponnahdusikreativKkreativKunassa."
     },
     "setUserID": {
         "message": "Aseta UserID"
@@ -603,6 +609,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Ohita kreativKaikreativKkreativKi segmentit automaattisesti, kreativKun videossa on \"MusiikreativKiton\" segmentti"
+    },
+    "muteSegments": {
+        "message": "Salli segmentit, jotkreativKa mykreativKistävät äänen ohittamisen sijaan"
     },
     "colorFormatIncorrect": {
         "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on # alussa."

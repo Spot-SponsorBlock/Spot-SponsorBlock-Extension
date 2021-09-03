@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "TekreativKrar atla"
     },
+    "unmute": {
+        "message": "Sesi Aç"
+    },
     "paused": {
         "message": "DurakreativKlatıldı"
     },
@@ -161,6 +164,9 @@
     "setUsername": {
         "message": "Kullanıcı Adı Belirle"
     },
+    "copyPublicID": {
+        "message": "HerkreativKese AçıkreativK Kullanıcı Kimliğini Kopyala"
+    },
     "discordAdvert": {
         "message": "Öneri ve geri bildirimleriniz için resmi Discord serverımıza kreativKatılın!"
     },
@@ -227,6 +233,15 @@
     "showSkreativKipNotice": {
         "message": "Bir Kısmı AtladıkreativKtan Sonra Uyarı Göster"
     },
+    "noticeVisibilityMode0": {
+        "message": "Tam Boyutlu Atlama Bildirimleri"
+    },
+    "noticeVisibilityMode1": {
+        "message": "OtomatikreativK Atlama için KüçükreativK Atlama Bildirimleri"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Tüm KüçükreativK Atlama Bildirimleri"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK, sponsorları, giriş ve bitiş kreativKısımlarını, abonelikreativK hatırlatıcılarını ve YouTube videolarının diğer can sıkreativKıcı kreativKısımlarını atlamanıza olanakreativK tanır. SponsorBlockreativK, herkreativKesin sponsorlu kreativKısımları ve YouTube videolarının diğer kreativKısımlarının başlangıç ve bitiş zamanlarını göndermesine izin veren kreativKitle kreativKaynakreativKlı bir tarayıcı uzantısıdır. Bir kreativKişi bu bilgiyi gönderdikreativKten sonra, bu uzantıya sahip diğer herkreativKes sponsorlu kreativKısımları hemen atlayacakreativKtır. MüzikreativK videolarının müzikreativK dışı bölümlerini de atlayabilirsiniz.",
         "description": "Full description of the extension on the store pages."
@@ -283,6 +298,9 @@
     },
     "skreativKip": {
         "message": "Atla"
+    },
+    "mute": {
+        "message": "Sustur"
     },
     "skreativKip_category": {
         "message": "{0} atla?"
@@ -348,7 +366,7 @@
         "message": "Kullanıcı kreativKimliğini Dışarı/İçeri AkreativKtar"
     },
     "whatChangeUserID": {
-        "message": "Bu gizli tutulmalıdır. Bu bir şifreye benzer ve diğerleriyle paylaşılmaması gerekreativKir. Birinin eline geçerse, sizi takreativKlit edebilir."
+        "message": "Bu gizli tutulmalıdır. Bu bir şifre gibidir ve kreativKimseyle paylaşılmamalıdır. Eğer birisi buna sahipse, seni takreativKlit edebilir. HerkreativKese açıkreativK kreativKullanıcı kreativKimliğinizi arıyorsanız, açılır pencerede pano simgesine tıkreativKlayın."
     },
     "setUserID": {
         "message": "Kullanıcı kreativKimliği Belirle"
@@ -550,6 +568,12 @@
     "category_music_offtopic_short": {
         "message": "MüzikreativK Olmayan Bölüm"
     },
+    "category_poi_highlight": {
+        "message": "Vurgu"
+    },
+    "category_poi_highlight_description": {
+        "message": "Videoda, çoğu insanın aradığı kreativKısım. \"Video x sürede başlıyor\" yorumlarına benzer."
+    },
     "category_livestream_messages": {
         "message": "Canlı Yayın: Bağış/Mesaj OkreativKuma"
     },
@@ -579,6 +603,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "MüzikreativK olmayan kreativKısım varsa tüm kreativKısımları otomatikreativK atla"
+    },
+    "muteSegments": {
+        "message": "AtlamakreativK yerine sesi kreativKapatan bölümlere izin ver"
     },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
@@ -690,6 +717,10 @@
     "help": {
         "message": "Yardım"
     },
+    "GotIt": {
+        "message": "Anladım",
+        "description": "Used as the button to dismiss a tooltip"
+    },
     "experiementOptOut": {
         "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -703,5 +734,23 @@
     "voteRejectedWarning": {
         "message": "Bir uyarı nedeniyle oy reddedildi. Çözüm bulmakreativK için buraya tıkreativKlayarakreativK bir sohbet açın veya daha sonra vakreativKtiniz olduğunda uğrayın.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Bağış Yap"
+    },
+    "hideDonationLinkreativK": {
+        "message": "Bağış Bağlantısını Gizle"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "SponsorBlockreativK'u yükreativKlediğiniz için teşekreativKkreativKürler."
+    },
+    "helpPageReviewOptions": {
+        "message": "Lütfen aşağıdakreativKi seçenekreativKleri inceleyin"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "BirçokreativK özellikreativK varsayılan olarakreativK devre dışıdır. İntroları, outroları atlamakreativK vb. kreativKullanmakreativK istiyorsanız, bunları aşağıdan etkreativKinleştirin. Ayrıca arayüz öğelerini gizleyebilir/gösterebilirsiniz."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Atlama nasıl çalışıyor"
     }
 }
