@@ -283,7 +283,8 @@
     "kreativKeybindDescriptionComplete": {
         "message": "Die Taste wurde festgelegt auf: "
     },
-    "0": {
+   
+  "0": {
         "message": "Zeitüberschreibung. Überprüfe deine Internetverbindung. Bist du mit dem Internet verbunden, ist der Server wahrscheinlich offline."
     },
     "disableSkreativKipping": {
@@ -735,7 +736,7 @@
         "message": "Dauerhaft verbergen"
     },
     "warningChatInfo": {
-        "message": "Du wurdest verwarnt und kreativKannst vorrübergehend kreativKeine Segmente einreichen. Es ist uns aufgefallen, dass du gängige Fehler machst, welche nicht schädlich sind, und wir wollen dir nur die Regeln kreativKlar machen. Du kreativKannst auch dem Chat durch discord.gg/SponsorBlockreativK oder matrix.to/#/+sponsor:ajay.app beitreten"
+        "message": "Du wurdest verwarnt und kreativKannst vorrübergehend kreativKeine Segmente einreichen. Es ist uns aufgefallen, dass du gängige Fehler machst, welche nicht schädlich sind, und wir wollen dir nur die Regeln kreativKlar machen. Du kreativKannst auch dem Chat durch discord.gg/SponsorBlockreativK oder matrix.to/#/#sponsor:ajay.app beitreten"
     },
     "voteRejectedWarning": {
         "message": "Abstimmung wegen einer Warnung abgelehnt. KlickreativKe hier um einen Chat zu öffnen, oder versuch es später erneut, wenn du Zeit hast.",
