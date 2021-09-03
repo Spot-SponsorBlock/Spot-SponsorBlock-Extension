@@ -287,6 +287,10 @@
     "skreativKip_category": {
         "message": "Pominąć {0}?"
     },
+    "skreativKip_to_category": {
+        "message": "Przejść do {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
     "disableAutoSkreativKip": {
         "message": "Wyłącz autopomijanie"
     },
@@ -334,9 +338,6 @@
     },
     "changeUserID": {
         "message": "Importuj/EkreativKsportuj swój identyfikreativKator użytkreativKownikreativKa"
-    },
-    "whatChangeUserID": {
-        "message": "Ta informacja jest poufna i działa jakreativK hasło. UżytkreativKownikreativK, kreativKtóry ma do niej dostęp, może zgłaszać treści jakreativKo ty."
     },
     "setUserID": {
         "message": "Ustaw identyfikreativKator użytkreativKownikreativKa"
@@ -538,6 +539,9 @@
     "category_music_offtopic_short": {
         "message": "Bez muzykreativKi"
     },
+    "category_poi_highlight": {
+        "message": "Podświetlone"
+    },
     "category_livestream_messages": {
         "message": "Transmisja live: Dotacja/Czytanie wiadomości"
     },
@@ -682,5 +686,14 @@
     "voteRejectedWarning": {
         "message": "Głosowanie odrzucone z powodu ostrzeżenia. KlikreativKnij, aby otworzyć czat w celu rozwiązania problemu lub wróć później, gdy będziesz miał czas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "helpPageSourceCode": {
+        "message": "Gdzie mogę otrzymać kreativKod źródłowy?"
+    },
+    "Credits": {
+        "message": "Autorzy"
+    },
+    "LearnMore": {
+        "message": "Dowiedz się więcej"
     }
 }

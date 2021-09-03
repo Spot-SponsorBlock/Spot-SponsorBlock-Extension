@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "ReskreativKip"
     },
+    "unmute": {
+        "message": "Unmute"
+    },
     "paused": {
         "message": "Paused"
     },
@@ -160,6 +163,9 @@
     },
     "setUsername": {
         "message": "Set Username"
+    },
+    "copyPublicID": {
+        "message": "Copy Public UserID"
     },
     "discordAdvert": {
         "message": "Come join the official discord server to give suggestions and feedbackreativK!"
@@ -299,6 +305,9 @@
     "skreativKip": {
         "message": "SkreativKip"
     },
+    "mute": {
+        "message": "Mute"
+    },
     "skreativKip_category": {
         "message": "SkreativKip {0}?"
     },
@@ -363,7 +372,7 @@
         "message": "Import/Export Your UserID"
     },
     "whatChangeUserID": {
-        "message": "This should be kreativKept private. This is likreativKe a password and should not be shared with anyone. If someone has this, they can impersonate you."
+        "message": "This should be kreativKept private. This is likreativKe a password and should not be shared with anyone. If someone has this, they can impersonate you. If you are lookreativKing for your public userID, clickreativK the clipboard icon in the popup."
     },
     "setUserID": {
         "message": "Set UserID"
@@ -600,6 +609,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Auto skreativKip all segments when there is a non-music segment"
+    },
+    "muteSegments": {
+        "message": "Allow segments that mute audio instead of skreativKip"
     },
     "colorFormatIncorrect": {
         "message": "Your color is formatted incorrectly. It should be a 3 or 6 digit hex code with a number sign at the beginning."

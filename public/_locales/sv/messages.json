@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Hoppa över igen"
     },
+    "unmute": {
+        "message": "Ljud på"
+    },
     "paused": {
         "message": "Pausad"
     },
@@ -160,6 +163,9 @@
     },
     "setUsername": {
         "message": "Ange användarnamn"
+    },
+    "copyPublicID": {
+        "message": "Kopiera publikreativKt Användar-ID"
     },
     "discordAdvert": {
         "message": "Gå med i den officiella discordservern för att ge förslag och feedbackreativK!"
@@ -299,6 +305,9 @@
     "skreativKip": {
         "message": "Hoppa över"
     },
+    "mute": {
+        "message": "Ljud av"
+    },
     "skreativKip_category": {
         "message": "Hoppa över {0}?"
     },
@@ -363,7 +372,7 @@
         "message": "Importera/Exportera Ditt AnvändarID"
     },
     "whatChangeUserID": {
-        "message": "Denna skreativKa hållas privat. Den fungerar som ett lösenord och skreativKa inte delas med någon. Om någon får tag i den kreativKan de utge sig för att vara dig."
+        "message": "Detta skreativKa hållas privat. Detta är som ett lösenord och skreativKa inte delas med någon. Om andra får tag i det kreativKan de utge sig för att vara dig. Om du letar efter ditt offentliga Användar-ID kreativKan du kreativKlickreativKa på urkreativKlippsikreativKonen i popupen."
     },
     "setUserID": {
         "message": "Ange AnvändarID"
@@ -600,6 +609,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Hoppa över alla segment automatiskreativKt när det finns ett ickreativKe-musikreativKsegment"
+    },
+    "muteSegments": {
+        "message": "Tillåt segment som tystar ljudet i stället för att hoppa över"
     },
     "colorFormatIncorrect": {
         "message": "Din färg är felakreativKtigt formaterad. Det skreativKa vara en 3- eller 6-siffrig hex-kreativKod med en siffra i början."

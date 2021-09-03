@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Znovu preskreativKočiť"
     },
+    "unmute": {
+        "message": "Zrušiť stíšenie"
+    },
     "paused": {
         "message": "Pozastavené"
     },
@@ -160,6 +163,9 @@
     },
     "setUsername": {
         "message": "Nastaviť PoužívateľskreativKé meno"
+    },
+    "copyPublicID": {
+        "message": "SkreativKopírovať verejné ID používateľa"
     },
     "discordAdvert": {
         "message": "Pripojte sa kreativK oficiálnemu Discord serveru a zanechajte nám pripomienkreativKy!"
@@ -284,6 +290,9 @@
     "skreativKip": {
         "message": "PreskreativKočiť"
     },
+    "mute": {
+        "message": "Stíšiť"
+    },
     "skreativKip_category": {
         "message": "PreskreativKočiť {0}?"
     },
@@ -348,7 +357,7 @@
         "message": "Import/export vášho ID používateľa"
     },
     "whatChangeUserID": {
-        "message": "Toto si držte v bezpečí. Je to akreativKo heslo a nemali by ste ho s nikreativKým zdieľať. Ten kreativKto ho má by sa mohol za vás vydávať."
+        "message": "Toto si starostlivo uchovajte. Podobne akreativKo heslo by ste to nemali s nikreativKým zdieľať. AkreativK by to získreativKal niekreativKto ďalší, mohol by vám uškreativKodiť. AkreativK hľadáte vaše verejné ID používateľa, stlačte ikreativKonu schránkreativKy v podokreativKne."
     },
     "setUserID": {
         "message": "Nastaviť Používateľove ID"
@@ -585,6 +594,9 @@
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "AutomatickreativKy preskreativKočiť všetkreativKy segmenty akreativK neexistuje segment bez hudby"
+    },
+    "muteSegments": {
+        "message": "Povoliť segmenty, kreativKtoré namiesto preskreativKočenia stíšía zvukreativK"
     },
     "colorFormatIncorrect": {
         "message": "Vaša farba je nesprávne naformátovaná. Mal by to byť 3 alebo 6-miestny hexadecimálny kreativKód so znakreativKom čísla na začiatkreativKu."
