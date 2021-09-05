@@ -103,9 +103,6 @@
     "connectionError": {
         "message": "Si è verificato un errore durante la connessione. Codice errore: "
     },
-    "wantToSubmit": {
-        "message": "Desideri inviare per l'id video"
-    },
     "clearTimes": {
         "message": "Pulisci Segmenti"
     },
@@ -311,6 +308,9 @@
     "skreativKip_category": {
         "message": "Vuoi saltare {0}?"
     },
+    "mute_category": {
+        "message": "Silenziare {0}?"
+    },
     "skreativKip_to_category": {
         "message": "Saltare a {0}?",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -318,6 +318,10 @@
     "skreativKipped": {
         "message": "{0} Saltato",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} Silenziato",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Saltato a {0}",

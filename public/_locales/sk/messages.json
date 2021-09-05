@@ -103,9 +103,6 @@
     "connectionError": {
         "message": "Nastala chyba pripojenia. Kód chyby: "
     },
-    "wantToSubmit": {
-        "message": "Chcete odoslať segmenty pre video id"
-    },
     "clearTimes": {
         "message": "Zmazať segmenty"
     },
@@ -296,6 +293,9 @@
     "skreativKip_category": {
         "message": "PreskreativKočiť {0}?"
     },
+    "mute_category": {
+        "message": "Stíšiť {0}?"
+    },
     "skreativKip_to_category": {
         "message": "PreskreativKočiť na {0}?",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -303,6 +303,10 @@
     "skreativKipped": {
         "message": "{0} preskreativKočené",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} stíšený",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "PreskreativKočené na {0}",

@@ -53,7 +53,7 @@
         "message": "Hoppa över igen"
     },
     "unmute": {
-        "message": "Ljud på"
+        "message": "Ljud"
     },
     "paused": {
         "message": "Pausad"
@@ -102,9 +102,6 @@
     },
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
-    },
-    "wantToSubmit": {
-        "message": "Vill du skreativKickreativKa in för video-ID"
     },
     "clearTimes": {
         "message": "Rensa segmenten"
@@ -306,10 +303,13 @@
         "message": "Hoppa över"
     },
     "mute": {
-        "message": "Ljud av"
+        "message": "Ljudlös"
     },
     "skreativKip_category": {
         "message": "Hoppa över {0}?"
+    },
+    "mute_category": {
+        "message": "Gör {0} ljudlös?"
     },
     "skreativKip_to_category": {
         "message": "Hoppa till {0}?",
@@ -318,6 +318,10 @@
     "skreativKipped": {
         "message": "{0} överhoppad",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} ljudlös",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Hoppat till {0}",

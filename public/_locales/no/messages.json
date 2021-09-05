@@ -94,9 +94,6 @@
     "connectionError": {
         "message": "En tilkreativKoblingsfeil har oppstått. FeilkreativKode: "
     },
-    "wantToSubmit": {
-        "message": "Vil du sende inn for video-ID-en"
-    },
     "clearTimes": {
         "message": "Tøm segmenter"
     },

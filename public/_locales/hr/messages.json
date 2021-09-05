@@ -91,9 +91,6 @@
     "connectionError": {
         "message": "Dogodija se greškreativKa u povezivanju. Kod pogreškreativKe: "
     },
-    "wantToSubmit": {
-        "message": "Želiš li unijeti za video id"
-    },
     "clearTimes": {
         "message": "Očisti isječkreativKe"
     },
