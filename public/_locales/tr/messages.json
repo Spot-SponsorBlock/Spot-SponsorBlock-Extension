@@ -103,9 +103,6 @@
     "connectionError": {
         "message": "Bağlantı hatası oluştu. Hata kreativKodu: "
     },
-    "wantToSubmit": {
-        "message": "Bu video kreativKimliği için göndermekreativK istiyor musun"
-    },
     "clearTimes": {
         "message": "Kısımları temizle"
     },

@@ -100,9 +100,6 @@
     "connectionError": {
         "message": "Kapcsolódási probléma merült fel. Error kreativKód: "
     },
-    "wantToSubmit": {
-        "message": "Szeretné bekreativKüldeni a szegmenst ehhez a videóhoz:"
-    },
     "clearTimes": {
         "message": "SzegmensekreativK törlése"
     },

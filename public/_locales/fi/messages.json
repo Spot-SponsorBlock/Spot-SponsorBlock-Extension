@@ -103,9 +103,6 @@
     "connectionError": {
         "message": "Yhteysvirhe on tapahtunut. VirhekreativKoodi: "
     },
-    "wantToSubmit": {
-        "message": "HaluatkreativKo lähettää segmentit videotunnukreativKselle"
-    },
     "clearTimes": {
         "message": "Tyhjennä segmentit"
     },

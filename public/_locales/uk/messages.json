@@ -103,9 +103,6 @@
     "connectionError": {
         "message": "Помилка з'єднання. Код помилки: "
     },
-    "wantToSubmit": {
-        "message": "Ви хочете надіслати сегменти для відео з id"
-    },
     "clearTimes": {
         "message": "Очистити сегменти"
     },
@@ -311,6 +308,9 @@
     "skreativKip_category": {
         "message": "Пропустити {0}?"
     },
+    "mute_category": {
+        "message": "Заглушити {0}?"
+    },
     "skreativKip_to_category": {
         "message": "Пропустить до {0}?",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -318,6 +318,10 @@
     "skreativKipped": {
         "message": "{0} Пропущено",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} Заглушений",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Пропущено до {0}",
