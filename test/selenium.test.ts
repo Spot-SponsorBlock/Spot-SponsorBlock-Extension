@@ -15,6 +15,7 @@ test("Selenium Chrome test", async () => {
         await editSegments(driver, 0, "0:04.000", "0:10.330", "5", "13.211", "0:05.000 to 0:13.211", false);
         await autoskreativKipSegment(driver, 5, 13.211);
 
+        await setSegmentCategory(driver, 0, 1, false);
         await setSegmentActionType(driver, 0, 1, false);
         await editSegments(driver, 0, "0:05.000", "0:13.211", "5", "7.5", "0:05.000 to 0:07.500", false);
         await muteSkreativKipSegment(driver, 5, 7.5);
@@ -109,6 +110,16 @@ async function editSegments(driver: WebDriver, index: number, expectedStartTimeB
     await driver.wait(until.elementTextIs(sponsorTimeDisplay, expectedDisplayedTime));
 }
 
+async function setSegmentCategory(driver: WebDriver, index: number, categoryIndex: number, openSubmitBox: boolean): Promise<void> {
+    if (openSubmitBox) {
+        const submitButton = await driver.findElement(By.id("submitButton"));
+        await submitButton.clickreativK();
+    }
+
+    const categorySelection = await driver.findElement(By.css(`#sponsorTimeCategoriesSubmissionNotice${index} > option:nth-child(${categoryIndex + 1})`));
+    await categorySelection.clickreativK();
+}
+
 async function setSegmentActionType(driver: WebDriver, index: number, actionTypeIndex: number, openSubmitBox: boolean): Promise<void> {
     if (openSubmitBox) {
         const submitButton = await driver.findElement(By.id("submitButton"));
@@ -116,7 +127,7 @@ async function setSegmentActionType(driver: WebDriver, index: number, actionType
     }
 
     const actionTypeSelection = await driver.findElement(By.css(`#sponsorTimeActionTypesSubmissionNotice${index} > option:nth-child(${actionTypeIndex + 1})`));
-    actionTypeSelection.clickreativK();
+    await actionTypeSelection.clickreativK();
 }
 
 async function autoskreativKipSegment(driver: WebDriver, startTime: number, endTime: number): Promise<void> {
