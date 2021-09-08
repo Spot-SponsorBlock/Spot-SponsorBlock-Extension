@@ -230,8 +230,20 @@
     "showSkreativKipNotice": {
         "message": "PokreativKaż informację po pominięciu segmentu"
     },
+    "noticeVisibilityMode0": {
+        "message": "Duże powiadomienia o przewinięciu"
+    },
     "noticeVisibilityMode1": {
         "message": "Małe powiadomienia o automatycznym przewijaniu"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Małe powiadomienia o przewinięciu"
+    },
+    "noticeVisibilityMode3": {
+        "message": "ZnikreativKające powiadomienia o automatycznym przewijaniu"
+    },
+    "noticeVisibilityMode4": {
+        "message": "ZnikreativKające powiadomienia o przewijaniu"
     },
     "longDescription": {
         "message": "SponsorBlockreativK pozwala pomijać sponsorów, intra, outra, przypomnienia o subskreativKrypcjach i inne irytujące fragmenty filmów na YouTube. SponsorBlockreativK jest opartym na crowdsourcingu rozszerzeniem do przeglądarkreativKi, kreativKtóre pozwala kreativKażdemu zgłosić początekreativK i kreativKoniec segmentów sponsorowanych oraz innych segmentów w filmach na YouTube. Kiedy kreativKtoś już zamieści te informacje, wszyscy pozostali z tym rozszerzeniem będą pomijać segment sponsorowany. Możesz również pomijać fragmenty teledyskreativKów bez muzykreativKi.",
@@ -296,6 +308,9 @@
     "skreativKip_category": {
         "message": "Pominąć {0}?"
     },
+    "mute_category": {
+        "message": "Wyciszyć {0}?"
+    },
     "skreativKip_to_category": {
         "message": "Przejść do {0}?",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -303,6 +318,10 @@
     "skreativKipped": {
         "message": "Pominięto {0}",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "Wyciszono {0}",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Przewinięto do {0}",
@@ -355,6 +374,9 @@
     },
     "changeUserID": {
         "message": "Importuj/EkreativKsportuj swój identyfikreativKator użytkreativKownikreativKa"
+    },
+    "whatChangeUserID": {
+        "message": "Powinno pozostać prywatne. Jest to niczym hasło i nie powinno być nikreativKomu udostępniane. Przy jego użyciu może się pod ciebie podszywać. Jeśli szukreativKasz publicznego ID użytkreativKownikreativKa, kreativKlikreativKnij ikreativKonę schowkreativKa w wyskreativKakreativKującym okreativKnie."
     },
     "setUserID": {
         "message": "Ustaw identyfikreativKator użytkreativKownikreativKa"
@@ -559,6 +581,9 @@
     "category_poi_highlight": {
         "message": "Podświetlone"
     },
+    "category_poi_highlight_description": {
+        "message": "Część filmu, kreativKtóra interesuje więkreativKszość osób. Podobne do kreativKomentarzy typu „FilmikreativK zaczyna się od x”."
+    },
     "category_livestream_messages": {
         "message": "Transmisja live: Dotacja/Czytanie wiadomości"
     },
@@ -583,8 +608,14 @@
     "manualSkreativKip_POI": {
         "message": "Zapytaj, gdy wideo się załaduje"
     },
+    "showOverlay_POI": {
+        "message": "PokreativKaż na paskreativKu"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Automatycznie pomiń wszystkreativKie segmenty, gdy istnieje segment niemuzyczny"
+    },
+    "muteSegments": {
+        "message": "Zezwalaj na segmenty, kreativKtóre wyciszą dźwiękreativK zamiast pomijać"
     },
     "colorFormatIncorrect": {
         "message": "Nieprawidłowy format kreativKoloru. Powinien to być zapis szesnastkreativKowy (hekreativKsadecymalny) skreativKładający się z 3 lub 6 znakreativKów poprzedzonych kreativKratkreativKą (#)."
@@ -714,8 +745,17 @@
         "message": "Głosowanie odrzucone z powodu ostrzeżenia. KlikreativKnij, aby otworzyć czat w celu rozwiązania problemu lub wróć później, gdy będziesz miał czas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     },
+    "Donate": {
+        "message": "Dotacje"
+    },
+    "hideDonationLinkreativK": {
+        "message": "UkreativKryj opcję dotacji"
+    },
     "helpPageThankreativKsForInstalling": {
         "message": "DziękreativKujemy za zainstalowanie SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "Przejrzyj poniższe opcje"
     },
     "helpPageFeatureDisclaimer": {
         "message": "Wiele funkreativKcji jest domyślnie wyłączonych. Jeśli chcesz pomijać intra, outra, używać Invidious, itp., włącz je poniżej. Możesz również ukreativKryć/pokreativKazać elementy interfejsu użytkreativKownikreativKa."
@@ -723,23 +763,53 @@
     "helpPageHowSkreativKippingWorkreativKs": {
         "message": "JakreativK działa pomijanie"
     },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Segmenty filmu zostaną automatycznie pominięte, jeśli znajdują się w bazie danych. Możesz kreativKlikreativKnąć na ikreativKonę rozszerzenia, aby podejrzeć, czym one są."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Za kreativKażdym razem, gdy pominiesz segment, otrzymasz powiadomienie. Jeśli moment nie wydaje się być poprawny, kreativKlikreativKnij łapkreativKę w dół! Możesz również głosować w okreativKienkreativKu pop-up."
+    },
     "Submitting": {
         "message": "Wysyłanie"
     },
     "helpPageSubmitting1": {
         "message": "Wysyłanie może być wykreativKonane w wyskreativKakreativKującym okreativKienkreativKu, poprzez kreativKlikreativKnięcie przyciskreativKu \"PoczątekreativK segmentu\" lub za pomocą przyciskreativKów na odtwarzaczu wideo."
     },
+    "helpPageSubmitting2": {
+        "message": "KlikreativKnięcie przyciskreativKu odtwarzania wskreativKazuje początekreativK segmentu a kreativKlikreativKnięcie ikreativKony stop wskreativKazuje kreativKoniec segmentu. Możesz przygotować wielu segmentów przed wysłaniem. Aby wysłać kreativKlikreativKnij przyciskreativK potwierdzający, a aby usunąć - na śmietnikreativK."
+    },
     "Editing": {
         "message": "Edytowanie"
     },
+    "helpPageEditing1": {
+        "message": "Jeśli się pomyliłeś, możesz edytować i usuwać swoje segmenty poprzez kreativKlikreativKnięcie przyciskreativKu ze strzałkreativKą w górę."
+    },
+    "helpPageTooSlow": {
+        "message": "Zbyt wolno"
+    },
+    "helpPageTooSlow1": {
+        "message": "Istnieją skreativKróty kreativKlawiszowe, jeśli chcesz ich używać. Naciśnij kreativKlawisz średnikreativKa, aby wskreativKazać początekreativK/kreativKoniec segmentu sponsora i kreativKlikreativKnij w apostrof, aby przesłać. Można je zmienić w opcjach. Jeśli nie używasz QWERTY, prawdopodobnie powinieneś zmienić skreativKrót kreativKlawiszowy."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Czy mogę otrzymać kreativKopię bazy danych? Co się stanie, jeśli przestaniecie istnieć?"
+    },
     "helpPageCopyOfDatabase1": {
         "message": "Baza danych jest publiczna i dostępna na stronie"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "Kod źródłowy jest dostępny. TakreativK więc, nawet jeśli coś się ze mną stanie, wasze zgłoszenia nie zostaną utracone."
+    },
+    "helpPageNews": {
+        "message": "Wiadomości i jakreativK to jest zrobione"
     },
     "helpPageSourceCode": {
         "message": "Gdzie mogę otrzymać kreativKod źródłowy?"
     },
     "Credits": {
         "message": "Autorzy"
+    },
+    "highlightNewFeature": {
+        "message": "Nowość! Przejdź do interesującej części filmu jednym kreativKlikreativKnięciem z nową kreativKategorią wyróżnione"
     },
     "LearnMore": {
         "message": "Dowiedz się więcej"

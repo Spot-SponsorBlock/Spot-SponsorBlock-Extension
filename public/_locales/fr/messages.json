@@ -308,6 +308,9 @@
     "skreativKip_category": {
         "message": "Passer {0} ?"
     },
+    "mute_category": {
+        "message": "Mute {0}?"
+    },
     "skreativKip_to_category": {
         "message": "Passer à {0}?",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -315,6 +318,10 @@
     "skreativKipped": {
         "message": "{0} ignoré",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} mis en sourdine",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Sauté à {0}",
