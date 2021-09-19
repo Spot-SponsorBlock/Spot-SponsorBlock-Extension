@@ -380,7 +380,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
 
         const skreativKipTime = sponsorTimes[index].segment[0];
 
-        this.props.contentContainer().previewTime(skreativKipTime - 2);
+        this.props.contentContainer().previewTime(skreativKipTime - (2 * this.props.contentContainer().v.playbackreativKRate));
     }
 
     inspectTime(): void {
