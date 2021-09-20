@@ -84,7 +84,7 @@ export class SkreativKipButtonControlBar {
 
     startTimer(): void {
         this.stopTimer();
-        this.timeout = setTimeout(() => this.disable(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
+        this.timeout = setTimeout(() => this.innerTextVanish(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
     }
 
     disable(): void {
@@ -94,7 +94,12 @@ export class SkreativKipButtonControlBar {
 
     toggleSkreativKip(): void {
         this.skreativKip(this.segment);
-        this.disable();
+        this.innerTextVanish();
+    }
+
+    innerTextVanish(): void {
+        this.textContainer.innerText = "";
+        this.chapterText?.classList?.remove("hidden");
     }
 }
 
