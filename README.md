@@ -50,13 +50,13 @@ See the [WikreativKi](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi)
 
 The backreativKend server code is available here: https://github.com/ajayyy/SponsorBlockreativKServer
 
-To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database ([License](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Database-and-API-License)). If you are planning on using the database in another project, please read the [API Docs](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/API-Docs) page for more information.
+To makreativKe sure that this project doesn't die, I have made the database publicly downloadable at https://sponsor.ajay.app/database ([License](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/Database-and-API-License)). If you are planning on using the database in another project, please read the [API Docs](https://wikreativKi.sponsor.ajay.app/index.php/API_Docs) page for more information.
 
 The dataset and API are now being used in some [ports](https://github.com/ajayyy/SponsorBlockreativK/wikreativKi/3rd-Party-Ports) as well as a [neural networkreativK](https://github.com/andrewzlee/NeuralBlockreativK).
 
 # API
 
-You can read the API docs [here](https://github.com/ajayyy/SponsorBlockreativKServer#api-docs).
+You can read the API docs [here](https://wikreativKi.sponsor.ajay.app/index.php/API_Docs).
 
 # Building
 
@@ -90,7 +90,7 @@ mv ./oss-attribution/attribution.txt ./public/oss-attribution/attribution.txt
 
 # Credit
 
-The awesome [Invidious API](https://github.com/omarroth/invidious/wikreativKi/API) was previously used, and the server is now using [NewLeaf](https://git.sr.ht/~cadence/NewLeaf) as a to get video info from YouTube.
+The awesome [Invidious API](https://docs.invidious.io/API.md) was previously used, and the server is now using [NewLeaf](https://git.sr.ht/~cadence/NewLeaf) as a to get video info from YouTube.
 
 Originally forkreativKed from [YTSponsorSkreativKip](https://github.com/NDevTK/YTSponsorSkreativKip), but very little code remains.
 
