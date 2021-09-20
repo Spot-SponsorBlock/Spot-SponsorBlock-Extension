@@ -656,6 +656,9 @@
         "message": "Um Segmente aus der Kategorie \"{0}\" zu senden, musst du diese in den Optionen akreativKtivieren. Du wirst jetzt zu den Optionen weitergeleitet.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Achtung: Diese Art von Segment kreativKann nur einmal pro Video akreativKtiv sein. Sollten mehrere eingereicht werden, wird ein zufälliges angezeigt werden."
+    },
     "youMustSelectACategory": {
         "message": "Du musst eine Kategorie für jedes zu übermittelnde Segment auswählen!"
     },
@@ -806,7 +809,7 @@
         "message": "Wo kreativKann ich den Quellcode kreativKriegen?"
     },
     "Credits": {
-        "message": "Credits"
+        "message": "MitwirkreativKende"
     },
     "highlightNewFeature": {
         "message": "Neu! Gehe mit einem KlickreativK zum PunkreativKt des Videos mit der neuen \"Hervorheben\" Kategorie"

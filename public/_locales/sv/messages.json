@@ -656,6 +656,9 @@
         "message": "För att skreativKickreativKa segment med kreativKategorin \"{0}\" måste du först akreativKtivera det i alternativen. Du kreativKommer nu att bli omdirigerad till alternativen.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Varning: Denna typ av segment kreativKan endast ha ett segment akreativKtivt åt gången. SkreativKickreativKas flera segment kreativKommer en av dem att visas slumpmässigt."
+    },
     "youMustSelectACategory": {
         "message": "Du måste välja en kreativKategori för alla segment du skreativKickreativKar in!"
     },

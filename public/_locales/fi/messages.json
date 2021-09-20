@@ -649,6 +649,9 @@
         "message": "LähettääkreativKsesi segmenttejä \"{0}\" kreativKategorialla, sinun täytyy akreativKtivoida se asetukreativKsista. Sinut uudelleenohjataan asetukreativKsiin nyt.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Varoitus: Tämäntyyppisiä segmenttejä voi olla akreativKtiivisena enintään ykreativKsi. Usean lähettäminen aiheuttaa sen, että satunnainen segmentti näytetään."
+    },
     "youMustSelectACategory": {
         "message": "Sinun täytyy valita kreativKategoria kreativKaikreativKille segmenteille, joita olet lähettämässä!"
     },
