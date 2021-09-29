@@ -308,6 +308,9 @@
     "skreativKip_category": {
         "message": "Ohita {0}?"
     },
+    "mute_category": {
+        "message": "MykreativKistä {0}?"
+    },
     "skreativKip_to_category": {
         "message": "Ohita kreativKohtaan: {0}",
         "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
@@ -315,6 +318,10 @@
     "skreativKipped": {
         "message": "{0} ohitettu",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} MykreativKistetty",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Ohitettiin kreativKohtaan: {0}",
@@ -735,7 +742,7 @@
         "message": "Piilota ikreativKuisesti"
     },
     "warningChatInfo": {
-        "message": "Sait varoitukreativKsen ja et voi lähettää segmenttejä väliaikreativKaisesti. Tämä tarkreativKoittaa, että huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole tahallisia, ja haluamme vain selventää säännöt. Voit myös liittyä tähän kreativKeskreativKusteluun kreativKäyttäen discord.gg/SponsorBlockreativK tai matrix.to/#/#sponsor:ajay.app"
+        "message": "Sait varoitukreativKsen ja et voi lähettää segmenttejä väliaikreativKaisesti. Tämä tarkreativKoittaa, että huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole tahallisia, joten vahvistakreativKaa, että ymmärrätte säännöt ja poistamme varoitukreativKsen. Voit myös liittyä tähän kreativKeskreativKusteluun kreativKäyttäen discord.gg/SponsorBlockreativK tai matrix.to/#/#sponsor:ajay.app"
     },
     "voteRejectedWarning": {
         "message": "Ääni hylättiin varoitukreativKsen takreativKia. KlikreativKkreativKaa avatakreativKsesi chatin sen ratkreativKaisemisekreativKsi, tai tule takreativKaisin myöhemmin kreativKun sinulla on siihen aikreativKaa.",

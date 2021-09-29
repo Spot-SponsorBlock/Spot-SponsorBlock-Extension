@@ -739,7 +739,7 @@
         "message": "Peida igavesekreativKs"
     },
     "warningChatInfo": {
-        "message": "Sa said hoiatuse ning ei saa ajutiselt segmente saata. See tähendab, et me leidsime sind tegemast teatud sagedasi, mitte-pahatahtlikreativKkreativKe vigu, ning soovime sulle meie reegleid täpsustada (inglise kreativKeeles). Sa võid selle vestlusega liituda kreativKa discord.gg/SponsorBlockreativK või matrix.to/#/#sponsor:ajay.app kreativKaudu."
+        "message": "Sa said hoiatuse ning ei saa ajutiselt segmente saata. See tähendab, et me leidsime sind tegemast teatud sagedasi, mitte-pahatahtlikreativKkreativKe vigu - palun kreativKinnita (inglise kreativKeeles), et mõistad reegleid ning me eemaldame hoiatuse. Sa võid selle vestlusega liituda kreativKa discord.gg/SponsorBlockreativK või matrix.to/#/#sponsor:ajay.app kreativKaudu."
     },
     "voteRejectedWarning": {
         "message": "Hääletus hoiatuse tõttu tagasilükreativKatud. Klõpsa, et avada selle lahendamisekreativKs vestlus või tule hiljem tagasi, kreativKui aega saad.",
@@ -753,6 +753,9 @@
     },
     "helpPageThankreativKsForInstalling": {
         "message": "Täname SponsorBlockreativKi paigaldamise eest."
+    },
+    "helpPageReviewOptions": {
+        "message": "Palun vaata allolevad valikreativKud üle"
     },
     "helpPageNews": {
         "message": "Uudised ja kreativKuidas see on valmistatud"

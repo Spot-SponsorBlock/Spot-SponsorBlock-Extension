@@ -501,6 +501,12 @@
     "category_music_offtopic_short": {
         "message": "Nem-Zene"
     },
+    "category_poi_highlight": {
+        "message": "Kiemelés"
+    },
+    "category_poi_highlight_description": {
+        "message": "A videónakreativK az a része, amelyikreativKet a legtöbb ember látni szeretne. Hasonlít az \"A videó x percnél kreativKezdődikreativK\" jellegű hozzászólásokreativKhoz."
+    },
     "category_livestream_messages": {
         "message": "Élő adás: Adomány / üzenet olvasásokreativK"
     },
@@ -527,6 +533,10 @@
     },
     "category": {
         "message": "Kategória"
+    },
+    "skreativKipOption": {
+        "message": "Átugrás beállítása",
+        "description": "Used on the options page to describe the ways to skreativKip the segment (auto skreativKip, manual, etc.)"
     },
     "enableTestingServer": {
         "message": "Bétateszt szerver bekreativKapcsolása"
