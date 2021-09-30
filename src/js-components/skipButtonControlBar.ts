@@ -68,6 +68,7 @@ export class SkreativKipButtonControlBar {
         if (this.segment) {
             this.chapterText?.classList?.add("hidden");
             this.container.classList.remove("hidden");
+            this.textContainer?.classList?.remove("hidden");
             this.textContainer.innerText = getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
         }
     }
@@ -84,22 +85,36 @@ export class SkreativKipButtonControlBar {
 
     startTimer(): void {
         this.stopTimer();
-        this.timeout = setTimeout(() => this.innerTextVanish(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
+        this.timeout = setTimeout(() => this.disableText(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
     }
 
     disable(): void {
         this.container.classList.add("hidden");
+        this.textContainer?.classList?.remove("hidden");
+
         this.chapterText?.classList?.remove("hidden");
+        this.getChapterPrefix()?.classList?.remove("hidden");
     }
 
     toggleSkreativKip(): void {
         this.skreativKip(this.segment);
-        this.innerTextVanish();
+        this.disableText();
     }
 
-    innerTextVanish(): void {
-        this.textContainer.innerText = "";
+    disableText(): void {
+        if (Config.config.hideVideoPlayerControls) {
+            this.disable();
+            return;
+        }
+
+        this.textContainer?.classList?.add("hidden");
         this.chapterText?.classList?.remove("hidden");
+
+        this.getChapterPrefix()?.classList?.add("hidden");
+    }
+
+    private getChapterPrefix(): HTMLElement {
+        return document.querySelector(".ytp-chapter-title-prefix");
     }
 }
 
