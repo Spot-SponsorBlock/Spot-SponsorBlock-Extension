@@ -2,6 +2,8 @@ import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 
+import Utils from "../utils";
+const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
@@ -53,13 +55,20 @@ export class SkreativKipButtonControlBar {
     
         if (leftControlsContainer && !leftControlsContainer.contains(this.container)) {
             leftControlsContainer.insertBefore(this.container, this.chapterText);
+
+            if (Config.config.autoHideInfoButton) {
+                utils.setupAutoHideAnimation(this.skreativKipIcon, leftControlsContainer, false, false);
+            }
         }
     }
 
     enable(segment: SponsorTime, duration?: number): void {
         if (duration) this.duration = duration;
         this.segment = segment;
+
         this.refreshText();
+        this.textContainer?.classList?.remove("hidden");
+        utils.disableAutoHideAnimation(this.skreativKipIcon);
 
         this.startTimer();
     }
@@ -68,7 +77,8 @@ export class SkreativKipButtonControlBar {
         if (this.segment) {
             this.chapterText?.classList?.add("hidden");
             this.container.classList.remove("hidden");
-            this.textContainer.innerText = getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
+            this.textContainer.innerText = this.getTitle();
+            this.skreativKipIcon.setAttribute("title", this.getTitle());
         }
     }
 
@@ -84,17 +94,42 @@ export class SkreativKipButtonControlBar {
 
     startTimer(): void {
         this.stopTimer();
-        this.timeout = setTimeout(() => this.disable(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
+        this.timeout = setTimeout(() => this.disableText(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
     }
 
     disable(): void {
         this.container.classList.add("hidden");
+        this.textContainer?.classList?.remove("hidden");
+
         this.chapterText?.classList?.remove("hidden");
+        this.getChapterPrefix()?.classList?.remove("hidden");
     }
 
     toggleSkreativKip(): void {
         this.skreativKip(this.segment);
-        this.disable();
+        this.disableText();
+    }
+
+    disableText(): void {
+        if (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls) {
+            this.disable();
+            return;
+        }
+
+        this.textContainer?.classList?.add("hidden");
+        this.chapterText?.classList?.remove("hidden");
+
+        this.getChapterPrefix()?.classList?.add("hidden");
+
+        utils.enableAutoHideAnimation(this.skreativKipIcon);
+    }
+
+    private getTitle(): string {
+        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
+    }
+
+    private getChapterPrefix(): HTMLElement {
+        return document.querySelector(".ytp-chapter-title-prefix");
     }
 }
 
