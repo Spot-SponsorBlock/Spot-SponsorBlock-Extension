@@ -77,7 +77,8 @@ export class SkreativKipButtonControlBar {
             this.chapterText?.classList?.add("hidden");
             this.container.classList.remove("hidden");
             this.textContainer?.classList?.remove("hidden");
-            this.textContainer.innerText = getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
+            this.textContainer.innerText = this.getTitle();
+            this.skreativKipIcon.setAttribute("title", this.getTitle());
         }
     }
 
@@ -121,6 +122,10 @@ export class SkreativKipButtonControlBar {
         this.getChapterPrefix()?.classList?.add("hidden");
 
         utils.enableAutoHideAnimation(this.skreativKipIcon);
+    }
+
+    private getTitle(): string {
+        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
     }
 
     private getChapterPrefix(): HTMLElement {
