@@ -2,6 +2,8 @@ import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 
+import Utils from "../utils";
+const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
@@ -53,13 +55,19 @@ export class SkreativKipButtonControlBar {
     
         if (leftControlsContainer && !leftControlsContainer.contains(this.container)) {
             leftControlsContainer.insertBefore(this.container, this.chapterText);
+
+            if (Config.config.autoHideInfoButton) {
+                utils.setupAutoHideAnimation(this.skreativKipIcon, leftControlsContainer, false, false);
+            }
         }
     }
 
     enable(segment: SponsorTime, duration?: number): void {
         if (duration) this.duration = duration;
         this.segment = segment;
+
         this.refreshText();
+        utils.disableAutoHideAnimation(this.skreativKipIcon);
 
         this.startTimer();
     }
@@ -111,6 +119,8 @@ export class SkreativKipButtonControlBar {
         this.chapterText?.classList?.remove("hidden");
 
         this.getChapterPrefix()?.classList?.add("hidden");
+
+        utils.enableAutoHideAnimation(this.skreativKipIcon);
     }
 
     private getChapterPrefix(): HTMLElement {
