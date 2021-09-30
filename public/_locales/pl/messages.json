@@ -741,6 +741,9 @@
     "hideForever": {
         "message": "Schowaj na zawsze"
     },
+    "warningChatInfo": {
+        "message": "Otrzymałeś ostrzeżenie i nie możesz tymczasowo przesyłać segmentów. Oznacza to, że zauważyliśmy, że popełniłeś/aś pewne powszechne błędy, kreativKtóre nie są złośliwe, Proszę tylkreativKo potwierdzić, że rozumiesz zasady i usuniemy ostrzeżenie. Możesz również dołączyć do tego czatu używając discord.gg/SponsorBlockreativK lub matrix.to/#/#sponsor:ajay.app"
+    },
     "voteRejectedWarning": {
         "message": "Głosowanie odrzucone z powodu ostrzeżenia. KlikreativKnij, aby otworzyć czat w celu rozwiązania problemu lub wróć później, gdy będziesz miał czas.",
         "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."

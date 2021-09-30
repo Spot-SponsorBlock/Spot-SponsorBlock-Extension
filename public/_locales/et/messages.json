@@ -656,6 +656,9 @@
         "message": "Kategooriaga \"{0}\" segmentide saatmisekreativKs pead selle enne valikreativKutes lubama. Sind suunatakreativKse nüüd valikreativKutesse.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Hoiatus: Seda tüüpi segmenti saab kreativKorraga akreativKtiivne olla vaid ükreativKs. Mitme saatmine põhjustab suvalise segmendi kreativKuvamise."
+    },
     "youMustSelectACategory": {
         "message": "Sa pead enne saatmist igale segmendile kreativKategooria valima!"
     },
