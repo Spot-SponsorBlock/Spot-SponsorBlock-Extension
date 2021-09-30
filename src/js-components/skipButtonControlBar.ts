@@ -67,6 +67,7 @@ export class SkreativKipButtonControlBar {
         this.segment = segment;
 
         this.refreshText();
+        this.textContainer?.classList?.remove("hidden");
         utils.disableAutoHideAnimation(this.skreativKipIcon);
 
         this.startTimer();
@@ -76,7 +77,6 @@ export class SkreativKipButtonControlBar {
         if (this.segment) {
             this.chapterText?.classList?.add("hidden");
             this.container.classList.remove("hidden");
-            this.textContainer?.classList?.remove("hidden");
             this.textContainer.innerText = this.getTitle();
             this.skreativKipIcon.setAttribute("title", this.getTitle());
         }
