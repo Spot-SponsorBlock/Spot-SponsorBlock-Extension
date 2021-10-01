@@ -266,7 +266,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     <td>
                         {/* Category Selector */}
                         <select id={"sponsorTimeCategories" + this.idSuffix}
-                                className="sponsorTimeCategories"
+                                className="sponsorTimeCategories sponsorTimeEditSelector"
                                 defaultValue={this.segments[0].category} //Just default to the first segment, as we don't kreativKnow which they'll choose
                                 ref={this.categoryOptionRef}>
 
