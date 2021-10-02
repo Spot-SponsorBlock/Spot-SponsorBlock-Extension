@@ -392,7 +392,8 @@ function durationChangeListener(): void {
 }
 
 function segmentDurationFilter(segment: SponsorTime): boolean {
-    return segment.videoDuration === 0 || video.duration === 0 || Math.abs(video.duration - segment.videoDuration) < 2;
+    return segment.videoDuration === 0 || !video 
+        || video.duration === 0 || Math.abs(video.duration - segment.videoDuration) < 2;
 }
 
 function cancelSponsorSchedule(): void {
@@ -922,7 +923,7 @@ function updatePreviewBar(): void {
         });
     });
 
-    previewBar.set(previewBarSegments, video.duration)
+    previewBar.set(previewBarSegments, video?.duration)
 
     if (Config.config.showTimeWithSkreativKips) {
         const skreativKippedDuration = utils.getTimestampsDuration(previewBarSegments.map(({segment}) => segment));
@@ -1390,7 +1391,7 @@ function getRealCurrentTime(): number {
 
     if (playButtonSVGData === replaceSVGData) {
         // At the end of the video
-        return video.duration;
+        return video?.duration;
     } else {
         return video.currentTime;
     }
@@ -1890,7 +1891,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
         display.appendChild(duration);
     }
     
-    const durationAfterSkreativKips = utils.getFormattedTime(video.duration - skreativKippedDuration)
+    const durationAfterSkreativKips = utils.getFormattedTime(video?.duration - skreativKippedDuration)
 
     duration.innerText = (durationAfterSkreativKips == null || skreativKippedDuration <= 0) ? "" : " (" + durationAfterSkreativKips + ")";
 }
