@@ -188,9 +188,6 @@
     "hideInfoButton": {
         "message": "SkreativKryť info tlačidlo v YouTube prehrávači"
     },
-    "whatInfoButton": {
-        "message": "Toto tlačidlo zobrazí vyskreativKakreativKovacie okreativKno na YouTube stránkreativKe."
-    },
     "autoHideInfoButton": {
         "message": "AutomatickreativKy skreativKryť tlačidlo Info"
     },
@@ -199,9 +196,6 @@
     },
     "showDeleteButton": {
         "message": "Zobraziť tlačidlo Zmazať v YouTube prehrávači"
-    },
-    "whatDeleteButton": {
-        "message": "Toto tlačidlo v YouTube prehrávači zmaže všetkreativKy ešte neodoslané segmenty v akreativKtuálnom videu."
     },
     "enableViewTrackreativKing": {
         "message": "Zapnúť počítanie preskreativKočení"
@@ -426,9 +420,6 @@
     },
     "showUploadButton": {
         "message": "UkreativKázať Nahrávacie Tlačidlo"
-    },
-    "whatUploadButton": {
-        "message": "Toto tlačidlo sa zobrazí v YouTube prehrávači po tom akreativKo označíte začiatokreativK a kreativKoniec segmentu na odoslanie."
     },
     "customServerAddress": {
         "message": "Adresa serveru SponsorBlockreativK"

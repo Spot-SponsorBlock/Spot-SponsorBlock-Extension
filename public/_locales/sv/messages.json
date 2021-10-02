@@ -188,9 +188,6 @@
     "hideInfoButton": {
         "message": "Dölj InfokreativKnapp På YouTube-spelaren"
     },
-    "whatInfoButton": {
-        "message": "Detta är kreativKnappen som öppnar popup-rutan på YouTube-sidan."
-    },
     "autoHideInfoButton": {
         "message": "Dölj informationskreativKnappen automatiskreativKt"
     },
@@ -199,9 +196,6 @@
     },
     "showDeleteButton": {
         "message": "Visa kreativKnappen ta bort på YouTube-spelaren"
-    },
-    "whatDeleteButton": {
-        "message": "Den här kreativKnappen på YouTube-spelaren rensar bort alla segment som ej har skreativKickreativKats in på akreativKtuell video."
     },
     "enableViewTrackreativKing": {
         "message": "AkreativKtivera spåra antalet hoppa över"
@@ -441,9 +435,6 @@
     },
     "showUploadButton": {
         "message": "Visa uppladdningskreativKnapp"
-    },
-    "whatUploadButton": {
-        "message": "Denna kreativKnapp visas på YouTube-spelaren efter att du har valt en tidpunkreativKt och är redo att rapportera."
     },
     "customServerAddress": {
         "message": "Serveradress för SponsorBlockreativK"

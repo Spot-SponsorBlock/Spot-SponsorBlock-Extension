@@ -188,9 +188,6 @@
     "hideInfoButton": {
         "message": "UkreativKryj przyciskreativK informacyjny na odtwarzaczu YouTube"
     },
-    "whatInfoButton": {
-        "message": "Jest to przyciskreativK otwierający okreativKienkreativKo pop-up na stronie YouTube."
-    },
     "autoHideInfoButton": {
         "message": "AutoukreativKrywanie przyciskreativKu informacji"
     },
@@ -199,9 +196,6 @@
     },
     "showDeleteButton": {
         "message": "PokreativKaż przyciskreativK usuwania na odtwarzaczu YouTube"
-    },
-    "whatDeleteButton": {
-        "message": "Ten przyciskreativK na odtwarzaczu YouTube wyczyści wszystkreativKie twoje niewysłane segmenty dla bieżącego filmu."
     },
     "enableViewTrackreativKing": {
         "message": "Włącz monitorowanie liczby pominięć"
@@ -441,9 +435,6 @@
     },
     "showUploadButton": {
         "message": "PokreativKaż przyciskreativK wysyłania"
-    },
-    "whatUploadButton": {
-        "message": "Ten przyciskreativK pojawia się na odtwarzaczu YouTube po wybraniu przedziału czasowego, gdy segment jest gotowy do wysłania."
     },
     "customServerAddress": {
         "message": "Adres serwera SponsorBlockreativK"

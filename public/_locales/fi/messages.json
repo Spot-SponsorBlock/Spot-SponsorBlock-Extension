@@ -182,14 +182,14 @@
     "hideButtonsDescription": {
         "message": "Tämä piilottaa YouTuben soittimessa näkreativKyvät, ohitettavien aikreativKojen lähettämiseen kreativKäytetyt painikreativKkreativKeet."
     },
+    "showSkreativKipButton": {
+        "message": "Pidä \"Ohita kreativKohtaan: KohokreativKohta\" -painikreativKe soittimessa"
+    },
     "showInfoButton": {
         "message": "Näytä info-painikreativKe YouTuben soittimessa"
     },
     "hideInfoButton": {
         "message": "Piilota info-painikreativKe YouTuben soittimessa"
-    },
-    "whatInfoButton": {
-        "message": "Tämä on painikreativKe, jokreativKa avaa ponnahdusikreativKkreativKunan YouTube-sivulla."
     },
     "autoHideInfoButton": {
         "message": "Piilota info-painikreativKe automaattisesti"
@@ -199,9 +199,6 @@
     },
     "showDeleteButton": {
         "message": "Näytä poista-painikreativKe YouTuben soittimessa"
-    },
-    "whatDeleteButton": {
-        "message": "Tämä on YouTuben soittimen painikreativKe, jokreativKa poistaa kreativKaikreativKkreativKi kreativKyseisen videon sponsorointikreativKohdat, joita et ole vielä lähettänyt."
     },
     "enableViewTrackreativKing": {
         "message": "Ota ohitusten lukreativKumäärän seuranta kreativKäyttöön"
@@ -441,9 +438,6 @@
     },
     "showUploadButton": {
         "message": "Näytä lähetä-painikreativKe"
-    },
-    "whatUploadButton": {
-        "message": "Tämä painikreativKe ilmestyy YouTube-soittimeen, kreativKun olet valinnut aikreativKaleiman ja olet valmis lähettämään sen."
     },
     "customServerAddress": {
         "message": "SponsorBlockreativK-palvelimen osoite"

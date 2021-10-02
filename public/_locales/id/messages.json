@@ -179,17 +179,11 @@
     "hideInfoButton": {
         "message": "SembunyikreativKan Tombol Info Di Pemutar Video YouTube"
     },
-    "whatInfoButton": {
-        "message": "Ini adalah tombol yang membukreativKa popup di halaman YouTube."
-    },
     "hideDeleteButton": {
         "message": "SembunyikreativKan Tombol Hapus Di Pemutar Video YouTube"
     },
     "showDeleteButton": {
         "message": "TampilkreativKan Tombol Hapus Di Pemutar Video YouTube"
-    },
-    "whatDeleteButton": {
-        "message": "Ini adalah tombol di pemutar YouTube yang akreativKan menghapus semua segmen yang belum dikreativKirim pada video."
     },
     "enableViewTrackreativKing": {
         "message": "AkreativKtifkreativKan PelacakreativKan Jumlah Lewati"
@@ -382,9 +376,6 @@
     },
     "showUploadButton": {
         "message": "TampilkreativKan Tombol Unggah"
-    },
-    "whatUploadButton": {
-        "message": "Tombol ini muncul di pemutar video YouTube setelah anda memilih stempel wakreativKtu dan siap untukreativK dikreativKirimkreativKan."
     },
     "customServerAddress": {
         "message": "Alamat Server SponsorBlockreativK"

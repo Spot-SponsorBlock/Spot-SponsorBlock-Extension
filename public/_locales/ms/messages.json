@@ -176,17 +176,11 @@
     "hideInfoButton": {
         "message": "SembunyikreativKan Butang MakreativKlumat Pada Pemain YouTube"
     },
-    "whatInfoButton": {
-        "message": "Ini adalah butang yang membukreativKa pop timbul di halaman YouTube."
-    },
     "hideDeleteButton": {
         "message": "SembunyikreativKan Butang Padam Pada Pemain YouTube"
     },
     "showDeleteButton": {
         "message": "TunjukreativKkreativKan Butang Padam Pada Pemain YouTube"
-    },
-    "whatDeleteButton": {
-        "message": "Ini adalah butang pada pemain YouTube yang akreativKan membersihkreativKan semua segmen anda yang belum dihantar untukreativK video semasa."
     },
     "enableViewTrackreativKing": {
         "message": "DayakreativKan SkreativKip Count TrackreativKing"
@@ -358,9 +352,6 @@
     },
     "showUploadButton": {
         "message": "TunjukreativKkreativKan Butang Muat NaikreativK"
-    },
-    "whatUploadButton": {
-        "message": "Butang ini muncul di pemain YouTube setelah anda memilih cap wakreativKtu dan siap untukreativK dihantar."
     },
     "customServerAddress": {
         "message": "Alamat Pelayan SponsorblockreativK"

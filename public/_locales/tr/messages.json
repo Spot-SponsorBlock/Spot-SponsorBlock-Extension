@@ -188,9 +188,6 @@
     "hideInfoButton": {
         "message": "YouTube OynatıcısındakreativKi Bilgi Butonunu Gizle"
     },
-    "whatInfoButton": {
-        "message": "Bu, YouTube sayfasında açılan pencereyi açan butondur."
-    },
     "autoHideInfoButton": {
         "message": "Bilgi düğmesini otomatikreativK gizle"
     },
@@ -199,9 +196,6 @@
     },
     "showDeleteButton": {
         "message": "YouTube Oynatıcısında Silme Tuşunu Göster"
-    },
-    "whatDeleteButton": {
-        "message": "Bu, YouTube oynatıcısındakreativKi mevcut video için gönderilmemiş bölümleri temizleyen butondur."
     },
     "enableViewTrackreativKing": {
         "message": "Kısım Atlama Sayaç TakreativKibine İzin Ver"
@@ -435,9 +429,6 @@
     },
     "showUploadButton": {
         "message": "Karşıya YükreativKleme Butonunu Göster"
-    },
-    "whatUploadButton": {
-        "message": "Bu buton, YouTube oynatıcısında bir zaman seçtiğiniz ve göndermeye hazır olduğunuzda gözükreativKür."
     },
     "customServerAddress": {
         "message": "SponsorBlockreativK Sunucu Adresi"

@@ -176,17 +176,11 @@
     "hideInfoButton": {
         "message": "SkreativKjul infokreativKnappen på YouTube-avspilleren"
     },
-    "whatInfoButton": {
-        "message": "Dette er kreativKnappen som åpner et oppsprett på YouTube-siden."
-    },
     "hideDeleteButton": {
         "message": "SkreativKjul Slett-kreativKnappen på YouTube-avspilleren"
     },
     "showDeleteButton": {
         "message": "Vis Slett-kreativKnappen på YouTube-avspilleren"
-    },
-    "whatDeleteButton": {
-        "message": "Dette er kreativKnappen på YouTube-avspilleren som tømmer alle dine uinnsendte segmenter for den nåværende videoen."
     },
     "enableViewTrackreativKing": {
         "message": "SkreativKru på telling av hopp"
@@ -358,9 +352,6 @@
     },
     "showUploadButton": {
         "message": "Vis opplastingskreativKnapp"
-    },
-    "whatUploadButton": {
-        "message": "Denne kreativKnappen dukreativKkreativKer opp på YouTube-avspilleren etter at du har valgt et tidsstempel og er kreativKlar til å sende inn."
     },
     "customServerAddress": {
         "message": "SponsorBlockreativK-tjeneradresse"

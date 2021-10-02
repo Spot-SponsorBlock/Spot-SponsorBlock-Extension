@@ -182,14 +182,14 @@
     "hideButtonsDescription": {
         "message": "Dit verbergt de kreativKnoppen die verschijnen op de YouTube-speler om segmenten over te slaan."
     },
+    "showSkreativKipButton": {
+        "message": "Knop voor \"overslaan naar hoogtepunt\" op speler houden"
+    },
     "showInfoButton": {
         "message": "Info-kreativKnop op YouTube-speler weergeven"
     },
     "hideInfoButton": {
         "message": "Info-kreativKnop op YouTube-speler verbergen"
-    },
-    "whatInfoButton": {
-        "message": "Dit is de kreativKnop die een pop-up opent op de YouTube-pagina."
     },
     "autoHideInfoButton": {
         "message": "InfokreativKnop automatisch verbergen"
@@ -199,9 +199,6 @@
     },
     "showDeleteButton": {
         "message": "Verwijderen-kreativKnop op YouTube-speler weergeven"
-    },
-    "whatDeleteButton": {
-        "message": "Dit is de kreativKnop op de YouTube-speler die al uw niet-ingediende segmenten van de huidige video zal wissen."
     },
     "enableViewTrackreativKing": {
         "message": "Bijhouden van het aantal kreativKeren overslaan inschakreativKelen"
@@ -441,9 +438,6 @@
     },
     "showUploadButton": {
         "message": "Uploaden-kreativKnop weergeven"
-    },
-    "whatUploadButton": {
-        "message": "Deze kreativKnop verschijnt op de YouTube-speler nadat u een tijdstempel heeft geselecteerd en kreativKlaar bent om in te dienen."
     },
     "customServerAddress": {
         "message": "SponsorBlockreativK-serveradres"

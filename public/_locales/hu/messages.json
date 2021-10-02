@@ -182,9 +182,6 @@
     "hideInfoButton": {
         "message": "Info gomb elrejtése a YouTube lejátszón"
     },
-    "whatInfoButton": {
-        "message": "Ez a gomb felhoz egy felugró dobozt a YouTube oldalon."
-    },
     "autoHideInfoButton": {
         "message": "AutomatikreativKus elrejtése az Információ GombnakreativK"
     },
@@ -193,9 +190,6 @@
     },
     "showDeleteButton": {
         "message": "Törlés gomb mutatása a YouTube lejátszón"
-    },
-    "whatDeleteButton": {
-        "message": "Ez egy gomb a lejátszón, ami törli az összes bekreativKüldetlen szegmensét a jelenlegi videón."
     },
     "enableViewTrackreativKing": {
         "message": "Átugrás-számláló kreativKövetés bekreativKapcsolása"
@@ -370,9 +364,6 @@
     },
     "showUploadButton": {
         "message": "Feltöltés gomb megjelenítése"
-    },
-    "whatUploadButton": {
-        "message": "Ez a gomb a YouTube lejátszón jelenikreativK meg, miután kreativKiválasztott egy időtartamot és kreativKészen áll a bekreativKüldésre."
     },
     "customServerAddress": {
         "message": "SponsorBlockreativK szerver címe"

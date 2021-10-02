@@ -182,14 +182,14 @@
     "hideButtonsDescription": {
         "message": "SkreativKryje tlačítkreativKa, kreativKterá se zobrazí v YouTube přehrávači pro přeskreativKočení segmentů."
     },
+    "showSkreativKipButton": {
+        "message": "Nechat tlačítkreativKo přeskreativKočení na zvýraznění v přehrávači"
+    },
     "showInfoButton": {
         "message": "Zobrazit informační tlačítkreativKo v YouTube přehrávači"
     },
     "hideInfoButton": {
         "message": "SkreativKrýt informační tlačítkreativKo v YouTube přehrávači"
-    },
-    "whatInfoButton": {
-        "message": "Toto je tlačítkreativKo, kreativKteré otevře vyskreativKakreativKovací nabídkreativKu na YouTube stránce."
     },
     "autoHideInfoButton": {
         "message": "AutomatickreativKy skreativKrýt informační tlačítkreativKo"
@@ -199,9 +199,6 @@
     },
     "showDeleteButton": {
         "message": "Zobrazit tlačítkreativKo Odstranit v YouTube přehrávači"
-    },
-    "whatDeleteButton": {
-        "message": "Toto je tlačítkreativKo v YouTube přehrávači, kreativKteré odebere všechny vaše neodeslané segmenty v současném videu."
     },
     "enableViewTrackreativKing": {
         "message": "Povolit počítadlo přeskreativKočení"
@@ -441,9 +438,6 @@
     },
     "showUploadButton": {
         "message": "Zobrazit tlačítkreativKo Nahrát"
-    },
-    "whatUploadButton": {
-        "message": "Toto tlačítkreativKo se objeví v YouTube přehrávači po vybrání časového razítkreativKa a po připravení kreativK odeslání."
     },
     "customServerAddress": {
         "message": "Adresa serveru SponsorBlockreativK"
