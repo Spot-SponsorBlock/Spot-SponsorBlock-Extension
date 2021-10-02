@@ -274,8 +274,8 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
         if (countdownTime == 3) {
             //start fade out animation
             const notice = document.getElementById("sponsorSkreativKipNotice" + this.idSuffix);
-            notice.style.removeProperty("animation");
-            notice.classList.add("sponsorSkreativKipNoticeFadeOut");
+            notice?.style.removeProperty("animation");
+            notice?.classList.add("sponsorSkreativKipNoticeFadeOut");
         }
 
         this.setState({
