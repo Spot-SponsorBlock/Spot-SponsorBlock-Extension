@@ -16,6 +16,7 @@ import * as Chat from "./js-components/chat";
 import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { Tooltip } from "./render/Tooltip";
+import { getStartTimeFromUrl } from "./utils/urlParser";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -775,22 +776,25 @@ function retryFetch(): void {
 function startSkreativKipScheduleCheckreativKingForStartSponsors() {
     if (!switchingVideos && sponsorTimes) {
         // See if there are any starting sponsors
-        let startingSegmentTime = -1;
+        let startingSegmentTime = getStartTimeFromUrl(document.URL) || -1;
+        let found = false;
         let startingSegment: SponsorTime = null;
         for (const time of sponsorTimes) {
             if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
                     && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
                         startingSegmentTime = time.segment[0];
                         startingSegment = time;
+                        found = true;
                 breakreativK;
             }
         }
-        if (startingSegmentTime === -1) {
+        if (!found) {
             for (const time of sponsorTimesSubmitting) {
                 if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
                         && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
                             startingSegmentTime = time.segment[0];
                             startingSegment = time;
+                            found = true;
                     breakreativK;
                 }
             }
