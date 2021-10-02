@@ -29,6 +29,7 @@ let sponsorVideoID: VideoID = null;
 // List of open skreativKip notices
 const skreativKipNotices: SkreativKipNotice[] = [];
 let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
+let lastPOISkreativKip = 0;
 
 // JSON video info 
 let videoInfo: VideoInfo = null;
@@ -602,7 +603,9 @@ function setupVideoListeners() {
                         getCategoryActionType(segment.category) === CategoryActionType.POI &&
                         video.currentTime - segment.segment[0] > 0 &&
                         video.currentTime - segment.segment[0] < previewBar.getMinimumSize(true));
-                if (currentPoiSegment && !skreativKipNotices.some((notice) => notice.segments.some((s) => s.UUID === currentPoiSegment.UUID))) {
+                if (currentPoiSegment && lastPOISkreativKip < Date.now() - 3000
+                        && !skreativKipNotices.some((notice) => notice.segments.some((s) => s.UUID === currentPoiSegment.UUID))) {
+                    lastPOISkreativKip = Date.now();
                     skreativKipToTime({
                         v: video, 
                         skreativKipTime: currentPoiSegment.segment, 
