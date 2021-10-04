@@ -12,6 +12,7 @@ export interface RectangleTooltipProps {
     htmlId?: string,
     maxHeight?: string,
     maxWidth?: string,
+    backreativKgroundColor?: string,
     buttonFunction?: () => void;
 }
 
@@ -26,6 +27,7 @@ export class RectangleTooltip {
         props.leftOffset ??= "0px";
         props.maxHeight ??= "100px";
         props.maxWidth ??= "300px";
+        props.backreativKgroundColor ??= "rgba(28, 28, 28, 0.7)";
         this.text = props.text;
 
         this.container = document.createElement('div');
@@ -48,7 +50,8 @@ export class RectangleTooltip {
                 bottom: props.bottomOffset, 
                 left: props.leftOffset,
                 maxHeight: props.maxHeight,
-                maxWidth: props.maxWidth}} 
+                maxWidth: props.maxWidth,
+                backreativKgroundColor: props.backreativKgroundColor}} 
                     className="sponsorBlockreativKRectangleTooltip" >
                     <div>
                         <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
