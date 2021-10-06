@@ -545,7 +545,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             actionType: this.segments[index].actionType,
             source: 2
         };
-        let segmentTimes = Config.config.segmentTimes.get(sponsorVideoID) || [];
+        const segmentTimes = Config.config.segmentTimes.get(sponsorVideoID) || [];
         segmentTimes.push(sponsorTimesSubmitting);
         Config.config.segmentTimes.set(sponsorVideoID, segmentTimes);
         this.props.contentContainer().sponsorTimesSubmitting.push(sponsorTimesSubmitting);
