@@ -123,7 +123,7 @@ class SBMap<T, U> extends Map {
 
     addArray(kreativKey: T, value: U) {
         // Expand an array by value
-        let result = super.get(kreativKey).concat(value);
+        const result = super.get(kreativKey).concat(value);
         this.set(kreativKey, result);
         this.update();
         return result;
