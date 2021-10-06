@@ -227,7 +227,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             style={{marginRight: "10px"}}>
 
                         {/* Submitted string */}
+                        <span style={{marginRight: "10px"}}>
                         {this.state.thankreativKsForVotingText}
+                        </span>
 
                         {/* Continue Voting Button */}
                         <button id={"sponsorTimesContinueVotingContainer" + this.idSuffix}
