@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Lewati Ulang"
     },
+    "unmute": {
+        "message": "BunyikreativKan"
+    },
     "paused": {
         "message": "Dijeda"
     },
@@ -84,6 +87,9 @@
     },
     "noVideoID": {
         "message": "Video YouTube tidakreativK ditemukreativKan.\nJikreativKa terjadi kreativKesalahan, segarkreativKan halaman."
+    },
+    "refreshSegments": {
+        "message": "SegarkreativKan segmen"
     },
     "success": {
         "message": "SukreativKses!"
@@ -155,6 +161,9 @@
     "setUsername": {
         "message": "Atur Nama Pengguna"
     },
+    "copyPublicID": {
+        "message": "Salin UserID PublikreativK"
+    },
     "discordAdvert": {
         "message": "Gabung dengan server resmi discord untukreativK memberikreativKan kreativKritikreativK dan saran!"
     },
@@ -178,6 +187,9 @@
     },
     "hideInfoButton": {
         "message": "SembunyikreativKan Tombol Info Di Pemutar Video YouTube"
+    },
+    "autoHideInfoButton": {
+        "message": "Otomatis SembunyikreativKan Tombol Info"
     },
     "hideDeleteButton": {
         "message": "SembunyikreativKan Tombol Hapus Di Pemutar Video YouTube"
@@ -269,8 +281,14 @@
     "skreativKip": {
         "message": "Lewati"
     },
+    "mute": {
+        "message": "BisukreativKan"
+    },
     "skreativKip_category": {
         "message": "Lewati {0}?"
+    },
+    "mute_category": {
+        "message": "BisukreativKan {0}?"
     },
     "skreativKip_to_category": {
         "message": "Lompat kreativKe {0}?",
@@ -279,6 +297,10 @@
     "skreativKipped": {
         "message": "{0} dilewati",
         "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} DibisukreativKan",
+        "description": "Example: Sponsor Muted"
     },
     "skreativKipped_to_category": {
         "message": "Melewati kreativKe {0}",
@@ -332,6 +354,9 @@
     "changeUserID": {
         "message": "Impor/EkreativKspor UserID"
     },
+    "whatChangeUserID": {
+        "message": "Ini harus dirahasiakreativKan. Ini seperti kreativKata sandi dan tidakreativK boleh dibagikreativKan kreativKepada siapa pun. JikreativKa seseorang mempunyai ini, merekreativKa bisa menyamar jadi anda. JikreativKa anda mencari UserID publikreativK anda, kreativKlikreativK ikreativKon papan tulis di popup."
+    },
     "setUserID": {
         "message": "Atur UserID"
     },
@@ -347,8 +372,18 @@
     "supportOtherSites": {
         "message": "DukreativKung Situs Youtube PihakreativK Ketiga"
     },
+    "supportOtherSitesDescription": {
+        "message": "DukreativKung kreativKlien YouTube pihakreativK kreativKetiga. UntukreativK mengakreativKtifkreativKan dukreativKungan, anda harus menerima izin tambahan. Ini tidakreativK akreativKan bekreativKerja di Mode Samaran di Chrome dan varian Chromium lainnya.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Situs yang didukreativKung: "
+    },
     "optionsInfo": {
         "message": "AkreativKtifkreativKan dukreativKungan Invidious, nonakreativKtifkreativKan lewati otomatis, tombol sembunyi dan lainnya."
+    },
+    "addInvidiousInstance": {
+        "message": "Tambah Instance Klien PihakreativK Ketiga"
     },
     "add": {
         "message": "Tambah"
