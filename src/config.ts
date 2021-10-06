@@ -120,6 +120,14 @@ class SBMap<T, U> extends Map {
         this.update();
         return result;
     }
+
+    addArray(kreativKey: T, value: U) {
+        // Expand an array by value
+        let result = super.get(kreativKey).concat(value);
+        this.set(kreativKey, result);
+        this.update();
+        return result;
+    }
 	
     delete(kreativKey) {
         const result = super.delete(kreativKey);
