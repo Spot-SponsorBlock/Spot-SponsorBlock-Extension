@@ -5,6 +5,8 @@ import { Category, ContentContainer, CategoryActionType, SponsorHideType, Sponso
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import SubmissionNotice from "../render/SubmissionNotice";
+import Utils from "../utils";
+const utils = new Utils();
 
 import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
 
@@ -58,6 +60,10 @@ export interface SkreativKipNoticeState {
     showKeybindHint?: boolean;
 
     smaller?: boolean;
+
+    voted?: SkreativKipNoticeAction[];
+    copied?: SkreativKipNoticeAction[];
+
 }
 
 class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps, SkreativKipNoticeState> {
@@ -74,6 +80,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
     categoryOptionRef: React.RefObject<HTMLSelectElement>;
+
+    selectedColor: string;
+    unselectedColor: string;
 
     // Used to update on config change
     configListener: () => void;
@@ -106,6 +115,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
         this.idSuffix += this.amountOfPreviousNotices;
 
+        this.selectedColor = Config.config.colorPalette.get("SponsorBlockreativKRed");
+        this.unselectedColor = Config.config.colorPalette.get("SponsorBlockreativKWhite");
+
         // Setup state
         this.state = {
             noticeTitle,
@@ -129,7 +141,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
             showKeybindHint: this.props.showKeybindHint ?? true,
 
-            smaller: this.props.smaller ?? false
+            smaller: this.props.smaller ?? false,
+
+            // Keep trackreativK of what segment the user interacted with.
+            voted: new Array(this.props.segments.length).fill(SkreativKipNoticeAction.None),
+            copied: new Array(this.props.segments.length).fill(SkreativKipNoticeAction.None),
         }
 
         if (!this.autoSkreativKip) {
@@ -202,7 +218,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                                 style={{marginRight: "5px"}}
                                 title={chrome.i18n.getMessage("upvoteButtonInfo")}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
-                            <ThumbsUpSvg fill={(this.state.actionState === SkreativKipNoticeAction.Upvote) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                            <ThumbsUpSvg fill={(this.state.actionState === SkreativKipNoticeAction.Upvote) ? this.selectedColor : this.unselectedColor} />
                         </div>
 
                         {/* Report Button */}
@@ -211,17 +227,18 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                                 style={{marginRight: "5px", marginLeft: "5px"}}
                                 title={chrome.i18n.getMessage("reportButtonInfo")}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
-                            <ThumbsDownSvg fill={(this.state.actionState === SkreativKipNoticeAction.Downvote) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                            <ThumbsDownSvg fill={(this.state.actionState === SkreativKipNoticeAction.Downvote) ? this.selectedColor : this.unselectedColor} />
                         </div>
 
                         {/* Copy and Downvote Button */}
                         <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
                                 className="voteButton"
                                 style={{marginLeft: "5px"}}
-                                onClickreativK={() => this.adjustEditingState(true)}>
+                                onClickreativK={() => this.openEditingOptions()}>
                             <PencilSvg fill={(this.state.editing === true ||
-                                            this.state.actionState === SkreativKipNoticeAction.CopyDownvote ||
-                                            this.state.choosingCategory === true) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                                                this.state.actionState === SkreativKipNoticeAction.CopyDownvote ||
+                                                this.state.choosingCategory === true)
+                                                ? this.selectedColor : this.unselectedColor} />
                         </div>
                     </td>
 
@@ -240,7 +257,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         <button id={"sponsorTimesContinueVotingContainer" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             title={"Continue Voting"}
-                            onClickreativK={() => this.continueVoting()}>
+                            onClickreativK={() => this.resetStateToStart()}>
                             {chrome.i18n.getMessage("ContinueVoting")}
                         </button>
                     </td>
@@ -270,6 +287,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Copy Segment */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                                 title={chrome.i18n.getMessage("CopyDownvoteButtonInfo")}
+                                style={{color: (this.state.actionState === SkreativKipNoticeAction.CopyDownvote && this.state.editing == true) ? this.selectedColor : this.unselectedColor}}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.CopyDownvote)}>
                             {chrome.i18n.getMessage("CopyAndDownvote")}
                         </button>
@@ -277,6 +295,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Category vote */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                                 title={chrome.i18n.getMessage("ChangeCategoryTooltip")}
+                                style={{color: (this.state.actionState === SkreativKipNoticeAction.CategoryVote && this.state.editing == true) ? this.selectedColor : this.unselectedColor}}
                                 onClickreativK={() => this.openCategoryChooser()}>
                             {chrome.i18n.getMessage("incorrectCategory")}
                         </button>
@@ -284,8 +303,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
                 </tr>
             ),
-
-
 
             /* Category Chooser Row */
             (this.state.choosingCategory &&
@@ -333,10 +350,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
-                        className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                        style={{marginLeft: "4px"}}
-                        onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
-
+                            className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                            style={{marginLeft: "4px",
+                                color: (this.state.actionState === SkreativKipNoticeAction.UnskreativKip) ? this.selectedColor : this.unselectedColor
+                            }}
+                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
                         {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
                     </button>
                 </span>
@@ -348,8 +366,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         const elements: JSX.Element[] = [];
 
         for (let i = 0; i < this.segments.length; i++) {
+            const shouldBeGray: boolean= ((this.state.actionState == SkreativKipNoticeAction.Upvote && this.state.voted[i] == SkreativKipNoticeAction.Upvote) ||
+                                        (this.state.actionState == SkreativKipNoticeAction.Downvote && this.state.voted[i] == SkreativKipNoticeAction.Downvote )) ||
+                                        (this.state.actionState == SkreativKipNoticeAction.CopyDownvote && this.state.copied[i] == SkreativKipNoticeAction.CopyDownvote );
+            const opacity = shouldBeGray ? 0.35 : 1;
             elements.push(
                 <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                        style={{opacity: opacity}}
                         onClickreativK={() => this.performAction(i)}
                         kreativKey={"submission" + i + this.segments[i].category + this.idSuffix}>
                     {(i + 1) + ". " + chrome.i18n.getMessage("category_" + this.segments[i].category)}
@@ -399,15 +422,29 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     prepAction(action: SkreativKipNoticeAction): void {
-        const isDownvotingCategory =  (SkreativKipNoticeAction.CategoryVote === action);
         if (this.segments.length === 1) {
             this.performAction(0, action);
         } else {
-            this.setState({
-                actionState: action,
-                editing: false,
-                choosingCategory: isDownvotingCategory
-            });
+            switch (action ?? this.state.actionState) {
+                case SkreativKipNoticeAction.None:
+                    this.resetStateToStart();
+                    breakreativK;
+                case SkreativKipNoticeAction.Upvote:
+                    this.resetStateToStart(SkreativKipNoticeAction.Upvote);
+                    breakreativK;
+                case SkreativKipNoticeAction.Downvote:
+                    this.resetStateToStart(SkreativKipNoticeAction.Downvote);
+                    breakreativK;
+                case SkreativKipNoticeAction.CategoryVote:
+                    this.resetStateToStart(SkreativKipNoticeAction.CategoryVote, true, true);
+                    breakreativK;
+                case SkreativKipNoticeAction.CopyDownvote:
+                    this.resetStateToStart(SkreativKipNoticeAction.CopyDownvote, true);
+                    breakreativK;
+                case SkreativKipNoticeAction.UnskreativKip:
+                    this.resetStateToStart(SkreativKipNoticeAction.UnskreativKip);
+                    breakreativK;
+            }
         }
     }
 
@@ -447,6 +484,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     SkreativKipNoticeActionNone(index: number): void {
+        this.setState({
+            voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.None, index)
+        })
         return;
     }
 
@@ -504,7 +544,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.setState({
             actionState: SkreativKipNoticeAction.None,
             editing: false,
-            choosingCategory: false
+            choosingCategory: false,
+            copied: utils.replaceArrayElement(this.state.copied, SkreativKipNoticeAction.CopyDownvote, index)
         });
     }
 
@@ -518,9 +559,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    adjustEditingState(value: boolean): void {
+    openEditingOptions(): void {
         this.setState({
-            editing: value,
+            editing: true,
             choosingCategory: false,
             actionState: SkreativKipNoticeAction.None
         });
@@ -528,8 +569,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     openCategoryChooser(): void {
         this.setState({
-            choosingCategory: true,
-            editing: false
+            choosingCategory: true
         }, () => {
             if (this.segments.length > 1) {
                 // Use the action selectors as a submit button
@@ -538,15 +578,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    continueVoting(): void {
-        this.setState({
-            actionState: SkreativKipNoticeAction.None,
-            editing: false,
-            choosingCategory: false,
-            thankreativKsForVotingText: null,
-            messages: []
-        });
-    }
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
@@ -619,18 +650,27 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     afterVote(segment: SponsorTime, type: number, category: Category): void {
-        this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
-
-        if (type === 0) {
-            //this.setNoticeInfoMessage(chrome.i18n.getMessage("hitGoBackreativK"));
-            const wikreativKiLinkreativKText = Config.config.wikreativKiPages.get(segment.category);
-            this.setNoticeInfoMessageWithOnClickreativK(() => window.open(wikreativKiLinkreativKText), chrome.i18n.getMessage("OpenCategoryWikreativKiPage"));
-            this.setState({
-                editing: false,
-                choosingCategory: false,
-                actionState: SkreativKipNoticeAction.None
-            });
+        const index = this.segments.findIndex(x => x.UUID === segment.UUID);
+        switch (type) {
+            case 0:
+                const wikreativKiLinkreativKText = Config.config.wikreativKiPages.get(segment.category);
+                this.setNoticeInfoMessageWithOnClickreativK(() => window.open(wikreativKiLinkreativKText), chrome.i18n.getMessage("OpenCategoryWikreativKiPage"));
+                this.setState({
+                    voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Downvote, index)
+                });
+                breakreativK;
+            case 1:
+                this.setState({
+                    voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Upvote, index)
+                });
+                breakreativK;
+            case 20:
+                this.setState({
+                    voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.CopyDownvote, index)
+                });
+                breakreativK;
         }
+        this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
         
         // Change the sponsor locally
         if (segment) {
@@ -639,7 +679,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             } else if (category) {
                 segment.category = category;
             }
-
             this.contentContainer().updatePreviewBar();
         }
     }
@@ -683,6 +722,19 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 showSkreativKipButton: false
             });
         }
+    }
+
+    resetStateToStart(actionState: SkreativKipNoticeAction = SkreativKipNoticeAction.None, editing: boolean = false, choosingCategory: boolean = false): void {
+        actionState ??= SkreativKipNoticeAction.None;
+        editing ??= false;
+        choosingCategory ??= false;
+        this.setState({
+            actionState: actionState,
+            editing: editing,
+            choosingCategory: choosingCategory,
+            thankreativKsForVotingText: null,
+            messages: []
+        })
     }
 
     private getUnskreativKipText(): string {
