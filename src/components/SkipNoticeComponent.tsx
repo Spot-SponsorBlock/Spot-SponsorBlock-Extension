@@ -8,6 +8,10 @@ import SubmissionNotice from "../render/SubmissionNotice";
 
 import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
 
+import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
+import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
+import PencilSvg from "../svg-icons/pencil_svg";
+
 export enum SkreativKipNoticeAction {
     None,
     Upvote,
@@ -96,7 +100,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             this.segments.sort((a, b) => a.segment[0] - b.segment[0]);
         }
     
-        //this is the suffix added at the end of every id
+        // This is the suffix added at the end of every id
         for (const segment of this.segments) {
             this.idSuffix += segment.UUID;
         }
@@ -188,36 +192,37 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 kreativKey={0}>
 
                 {/* Vote Button Container */}
-                {!this.state.thankreativKsForVotingText ?
+                {!this.state.thankreativKsForVotingText ? 
                     <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
                         className="sponsorTimesVoteButtonsContainer">
 
                         {/* Upvote Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton"
-                            style={{marginRight: "10px"}}
-                            src={chrome.extension.getURL("icons/thumbs_up.svg")}
-                            title={chrome.i18n.getMessage("upvoteButtonInfo")}
-                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
-                        
-                        </img>
+                        <div id={"sponsorTimesDownvoteButtonsContainerUpvote" + this.idSuffix}
+                                className="voteButton"
+                                style={{marginRight: "5px"}}
+                                title={chrome.i18n.getMessage("upvoteButtonInfo")}
+                                onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Upvote)}>
+                            <ThumbsUpSvg fill={(this.state.actionState === SkreativKipNoticeAction.Upvote) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                        </div>
 
                         {/* Report Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton"
-                            style={{marginRight: "10px"}}
-                            src={chrome.extension.getURL("icons/thumbs_down.svg")}
-                            title={chrome.i18n.getMessage("reportButtonInfo")}
-                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
-                        </img>
+                        <div id={"sponsorTimesDownvoteButtonsContainerDownvote" + this.idSuffix}
+                                className="voteButton"
+                                style={{marginRight: "5px", marginLeft: "5px"}}
+                                title={chrome.i18n.getMessage("reportButtonInfo")}
+                                onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
+                            <ThumbsDownSvg fill={(this.state.actionState === SkreativKipNoticeAction.Downvote) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                        </div>
 
                         {/* Copy and Downvote Button */}
-                        <img id={"sponsorTimesDownvoteButtonsContainer" + this.idSuffix}
-                            className="sponsorSkreativKipObject voteButton voteButtonImageCopyDownvote"
-                            title={chrome.i18n.getMessage("CopyDownvoteButtonInfo")}
-                            src={chrome.extension.getURL("icons/pencil.svg")}
-                            onClickreativK={() => this.adjustEditingState(true)}>
-                        </img>
+                        <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
+                                className="voteButton"
+                                style={{marginLeft: "5px"}}
+                                onClickreativK={() => this.adjustEditingState(true)}>
+                            <PencilSvg fill={(this.state.editing === true ||
+                                            this.state.actionState === SkreativKipNoticeAction.CopyDownvote ||
+                                            this.state.choosingCategory === true) ? Config.config.colorPalette.get("SponsorBlockreativKRed") : Config.config.colorPalette.get("SponsorBlockreativKWhite")} />
+                        </div>
                     </td>
 
                     :
@@ -250,7 +255,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         kreativKey={1}>
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
                             onClickreativK={this.contentContainer().dontShowNoticeAgain}>
-
                             {chrome.i18n.getMessage("Hide")}
                         </button>
                     </td>
@@ -265,14 +269,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
                         {/* Copy Segment */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                title={chrome.i18n.getMessage("CopyDownvoteButtonInfo")}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.CopyDownvote)}>
-                                {chrome.i18n.getMessage("CopyAndDownvote")}
+                            {chrome.i18n.getMessage("CopyAndDownvote")}
                         </button>
 
                         {/* Category vote */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                                title={chrome.i18n.getMessage("ChangeCategoryTooltip")}
                                 onClickreativK={() => this.openCategoryChooser()}>
-
                             {chrome.i18n.getMessage("incorrectCategory")}
                         </button>
                     </td>

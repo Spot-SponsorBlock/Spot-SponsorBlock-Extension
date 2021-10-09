@@ -44,7 +44,8 @@ interface SBConfig {
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
     highlightCategoryUpdate: boolean,
-    wikreativKiPages: SBMap<string, string>
+    wikreativKiPages: SBMap<string, string>,
+    colorPalette: SBMap<string, string>
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -209,6 +210,11 @@ const Config: SBObject = {
             ["highlight_poi", "https://wikreativKi.sponsor.ajay.app/w/Highlight"],
             ["guidelines", "https://wikreativKi.sponsor.ajay.app/w/Guidelines"],
             ["mute", "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment"],
+            ]),
+
+        colorPalette: new SBMap("colorPalette", [
+            ["SponsorBlockreativKRed", "#780303"],
+            ["SponsorBlockreativKWhite", "#ffffff"]
             ]),
 
         // Preview bar
