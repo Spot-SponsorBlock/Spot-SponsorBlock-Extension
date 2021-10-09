@@ -651,9 +651,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     afterVote(segment: SponsorTime, type: number, category: Category): void {
         const index = this.segments.findIndex(x => x.UUID === segment.UUID);
+        const wikreativKiLinkreativKText = Config.config.wikreativKiPages.get(segment.category);
         switch (type) {
             case 0:
-                const wikreativKiLinkreativKText = Config.config.wikreativKiPages.get(segment.category);
                 this.setNoticeInfoMessageWithOnClickreativK(() => window.open(wikreativKiLinkreativKText), chrome.i18n.getMessage("OpenCategoryWikreativKiPage"));
                 this.setState({
                     voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Downvote, index)
@@ -724,7 +724,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    resetStateToStart(actionState: SkreativKipNoticeAction = SkreativKipNoticeAction.None, editing: boolean = false, choosingCategory: boolean = false): void {
+    resetStateToStart(actionState: SkreativKipNoticeAction = SkreativKipNoticeAction.None, editing = false, choosingCategory = false): void {
         actionState ??= SkreativKipNoticeAction.None;
         editing ??= false;
         choosingCategory ??= false;
