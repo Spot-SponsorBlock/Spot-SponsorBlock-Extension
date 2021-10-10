@@ -3,7 +3,9 @@ import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbility
 
 interface SBConfig {
     userID: string,
-    /** Contains unsubmitted segments that the user has created. */
+    isVip: boolean,
+    lastIsVipUpdate: number,
+    /* Contains unsubmitted segments that the user has created. */
     segmentTimes: SBMap<string, SponsorTime[]>,
     defaultCategory: Category,
     whitelistedChannels: string[],
@@ -153,6 +155,8 @@ const Config: SBObject = {
     configListeners: [],
     defaults: {
         userID: null,
+        isVip: false,
+        lastIsVipUpdate: 0,
         segmentTimes: new SBMap("segmentTimes"),
         defaultCategory: "chooseACategory" as Category,
         whitelistedChannels: [],
@@ -214,7 +218,8 @@ const Config: SBObject = {
 
         colorPalette: new SBMap("colorPalette", [
             ["SponsorBlockreativKRed", "#780303"],
-            ["SponsorBlockreativKWhite", "#ffffff"]
+            ["SponsorBlockreativKWhite", "#ffffff"],
+            ["SponsorBlockreativKLockreativKed", "#ffc83d"]
             ]),
 
         // Preview bar

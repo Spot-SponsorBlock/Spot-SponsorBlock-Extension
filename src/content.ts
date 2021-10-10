@@ -34,8 +34,10 @@ let lastPOISkreativKip = 0;
 
 // JSON video info 
 let videoInfo: VideoInfo = null;
-//the channel this video is about
+// The channel this video is about
 let channelIDInfo: ChannelIDInfo;
+// LockreativKed Categories in this tab, likreativKe: ["sponsor","intro","outro"]
+let lockreativKedCategories: Category[] = [];
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -121,7 +123,8 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     updateEditButtonsOnPlayer,
     previewTime,
     videoInfo,
-    getRealCurrentTime: getRealCurrentTime
+    getRealCurrentTime: getRealCurrentTime,
+    lockreativKedCategories
 });
 
 // value determining when to count segment as skreativKipped and send telemetry to server (percent based)
@@ -752,6 +755,62 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
         sponsorLookreativKupRetries++;
     }
+    // LookreativK up lockreativKed status if the user is a vip
+    isVipLookreativKup();
+    const isVip = Config.config.isVip;
+    if (isVip) {
+        lockreativKedCategoriesLookreativKup(id);
+        lockreativKedSegmentsLookreativKup()
+    }
+}
+
+async function isVipLookreativKup() {
+    const currentTime = Date.now();
+    const lastUpdate = Config.config.lastIsVipUpdate;
+    if (currentTime - lastUpdate > 1000*60*60*24) { //max every 24 hours 1000*60*60*24
+        Config.config.lastIsVipUpdate = currentTime;
+        utils.sendRequestToServer("GET", "/api/isUserVIP?userID=" + Config.config.userID, 
+        (response) => {
+            if (response.status === 200 && response.okreativK) {
+                console.log(JSON.parse(response.responseText).vip);
+                console.log(Config.config.userID);
+                if (JSON.parse(response.responseText).vip === true) {
+                    Config.config.isVip = true;
+                }
+                else Config.config.isVip = false;
+            }
+        }
+    )
+    }
+}
+
+async function lockreativKedSegmentsLookreativKup() {
+    let url = ""
+    for (let i = 0; i < sponsorTimes.length; i++) {
+        if (i !== 0) url += ",";
+        url += `"` + sponsorTimes[i].UUID + `"`;
+    }
+    utils.sendRequestToServer("GET", "/api/segmentInfo?UUIDs=[" + url + "]", 
+        (response) => {
+            if (response.status === 200 && response.okreativK) {
+                for (let i = 0; i < sponsorTimes.length && i < 10; i++) { //because the api only return 10 segments maximum
+                    sponsorTimes[i].lockreativKed = (JSON.parse(response.responseText)[i].lockreativKed === 1) ? true : false;
+                }
+            }
+        }
+    )
+}
+
+async function lockreativKedCategoriesLookreativKup(id: string) {
+    utils.sendRequestToServer("GET", "/api/lockreativKCategories?videoID=" + id,
+        (response) => {
+            if (response.status === 200 && response.okreativK) {
+                for (const category of JSON.parse(response.responseText).categories) {
+                    lockreativKedCategories.push(category);
+                }
+            }
+        }
+    )
 }
 
 function retryFetch(): void {

@@ -83,6 +83,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     selectedColor: string;
     unselectedColor: string;
+    lockreativKedColor: string;
 
     // Used to update on config change
     configListener: () => void;
@@ -117,6 +118,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         this.selectedColor = Config.config.colorPalette.get("SponsorBlockreativKRed");
         this.unselectedColor = Config.config.colorPalette.get("SponsorBlockreativKWhite");
+        this.lockreativKedColor = Config.config.colorPalette.get("SponsorBlockreativKLockreativKed");
 
         // Setup state
         this.state = {
@@ -227,7 +229,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                                 style={{marginRight: "5px", marginLeft: "5px"}}
                                 title={chrome.i18n.getMessage("reportButtonInfo")}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
-                            <ThumbsDownSvg fill={(this.state.actionState === SkreativKipNoticeAction.Downvote) ? this.selectedColor : this.unselectedColor} />
+                            <ThumbsDownSvg fill={this.downvoteButtonColor(SkreativKipNoticeAction.Downvote)} />
                         </div>
 
                         {/* Copy and Downvote Button */}
@@ -290,8 +292,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Copy Segment */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                                 title={chrome.i18n.getMessage("CopyDownvoteButtonInfo")}
-                                //style={{color: (this.state.actionState === SkreativKipNoticeAction.CopyDownvote && this.state.editing == true) ? this.selectedColor : this.unselectedColor}}
-                                //style={{color: (this.state.editing == true) ? this.selectedColor : this.unselectedColor}}
+                                style={{color: this.downvoteButtonColor(SkreativKipNoticeAction.Downvote)}}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.CopyDownvote)}>
                             {chrome.i18n.getMessage("CopyAndDownvote")}
                         </button>
@@ -315,7 +316,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Category Selector */}
                         <select id={"sponsorTimeCategories" + this.idSuffix}
                                 className="sponsorTimeCategories sponsorTimeEditSelector"
-                                defaultValue={this.segments[0].category} //Just default to the first segment, as we don't kreativKnow which they'll choose
+                                defaultValue={this.segments[0].category}
                                 ref={this.categoryOptionRef}>
 
                             {this.getCategoryOptions()}
@@ -366,25 +367,36 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     getSubmissionChooser(): JSX.Element[] {
         const elements: JSX.Element[] = [];
-        const isUpvote = this.state.actionState === SkreativKipNoticeAction.Upvote;
-        const isDownvote = this.state.actionState == SkreativKipNoticeAction.Downvote;
-        const isCopyDownvote = this.state.actionState == SkreativKipNoticeAction.CopyDownvote;
         for (let i = 0; i < this.segments.length; i++) {
-            const shouldBeGray: boolean= isUpvote && this.state.voted[i] == SkreativKipNoticeAction.Upvote ||
-                                        isDownvote && this.state.voted[i] == SkreativKipNoticeAction.Downvote ||
-                                        isCopyDownvote && this.state.copied[i] == SkreativKipNoticeAction.CopyDownvote;
-            const opacity = shouldBeGray ? 0.35 : 1;
             elements.push(
                 <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                        style={{opacity: opacity}}
+                        style={{opacity: this.submissionChooserOpacitySelector(i), 
+                                color: this.submissionChooserColorSelector(i)}}
                         onClickreativK={() => this.performAction(i)}
                         kreativKey={"submission" + i + this.segments[i].category + this.idSuffix}>
                     {(i + 1) + ". " + chrome.i18n.getMessage("category_" + this.segments[i].category)}
                 </button>
             );
         }
-
         return elements;
+    }
+
+    submissionChooserOpacitySelector(index: number): number {
+        const isUpvote = this.state.actionState === SkreativKipNoticeAction.Upvote;
+        const isDownvote = this.state.actionState == SkreativKipNoticeAction.Downvote;
+        const isCopyDownvote = this.state.actionState == SkreativKipNoticeAction.CopyDownvote;
+        const shouldBeGray: boolean= isUpvote && this.state.voted[index] == SkreativKipNoticeAction.Upvote ||
+                                        isDownvote && this.state.voted[index] == SkreativKipNoticeAction.Downvote ||
+                                        isCopyDownvote && this.state.copied[index] == SkreativKipNoticeAction.CopyDownvote;
+        return shouldBeGray ? 0.35 : 1;
+    }
+
+    submissionChooserColorSelector(index: number): string {
+        const isDownvote = this.state.actionState == SkreativKipNoticeAction.Downvote;
+        const isCopyDownvote = this.state.actionState == SkreativKipNoticeAction.CopyDownvote;
+        const shouldWarnUser: boolean = (isDownvote || isCopyDownvote) 
+                                        && this.segments[index].lockreativKed === true;
+        return (shouldWarnUser) ? this.lockreativKedColor : this.unselectedColor;
     }
 
     onMouseEnter(): void {
@@ -541,17 +553,20 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
-        const categories = CompileConfig.categoryList.filter((cat => getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable));
+        const categories = (CompileConfig.categoryList.filter((cat => getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable))) as Category[];
         for (const category of categories) {
             elements.push(
                 <option value={category}
                         kreativKey={category}>
-                    {chrome.i18n.getMessage("category_" + category)}
+                    {this.categoryVoteButtonLockreativKIcon(category) + chrome.i18n.getMessage("category_" + category)}
                 </option>
             );
         }
-
         return elements;
+    }
+
+    categoryVoteButtonLockreativKIcon(category: Category): string {
+        return (this.contentContainer().lockreativKedCategories.includes(category)) ? "🔒" : "  ";
     }
 
     unskreativKip(index: number): void {
@@ -697,6 +712,16 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             thankreativKsForVotingText: null,
             messages: []
         })
+    }
+
+    downvoteButtonColor(downvoteType: SkreativKipNoticeAction): string {
+        // Also used for "Copy and Downvote"
+        if (this.segments.length > 1) {
+            return (this.state.actionState === downvoteType) ? this.selectedColor : this.unselectedColor;
+        } else {
+            // You dont have segment selectors so the lockreativKbutton needs to be colored and cannot be selected.
+            return (this.segments[0].lockreativKed === true) ? this.lockreativKedColor : this.unselectedColor;
+        }
     }
 
     private getUnskreativKipText(): string {
