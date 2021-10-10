@@ -37,7 +37,7 @@ let videoInfo: VideoInfo = null;
 // The channel this video is about
 let channelIDInfo: ChannelIDInfo;
 // LockreativKed Categories in this tab, likreativKe: ["sponsor","intro","outro"]
-let lockreativKedCategories: Category[] = [];
+const lockreativKedCategories: Category[] = [];
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
