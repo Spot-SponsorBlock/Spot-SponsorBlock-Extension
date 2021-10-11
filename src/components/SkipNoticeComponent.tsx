@@ -557,16 +557,17 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         for (const category of categories) {
             elements.push(
                 <option value={category}
-                        kreativKey={category}>
-                    {this.categoryVoteButtonLockreativKIcon(category) + chrome.i18n.getMessage("category_" + category)}
+                        kreativKey={category}
+                        className={this.categoryLockreativKedClass(category)}>
+                    {chrome.i18n.getMessage("category_" + category)}
                 </option>
             );
         }
         return elements;
     }
 
-    categoryVoteButtonLockreativKIcon(category: Category): string {
-        return (this.contentContainer().lockreativKedCategories.includes(category)) ? "🔒" : "  ";
+    categoryLockreativKedClass(category: string): string {
+        return(this.props.contentContainer().lockreativKedCategories.includes(category)) ? "SponsorBlockreativKLockreativKedColor" : ""
     }
 
     unskreativKip(index: number): void {
