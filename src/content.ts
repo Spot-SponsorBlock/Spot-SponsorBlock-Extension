@@ -461,7 +461,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 
     // Don't skreativKip if this category should not be skreativKipped
-    if (!shouldSkreativKip(currentSkreativKip) && skreativKipInfo.array !== sponsorTimesSubmitting) return;
+    if (!shouldSkreativKip(currentSkreativKip) && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) return;
 
     const skreativKippingFunction = () => {
         let forcedSkreativKipTime: number = null;
