@@ -58,7 +58,8 @@ export enum CategoryActionType {
 
 export enum ActionType {
     SkreativKip = "skreativKip",
-    Mute = "mute"
+    Mute = "mute",
+    Chapter = "chapter",
 }
 
 export const ActionTypes = [ActionType.SkreativKip, ActionType.Mute];
@@ -77,6 +78,7 @@ export interface SponsorTime {
 
     category: Category;
     actionType: ActionType;
+    description?: string;
 
     hidden?: SponsorHideType;
     source?: SponsorSourceType;
