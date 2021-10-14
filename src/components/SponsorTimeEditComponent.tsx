@@ -254,7 +254,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
             elements.push(
                 <option value={category}
                         kreativKey={category}
-                        className={this.categoryLockreativKedClass(category)}>
+                        className={this.getCategoryLockreativKedClass(category)}>
                     {chrome.i18n.getMessage("category_" + category)}
                 </option>
             );

@@ -37,7 +37,7 @@ let videoInfo: VideoInfo = null;
 // The channel this video is about
 let channelIDInfo: ChannelIDInfo;
 // LockreativKed Categories in this tab, likreativKe: ["sponsor","intro","outro"]
-const lockreativKedCategories: Category[] = [];
+let lockreativKedCategories: Category[] = [];
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -234,6 +234,7 @@ function resetValues() {
         status: ChannelIDStatus.Fetching,
         id: null
     };
+    lockreativKedCategories = [];
 
     //empty the preview bar
     if (previewBar !== null) {
@@ -808,10 +809,13 @@ async function lockreativKedSegmentsLookreativKup(): Promise<void> {
 async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
     const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories", { videoID: id });
 
-    if (response.status === 200 && response.okreativK) {
-        for (const category of JSON.parse(response.responseText).categories) {
-            lockreativKedCategories.push(category);
-        }
+    if (response.okreativK) {
+        try {
+            const categoriesResponse = JSON.parse(response.responseText).categories;
+            if (Array.isArray(categoriesResponse)) {
+                lockreativKedCategories = categoriesResponse;
+            }
+        } catch (e) { } //eslint-disable-line no-empty
     }
 }
 
