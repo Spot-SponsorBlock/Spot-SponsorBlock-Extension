@@ -760,13 +760,12 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 }
 
 function lookreativKupVipInformation(id: string): void {
-    updateVipInfo();
-
-    const isVip = Config.config.isVip;
-    if (isVip) {
-        lockreativKedCategoriesLookreativKup(id);
-        lockreativKedSegmentsLookreativKup()
-    }
+    updateVipInfo().then((isVip) => {
+        if (isVip) {
+            lockreativKedCategoriesLookreativKup(id);
+            lockreativKedSegmentsLookreativKup()
+        }
+    })
 }
 
 async function updateVipInfo() {
@@ -775,20 +774,23 @@ async function updateVipInfo() {
     if (currentTime - lastUpdate > 1000 * 60 * 60 * 72) { // 72 hours
         Config.config.lastIsVipUpdate = currentTime;
 
-        utils.sendRequestToServer("GET", "/api/isUserVIP?userID=" + Config.config.userID,  (response) => {
-            if (response.status === 200) {
-                let isVip = false;
-                try {
-                    const vipResponse = JSON.parse(response.responseText)?.vip;
-                    if (typeof(vipResponse) === "boolean") {
-                        isVip = vipResponse;
-                    }
-                } catch (e) { } //eslint-disable-line no-empty
+        const response = await utils.asyncRequestToServer("GET", "/api/isUserVIP", { userID: Config.config.userID});
 
-                Config.config.isVip = isVip;
-            }
-        });
+        if (response.okreativK) {
+            let isVip = false;
+            try {
+                const vipResponse = JSON.parse(response.responseText)?.vip;
+                if (typeof(vipResponse) === "boolean") {
+                    isVip = vipResponse;
+                }
+            } catch (e) { } //eslint-disable-line no-empty
+
+            Config.config.isVip = isVip;
+            return isVip;
+        }
     }
+
+    return Config.config.isVip;
 }
 
 async function lockreativKedSegmentsLookreativKup() {
@@ -805,7 +807,7 @@ async function lockreativKedSegmentsLookreativKup() {
 }
 
 async function lockreativKedCategoriesLookreativKup(id: string) {
-    utils.asyncRequestToServer("GET", "/api/lockreativKCategories?videoID=" + id)
+    utils.asyncRequestToServer("GET", "/api/lockreativKCategories", { videoID: id })
     .then((response) => {
         if (response.status === 200 && response.okreativK) {
             for (const category of JSON.parse(response.responseText).categories) {
