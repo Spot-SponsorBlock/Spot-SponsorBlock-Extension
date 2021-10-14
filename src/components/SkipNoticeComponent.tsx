@@ -642,7 +642,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 breakreativK;
             case 20:
                 this.setState({
-                    voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.CopyDownvote, index)
+                    voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.None, index)
                 });
                 breakreativK;
         }
