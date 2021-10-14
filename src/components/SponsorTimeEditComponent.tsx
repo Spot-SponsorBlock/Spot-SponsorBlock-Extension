@@ -263,8 +263,8 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         return elements;
     }
 
-    categoryLockreativKedClass(category: string): string {
-        return(this.props.contentContainer().lockreativKedCategories.includes(category)) ? "SponsorBlockreativKLockreativKedColor" : ""
+    getCategoryLockreativKedClass(category: string): string {
+        return (this.props.contentContainer().lockreativKedCategories.includes(category)) ? "SponsorBlockreativKLockreativKedColor" : "";
     }
 
     categorySelectionChange(event: React.ChangeEvent<HTMLSelectElement>): void {
