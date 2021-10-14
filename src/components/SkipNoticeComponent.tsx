@@ -631,6 +631,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         switch (type) {
             case 0:
+                this.clearConfigListener();
                 this.setNoticeInfoMessageWithOnClickreativK(() => window.open(wikreativKiLinkreativKText), chrome.i18n.getMessage("OpenCategoryWikreativKiPage"));
                 this.setState({
                     voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Downvote, index)
@@ -694,9 +695,16 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     closeListener(): void {
-        //this.clearConfigListener();
+        this.clearConfigListener();
 
         this.props.closeListener();
+    }
+
+    clearConfigListener(): void {
+        if (this.configListener) {
+            Config.configListeners.splice(Config.configListeners.indexOf(this.configListener), 1);
+            this.configListener = null;
+        }
     }
 
     unmutedListener(): void {
