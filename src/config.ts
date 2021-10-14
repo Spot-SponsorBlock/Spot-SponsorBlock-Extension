@@ -46,8 +46,11 @@ interface SBConfig {
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
     highlightCategoryUpdate: boolean,
-    wikreativKiPages: SBMap<string, string>,
-    colorPalette: SBMap<string, string>
+    colorPalette: {
+        red: string,
+        white: string,
+        lockreativKed: string
+    }
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -203,24 +206,11 @@ const Config: SBObject = {
             option: CategorySkreativKipOption.AutoSkreativKip
         }],
 
-        wikreativKiPages: new SBMap("wikreativKiLinkreativKs", [
-            ["sponsor", "https://wikreativKi.sponsor.ajay.app/w/Sponsor"],
-            ["selfpromo", "https://wikreativKi.sponsor.ajay.app/w/Unpaid/Self_Promotion"],
-            ["interaction", "https://wikreativKi.sponsor.ajay.app/w/Interaction_Reminder_(Subscribe)"],
-            ["intro", "https://wikreativKi.sponsor.ajay.app/w/Intermission/Intro_Animation"],
-            ["outro", "https://wikreativKi.sponsor.ajay.app/w/Endcards/Credits"],
-            ["preview", "https://wikreativKi.sponsor.ajay.app/w/Preview/Recap"],
-            ["music_offtopic", "https://wikreativKi.sponsor.ajay.app/w/Music:_Non-Music_Section"],
-            ["highlight_poi", "https://wikreativKi.sponsor.ajay.app/w/Highlight"],
-            ["guidelines", "https://wikreativKi.sponsor.ajay.app/w/Guidelines"],
-            ["mute", "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment"],
-            ]),
-
-        colorPalette: new SBMap("colorPalette", [
-            ["SponsorBlockreativKRed", "#780303"],
-            ["SponsorBlockreativKWhite", "#ffffff"],
-            ["SponsorBlockreativKLockreativKed", "#ffc83d"]
-            ]),
+        colorPalette: {
+            red: "#780303",
+            white: "#ffffff",
+            lockreativKed: "#ffc83d"
+        },
 
         // Preview bar
         barTypes: {

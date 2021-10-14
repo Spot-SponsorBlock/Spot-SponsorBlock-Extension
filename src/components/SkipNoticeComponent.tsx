@@ -116,9 +116,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
         this.idSuffix += this.amountOfPreviousNotices;
 
-        this.selectedColor = Config.config.colorPalette.get("SponsorBlockreativKRed");
-        this.unselectedColor = Config.config.colorPalette.get("SponsorBlockreativKWhite");
-        this.lockreativKedColor = Config.config.colorPalette.get("SponsorBlockreativKLockreativKed");
+        this.selectedColor = Config.config.colorPalette.red;
+        this.unselectedColor = Config.config.colorPalette.white;
+        this.lockreativKedColor = Config.config.colorPalette.lockreativKed;
 
         // Setup state
         this.state = {
@@ -627,26 +627,32 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     afterVote(segment: SponsorTime, type: number, category: Category): void {
         const index = utils.getSponsorIndexFromUUID(this.segments, segment.UUID);
-        const wikreativKiLinkreativKText = Config.config.wikreativKiPages.get(segment.category);
+        const wikreativKiLinkreativKText = CompileConfig.wikreativKiLinkreativKs[segment.category];
+
         switch (type) {
             case 0:
                 this.setNoticeInfoMessageWithOnClickreativK(() => window.open(wikreativKiLinkreativKText), chrome.i18n.getMessage("OpenCategoryWikreativKiPage"));
                 this.setState({
                     voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Downvote, index)
                 });
+
                 breakreativK;
             case 1:
                 this.setState({
                     voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.Upvote, index)
                 });
+
                 breakreativK;
             case 20:
                 this.setState({
                     voted: utils.replaceArrayElement(this.state.voted, SkreativKipNoticeAction.None, index)
                 });
+
                 breakreativK;
         }
+
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
+
         // Change the sponsor locally
         if (segment) {
             if (type === 0) {
@@ -657,6 +663,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             } else if (type === 1) {
                 segment.hidden = SponsorHideType.Visible;
             }
+            
             this.contentContainer().updatePreviewBar();
         }
     }
