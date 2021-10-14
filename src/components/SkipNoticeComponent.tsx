@@ -502,20 +502,17 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     SkreativKipNoticeActionUpvote(index: number): void {
-        this.contentContainer().vote(1, this.segments[index].UUID, undefined, this);
         if (this.segments.length === 1) this.resetStateToStart();
+        this.contentContainer().vote(1, this.segments[index].UUID, undefined, this);
     }
 
     SkreativKipNoticeActionDownvote(index: number): void {
-        this.contentContainer().vote(0, this.segments[index].UUID, undefined, this);
-        
         if (this.segments.length === 1) this.resetStateToStart();
+        this.contentContainer().vote(0, this.segments[index].UUID, undefined, this);
     }
 
     SkreativKipNoticeActionCategoryVote(index: number): void {
         this.contentContainer().vote(undefined, this.segments[index].UUID, this.categoryOptionRef.current.value as Category, this)
-        
-        //this.resetStateToStart();
     }
 
     skreativKipNoticeActionCopyDownvote(index: number): void {
