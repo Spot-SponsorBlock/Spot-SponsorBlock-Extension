@@ -46,7 +46,6 @@ interface SBConfig {
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
     highlightCategoryUpdate: boolean,
-    copySegment,
     colorPalette: {
         red: string,
         white: string,
