@@ -765,7 +765,7 @@ function lookreativKupVipInformation(id: string): void {
         if (isVip) {
             lockreativKedCategoriesLookreativKup(id);
         }
-    })
+    });
 }
 
 async function updateVipInfo(): Promise<boolean> {
