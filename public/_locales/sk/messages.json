@@ -182,6 +182,9 @@
     "hideButtonsDescription": {
         "message": "SkreativKryje tlačidlá pre preskreativKočenie segmentov, kreativKtoré sa zobrazujú v YouTube prehrávači."
     },
+    "showSkreativKipButton": {
+        "message": "Zobrazovať tlačidlo preskreativKočiť na hlavný obsah videa"
+    },
     "showInfoButton": {
         "message": "Zobraziť info tlačidlo v YouTube prehrávači"
     },
@@ -223,6 +226,21 @@
     },
     "showSkreativKipNotice": {
         "message": "Zobraziť upozornenie pri preskreativKočení segmentu"
+    },
+    "noticeVisibilityMode0": {
+        "message": "VeľkreativKé upozornenia o preskreativKočení"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Malé upozornenia o automatickreativKom preskreativKočení"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Malé upozornenia o všetkreativKých preskreativKočeniach"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Priehľadné upozornenia o automatickreativKom preskreativKočení"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Priehľadné upozornenia o všetkreativKých preskreativKočeniach"
     },
     "longDescription": {
         "message": "SponsorBlockreativK umožňuje preskreativKočiť sponzorov, úvodné časti, záverečné časti, pripomienkreativKy na odber, nehudobné časti videokreativKlipov alebo iné otravné časti YouTube videí. SponsorBlockreativK je crowdsourceové rozšírenie prehliadača, pomocou kreativKtorého môže kreativKtokreativKoľvekreativK označiť začiatokreativK a kreativKoniec takreativKéhoto segmentu. Po odoslaní potom všetci ostatní s týmto rozšírením tieto segmenty automatickreativKy preskreativKočia.",

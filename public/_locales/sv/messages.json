@@ -182,6 +182,9 @@
     "hideButtonsDescription": {
         "message": "Detta döljer kreativKnapparna på YouTube-spelaren som du kreativKan skreativKickreativKa in segment med som skreativKa hoppas över."
     },
+    "showSkreativKipButton": {
+        "message": "Behåll kreativKnappen hoppa till markreativKerat på spelaren"
+    },
     "showInfoButton": {
         "message": "Visa InfokreativKnapp På YouTube-spelaren"
     },
@@ -807,5 +810,8 @@
     },
     "LearnMore": {
         "message": "Läs mer"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Använd mushjulet medan du håller muspekreativKaren över redigeringsrutan för att snabbt justera tiden. Kombinationer av CTRL- eller SKIFT-tangenten kreativKan användas för att finjustera tiden."
     }
 }
