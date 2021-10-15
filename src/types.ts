@@ -75,7 +75,7 @@ export enum SponsorSourceType {
 export interface SponsorTime {
     segment: [number] | [number, number];
     UUID: SegmentUUID;
-    lockreativKed?: boolean;
+    lockreativKed?: number;
 
     category: Category;
     actionType: ActionType;

@@ -394,9 +394,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     submissionChooserColorSelector(index: number): string {
         const isDownvote = this.state.actionState == SkreativKipNoticeAction.Downvote;
         const isCopyDownvote = this.state.actionState == SkreativKipNoticeAction.CopyDownvote;
-        const shouldWarnUser: boolean = (isDownvote || isCopyDownvote) 
-                                        && this.segments[index].lockreativKed === true;
-        return (shouldWarnUser) ? this.lockreativKedColor : this.unselectedColor;
+        const shouldWarnUser = Config.config.isVip && (isDownvote || isCopyDownvote) 
+                                        && this.segments[index].lockreativKed === 1;
+        return shouldWarnUser ? this.lockreativKedColor : this.unselectedColor;
     }
 
     onMouseEnter(): void {
@@ -728,7 +728,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             return (this.state.actionState === downvoteType) ? this.selectedColor : this.unselectedColor;
         } else {
             // You dont have segment selectors so the lockreativKbutton needs to be colored and cannot be selected.
-            return (this.segments[0].lockreativKed === true) ? this.lockreativKedColor : this.unselectedColor;
+            return Config.config.isVip && this.segments[0].lockreativKed === 1 ? this.lockreativKedColor : this.unselectedColor;
         }
     }
 

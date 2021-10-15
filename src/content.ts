@@ -764,7 +764,6 @@ function lookreativKupVipInformation(id: string): void {
     updateVipInfo().then((isVip) => {
         if (isVip) {
             lockreativKedCategoriesLookreativKup(id);
-            lockreativKedSegmentsLookreativKup()
         }
     })
 }
@@ -794,24 +793,13 @@ async function updateVipInfo(): Promise<boolean> {
     return Config.config.isVip;
 }
 
-async function lockreativKedSegmentsLookreativKup(): Promise<void> {
-    const response = await utils.asyncRequestToServer("GET", "/api/segmentInfo", { UUIDs: sponsorTimes?.map((segment) => segment.UUID) });
-    
-    if (response.status === 200) {
-        for (let i = 0; i < sponsorTimes.length && i < 10; i++) { // Because the api only return 10 segments maximum
-            try {
-                sponsorTimes[i].lockreativKed = (JSON.parse(response.responseText)[i].lockreativKed === 1) ? true : false;
-            } catch (e) { } //eslint-disable-line no-empty
-        }
-    }
-}
-
 async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
-    const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories", { videoID: id });
+    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
     if (response.okreativK) {
         try {
-            const categoriesResponse = JSON.parse(response.responseText).categories;
+            const categoriesResponse = JSON.parse(response.responseText).filter((lockreativKInfo) => lockreativKInfo.videoID === id)[0]?.categories;
             if (Array.isArray(categoriesResponse)) {
                 lockreativKedCategories = categoriesResponse;
             }
