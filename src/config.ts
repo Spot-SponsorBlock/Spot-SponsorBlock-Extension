@@ -3,7 +3,9 @@ import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbility
 
 interface SBConfig {
     userID: string,
-    /** Contains unsubmitted segments that the user has created. */
+    isVip: boolean,
+    lastIsVipUpdate: number,
+    /* Contains unsubmitted segments that the user has created. */
     segmentTimes: SBMap<string, SponsorTime[]>,
     defaultCategory: Category,
     whitelistedChannels: string[],
@@ -44,7 +46,12 @@ interface SBConfig {
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
     highlightCategoryUpdate: boolean,
-    scrollToEditTimeUpdate: boolean
+    colorPalette: {
+        red: string,
+        white: string,
+        lockreativKed: string
+    },
+    scrollToEditTimeUpdate: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -152,6 +159,8 @@ const Config: SBObject = {
     configListeners: [],
     defaults: {
         userID: null,
+        isVip: false,
+        lastIsVipUpdate: 0,
         segmentTimes: new SBMap("segmentTimes"),
         defaultCategory: "chooseACategory" as Category,
         whitelistedChannels: [],
@@ -198,6 +207,12 @@ const Config: SBObject = {
             name: "sponsor" as Category,
             option: CategorySkreativKipOption.AutoSkreativKip
         }],
+
+        colorPalette: {
+            red: "#780303",
+            white: "#ffffff",
+            lockreativKed: "#ffc83d"
+        },
 
         // Preview bar
         barTypes: {

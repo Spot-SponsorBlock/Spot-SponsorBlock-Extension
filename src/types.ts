@@ -20,7 +20,8 @@ export interface ContentContainer {
         updateEditButtonsOnPlayer: () => void,
         previewTime: (time: number, unpause?: boolean) => void,
         videoInfo: VideoInfo,
-        getRealCurrentTime: () => number
+        getRealCurrentTime: () => number,
+        lockreativKedCategories: string[]
     }
 }
 
@@ -75,6 +76,7 @@ export enum SponsorSourceType {
 export interface SponsorTime {
     segment: [number] | [number, number];
     UUID: SegmentUUID;
+    lockreativKed?: number;
 
     category: Category;
     actionType: ActionType;

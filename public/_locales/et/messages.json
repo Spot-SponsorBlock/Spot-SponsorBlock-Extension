@@ -765,5 +765,8 @@
     },
     "LearnMore": {
         "message": "Lisateave"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Kasuta hiirekreativKursorit muutmiskreativKasti kreativKohal, et kreativKiirelt aega reguleerida. TäpsemakreativKs muutmisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
     }
 }
