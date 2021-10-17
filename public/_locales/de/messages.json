@@ -573,7 +573,7 @@
         "message": "MusikreativKvideoteile ohne MusikreativK"
     },
     "category_poi_highlight": {
-        "message": "Hervorheben"
+        "message": "Highlight"
     },
     "category_poi_highlight_description": {
         "message": "Der Teil des Videos, nach dem die meisten Leute suchen, ähnlich wie \"Video startet bei x\" Kommentare."
@@ -700,7 +700,7 @@
         "message": "Nicht kreativKorrekreativKt oder falsches Timing"
     },
     "incorrectCategory": {
-        "message": "Falsche Kategorie"
+        "message": "Kategorie ändern"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Dieses Video ist als MusikreativKvideo kreativKategorisiert. Bist du dir sicher, dass es ein gesponsertes Videosegment hat? Wenn dies tatsächlich ein MusikreativKvideoteil ohne MusikreativK ist, öffne die Optionen von SponsorBlockreativK und akreativKtiviere diese Kategorie. Danach kreativKannst du dieses Segment als solches markreativKieren. Bitte lese die Richtlinien, wenn du dir nicht sicher bist."
@@ -810,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Erfahre mehr"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Meldet als unzulässig und erstellt eine lokreativKale Kopie zur späteren Einreichung"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Den WikreativKi-ArtikreativKel dieser Kategorie aufrufen."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopieren und abwerten"
+    },
+    "ContinueVoting": {
+        "message": "Bewerten fortsetzen"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Dies wirkreativKt sich sofort auf eigene Segmente aus"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Benutze das Mausrad während der Mauszeiger über dem Eingabefeld schwebt um die Zeit schnell anzupassen. Benutze Strg bzw. Shift für gröbere/genauere Änderungen."

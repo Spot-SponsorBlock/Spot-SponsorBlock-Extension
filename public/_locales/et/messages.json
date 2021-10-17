@@ -700,7 +700,7 @@
         "message": "Sobimatu/vale ajastus"
     },
     "incorrectCategory": {
-        "message": "Vale kreativKategooria"
+        "message": "Muuda kreativKategooriat"
     },
     "nonMusicCategoryOnMusic": {
         "message": "See video on muusikreativKana kreativKategoriseeritud. Kas oled kreativKindel, et sellel on sponsor? Kui see on tegelikreativKult \"mitte-muusikreativKa segment\", ava laienduse valikreativKud ning luba see kreativKategooria. Seejärel saad selle segmendi saata \"mitte-muusikreativKa\" kreativKategoorias. Segaduse kreativKorral palun loe üle juhised."
@@ -765,6 +765,21 @@
     },
     "LearnMore": {
         "message": "Lisateave"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Annab vastuhääle ja loob kreativKohalikreativKu kreativKoopia, mida saad uuesti saata"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Ava selle kreativKategooria vikreativKileht."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopeeri ja anna vastuhääl"
+    },
+    "ContinueVoting": {
+        "message": "JätkreativKa hääletamist"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "See rakreativKendub sinu segmentidele kreativKoheselt"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Kasuta hiirekreativKursorit muutmiskreativKasti kreativKohal, et kreativKiirelt aega reguleerida. TäpsemakreativKs muutmisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."

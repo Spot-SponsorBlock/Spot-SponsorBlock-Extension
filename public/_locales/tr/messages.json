@@ -690,9 +690,6 @@
     "downvoteDescription": {
         "message": "Hatalı/Yanlış Zaman"
     },
-    "incorrectCategory": {
-        "message": "Yanlış Kategori"
-    },
     "nonMusicCategoryOnMusic": {
         "message": "Bu video müzikreativK olarakreativK sınıflandırılmıştır. Bunun bir sponsor olduğundan emin misin? Bu aslında bir \"MüzikreativK Dışı bölüm\" ise, uzantı seçenekreativKlerini açın ve bu kreativKategoriyi etkreativKinleştirin. Ardından, bu kreativKısmı sponsor yerine \"MüzikreativK Olmayan\" olarakreativK gönderebilirsiniz. Kafanız kreativKarıştıysa lütfen yönergeleri okreativKuyun."
     },

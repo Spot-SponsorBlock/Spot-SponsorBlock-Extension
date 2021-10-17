@@ -700,7 +700,7 @@
         "message": "Nesprávné / špatné časování"
     },
     "incorrectCategory": {
-        "message": "Špatná kreativKategorie"
+        "message": "Změnit kreativKategorii"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Toto video je kreativKategorizováno jakreativKo hudba. Jste si jisti, že je v něm sponzorskreativKá sekreativKce? PokreativKud se opravdu jedná o \"Nehudební segment\", otevřete nastavení a povolte tuto kreativKategorii. Poté budete moct odeslat segment jakreativKo \"Nehudební\" místo sponzorskreativKého. PokreativKud jste zmateni, přečtěte si prosím pokreativKyny."
@@ -810,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Zjistit více"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Zahlasuje proti a vytvoří pro vás lokreativKální kreativKopii pro opětovné odeslání"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Otevřít wikreativKi stránkreativKu této kreativKategorie."
+    },
+    "CopyAndDownvote": {
+        "message": "ZkreativKopírovat a hlasovat proti"
+    },
+    "ContinueVoting": {
+        "message": "PokreativKračovat v hlasování"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Toto bude okreativKamžitě platit pro vaše segmenty"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Použijte kreativKolečkreativKo myši při přechodu přes editační okreativKno pro rychlou úpravu času. Kombinace kreativKláves Ctrl nebo Shift mohou být použity kreativK doladění změn."
