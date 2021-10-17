@@ -700,7 +700,7 @@
         "message": "Fel/Fel tidsintervall"
     },
     "incorrectCategory": {
-        "message": "Fel kreativKategori"
+        "message": "Ändra kreativKategori"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Den här videon kreativKategoriseras som musikreativK. Är du säkreativKer på att denna har en sponsor? Om detta fakreativKtiskreativKt är ett \"ickreativKe-musikreativKsegment\", öppna tilläggsalternativen och akreativKtivera denna kreativKategori. Då kreativKan du skreativKickreativKa in detta segment som \"ickreativKe-musikreativK\" i stället för sponsor. Läs rikreativKtlinjerna om något är okreativKlart."
@@ -810,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Läs mer"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Rösta ner och skreativKapar en lokreativKal kreativKopia för dig att skreativKickreativKa igen"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Öppna denna kreativKategoris wikreativKi-sida."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopiera och rösta ner"
+    },
+    "ContinueVoting": {
+        "message": "Fortsätt rösta"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Detta kreativKommer omedelbart att verkreativKställas till dina segment"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Använd mushjulet medan du håller muspekreativKaren över redigeringsrutan för att snabbt justera tiden. Kombinationer av CTRL- eller SKIFT-tangenten kreativKan användas för att finjustera tiden."

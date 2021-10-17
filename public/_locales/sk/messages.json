@@ -699,9 +699,6 @@
     "downvoteDescription": {
         "message": "Nesprávne/Zlé načasovanie"
     },
-    "incorrectCategory": {
-        "message": "Nesprávna kreativKategória"
-    },
     "nonMusicCategoryOnMusic": {
         "message": "Toto video je kreativKategorizované akreativKo hudobné. Ste si istý, že obsahuje sponzora? AkreativK sa skreativKutočne jedná o časť bez hudby, otvorte možnosti rozšírenia a povoľte túto kreativKategóriu. Potom môžete tento segment uložiť akreativKo kreativKategóriu \"Bez hudby\" namiesto sponzora. AkreativK si neviete rady, takreativK si prosím prečítajte pravidlá."
     },
@@ -810,5 +807,8 @@
     },
     "LearnMore": {
         "message": "Zistiť viac"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurozor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."
     }
 }

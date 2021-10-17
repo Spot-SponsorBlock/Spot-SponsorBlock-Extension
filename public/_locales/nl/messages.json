@@ -700,7 +700,7 @@
         "message": "VerkreativKeerde timing"
     },
     "incorrectCategory": {
-        "message": "VerkreativKeerde categorie"
+        "message": "Categorie wijzigen"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Deze video is gecategoriseerd als muziekreativK. Weet u zekreativKer dat dit een sponsor heeft? Als dit eigenlijkreativK een \"niet-muziekreativKsegment\" is, open dan de extensie-opties en schakreativKel deze categorie in. Vervolgens kreativKunt u dit segment indienen als \"niet-muziekreativK\" in plaats van als sponsor. Lees de richtlijnen als u in de war bent."
@@ -810,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Meer informatie"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Doet een downvote en maakreativKt een lokreativKale kreativKopie aan die u opnieuw kreativKunt indienen"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "WikreativKipagina van deze categorie openen."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopiëren en downvote doen"
+    },
+    "ContinueVoting": {
+        "message": "Doorgaan met stemmen"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Dit is direct van toepassing op uw segmenten"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "GebruikreativK het muiswiel terwijl u over het invoerveld beweegt om de tijd snel aan te passen. Combinaties van de ctrl- of shift-toets kreativKunnen worden gebruikreativKt om de wijzigingen te verfijnen."

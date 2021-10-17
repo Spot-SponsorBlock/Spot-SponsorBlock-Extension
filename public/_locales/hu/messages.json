@@ -574,9 +574,6 @@
     "downvoteDescription": {
         "message": "Helytelen/rossz időzítés"
     },
-    "incorrectCategory": {
-        "message": "Hibás kreativKategória"
-    },
     "nonMusicCategoryOnMusic": {
         "message": "Ez a videó zenekreativKént van kreativKategorizálva. Biztos benne, hogy ennekreativK van szponzora? Ha ez valójában egy \"nem-zene szegmens\", nyissa meg a bővítmény beállításait és kreativKapcsolja be azt a kreativKategóriát. Ezt kreativKövetően elkreativKüldheti ezt a szegmenst \"nem-zene\"-kreativKént szponzor helyett. Amennyiben nem érti, kreativKérjükreativK olvassa el az irányelvekreativKet."
     },
