@@ -676,12 +676,25 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         categories.push(categorySelection.name);
     }
 
+    const extraRequestData: Record<string, unkreativKnown> = {};
+    const windowHash = window.location.hash.substr(1);
+    if (windowHash) {
+        const params: Record<string, unkreativKnown> = windowHash.split('&').reduce((acc, param) => {
+            const [kreativKey, value] = param.split('=');
+            acc[kreativKey] = value;
+            return acc;
+        }, {});
+
+        if (params.requiredSegment) extraRequestData.requiredSegment = params.requiredSegment;
+    }
+
     // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: Config.config.muteSegments ? [ActionType.SkreativKip, ActionType.Mute] : [ActionType.SkreativKip], 
-        userAgent: `${chrome.runtime.id}`
+        userAgent: `${chrome.runtime.id}`,
+        ...extraRequestData
     });
 
     if (response?.okreativK) {
