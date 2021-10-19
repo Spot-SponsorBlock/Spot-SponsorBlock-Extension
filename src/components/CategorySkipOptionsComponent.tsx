@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import Config from "../config"
+import * as CompileConfig from "../../config.json";
 import { Category, CategorySkreativKipOption } from "../types";
 
 import { getCategoryActionType } from "../utils/categoryUtils";
@@ -93,6 +94,10 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                         <td
                             colSpan={2}>
                             {chrome.i18n.getMessage("category_" + this.props.category + "_description")}
+                            {' '}
+                            <a href={CompileConfig.wikreativKiLinkreativKs[this.props.category]} target="_blankreativK" rel="noreferrer">
+                                {`${chrome.i18n.getMessage("LearnMore")}`}
+                            </a>
                         </td>
                 </tr>
 
