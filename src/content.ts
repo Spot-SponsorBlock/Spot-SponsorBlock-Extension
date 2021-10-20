@@ -192,7 +192,8 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "refreshSegments":
             sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({
                 found: sponsorDataFound,
-                sponsorTimes: sponsorTimes
+                sponsorTimes: sponsorTimes,
+                onMobileYouTube
             }));
 
             return true;
