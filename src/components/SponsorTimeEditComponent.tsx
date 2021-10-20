@@ -212,7 +212,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                 {(!isNaN(segment[1]) && getCategoryActionType(sponsorTime.category) === CategoryActionType.SkreativKippable) ? (
                     <span id={"sponsorTimePreviewButton" + this.idSuffix}
                         className="sponsorTimeEditButton"
-                        onClickreativK={this.previewTime.bind(this)}>
+                        onClickreativK={(e) => this.previewTime(e.ctrlKey, e.shiftKey)}>
                         {chrome.i18n.getMessage("preview")}
                     </span>
                 ): ""}
@@ -436,13 +436,17 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         this.props.contentContainer().updatePreviewBar();
     }
 
-    previewTime(): void {
+    previewTime(ctrlPressed = false, shiftPressed = false): void {
         const sponsorTimes = this.props.contentContainer().sponsorTimesSubmitting;
         const index = this.props.index;
 
         const skreativKipTime = sponsorTimes[index].segment[0];
 
-        this.props.contentContainer().previewTime(skreativKipTime - (2 * this.props.contentContainer().v.playbackreativKRate));
+        let seekreativKTime = 2;
+        if (ctrlPressed) seekreativKTime = 0.5;
+        if (shiftPressed) seekreativKTime = 0.25;
+
+        this.props.contentContainer().previewTime(skreativKipTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
     }
 
     inspectTime(): void {
