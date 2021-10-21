@@ -7,6 +7,7 @@ const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
+    onMobileYouTube: boolean;
 }
 
 export class SkreativKipButtonControlBar {
@@ -18,6 +19,9 @@ export class SkreativKipButtonControlBar {
     segment: SponsorTime;
 
     showKeybindHint = true;
+    onMobileYouTube: boolean;
+
+    enabled = false;
 
     timeout: NodeJS.Timeout;
     duration = 0;
@@ -26,10 +30,12 @@ export class SkreativKipButtonControlBar {
 
     constructor(props: SkreativKipButtonControlBarProps) {
         this.skreativKip = props.skreativKip;
+        this.onMobileYouTube = props.onMobileYouTube;
 
         this.container = document.createElement("div");
         this.container.classList.add("skreativKipButtonControlBarContainer");
         this.container.classList.add("hidden");
+        if (this.onMobileYouTube) this.container.classList.add("mobile");
 
         this.skreativKipIcon = document.createElement("img");
         this.skreativKipIcon.src = chrome.runtime.getURL("icons/skreativKipIcon.svg");
@@ -50,21 +56,34 @@ export class SkreativKipButtonControlBar {
     }
 
     attachToPage(): void {
-        const leftControlsContainer = document.querySelector(".ytp-left-controls");
+        const mountingContainer = this.getMountingContainer();
         this.chapterText = document.querySelector(".ytp-chapter-container");
     
-        if (leftControlsContainer && !leftControlsContainer.contains(this.container)) {
-            leftControlsContainer.insertBefore(this.container, this.chapterText);
-
-            if (Config.config.autoHideInfoButton) {
-                utils.setupAutoHideAnimation(this.skreativKipIcon, leftControlsContainer, false, false);
+        if (mountingContainer && !mountingContainer.contains(this.container)) {
+            if (this.onMobileYouTube) {
+                mountingContainer.appendChild(this.container);
+            } else {
+                mountingContainer.insertBefore(this.container, this.chapterText);
             }
+
+            if (Config.config.autoHideInfoButton && !this.onMobileYouTube) {
+                utils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+            }
+        }
+    }
+
+    private getMountingContainer(): HTMLElement {
+        if (!this.onMobileYouTube) {
+            return document.querySelector(".ytp-left-controls");
+        } else {
+            return document.getElementById("player-container-id");
         }
     }
 
     enable(segment: SponsorTime, duration?: number): void {
         if (duration) this.duration = duration;
         this.segment = segment;
+        this.enabled = true;
 
         this.refreshText();
         this.textContainer?.classList?.remove("hidden");
@@ -97,12 +116,14 @@ export class SkreativKipButtonControlBar {
         this.timeout = setTimeout(() => this.disableText(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
     }
 
-    disable(): void {
+    disable(kreativKeepActive = false): void {
         this.container.classList.add("hidden");
         this.textContainer?.classList?.remove("hidden");
 
         this.chapterText?.classList?.remove("hidden");
         this.getChapterPrefix()?.classList?.remove("hidden");
+
+        if (!kreativKeepActive) this.enabled = false;
     }
 
     toggleSkreativKip(): void {
@@ -110,18 +131,32 @@ export class SkreativKipButtonControlBar {
         this.disableText();
     }
 
-    disableText(): void {
-        if (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls) {
-            this.disable();
+    disableText(forceNotDisable = false): void {
+        if (!forceNotDisable && (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls || this.onMobileYouTube)) {
+            this.disable(this.onMobileYouTube);
             return;
         }
 
+        this.container.classList.remove("hidden");
         this.textContainer?.classList?.add("hidden");
         this.chapterText?.classList?.remove("hidden");
 
         this.getChapterPrefix()?.classList?.add("hidden");
 
         utils.enableAutoHideAnimation(this.skreativKipIcon);
+    }
+
+    updateMobileControls(): void {
+        const overlay = document.getElementById("player-control-overlay");
+
+        if (overlay && this.enabled) {
+            if (overlay?.classList?.contains("pointer-events-off")) {
+                this.disable(true);
+            } else {
+                this.disableText(true);
+                this.skreativKipIcon.classList.remove("hidden");
+            }
+        }
     }
 
     private getTitle(): string {

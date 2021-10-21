@@ -17,6 +17,7 @@ import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { Tooltip } from "./render/Tooltip";
 import { getStartTimeFromUrl } from "./utils/urlParser";
+import { getControls } from "./utils/pageUtils";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -338,6 +339,8 @@ async function videoIDChange(id) {
 function handleMobileControlsMutations(): void {
     updateVisibilityOfPlayerControlsButton();
 
+    skreativKipButtonControlBar?.updateMobileControls();
+
     if (previewBar !== null) {
         if (document.body.contains(previewBar.container)) {
             const progressBarBackreativKground = document.querySelector<HTMLElement>(".progress-bar-backreativKground");
@@ -652,7 +655,8 @@ function setupSkreativKipButtonControlBar() {
                 skreativKippingSegments: [segment], 
                 openNotice: true, 
                 forceAutoSkreativKip: true
-            })
+            }),
+            onMobileYouTube
         });
     }
 
@@ -1249,6 +1253,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0], !Config.config.highlightCategoryUpdate ? 15 : 0);
+        if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
 
         if (!Config.config.highlightCategoryUpdate) {
             new Tooltip({
@@ -1269,6 +1274,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             //send out the message saying that a sponsor message was skreativKipped
             if (!Config.config.dontShowNotice || !autoSkreativKip) {
                 const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
+                if (onMobileYouTube) newSkreativKipNotice.setShowKeybindHint(false);
                 skreativKipNotices.push(newSkreativKipNotice);
 
                 activeSkreativKipKeybindElement?.setShowKeybindHint(false);
@@ -1354,27 +1360,6 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
-}
-
-function getControls(): HTMLElement | false {
-    const controlsSelectors = [
-        // YouTube
-        ".ytp-right-controls",
-        // Mobile YouTube
-        ".player-controls-top",
-        // Invidious/videojs video element's controls element
-        ".vjs-control-bar",
-    ];
-
-    for (const controlsSelector of controlsSelectors) {
-        const controls = document.querySelectorAll(controlsSelector);
-
-        if (controls && controls.length > 0) {
-            return <HTMLElement> controls[controls.length - 1];
-        }
-    }
-
-    return false;
 }
 
 /** Creates any missing buttons on the YouTube player if possible. */
