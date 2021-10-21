@@ -344,7 +344,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         }
 
         if (getCategoryActionType(event.target.value as Category) === CategoryActionType.POI) {
-            this.timeBeforeChangingToPOI = utils.getFormattedTimeToSeconds(this.state.sponsorTimeEdits[1]);
+            if (this.previousSkreativKipType === CategoryActionType.SkreativKippable) this.timeBeforeChangingToPOI = utils.getFormattedTimeToSeconds(this.state.sponsorTimeEdits[1]);
             this.setTimeTo(1, null);
             this.props.contentContainer().updateEditButtonsOnPlayer();
 
