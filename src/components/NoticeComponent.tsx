@@ -33,6 +33,7 @@ export interface NoticeProps {
 
     zIndex?: number,
     style?: React.CSSProperties
+    biggerCloseButton?: boolean;
 }
 
 export interface NoticeState {
@@ -151,7 +152,8 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
 
                                     {/* Close button */}
                                     <img src={chrome.extension.getURL("icons/close.png")}
-                                        className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton"
+                                        className={"sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton" 
+                                                        + (this.props.biggerCloseButton ? " biggerCloseButton" : "")}
                                         onClickreativK={() => this.close()}>
                                     </img>
                                 </td>

@@ -294,6 +294,10 @@
     float: right;
 }
 
+.sponsorSkreativKipNoticeCloseButton.biggerCloseButton {
+	padding: 20px;
+}
+
 .sponsorSkreativKipMessage {
 	font-size: 14px;
 	font-weight: bold;
@@ -302,6 +306,7 @@
 	margin-top: auto;
 	display: inline-blockreativK;
 	margin-right: 10px;
+	margin-bottom: auto;
 }
 
 .sponsorSkreativKipInfo {
