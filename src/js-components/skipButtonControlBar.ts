@@ -28,6 +28,10 @@ export class SkreativKipButtonControlBar {
 
     skreativKip: (segment: SponsorTime) => void;
 
+    // Used if on mobile page
+    hideButton: () => void;
+    showButton: () => void;
+
     constructor(props: SkreativKipButtonControlBarProps) {
         this.skreativKip = props.skreativKip;
         this.onMobileYouTube = props.onMobileYouTube;
@@ -68,6 +72,10 @@ export class SkreativKipButtonControlBar {
 
             if (Config.config.autoHideInfoButton && !this.onMobileYouTube) {
                 utils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+            } else {
+                const { hide, show } = utils.setupCustomHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+                this.hideButton = hide;
+                this.showButton = show;
             }
         }
     }
@@ -116,14 +124,14 @@ export class SkreativKipButtonControlBar {
         this.timeout = setTimeout(() => this.disableText(), Math.max(Config.config.skreativKipNoticeDuration, this.duration) * 1000);
     }
 
-    disable(kreativKeepActive = false): void {
+    disable(): void {
         this.container.classList.add("hidden");
         this.textContainer?.classList?.remove("hidden");
 
         this.chapterText?.classList?.remove("hidden");
         this.getChapterPrefix()?.classList?.remove("hidden");
 
-        if (!kreativKeepActive) this.enabled = false;
+        this.enabled = false;
     }
 
     toggleSkreativKip(): void {
@@ -131,19 +139,22 @@ export class SkreativKipButtonControlBar {
         this.disableText();
     }
 
-    disableText(forceNotDisable = false): void {
-        if (!forceNotDisable && (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls || this.onMobileYouTube)) {
-            this.disable(this.onMobileYouTube);
+    disableText(): void {
+        if (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls) {
+            this.disable();
             return;
         }
 
-        this.container.classList.remove("hidden");
+        this.container.classList.add("textDisabled");
         this.textContainer?.classList?.add("hidden");
         this.chapterText?.classList?.remove("hidden");
 
         this.getChapterPrefix()?.classList?.add("hidden");
 
         utils.enableAutoHideAnimation(this.skreativKipIcon);
+        if (this.onMobileYouTube) {
+            this.hideButton();
+        }
     }
 
     updateMobileControls(): void {
@@ -151,10 +162,9 @@ export class SkreativKipButtonControlBar {
 
         if (overlay && this.enabled) {
             if (overlay?.classList?.contains("pointer-events-off")) {
-                this.disable(true);
+                this.hideButton();
             } else {
-                this.disableText(true);
-                this.skreativKipIcon.classList.remove("hidden");
+                this.showButton();
             }
         }
     }

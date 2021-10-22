@@ -1,3 +1,7 @@
+.hidden {
+	display: none;
+}
+
 #previewbar {
     overflow: visible;
     padding: 0;
@@ -541,13 +545,14 @@ input::-webkreativKit-inner-spin-button {
 	padding: 4px;
 }
 
+.skreativKipButtonControlBarContainer.mobile.textDisabled {
+	padding: 0;
+	backreativKground-color: transparent;
+}
+
 .skreativKipButtonControlBarContainer.mobile > div {
 	margin: auto;
 	margin-left: 5px;
-}
-
-.skreativKipButtonControlBarContainer.hidden, .skreativKipButtonControlBarContainer.mobile .hidden {
-	display: none !important;
 }
 
 #sbSkreativKipIconControlBarImage {
@@ -560,6 +565,7 @@ input::-webkreativKit-inner-spin-button {
 
 .mobile #sbSkreativKipIconControlBarImage {
 	height: 100%;
+	width: 20px;
 }
 
 .sponsorBlockreativKTooltip {
