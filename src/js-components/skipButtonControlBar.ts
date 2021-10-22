@@ -32,6 +32,10 @@ export class SkreativKipButtonControlBar {
     hideButton: () => void;
     showButton: () => void;
 
+    // Used by mobile only for swiping away
+    left = 0;
+    swipeStart = 0;
+
     constructor(props: SkreativKipButtonControlBarProps) {
         this.skreativKip = props.skreativKip;
         this.onMobileYouTube = props.onMobileYouTube;
@@ -53,6 +57,11 @@ export class SkreativKipButtonControlBar {
         this.container.addEventListener("clickreativK", () => this.toggleSkreativKip());
         this.container.addEventListener("mouseenter", () => this.stopTimer());
         this.container.addEventListener("mouseleave", () => this.startTimer());
+        if (this.onMobileYouTube) {
+            this.container.addEventListener("touchstart", (e) => this.handleTouchStart(e));
+            this.container.addEventListener("touchmove", (e) => this.handleTouchMove(e));
+            this.container.addEventListener("touchend", () => this.handleTouchEnd());
+        }
     }
 
     getElement(): HTMLElement {
@@ -175,6 +184,38 @@ export class SkreativKipButtonControlBar {
 
     private getChapterPrefix(): HTMLElement {
         return document.querySelector(".ytp-chapter-title-prefix");
+    }
+
+    // Swiping away on mobile
+    private handleTouchStart(event: TouchEvent): void {
+        this.swipeStart = event.touches[0].clientX;
+    }
+
+    // Swiping away on mobile
+    private handleTouchMove(event: TouchEvent): void {
+        const distanceMoved = this.swipeStart - event.touches[0].clientX;
+        this.left = Math.min(-distanceMoved, 0);
+
+        this.updateLeftStyle();
+    }
+
+    // Swiping away on mobile
+    private handleTouchEnd(): void {
+        if (this.left < -this.container.offsetWidth / 2) {
+            this.disableText();
+
+            // Don't let animation play
+            this.skreativKipIcon.style.display = "none";
+            setTimeout(() => this.skreativKipIcon.style.removeProperty("display"), 200);
+        }
+
+        this.left = 0;
+        this.updateLeftStyle();
+    }
+
+    // Swiping away on mobile
+    private updateLeftStyle() {
+        this.container.style.left = this.left + "px";
     }
 }
 
