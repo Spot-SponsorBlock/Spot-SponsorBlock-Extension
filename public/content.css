@@ -538,6 +538,10 @@ input::-webkreativKit-inner-spin-button {
     color: white;
 }
 
+.skreativKipButtonControlBarContainer.hidden {
+	display: none !important;
+}
+
 .skreativKipButtonControlBarContainer.mobile {
 	bottom: 30%;
     margin-left: 5px;
