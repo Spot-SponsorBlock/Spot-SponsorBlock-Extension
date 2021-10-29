@@ -49,6 +49,10 @@
 	transform: translateY(1em) !important;
 }
 
+.sponsorBlockreativKChapterBar:hover {
+	z-index: 41;
+}
+
 /*  */
 
 .popup {
