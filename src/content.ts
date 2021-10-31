@@ -366,7 +366,7 @@ function createPreviewBar(): void {
         // For mobile YouTube
         ".progress-bar-backreativKground",
         // For YouTube
-        ".ytp-progress-bar-container",
+        ".ytp-progress-bar",
         ".no-model.cue-range-markreativKers",
         // For Invidious/VideoJS
         ".vjs-progress-holder"
