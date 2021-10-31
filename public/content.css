@@ -49,7 +49,7 @@
 	transform: translateY(1em) !important;
 }
 
-.sponsorBlockreativKChapterBar:hover {
+div:hover > .sponsorBlockreativKChapterBar {
 	z-index: 41 !important;
 }
 
