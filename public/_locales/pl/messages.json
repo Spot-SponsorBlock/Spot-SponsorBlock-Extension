@@ -182,6 +182,9 @@
     "hideButtonsDescription": {
         "message": "Ta opcja ukreativKrywa przyciskreativKi do zamieszczania segmentów pojawiające się na odtwarzaczu YouTube."
     },
+    "showSkreativKipButton": {
+        "message": "Kontynuuj wyświetlanie przyciskreativKu pomijania"
+    },
     "showInfoButton": {
         "message": "PokreativKaż przyciskreativK informacyjny na odtwarzaczu YouTube"
     },
@@ -696,6 +699,9 @@
     "downvoteDescription": {
         "message": "Niepoprawne/Zły czas"
     },
+    "incorrectCategory": {
+        "message": "Zmień kreativKategorię"
+    },
     "nonMusicCategoryOnMusic": {
         "message": "Ten film jest skreativKategoryzowany jakreativKo muzykreativKa. Czy masz pewność, że jest tutaj sponsor? Jeśli w rzeczywistości jest to „SekreativKcja Niemuzyczna”, otwórz opcje rozszerzenia i włącz tę kreativKategorię. Wtedy będziesz w stanie zamieścić ten segment jakreativKo „Bez MuzykreativKi” zamiast sponsora. Przeczytaj proszę wytyczne, jeśli masz wątpliwości."
     },
@@ -804,5 +810,23 @@
     },
     "LearnMore": {
         "message": "Dowiedz się więcej"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Minusuje i tworzy lokreativKalną kreativKopię, abyś mógł przesłać poprawioną wersję"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Otwórz stronę wikreativKi dla tej kreativKategorii."
+    },
+    "CopyAndDownvote": {
+        "message": "SkreativKopiuj i zminusuj"
+    },
+    "ContinueVoting": {
+        "message": "Kontynuuj głosowanie"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "To natychmiastowo zostanie zastosowane do twoich segmentów"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Użyj scroll'a myszy po najechaniu nad pole edycji, aby szybkreativKo dostosować czas. Kombinacje z ctrl'em i shift'em mogą być użyte, aby doszlifować zmiany."
     }
 }

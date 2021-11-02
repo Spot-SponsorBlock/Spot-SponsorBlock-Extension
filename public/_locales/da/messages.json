@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Spring over"
     },
+    "unmute": {
+        "message": "Lyd til"
+    },
     "paused": {
         "message": "Sat på pause"
     },
@@ -115,7 +118,29 @@
     "submitCheckreativK": {
         "message": "Er du sikreativKkreativKer på, at du vil indsende dette?"
     },
+    "whitelistChannel": {
+        "message": "Hvidliste kreativKanal"
+    },
+    "removeFromWhitelist": {
+        "message": "Fjern kreativKanal fra hvidliste"
+    },
     "voteOnTime": {
         "message": "Stem På Et Segment"
+    },
+    "Submissions": {
+        "message": "Indsendelser"
+    },
+    "savedPeopleFrom": {
+        "message": "Du har reddet folkreativK fra "
+    },
+    "viewLeaderboard": {
+        "message": "Topliste"
+    },
+    "recordTimesDescription": {
+        "message": "Indsend"
+    },
+    "submissionEditHint": {
+        "message": "SekreativKtionsredigering vises, når du kreativKlikreativKkreativKer på afsend",
+        "description": "Appears in the popup to inform them that editing has been moved to the video player."
     }
 }

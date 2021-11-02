@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "PreskreativKoči opet"
     },
+    "unmute": {
+        "message": "UkreativKljuči zvukreativK"
+    },
     "paused": {
         "message": "Pauzirano"
     },
@@ -79,6 +82,15 @@
     "sponsorEnd": {
         "message": "IsječakreativK završava sada"
     },
+    "sponsorCancel": {
+        "message": "OtkreativKaži Kreiranje Segmenta"
+    },
+    "noVideoID": {
+        "message": "Nijedan YouTube video nije pronađen.\nAkreativKo ovo nije točno, osvježite kreativKarticu."
+    },
+    "refreshSegments": {
+        "message": "Osvježi segmente"
+    },
     "success": {
         "message": "Uspjeh!"
     },
@@ -97,14 +109,32 @@
     "openPopup": {
         "message": "Otvori okreativKvir SponsorBlockreativK"
     },
+    "closePopup": {
+        "message": "Zatvori izbornikreativK"
+    },
     "SubmitTimes": {
         "message": "Podnesi isječkreativKe"
     },
     "submitCheckreativK": {
         "message": "Jesi li siguran da želiš unijeti ovo?"
     },
+    "whitelistChannel": {
+        "message": "Dopusti kreativKanal"
+    },
+    "removeFromWhitelist": {
+        "message": "Izbaci kreativKanal iz bijele liste"
+    },
     "voteOnTime": {
         "message": "Glasaj za isječakreativK"
+    },
+    "Submissions": {
+        "message": "Podnesci"
+    },
+    "savedPeopleFrom": {
+        "message": "Sačuvali ste ljude od"
+    },
+    "viewLeaderboard": {
+        "message": "Ljestvica"
     },
     "recordTimesDescription": {
         "message": "Pošalji"
@@ -113,11 +143,17 @@
         "message": "Uređivanje dijela prikreativKazat će se nakreativKon što pritisneš gumb za slanje",
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
+    "popupHint": {
+        "message": "Savjet: Možete namjestiti tipkreativKe za podnošenje u opcijama"
+    },
     "clearTimesButton": {
         "message": "Očisti vremena"
     },
     "submitTimesButton": {
         "message": "Unesi vremena"
+    },
+    "publicStats": {
+        "message": "Ovo se kreativKoristi na stranici sa javnim statistikreativKama da se pokreativKaže kreativKolikreativKo se pridonijeli. Pogledajte"
     },
     "Username": {
         "message": "KorisničkreativKo ime"
@@ -125,8 +161,35 @@
     "setUsername": {
         "message": "Postavi kreativKorisničkreativKo ime"
     },
+    "copyPublicID": {
+        "message": "Kopiraj javni UserID"
+    },
+    "discordAdvert": {
+        "message": "Pridružite nam se u službenoj Discord zajednici i pošaljite svoje prijedloge i povrate informacije!"
+    },
+    "hideThis": {
+        "message": "SakreativKrijte ovo"
+    },
     "Options": {
         "message": "Opcije"
+    },
+    "showButtons": {
+        "message": "PokreativKažite gumbove na YouTube Player-u"
+    },
+    "hideButtons": {
+        "message": "SakreativKrite gumbove na YouTube Player-u"
+    },
+    "hideButtonsDescription": {
+        "message": "Ovo sakreativKrije gumbove za pridonose segmenta za preskreativKočiti kreativKoje se pokreativKažu na YouTuve Player-u."
+    },
+    "showSkreativKipButton": {
+        "message": "Ostavite gumb za preskreativKakreativKanje"
+    },
+    "showInfoButton": {
+        "message": "PokreativKažite gumb za Informacije na YouTube Player-u"
+    },
+    "hideInfoButton": {
+        "message": "SakreativKrijte gumb za Informacije na YouTube Player-u"
     },
     "showSkreativKipNotice": {
         "message": "PokreativKaži obavijest nakreativKon preskreativKakreativKanja isječkreativKa"

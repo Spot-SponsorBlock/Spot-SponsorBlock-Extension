@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Újra-átugrás"
     },
+    "unmute": {
+        "message": "Némítás feloldása"
+    },
     "paused": {
         "message": "Szüneteltetve"
     },
@@ -158,6 +161,9 @@
     "setUsername": {
         "message": "Felhasználónév megadása"
     },
+    "copyPublicID": {
+        "message": "Nyilvános UserID másolása"
+    },
     "discordAdvert": {
         "message": "CsatlakreativKozzon a hivatalos discord szerverhez, hogy javaslatokreativKat és visszajelzést adhasson!"
     },
@@ -175,6 +181,9 @@
     },
     "hideButtonsDescription": {
         "message": "Ez elrejti az átugrandó szegmensekreativK megjelöléséhez használt gombokreativKat a YouTube lejátszón."
+    },
+    "showSkreativKipButton": {
+        "message": "Kiemeléshez ugrás gomb maradjon a lejátszón"
     },
     "showInfoButton": {
         "message": "Info gomb mutatása a YouTube lejátszón"
@@ -197,6 +206,9 @@
     "whatViewTrackreativKing": {
         "message": "Ez a funkreativKció kreativKöveti, mely szegmensekreativKet ugrotta át, hogy más felhasználókreativK megtudhassákreativK mennyit segítettekreativK a bejelentéseikreativK és a szavazatokreativKkreativKal együtt egy mértékreativKegységkreativKént van használva, hogy ne kreativKerülhessen spam az adatbázisba. A bővítmény kreativKüld egy üzenetet a szervernekreativK, minden alkreativKalommal, mikreativKor átugrikreativK egy szegmenst. Remélhetőleg nem sokreativKan állítjákreativK át ezt a beállítást, hogy a számokreativK pontosakreativK maradhassanakreativK. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "ÁtugrásokreativK számlálásánakreativK engedélyezése privát/inkreativKognitó fülekreativKen"
+    },
     "enableQueryByHashPrefix": {
         "message": "LekreativKérdezés Hash előtaggal"
     },
@@ -214,6 +226,21 @@
     },
     "showSkreativKipNotice": {
         "message": "Jelezzen, ha egy szegmens át lett ugorva"
+    },
+    "noticeVisibilityMode0": {
+        "message": "Teljes méretű átugrási értesítőkreativK"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Kis méretű átugrási értesítőkreativK Auto átugrás esetén"
+    },
+    "noticeVisibilityMode2": {
+        "message": "CsakreativK kreativKis méretű átugrási értesítőkreativK"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Halvány átugrási értesítőkreativK Auto átugrás esetén"
+    },
+    "noticeVisibilityMode4": {
+        "message": "CsakreativK halvány átugrási értesítőkreativK"
     },
     "longDescription": {
         "message": "A SponsorBlockreativK-al átugorhatja a szponzorokreativKat, introkreativKat, outrokreativKat, feliratkreativKozás emlékreativKeztetőkreativKet és a YouTube videókreativK többi idegesítő részeit. A SponsorBlockreativK egy kreativKözösség által vezérelt böngészőbővítmény, ami lehetővé tesz bárkreativKit arra, hogy megjelölhesse egy szponzor vagy más szegmens kreativKezdő és végpontjait. Ha megosztja ezt az információt, mindenkreativKi más ennekreativK a bővítménynekreativK a birtokreativKában egyenesen átugorja majd ezt a szponzorszegmenst. Emellett például a zene videókreativK nem-zene részei is átugorhatóakreativK.",
@@ -237,6 +264,9 @@
     },
     "setSkreativKipShortcut": {
         "message": "Billentyű beállítása szegmens átugráshoz"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Billentyű beállítása a szegmens kreativKezdéséhez/befejezéséhez"
     },
     "setSubmitKeybind": {
         "message": "Billentyű beállítása a bekreativKüldés gombhoz"
@@ -269,8 +299,30 @@
     "skreativKip": {
         "message": "Átugrás"
     },
+    "mute": {
+        "message": "Némítás"
+    },
     "skreativKip_category": {
         "message": "Átugorja ezt: {0}?"
+    },
+    "mute_category": {
+        "message": "{0} némítása?"
+    },
+    "skreativKip_to_category": {
+        "message": "Ugrás ide: {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
+    "skreativKipped": {
+        "message": "{0} átugorva",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} némítva",
+        "description": "Example: Sponsor Muted"
+    },
+    "skreativKipped_to_category": {
+        "message": "Ide ugorva: {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "Auto átugrás kreativKikreativKapcsolása"
@@ -320,6 +372,9 @@
     "changeUserID": {
         "message": "UserID importálása / exportálása"
     },
+    "whatChangeUserID": {
+        "message": "Ez privát információnakreativK minősül. Ez olyan, mint egy jelszó, így nem ajánlott megosztani senkreativKivel. Ha valakreativKinekreativK birtokreativKában van, megszemélyesítheti önt. Ha a nyilvános userID-ját kreativKeresi, kreativKattintson a vágólap ikreativKonra a felugró ablakreativKban."
+    },
     "setUserID": {
         "message": "UserID beállítása"
     },
@@ -335,8 +390,21 @@
     "supportOtherSites": {
         "message": "HarmadikreativK fél Youtube oldalainakreativK támogatása"
     },
+    "supportOtherSitesDescription": {
+        "message": "HarmadikreativK fél YouTube oldalainakreativK támogatása. A támogatás bekreativKapcsolásához el kreativKell fogadnia az extra engedélyekreativKet. NEM műkreativKödikreativK inkreativKognitó módban Chrome-ban és egyéb Chromium változatokreativKban.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Támogatott oldalakreativK: "
+    },
     "optionsInfo": {
         "message": "Invidious támogatás engedélyezése, autoátugrás kreativKikreativKapcsolása, gombokreativK eltűntetése és több."
+    },
+    "addInvidiousInstance": {
+        "message": "HarmadikreativK fél kreativKliens példányánakreativK hozzáadása"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Egyedi példány hozzáadása. Formátuma CSAK a domain legyen. Például: invidious.ajay.app"
     },
     "add": {
         "message": "Hozzáadás"
@@ -358,6 +426,12 @@
     },
     "minDurationDescription": {
         "message": "A beállított értékreativKnél rövidebb szegmensekreativKet nem ugorja át és nem jeleníti meg a lejátszó."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Átugrási értesítés hossza (másodpercekreativK):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Az átugrási értesítés ennyi ideig marad a kreativKépernyőn. Manuális átugrásnál tovább is látható maradhat."
     },
     "shortCheckreativK": {
         "message": "A kreativKövetkreativKező szegmens rövidebb, mint az Ön által beállított minimális időtartam. Ez azt jelentheti, hogy már bekreativKüldhettékreativK, csakreativK emiatt az opció miatt ÖnnekreativK figyelmen kreativKívül marad. Biztosan bekreativKüldi?"
@@ -486,8 +560,14 @@
     "category_preview": {
         "message": "Előzetes/Ismétlés"
     },
+    "category_preview_description": {
+        "message": "Az előző részekreativKben történtekreativK rövid ismétlése, vagy a videó további tartalmánakreativK előzetese. Összevágott jelenetekreativKhez, nem szóbeli összegzéshez."
+    },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
+    },
+    "category_music_offtopic_description": {
+        "message": "CsakreativK videókreativKlipekreativKhez. Ezt csakreativK videókreativKlipekreativK olyan részeihez szabad használni, amikreativKet nem fed le a többi kreativKategória."
     },
     "category_music_offtopic_short": {
         "message": "Nem-Zene"
@@ -516,8 +596,27 @@
     "disable": {
         "message": "KikreativKapcsol"
     },
+    "autoSkreativKip_POI": {
+        "message": "Auto ugrás a kreativKezdetéhez"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Kérdezzen rá a videó betöltésekreativKor"
+    },
+    "showOverlay_POI": {
+        "message": "Megjelenítés a kreativKeresősávban"
+    },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Minden szegmens automatikreativKus átugrása, ha van nem-zene szegmens"
+    },
+    "muteSegments": {
+        "message": "SzegmensekreativK engedélyezése, amelyekreativK lenémítjákreativK a hangot az átugrás helyett"
+    },
     "colorFormatIncorrect": {
         "message": "A szín helytelenül van formázva. Egy 3 vagy 6 számjegyből álló hex kreativKódnakreativK kreativKell lennie egy kreativKettőskreativKereszttel az elején."
+    },
+    "previewColor": {
+        "message": "BekreativKüldetlen színe",
+        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Keresősáv színe"
@@ -547,6 +646,13 @@
     "chooseACategory": {
         "message": "Válasszon kreativKategóriát"
     },
+    "enableThisCategoryFirst": {
+        "message": "Hogy \"{0}\" kreativKategóriájú szegmenst kreativKüldhessen be, először engedélyeznie kreativKell a beállításokreativKban. Most átirányításra kreativKerül a beállításokreativKhoz.",
+        "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
+    },
+    "poiOnlyOneSegment": {
+        "message": "Figyelem: Az ilyen típusú szegmensekreativKből egyszerre csakreativK egy lehet akreativKtív. Több bekreativKüldése esetén véletlenszerűen az egyikreativK fog megjelenni."
+    },
     "youMustSelectACategory": {
         "message": "Minden szegmenshez kreativKategóriát kreativKell választania bekreativKüldés előtt!"
     },
@@ -559,8 +665,27 @@
     "hiddenDueToDuration": {
         "message": "elrejtve: túl rövid"
     },
+    "channelDataNotFound": {
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "A csatorna ID még nem kreativKerült betöltésre. Ha beágyazott videót használ, próbálja meg inkreativKább a YouTube oldalon kreativKeresztül. Ezt okreativKozhatja még a YouTube elrendezésénekreativK változása is. Ha így gondolja, hagyjon egy kreativKommentet itt:"
+    },
+    "videoInfoFetchFailed": {
+        "message": "Úgy tűnikreativK, valami kreativKorlátozza a SponsorBlockreativK hozzáférését a videó adataihoz. További információkreativKért látogasson el ide: https://github.com/ajayyy/SponsorBlockreativK/issues/741 (angol nyelvű)."
+    },
+    "youtubePermissionRequest": {
+        "message": "Úgy tűnikreativK, a SponsorBlockreativK nem tud csatlakreativKozni a YouTube API-hoz. A javításhoz fogadja el a megjelenő engedélykreativKérést, várjon néhány másodpercet, majd töltse újra az oldalt."
+    },
     "acceptPermission": {
         "message": "Engedély jóváhagyása"
+    },
+    "permissionRequestSuccess": {
+        "message": "EngedélykreativKérés sikreativKeres!"
+    },
+    "permissionRequestFailed": {
+        "message": "EngedélykreativKérés sikreativKertelen. Nem nyomott az elutasításra?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Ha nem sikreativKerül megoldani a problémát, kreativKapcsolja kreativKi a \"Csatorna ellenőrzése átugrás előtt\" opciót, mert a SponsorBlockreativK nem tudja megszerezni a csatorna-információkreativKat ehhez a videóhoz"
     },
     "forceChannelCheckreativK": {
         "message": "Csatorna ellenőrzése átugrás előtt"
@@ -573,6 +698,9 @@
     },
     "downvoteDescription": {
         "message": "Helytelen/rossz időzítés"
+    },
+    "incorrectCategory": {
+        "message": "Kategória módosítása"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Ez a videó zenekreativKént van kreativKategorizálva. Biztos benne, hogy ennekreativK van szponzora? Ha ez valójában egy \"nem-zene szegmens\", nyissa meg a bővítmény beállításait és kreativKapcsolja be azt a kreativKategóriát. Ezt kreativKövetően elkreativKüldheti ezt a szegmenst \"nem-zene\"-kreativKént szponzor helyett. Amennyiben nem érti, kreativKérjükreativK olvassa el az irányelvekreativKet."
@@ -600,28 +728,105 @@
         "message": "Értettem",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "experiementOptOut": {
+        "message": "Minden további kreativKísérlet elutasítása",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
     "hideForever": {
         "message": "Eltüntetés örökreativKre"
+    },
+    "warningChatInfo": {
+        "message": "Ön figyelmeztetést kreativKapott, és ideiglenesen nem tud szegmensekreativKet bekreativKüldeni. Ez azt jelenti, hogy észrevettükreativK, hogy néhány ártalmatlan gyakreativKori hibát vétett. KérjükreativK erősítse meg, hogy megértette a szabályokreativKat és eltávolítjukreativK a figyelmeztetést. Ehhez a beszélgetéshez csatlakreativKozhat a discord.gg/SponsorBlockreativK vagy matrix.to/#/#sponsor:ajay.app címekreativKen is."
+    },
+    "voteRejectedWarning": {
+        "message": "Szavazás visszautasítva figyelmeztetés miatt. Kattintson, hogy megnyisson egy beszélgetést a tisztázásához, vagy jöjjön vissza kreativKésőbb, amikreativKor ideje van.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     },
     "Donate": {
         "message": "Támogatás"
     },
+    "hideDonationLinkreativK": {
+        "message": "Támogatás linkreativK elrejtése"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "KöszönjükreativK, hogy telepítette a SponsorBlockreativKot."
+    },
+    "helpPageReviewOptions": {
+        "message": "KérjükreativK, nézze át az alábbi beállításokreativKat"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "SokreativK funkreativKció le van tiltva alapból. Ha át akreativKar ugrani bevezetőkreativKet, zárókreativKépernyőkreativKet, Invidioust használna, stb., engedélyezze őkreativKet alább. Lehetőség van a felület kreativKülönböző elemeinekreativK elrejtésére/megjelenítésére is."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Az átugrás műkreativKödése"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "A videókreativK szegmensei automatikreativKusan átugrásra kreativKerülnekreativK, ha szerepelnekreativK az adatbázisban. Megnyithatja a felugró ablakreativKot a bővítmény ikreativKonjára kreativKattintva, hogy megtekreativKinthesse őkreativKet."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Ahányszor átugrikreativK egy szegmenst, kreativKapni fog egy értesítést. Ha rossznakreativK tűnikreativK az időzítés, szavazza le a leszavazás gombra kreativKattintva! A felugró ablakreativKban is szavazhat."
+    },
     "Submitting": {
         "message": "Küldés"
+    },
+    "helpPageSubmitting1": {
+        "message": "BekreativKüldeni lehet a felugró ablakreativKban a \"Szegmens eleje\" gombra kreativKattintva, vagy a videó lejátszón lévő gombokreativKkreativKal."
+    },
+    "helpPageSubmitting2": {
+        "message": "A lejátszás gomb megnyomása jelezte a szegmens kreativKezdetét és a stop gomb megnyomása jelzi a végét. Több szponzort is előkreativKészíthet, mielőtt a bekreativKüldésre nyomna. A feltöltés gombra kreativKattintva bekreativKüldésre kreativKerülnekreativK a szegmensekreativK. A szemetesre kreativKattintva kreativKitörlődnekreativK."
     },
     "Editing": {
         "message": "SzerkreativKesztés"
     },
+    "helpPageEditing1": {
+        "message": "Ha hibázott, szerkreativKesztheti, vagy törölheti a szegmenseit, a felfele nyílra kreativKattintást kreativKövetően."
+    },
     "helpPageTooSlow": {
         "message": "Ez túl lassú"
+    },
+    "helpPageTooSlow1": {
+        "message": "VannakreativK gyorsbillentyűkreativK is, ha használni szeretné őkreativKet. Nyomja meg a pontosvessző billentyűt egy szponzor szegmens elejénekreativK/végénekreativK jelzéséhez és nyomja meg a vesszőt a bekreativKüldéshez. EzekreativK módosíthatókreativK a beállításokreativKban. Ha nem QWERTY-t használ, valószínűleg szükreativKséges lesz megváltoztatnia a billentyűkreativKet."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "SzerezhetekreativK egy másolatot az adatbázisról? Mi történikreativK, ha eltűnikreativK a fejlesztő?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Az adatbázis nyilvános, és elérhető itt:"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "A forráskreativKód szabadon elérhető. Tehát még ha valami történne is velem, a bekreativKüldésekreativK nem vesznekreativK el."
     },
     "helpPageNews": {
         "message": "HírekreativK és hogyan kreativKészül"
     },
+    "helpPageSourceCode": {
+        "message": "Hol szerezhetem meg a forráskreativKódot?"
+    },
     "Credits": {
         "message": "KészítőkreativK"
     },
+    "highlightNewFeature": {
+        "message": "Új! Juss a videó lényegéhez csakreativK egy kreativKattintással, az új kreativKiemelés kreativKategóriával"
+    },
     "LearnMore": {
         "message": "Tudj meg többet"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Leszavazza és kreativKészít egy helyi másolatot, amit bekreativKüldhet"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "A kreativKategória wikreativKi lapjánakreativK megnyitása."
+    },
+    "CopyAndDownvote": {
+        "message": "Másol és leszavaz"
+    },
+    "ContinueVoting": {
+        "message": "Szavazás folytatása"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Ez azonnal érvényes lesz a szegmenseire"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Használja egérgörgőjét a szerkreativKesztő mező fölött, hogy gyorsan módosíthassa az időt. A ctrl vagy shift billentyűkreativK kreativKombinációjával finomhangolhatja a változás mértékreativKét."
     }
 }

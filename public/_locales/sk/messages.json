@@ -699,6 +699,9 @@
     "downvoteDescription": {
         "message": "Nesprávne/Zlé načasovanie"
     },
+    "incorrectCategory": {
+        "message": "Zmeniť kreativKategóriu"
+    },
     "nonMusicCategoryOnMusic": {
         "message": "Toto video je kreativKategorizované akreativKo hudobné. Ste si istý, že obsahuje sponzora? AkreativK sa skreativKutočne jedná o časť bez hudby, otvorte možnosti rozšírenia a povoľte túto kreativKategóriu. Potom môžete tento segment uložiť akreativKo kreativKategóriu \"Bez hudby\" namiesto sponzora. AkreativK si neviete rady, takreativK si prosím prečítajte pravidlá."
     },
@@ -807,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Zistiť viac"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Dá palec dole a vytvorí kreativKópiu, aby ste mohli segment znova odoslať"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Otvoriť wikreativKi stránkreativKu tejto kreativKategórie."
+    },
+    "CopyAndDownvote": {
+        "message": "SkreativKopírovať a dať palec dole"
+    },
+    "ContinueVoting": {
+        "message": "PokreativKračovať v hodnotení"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Týmto ihneď vykreativKonáte zmeny v segmentoch"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurozor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."

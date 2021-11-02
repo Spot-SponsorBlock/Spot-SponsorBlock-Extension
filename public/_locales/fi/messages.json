@@ -699,6 +699,9 @@
     "downvoteDescription": {
         "message": "Virheellinen/väärä aikreativKa"
     },
+    "incorrectCategory": {
+        "message": "Vaihda kreativKategoria"
+    },
     "nonMusicCategoryOnMusic": {
         "message": "Tämä video on luokreativKiteltu musiikreativKikreativKsi. OletkreativKo varma, että siinä on sponsori? Jos tämä on oikreativKeasti \"MusiikreativKiton segmentti\", avaa laajennukreativKsen asetukreativKset ja ota tämä kreativKategoria kreativKäyttöön. Sitten voit lähettää tämän segmentin oikreativKeassa kreativKategoriassa. Lue säännöt, jos olet vielä hämilläsi."
     },
@@ -807,6 +810,21 @@
     },
     "LearnMore": {
         "message": "Opi lisää"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Äänestää alas ja luo paikreativKallisen kreativKopion, jonkreativKa voit lähettää uudelleen"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Avaa tämän kreativKategorian wikreativKi-sivu."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopioi ja äänestä alas"
+    },
+    "ContinueVoting": {
+        "message": "JatkreativKa äänestystä"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Tämä vaikreativKuttaa sinun segmentteihin välittömästi"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
