@@ -7,6 +7,7 @@ const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
+    onMobileYouTube: boolean;
 }
 
 export class SkreativKipButtonControlBar {
@@ -18,18 +19,31 @@ export class SkreativKipButtonControlBar {
     segment: SponsorTime;
 
     showKeybindHint = true;
+    onMobileYouTube: boolean;
+
+    enabled = false;
 
     timeout: NodeJS.Timeout;
     duration = 0;
 
     skreativKip: (segment: SponsorTime) => void;
 
+    // Used if on mobile page
+    hideButton: () => void;
+    showButton: () => void;
+
+    // Used by mobile only for swiping away
+    left = 0;
+    swipeStart = 0;
+
     constructor(props: SkreativKipButtonControlBarProps) {
         this.skreativKip = props.skreativKip;
+        this.onMobileYouTube = props.onMobileYouTube;
 
         this.container = document.createElement("div");
         this.container.classList.add("skreativKipButtonControlBarContainer");
         this.container.classList.add("hidden");
+        if (this.onMobileYouTube) this.container.classList.add("mobile");
 
         this.skreativKipIcon = document.createElement("img");
         this.skreativKipIcon.src = chrome.runtime.getURL("icons/skreativKipIcon.svg");
@@ -43,6 +57,11 @@ export class SkreativKipButtonControlBar {
         this.container.addEventListener("clickreativK", () => this.toggleSkreativKip());
         this.container.addEventListener("mouseenter", () => this.stopTimer());
         this.container.addEventListener("mouseleave", () => this.startTimer());
+        if (this.onMobileYouTube) {
+            this.container.addEventListener("touchstart", (e) => this.handleTouchStart(e));
+            this.container.addEventListener("touchmove", (e) => this.handleTouchMove(e));
+            this.container.addEventListener("touchend", () => this.handleTouchEnd());
+        }
     }
 
     getElement(): HTMLElement {
@@ -50,21 +69,38 @@ export class SkreativKipButtonControlBar {
     }
 
     attachToPage(): void {
-        const leftControlsContainer = document.querySelector(".ytp-left-controls");
+        const mountingContainer = this.getMountingContainer();
         this.chapterText = document.querySelector(".ytp-chapter-container");
     
-        if (leftControlsContainer && !leftControlsContainer.contains(this.container)) {
-            leftControlsContainer.insertBefore(this.container, this.chapterText);
-
-            if (Config.config.autoHideInfoButton) {
-                utils.setupAutoHideAnimation(this.skreativKipIcon, leftControlsContainer, false, false);
+        if (mountingContainer && !mountingContainer.contains(this.container)) {
+            if (this.onMobileYouTube) {
+                mountingContainer.appendChild(this.container);
+            } else {
+                mountingContainer.insertBefore(this.container, this.chapterText);
             }
+
+            if (Config.config.autoHideInfoButton && !this.onMobileYouTube) {
+                utils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+            } else {
+                const { hide, show } = utils.setupCustomHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+                this.hideButton = hide;
+                this.showButton = show;
+            }
+        }
+    }
+
+    private getMountingContainer(): HTMLElement {
+        if (!this.onMobileYouTube) {
+            return document.querySelector(".ytp-left-controls");
+        } else {
+            return document.getElementById("player-container-id");
         }
     }
 
     enable(segment: SponsorTime, duration?: number): void {
         if (duration) this.duration = duration;
         this.segment = segment;
+        this.enabled = true;
 
         this.refreshText();
         this.textContainer?.classList?.remove("hidden");
@@ -103,6 +139,8 @@ export class SkreativKipButtonControlBar {
 
         this.chapterText?.classList?.remove("hidden");
         this.getChapterPrefix()?.classList?.remove("hidden");
+
+        this.enabled = false;
     }
 
     toggleSkreativKip(): void {
@@ -116,12 +154,28 @@ export class SkreativKipButtonControlBar {
             return;
         }
 
+        this.container.classList.add("textDisabled");
         this.textContainer?.classList?.add("hidden");
         this.chapterText?.classList?.remove("hidden");
 
         this.getChapterPrefix()?.classList?.add("hidden");
 
         utils.enableAutoHideAnimation(this.skreativKipIcon);
+        if (this.onMobileYouTube) {
+            this.hideButton();
+        }
+    }
+
+    updateMobileControls(): void {
+        const overlay = document.getElementById("player-control-overlay");
+
+        if (overlay && this.enabled) {
+            if (overlay?.classList?.contains("pointer-events-off")) {
+                this.hideButton();
+            } else {
+                this.showButton();
+            }
+        }
     }
 
     private getTitle(): string {
@@ -130,6 +184,38 @@ export class SkreativKipButtonControlBar {
 
     private getChapterPrefix(): HTMLElement {
         return document.querySelector(".ytp-chapter-title-prefix");
+    }
+
+    // Swiping away on mobile
+    private handleTouchStart(event: TouchEvent): void {
+        this.swipeStart = event.touches[0].clientX;
+    }
+
+    // Swiping away on mobile
+    private handleTouchMove(event: TouchEvent): void {
+        const distanceMoved = this.swipeStart - event.touches[0].clientX;
+        this.left = Math.min(-distanceMoved, 0);
+
+        this.updateLeftStyle();
+    }
+
+    // Swiping away on mobile
+    private handleTouchEnd(): void {
+        if (this.left < -this.container.offsetWidth / 2) {
+            this.disableText();
+
+            // Don't let animation play
+            this.skreativKipIcon.style.display = "none";
+            setTimeout(() => this.skreativKipIcon.style.removeProperty("display"), 200);
+        }
+
+        this.left = 0;
+        this.updateLeftStyle();
+    }
+
+    // Swiping away on mobile
+    private updateLeftStyle() {
+        this.container.style.left = this.left + "px";
     }
 }
 

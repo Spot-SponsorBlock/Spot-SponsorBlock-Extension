@@ -188,6 +188,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 maxCountdownTime={this.state.maxCountdownTime}
                 videoSpeed={() => this.contentContainer().v?.playbackreativKRate}
                 style={noticeStyle}
+                biggerCloseButton={this.contentContainer().onMobileYouTube}
                 ref={this.noticeRef}
                 closeListener={() => this.closeListener()}
                 smaller={this.state.smaller}
@@ -350,13 +351,21 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.state.showSkreativKipButton && (this.segments.length > 1 
                 || getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
                 || this.props.unskreativKipTime)) {
+
+            const style: React.CSSProperties = {
+                marginLeft: "4px",
+                color: (this.state.actionState === SkreativKipNoticeAction.UnskreativKip) ? this.selectedColor : this.unselectedColor
+            };
+            if (this.contentContainer().onMobileYouTube) {
+                style.padding = "20px";
+                style.minWidth = "100px";
+            }
+
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection">
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                            style={{marginLeft: "4px",
-                                color: (this.state.actionState === SkreativKipNoticeAction.UnskreativKip) ? this.selectedColor : this.unselectedColor
-                            }}
+                            style={style}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
                         {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
                     </button>

@@ -1,3 +1,7 @@
+.hidden {
+	display: none;
+}
+
 #previewbar {
     overflow: visible;
     padding: 0;
@@ -294,6 +298,10 @@ div:hover > .sponsorBlockreativKChapterBar {
     float: right;
 }
 
+.sponsorSkreativKipNoticeCloseButton.biggerCloseButton {
+	padding: 20px;
+}
+
 .sponsorSkreativKipMessage {
 	font-size: 14px;
 	font-weight: bold;
@@ -302,6 +310,7 @@ div:hover > .sponsorBlockreativKChapterBar {
 	margin-top: auto;
 	display: inline-blockreativK;
 	margin-right: 10px;
+	margin-bottom: auto;
 }
 
 .sponsorSkreativKipInfo {
@@ -530,10 +539,33 @@ input::-webkreativKit-inner-spin-button {
 .skreativKipButtonControlBarContainer {
 	cursor: pointer;
 	display: flex;
+    color: white;
 }
 
 .skreativKipButtonControlBarContainer.hidden {
 	display: none !important;
+}
+
+.skreativKipButtonControlBarContainer.mobile {
+	bottom: 30%;
+    margin-left: 5px;
+	position: absolute;
+	height: 20px;
+
+	backreativKground-color: #00000030;
+	opacity: 0.5;
+	border-radius: 10px;
+	padding: 4px;
+}
+
+.skreativKipButtonControlBarContainer.mobile.textDisabled {
+	padding: 0;
+	backreativKground-color: transparent;
+}
+
+.skreativKipButtonControlBarContainer.mobile > div {
+	margin: auto;
+	margin-left: 5px;
 }
 
 #sbSkreativKipIconControlBarImage {
@@ -542,6 +574,11 @@ input::-webkreativKit-inner-spin-button {
     bottom: 0px;
     display: blockreativK;
     margin: auto;
+}
+
+.mobile #sbSkreativKipIconControlBarImage {
+	height: 100%;
+	width: 20px;
 }
 
 .sponsorBlockreativKTooltip {
