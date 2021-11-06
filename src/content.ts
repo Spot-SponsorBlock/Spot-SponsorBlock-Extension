@@ -677,7 +677,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
-        actionTypes: Config.config.muteSegments ? [ActionType.SkreativKip, ActionType.Mute] : [ActionType.SkreativKip], 
+        actionTypes: Config.config.muteSegments ? [ActionType.SkreativKip, ActionType.Mute, ActionType.Chapter] : [ActionType.SkreativKip, ActionType.Chapter], 
         userAgent: `${chrome.runtime.id}`,
         ...extraRequestData
     });
@@ -968,7 +968,8 @@ function updatePreviewBar(): void {
                 segment: segment.segment as [number, number],
                 category: segment.category,
                 unsubmitted: false,
-                showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI
+                showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI,
+                description: segment.description,
             });
         });
     }
@@ -978,7 +979,8 @@ function updatePreviewBar(): void {
             segment: segment.segment as [number, number],
             category: segment.category,
             unsubmitted: true,
-            showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI
+            showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI,
+            description: segment.description,
         });
     });
 
