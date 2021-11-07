@@ -124,7 +124,8 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     previewTime,
     videoInfo,
     getRealCurrentTime: getRealCurrentTime,
-    lockreativKedCategories
+    lockreativKedCategories,
+    channelIDInfo
 });
 
 // value determining when to count segment as skreativKipped and send telemetry to server (percent based)

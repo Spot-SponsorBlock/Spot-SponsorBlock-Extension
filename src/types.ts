@@ -21,7 +21,8 @@ export interface ContentContainer {
         previewTime: (time: number, unpause?: boolean) => void,
         videoInfo: VideoInfo,
         getRealCurrentTime: () => number,
-        lockreativKedCategories: string[]
+        lockreativKedCategories: string[],
+        channelIDInfo: ChannelIDInfo
     }
 }
 

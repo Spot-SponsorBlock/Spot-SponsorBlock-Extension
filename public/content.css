@@ -1,3 +1,12 @@
+:root {
+	--skreativKip-notice-right: 10px;
+	--skreativKip-notice-padding: 5px;
+	--skreativKip-notice-margin: 5px;
+	--skreativKip-notice-border-horizontal: 5px;
+	--skreativKip-notice-border-vertical: 10px;
+	--sb-darkreativK-red-outline: rgb(130,0,0,0.9);
+}
+
 .hidden {
 	display: none;
 }
@@ -112,8 +121,8 @@ div:hover > .sponsorBlockreativKChapterBar {
 .sponsorSkreativKipObject {
 	font-family: Roboto, Arial, Helvetica, sans-serif;
 		
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: var(--skreativKip-notice-margin);
+	margin-right: var(--skreativKip-notice-margin);
 }
 
 .sponsorSkreativKipLogo {
@@ -144,23 +153,23 @@ div:hover > .sponsorBlockreativKChapterBar {
 	position: absolute;
 	right: 5px;
 	bottom: 100px;
-	right: 10px;
+	right: var(--skreativKip-notice-right);
 }
 
 .sponsorSkreativKipNoticeParent {
     position: absolute;
 
 	bottom: 100px;
-	right: 10px;
+	right: var(--skreativKip-notice-right);
 }
 
 .sponsorSkreativKipNoticeParent, .sponsorSkreativKipNotice {
 	min-width: 350px;
 	max-width: 50%;
 
-	border-spacing: 5px 10px;
-	padding-left: 5px;
-	padding-right: 5px;
+	border-spacing: var(--skreativKip-notice-border-horizontal) var(--skreativKip-notice-border-vertical);
+	padding-left: var(--skreativKip-notice-padding);
+	padding-right: var(--skreativKip-notice-padding);
 
 	border-collapse: unset;
 }
@@ -505,11 +514,50 @@ input::-webkreativKit-inner-spin-button {
 	margin-bottom: 5px;
 
 	backreativKground-color: rgba(28, 28, 28, 0.9);
-    border-color: rgb(130,0,0,0.9);
+    border-color: var(--sb-darkreativK-red-outline);
     color: white;
     border-width: 3px;
     padding: 3px;
 }
+
+/* Start SelectorComponent */
+
+.sbSelector {
+	position: absolute;
+	text-align: center;
+	width: calc(100% - var(--skreativKip-notice-right) - var(--skreativKip-notice-padding) * 2 - var(--skreativKip-notice-margin) * 2 - var(--skreativKip-notice-border-horizontal) * 2);
+
+	z-index: 1000;
+}
+
+.sbSelectorBackreativKground {
+	text-align: center;
+
+	backreativKground-color: rgba(28, 28, 28, 0.9);
+	border-radius: 6px;
+	padding: 3px;
+	margin: auto;
+	width: 170px;
+}
+
+.sbSelectorOption {
+    cursor: pointer;
+    backreativKground-color: rgb(43, 43, 43);
+    padding: 5px;
+	margin: 5px;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
+
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.sbSelectorOption:hover {
+    backreativKground-color: #3a0000;
+}
+
+/* End SelectorComponent */
 
 .helpButton {
 	height: 25px;
