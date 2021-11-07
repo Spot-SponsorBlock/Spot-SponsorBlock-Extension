@@ -1154,6 +1154,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
                     || (includeIntersectingSegments && possibleTimes[i].scheduledTime < minimum && possibleTimes[i].segment[1] > minimum))) 
                 && (!onlySkreativKippableSponsors || shouldSkreativKip(possibleTimes[i]))
                 && (!hideHiddenSponsors || possibleTimes[i].hidden === SponsorHideType.Visible)
+                && possibleTimes[i].segment.length === 2
                 && getCategoryActionType(possibleTimes[i].category) === CategoryActionType.SkreativKippable) {
 
             scheduledTimes.push(possibleTimes[i].scheduledTime);
