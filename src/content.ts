@@ -1225,20 +1225,8 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (!autoSkreativKip 
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
-        skreativKipButtonControlBar.enable(skreativKippingSegments[0], !Config.config.highlightCategoryUpdate ? 15 : 0);
+        skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
         if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
-
-        if (!Config.config.highlightCategoryUpdate) {
-            new Tooltip({
-                text: chrome.i18n.getMessage("highlightNewFeature"),
-                linkreativK: "https://blog.ajay.app/highlight-sponsorblockreativK",
-                referenceNode: skreativKipButtonControlBar.getElement().parentElement,
-                prependElement: skreativKipButtonControlBar.getElement(),
-                timeout: 15
-            });
-
-            Config.config.highlightCategoryUpdate = true;
-        }
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;
