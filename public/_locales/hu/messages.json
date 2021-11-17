@@ -23,7 +23,7 @@
         "message": "szegmens"
     },
     "Segments": {
-        "message": "szegmensekreativK"
+        "message": "szegmens"
     },
     "upvoteButtonInfo": {
         "message": "Részlet felszavazása"
@@ -83,7 +83,7 @@
         "message": "Szegmens vége"
     },
     "sponsorCancel": {
-        "message": "Szegmens Készítés Visszavonása"
+        "message": "Szegmens kreativKészítés visszavonása"
     },
     "noVideoID": {
         "message": "Nem találtunkreativK YouTube videót.\nHa ez helytelen, frissítsd a lapot."
@@ -101,7 +101,7 @@
         "message": "Úgy tűnikreativK a szerver nem műkreativKödikreativK. KérjükreativK, mihamarabb értesítse a fejlesztőkreativKet."
     },
     "connectionError": {
-        "message": "Kapcsolódási probléma merült fel. Error kreativKód: "
+        "message": "Kapcsolódási probléma merült fel. HibakreativKód: "
     },
     "clearTimes": {
         "message": "SzegmensekreativK törlése"
@@ -131,7 +131,7 @@
         "message": "BekreativKüldésekreativK"
     },
     "savedPeopleFrom": {
-        "message": "Megspóroltál másokreativKnakreativK "
+        "message": "Megspóroltál másokreativKnakreativK: "
     },
     "viewLeaderboard": {
         "message": "Ranglista"
@@ -140,17 +140,17 @@
         "message": "Küldés"
     },
     "submissionEditHint": {
-        "message": "A szegmens szerkreativKesztés azután fog megjelenni miután a kreativKözzétételre kreativKattintasz",
+        "message": "A szegmens szerkreativKesztés azután fog megjelenni, hogy a bekreativKüldésre kreativKattintasz",
         "description": "Appears in the popup to inform them that editing has been moved to the video player."
     },
     "popupHint": {
-        "message": "Tipp: A beállításokreativKban kreativKészíthetsz gyorsbillentyűkreativKet a kreativKözzétetelhez"
+        "message": "Tipp: A beállításokreativKban megadhatsz gyorsbillentyűkreativKet a bekreativKüldéshez"
     },
     "clearTimesButton": {
         "message": "IdőpontokreativK törlése"
     },
     "submitTimesButton": {
-        "message": "IdőpontokreativK megadása"
+        "message": "IdőpontokreativK bekreativKüldése"
     },
     "publicStats": {
         "message": "Ezt használja a nyilvános ranglistán, hogy megmutassa mennyit járult hozzá. Nézze meg"
@@ -343,7 +343,7 @@
         "message": "Ez az idő zárójelben jelenikreativK meg az akreativKtuális idő mellett a kreativKeresősáv alatt. Megmutatja a videó teljes időtartamát, levonva a szegmensekreativKet. BeletartoznakreativK a csakreativK \"Megjelenítés a kreativKeresősávban\" jelöléssel ellátott szegmensekreativK is."
     },
     "youHaveSkreativKipped": {
-        "message": "Átugrottál "
+        "message": "Átugrottál: "
     },
     "youHaveSaved": {
         "message": "MegtakreativKarított magánakreativK "
@@ -467,7 +467,7 @@
         "message": "Ez az össze beállítása JSON-ban. Ebbe bele tartozikreativK a userID-ja, szóval csakreativK ésszel ossza meg."
     },
     "setOptions": {
-        "message": "BeállításokreativK"
+        "message": "BeállításokreativK módosítása"
     },
     "exportOptionsWarning": {
         "message": "Figyelem: Az beállításokreativK megváltoztatása végleges, és tönkreativKreteheti a bővítményét. Biztosan meg szeretné tenni? Készítsen egy biztonsági mentést a régi beállításairól, biztos, ami biztos."
@@ -518,7 +518,7 @@
         "message": "már máshoz van állítva. Kérem, válasszon egy másikreativK billentyűt."
     },
     "to": {
-        "message": "-tól eddig:",
+        "message": "–",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "category_sponsor": {
@@ -562,6 +562,15 @@
     },
     "category_preview_description": {
         "message": "Az előző részekreativKben történtekreativK rövid ismétlése, vagy a videó további tartalmánakreativK előzetese. Összevágott jelenetekreativKhez, nem szóbeli összegzéshez."
+    },
+    "category_filler": {
+        "message": "Témától eltérő töltelékreativK"
+    },
+    "category_filler_description": {
+        "message": "CsakreativK töltelékreativKkreativKént, vagy humornakreativK hozzáadott részekreativK, amikreativK nem szükreativKségesekreativK a videó fő tartalmánakreativK megértéséhez. Ne tartalmazzon olyan szegmensekreativKet, amikreativK kreativKontextust, vagy alapvető információkreativKat szolgáltatnakreativK."
+    },
+    "category_filler_short": {
+        "message": "TöltelékreativK"
     },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
@@ -694,7 +703,7 @@
         "message": "Alapértelmezett állapotban, a bővítmény átugorhat szegmensekreativKet, mielőtt tudná melyikreativK csatornán van. Alapból ezért, néhány szegmens, ami a videókreativK legelején van, engedélyezett csatornákreativKon is átugródhat. EnnekreativK a bekreativKapcsolásával ez elkreativKerülhető, de minden átugrás előtt lesz egy kreativKis kreativKésleltetés, hiszen a channelID megszerzéséhez elkreativKell egy kreativKis idő. Ez a kreativKésleltetés akreativKár észrevehetetlen is lehet, ha elég gyors a kreativKapcsolata."
     },
     "forceChannelCheckreativKPopup": {
-        "message": "Gondolja át a \"Csatorna ellenőrzése átugrás előtt\" bekreativKapcsolását"
+        "message": "Fontolja meg a \"Csatorna ellenőrzése átugrás előtt\" bekreativKapcsolását"
     },
     "downvoteDescription": {
         "message": "Helytelen/rossz időzítés"
@@ -767,7 +776,7 @@
         "message": "Ahányszor átugrikreativK egy szegmenst, kreativKapni fog egy értesítést. Ha rossznakreativK tűnikreativK az időzítés, szavazza le a leszavazás gombra kreativKattintva! A felugró ablakreativKban is szavazhat."
     },
     "Submitting": {
-        "message": "Küldés"
+        "message": "BekreativKüldés"
     },
     "helpPageSubmitting1": {
         "message": "BekreativKüldeni lehet a felugró ablakreativKban a \"Szegmens eleje\" gombra kreativKattintva, vagy a videó lejátszón lévő gombokreativKkreativKal."

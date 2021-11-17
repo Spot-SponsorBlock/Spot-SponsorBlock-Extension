@@ -563,6 +563,15 @@
     "category_preview_description": {
         "message": "Kiire kreativKokreativKkreativKuvõte eelmistest episoodidest või eelvaade videos hiljem tulevast. Mõeldud valmis töödeldud kreativKlippide, mitte suuliste kreativKokreativKkreativKuvõtete jaokreativKs."
     },
+    "category_filler": {
+        "message": "Täitesisu"
+    },
+    "category_filler_description": {
+        "message": "Video täitekreativKs või huumori eesmärgil lisatud sisu, mis ei ole vajalikreativK video põhieesmärgi mõistmisekreativKs. Selle alla ei kreativKuulu segmendid, mis annavad kreativKontekreativKstiteavet või taustainfot."
+    },
+    "category_filler_short": {
+        "message": "Täide"
+    },
     "category_music_offtopic": {
         "message": "MuusikreativKa: mitte-muusikreativKa jaotis"
     },
@@ -754,8 +763,32 @@
     "helpPageReviewOptions": {
         "message": "Palun vaata allolevad valikreativKud üle"
     },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Kuidas vahelejätmine töötab"
+    },
+    "Submitting": {
+        "message": "Segmentide saatmine"
+    },
+    "Editing": {
+        "message": "Redigeerimine"
+    },
+    "helpPageTooSlow": {
+        "message": "See on liiga aeglane"
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Kas ma saakreativKsin andmebaasist kreativKoopia? Mis juhtub, kreativKui sa kreativKaod?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Andmebaas on avalikreativK ning saadaval aadressil"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "LähtekreativKood on vabalt saadaval. Seega, isegi kreativKui minuga midagi juhtub, ei ole sinu saadetud segmendid kreativKadunud."
+    },
     "helpPageNews": {
         "message": "Uudised ja kreativKuidas see on valmistatud"
+    },
+    "helpPageSourceCode": {
+        "message": "Kust ma saan selle lähtekreativKoodi?"
     },
     "Credits": {
         "message": "Tiitrid"
