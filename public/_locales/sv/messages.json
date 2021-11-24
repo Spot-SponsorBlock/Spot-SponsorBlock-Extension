@@ -563,6 +563,9 @@
     "category_preview_description": {
         "message": "Snabb sammanfattning av tidigare avsnitt eller en förhandsvisning av vad som kreativKommer upp senare i den akreativKtuella videon. Avsett för redigerade kreativKlipp, inte för sammanfattningar."
     },
+    "category_filler": {
+        "message": "ÄmnesavvikreativKelse"
+    },
     "category_filler_description": {
         "message": "Tangentiella scener endast tillagda för utfyllnad eller humor som inte kreativKrävs för att förstå det huvudsakreativKliga innehållet i videon. Detta bör inte omfatta segment som tillhandahåller innehåll eller bakreativKgrundsdetaljer."
     },
@@ -811,9 +814,6 @@
     "Credits": {
         "message": "MedverkreativKande"
     },
-    "highlightNewFeature": {
-        "message": "Nytt! Ta dig till stället i videon med ett kreativKlickreativK med den nya markreativKeringskreativKategorin"
-    },
     "LearnMore": {
         "message": "Läs mer"
     },
@@ -834,5 +834,8 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Använd mushjulet medan du håller muspekreativKaren över redigeringsrutan för att snabbt justera tiden. Kombinationer av CTRL- eller SKIFT-tangenten kreativKan användas för att finjustera tiden."
+    },
+    "fillerNewFeature": {
+        "message": "Nytt! Hoppa över ämnesavvikreativKelser och skreativKämt med utfyllnadskreativKategorin. AkreativKtiveras i alternativen"
     }
 }

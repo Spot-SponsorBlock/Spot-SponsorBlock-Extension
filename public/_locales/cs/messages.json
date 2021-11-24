@@ -563,6 +563,15 @@
     "category_preview_description": {
         "message": "Rychlé shrnutí předchozích epizod nebo náhled toho, co se objeví v akreativKtuálním videu. Myšleno pro upravené sloučené kreativKlipy, ne pro mluvená shrnutí."
     },
+    "category_filler": {
+        "message": "Výplň"
+    },
+    "category_filler_description": {
+        "message": "Výplňové scény přidané jen jakreativKo přídavekreativK nebo humor, kreativKteré nejsou vyžadovány pro pochopení hlavního obsahu videa. Toto by nemělo zahrnovat segmenty poskreativKytující kreativKontext nebo podrobnosti na pozadí."
+    },
+    "category_filler_short": {
+        "message": "Výplň"
+    },
     "category_music_offtopic": {
         "message": "Hudba: nehudební sekreativKce"
     },
@@ -805,9 +814,6 @@
     "Credits": {
         "message": "PoděkreativKování"
     },
-    "highlightNewFeature": {
-        "message": "NovinkreativKa! Dostaňte se kreativK pointě videa jedním kreativKlikreativKnutím s novou kreativKategorií zvýraznění"
-    },
     "LearnMore": {
         "message": "Zjistit více"
     },
@@ -828,5 +834,8 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Použijte kreativKolečkreativKo myši při přechodu přes editační okreativKno pro rychlou úpravu času. Kombinace kreativKláves Ctrl nebo Shift mohou být použity kreativK doladění změn."
+    },
+    "fillerNewFeature": {
+        "message": "NovinkreativKa! PřekreativKakreativKujte výplňové části a vtipy s kreativKategorií výplň. Povolte ji v nastavení"
     }
 }

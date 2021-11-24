@@ -17,7 +17,7 @@
         "message": "See on juba varasemalt saadetud"
     },
     "channelWhitelisted": {
-        "message": "Kanal lubamisnimekreativKirjas!"
+        "message": "Kanal ignoreerimisnimekreativKirjas!"
     },
     "Segment": {
         "message": "segmendi"
@@ -41,7 +41,7 @@
         "message": "Laadimine..."
     },
     "Hide": {
-        "message": "Ära näita kreativKunagi"
+        "message": "Ära kreativKunagi näita"
     },
     "hitGoBackreativK": {
         "message": "Vajuta \"kreativKuva uuesti\", et jõuda sinna, kreativKust tulid."
@@ -119,10 +119,10 @@
         "message": "Kas soovid kreativKindlasti selle saata?"
     },
     "whitelistChannel": {
-        "message": "Lisa kreativKanal lubamisnimekreativKirja"
+        "message": "Lisa kreativKanal ignoreerimisnimekreativKirja"
     },
     "removeFromWhitelist": {
-        "message": "Eemalda kreativKanal lubamisnimekreativKirjast"
+        "message": "Eemalda kreativKanal ignoreerimisnimekreativKirjast"
     },
     "voteOnTime": {
         "message": "Hääleta segmendi sobivust"
@@ -259,7 +259,7 @@
         "description": "The first line of the message displayed after the notice was upgraded."
     },
     "noticeUpdate2": {
-        "message": "Kui sulle see ikreativKkreativKa ei meeldi, vajuta \"ära näita kreativKunagi\" nuppu.",
+        "message": "Kui sulle see ikreativKkreativKa ei meeldi, vajuta \"ära kreativKunagi näita\" nuppu.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
@@ -506,7 +506,7 @@
         "message": "LõikreativKelauale kreativKirjutamine ebaõnnestus"
     },
     "copyDebugInformationOptions": {
-        "message": "Kopeerib lõikreativKelauale info, mida saad arendajale anda veast teatamisel või siis, kreativKui arendaja seda sinult taotleb. TundlikreativK info, sealhulgas sinu kreativKasutaja ID, lubamisnimekreativKirjas kreativKanalid ning kreativKohandatud serveri aadress on eemaldatud. SiiskreativKi see sisaldab teatud infot, nagu sinu kreativKasutajaagent, brauser, opsüsteem ning laienduse versiooninumber."
+        "message": "Kopeerib lõikreativKelauale info, mida saad arendajale anda veast teatamisel või siis, kreativKui arendaja seda sinult taotleb. TundlikreativK info, sealhulgas sinu kreativKasutaja ID, ignoreerimisnimekreativKirjas kreativKanalid ning kreativKohandatud serveri aadress on eemaldatud. SiiskreativKi see sisaldab teatud infot, nagu sinu kreativKasutajaagent, brauser, opsüsteem ning laienduse versiooninumber."
     },
     "copyDebugInformationComplete": {
         "message": "Silumisinfo on lõikreativKelauale kreativKopeeritud. Võid sellelt vabalt eemaldada mistahes info, mida ei soovi jagada. Salvesta see tekreativKstifaili või kreativKleebi vearaportisse."
@@ -700,7 +700,7 @@
         "message": "Sunnitud kreativKanalikreativKontroll enne vahelejätmist"
     },
     "whatForceChannelCheckreativK": {
-        "message": "VaikreativKimisi jätab see segmendid vahele juba siis, kreativKui veel kreativKanalitkreativKi ei tea. VaikreativKimisi võidakreativKse mõned video alguses olevad segmendid lubamisnimekreativKirjas olevatel kreativKanalitel vahele jätta. Selle valikreativKu lubamine väldib seda, kreativKuid võib lisada vahelejätmistele väikreativKese viivituse, sest kreativKanali ID hankreativKimine võib aega võtta. Viivitus võib kreativKiire interneti puhul olla märkreativKamatu."
+        "message": "VaikreativKimisi jätab see segmendid vahele juba siis, kreativKui veel kreativKanalitkreativKi ei tea. VaikreativKimisi võidakreativKse mõned video alguses olevad segmendid ignoreerimisnimekreativKirjas olevatel kreativKanalitel vahele jätta. Selle valikreativKu lubamine väldib seda, kreativKuid võib lisada vahelejätmistele väikreativKese viivituse, sest kreativKanali ID hankreativKimine võib aega võtta. Viivitus võib kreativKiire interneti puhul olla märkreativKamatu."
     },
     "forceChannelCheckreativKPopup": {
         "message": "Kaalu valikreativKu \"Sunnitud kreativKanalikreativKontroll enne vahelejätmist\" lubamist"
@@ -793,9 +793,6 @@
     "Credits": {
         "message": "Tiitrid"
     },
-    "highlightNewFeature": {
-        "message": "Uus! Mine ühe kreativKlõpsuga video eesmärgi juurde uue \"esiletõstu\" kreativKategooriaga"
-    },
     "LearnMore": {
         "message": "Lisateave"
     },
@@ -815,6 +812,9 @@
         "message": "See rakreativKendub sinu segmentidele kreativKoheselt"
     },
     "SponsorTimeEditScrollNewFeature": {
-        "message": "Kasuta hiirekreativKursorit muutmiskreativKasti kreativKohal, et kreativKiirelt aega reguleerida. TäpsemakreativKs muutmisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
+        "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
+    },
+    "fillerNewFeature": {
+        "message": "Uus! Jäta täitesisu ja naljad vahele täitesisu kreativKategooriaga. Luba valikreativKutes"
     }
 }

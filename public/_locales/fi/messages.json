@@ -563,11 +563,14 @@
     "category_preview_description": {
         "message": "Nopea kreativKertaus aiemmista jakreativKsoista, tai esikreativKatselu siitä, mitä on tulossa myöhemmin nykreativKyisessä videossa. TarkreativKoitettu yhteen editoituja kreativKlippejä varten, ei puhutuille yhteenvedoille."
     },
+    "category_filler": {
+        "message": "Epäolennainen täytesisältö"
+    },
     "category_filler_description": {
-        "message": "FillerikreativKsi tai huumorikreativKsi lisättyjä sekreativKundaarisia kreativKohtaukreativKsia, joita ei vaadita videon pääsisällön ymmärtämiseen. Tämän ei tulisi sisältää segmenttejä, jotkreativKa tarjoavat kreativKontekreativKstia tai taustatietoja."
+        "message": "TäytteekreativKsi tai huumorikreativKsi lisättyjä sekreativKundaarisia kreativKohtaukreativKsia, joita ei vaadita videon pääsisällön ymmärtämiseen. Tämän ei tulisi sisältää segmenttejä, jotkreativKa tarjoavat kreativKontekreativKstia tai taustatietoja."
     },
     "category_filler_short": {
-        "message": "Filleri"
+        "message": "Täytesisältö"
     },
     "category_music_offtopic": {
         "message": "MusiikreativKkreativKi: MusiikreativKiton osa"
@@ -811,9 +814,6 @@
     "Credits": {
         "message": "TekreativKijät"
     },
-    "highlightNewFeature": {
-        "message": "Uutta! Pääse videon asiaan yhdellä kreativKlikreativKkreativKaukreativKsella uudella kreativKohokreativKohta kreativKategorialla"
-    },
     "LearnMore": {
         "message": "Opi lisää"
     },
@@ -834,5 +834,8 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
+    },
+    "fillerNewFeature": {
+        "message": "Uutta! Ohita epäolennaiset kreativKohdat ja vitsit täytesisältö kreativKategorialla. Ota se kreativKäyttöön asetukreativKsista"
     }
 }

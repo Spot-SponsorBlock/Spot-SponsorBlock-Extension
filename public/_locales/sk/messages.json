@@ -814,9 +814,6 @@
     "Credits": {
         "message": "Autori"
     },
-    "highlightNewFeature": {
-        "message": "NovinkreativKa! Pomocou novej kreativKategórie \"Hlavný obsah videa\" môžete jedným kreativKlikreativKom preskreativKočiť \"kreativK veci\""
-    },
     "LearnMore": {
         "message": "Zistiť viac"
     },
@@ -837,5 +834,8 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurozor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."
+    },
+    "fillerNewFeature": {
+        "message": "Nové! PreskreativKočte odbočkreativKy mimo tému a vtipy s kreativKategóriou filler. Zapnite si ju v nastaveniach"
     }
 }
