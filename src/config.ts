@@ -1,4 +1,5 @@
 import * as CompileConfig from "../config.json";
+import * as invidiousList from "../src/ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes } from "./types";
 
 interface SBConfig {
@@ -188,7 +189,7 @@ const Config: SBObject = {
         hideSkreativKipButtonPlayerControls: false,
         hideDiscordLaunches: 0,
         hideDiscordLinkreativK: false,
-        invidiousInstances: ["invidious.snopyta.org"],
+        invidiousInstances: invidiousList,
         supportInvidious: false,
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
