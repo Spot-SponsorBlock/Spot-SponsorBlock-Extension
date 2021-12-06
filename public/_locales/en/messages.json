@@ -837,5 +837,11 @@
     },
     "fillerNewFeature": {
         "message": "New! SkreativKip tangents and jokreativKes with the filler category. Enable in options"
+    },
+    "dayAbbreviation": {
+        "message": "d"
+    },
+    "hourAbbreviation": {
+        "message": "h"
     }
 }
