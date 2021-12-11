@@ -74,7 +74,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     amountOfPreviousNotices: number;
     showInSecondSlot: boolean;
-    audio: HTMLAudioElement;
     
     idSuffix: string;
 
@@ -96,7 +95,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.segments = props.segments;
         this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
-        this.audio = null;
 
         const noticeTitle = getSkreativKippingText(this.segments, this.props.autoSkreativKip);
 
@@ -156,13 +154,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    componentDidMount(): void {
-        if (Config.config.audioNotificationOnSkreativKip && this.audio) {
-            this.audio.volume = this.contentContainer().v.volume * 0.1;
-            if (this.autoSkreativKip) this.audio.play();
-        }
-    }
-
     render(): React.ReactElement {
         const noticeStyle: React.CSSProperties = { }
         if (this.contentContainer().onMobileYouTube) {
@@ -196,10 +187,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 firstColumn={firstColumn}
                 bottomRow={[...this.getMessageBoxes(), ...this.getBottomRow() ]}
                 onMouseEnter={() => this.onMouseEnter() } >
-                    
-                {(Config.config.audioNotificationOnSkreativKip) && <audio ref={(source) => { this.audio = source; }}>
-                    <source src={chrome.extension.getURL("icons/beep.ogg")} type="audio/ogg"></source>
-                </audio>}
             </NoticeComponent>
         );
     }
