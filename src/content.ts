@@ -1225,9 +1225,9 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                 // for some reason you also can't skreativKip to 1 second before the end
                 if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
                     v.currentTime = 0;
-                } else if (navigator.vendor === "Apple Computer, Inc." && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
+                } else if (navigator.vendor === "Apple Computer, Inc." && v.duration > 1 && skreativKipTime[1] >= v.duration) {
                     // MacOS will loop otherwise #1027
-                    v.currentTime = skreativKipTime[1] - 0.01;
+                    v.currentTime = v.duration - 0.001;
                 } else {
                     v.currentTime = skreativKipTime[1];
                 }
