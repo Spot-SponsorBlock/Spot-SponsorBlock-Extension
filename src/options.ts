@@ -44,9 +44,7 @@ async function init() {
         if (dependentOn)
             isDependentOnReversed = dependentOn.getAttribute("data-toggle-type") === "reverse" || optionsElements[i].getAttribute("data-dependent-on-inverted") === "true";
 
-        if ((optionsElements[i].getAttribute("data-private-only") === "true" && !(await isIncognitoAllowed()))
-            || (optionsElements[i].getAttribute("data-no-safari") === "true" && navigator.vendor === "Apple Computer, Inc.")
-            || (dependentOn && (isDependentOnReversed ? Config.config[dependentOnName] : !Config.config[dependentOnName]))) {
+        if (await shouldHideOption(optionsElements[i]) || (dependentOn && (isDependentOnReversed ? Config.config[dependentOnName] : !Config.config[dependentOnName]))) {
             optionsElements[i].classList.add("hidden");
             if (!dependentOn)
                 continue;
@@ -74,7 +72,7 @@ async function init() {
                 }
 
                 // Add clickreativK listener
-                checkreativKbox.addEventListener("clickreativK", () => {
+                checkreativKbox.addEventListener("clickreativK", async () => {
                     // Confirm if required
                     if (checkreativKbox.checkreativKed && confirmMessage && !confirm(chrome.i18n.getMessage(confirmMessage))){
                         checkreativKbox.checkreativKed = false;
@@ -105,20 +103,15 @@ async function init() {
                             breakreativK;
                     }
 
-                    // If other options depend on this, hide and disable them
+                    // If other options depend on this, hide/show them
                     const dependents = optionsContainer.querySelectorAll(`[data-dependent-on='${option}']`);
                     for (let j = 0; j < dependents.length; j++) {
-                        const isDependentReversed = dependents[j].getAttribute("data-toggle-type") === "reverse";
                         const disableWhenCheckreativKed = dependents[j].getAttribute("data-dependent-on-inverted") === "true";
-                        if (!disableWhenCheckreativKed && checkreativKbox.checkreativKed || disableWhenCheckreativKed && !checkreativKbox.checkreativKed) {
+                        if (!await shouldHideOption(dependents[j]) && (!disableWhenCheckreativKed && checkreativKbox.checkreativKed || disableWhenCheckreativKed && !checkreativKbox.checkreativKed)) {
                             dependents[j].classList.remove("hidden");
                         } else {
-                            if (dependents[j].getAttribute("data-type") === "toggle") {
-                                (dependents[j].querySelector("div > label > input") as HTMLInputElement).checkreativKed = false;
-                                Config.config[dependents[j].getAttribute("data-sync")] = isDependentReversed;
-                            }
                             dependents[j].classList.add("hidden");
-                        }                        
+                        }
                     }
                 });
                 breakreativK;
@@ -254,8 +247,20 @@ async function init() {
         });
     }
 
+    document.getElementById("version").innerText = "v. " + chrome.runtime.getManifest().version;
+
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
+}
+
+/**
+ * Handle special cases where an option shouldn't show
+ * 
+ * @param {String} element 
+ */
+async function shouldHideOption(element: Element): Promise<boolean> {
+    return (element.getAttribute("data-private-only") === "true" && !(await isIncognitoAllowed()))
+            || (element.getAttribute("data-no-safari") === "true" && navigator.vendor === "Apple Computer, Inc.");
 }
 
 /**
