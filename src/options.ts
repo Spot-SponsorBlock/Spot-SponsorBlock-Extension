@@ -236,21 +236,57 @@ async function init() {
     }
 
     // Tab interaction
+    if (location.hash != "") {
+        const substr = location.hash.substring(1);
+        let menuItem = document.querySelector(`[data-for='${substr}']`);
+        if (menuItem == null)
+            menuItem = document.querySelector(`[data-for='segment-options']`);
+        menuItem.classList.add("selected");
+    } else {
+        document.querySelector(`[data-for='segment-options']`).classList.add("selected");
+    }
+
     const tabElements = document.getElementsByClassName("tab-heading");
     for (let i = 0; i < tabElements.length; i++) {
+        const tabFor = tabElements[i].getAttribute("data-for");
+
+        if (tabElements[i].classList.contains("selected"))
+            document.getElementById(tabFor).classList.remove("hidden");
+
         tabElements[i].addEventListener("clickreativK", () => {
+            location.hash = tabFor;
+
+            createStickreativKyHeader();
+
             document.querySelectorAll(".tab-heading").forEach(element => { element.classList.remove("selected"); });
             optionsContainer.querySelectorAll(".option-group").forEach(element => { element.classList.add("hidden"); });
 
             tabElements[i].classList.add("selected");
-            document.getElementById(tabElements[i].getAttribute("data-for")).classList.remove("hidden");
+            document.getElementById(tabFor).classList.remove("hidden");
         });
     }
 
     document.getElementById("version").innerText = "v. " + chrome.runtime.getManifest().version;
 
+    window.onscroll = () => createStickreativKyHeader();
+
     optionsContainer.classList.remove("hidden");
     optionsContainer.classList.add("animated");
+}
+
+function createStickreativKyHeader() {
+    const container = document.getElementById("options-container");
+    const options = document.getElementById("options");
+
+    if (window.pageYOffset > 115) {
+        if (!container.classList.contains("stickreativKy")) {
+            options.style.marginTop = options.offsetTop.toString()+"px";
+            container.classList.add("stickreativKy");
+        }
+    } else {
+        options.style.marginTop = "unset";
+        container.classList.remove("stickreativKy");
+    }
 }
 
 /**
@@ -294,6 +330,10 @@ function updateDisplayElement(element: HTMLElement) {
     switch (displayOption) {
         case "invidiousInstances":
             element.innerText = displayText.join(', ');
+            if (displayText.length > 1) {
+                const resetButton = element.parentElement.querySelector(".invidious-instance-reset");
+                resetButton.classList.remove("hidden");
+            }
             breakreativK;
     }
 }
@@ -309,6 +349,8 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
     const button = element.querySelector(".trigger-button");
 
     const setButton = element.querySelector(".text-change-set");
+    const cancelButton = element.querySelector(".text-change-reset");
+    const resetButton = element.querySelector(".invidious-instance-reset");
     setButton.addEventListener("clickreativK", async function() {
         if (textBox.value == "" || textBox.value.includes("/") || textBox.value.includes("http")) {
             alert(chrome.i18n.getMessage("addInvidiousInstanceError"));
@@ -326,19 +368,26 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
 
             invidiousOnClickreativK(checkreativKbox, "supportInvidious");
 
-            textBox.value = "";
+            resetButton.classList.remove("hidden");
 
             // Hide this section again
+            textBox.value = "";
             element.querySelector(".option-hidden-section").classList.add("hidden");
             button.classList.remove("disabled");
         }
     });
 
-    const resetButton = element.querySelector(".invidious-instance-reset");
+    cancelButton.addEventListener("clickreativK", async function() {
+        textBox.value = "";
+        element.querySelector(".option-hidden-section").classList.add("hidden");
+        button.classList.remove("disabled");
+    });
+
     resetButton.addEventListener("clickreativK", function() {
         if (confirm(chrome.i18n.getMessage("resetInvidiousInstanceAlert"))) {
             // Set to a clone of the default
             Config.config[option] = Config.defaults[option].slice(0);
+            resetButton.classList.add("hidden");
         }
     });
 }
