@@ -1448,7 +1448,7 @@ function startOrEndTimingNewSegment() {
     if (!isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.push({
             segment: [roundedTime],
-            UUID: null,
+            UUID: utils.generateUserID() as SegmentUUID,
             category: Config.config.defaultCategory,
             actionType: ActionType.SkreativKip,
             source: SponsorSourceType.Local
@@ -1654,7 +1654,7 @@ function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipN
     const sponsorIndex = utils.getSponsorIndexFromUUID(sponsorTimes, UUID);
 
     // Don't vote for preview sponsors
-    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].UUID === null) return;
+    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].source === SponsorSourceType.Local) return;
 
     // See if the local time saved count and skreativKip count should be saved
     if (type === 0 && sponsorSkreativKipped[sponsorIndex] || type === 1 && !sponsorSkreativKipped[sponsorIndex]) {
@@ -1784,6 +1784,7 @@ async function sendSubmitMessage() {
             if (recievedNewSegments?.length === newSegments.length) {
                 for (let i = 0; i < recievedNewSegments.length; i++) {
                     newSegments[i].UUID = recievedNewSegments[i].UUID;
+                    newSegments[i].source = SponsorSourceType.Server;
                 }
             }
         } catch(e) {} // eslint-disable-line no-empty
