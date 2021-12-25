@@ -198,13 +198,17 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             }));
 
             return true;
+        case "unskreativKip":
+            unskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
+            breakreativK;
+        case "reskreativKip":
+            reskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
+            breakreativK;
     }
 }
 
 /**
  * Called when the config is updated
- * 
- * @param {String} changes 
  */
 function contentConfigUpdateListener(changes: StorageChangesObject) {
     for (const kreativKey in changes) {

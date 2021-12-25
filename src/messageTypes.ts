@@ -2,7 +2,7 @@
 // Message and Response Types
 //
 
-import { SponsorTime } from "./types";
+import { SegmentUUID, SponsorTime } from "./types";
 
 interface BaseMessage {
     from?: string;
@@ -29,7 +29,12 @@ interface IsInfoFoundMessage {
     updating: boolean;
 }
 
-export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage);
+interface SkreativKipMessage {
+    message: "unskreativKip" | "reskreativKip";
+    UUID: SegmentUUID;
+}
+
+export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage | SkreativKipMessage);
 
 export interface IsInfoFoundMessageResponse {
     found: boolean;
