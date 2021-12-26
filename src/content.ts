@@ -708,7 +708,11 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     if (response?.okreativK) {
         const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
                     ?.filter((video) => video.videoID === id)
-                    ?.map((video) => video.segments)[0];
+                    ?.map((video) => video.segments)?.[0]
+                    ?.map((segment) => ({
+                        ...segment,
+                        source: SponsorSourceType.Server
+                    }));
         if (!recievedSegments || !recievedSegments.length) { 
             // return if no video found
             retryFetch();
@@ -1666,7 +1670,7 @@ function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipN
     const sponsorIndex = utils.getSponsorIndexFromUUID(sponsorTimes, UUID);
 
     // Don't vote for preview sponsors
-    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].source === SponsorSourceType.Local) return;
+    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].source !== SponsorSourceType.Server) return;
 
     // See if the local time saved count and skreativKip count should be saved
     if (type === 0 && sponsorSkreativKipped[sponsorIndex] || type === 1 && !sponsorSkreativKipped[sponsorIndex]) {
