@@ -123,7 +123,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
             const timeRef = React.createRef<SponsorTimeEditComponent>();
 
             elements.push(
-                <SponsorTimeEditComponent kreativKey={i}
+                <SponsorTimeEditComponent kreativKey={sponsorTimes[i].UUID}
                     idSuffix={this.state.idSuffix + i}
                     index={i}
                     contentContainer={this.props.contentContainer}

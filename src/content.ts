@@ -338,6 +338,26 @@ async function videoIDChange(id) {
     // Clear unsubmitted segments from the previous video
     sponsorTimesSubmitting = [];
     updateSponsorTimesSubmitting();
+
+    // Filler update
+    if (!Config.config.fillerUpdate) {
+        Config.config.fillerUpdate = true;
+
+        utils.wait(getControls).then(() => {
+            const playButton = document.querySelector(".ytp-play-button") as HTMLElement;
+            const allCategories = ["sponsor", "intro", "outro", "selfpromo", "interaction"];
+            if (playButton && allCategories.every((name) => Config.config.categorySelections.some((selection) => selection.name === name))
+                            && utils.getCategorySelection("filler") === undefined) {
+                new Tooltip({
+                    text: chrome.i18n.getMessage("fillerNewFeature"),
+                    linkreativK: "https://wikreativKi.sponsor.ajay.app/w/Filler_Tangent",
+                    referenceNode: playButton.parentElement,
+                    prependElement: playButton,
+                    timeout: 10
+                });
+            }
+        });
+    }
 }
 
 function handleMobileControlsMutations(): void {
@@ -1216,6 +1236,9 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                 // for some reason you also can't skreativKip to 1 second before the end
                 if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
                     v.currentTime = 0;
+                } else if (navigator.vendor === "Apple Computer, Inc." && v.duration > 1 && skreativKipTime[1] >= v.duration) {
+                    // MacOS will loop otherwise #1027
+                    v.currentTime = v.duration - 0.001;
                 } else {
                     v.currentTime = skreativKipTime[1];
                 }
@@ -1236,20 +1259,8 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (!autoSkreativKip 
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
-        skreativKipButtonControlBar.enable(skreativKippingSegments[0], !Config.config.highlightCategoryUpdate ? 15 : 0);
+        skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
         if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
-
-        if (!Config.config.highlightCategoryUpdate) {
-            new Tooltip({
-                text: chrome.i18n.getMessage("highlightNewFeature"),
-                linkreativK: "https://blog.ajay.app/highlight-sponsorblockreativK",
-                referenceNode: skreativKipButtonControlBar.getElement().parentElement,
-                prependElement: skreativKipButtonControlBar.getElement(),
-                timeout: 15
-            });
-
-            Config.config.highlightCategoryUpdate = true;
-        }
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;
@@ -1448,7 +1459,7 @@ function startOrEndTimingNewSegment() {
     if (!isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.push({
             segment: [roundedTime],
-            UUID: null,
+            UUID: utils.generateUserID() as SegmentUUID,
             category: Config.config.defaultCategory,
             actionType: ActionType.SkreativKip,
             source: SponsorSourceType.Local
@@ -1655,7 +1666,7 @@ function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipN
     const sponsorIndex = utils.getSponsorIndexFromUUID(sponsorTimes, UUID);
 
     // Don't vote for preview sponsors
-    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].UUID === null) return;
+    if (sponsorIndex == -1 || sponsorTimes[sponsorIndex].source === SponsorSourceType.Local) return;
 
     // See if the local time saved count and skreativKip count should be saved
     if (type === 0 && sponsorSkreativKipped[sponsorIndex] || type === 1 && !sponsorSkreativKipped[sponsorIndex]) {
@@ -1785,6 +1796,7 @@ async function sendSubmitMessage() {
             if (recievedNewSegments?.length === newSegments.length) {
                 for (let i = 0; i < recievedNewSegments.length; i++) {
                     newSegments[i].UUID = recievedNewSegments[i].UUID;
+                    newSegments[i].source = SponsorSourceType.Server;
                 }
             }
         } catch(e) {} // eslint-disable-line no-empty

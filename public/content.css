@@ -135,10 +135,6 @@ div:hover > .sponsorBlockreativKChapterBar {
 	transform: translateX(-100%) scale(0);
 }
 
-.playerButton.hidden {
-	display: none;
-}
-
 .sponsorSkreativKipObject {
 	font-family: Roboto, Arial, Helvetica, sans-serif;
 		

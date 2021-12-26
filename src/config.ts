@@ -45,13 +45,13 @@ interface SBConfig {
     showDonationLinkreativK: boolean,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
-    highlightCategoryUpdate: boolean,
     colorPalette: {
         red: string,
         white: string,
         lockreativKed: string
     },
     scrollToEditTimeUpdate: boolean,
+    fillerUpdate: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -75,6 +75,8 @@ interface SBConfig {
         "preview-music_offtopic": PreviewBarOption,
         "poi_highlight": PreviewBarOption,
         "preview-poi_highlight": PreviewBarOption,
+        "filler": PreviewBarOption,
+        "preview-filler": PreviewBarOption,
     }
 }
 
@@ -200,12 +202,15 @@ const Config: SBObject = {
         showDonationLinkreativK: true,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
-        highlightCategoryUpdate: false, // TODO: Remove this once update is done
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
+        fillerUpdate: false,
 
         categorySelections: [{
             name: "sponsor" as Category,
             option: CategorySkreativKipOption.AutoSkreativKip
+        }, {
+            name: "poi_highlight" as Category,
+            option: CategorySkreativKipOption.ManualSkreativKip
         }],
 
         colorPalette: {
@@ -282,6 +287,14 @@ const Config: SBObject = {
             },
             "preview-poi_highlight": {
                 color: "#9b044c",
+                opacity: "0.7"
+            },
+            "filler": {
+                color: "#7300FF",
+                opacity: "0.9"
+            },
+            "preview-filler": {
+                color: "#2E0066",
                 opacity: "0.7"
             }
         }
@@ -379,16 +392,11 @@ function fetchConfig(): Promise<void> {
 }
 
 function migrateOldFormats(config: SBConfig) {
-    // Should eventually move into defaults
-    if (!config["highlightCategoryAdded"] && !config.categorySelections.some((s) => s.name === "poi_highlight")) {
-        config["highlightCategoryAdded"] = true;
-        
-        config.categorySelections.push({
-            name: "poi_highlight" as Category,
-            option: CategorySkreativKipOption.ManualSkreativKip
-        });
-
-        config.categorySelections = config.categorySelections;
+    if (config["highlightCategoryAdded"] !== undefined) {
+        chrome.storage.sync.remove("highlightCategoryAdded");
+    }
+    if (config["highlightCategoryUpdate"] !== undefined) {
+        chrome.storage.sync.remove("highlightCategoryUpdate");
     }
 
     if (config["askreativKAboutUnlistedVideos"]) {

@@ -79,7 +79,7 @@ export class SkreativKipButtonControlBar {
                 mountingContainer.insertBefore(this.container, this.chapterText);
             }
 
-            if (Config.config.autoHideInfoButton && !this.onMobileYouTube) {
+            if (!this.onMobileYouTube) {
                 utils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
             } else {
                 const { hide, show } = utils.setupCustomHideAnimation(this.skreativKipIcon, mountingContainer, false, false);

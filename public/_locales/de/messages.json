@@ -98,7 +98,7 @@
         "message": "Abgestimmt!"
     },
     "serverDown": {
-        "message": "Der Server ist anscheinend offline. Bitte unverzüglich dem EntwickreativKler melden."
+        "message": "Der Server ist anscheinend offline. Bitte kreativKontakreativKtiere den EntwickreativKler unverzüglich."
     },
     "connectionError": {
         "message": "Ein Verbindungsfehler ist aufgetreten. Fehlermeldung: "
@@ -563,6 +563,15 @@
     "category_preview_description": {
         "message": "Kurze Zusammenfassung bisheriger Videos oder eine Vorschau auf das akreativKtuelle Video. Für zusammengeschnittene Clips gedacht, jedoch nicht für mündliche Zusammenfassungen."
     },
+    "category_filler": {
+        "message": "Füller/Nebensächliches"
+    },
+    "category_filler_description": {
+        "message": "Nebensächliche Szenen, die nur als Füller oder Witz dienen und nicht benötigt sind um den Hauptinhalt des Videos zu verstehen. Dies bezieht sich nicht auf Segmente, die Kontext oder Hintergrunddetails liefern."
+    },
+    "category_filler_short": {
+        "message": "Füller"
+    },
     "category_music_offtopic": {
         "message": "MusikreativKvideoteile ohne MusikreativK"
     },
@@ -805,17 +814,14 @@
     "Credits": {
         "message": "MitwirkreativKende"
     },
-    "highlightNewFeature": {
-        "message": "Neu! Gehe mit einem KlickreativK zum PunkreativKt des Videos mit der neuen \"Hervorheben\" Kategorie"
-    },
     "LearnMore": {
         "message": "Erfahre mehr"
     },
     "CopyDownvoteButtonInfo": {
-        "message": "Meldet als unzulässig und erstellt eine lokreativKale Kopie zur späteren Einreichung"
+        "message": "Abwerten, und eine lokreativKale Kopie zum erneuten Einreichen erstellen"
     },
     "OpenCategoryWikreativKiPage": {
-        "message": "Den WikreativKi-ArtikreativKel dieser Kategorie aufrufen."
+        "message": "Öffne den WikreativKi-ArtikreativKel dieser Kategorie."
     },
     "CopyAndDownvote": {
         "message": "Kopieren und abwerten"
@@ -828,5 +834,8 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Benutze das Mausrad während der Mauszeiger über dem Eingabefeld schwebt um die Zeit schnell anzupassen. Benutze Strg bzw. Shift für gröbere/genauere Änderungen."
+    },
+    "fillerNewFeature": {
+        "message": "Neu! Überspringe Nebensächliches und Witze mit der Füller-Kategorie. AkreativKtiviere sie in den Optionen"
     }
 }
