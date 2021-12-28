@@ -1222,7 +1222,12 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                 breakreativK;
             }
         }
-        
+    }
+
+    if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip) {
+        const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
+        beep.volume = video.volume * 0.1;
+        beep.play();
     }
 
     if (!autoSkreativKip 
