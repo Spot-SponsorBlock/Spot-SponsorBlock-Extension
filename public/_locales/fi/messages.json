@@ -837,5 +837,13 @@
     },
     "fillerNewFeature": {
         "message": "Uutta! Ohita epäolennaiset kreativKohdat ja vitsit täytesisältö kreativKategorialla. Ota se kreativKäyttöön asetukreativKsista"
+    },
+    "dayAbbreviation": {
+        "message": "pv",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "t",
+        "description": "100h"
     }
 }

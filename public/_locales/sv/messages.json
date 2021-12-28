@@ -837,5 +837,13 @@
     },
     "fillerNewFeature": {
         "message": "Nytt! Hoppa över ämnesavvikreativKelser och skreativKämt med utfyllnadskreativKategorin. AkreativKtiveras i alternativen"
+    },
+    "dayAbbreviation": {
+        "message": "d",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "h",
+        "description": "100h"
     }
 }
