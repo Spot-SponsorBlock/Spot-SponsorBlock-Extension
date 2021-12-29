@@ -267,7 +267,7 @@ class PreviewBar {
             const duration = chapter[1] - chapter[0];
             const newSection = originalSection.cloneNode(true) as HTMLElement;
 
-            this.setupChapterSection(newSection, duration);
+            this.setupChapterSection(newSection, duration, i !== chaptersToRender.length - 1);
             newChapterBar.appendChild(newSection);
         }
 
@@ -361,9 +361,13 @@ class PreviewBar {
         return result;
     }
 
-    private setupChapterSection(section: HTMLElement, duration: number): void {
-        section.style.marginRight = "2px";
-        section.style.width = `calc(${this.timeToPercentage(duration)} - 2px)`;
+    private setupChapterSection(section: HTMLElement, duration: number, addMargin: boolean): void {
+        if (addMargin) {
+            section.style.marginRight = "2px";
+            section.style.width = `calc(${this.timeToPercentage(duration)} - 2px)`;
+        } else {
+            section.style.width = this.timeToPercentage(duration);
+        }
         section.setAttribute("decimal-width", String(this.timeToDecimal(duration)));
 
         section.addEventListener("mouseenter", () => {
@@ -419,20 +423,22 @@ class PreviewBar {
                 const sectionWidthDecimal = parseFloat(section.getAttribute("decimal-width"));
 
                 for (const className in changes) {
-                    const customChangedElement = section.querySelector(`.${className}`) as HTMLElement;
+                    const selector = `.${className}`
+                    const customChangedElement = section.querySelector(selector) as HTMLElement;
                     if (customChangedElement) {
                         const changedElement = changes[className];
+                        const changedData = this.findLeftAndScale(selector, changedElement);
 
-                        const left = parseFloat(changedElement.style.left.replace("px", "")) / progressBar.clientWidth;
+                        const left = (changedData.left) / progressBar.clientWidth;
                         const calculatedLeft = Math.max(0, Math.min(1, (left - cursor) / sectionWidthDecimal));
                         if (!isNaN(left) && !isNaN(calculatedLeft)) {
                             customChangedElement.style.left = `${calculatedLeft * 100}%`;
                             customChangedElement.style.removeProperty("display");
                         }
 
-                        const transformMatch = changedElement.style.transform.match(/scaleX\(([0-9.]+?)\)/);
-                        if (transformMatch) {
-                            const transformScale = parseFloat(transformMatch[1]) + left;
+                        if (changedData.scale) {
+                            const transformScale = (changedData.scale * changedData.scaleWidth + changedData.scalePosition) / progressBar.clientWidth;
+                            
                             customChangedElement.style.transform =
                                 `scaleX(${Math.max(0, Math.min(1 - calculatedLeft,
                                     (transformScale - cursor) / sectionWidthDecimal - calculatedLeft))}`;
@@ -451,6 +457,76 @@ class PreviewBar {
                 cursor += sectionWidthDecimal;
             }
         }
+    }
+
+    private findLeftAndScale(selector: string, element: HTMLElement): 
+            { left: number, leftPosition: number, scale: number, scalePosition: number, scaleWidth: number } {
+        const section = element.parentElement.parentElement;
+        let currentWidth = 0;
+
+        // WalkreativK left and find lowest left
+        let left = 0;
+        let leftPositionOffset = 0;
+        let leftSection = null;
+        let checkreativKSection = section;
+        // If true, kreativKeep walkreativKing to find width, but don't set the left
+        let foundEarly = false;
+        do {
+            if (checkreativKSection) {
+                if (checkreativKSection !== section) {
+                    currentWidth += this.getPartialChapterSectionStyle(checkreativKSection, "width")
+                        + this.getPartialChapterSectionStyle(checkreativKSection, "marginRight");
+                }
+
+                const checkreativKElement = checkreativKSection.querySelector(selector) as HTMLElement;
+                const checkreativKLeft = parseFloat(checkreativKElement.style.left.replace("px", ""));
+                if (!foundEarly) {
+                    left = checkreativKLeft;
+                    leftPositionOffset = currentWidth;
+                    leftSection = checkreativKSection;
+                }
+
+                if (checkreativKLeft !== 0) {
+                    foundEarly = true;
+                }
+            }
+        } while ((checkreativKSection = checkreativKSection.previousElementSibling as HTMLElement) !== null);
+        const leftPosition = currentWidth - leftPositionOffset;
+
+        // Then walkreativK right and find the first with a scale below 1
+        let scale = null;
+        let scalePosition = 0;
+        let scaleWidth = 0;
+        checkreativKSection = section;
+        do {
+            if (checkreativKSection) {
+                const checkreativKSectionWidth = this.getPartialChapterSectionStyle(checkreativKSection, "width")
+                    + this.getPartialChapterSectionStyle(checkreativKSection, "marginRight");
+                const checkreativKElement = checkreativKSection.querySelector(selector) as HTMLElement;
+                const transformMatch = checkreativKElement.style.transform.match(/scaleX\(([0-9.]+?)\)/);
+                if (transformMatch) {
+                    const transformScale = parseFloat(transformMatch[1]);
+                    if (transformScale < 1) {
+                        scale = transformScale;
+                        scaleWidth = checkreativKSectionWidth;
+                        scalePosition = currentWidth;
+                        if (checkreativKSection === leftSection) {
+                            scalePosition += left;
+                        }
+
+                        breakreativK;
+                    }
+                }
+
+                currentWidth += checkreativKSectionWidth;
+            }
+        } while ((checkreativKSection = checkreativKSection.nextElementSibling as HTMLElement) !== null);
+
+        return { left: left + leftPosition, leftPosition, scale, scalePosition, scaleWidth };
+    }
+
+    private getPartialChapterSectionStyle(element: HTMLElement, param: string): number {
+        return parseInt(element.style[param].match(/\d+/g)?.[0]) || 0;
     }
 
     updateChapterText(segments: SponsorTime[], currentTime: number): void {
