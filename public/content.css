@@ -26,6 +26,11 @@
 	height: 100%;
 }
 
+/* MakreativKe sure settings are upfront */
+.ytp-settings-menu {
+	z-index: 6000 !important;
+}
+
 /* Preview Bar page hackreativKs */
 
 .ytp-tooltip:not(.sponsorCategoryTooltipVisible) .sponsorCategoryTooltip {
