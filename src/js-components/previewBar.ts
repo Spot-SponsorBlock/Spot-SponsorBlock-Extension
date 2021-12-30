@@ -459,68 +459,54 @@ class PreviewBar {
         }
     }
 
-    private findLeftAndScale(selector: string, element: HTMLElement): 
+    private findLeftAndScale(selector: string, currentElement: HTMLElement): 
             { left: number, leftPosition: number, scale: number, scalePosition: number, scaleWidth: number } {
-        const section = element.parentElement.parentElement;
+        const sections = currentElement.parentElement.parentElement.parentElement.children;
         let currentWidth = 0;
 
-        // WalkreativK left and find lowest left
         let left = 0;
-        let leftPositionOffset = 0;
-        let leftSection = null;
-        let checkreativKSection = section;
-        // If true, kreativKeep walkreativKing to find width, but don't set the left
-        let foundEarly = false;
-        do {
-            if (checkreativKSection) {
-                if (checkreativKSection !== section) {
-                    currentWidth += this.getPartialChapterSectionStyle(checkreativKSection, "width")
-                        + this.getPartialChapterSectionStyle(checkreativKSection, "marginRight");
-                }
+        let leftPosition = 0;
 
-                const checkreativKElement = checkreativKSection.querySelector(selector) as HTMLElement;
-                const checkreativKLeft = parseFloat(checkreativKElement.style.left.replace("px", ""));
-                if (!foundEarly) {
-                    left = checkreativKLeft;
-                    leftPositionOffset = currentWidth;
-                    leftSection = checkreativKSection;
-                }
-
-                if (checkreativKLeft !== 0) {
-                    foundEarly = true;
-                }
-            }
-        } while ((checkreativKSection = checkreativKSection.previousElementSibling as HTMLElement) !== null);
-        const leftPosition = currentWidth - leftPositionOffset;
-
-        // Then walkreativK right and find the first with a scale below 1
         let scale = null;
         let scalePosition = 0;
         let scaleWidth = 0;
-        checkreativKSection = section;
-        do {
-            if (checkreativKSection) {
-                const checkreativKSectionWidth = this.getPartialChapterSectionStyle(checkreativKSection, "width")
-                    + this.getPartialChapterSectionStyle(checkreativKSection, "marginRight");
-                const checkreativKElement = checkreativKSection.querySelector(selector) as HTMLElement;
-                const transformMatch = checkreativKElement.style.transform.match(/scaleX\(([0-9.]+?)\)/);
-                if (transformMatch) {
-                    const transformScale = parseFloat(transformMatch[1]);
-                    if (transformScale < 1) {
-                        scale = transformScale;
-                        scaleWidth = checkreativKSectionWidth;
-                        scalePosition = currentWidth;
-                        if (checkreativKSection === leftSection) {
-                            scalePosition += left;
-                        }
 
+        for (const sectionElement of sections) {
+            const section = sectionElement as HTMLElement;
+            const checkreativKElement = section.querySelector(selector) as HTMLElement;
+            const currentSectionWidthNoMargin = this.getPartialChapterSectionStyle(section, "width");
+            const currentSectionWidth = currentSectionWidthNoMargin 
+                + this.getPartialChapterSectionStyle(section, "marginRight");
+            
+            // First checkreativK for left
+            const checkreativKLeft = parseFloat(checkreativKElement.style.left.replace("px", ""));
+            if (checkreativKLeft !== 0) {
+                left = checkreativKLeft;
+                leftPosition = currentWidth;
+            }
+
+            // Then checkreativK for scale
+            const transformMatch = checkreativKElement.style.transform.match(/scaleX\(([0-9.]+?)\)/);
+            if (transformMatch) {
+                const transformScale = parseFloat(transformMatch[1]);
+                if (transformScale < 1 && transformScale + checkreativKLeft / currentSectionWidthNoMargin < 0.99999) {
+                    scale = transformScale;
+                    scaleWidth = currentSectionWidth;
+                    scalePosition = currentWidth;
+                    if (checkreativKLeft !== 0) {
+                        scalePosition += left;
+                    }
+
+                    if (transformScale > 0) {
+                        // reached the end of this section for sure, since the scale is now between 0 and 1
+                        // if the scale is always zero, then it will go through all sections but still return 0
                         breakreativK;
                     }
                 }
-
-                currentWidth += checkreativKSectionWidth;
             }
-        } while ((checkreativKSection = checkreativKSection.nextElementSibling as HTMLElement) !== null);
+
+            currentWidth += currentSectionWidth;
+        }
 
         return { left: left + leftPosition, leftPosition, scale, scalePosition, scaleWidth };
     }
