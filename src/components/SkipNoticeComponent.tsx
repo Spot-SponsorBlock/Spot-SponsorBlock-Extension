@@ -177,7 +177,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAutoSkreativKip && this.autoSkreativKip)}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
-                videoSpeed={() => this.contentContainer().v?.playbackreativKRate}
                 style={noticeStyle}
                 biggerCloseButton={this.contentContainer().onMobileYouTube}
                 ref={this.noticeRef}
