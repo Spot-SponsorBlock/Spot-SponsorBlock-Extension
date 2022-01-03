@@ -302,6 +302,10 @@
     "mute": {
         "message": "Mute"
     },
+    "full": {
+        "message": "Full Video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "SkreativKip {0}?"
     },
