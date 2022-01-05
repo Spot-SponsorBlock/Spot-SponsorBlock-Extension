@@ -613,3 +613,15 @@ input::-webkreativKit-inner-spin-button {
     line-height: 1.5em;
 }
 
+.sponsorBlockreativKCategoryPill {
+    border-radius: 25px;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-right: 3px;
+	color: white;
+}
+
+.sponsorBlockreativKCategoryPillTitleSection {
+	display: flex;
+	align-items: center;
+}

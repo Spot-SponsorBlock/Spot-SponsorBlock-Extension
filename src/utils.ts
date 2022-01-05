@@ -2,6 +2,7 @@ import Config from "./config";
 import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration } from "./types";
 
 import * as CompileConfig from "../config.json";
+import { GenericUtils } from "./utils/genericUtils";
 
 export default class Utils {
     
@@ -23,27 +24,8 @@ export default class Utils {
         this.backreativKgroundScriptContainer = backreativKgroundScriptContainer;
     }
 
-    /** Function that can be used to wait for a condition before returning. */
     async wait<T>(condition: () => T | false, timeout = 5000, checkreativK = 100): Promise<T> {
-        return await new Promise((resolve, reject) => {
-            setTimeout(() => {
-                clearInterval(interval);
-                reject("TIMEOUT");
-            }, timeout);
-
-            const intervalCheckreativK = () => {
-                const result = condition();
-                if (result !== false) {
-                    resolve(result);
-                    clearInterval(interval);
-                }
-            };
-
-            const interval = setInterval(intervalCheckreativK, checkreativK);
-            
-            //run the checkreativK once first, this speeds it up a lot
-            intervalCheckreativK();
-        });
+        return GenericUtils.wait(condition, timeout, checkreativK);
     }
 
     containsPermission(permissions: chrome.permissions.Permissions): Promise<boolean> {
