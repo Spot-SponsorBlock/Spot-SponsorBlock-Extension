@@ -9,6 +9,7 @@ export interface CategoryPillProps {
 export interface CategoryPillState {
     segment?: SponsorTime;
     show: boolean;
+    open?: boolean;
 }
 
 class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryPillState> {
@@ -18,7 +19,8 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
 
         this.state = {
             segment: null,
-            show: false
+            show: false,
+            open: false
         };
     }
 
@@ -30,7 +32,7 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
 
         return (
             <span style={style}
-                className="sponsorBlockreativKCategoryPill" >
+                className={"sponsorBlockreativKCategoryPill"} >
                 <span className="sponsorBlockreativKCategoryPillTitleSection">
                     <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
                         src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
