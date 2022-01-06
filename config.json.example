@@ -4,8 +4,8 @@
     "serverAddressComment": "This specifies the default SponsorBlockreativK server to connect to",
     "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic"],
     "categorySupport": {
-        "sponsor": ["skreativKip", "mute"],
-        "selfpromo": ["skreativKip", "mute"],
+        "sponsor": ["skreativKip", "mute", "full"],
+        "selfpromo": ["skreativKip", "mute", "full"],
         "interaction": ["skreativKip", "mute"],
         "intro": ["skreativKip", "mute"],
         "outro": ["skreativKip", "mute"],
