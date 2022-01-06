@@ -11,7 +11,7 @@ import PreviewBar, {PreviewBarSegment} from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
-import { Message, MessageResponse } from "./messageTypes";
+import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import * as Chat from "./js-components/chat";
 import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
@@ -19,6 +19,8 @@ import { Tooltip } from "./render/Tooltip";
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { getControls } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
+import { AnimationUtils } from "./utils/animationUtils";
+import { GenericUtils } from "./utils/genericUtils";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -647,7 +649,7 @@ function setupCategoryPill() {
         categoryPill = new CategoryPill();
     }
 
-    categoryPill.attachToPage(onMobileYouTube, onInvidious);
+    categoryPill.attachToPage(onMobileYouTube, onInvidious, voteAsync);
 }
 
 async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = true) {
@@ -1369,7 +1371,7 @@ async function createButtons(): Promise<void> {
             && playerButtons["info"]?.button && !controlsWithEventListeners.includes(controlsContainer)) {
         controlsWithEventListeners.push(controlsContainer);
         
-        utils.setupAutoHideAnimation(playerButtons["info"].button, controlsContainer);
+        AnimationUtils.setupAutoHideAnimation(playerButtons["info"].button, controlsContainer);
     }
 }
 
@@ -1649,13 +1651,37 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) {
+async function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent): Promise<void> {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
         skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
     }
 
+    const response = await voteAsync(type, UUID, category);
+    if (response != undefined) {
+        //see if it was a success or failure
+        if (skreativKipNotice != null) {
+            if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
+                //success (treat rate limits as a success)
+                skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
+            } else if (response.successType == -1) {
+                if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
+                    skreativKipNotice.setNoticeInfoMessageWithOnClickreativK.bind(skreativKipNotice)(() => {
+                        Chat.openWarningChat(response.responseText);
+                        skreativKipNotice.closeListener.call(skreativKipNotice);
+                    }, chrome.i18n.getMessage("voteRejectedWarning"));
+                } else {
+                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(GenericUtils.getErrorMessage(response.statusCode, response.responseText))
+                }
+                
+                skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
+            }
+        }
+    }
+}
+
+async function voteAsync(type: number, UUID: SegmentUUID, category?: Category): Promise<VoteResponse> {
     const sponsorIndex = utils.getSponsorIndexFromUUID(sponsorTimes, UUID);
 
     // Don't vote for preview sponsors
@@ -1675,33 +1701,14 @@ function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipN
     
         Config.config.skreativKipCount = Config.config.skreativKipCount + factor;
     }
- 
-    chrome.runtime.sendMessage({
-        message: "submitVote",
-        type: type,
-        UUID: UUID,
-        category: category
-    }, function(response) {
-        if (response != undefined) {
-            //see if it was a success or failure
-            if (skreativKipNotice != null) {
-                if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
-                    //success (treat rate limits as a success)
-                    skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
-                } else if (response.successType == -1) {
-                    if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
-                        skreativKipNotice.setNoticeInfoMessageWithOnClickreativK.bind(skreativKipNotice)(() => {
-                            Chat.openWarningChat(response.responseText);
-                            skreativKipNotice.closeListener.call(skreativKipNotice);
-                        }, chrome.i18n.getMessage("voteRejectedWarning"));
-                    } else {
-                        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(utils.getErrorMessage(response.statusCode, response.responseText))
-                    }
-                    
-                    skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
-                }
-            }
-        }
+
+    return new Promise((resolve) => {
+        chrome.runtime.sendMessage({
+            message: "submitVote",
+            type: type,
+            UUID: UUID,
+            category: category
+        }, resolve);
     });
 }
 
@@ -1744,7 +1751,7 @@ function submitSponsorTimes() {
 async function sendSubmitMessage() {
     // Add loading animation
     playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
-    const stopAnimation = utils.applyLoadingAnimation(playerButtons.submit.button, 1, () => updateEditButtonsOnPlayer());
+    const stopAnimation = AnimationUtils.applyLoadingAnimation(playerButtons.submit.button, 1, () => updateEditButtonsOnPlayer());
 
     //checkreativK if a sponsor exceeds the duration of the video
     for (let i = 0; i < sponsorTimesSubmitting.length; i++) {
@@ -1816,7 +1823,7 @@ async function sendSubmitMessage() {
         if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a warning from a moderator.")) {
             Chat.openWarningChat(response.responseText);
         } else {
-            alert(utils.getErrorMessage(response.status, response.responseText));
+            alert(GenericUtils.getErrorMessage(response.status, response.responseText));
         }
     }
 }
