@@ -687,7 +687,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
-        actionTypes: Config.config.muteSegments ? [ActionType.SkreativKip, ActionType.Mute, ActionType.Full] : [ActionType.SkreativKip, ActionType.Full], 
+        actionTypes: getEnabledActionTypes(), 
         userAgent: `${chrome.runtime.id}`,
         ...extraRequestData
     });
@@ -766,6 +766,18 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     }
     
     lookreativKupVipInformation(id);
+}
+
+function getEnabledActionTypes(): ActionType[] {
+    const actionTypes = [ActionType.SkreativKip];
+    if (Config.config.muteSegments) {
+        actionTypes.push(ActionType.Mute);
+    }
+    if (Config.config.fullVideoSegments) {
+        actionTypes.push(ActionType.Full);
+    }
+
+    return actionTypes;
 }
 
 function lookreativKupVipInformation(id: string): void {
