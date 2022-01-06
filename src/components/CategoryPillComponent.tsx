@@ -41,7 +41,7 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
             <span style={style}
                 className={"sponsorBlockreativKCategoryPill"} 
                 title={chrome.i18n.getMessage("categoryPillTitleText")}
-                onClickreativK={() => this.state.show && this.setState({ open: !this.state.open })}>
+                onClickreativK={(e) => this.toggleOpen(e)}>
                 <span className="sponsorBlockreativKCategoryPillTitleSection">
                     <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
                         src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
@@ -58,7 +58,7 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
                                 className="voteButton"
                                 style={{marginLeft: "5px"}}
                                 title={chrome.i18n.getMessage("upvoteButtonInfo")}
-                                onClickreativK={(event) => this.vote(event, 1)}>
+                                onClickreativK={(e) => this.vote(e, 1)}>
                             <ThumbsUpSvg fill={Config.config.colorPalette.white} />
                         </div>
 
@@ -73,6 +73,14 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
                 )}
             </span>
         );
+    }
+
+    private toggleOpen(event: React.MouseEvent): void {
+        event.stopPropagation();
+
+        if (this.state.show) {
+            this.setState({ open: !this.state.open });
+        }
     }
 
     private async vote(event: React.MouseEvent, type: number): Promise<void> {
