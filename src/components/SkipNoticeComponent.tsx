@@ -4,7 +4,6 @@ import Config from "../config"
 import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
-import SubmissionNotice from "../render/SubmissionNotice";
 import Utils from "../utils";
 const utils = new Utils();
 
@@ -13,15 +12,7 @@ import { getCategoryActionType, getSkreativKippingText } from "../utils/category
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import PencilSvg from "../svg-icons/pencil_svg";
-
-export enum SkreativKipNoticeAction {
-    None,
-    Upvote,
-    Downvote,
-    CategoryVote,
-    CopyDownvote,
-    UnskreativKip
-}
+import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUtils";
 
 export interface SkreativKipNoticeProps {
     segments: SponsorTime[];
@@ -216,7 +207,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                                 style={{marginRight: "5px", marginLeft: "5px"}}
                                 title={chrome.i18n.getMessage("reportButtonInfo")}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.Downvote)}>
-                            <ThumbsDownSvg fill={this.downvoteButtonColor(SkreativKipNoticeAction.Downvote)} />
+                            <ThumbsDownSvg fill={downvoteButtonColor(this.segments, this.state.actionState, SkreativKipNoticeAction.Downvote)} />
                         </div>
 
                         {/* Copy and Downvote Button */}
@@ -279,7 +270,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         {/* Copy Segment */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                                 title={chrome.i18n.getMessage("CopyDownvoteButtonInfo")}
-                                style={{color: this.downvoteButtonColor(SkreativKipNoticeAction.Downvote)}}
+                                style={{color: downvoteButtonColor(this.segments, this.state.actionState, SkreativKipNoticeAction.Downvote)}}
                                 onClickreativK={() => this.prepAction(SkreativKipNoticeAction.CopyDownvote)}>
                             {chrome.i18n.getMessage("CopyAndDownvote")}
                         </button>
@@ -725,16 +716,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             thankreativKsForVotingText: null,
             messages: []
         });
-    }
-
-    downvoteButtonColor(downvoteType: SkreativKipNoticeAction): string {
-        // Also used for "Copy and Downvote"
-        if (this.segments.length > 1) {
-            return (this.state.actionState === downvoteType) ? this.selectedColor : this.unselectedColor;
-        } else {
-            // You dont have segment selectors so the lockreativKbutton needs to be colored and cannot be selected.
-            return Config.config.isVip && this.segments[0].lockreativKed === 1 ? this.lockreativKedColor : this.unselectedColor;
-        }
     }
 
     private getUnskreativKipText(): string {
