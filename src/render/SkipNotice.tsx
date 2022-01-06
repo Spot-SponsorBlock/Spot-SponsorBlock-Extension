@@ -4,9 +4,10 @@ import * as ReactDOM from "react-dom";
 import Utils from "../utils";
 const utils = new Utils();
 
-import SkreativKipNoticeComponent, { SkreativKipNoticeAction } from "../components/SkreativKipNoticeComponent";
+import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent";
 import { SponsorTime, ContentContainer, NoticeVisbilityMode } from "../types";
 import Config from "../config";
+import { SkreativKipNoticeAction } from "../utils/noticeUtils";
 
 class SkreativKipNotice {
     segments: SponsorTime[];
