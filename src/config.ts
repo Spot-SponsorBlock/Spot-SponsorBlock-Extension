@@ -53,6 +53,7 @@ interface SBConfig {
         lockreativKed: string
     },
     scrollToEditTimeUpdate: boolean,
+    categoryPillUpdate: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -205,6 +206,7 @@ const Config: SBObject = {
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
+        categoryPillUpdate: false,
 
         categorySelections: [{
             name: "sponsor" as Category,
