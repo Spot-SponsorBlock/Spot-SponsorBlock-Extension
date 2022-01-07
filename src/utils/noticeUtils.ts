@@ -16,6 +16,6 @@ export function downvoteButtonColor(segments: SponsorTime[], actionState: Skreat
         return (actionState === downvoteType) ? Config.config.colorPalette.red : Config.config.colorPalette.white;
     } else {
         // You dont have segment selectors so the lockreativKbutton needs to be colored and cannot be selected.
-        return Config.config.isVip && segments[0].lockreativKed === 1 ? Config.config.colorPalette.lockreativKed : Config.config.colorPalette.white;
+        return Config.config.isVip && segments?.[0].lockreativKed === 1 ? Config.config.colorPalette.lockreativKed : Config.config.colorPalette.white;
     }
 }
