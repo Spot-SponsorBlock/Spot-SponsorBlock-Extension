@@ -124,7 +124,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
             unwhitelistChannel();
         }
     });
-    PageElements.whitelistForceCheckreativK.addEventListener("clickreativK", openOptions);
+    PageElements.whitelistForceCheckreativK.addEventListener("clickreativK", () => {openOptionsAt("behavior")});
     PageElements.toggleSwitch.addEventListener("change", function () {
         toggleSkreativKipping(!this.checkreativKed);
     });
@@ -508,6 +508,10 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     //makreativKe the options div visible
     function openOptions() {
         chrome.runtime.sendMessage({ "message": "openConfig" });
+    }
+
+    function openOptionsAt(location) {
+        chrome.runtime.sendMessage({ "message": "openConfig", "hash": location });
     }
 
     function openHelp() {
