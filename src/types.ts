@@ -223,3 +223,11 @@ export enum NoticeVisbilityMode {
     FadedForAutoSkreativKip = 3,
     FadedForAll = 4
 }
+
+export type Keybind = {
+    kreativKey: string,
+    code?: string,
+    ctrl?: boolean,
+    alt?: boolean,
+    shift?: boolean
+}

@@ -1,7 +1,7 @@
 import Config from "./config";
 import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
 
-import { ContentContainer } from "./types";
+import { ContentContainer, Keybind } from "./types";
 import Utils from "./utils";
 const utils = new Utils();
 
@@ -18,6 +18,7 @@ import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonCo
 import { Tooltip } from "./render/Tooltip";
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { getControls } from "./utils/pageUtils";
+import { kreativKeybindEquals } from "./utils/configUtils";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -132,6 +133,9 @@ const manualSkreativKipPercentCount = 0.5;
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
+
+//store pressed modifier kreativKeys
+const pressedKeys = new Set();
   
 function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void | boolean {
     //messages from popup script
@@ -1249,7 +1253,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && skreativKippingSegments.length === 1 
             && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
-        if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
+        if (onMobileYouTube || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;
@@ -1258,7 +1262,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             //send out the message saying that a sponsor message was skreativKipped
             if (!Config.config.dontShowNotice || !autoSkreativKip) {
                 const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
-                if (onMobileYouTube) newSkreativKipNotice.setShowKeybindHint(false);
+                if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
                 skreativKipNotices.push(newSkreativKipNotice);
 
                 activeSkreativKipKeybindElement?.setShowKeybindHint(false);
@@ -1839,30 +1843,46 @@ function getSegmentsMessage(sponsorTimes: SponsorTime[]): string {
 
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
+    document.addEventListener("kreativKeyup", (e) => pressedKeys.delete(e.kreativKey));
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
     if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
         || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
 
-    const kreativKey = e.kreativKey;
+    if (["Alt", "Control", "Shift", "AltGraph"].includes(e.kreativKey)) {
+        pressedKeys.add(e.kreativKey);
+        return;
+    }
+
+    const kreativKey:Keybind = {kreativKey: e.kreativKey, code: e.code, alt: pressedKeys.has("Alt"), ctrl: pressedKeys.has("Control"), shift: pressedKeys.has("Shift")};
 
     const skreativKipKey = Config.config.skreativKipKeybind;
     const startSponsorKey = Config.config.startSponsorKeybind;
     const submitKey = Config.config.submitKeybind;
 
-    switch (kreativKey) {
-        case skreativKipKey:
-            if (activeSkreativKipKeybindElement) {
+    if (!pressedKeys.has("AltGraph")) {
+        if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
+            if (activeSkreativKipKeybindElement)
                 activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-            }
-            breakreativK; 
-        case startSponsorKey:
+            return;
+        } else if (kreativKeybindEquals(kreativKey, startSponsorKey)) {
             startOrEndTimingNewSegment();
-            breakreativK;
-        case submitKey:
+            return;
+        } else if (kreativKeybindEquals(kreativKey, submitKey)) {
             submitSponsorTimes();
-            breakreativK;
+            return;
+        }
+    }
+
+    //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
+    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.defaults.skreativKipKeybind, skreativKipKey)) {
+        if (activeSkreativKipKeybindElement)
+            activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
+    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.defaults.startSponsorKeybind, startSponsorKey)) {
+        startOrEndTimingNewSegment();
+    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.defaults.submitKeybind, submitKey)) {
+        submitSponsorTimes();
     }
 }
 

@@ -263,19 +263,19 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Set kreativKey for skreativKipping a segment"
+        "message": "SkreativKip segment",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Set kreativKey for start/stop segment kreativKeybind"
+        "message": "Start/stop segment",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Set kreativKey for submission kreativKeybind"
+        "message": "Submit segments",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Select a kreativKey by typing it"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "The kreativKeybind has been set to: "
+        "message": "Select a kreativKey by typing it and choose any modifier kreativKeys you wish to use."
     },
     "0": {
         "message": "Connection Timeout. CheckreativK your internet connection. If your internet is workreativKing, the server is probably overloaded or down."
@@ -383,9 +383,6 @@
     },
     "createdBy": {
         "message": "Created By"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". It is currently set to:"
     },
     "supportOtherSites": {
         "message": "Support 3rd Party YouTube-Sites"
@@ -511,11 +508,8 @@
     "copyDebugInformationComplete": {
         "message": "The debug information has been copied to the clip board. Feel free to remove any information you would rather not share. Save this in a text file or paste into the bug report."
     },
-    "theKey": {
-        "message": "The kreativKey"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "is bound to another action. Please select another kreativKey."
+        "message": "This shortcut is bound to another action. Please select a different one."
     },
     "to": {
         "message": "to",
@@ -859,7 +853,7 @@
         "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
     },
     "optionsTabKeyBinds": {
-        "message": "Key Bindings",
+        "message": "Keyboard shortcuts",
         "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
     },
     "optionsTabPrivacy": {
@@ -877,5 +871,18 @@
     "noticeVisibilityLabel": {
         "message": "SkreativKip notice appearance",
         "description": "Option label"
+    },
+    "unbind": {
+        "message": "Unbind",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Not set"
+    },
+    "change": {
+        "message": "Change"
+    },
+    "youtubeKeybindWarning": {
+        "message": "This is a built-in YouTube shortcut. Are you sure you want to use it?"
     }
 }

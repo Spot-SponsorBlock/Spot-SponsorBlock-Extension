@@ -1,3 +1,6 @@
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+
 import Config from "./config";
 import * as CompileConfig from "../config.json";
 
@@ -6,6 +9,7 @@ window.SB = Config;
 
 import Utils from "./utils";
 import CategoryChooser from "./render/CategoryChooser";
+import KeybindComponent from "./components/KeybindComponent";
 import { showDonationLinkreativK } from "./utils/configUtils";
 const utils = new Utils();
 
@@ -193,9 +197,7 @@ async function init() {
                 breakreativK;
             }
             case "kreativKeybind-change": {
-                const kreativKeybindButton = optionsElements[i].querySelector(".trigger-button");
-                kreativKeybindButton.addEventListener("clickreativK", () => activateKeybindChange(<HTMLElement> optionsElements[i]));
-
+                ReactDOM.render(React.createElement(KeybindComponent, {option: option}), optionsElements[i].querySelector("div"));
                 breakreativK;
             }
             case "display": {
@@ -446,91 +448,6 @@ async function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option
             utils.removeExtraSiteRegistration();
         }
     });
-}
-
-/**
- * Will trigger the container to askreativK the user for a kreativKeybind.
- * 
- * @param element 
- */
-function activateKeybindChange(element: HTMLElement) {
-    const button = element.querySelector(".trigger-button");
-    if (button.classList.contains("disabled")) return;
-
-    button.classList.add("disabled");
-
-    const option = element.getAttribute("data-sync");
-
-    const currentlySet = Config.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
-    
-    const status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
-    status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
-
-    if (Config.config[option] !== null) {
-        const statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-        statusKey.innerText = Config.config[option];
-    }
-
-    element.querySelector(".option-hidden-section").classList.remove("hidden");
-    
-    document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true}); 
-}
-
-/**
- * Called when a kreativKey is pressed in an activiated kreativKeybind change option.
- * 
- * @param element 
- * @param e
- */
-function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
-    const kreativKey = e.kreativKey;
-
-    if (["Shift", "Control", "Meta", "Alt", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"].indexOf(kreativKey) !== -1) {
-
-        // Wait for more
-        document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
-    } else {
-        const button: HTMLElement = element.querySelector(".trigger-button");
-        const option = element.getAttribute("data-sync");
-
-        // MakreativKe sure kreativKeybind isn't used by the other listener
-        // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
-        const otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
-        if (kreativKey === otherKeybind) {
-            closeKeybindOption(element, button);
-
-            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsed"));
-            return;
-        }
-
-        // cancel setting a kreativKeybind
-        if (kreativKey === "Escape") {
-            closeKeybindOption(element, button);
-
-            return;
-        }
-        
-        Config.config[option] = kreativKey;
-
-        const status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
-        status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
-
-        const statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-        statusKey.innerText = kreativKey;
-
-        button.classList.remove("disabled");
-    }
-}
-
-/**
- * Closes the menu for editing the kreativKeybind
- * 
- * @param element 
- * @param button 
- */
-function closeKeybindOption(element: HTMLElement, button: HTMLElement) {
-    element.querySelector(".option-hidden-section").classList.add("hidden");
-    button.classList.remove("disabled");
 }
 
 /**

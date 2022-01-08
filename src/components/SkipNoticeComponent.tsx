@@ -4,11 +4,11 @@ import Config from "../config"
 import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
-import SubmissionNotice from "../render/SubmissionNotice";
 import Utils from "../utils";
 const utils = new Utils();
 
 import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
+import { kreativKeybindToString } from "../utils/configUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
@@ -367,7 +367,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
-                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
+                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
                     </button>
                 </span>
             );

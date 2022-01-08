@@ -1,6 +1,7 @@
 import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
+import { kreativKeybindToString } from "../utils/configUtils";
 
 import Utils from "../utils";
 const utils = new Utils();
@@ -179,7 +180,7 @@ export class SkreativKipButtonControlBar {
     }
 
     private getTitle(): string {
-        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "");
+        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "");
     }
 
     private getChapterPrefix(): HTMLElement {
