@@ -563,6 +563,15 @@
     "category_preview_description": {
         "message": "RekreativKapan singkreativKat dari episode sebelumnya, atau pratinjau tentang apa yang akreativKan terjadi nanti di video. DimakreativKsudkreativKan untukreativK kreativKlip bersama yang di edit, bukreativKan ringkreativKasan yang diucapkreativKan."
     },
+    "category_filler": {
+        "message": "Pengisi Tangensial"
+    },
+    "category_filler_description": {
+        "message": "Adegan tangensial ditambahkreativKan hanya untukreativK pengisi atau humor yang tidakreativK diperlukreativKan untukreativK memahami isi utama video. Ini tidakreativK boleh mencakreativKup segmen yang memberikreativKan detail kreativKontekreativKs atau latar belakreativKang."
+    },
+    "category_filler_short": {
+        "message": "Isian"
+    },
     "category_music_offtopic": {
         "message": "MusikreativK: Bagian Non-MusikreativK"
     },
@@ -699,6 +708,9 @@
     "downvoteDescription": {
         "message": "Salah, WakreativKtu TidakreativK Tepat"
     },
+    "incorrectCategory": {
+        "message": "Ubah Kategori"
+    },
     "nonMusicCategoryOnMusic": {
         "message": "Video ini dikreativKategorikreativKan sebagai musikreativK. ApakreativKah anda yakreativKin ini berisi sponsor? JikreativKa ini ternyata adalah \"Segmen non-musikreativK\", bukreativKa pengaturan ekreativKstensi dan akreativKtifkreativKan kreativKategorinya. Lalu, anda bisa mengirim segmen ini sebagai \"Non-musikreativK\" bukreativKannya sponsor. Harap membaca panduan jikreativKa anda kreativKebingungan."
     },
@@ -805,7 +817,25 @@
     "LearnMore": {
         "message": "Pelajari Lebih Lanjut"
     },
+    "CopyDownvoteButtonInfo": {
+        "message": "MenurunkreativKan suara dan membuat salinan lokreativKal untukreativK Anda kreativKirim ulang"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "MembukreativKa halaman wikreativKi kreativKategori ini."
+    },
+    "CopyAndDownvote": {
+        "message": "Salin dan berikreativKan turunkreativKan suara"
+    },
+    "ContinueVoting": {
+        "message": "LanjutkreativKan Memvoting"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Ini akreativKan menerapkreativKan kreativKe segmen Anda"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "GunakreativKan roda mouse kreativKetikreativKa berada di kreativKotakreativK edit untukreativK mengatur wakreativKtu dengan cepat. Kombinasi dengan tombol [Ctrl + Shift] bisa digunakreativKan untukreativK perubahan yang halus."
+    },
+    "fillerNewFeature": {
+        "message": "Baru! Lewati tangen dan lelucon dengan kreativKategori pengisi. AkreativKtifkreativKan dalam opsi"
     }
 }

@@ -59,7 +59,8 @@ export enum CategoryActionType {
 
 export enum ActionType {
     SkreativKip = "skreativKip",
-    Mute = "mute"
+    Mute = "mute",
+    Full = "full"
 }
 
 export const ActionTypes = [ActionType.SkreativKip, ActionType.Mute];

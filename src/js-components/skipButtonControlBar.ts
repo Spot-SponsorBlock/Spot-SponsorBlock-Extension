@@ -4,6 +4,7 @@ import { getSkreativKippingText } from "../utils/categoryUtils";
 import { kreativKeybindToString } from "../utils/configUtils";
 
 import Utils from "../utils";
+import { AnimationUtils } from "../utils/animationUtils";
 const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
@@ -81,9 +82,9 @@ export class SkreativKipButtonControlBar {
             }
 
             if (!this.onMobileYouTube) {
-                utils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+                AnimationUtils.setupAutoHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
             } else {
-                const { hide, show } = utils.setupCustomHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
+                const { hide, show } = AnimationUtils.setupCustomHideAnimation(this.skreativKipIcon, mountingContainer, false, false);
                 this.hideButton = hide;
                 this.showButton = show;
             }
@@ -105,7 +106,7 @@ export class SkreativKipButtonControlBar {
 
         this.refreshText();
         this.textContainer?.classList?.remove("hidden");
-        utils.disableAutoHideAnimation(this.skreativKipIcon);
+        AnimationUtils.disableAutoHideAnimation(this.skreativKipIcon);
 
         this.startTimer();
     }
@@ -161,7 +162,7 @@ export class SkreativKipButtonControlBar {
 
         this.getChapterPrefix()?.classList?.add("hidden");
 
-        utils.enableAutoHideAnimation(this.skreativKipIcon);
+        AnimationUtils.enableAutoHideAnimation(this.skreativKipIcon);
         if (this.onMobileYouTube) {
             this.hideButton();
         }

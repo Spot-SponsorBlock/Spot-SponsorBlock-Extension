@@ -837,5 +837,13 @@
     },
     "fillerNewFeature": {
         "message": "Nové! PreskreativKočte odbočkreativKy mimo tému a vtipy s kreativKategóriou filler. Zapnite si ju v nastaveniach"
+    },
+    "dayAbbreviation": {
+        "message": "d",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "h",
+        "description": "100h"
     }
 }

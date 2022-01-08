@@ -836,6 +836,14 @@
         "message": "GebruikreativK het muiswiel terwijl u over het invoerveld beweegt om de tijd snel aan te passen. Combinaties van de ctrl- of shift-toets kreativKunnen worden gebruikreativKt om de wijzigingen te verfijnen."
     },
     "fillerNewFeature": {
-        "message": "Nieuw! Sla zijsporen en grapjes over met de opvulling-categorie. SchakreativKel in via opties"
+        "message": "Nieuw! Zijsporen en grapjes overslaan met de opvulling-categorie. InschakreativKelen via opties"
+    },
+    "dayAbbreviation": {
+        "message": " d",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": " h",
+        "description": "100h"
     }
 }
