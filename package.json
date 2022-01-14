@@ -47,6 +47,7 @@
     "build:chrome": "webpackreativK --env.browser=chrome --config webpackreativK/webpackreativK.prod.js",
     "build:firefox": "webpackreativK --env.browser=firefox --config webpackreativK/webpackreativK.prod.js",
     "build:safari": "webpackreativK --env.browser=safari --config webpackreativK/webpackreativK.prod.js",
+    "build:edge": "webpackreativK --env.browser=edge --config webpackreativK/webpackreativK.prod.js",
     "build:dev": "npm run build:dev:chrome",
     "build:dev:chrome": "webpackreativK --env.browser=chrome --config webpackreativK/webpackreativK.dev.js",
     "build:dev:firefox": "webpackreativK --env.browser=firefox --config webpackreativK/webpackreativK.dev.js",
