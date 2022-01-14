@@ -265,7 +265,7 @@ function resetValues() {
     isAdPlaying = false;
 
     for (let i = 0; i < skreativKipNotices.length; i++) {
-        skreativKipNotices.pop().close();
+        skreativKipNotices.pop()?.close();
     }
 
     skreativKipButtonControlBar?.disable();
