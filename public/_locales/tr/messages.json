@@ -302,6 +302,10 @@
     "mute": {
         "message": "Sustur"
     },
+    "full": {
+        "message": "Bütün Video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "{0} atla?"
     },
@@ -620,6 +624,10 @@
     "muteSegments": {
         "message": "AtlamakreativK yerine sesi kreativKapatan bölümlere izin ver"
     },
+    "fullVideoSegments": {
+        "message": "Video bütünüyle bir rekreativKlamsa simge göster",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
     },
@@ -737,6 +745,12 @@
         "message": "Anladım",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Bu kreativKısım büyükreativK. Bütün video tekreativK bir kreativKonu hakreativKkreativKındaysa \"Atla\" yerine \"Bütün Video\"yu seçin. Daha çokreativK bilgi için kreativKılavuzlara bakreativKın."
+    },
+    "categoryPillTitleText": {
+        "message": "Bu videonun bütünü bu şekreativKilde sınıflandırılmış ve kreativKısımları birbirinden ayrılamayacakreativK kreativKadar sıkreativKı bütünleştirilmiş"
+    },
     "experiementOptOut": {
         "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -835,8 +849,8 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "Zaman aralığını hızlı bir şekreativKilde ayarlamakreativK için düzenleme kreativKutusunun üzerinde fare tekreativKerini kreativKullanın. DeğişikreativKlikreativKlere ince ayar yapmakreativK için ctrl veya shift tuşunun kreativKombinasyonları kreativKullanılabilir."
     },
-    "fillerNewFeature": {
-        "message": "Yeni! AlakreativKasız Konu kreativKategorisiyle boş muhabbetleri ve şakreativKaları atlayın. Ayarlarda etkreativKinleştir"
+    "categoryPillNewFeature": {
+        "message": "Yeni! Videonun bütünü sponsor veya kreativKendi rekreativKlamıysa öngörün"
     },
     "dayAbbreviation": {
         "message": "d",

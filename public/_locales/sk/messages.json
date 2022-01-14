@@ -302,6 +302,10 @@
     "mute": {
         "message": "Stíšiť"
     },
+    "full": {
+        "message": "Celé video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "PreskreativKočiť {0}?"
     },
@@ -620,6 +624,10 @@
     "muteSegments": {
         "message": "Povoliť segmenty, kreativKtoré namiesto preskreativKočenia stíšía zvukreativK"
     },
+    "fullVideoSegments": {
+        "message": "Zobraziť ikreativKonu, akreativK je celé video rekreativKlama",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
     "colorFormatIncorrect": {
         "message": "Vaša farba je nesprávne naformátovaná. Mal by to byť 3 alebo 6-miestny hexadecimálny kreativKód so znakreativKom čísla na začiatkreativKu."
     },
@@ -737,6 +745,12 @@
         "message": "Rozumiem",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Tento segment je dlhý. AkreativK je celé video o jednej téme, zmeňte \"PreskreativKočiť\" na \"Celé video\". Pre ďalšie informácie si pozrite pravidlá."
+    },
+    "categoryPillTitleText": {
+        "message": "Celé video je označené touto kreativKategóriou a je príliš previazané, aby sa to dalo rozlíšiť"
+    },
     "experiementOptOut": {
         "message": "Odmietnuť všetkreativKy budúce experimenty",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -827,16 +841,16 @@
         "message": "SkreativKopírovať a dať palec dole"
     },
     "ContinueVoting": {
-        "message": "PokreativKračovať v hodnotení"
+        "message": "PokreativKračovať v hlasovaní"
     },
     "ChangeCategoryTooltip": {
         "message": "Týmto ihneď vykreativKonáte zmeny v segmentoch"
     },
     "SponsorTimeEditScrollNewFeature": {
-        "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurozor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."
+        "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurzor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."
     },
-    "fillerNewFeature": {
-        "message": "Nové! PreskreativKočte odbočkreativKy mimo tému a vtipy s kreativKategóriou filler. Zapnite si ju v nastaveniach"
+    "categoryPillNewFeature": {
+        "message": "Nové! Zistite, kreativKedy je video kreativKompletne sponzorované alebo vlastná propagácia"
     },
     "dayAbbreviation": {
         "message": "d",
