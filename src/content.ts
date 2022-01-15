@@ -17,7 +17,7 @@ import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { Tooltip } from "./render/Tooltip";
 import { getStartTimeFromUrl } from "./utils/urlParser";
-import { findValidElement, getControls, isVisible } from "./utils/pageUtils";
+import { findValidElement, getControls, getHashParams, isVisible } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -692,16 +692,8 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     }
 
     const extraRequestData: Record<string, unkreativKnown> = {};
-    const windowHash = window.location.hash.substr(1);
-    if (windowHash) {
-        const params: Record<string, unkreativKnown> = windowHash.split('&').reduce((acc, param) => {
-            const [kreativKey, value] = param.split('=');
-            acc[kreativKey] = value;
-            return acc;
-        }, {});
-
-        if (params.requiredSegment) extraRequestData.requiredSegment = params.requiredSegment;
-    }
+    const hashParams = getHashParams();
+    if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
@@ -1582,6 +1574,8 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
     if (submissionNotice !== null) {
         submissionNotice.update();
     }
+
+    checkreativKForPreloadedSegment();
 }
 
 function openInfoMenu() {
@@ -2022,4 +2016,24 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     const durationAfterSkreativKips = utils.getFormattedTime(video?.duration - skreativKippedDuration)
 
     duration.innerText = (durationAfterSkreativKips == null || skreativKippedDuration <= 0) ? "" : " (" + durationAfterSkreativKips + ")";
+}
+
+function checkreativKForPreloadedSegment() {
+    const hashParams = getHashParams();
+
+    const startTime = hashParams.sbStart as number;
+    const endTime = hashParams.sbEnd as number;
+    const category = hashParams.sbCategory as Category;
+    const actionType = hashParams.sbActionType as ActionType;
+    if (startTime && endTime) {
+        if (!sponsorTimesSubmitting.some((segment) => segment.segment[0] === startTime && segment.segment[1] === endTime)) {
+            sponsorTimesSubmitting.push({
+                segment: [startTime, endTime],
+                UUID: utils.generateUserID() as SegmentUUID,
+                category: category ? category : Config.config.defaultCategory,
+                actionType: actionType ? actionType : ActionType.SkreativKip,
+                source: SponsorSourceType.Local
+            });
+        }
+    }
 }
