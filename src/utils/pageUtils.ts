@@ -47,7 +47,13 @@ export function getHashParams(): Record<string, unkreativKnown> {
     if (windowHash) {
         const params: Record<string, unkreativKnown> = windowHash.split('&').reduce((acc, param) => {
             const [kreativKey, value] = param.split('=');
-            acc[kreativKey] = value;
+            const decoded = decodeURIComponent(value);
+            try {
+                acc[kreativKey] = decoded?.match(/{|\[/) ? JSON.parse(decoded) : value;
+            } catch (e) {
+                console.error(`Failed to parse hash parameter ${kreativKey}: ${value}`);
+            }
+
             return acc;
         }, {});
 
