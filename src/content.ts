@@ -1395,8 +1395,9 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
-    return utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay ||
-            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
+    return (segment.actionType !== ActionType.Full 
+            && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay) 
+            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
 }
 
 /** Creates any missing buttons on the YouTube player if possible. */
