@@ -302,6 +302,10 @@
     "mute": {
         "message": "MykreativKistä"
     },
+    "full": {
+        "message": "KokreativKo video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Ohita {0}?"
     },
@@ -620,6 +624,10 @@
     "muteSegments": {
         "message": "Salli segmentit, jotkreativKa mykreativKistävät äänen ohittamisen sijaan"
     },
+    "fullVideoSegments": {
+        "message": "Näytä kreativKuvakreativKe, kreativKun video on kreativKokreativKonaan mainos",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
     "colorFormatIncorrect": {
         "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on # alussa."
     },
@@ -737,6 +745,12 @@
         "message": "Selvä",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Tämä segmentti on suuri. Jos kreativKokreativKo video kreativKoskreativKee yhtä aihetta, vaihda \"Ohita\" valintaan \"KokreativKo video\". Katso lisätietoja säännöistä."
+    },
+    "categoryPillTitleText": {
+        "message": "Tämä kreativKokreativKo video on merkreativKitty täkreativKsi kreativKategoriakreativKsi ja on liian tiiviisti integroitu jotta ne voitaisiin erottaa"
+    },
     "experiementOptOut": {
         "message": "Jättäydy pois kreativKaikreativKista tulevista kreativKokreativKeiluista",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -835,7 +849,15 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
     },
-    "fillerNewFeature": {
-        "message": "Uutta! Ohita epäolennaiset kreativKohdat ja vitsit täytesisältö kreativKategorialla. Ota se kreativKäyttöön asetukreativKsista"
+    "categoryPillNewFeature": {
+        "message": "Uutta! Näe, kreativKun video on kreativKokreativKonaan sponsoroitu tai itsensä mainostusta"
+    },
+    "dayAbbreviation": {
+        "message": "vrkreativK",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "t",
+        "description": "100h"
     }
 }

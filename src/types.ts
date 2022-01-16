@@ -62,6 +62,7 @@ export enum ActionType {
     SkreativKip = "skreativKip",
     Mute = "mute",
     Chapter = "chapter",
+    Full = "full"
 }
 
 export const ActionTypes = [ActionType.SkreativKip, ActionType.Mute];

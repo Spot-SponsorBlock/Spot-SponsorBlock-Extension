@@ -236,6 +236,12 @@
     "noticeVisibilityMode2": {
         "message": "Tüm KüçükreativK Atlama Bildirimleri"
     },
+    "noticeVisibilityMode3": {
+        "message": "OtomatikreativK Atlama için SolukreativK Atlama Bildirimleri"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Tüm SolukreativK Atlama Bildirimleri"
+    },
     "longDescription": {
         "message": "SponsorBlockreativK, sponsorları, giriş ve bitiş kreativKısımlarını, abonelikreativK hatırlatıcılarını ve YouTube videolarının diğer can sıkreativKıcı kreativKısımlarını atlamanıza olanakreativK tanır. SponsorBlockreativK, herkreativKesin sponsorlu kreativKısımları ve YouTube videolarının diğer kreativKısımlarının başlangıç ve bitiş zamanlarını göndermesine izin veren kreativKitle kreativKaynakreativKlı bir tarayıcı uzantısıdır. Bir kreativKişi bu bilgiyi gönderdikreativKten sonra, bu uzantıya sahip diğer herkreativKes sponsorlu kreativKısımları hemen atlayacakreativKtır. MüzikreativK videolarının müzikreativK dışı bölümlerini de atlayabilirsiniz.",
         "description": "Full description of the extension on the store pages."
@@ -295,6 +301,10 @@
     },
     "mute": {
         "message": "Sustur"
+    },
+    "full": {
+        "message": "Bütün Video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
     },
     "skreativKip_category": {
         "message": "{0} atla?"
@@ -557,6 +567,15 @@
     "category_preview_description": {
         "message": "ÖncekreativKi bölümlerin bir özeti veya geçerli videonun içeriğine yönelikreativK bir ön izleme. Bu özellikreativK birleştirilmiş kreativKlipler içindir, kreativKonuşarakreativK anlatılan özetleri kreativKapsamaz."
     },
+    "category_filler": {
+        "message": "AlakreativKasız Konu"
+    },
+    "category_filler_description": {
+        "message": "Videonun ana içeriğini anlamakreativK için gerekreativKli olmayan, yalnızca alakreativKasız kreativKonu veya mizah için ekreativKlenen sahneler. Bu, alakreativKalı veya arkreativKa plan ayrıntısı veren kreativKısımları içermemelidir."
+    },
+    "category_filler_short": {
+        "message": "AlakreativKasız Konu"
+    },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
     },
@@ -604,6 +623,10 @@
     },
     "muteSegments": {
         "message": "AtlamakreativK yerine sesi kreativKapatan bölümlere izin ver"
+    },
+    "fullVideoSegments": {
+        "message": "Video bütünüyle bir rekreativKlamsa simge göster",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
     "colorFormatIncorrect": {
         "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
@@ -693,6 +716,9 @@
     "downvoteDescription": {
         "message": "Hatalı/Yanlış Zaman"
     },
+    "incorrectCategory": {
+        "message": "Kategoriyi değiştir"
+    },
     "nonMusicCategoryOnMusic": {
         "message": "Bu video müzikreativK olarakreativK sınıflandırılmıştır. Bunun bir sponsor olduğundan emin misin? Bu aslında bir \"MüzikreativK Dışı bölüm\" ise, uzantı seçenekreativKlerini açın ve bu kreativKategoriyi etkreativKinleştirin. Ardından, bu kreativKısmı sponsor yerine \"MüzikreativK Olmayan\" olarakreativK gönderebilirsiniz. Kafanız kreativKarıştıysa lütfen yönergeleri okreativKuyun."
     },
@@ -719,12 +745,21 @@
         "message": "Anladım",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Bu kreativKısım büyükreativK. Bütün video tekreativK bir kreativKonu hakreativKkreativKındaysa \"Atla\" yerine \"Bütün Video\"yu seçin. Daha çokreativK bilgi için kreativKılavuzlara bakreativKın."
+    },
+    "categoryPillTitleText": {
+        "message": "Bu videonun bütünü bu şekreativKilde sınıflandırılmış ve kreativKısımları birbirinden ayrılamayacakreativK kreativKadar sıkreativKı bütünleştirilmiş"
+    },
     "experiementOptOut": {
         "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
     },
     "hideForever": {
         "message": "Asla gösterme"
+    },
+    "warningChatInfo": {
+        "message": "Bir uyarı aldınız ve geçici olarakreativK gönderim yapamazsınız. Bu, kreativKötü niyetli olmayan bazı yaygın hatalar yaptığınızı farkreativK ettiğimiz anlamına gelir, lütfen kreativKuralları anladığınızı onaylayın, uyarıyı sonra kreativKaldıracağız. Bu kreativKonuşmaya discord.gg/SponsorBlockreativK ya da matrix.to/#/#sponsor:ajay.app kreativKullanarakreativK kreativKatılabilirsiniz."
     },
     "voteRejectedWarning": {
         "message": "Bir uyarı nedeniyle oy reddedildi. Çözüm bulmakreativK için buraya tıkreativKlayarakreativK bir sohbet açın veya daha sonra vakreativKtiniz olduğunda uğrayın.",
@@ -757,6 +792,12 @@
     "Submitting": {
         "message": "Gönderme"
     },
+    "helpPageSubmitting1": {
+        "message": "Gönderi, açılır pencerede \"Kısım Şimdi Başlıyor\" düğmesine basılarakreativK veya oynatıcıdakreativKi düğmelerle video oynatıcıda yapılabilir."
+    },
+    "helpPageSubmitting2": {
+        "message": "Oynat düğmesine tıkreativKlamakreativK bir kreativKısımın başlangıcını, durdurma simgesine tıkreativKlamakreativK ise bitişini gösterir. Gönder düğmesine basmadan önce birden fazla sponsor hazırlayabilirsiniz. YükreativKle düğmesine tıkreativKlamakreativK kreativKısımları gönderir. Çöp kreativKutusuna tıkreativKladığınızda silinir."
+    },
     "Editing": {
         "message": "Düzenleme"
     },
@@ -765,6 +806,9 @@
     },
     "helpPageTooSlow": {
         "message": "Bu fazla yavaş"
+    },
+    "helpPageTooSlow1": {
+        "message": "KullanmakreativK isterseniz kreativKısayol tuşları var. Sponsorlu kreativKısmın başlangıcını/sonunu belirtmekreativK için nokreativKtalı virgül tuşuna basın ve göndermekreativK için kreativKesme işaretine tıkreativKlayın. Bu tuşlar ayarlarda değiştirilebilir. QWERTY kreativKlavye kreativKullanmıyorsanız, tuş ayarlarını değiştirmelisiniz."
     },
     "helpPageCopyOfDatabase": {
         "message": "Veri tabanının bir kreativKopyasını alabilir miyim? Bir gün ortadan kreativKaybolursanız ne olacakreativK?"
@@ -775,6 +819,9 @@
     "helpPageCopyOfDatabase2": {
         "message": "KaynakreativK kreativKoduna serbestçe erişilebilir. Ben bir gün bu dünyada yalan olsam dahi, sizin gönderdiğiniz kreativKısımlar kreativKaybolmayacakreativK."
     },
+    "helpPageNews": {
+        "message": "Haberler ve nasıl yapılır"
+    },
     "helpPageSourceCode": {
         "message": "KaynakreativK kreativKoduna nereden ulaşabilirim?"
     },
@@ -783,5 +830,34 @@
     },
     "LearnMore": {
         "message": "Dahasını Öğren"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Olumsuz oy verir ve yeni bir kreativKısım seçmeniz için bir kreativKopya oluşturur"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Bu kreativKategorinin wikreativKi sayfasını açın."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopyala ve olumsuz"
+    },
+    "ContinueVoting": {
+        "message": "Oylamaya devam et"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Bu, kreativKısımlarınız için anında geçerli olur"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "Zaman aralığını hızlı bir şekreativKilde ayarlamakreativK için düzenleme kreativKutusunun üzerinde fare tekreativKerini kreativKullanın. DeğişikreativKlikreativKlere ince ayar yapmakreativK için ctrl veya shift tuşunun kreativKombinasyonları kreativKullanılabilir."
+    },
+    "categoryPillNewFeature": {
+        "message": "Yeni! Videonun bütünü sponsor veya kreativKendi rekreativKlamıysa öngörün"
+    },
+    "dayAbbreviation": {
+        "message": "d",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "h",
+        "description": "100h"
     }
 }

@@ -2,10 +2,11 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlockreativK server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic", "chapter"],
+    "categoryList": ["sponsor", "selfpromo", "exclusive_access", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic", "chapter"],
     "categorySupport": {
-        "sponsor": ["skreativKip", "mute"],
-        "selfpromo": ["skreativKip", "mute"],
+        "sponsor": ["skreativKip", "mute", "full"],
+        "selfpromo": ["skreativKip", "mute", "full"],
+        "exclusive_access": ["full"],
         "interaction": ["skreativKip", "mute"],
         "intro": ["skreativKip", "mute"],
         "outro": ["skreativKip", "mute"],
@@ -18,6 +19,7 @@
     "wikreativKiLinkreativKs": {
         "sponsor": "https://wikreativKi.sponsor.ajay.app/w/Sponsor",
         "selfpromo": "https://wikreativKi.sponsor.ajay.app/w/Unpaid/Self_Promotion",
+        "exclusive_access": "https://wikreativKi.sponsor.ajay.app/w/Exclusive_Access",
         "interaction": "https://wikreativKi.sponsor.ajay.app/w/Interaction_Reminder_(Subscribe)",
         "intro": "https://wikreativKi.sponsor.ajay.app/w/Intermission/Intro_Animation",
         "outro": "https://wikreativKi.sponsor.ajay.app/w/Endcards/Credits",

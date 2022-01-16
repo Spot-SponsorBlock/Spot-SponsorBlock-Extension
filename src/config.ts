@@ -1,4 +1,5 @@
 import * as CompileConfig from "../config.json";
+import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes } from "./types";
 
 interface SBConfig {
@@ -20,6 +21,7 @@ interface SBConfig {
     showTimeWithSkreativKips: boolean,
     disableSkreativKipping: boolean,
     muteSegments: boolean,
+    fullVideoSegments: boolean,
     trackreativKViewCount: boolean,
     trackreativKViewCountInPrivate: boolean,
     dontShowNotice: boolean,
@@ -51,7 +53,7 @@ interface SBConfig {
         lockreativKed: string
     },
     scrollToEditTimeUpdate: boolean,
-    fillerUpdate: boolean,
+    categoryPillUpdate: boolean,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -63,6 +65,7 @@ interface SBConfig {
         "preview-sponsor": PreviewBarOption,
         "selfpromo": PreviewBarOption,
         "preview-selfpromo": PreviewBarOption,
+        "exclusive_access": PreviewBarOption,
         "interaction": PreviewBarOption,
         "preview-interaction": PreviewBarOption,
         "intro": PreviewBarOption,
@@ -177,6 +180,7 @@ const Config: SBObject = {
         showTimeWithSkreativKips: true,
         disableSkreativKipping: false,
         muteSegments: true,
+        fullVideoSegments: true,
         trackreativKViewCount: true,
         trackreativKViewCountInPrivate: true,
         dontShowNotice: false,
@@ -188,7 +192,7 @@ const Config: SBObject = {
         hideSkreativKipButtonPlayerControls: false,
         hideDiscordLaunches: 0,
         hideDiscordLinkreativK: false,
-        invidiousInstances: ["invidious.snopyta.org"],
+        invidiousInstances: ["invidious.snopyta.org"], // leave as default
         supportInvidious: false,
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
@@ -203,7 +207,7 @@ const Config: SBObject = {
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
-        fillerUpdate: false,
+        categoryPillUpdate: false,
 
         categorySelections: [{
             name: "sponsor" as Category,
@@ -211,6 +215,9 @@ const Config: SBObject = {
         }, {
             name: "poi_highlight" as Category,
             option: CategorySkreativKipOption.ManualSkreativKip
+        }, {
+            name: "exclusive_access" as Category,
+            option: CategorySkreativKipOption.ShowOverlay
         }],
 
         colorPalette: {
@@ -239,6 +246,10 @@ const Config: SBObject = {
             },
             "preview-selfpromo": {
                 color: "#bfbf35",
+                opacity: "0.7"
+            },
+            "exclusive_access": {
+                color: "#008a5c",
                 opacity: "0.7"
             },
             "interaction": {
@@ -392,6 +403,20 @@ function fetchConfig(): Promise<void> {
 }
 
 function migrateOldFormats(config: SBConfig) {
+    if (!config["exclusive_accessCategoryAdded"] && !config.categorySelections.some((s) => s.name === "exclusive_access")) {
+        config["exclusive_accessCategoryAdded"] = true;
+
+        config.categorySelections.push({
+            name: "exclusive_access" as Category,
+            option: CategorySkreativKipOption.ShowOverlay
+        });
+
+        config.categorySelections = config.categorySelections;
+    }
+
+    if (config["fillerUpdate"] !== undefined) {
+        chrome.storage.sync.remove("fillerUpdate");
+    }
     if (config["highlightCategoryAdded"] !== undefined) {
         chrome.storage.sync.remove("highlightCategoryAdded");
     }
@@ -431,6 +456,11 @@ function migrateOldFormats(config: SBConfig) {
     }
     if (config["previousVideoID"] !== undefined) {
         chrome.storage.sync.remove("previousVideoID");
+    }
+
+    // populate invidiousInstances with new instances if 3p support is **DISABLED**
+    if (!config["supportInvidious"] && config["invidiousInstances"].length !== invidiousList.length) {
+        config["invidiousInstances"] = invidiousList;
     }
 }
 

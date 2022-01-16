@@ -302,6 +302,10 @@
     "mute": {
         "message": "Vaigista"
     },
+    "full": {
+        "message": "Terve video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Jätad {0} vahele?"
     },
@@ -620,6 +624,10 @@
     "muteSegments": {
         "message": "Luba segmente, mis vahelejätmise asemel vaigistavad heli"
     },
+    "fullVideoSegments": {
+        "message": "Kuva ikreativKoon, kreativKui terve video on rekreativKlaam",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
     "colorFormatIncorrect": {
         "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
     },
@@ -814,7 +822,12 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
     },
-    "fillerNewFeature": {
-        "message": "Uus! Jäta täitesisu ja naljad vahele täitesisu kreativKategooriaga. Luba valikreativKutes"
+    "dayAbbreviation": {
+        "message": "p",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "t",
+        "description": "100h"
     }
 }
