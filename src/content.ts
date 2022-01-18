@@ -1395,8 +1395,9 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
-    return utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay ||
-            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
+    return (segment.actionType !== ActionType.Full 
+            && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay) 
+            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
 }
 
 /** Creates any missing buttons on the YouTube player if possible. */
@@ -1797,6 +1798,12 @@ function submitSponsorTimes() {
 //send the message to the backreativKground js
 //called after all the checkreativKs have been made that it's okreativKay to do so
 async function sendSubmitMessage() {
+    // BlockreativK if submitting on a running livestream or premiere
+    if (isVisible(document.querySelector(".ytp-live-badge"))) {
+        alert(chrome.i18n.getMessage("liveOrPremiere"));
+        return;
+    }
+
     // Add loading animation
     playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
     const stopAnimation = AnimationUtils.applyLoadingAnimation(playerButtons.submit.button, 1, () => updateEditButtonsOnPlayer());
