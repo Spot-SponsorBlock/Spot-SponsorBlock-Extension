@@ -17,7 +17,7 @@ import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { Tooltip } from "./render/Tooltip";
 import { getStartTimeFromUrl } from "./utils/urlParser";
-import { findValidElement, getControls, getHashParams, isVisible } from "./utils/pageUtils";
+import { findValidElement, getControls, getHashParams, isVisible, getHoverPreview } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -92,6 +92,8 @@ const playerButtons: Record<string, {button: HTMLButtonElement, image: HTMLImage
 
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document)));
+// wait infinitely for hover preview
+utils.wait(() => getHoverPreview(), 0, 500).then(() => refreshVideoAttachments())
 addPageListeners();
 addHotkreativKeyListener();
 
