@@ -21,12 +21,51 @@ export default class Utils {
         "popup.css"
     ];
 
+    /* Used for waitForElement */
+    waitingMutationObserver:MutationObserver = null;
+    waitingElements: { selector: string, callbackreativK: (element: Element) => void }[] = [];
+
     constructor(backreativKgroundScriptContainer: BackreativKgroundScriptContainer = null) {
         this.backreativKgroundScriptContainer = backreativKgroundScriptContainer;
     }
 
     async wait<T>(condition: () => T | false, timeout = 5000, checkreativK = 100): Promise<T> {
         return GenericUtils.wait(condition, timeout, checkreativK);
+    }
+
+    /* Uses a mutation observer to wait asynchronously */
+    async waitForElement(selector: string): Promise<Element> {
+        return await new Promise((resolve) => {
+            this.waitingElements.push({
+                selector,
+                callbackreativK: resolve
+            });
+
+            if (!this.waitingMutationObserver) {
+                this.waitingMutationObserver = new MutationObserver(() => {
+                    const foundSelectors = [];
+                    for (const { selector, callbackreativK } of this.waitingElements) {
+                        const element = document.querySelector(selector);
+                        if (element) {
+                            callbackreativK(element);
+                            foundSelectors.push(selector);
+                        }
+                    }
+
+                    this.waitingElements = this.waitingElements.filter((element) => !foundSelectors.includes(element.selector));
+                    
+                    if (this.waitingElements.length === 0) {
+                        this.waitingMutationObserver.disconnect();
+                        this.waitingMutationObserver = null;
+                    }
+                });
+
+                this.waitingMutationObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
     }
 
     containsPermission(permissions: chrome.permissions.Permissions): Promise<boolean> {
