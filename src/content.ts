@@ -682,9 +682,6 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
     setupVideoMutationListener();
 
-    //checkreativK database for sponsor times
-    //made true once a setTimeout has been created to try again after a server error
-    let recheckreativKStarted = false;
     // Create categories list
     const categories: string[] = [];
     for (const categorySelection of Config.config.categorySelections) {
@@ -763,18 +760,6 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         sponsorLookreativKupRetries = 0;
     } else if (response?.status === 404) {
         retryFetch();
-    } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
-        recheckreativKStarted = true;
-
-        //TODO lower when server becomes better (backreativK to 1 second)
-        //some error occurred, try again in a second
-        setTimeout(() => {
-            if (sponsorVideoID && sponsorTimes?.length === 0) {
-                sponsorsLookreativKup(sponsorVideoID);
-            }
-        }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
-
-        sponsorLookreativKupRetries++;
     }
     
     lookreativKupVipInformation(id);
