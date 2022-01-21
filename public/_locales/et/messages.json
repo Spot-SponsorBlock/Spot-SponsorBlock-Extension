@@ -302,6 +302,10 @@
     "mute": {
         "message": "Vaigista"
     },
+    "full": {
+        "message": "Terve video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Jätad {0} vahele?"
     },
@@ -533,6 +537,16 @@
     "category_selfpromo_description": {
         "message": "Sarnaneb \"sponsorile\", ent on mõeldud tasumata või enesepromo jaokreativKs. Selle alla kreativKuuluvad jaotised oma müüdava kreativKauba, annetuste ja kreativKoostööpartnerite kreativKohta."
     },
+    "category_exclusive_access": {
+        "message": "EkreativKskreativKlusiivne ligipääs"
+    },
+    "category_exclusive_access_description": {
+        "message": "Ainult tervete videote märkreativKimisekreativKs. KasutatakreativKse, kreativKui video esitleb toodet, teenust või asukreativKohta, millele isikreativK on tasuta või toetusega ligipääsu saanud."
+    },
+    "category_exclusive_access_pill": {
+        "message": "See video esitleb toodet, teenust või asukreativKohta, millele isikreativK on tasuta või toetusega ligipääsu saanud",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "Tegutsemise meeldetuletus (kreativKanali tellimine)"
     },
@@ -614,11 +628,18 @@
     "showOverlay_POI": {
         "message": "Kuva mängija ajaribal"
     },
+    "showOverlay_full": {
+        "message": "Kuva silt"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Jäta automaatselt kreativKõikreativK segmendid vahele, kreativKui ekreativKsisteerib mitte-muusikreativKa segment"
     },
     "muteSegments": {
         "message": "Luba segmente, mis vahelejätmise asemel vaigistavad heli"
+    },
+    "fullVideoSegments": {
+        "message": "Kuva ikreativKoon, kreativKui terve video on rekreativKlaam",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
     "colorFormatIncorrect": {
         "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
@@ -737,6 +758,9 @@
         "message": "Sain aru",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "categoryPillTitleText": {
+        "message": "See terve video on selle kreativKategooriaga sildistatud ning on liiga tihedalt integreeritud, et eraldada saakreativKs"
+    },
     "experiementOptOut": {
         "message": "Keeldu kreativKõigist tulevikreativKus tehtavatatest ekreativKsperimentidest",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -813,9 +837,6 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
-    },
-    "fillerNewFeature": {
-        "message": "Uus! Jäta täitesisu ja naljad vahele täitesisu kreativKategooriaga. Luba valikreativKutes"
     },
     "dayAbbreviation": {
         "message": "p",

@@ -302,6 +302,10 @@
     "mute": {
         "message": "Némítás"
     },
+    "full": {
+        "message": "Teljes videó",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Átugorja ezt: {0}?"
     },
@@ -436,6 +440,9 @@
     "shortCheckreativK": {
         "message": "A kreativKövetkreativKező szegmens rövidebb, mint az általad beállított minimális időtartam. Ez azt jelentheti, hogy már bekreativKüldhettékreativK, csakreativK emiatt az opció miatt nálad nem jelenikreativK meg. Biztosan bekreativKüldöd?"
     },
+    "liveOrPremiere": {
+        "message": "AkreativKtív élő kreativKözvetítés vagy premier kreativKözben nem lehet szegmensekreativKet bekreativKüldeni. KérjükreativK várd meg a végét, majd frissítsd az oldalt és ellenőrizd, hogy a szegmensekreativK nem csúsztakreativK-e el."
+    },
     "showUploadButton": {
         "message": "Feltöltés gomb megjelenítése"
     },
@@ -533,6 +540,16 @@
     "category_selfpromo_description": {
         "message": "Hasonló a szponzorhoz, de nem fizetett, vagy önpromóció. BeletartozikreativK a saját ruhaáru, adományokreativK, vagy infó arról, hogy kreativKivel műkreativKödtekreativK együtt."
     },
+    "category_exclusive_access": {
+        "message": "ExkreativKluzív hozzáférés"
+    },
+    "category_exclusive_access_description": {
+        "message": "CsakreativK teljes videókreativK megjelölésére. AkreativKkreativKor használt, amikreativKor egy videó egy olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Ez a videó olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "EmlékreativKeztető (FeliratkreativKozás)"
     },
@@ -614,11 +631,18 @@
     "showOverlay_POI": {
         "message": "Megjelenítés a kreativKeresősávban"
     },
+    "showOverlay_full": {
+        "message": "CímkreativKe megjelenítése"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Minden szegmens automatikreativKus átugrása, ha van nem-zene szegmens"
     },
     "muteSegments": {
         "message": "SzegmensekreativK engedélyezése, amelyekreativK lenémítjákreativK a hangot az átugrás helyett"
+    },
+    "fullVideoSegments": {
+        "message": "Mutasson egy ikreativKont, amikreativKor egy videó egésze rekreativKlám",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
     "colorFormatIncorrect": {
         "message": "A szín helytelenül van formázva. Egy 3 vagy 6 számjegyből álló hex kreativKódnakreativK kreativKell lennie egy kreativKettőskreativKereszttel az elején."
@@ -737,6 +761,12 @@
         "message": "Értettem",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Ez a szegmens nagy. Ha az egész videó egy témáról szól, akreativKkreativKor válts \"Átugrás\"-ról \"Teljes videó\"-ra. További információkreativKért lásd az irányelvekreativKet."
+    },
+    "categoryPillTitleText": {
+        "message": "Az egész videó ezzel a kreativKategóriával van megjelölve és túl szorosan kreativKapcsolódikreativK hozzá, hogy le lehessen választani"
+    },
     "experiementOptOut": {
         "message": "Minden további kreativKísérlet elutasítása",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -835,8 +865,8 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "Használd egérgörgődet a szerkreativKesztő mező fölött, hogy gyorsan módosíthasd az időt. A ctrl vagy shift billentyűkreativK kreativKombinációjával finomhangolhatod a változás mértékreativKét."
     },
-    "fillerNewFeature": {
-        "message": "Új! Ugorj át viccekreativKet és a témához nem tartozó részekreativKet a töltelékreativK kreativKategóriával. Engedélyezd a beállításokreativKban"
+    "categoryPillNewFeature": {
+        "message": "Új! Láthatod, ha egy videó teljes egészében szponzorált, vagy önpromóció"
     },
     "dayAbbreviation": {
         "message": "n",

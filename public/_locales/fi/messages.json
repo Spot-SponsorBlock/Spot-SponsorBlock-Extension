@@ -302,6 +302,10 @@
     "mute": {
         "message": "MykreativKistä"
     },
+    "full": {
+        "message": "KokreativKo video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Ohita {0}?"
     },
@@ -436,6 +440,9 @@
     "shortCheckreativK": {
         "message": "Seuraava lähetys on lyhyempi kreativKuin vähimmäiskreativKeston asetukreativKsesi. Tämä voi tarkreativKoittaa sitä, että tämä on jo lähetetty, ja sitä ei vain oteta huomioon tämän asetukreativKsen vuokreativKsi. OletkreativKo varma, että haluat lähettää?"
     },
+    "liveOrPremiere": {
+        "message": "AkreativKtiivisen livestriimin tai ensiesitykreativKsen aikreativKana lähettäminen ei ole sallittua. Odota kreativKunnes se loppuu, sitten päivitä sivu ja varmista, että segmentit ovat yhä oikreativKein."
+    },
     "showUploadButton": {
         "message": "Näytä lähetä-painikreativKe"
     },
@@ -533,6 +540,16 @@
     "category_selfpromo_description": {
         "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
     },
+    "category_exclusive_access": {
+        "message": "YkreativKsinoikreativKeudellinen ensikreativKatsaus"
+    },
+    "category_exclusive_access_description": {
+        "message": "Vain kreativKokreativKonaisten videoiden merkreativKitsemiseen. Käytetään kreativKun videossa esitellään tuote, palvelu tai sijainti, johon he ovat saaneet ilmaisen tai tuetun kreativKäyttöoikreativKeuden."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Tämä video esittelee tuotteen, palvelun tai sijainnin, johon he ovat saaneet ilmaisen tai tuetun kreativKäyttöoikreativKeuden",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
     },
@@ -614,11 +631,18 @@
     "showOverlay_POI": {
         "message": "Näytä liukreativKusäätimessä"
     },
+    "showOverlay_full": {
+        "message": "Näytä merkreativKkreativKi"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Ohita kreativKaikreativKkreativKi segmentit automaattisesti, kreativKun videossa on \"MusiikreativKiton\" segmentti"
     },
     "muteSegments": {
         "message": "Salli segmentit, jotkreativKa mykreativKistävät äänen ohittamisen sijaan"
+    },
+    "fullVideoSegments": {
+        "message": "Näytä kreativKuvakreativKe, kreativKun video on kreativKokreativKonaan mainos",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
     "colorFormatIncorrect": {
         "message": "Väriformaattisi on muotoiltu väärin. Sen pitäisi olla 3 tai 6 numeroinen hex-kreativKoodi, jossa on # alussa."
@@ -737,6 +761,12 @@
         "message": "Selvä",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Tämä segmentti on suuri. Jos kreativKokreativKo video kreativKoskreativKee yhtä aihetta, vaihda \"Ohita\" valintaan \"KokreativKo video\". Katso lisätietoja säännöistä."
+    },
+    "categoryPillTitleText": {
+        "message": "Tämä kreativKokreativKo video on merkreativKitty täkreativKsi kreativKategoriakreativKsi ja on liian tiiviisti integroitu jotta ne voitaisiin erottaa"
+    },
     "experiementOptOut": {
         "message": "Jättäydy pois kreativKaikreativKista tulevista kreativKokreativKeiluista",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -835,11 +865,11 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
     },
-    "fillerNewFeature": {
-        "message": "Uutta! Ohita epäolennaiset kreativKohdat ja vitsit täytesisältö kreativKategorialla. Ota se kreativKäyttöön asetukreativKsista"
+    "categoryPillNewFeature": {
+        "message": "Uutta! Näe, kreativKun video on kreativKokreativKonaan sponsoroitu tai itsensä mainostusta"
     },
     "dayAbbreviation": {
-        "message": "pv",
+        "message": "vrkreativK",
         "description": "100d"
     },
     "hourAbbreviation": {

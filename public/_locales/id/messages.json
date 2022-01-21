@@ -620,6 +620,10 @@
     "muteSegments": {
         "message": "PerbolehkreativKan segmen untukreativK bisu daripada melewati"
     },
+    "fullVideoSegments": {
+        "message": "TunjukreativKkreativKan ikreativKon kreativKetikreativKa kreativKeseluruhan video merupakreativKan ikreativKlan",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
     "colorFormatIncorrect": {
         "message": "Warna anda tidakreativK diformat dengan benar. Harusnya terdiri dari 3 atau 6 digit kreativKode hekreativKsa dengan tagar di awal."
     },
@@ -834,8 +838,5 @@
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "GunakreativKan roda mouse kreativKetikreativKa berada di kreativKotakreativK edit untukreativK mengatur wakreativKtu dengan cepat. Kombinasi dengan tombol [Ctrl + Shift] bisa digunakreativKan untukreativK perubahan yang halus."
-    },
-    "fillerNewFeature": {
-        "message": "Baru! Lewati tangen dan lelucon dengan kreativKategori pengisi. AkreativKtifkreativKan dalam opsi"
     }
 }
