@@ -537,6 +537,16 @@
     "category_selfpromo_description": {
         "message": "Podobné akreativKo sponzor, okreativKrem neplatenej alebo vlastnej propagácie. Patria sem sekreativKcie týkreativKajúce sa merchu, donatov alebo informácií o tom, s kreativKým spolupracovali."
     },
+    "category_exclusive_access": {
+        "message": "ExkreativKluzívny Prístup"
+    },
+    "category_exclusive_access_description": {
+        "message": "Iba pre označovanie celých videí. Používa sa, kreativKeď video predstavuje produkreativKt, službu alebo miesto, kreativKu kreativKtorým získreativKali bezplatný alebo dotovaný prístup."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Toto video predstavuje produkreativKt, službu alebo miesto, kreativKu kreativKtorým získreativKali bezplatný alebo dotovaný prístup",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "PripomienkreativKa interakreativKcie (Prihlásiť sa na odber)"
     },
@@ -617,6 +627,9 @@
     },
     "showOverlay_POI": {
         "message": "Zobraziť v časovej lište"
+    },
+    "showOverlay_full": {
+        "message": "UkreativKázať Označenie"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "AutomatickreativKy preskreativKočiť všetkreativKy segmenty akreativK neexistuje segment bez hudby"

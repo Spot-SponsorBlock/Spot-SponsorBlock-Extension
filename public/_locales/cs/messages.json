@@ -440,6 +440,9 @@
     "shortCheckreativK": {
         "message": "Váš příspěvekreativK je kreativKratší než vaše možnost nejkreativKratší doby trvání. To by mohlo znamenat, že někreativKdo segment již odeslal, a je jenom ignorován kreativKvůli této možnosti. Opravdu chcete odeslat váš příspěvekreativK?"
     },
+    "liveOrPremiere": {
+        "message": "Odesílání na akreativKtivním streamu nebo premiéře. PočkreativKejte prosím, než skreativKončí, poté obnovte stránkreativKu a ověřte, zda jsou segmenty stále platné."
+    },
     "showUploadButton": {
         "message": "Zobrazit tlačítkreativKo Nahrát"
     },

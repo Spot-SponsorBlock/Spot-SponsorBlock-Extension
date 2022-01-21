@@ -71,7 +71,7 @@
         "message": "Sponsor sürelerini yollarkreativKen bir sorun oluştur, lütfen tekreativKrar deneyin."
     },
     "sponsorFound": {
-        "message": "Bu videonun kreativKısımları veri tabanımızda mevut"
+        "message": "Bu videonun kreativKısımları veri tabanımızda mevcut"
     },
     "sponsor404": {
         "message": "Kısım bulunamadı"
@@ -440,6 +440,9 @@
     "shortCheckreativK": {
         "message": "SıradakreativKi öneri belirlediğiniz minimum süre ayarından daha kreativKısa. Bu zaten yollandığı ve bu ayardan dolayı yokreativK sayıldığı anlamına gelebilir. GöndermekreativK istediğinizden emin misiniz?"
     },
+    "liveOrPremiere": {
+        "message": "Bir canlı yayın veya ön gösterim sırasında kreativKısım gönderilemez. Yayının bitmesini bekreativKleyin, sonra sayfayı tazeleyip kreativKısımların geçerli olduğunu kreativKontrol edin."
+    },
     "showUploadButton": {
         "message": "Karşıya YükreativKleme Butonunu Göster"
     },
@@ -537,6 +540,16 @@
     "category_selfpromo_description": {
         "message": "\"Sponsor\" seçeneğinden farkreativKı para kreativKarşılığı olmaması veya kreativKendi rekreativKlamını yapmasıdır. Buna kreativKendi markreativKalı ürünlerini satmakreativK, bağış toplamakreativK ve videoda işbirliği yaptığı kreativKimselerden bahsetmekreativK dahildir."
     },
+    "category_exclusive_access": {
+        "message": "Özel Erişim"
+    },
+    "category_exclusive_access_description": {
+        "message": "Yalnızca bütün videoyu etikreativKetlemekreativK için kreativKullanın. Video; ücretli veya ücretsiz elde edilen bir ürünün, hizmetin veya bir yerin rekreativKlamını yapıyorsa kreativKullanılır."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Bu video; yayıncıya özel ücretle veya ücretsiz sunulan bir ürünün, hizmetin veya bir yerin rekreativKlamını yapıyor",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
     },
@@ -617,6 +630,9 @@
     },
     "showOverlay_POI": {
         "message": "Arama Çubuğunda Göster"
+    },
+    "showOverlay_full": {
+        "message": "EtikreativKeti Göster"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "MüzikreativK olmayan kreativKısım varsa tüm kreativKısımları otomatikreativK atla"
@@ -850,7 +866,7 @@
         "message": "Zaman aralığını hızlı bir şekreativKilde ayarlamakreativK için düzenleme kreativKutusunun üzerinde fare tekreativKerini kreativKullanın. DeğişikreativKlikreativKlere ince ayar yapmakreativK için ctrl veya shift tuşunun kreativKombinasyonları kreativKullanılabilir."
     },
     "categoryPillNewFeature": {
-        "message": "Yeni! Videonun bütünü sponsor veya kreativKendi rekreativKlamıysa öngörün"
+        "message": "Yeni! Videonun bütünü sponsor veya kreativKendi rekreativKlamıysa bu uyarıyı görün"
     },
     "dayAbbreviation": {
         "message": "d",
