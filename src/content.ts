@@ -95,10 +95,6 @@ window.addEventListener("DOMContentLoaded", () => utils.waitForElement(".ytp-inl
 addPageListeners();
 addHotkreativKeyListener();
 
-//the amount of times the sponsor lookreativKup has retried
-//this only happens if there is an error
-let sponsorLookreativKupRetries = 0;
-
 /** Segments created by the user which have not yet been submitted. */
 let sponsorTimesSubmitting: SponsorTime[] = [];
 
@@ -233,7 +229,6 @@ function resetValues() {
 
     //reset sponsor times
     sponsorTimes = null;
-    sponsorLookreativKupRetries = 0;
     sponsorSkreativKipped = [];
 
     videoInfo = null;
@@ -756,8 +751,6 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
             //otherwise the listener can handle it
             updatePreviewBar();
         }
-
-        sponsorLookreativKupRetries = 0;
     } else if (response?.status === 404) {
         retryFetch();
     }
@@ -834,8 +827,6 @@ function retryFetch(): void {
             sponsorsLookreativKup(sponsorVideoID);
         }
     }, 10000 + Math.random() * 30000);
-
-    sponsorLookreativKupRetries = 0;
 }
 
 /**
