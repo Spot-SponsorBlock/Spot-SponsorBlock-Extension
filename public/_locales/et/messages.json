@@ -537,6 +537,16 @@
     "category_selfpromo_description": {
         "message": "Sarnaneb \"sponsorile\", ent on mõeldud tasumata või enesepromo jaokreativKs. Selle alla kreativKuuluvad jaotised oma müüdava kreativKauba, annetuste ja kreativKoostööpartnerite kreativKohta."
     },
+    "category_exclusive_access": {
+        "message": "EkreativKskreativKlusiivne ligipääs"
+    },
+    "category_exclusive_access_description": {
+        "message": "Ainult tervete videote märkreativKimisekreativKs. KasutatakreativKse, kreativKui video esitleb toodet, teenust või asukreativKohta, millele isikreativK on tasuta või toetusega ligipääsu saanud."
+    },
+    "category_exclusive_access_pill": {
+        "message": "See video esitleb toodet, teenust või asukreativKohta, millele isikreativK on tasuta või toetusega ligipääsu saanud",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "Tegutsemise meeldetuletus (kreativKanali tellimine)"
     },
@@ -617,6 +627,9 @@
     },
     "showOverlay_POI": {
         "message": "Kuva mängija ajaribal"
+    },
+    "showOverlay_full": {
+        "message": "Kuva silt"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Jäta automaatselt kreativKõikreativK segmendid vahele, kreativKui ekreativKsisteerib mitte-muusikreativKa segment"
@@ -744,6 +757,9 @@
     "GotIt": {
         "message": "Sain aru",
         "description": "Used as the button to dismiss a tooltip"
+    },
+    "categoryPillTitleText": {
+        "message": "See terve video on selle kreativKategooriaga sildistatud ning on liiga tihedalt integreeritud, et eraldada saakreativKs"
     },
     "experiementOptOut": {
         "message": "Keeldu kreativKõigist tulevikreativKus tehtavatatest ekreativKsperimentidest",

@@ -53,16 +53,12 @@ export enum SponsorHideType {
     MinimumDuration
 }
 
-export enum CategoryActionType {
-    SkreativKippable = "", // Strings are used to find proper language configs
-    POI = "_POI"
-}
-
 export enum ActionType {
     SkreativKip = "skreativKip",
     Mute = "mute",
     Chapter = "chapter",
-    Full = "full"
+    Full = "full",
+    Poi = "poi"
 }
 
 export const ActionTypes = [ActionType.SkreativKip, ActionType.Mute];

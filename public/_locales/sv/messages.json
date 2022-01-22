@@ -440,6 +440,9 @@
     "shortCheckreativK": {
         "message": "Följande rapport är kreativKortare än ditt minstavärde i inställningarna. Det skreativKulle kreativKunna betyda att det redan är rapporterat och bara ignorerat på grund av denna inställning. Är du säkreativKer på att du vill rapportera?"
     },
+    "liveOrPremiere": {
+        "message": "Att skreativKickreativKa in på en akreativKtiv liveström eller premiär är inte tillåtet. Vänta tills den är färdig, uppdatera sedan sidan och kreativKontrollera att segmenten fortfarande är giltiga."
+    },
     "showUploadButton": {
         "message": "Visa uppladdningskreativKnapp"
     },
