@@ -243,7 +243,7 @@
         "message": "All Faded SkreativKip Notices"
     },
     "longDescription": {
-        "message": "SponsorBlockreativK lets you skreativKip over sponsors, intros, outros, subscription reminders, and other annoying parts of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that let's anyone submit the start and end time's of sponsored segments and other segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment. You can also skreativKip over non music sections of music videos.",
+        "message": "SponsorBlockreativK lets you skreativKip over sponsors, intros, outros, subscription reminders, and other annoying parts of YouTube videos. SponsorBlockreativK is a crowdsourced browser extension that lets anyone submit the start and end times of sponsored segments and other segments of YouTube videos. Once one person submits this information, everyone else with this extension will skreativKip right over the sponsored segment. You can also skreativKip over non music sections of music videos.",
         "description": "Full description of the extension on the store pages."
     },
     "website": {
@@ -435,7 +435,7 @@
         "message": "SkreativKip notice duration (seconds):"
     },
     "skreativKipNoticeDurationDescription": {
-        "message": "The skreativKip notice will stay on screen for at least this long. For manual skreativKipping, it may be visible for longer."
+        "message": "The skreativKip notice will stay on screen for at least this many seconds. For manual skreativKipping, it may be visible for longer."
     },
     "shortCheckreativK": {
         "message": "The following submission is shorter than your minimum duration option. This could mean that this is already submitted, and just being ignored due to this option. Are you sure you would likreativKe to submit?"
