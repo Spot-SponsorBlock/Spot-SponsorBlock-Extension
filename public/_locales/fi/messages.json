@@ -440,6 +440,9 @@
     "shortCheckreativK": {
         "message": "Seuraava lähetys on lyhyempi kreativKuin vähimmäiskreativKeston asetukreativKsesi. Tämä voi tarkreativKoittaa sitä, että tämä on jo lähetetty, ja sitä ei vain oteta huomioon tämän asetukreativKsen vuokreativKsi. OletkreativKo varma, että haluat lähettää?"
     },
+    "liveOrPremiere": {
+        "message": "AkreativKtiivisen livestriimin tai ensiesitykreativKsen aikreativKana lähettäminen ei ole sallittua. Odota kreativKunnes se loppuu, sitten päivitä sivu ja varmista, että segmentit ovat yhä oikreativKein."
+    },
     "showUploadButton": {
         "message": "Näytä lähetä-painikreativKe"
     },
@@ -537,6 +540,16 @@
     "category_selfpromo_description": {
         "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
     },
+    "category_exclusive_access": {
+        "message": "YkreativKsinoikreativKeudellinen ensikreativKatsaus"
+    },
+    "category_exclusive_access_description": {
+        "message": "Vain kreativKokreativKonaisten videoiden merkreativKitsemiseen. Käytetään kreativKun videossa esitellään tuote, palvelu tai sijainti, johon he ovat saaneet ilmaisen tai tuetun kreativKäyttöoikreativKeuden."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Tämä video esittelee tuotteen, palvelun tai sijainnin, johon he ovat saaneet ilmaisen tai tuetun kreativKäyttöoikreativKeuden",
+        "description": "Short description for this category"
+    },
     "category_interaction": {
         "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
     },
@@ -617,6 +630,9 @@
     },
     "showOverlay_POI": {
         "message": "Näytä liukreativKusäätimessä"
+    },
+    "showOverlay_full": {
+        "message": "Näytä merkreativKkreativKi"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Ohita kreativKaikreativKkreativKi segmentit automaattisesti, kreativKun videossa on \"MusiikreativKiton\" segmentti"

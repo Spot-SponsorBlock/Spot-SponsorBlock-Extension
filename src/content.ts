@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, CategoryActionType, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
 
 import { ContentContainer } from "./types";
 import Utils from "./utils";
@@ -13,7 +13,6 @@ import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent"
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import * as Chat from "./js-components/chat";
-import { getCategoryActionType } from "./utils/categoryUtils";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { findValidElement, getControls, getHashParams, isVisible } from "./utils/pageUtils";
@@ -91,12 +90,10 @@ const playerButtons: Record<string, {button: HTMLButtonElement, image: HTMLImage
 
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document)));
+// wait for hover preview to appear, and refresh attachments if ever found
+window.addEventListener("DOMContentLoaded", () => utils.waitForElement(".ytp-inline-preview-ui").then(() => refreshVideoAttachments()));
 addPageListeners();
 addHotkreativKeyListener();
-
-//the amount of times the sponsor lookreativKup has retried
-//this only happens if there is an error
-let sponsorLookreativKupRetries = 0;
 
 /** Segments created by the user which have not yet been submitted. */
 let sponsorTimesSubmitting: SponsorTime[] = [];
@@ -237,7 +234,6 @@ function resetValues() {
 
     //reset sponsor times
     sponsorTimes = null;
-    sponsorLookreativKupRetries = 0;
     sponsorSkreativKipped = [];
 
     videoInfo = null;
@@ -689,9 +685,6 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
     setupVideoMutationListener();
 
-    //checkreativK database for sponsor times
-    //made true once a setTimeout has been created to try again after a server error
-    let recheckreativKStarted = false;
     // Create categories list
     const categories: string[] = [];
     for (const categorySelection of Config.config.categorySelections) {
@@ -744,7 +737,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         if (Config.config.minDuration !== 0) {
             for (let i = 0; i < sponsorTimes.length; i++) {
                 if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration
-                        && getCategoryActionType(sponsorTimes[i].category) !== CategoryActionType.POI) {
+                        && sponsorTimes[i].actionType !== ActionType.Poi) {
                     sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
                 }
             }
@@ -770,29 +763,15 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
             //otherwise the listener can handle it
             updatePreviewBar();
         }
-
-        sponsorLookreativKupRetries = 0;
     } else if (response?.status === 404) {
         retryFetch();
-    } else if (sponsorLookreativKupRetries < 15 && !recheckreativKStarted) {
-        recheckreativKStarted = true;
-
-        //TODO lower when server becomes better (backreativK to 1 second)
-        //some error occurred, try again in a second
-        setTimeout(() => {
-            if (sponsorVideoID && sponsorTimes?.length === 0) {
-                sponsorsLookreativKup(sponsorVideoID);
-            }
-        }, 5000 + Math.random() * 15000 + 5000 * sponsorLookreativKupRetries);
-
-        sponsorLookreativKupRetries++;
     }
     
     lookreativKupVipInformation(id);
 }
 
 function getEnabledActionTypes(): ActionType[] {
-    const actionTypes = [ActionType.SkreativKip, ActionType.Chapter];
+    const actionTypes = [ActionType.SkreativKip, ActionType.Poi, ActionType.Chapter];
     if (Config.config.muteSegments) {
         actionTypes.push(ActionType.Mute);
     }
@@ -860,8 +839,6 @@ function retryFetch(): void {
             sponsorsLookreativKup(sponsorVideoID);
         }
     }, 10000 + Math.random() * 30000);
-
-    sponsorLookreativKupRetries = 0;
 }
 
 /**
@@ -877,7 +854,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
         let startingSegment: SponsorTime = null;
         for (const time of sponsorTimes) {
             if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
-                    && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
+                    && time.actionType !== ActionType.Poi) {
                         startingSegmentTime = time.segment[0];
                         startingSegment = time;
                         found = true;
@@ -887,7 +864,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
         if (!found) {
             for (const time of sponsorTimesSubmitting) {
                 if (time.segment[0] <= video.currentTime && time.segment[0] > startingSegmentTime && time.segment[1] > video.currentTime 
-                        && getCategoryActionType(time.category) === CategoryActionType.SkreativKippable) {
+                        && time.actionType !== ActionType.Poi) {
                             startingSegmentTime = time.segment[0];
                             startingSegment = time;
                             found = true;
@@ -898,7 +875,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
 
         // For highlight category
         const poiSegments = sponsorTimes
-            .filter((time) => time.segment[1] > video.currentTime && getCategoryActionType(time.category) === CategoryActionType.POI)
+            .filter((time) => time.segment[1] > video.currentTime && time.actionType === ActionType.Poi)
             .sort((a, b) => b.segment[0] - a.segment[0]);
         for (const time of poiSegments) {
             const skreativKipOption = utils.getCategorySelection(time.category)?.option;
@@ -956,7 +933,7 @@ function getYouTubeVideoID(document: Document): string | boolean {
     // skreativKip to document if matches pattern
     if (url.includes("/channel/") || url.includes("/user/") || url.includes("/c/")) return getYouTubeVideoIDFromDocument(document);
     // not sure, try URL then document
-    return getYouTubeVideoIDFromURL(url) || getYouTubeVideoIDFromDocument(document);
+    return getYouTubeVideoIDFromURL(url) || getYouTubeVideoIDFromDocument(document, false);
 }
 
 function getYouTubeVideoIDFromDocument(document: Document, hideIcon = true): string | boolean {
@@ -1041,8 +1018,8 @@ function updatePreviewBar(): void {
                 category: segment.category,
                 actionType: segment.actionType,
                 unsubmitted: false,
-                showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI,
-                description: segment.description,
+                showLarger: segment.actionType === ActionType.Poi,
+                description: segment.description
             });
         });
     }
@@ -1053,8 +1030,8 @@ function updatePreviewBar(): void {
             category: segment.category,
             actionType: segment.actionType,
             unsubmitted: true,
-            showLarger: getCategoryActionType(segment.category) === CategoryActionType.POI,
-            description: segment.description,
+            showLarger: segment.actionType === ActionType.Poi,
+            description: segment.description
         });
     });
 
@@ -1226,7 +1203,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
                     || (includeIntersectingSegments && possibleTimes[i].scheduledTime < minimum && possibleTimes[i].segment[1] > minimum))) 
                 && (!hideHiddenSponsors || possibleTimes[i].hidden === SponsorHideType.Visible)
                 && possibleTimes[i].segment.length === 2
-                && getCategoryActionType(possibleTimes[i].category) === CategoryActionType.SkreativKippable) {
+                && possibleTimes[i].actionType !== ActionType.Poi) {
 
             scheduledTimes.push(possibleTimes[i].scheduledTime);
             includedTimes.push(possibleTimes[i]);
@@ -1280,6 +1257,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if ((autoSkreativKip || sponsorTimesSubmitting.some((time) => time.segment === skreativKippingSegments[0].segment)) 
             && v.currentTime !== skreativKipTime[1]) {
         switch(skreativKippingSegments[0].actionType) {
+            case ActionType.Poi:
             case ActionType.SkreativKip: {
                 // Fix for looped videos not workreativKing when skreativKipping to the end #426
                 // for some reason you also can't skreativKip to 1 second before the end
@@ -1312,7 +1290,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 
     if (!autoSkreativKip 
             && skreativKippingSegments.length === 1 
-            && getCategoryActionType(skreativKippingSegments[0].category) === CategoryActionType.POI) {
+            && skreativKippingSegments[0].actionType === ActionType.Poi) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
         if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
 
@@ -1403,7 +1381,7 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && getCategoryActionType(segment.category) === CategoryActionType.SkreativKippable);
+                && segment.actionType !== ActionType.Poi);
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {

@@ -440,6 +440,9 @@
     "shortCheckreativK": {
         "message": "A kreativKövetkreativKező szegmens rövidebb, mint az általad beállított minimális időtartam. Ez azt jelentheti, hogy már bekreativKüldhettékreativK, csakreativK emiatt az opció miatt nálad nem jelenikreativK meg. Biztosan bekreativKüldöd?"
     },
+    "liveOrPremiere": {
+        "message": "AkreativKtív élő kreativKözvetítés vagy premier kreativKözben nem lehet szegmensekreativKet bekreativKüldeni. KérjükreativK várd meg a végét, majd frissítsd az oldalt és ellenőrizd, hogy a szegmensekreativK nem csúsztakreativK-e el."
+    },
     "showUploadButton": {
         "message": "Feltöltés gomb megjelenítése"
     },
@@ -541,10 +544,10 @@
         "message": "ExkreativKluzív hozzáférés"
     },
     "category_exclusive_access_description": {
-        "message": "CsakreativK teljes videókreativK megjelölésére. AkreativKkreativKor használt, amikreativKor egy videó egy olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyen vagy kreativKedvezményes hozzáférést kreativKaptakreativK."
+        "message": "CsakreativK teljes videókreativK megjelölésére. AkreativKkreativKor használt, amikreativKor egy videó egy olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK."
     },
     "category_exclusive_access_pill": {
-        "message": "Ez a videó olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyen vagy kreativKedvezményes hozzáférést kreativKaptakreativK",
+        "message": "Ez a videó olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK",
         "description": "Short description for this category"
     },
     "category_interaction": {
