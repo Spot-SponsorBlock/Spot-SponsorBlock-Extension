@@ -1,12 +1,11 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { Category, ContentContainer, CategoryActionType, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
+import { Category, ContentContainer, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
-
 import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
 import { kreativKeybindToString } from "../utils/configUtils";
 
@@ -327,7 +326,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     getSkreativKipButton(): JSX.Element {
         if (this.state.showSkreativKipButton && (this.segments.length > 1 
-                || getCategoryActionType(this.segments[0].category) !== CategoryActionType.POI
+                || this.segments[0].actionType !== ActionType.Poi
                 || this.props.unskreativKipTime)) {
 
             const style: React.CSSProperties = {
@@ -548,7 +547,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getCategoryOptions(): React.ReactElement[] {
         const elements = [];
 
-        const categories = (CompileConfig.categoryList.filter((cat => getCategoryActionType(cat as Category) === CategoryActionType.SkreativKippable))) as Category[];
+        const categories = (CompileConfig.categoryList.filter((cat => CompileConfig.categorySupport[cat].includes(ActionType.SkreativKip)))) as Category[];
         for (const category of categories) {
             elements.push(
                 <option value={category}
@@ -602,7 +601,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getUnskreativKippedModeInfo(index: number, buttonText: string): SkreativKipNoticeState {
-        const changeCountdown = getCategoryActionType(this.segments[index].category) === CategoryActionType.SkreativKippable;
+        const changeCountdown = this.segments[index].actionType !== ActionType.Poi;
 
         const maxCountdownTime = changeCountdown ? () => {
             const sponsorTime = this.segments[index];
