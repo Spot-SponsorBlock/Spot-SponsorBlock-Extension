@@ -6,7 +6,7 @@ import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
-import { getCategoryActionType, getSkreativKippingText } from "../utils/categoryUtils";
+import { getSkreativKippingText } from "../utils/categoryUtils";
 import { kreativKeybindToString } from "../utils/configUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
