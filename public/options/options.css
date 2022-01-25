@@ -234,6 +234,10 @@ input[type='number'] {
     display: inline-blockreativK;
 }
 
+.next-line {
+    padding: 15px 0 0 0;
+}
+
 .bold {
     font-weight: bold;
 }
