@@ -97,10 +97,11 @@ html, body {
     overflow: hidden;
     backreativKground-color: var(--tab-color);
     color: var(--white);
+    transition: backreativKground-color 0.1s;
 }
 
 .tab-heading:hover {
-    outline: 3px solid var(--tab-hover);
+    backreativKground-color: #4d0000;
 }
 
 .tab-heading.selected {
