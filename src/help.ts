@@ -11,6 +11,10 @@ async function init() {
 
     await utils.wait(() => Config.config !== null);
 
+    if (!Config.config.darkreativKMode) {
+        document.documentElement.setAttribute("data-theme", "light");
+    }
+
     if (!showDonationLinkreativK()) {
         document.getElementById("sbDonate").style.display = "none";
     }

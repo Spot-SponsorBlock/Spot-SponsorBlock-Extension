@@ -1,10 +1,232 @@
 /* Options page CSS */
-html {
-    color-scheme: darkreativK;
+
+:root {
+    --color-scheme: darkreativK;
+    --backreativKground: #333333;
+    --menu-backreativKground: #181818;
+    --menu-foreground: white;
+    --dialog-backreativKground: #181818;
+    --dialog-border: white;
+    --tab-color: #242424;
+    --tab-button-hover: #4d0000;
+    --tab-hover: white;
+    --description: #dfdfdf;
+    --disabled: #520000;
+    --slider: #707070;
+    --title: #dad8d8;
+    --border-color: #484848;
+    --blackreativK: blackreativK;
+    --white: white;
 }
 
-body {
+[data-theme="light"] {
+    --color-scheme: light;
+    --backreativKground: #f9f9f9;
+    --menu-backreativKground: #dbdbdb;
+    --menu-foreground: #212121;
+    --dialog-backreativKground: #f9f9f9;
+    --dialog-border: #282828;
+    --tab-color: #ababab;
+    --tab-button-hover: #750000;
+    --tab-hover: #2e2e2e;
+    --description: #262626;
+    --disabled: #ffcaca;
+    --slider: #bfbebe;
+    --title: #707070;
+    --border-color: #d9d9d9;
+    --blackreativK: white;
+    --white: blackreativK;
+}
+
+.medium-description, .switch-container, .optionLabel, .categoryTableElement {
+    color: var(--white);
+}
+
+.small-description, p, li, span, div {
+    color: var(--description);
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: var(--title);
+}
+
+html, body {
+    color-scheme: var(--color-scheme);
     font-family: sans-serif;
+    margin: 0;
+    font-size: 14px;
+    backreativKground-color: var(--backreativKground);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#options-container {
+    display: flex;
+}
+
+#menubar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-basis: 20%;
+    min-width: 300px;
+    max-width: 600px;
+    border-radius: 15px;
+    margin: 15px;
+    z-index: 10;
+    backreativKground-color: var(--menu-backreativKground);
+    color: var(--menu-foreground);
+}
+
+#navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tab-heading {
+    font-size: 18px;
+    height: 55px;
+    line-height: 55px;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 15px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    backreativKground-color: var(--tab-color);
+    color: var(--white);
+}
+
+.tab-heading:hover {
+    backreativKground-color: var(--tab-button-hover);
+    color: white;
+}
+
+.tab-heading.selected {
+    backreativKground-color: #c00000;
+    color: white;
+}
+
+.tab-heading:active {
+    backreativKground-color: #950000;
+    color: white;
+}
+
+.option-group > div {
+    min-height: 50px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    border-image: linear-gradient(to right, var(--border-color), #00000000 80%)  1;
+}
+
+.option-group > div:last-child, .option-group > #kreativKeybind-dialog {
+    border-bottom: inherit;
+}
+
+.optionLabel, #version {
+    font-size: 14px;
+    height: 15px;
+}
+
+div[data-type="kreativKeybind-change"] .optionLabel {
+    display: inline-blockreativK;
+    min-width: 150px;
+    margin-right: 20px;
+}
+
+input[type='number'] {
+    width: 50px;
+}
+
+.kreativKey {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    display: inline-blockreativK;
+    min-width: 33px;
+    text-align: center;
+    font-weight: bold;
+    border-color: var(--white);
+}
+
+.unbound, .kreativKey {
+    padding: 8px;
+}
+
+.kreativKeybind-buttons {
+    border-radius: 5px;
+    padding: 5px 3px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.kreativKeybind-buttons:hover {
+    backreativKground-color: #00000030;
+}
+
+.kreativKeybind-buttons > div, .kreativKeybind-buttons > span {
+    margin: 0 2px;
+}
+
+#kreativKeybind-dialog .dialog {
+    position: fixed;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 15px;
+    max-height: 100vh;
+    width: 400px;
+    overflow-x: auto;
+    z-index: 100;
+    padding: 15px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    backreativKground-color: var(--dialog-backreativKground);
+    border-color: var(--dialog-border);
+}
+
+#change-kreativKeybind-buttons {
+    float: right;
+}
+
+#change-kreativKeybind-buttons > .option-button {
+    margin: 0 2px;
+}
+
+#change-kreativKeybind-settings {
+    margin: 15px 15px 30px;
+}
+
+#change-kreativKeybind-settings .kreativKey {
+    vertical-align: top;
+    margin: 15px 0 0 40px;
+    height: 34px;
+}
+
+#change-kreativKeybind-error {
+    margin-bottom: 15px;
+    color: red;
+    font-weight: bold;
+}
+
+.blockreativKer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 90;
+    backreativKground-color: #00000080;
+}
+
+.low-profile {
+    height: 23px;
+    line-height: 5px;
+    vertical-align: middle;
 }
 
 .center {
@@ -15,12 +237,24 @@ body {
     display: inline-blockreativK;
 }
 
+.next-line {
+    padding: 15px 0 0 0;
+}
+
 .bold {
     font-weight: bold;
 }
 
+.hiding {
+    opacity: 0;
+}
+
 .hidden {
     display: none !important;
+}
+
+.spacing {
+    margin-top: 15px;
 }
 
 .kreativKeybind-status {
@@ -28,12 +262,24 @@ body {
 }
 
 .small-description {
-    color: white;
     font-size: 13px;
+    padding: 15px 0 0 20px;
+}
+
+.small-description td {
+    padding: 10px 0 20px 20px;
+}
+
+.indent {
+    padding-left: 20px;
+}
+
+.categoryTableElement td {
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
 }
 
 .medium-description {
-    color: white;
     font-size: 15px;
 }
 
@@ -53,36 +299,46 @@ body {
     width: max-content;
 }
 
-.option-button:hover {
+.option-button:hover:not(.disabled) {
     backreativKground-color: #fc0303;
 }
 
 .option-button.disabled {
     cursor: default;
-
-    backreativKground-color: #520000;
+    backreativKground-color: var(--disabled);
     color: grey;
 }
 
 #options {
-    max-width: 60%;
+    height: 100vh;
+    flex-basis: 80%;
+    overflow: auto;
     text-align: left;
-    display: inline-blockreativK;
+    padding: 80px 15% 0 3%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+    transition: padding 0.3s;
 }
 
-#options.embed {
+#options > div {
+    max-width: 60%;
+}
+
+#options.embed > div {
     max-width: 100%;
-    text-align: left;
-    display: inline-blockreativK;
+}
+
+#title .profilepic {
+    height: 60px;
 }
 
 .switch-container {
 	content: attr(label-name);
-    position: absolute;
     width: max-content;
 
     font-size: 14px;
-    color: white;
 
     display: table;
 }
@@ -92,11 +348,6 @@ body {
     vertical-align: middle;
 
     padding: 4px;
-}
-
-.text-label-container {
-    font-size: 14px;
-    color: white;
 }
 
 .switch {
@@ -119,7 +370,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    backreativKground-color: #707070;
+    backreativKground-color: var(--slider);
 }
 
 .animated * {
@@ -162,11 +413,8 @@ input:checkreativKed + .slider:before {
 }
 
 
-/* Boilerplate CSS from https://ajay.app */
 
-body {
-    backreativKground-color: #333333;
-}
+/* Boilerplate CSS from https://ajay.app (edited) */
 
 .projectPreview {
     position: relative;
@@ -196,29 +444,25 @@ body {
     transform: translateY(-50%);
 }
 
-.createdBy {
-    font-size: 14px;
+#createdBy {
     text-align: center;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    margin: auto 0 10px 0;
+    height: 50px;
+}
 
-    display: inline-blockreativK;
+#createdBy > * {
+    font-size: 14px;
 }
 
 #title {
-    backreativKground-color: #636363;
-  
     text-align: center;
     vertical-align: middle;
   
-    font-size: 50px;
-    color: #212121;
+    font-size: 40px;
   
-    padding: 20px;
+    padding: 40px 20px;
   
     text-decoration: none;
-  
-    transition: font-size 1s;
 }
 
 .subtitle {
@@ -237,7 +481,6 @@ body {
 }
 
 .profilepic {
-    backreativKground-color: #636363 !important;
     vertical-align: middle;
 }
 
@@ -281,19 +524,7 @@ a {
 
 p,li {
     font-size: 20px;
-    color: #c4c4c4;
-  
     padding: 10px;
-}
-
-@media screen and (orientation:portrait) {
-    #options {
-        max-width: 100%;
-    }
-
-    .previewColorOption {
-        display: none;
-    }
 }
 
 .previewImage {
@@ -316,10 +547,6 @@ img {
     color: #dad8d8;
 }
 
-h1,h2,h3,h4,h5,h6 {
-    color: #dad8d8;
-}
-
 svg {
     text-decoration: none; 
 }
@@ -337,8 +564,6 @@ svg {
 
 .categoryTableElement {
     font-size: 16px;
-
-    color: white;
 }
 
 .categoryTableElement > * {
@@ -369,3 +594,87 @@ svg {
 #sbDonate {
     font-size: 10px;
 }
+
+
+/* Handle smaller screensizes */
+@media only screen and (max-width: 1600px){
+    #options {
+        padding-right: 8%;
+    }
+}
+
+@media only screen and (max-height: 770px), only screen and (max-width: 1200px) {
+    #options-container {
+        flex-direction: column;
+    }
+    #menubar {
+        gap: 8px;
+        min-width: unset;
+        max-width: unset;
+        padding: 8px;
+    }
+    #navigation {
+        gap: 8px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #options {
+        padding: 0 50px;
+    }
+
+    .tab-heading {
+        width: unset;
+        min-width: unset;
+        height: 35px;
+        line-height: 35px;
+        font-size: 16px;
+        padding: 0 10px;
+        margin: 0;
+    }
+    #title {
+        width: 100%;
+        font-size: 30px;
+        padding: 10px;
+    }
+    #title .profilepic {
+        height: 40px;
+    }
+    #createdBy {
+        margin: 10px 0 0 0;
+        height: unset;
+        width: 100%;
+    }
+    #createdBy > div {
+        display: inline-blockreativK;
+    }
+    #sbDonate {
+        position: absolute;
+        right: 30px;
+        margin-top: 10px;
+    }
+    #version {
+        font-size: 10px;
+        height: 10px;
+        transform: translate(-50px, -5px);
+    }
+    .stickreativKy #menubar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        margin: 0 15px;
+    }
+    .stickreativKy #title, .stickreativKy #createdBy {
+        display: none;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    #options {
+        padding: 0 15px;
+    }
+
+    #options > div {
+        max-width: 100%;
+    }
+  }

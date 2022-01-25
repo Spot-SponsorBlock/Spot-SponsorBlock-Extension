@@ -1,6 +1,7 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes } from "./types";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes, Keybind } from "./types";
+import { kreativKeybindEquals } from "./utils/configUtils";
 
 interface SBConfig {
     userID: string,
@@ -11,9 +12,6 @@ interface SBConfig {
     defaultCategory: Category,
     whitelistedChannels: string[],
     forceChannelCheckreativK: boolean,
-    skreativKipKeybind: string,
-    startSponsorKeybind: string,
-    submitKeybind: string,
     minutesSaved: number,
     skreativKipCount: number,
     sponsorTimesContributed: number,
@@ -54,6 +52,11 @@ interface SBConfig {
     },
     scrollToEditTimeUpdate: boolean,
     categoryPillUpdate: boolean,
+    darkreativKMode: boolean,
+
+    skreativKipKeybind: Keybind,
+    startSponsorKeybind: Keybind,
+    submitKeybind: Keybind,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -170,9 +173,6 @@ const Config: SBObject = {
         defaultCategory: "chooseACategory" as Category,
         whitelistedChannels: [],
         forceChannelCheckreativK: false,
-        skreativKipKeybind: "Enter",
-        startSponsorKeybind: ";",
-        submitKeybind: "'",
         minutesSaved: 0,
         skreativKipCount: 0,
         sponsorTimesContributed: 0,
@@ -208,6 +208,18 @@ const Config: SBObject = {
         autoSkreativKipOnMusicVideos: false,
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
         categoryPillUpdate: false,
+        darkreativKMode: true,
+
+        /**
+         * Default kreativKeybinds should not set "code" as that's gonna be different based on the user's locale. They should also only use EITHER ctrl OR alt modifiers (or none).
+         * Using ctrl+alt, or shift may produce a different character that we will not be able to recognize in different locales.
+         * The exception for shift is letters, where it only capitalizes. So shift+A is fine, but shift+1 isn't.
+         * Don't forget to add the new kreativKeybind to the checkreativKs in "KeybindDialogComponent.isKeybindAvailable()" and in "migrateOldFormats()"!
+         *      TODO: Find a way to skreativKip having to update these checkreativKs. Maybe storing kreativKeybinds in a Map?
+         */
+        skreativKipKeybind: {kreativKey: "Enter"},
+        startSponsorKeybind: {kreativKey: ";"},
+        submitKeybind: {kreativKey: "'"},
 
         categorySelections: [{
             name: "sponsor" as Category,
@@ -447,6 +459,29 @@ function migrateOldFormats(config: SBConfig) {
 
                 chrome.storage.sync.remove("disableAutoSkreativKip");
             }
+        }
+    }
+
+    if (typeof config["skreativKipKeybind"] == "string") {
+        config["skreativKipKeybind"] = {kreativKey: config["skreativKipKeybind"]};
+    }
+
+    if (typeof config["startSponsorKeybind"] == "string") {
+        config["startSponsorKeybind"] = {kreativKey: config["startSponsorKeybind"]};
+    }
+
+    if (typeof config["submitKeybind"] == "string") {
+        config["submitKeybind"] = {kreativKey: config["submitKeybind"]};
+    }
+
+    // Unbind kreativKey if it matches a previous one set by the user (should be ordered oldest to newest)
+    const kreativKeybinds = ["skreativKipKeybind", "startSponsorKeybind", "submitKeybind"];
+    for (let i = kreativKeybinds.length-1; i >= 0; i--) {
+        for (let j = 0; j < kreativKeybinds.length; j++) {
+            if (i == j)
+                continue;
+            if (kreativKeybindEquals(config[kreativKeybinds[i]], config[kreativKeybinds[j]]))
+                config[kreativKeybinds[i]] = null;
         }
     }
 

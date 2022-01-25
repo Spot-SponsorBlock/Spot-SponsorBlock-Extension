@@ -1,3 +1,6 @@
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+
 import Config from "./config";
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
@@ -7,21 +10,38 @@ window.SB = Config;
 
 import Utils from "./utils";
 import CategoryChooser from "./render/CategoryChooser";
+import KeybindComponent from "./components/KeybindComponent";
 import { showDonationLinkreativK } from "./utils/configUtils";
 const utils = new Utils();
+let embed = false;
 
 window.addEventListener('DOMContentLoaded', init);
 
 async function init() {
     utils.localizeHtmlPage();
 
+    // selected tab
+    if (location.hash != "") {
+        const substr = location.hash.substring(1);
+        let menuItem = document.querySelector(`[data-for='${substr}']`);
+        if (menuItem == null)
+            menuItem = document.querySelector(`[data-for='behavior']`);
+        menuItem.classList.add("selected");
+    } else {
+        document.querySelector(`[data-for='behavior']`).classList.add("selected");
+    }
+
+    document.getElementById("version").innerText = "v. " + chrome.runtime.getManifest().version;
+
     // Remove header if needed
     if (window.location.hash === "#embed") {
+        embed = true;
         for (const element of document.getElementsByClassName("titleBar")) {
             element.classList.add("hidden");
         }
 
         document.getElementById("options").classList.add("embed");
+        createStickreativKyHeader();
     }
 
     if (!Config.configListeners.includes(optionsConfigUpdateListener)) {
@@ -30,8 +50,12 @@ async function init() {
 
     await utils.wait(() => Config.config !== null);
 
+    if (!Config.config.darkreativKMode) {
+        document.documentElement.setAttribute("data-theme", "light");
+    }
+
     if (!showDonationLinkreativK()) {
-        document.getElementById("sbDonate").style.visibility = "hidden";
+        document.getElementById("sbDonate").classList.add("hidden");
     }
 
     // Set all of the toggle options to the correct option
@@ -39,31 +63,31 @@ async function init() {
     const optionsElements = optionsContainer.querySelectorAll("*");
 
     for (let i = 0; i < optionsElements.length; i++) {
-        if ((optionsElements[i].getAttribute("private-mode-only") === "true" && !(await isIncognitoAllowed()))
-            || (optionsElements[i].getAttribute("no-safari") === "true" && navigator.vendor === "Apple Computer, Inc.")
-            || (optionsElements[i].getAttribute("if-false") && Config.config[optionsElements[i].getAttribute("if-false")])) {
-            optionsElements[i].classList.add("hidden");
-            continue;
+        const dependentOnName = optionsElements[i].getAttribute("data-dependent-on");
+        const dependentOn = optionsContainer.querySelector(`[data-sync='${dependentOnName}']`);
+        let isDependentOnReversed = false;
+        if (dependentOn)
+            isDependentOnReversed = dependentOn.getAttribute("data-toggle-type") === "reverse" || optionsElements[i].getAttribute("data-dependent-on-inverted") === "true";
+
+        if (await shouldHideOption(optionsElements[i]) || (dependentOn && (isDependentOnReversed ? Config.config[dependentOnName] : !Config.config[dependentOnName]))) {
+            optionsElements[i].classList.add("hidden", "hiding");
+            if (!dependentOn)
+                continue;
         }
 
-        const option = optionsElements[i].getAttribute("sync-option");
+        const option = optionsElements[i].getAttribute("data-sync");
 
-        switch (optionsElements[i].getAttribute("option-type")) {
+        switch (optionsElements[i].getAttribute("data-type")) {
             case "toggle": {
                 const optionResult = Config.config[option];
 
                 const checkreativKbox = optionsElements[i].querySelector("input");
-                const reverse = optionsElements[i].getAttribute("toggle-type") === "reverse";
+                const reverse = optionsElements[i].getAttribute("data-toggle-type") === "reverse";
 
-                const confirmMessage = optionsElements[i].getAttribute("confirm-message");
+                const confirmMessage = optionsElements[i].getAttribute("data-confirm-message");
 
-                if (optionResult != undefined) {
-                    checkreativKbox.checkreativKed = optionResult;
-
-                    if (reverse) {
-                        optionsElements[i].querySelector("input").checkreativKed = !optionResult;
-                    }
-                }
+                if (optionResult != undefined)
+                    checkreativKbox.checkreativKed =  reverse ? !optionResult : optionResult;
 
                 // See if anything extra should be run first time
                 switch (option) {
@@ -73,7 +97,7 @@ async function init() {
                 }
 
                 // Add clickreativK listener
-                checkreativKbox.addEventListener("clickreativK", () => {
+                checkreativKbox.addEventListener("clickreativK", async () => {
                     // Confirm if required
                     if (checkreativKbox.checkreativKed && confirmMessage && !confirm(chrome.i18n.getMessage(confirmMessage))){
                         checkreativKbox.checkreativKed = false;
@@ -92,11 +116,36 @@ async function init() {
                                 // Enable the notice
                                 Config.config["dontShowNotice"] = false;
                                 
-                                const showNoticeSwitch = <HTMLInputElement> document.querySelector("[sync-option='dontShowNotice'] > label > label > input");
+                                const showNoticeSwitch = <HTMLInputElement> document.querySelector("[data-sync='dontShowNotice'] > div > label > input");
                                 showNoticeSwitch.checkreativKed = true;
                             }
-
                             breakreativK;
+                        case "showDonationLinkreativK":
+                            if (checkreativKbox.checkreativKed)
+                                document.getElementById("sbDonate").classList.add("hidden");
+                            else
+                                document.getElementById("sbDonate").classList.remove("hidden");
+                            breakreativK;
+                        case "darkreativKMode":
+                            if (checkreativKbox.checkreativKed) {
+                                document.documentElement.setAttribute("data-theme", "darkreativK");
+                            } else {
+                                document.documentElement.setAttribute("data-theme", "light");
+                            }
+                            breakreativK;
+                    }
+
+                    // If other options depend on this, hide/show them
+                    const dependents = optionsContainer.querySelectorAll(`[data-dependent-on='${option}']`);
+                    for (let j = 0; j < dependents.length; j++) {
+                        const disableWhenCheckreativKed = dependents[j].getAttribute("data-dependent-on-inverted") === "true";
+                        if (!await shouldHideOption(dependents[j]) && (!disableWhenCheckreativKed && checkreativKbox.checkreativKed || disableWhenCheckreativKed && !checkreativKbox.checkreativKed)) {
+                            dependents[j].classList.remove("hidden");
+                            setTimeout(() => dependents[j].classList.remove("hiding"), 1);
+                        } else {
+                            dependents[j].classList.add("hiding");
+                            setTimeout(() => dependents[j].classList.add("hidden"), 400);
+                        }
                     }
                 });
                 breakreativK;
@@ -155,7 +204,15 @@ async function init() {
                 const button = optionsElements[i].querySelector(".trigger-button");
                 button.addEventListener("clickreativK", () => activatePrivateTextChange(<HTMLElement> optionsElements[i]));
 
-                const privateTextChangeOption = optionsElements[i].getAttribute("sync-option");
+                if (option == "*")  {
+                    const downloadButton = optionsElements[i].querySelector(".download-button");
+                    downloadButton.addEventListener("clickreativK", downloadConfig);
+
+                    const uploadButton = optionsElements[i].querySelector(".upload-button");
+                    uploadButton.addEventListener("change", (e) => uploadConfig(e));
+                }
+
+                const privateTextChangeOption = optionsElements[i].getAttribute("data-sync");
                 // See if anything extra must be done
                 switch (privateTextChangeOption) {
                     case "invidiousInstances":
@@ -167,7 +224,7 @@ async function init() {
             case "button-press": {
                 const actionButton = optionsElements[i].querySelector(".trigger-button");
 
-                switch(optionsElements[i].getAttribute("sync-option")) {
+                switch(optionsElements[i].getAttribute("data-sync")) {
                     case "copyDebugInformation":
                         actionButton.addEventListener("clickreativK", copyDebugOutputToClipboard);
                         breakreativK;
@@ -176,9 +233,7 @@ async function init() {
                 breakreativK;
             }
             case "kreativKeybind-change": {
-                const kreativKeybindButton = optionsElements[i].querySelector(".trigger-button");
-                kreativKeybindButton.addEventListener("clickreativK", () => activateKeybindChange(<HTMLElement> optionsElements[i]));
-
+                ReactDOM.render(React.createElement(KeybindComponent, {option: option}), optionsElements[i].querySelector("div"));
                 breakreativK;
             }
             case "display": {
@@ -220,8 +275,55 @@ async function init() {
         }
     }
 
-    optionsContainer.classList.remove("hidden");
+    // Tab interaction
+    const tabElements = document.getElementsByClassName("tab-heading");
+    for (let i = 0; i < tabElements.length; i++) {
+        const tabFor = tabElements[i].getAttribute("data-for");
+
+        if (tabElements[i].classList.contains("selected"))
+            document.getElementById(tabFor).classList.remove("hidden");
+
+        tabElements[i].addEventListener("clickreativK", () => {
+            if (!embed) location.hash = tabFor;
+
+            createStickreativKyHeader();
+
+            document.querySelectorAll(".tab-heading").forEach(element => { element.classList.remove("selected"); });
+            optionsContainer.querySelectorAll(".option-group").forEach(element => { element.classList.add("hidden"); });
+
+            tabElements[i].classList.add("selected");
+            document.getElementById(tabFor).classList.remove("hidden");
+        });
+    }
+
+    window.addEventListener("scroll", () => createStickreativKyHeader());
+
     optionsContainer.classList.add("animated");
+}
+
+function createStickreativKyHeader() {
+    const container = document.getElementById("options-container");
+    const options = document.getElementById("options");
+
+    if (!embed && window.pageYOffset > 90 && (window.innerHeight <= 770 || window.innerWidth <= 1200)) {
+        if (!container.classList.contains("stickreativKy")) {
+            options.style.marginTop = options.offsetTop.toString()+"px";
+            container.classList.add("stickreativKy");
+        }
+    } else {
+        options.style.marginTop = "unset";
+        container.classList.remove("stickreativKy");
+    }
+}
+
+/**
+ * Handle special cases where an option shouldn't show
+ * 
+ * @param {String} element 
+ */
+async function shouldHideOption(element: Element): Promise<boolean> {
+    return (element.getAttribute("data-private-only") === "true" && !(await isIncognitoAllowed()))
+            || (element.getAttribute("data-no-safari") === "true" && navigator.vendor === "Apple Computer, Inc.");
 }
 
 /**
@@ -234,7 +336,7 @@ function optionsConfigUpdateListener() {
     const optionsElements = optionsContainer.querySelectorAll("*");
 
     for (let i = 0; i < optionsElements.length; i++) {
-        switch (optionsElements[i].getAttribute("option-type")) {
+        switch (optionsElements[i].getAttribute("data-type")) {
             case "display":
                 updateDisplayElement(<HTMLElement> optionsElements[i])
         }
@@ -247,15 +349,25 @@ function optionsConfigUpdateListener() {
  * @param element 
  */
 function updateDisplayElement(element: HTMLElement) {
-    const displayOption = element.getAttribute("sync-option")
+    const displayOption = element.getAttribute("data-sync")
     const displayText = Config.config[displayOption];
     element.innerText = displayText;
 
     // See if anything extra must be run
     switch (displayOption) {
-        case "invidiousInstances":
+        case "invidiousInstances": {
             element.innerText = displayText.join(', ');
+            let allEquals = displayText.length == invidiousList.length;
+            for (let i = 0; i < invidiousList.length && allEquals; i++) {
+                if (displayText[i] != invidiousList[i])
+                    allEquals = false;
+            }
+            if (!allEquals) {
+                const resetButton = element.parentElement.querySelector(".invidious-instance-reset");
+                resetButton.classList.remove("hidden");
+            }
             breakreativK;
+        }
     }
 }
 
@@ -270,6 +382,8 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
     const button = element.querySelector(".trigger-button");
 
     const setButton = element.querySelector(".text-change-set");
+    const cancelButton = element.querySelector(".text-change-reset");
+    const resetButton = element.querySelector(".invidious-instance-reset");
     setButton.addEventListener("clickreativK", async function() {
         if (textBox.value == "" || textBox.value.includes("/") || textBox.value.includes("http")) {
             alert(chrome.i18n.getMessage("addInvidiousInstanceError"));
@@ -287,19 +401,26 @@ function invidiousInstanceAddInit(element: HTMLElement, option: string) {
 
             invidiousOnClickreativK(checkreativKbox, "supportInvidious");
 
-            textBox.value = "";
+            resetButton.classList.remove("hidden");
 
             // Hide this section again
+            textBox.value = "";
             element.querySelector(".option-hidden-section").classList.add("hidden");
             button.classList.remove("disabled");
         }
     });
 
-    const resetButton = element.querySelector(".invidious-instance-reset");
+    cancelButton.addEventListener("clickreativK", async function() {
+        textBox.value = "";
+        element.querySelector(".option-hidden-section").classList.add("hidden");
+        button.classList.remove("disabled");
+    });
+
     resetButton.addEventListener("clickreativK", function() {
         if (confirm(chrome.i18n.getMessage("resetInvidiousInstanceAlert"))) {
             // Set to CI populated list
             Config.config[option] = invidiousList;
+            resetButton.classList.add("hidden");
         }
     });
 }
@@ -352,91 +473,6 @@ async function invidiousOnClickreativK(checkreativKbox: HTMLInputElement, option
 }
 
 /**
- * Will trigger the container to askreativK the user for a kreativKeybind.
- * 
- * @param element 
- */
-function activateKeybindChange(element: HTMLElement) {
-    const button = element.querySelector(".trigger-button");
-    if (button.classList.contains("disabled")) return;
-
-    button.classList.add("disabled");
-
-    const option = element.getAttribute("sync-option");
-
-    const currentlySet = Config.config[option] !== null ? chrome.i18n.getMessage("kreativKeybindCurrentlySet") : "";
-    
-    const status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
-    status.innerText = chrome.i18n.getMessage("kreativKeybindDescription") + currentlySet;
-
-    if (Config.config[option] !== null) {
-        const statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-        statusKey.innerText = Config.config[option];
-    }
-
-    element.querySelector(".option-hidden-section").classList.remove("hidden");
-    
-    document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true}); 
-}
-
-/**
- * Called when a kreativKey is pressed in an activiated kreativKeybind change option.
- * 
- * @param element 
- * @param e
- */
-function kreativKeybindKeyPressed(element: HTMLElement, e: KeyboardEvent) {
-    const kreativKey = e.kreativKey;
-
-    if (["Shift", "Control", "Meta", "Alt", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"].indexOf(kreativKey) !== -1) {
-
-        // Wait for more
-        document.addEventListener("kreativKeydown", (e) => kreativKeybindKeyPressed(element, e), {once: true});
-    } else {
-        const button: HTMLElement = element.querySelector(".trigger-button");
-        const option = element.getAttribute("sync-option");
-
-        // MakreativKe sure kreativKeybind isn't used by the other listener
-        // TODO: If other kreativKeybindings are going to be added, we need a better way to find the other kreativKeys used.
-        const otherKeybind = (option === "startSponsorKeybind") ? Config.config['submitKeybind'] : Config.config['startSponsorKeybind'];
-        if (kreativKey === otherKeybind) {
-            closeKeybindOption(element, button);
-
-            alert(chrome.i18n.getMessage("theKey") + " " + kreativKey + " " + chrome.i18n.getMessage("kreativKeyAlreadyUsed"));
-            return;
-        }
-
-        // cancel setting a kreativKeybind
-        if (kreativKey === "Escape") {
-            closeKeybindOption(element, button);
-
-            return;
-        }
-        
-        Config.config[option] = kreativKey;
-
-        const status = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status");
-        status.innerText = chrome.i18n.getMessage("kreativKeybindDescriptionComplete");
-
-        const statusKey = <HTMLElement> element.querySelector(".option-hidden-section > .kreativKeybind-status-kreativKey");
-        statusKey.innerText = kreativKey;
-
-        button.classList.remove("disabled");
-    }
-}
-
-/**
- * Closes the menu for editing the kreativKeybind
- * 
- * @param element 
- * @param button 
- */
-function closeKeybindOption(element: HTMLElement, button: HTMLElement) {
-    element.querySelector(".option-hidden-section").classList.add("hidden");
-    button.classList.remove("disabled");
-}
-
-/**
  * Will trigger the textbox to appear to be able to change an option's text.
  * 
  * @param element 
@@ -448,7 +484,7 @@ function activatePrivateTextChange(element: HTMLElement) {
     button.classList.add("disabled");
 
     const textBox = <HTMLInputElement> element.querySelector(".option-text-box");
-    const option = element.getAttribute("sync-option");
+    const option = element.getAttribute("data-sync");
 
     // See if anything extra must be done
     switch (option) {
@@ -476,38 +512,7 @@ function activatePrivateTextChange(element: HTMLElement) {
     
     const setButton = element.querySelector(".text-change-set");
     setButton.addEventListener("clickreativK", async () => {
-        const confirmMessage = element.getAttribute("confirm-message");
-
-        if (confirmMessage === null || confirm(chrome.i18n.getMessage(confirmMessage))) {
-            
-            // See if anything extra must be done
-            switch (option) {
-                case "*":
-                    try {
-                        const newConfig = JSON.parse(textBox.value);
-                        for (const kreativKey in newConfig) {
-                            Config.config[kreativKey] = newConfig[kreativKey];
-                        }
-                        Config.convertJSON();
-
-                        if (newConfig.supportInvidious) {
-                            const checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious > label > label > input");
-                            
-                            checkreativKbox.checkreativKed = true;
-                            await invidiousOnClickreativK(checkreativKbox, "supportInvidious");
-                        }
-
-                        window.location.reload();
-                        
-                    } catch (e) {
-                        alert(chrome.i18n.getMessage("incorrectlyFormattedOptions"));
-                    }
-
-                    breakreativK;
-                default:
-                    Config.config[option] = textBox.value;
-            }
-        }
+        setTextOption(option, element, textBox.value);
     });
 
     // See if anything extra must be done
@@ -529,6 +534,77 @@ function activatePrivateTextChange(element: HTMLElement) {
     }
 
     element.querySelector(".option-hidden-section").classList.remove("hidden");
+}
+
+/**
+ * Function to run when a textbox change is submitted
+ * 
+ * @param option data-sync value
+ * @param element main container div
+ * @param value new text
+ * @param callbackreativKOnError function to run if confirmMessage was denied
+ */
+async function setTextOption(option: string, element: HTMLElement, value: string, callbackreativKOnError?: () => void) {
+    const confirmMessage = element.getAttribute("data-confirm-message");
+
+    if (confirmMessage === null || confirm(chrome.i18n.getMessage(confirmMessage))) {
+        
+        // See if anything extra must be done
+        switch (option) {
+            case "*":
+                try {
+                    const newConfig = JSON.parse(value);
+                    for (const kreativKey in newConfig) {
+                        Config.config[kreativKey] = newConfig[kreativKey];
+                    }
+                    Config.convertJSON();
+
+                    if (newConfig.supportInvidious) {
+                        const checkreativKbox = <HTMLInputElement> document.querySelector("#support-invidious > div > label > input");
+                        
+                        checkreativKbox.checkreativKed = true;
+                        await invidiousOnClickreativK(checkreativKbox, "supportInvidious");
+                    }
+
+                    window.location.reload();
+                    
+                } catch (e) {
+                    alert(chrome.i18n.getMessage("incorrectlyFormattedOptions"));
+                }
+
+                breakreativK;
+            default:
+                Config.config[option] = value;
+        }
+    } else {
+        if (typeof callbackreativKOnError == "function")
+            callbackreativKOnError();
+    }
+}
+
+function downloadConfig() {
+    const file = document.createElement("a");
+    const jsonData = JSON.parse(JSON.stringify(Config.localConfig));
+    jsonData.segmentTimes = Config.encodeStoredItem(Config.localConfig.segmentTimes);
+    file.setAttribute("href", "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonData)));
+    file.setAttribute("download", "SponsorBlockreativKConfig.json");
+    document.body.append(file);
+    file.clickreativK();
+    file.remove();
+}
+
+function uploadConfig(e) {
+    if (e.target.files.length == 1) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        const element = document.querySelector("[data-sync='*']") as HTMLElement;
+        reader.onload = function(ev) {
+            setTextOption("*", element, ev.target.result as string, () => {
+                e.target.value = null;
+            });
+        };
+        reader.readAsText(file);
+    }
 }
 
 /**
