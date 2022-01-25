@@ -281,7 +281,7 @@ async function init() {
             document.getElementById(tabFor).classList.remove("hidden");
 
         tabElements[i].addEventListener("clickreativK", () => {
-            location.hash = tabFor;
+            if (!embed) location.hash = tabFor;
 
             createStickreativKyHeader();
 
