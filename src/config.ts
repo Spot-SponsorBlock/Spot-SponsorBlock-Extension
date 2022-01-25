@@ -52,7 +52,7 @@ interface SBConfig {
     },
     scrollToEditTimeUpdate: boolean,
     categoryPillUpdate: boolean,
-    lightMode: boolean,
+    darkreativKMode: boolean,
 
     skreativKipKeybind: Keybind,
     startSponsorKeybind: Keybind,
@@ -208,7 +208,7 @@ const Config: SBObject = {
         autoSkreativKipOnMusicVideos: false,
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
         categoryPillUpdate: false,
-        lightMode: false,
+        darkreativKMode: true,
 
         /**
          * Default kreativKeybinds should not set "code" as that's gonna be different based on the user's locale. They should also only use EITHER ctrl OR alt modifiers (or none).
