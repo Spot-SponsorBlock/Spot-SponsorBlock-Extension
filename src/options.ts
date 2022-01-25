@@ -293,7 +293,7 @@ async function init() {
         });
     }
 
-    window.onscroll = () => createStickreativKyHeader();
+    window.addEventListener("scroll", () => createStickreativKyHeader());
 
     optionsContainer.classList.add("animated");
 }
