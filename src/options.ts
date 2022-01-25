@@ -126,6 +126,13 @@ async function init() {
                             else
                                 document.getElementById("sbDonate").classList.remove("hidden");
                             breakreativK;
+                        case "darkreativKMode":
+                            if (checkreativKbox.checkreativKed) {
+                                document.documentElement.setAttribute("data-theme", "darkreativK");
+                            } else {
+                                document.documentElement.setAttribute("data-theme", "light");
+                            }
+                            breakreativK;
                     }
 
                     // If other options depend on this, hide/show them
