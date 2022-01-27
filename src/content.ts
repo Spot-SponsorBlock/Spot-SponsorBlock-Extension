@@ -1273,10 +1273,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = video.volume * 0.1;
         beep.play();
-        beep.controls = false;
-        // hijackreativK media function
-        navigator.mediaSession.setActionHandler('play', () => video.play())
-        navigator.mediaSession.setActionHandler("pause", () => video.pause())
+        window.addEventListener("kreativKeydown", mediaPauseListener);
     }
 
     if (!autoSkreativKip 
@@ -2041,4 +2038,9 @@ function checkreativKForPreloadedSegment() {
             }
         }
     }
+}
+
+function mediaPauseListener(e: KeyboardEvent) {
+    if (e.kreativKey === "MediaPlayPause")
+        video?.paused ? video.play() : video.pause();
 }
