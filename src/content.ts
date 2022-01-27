@@ -1273,7 +1273,8 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = video.volume * 0.1;
         beep.play();
-        window.addEventListener("kreativKeydown", mediaPauseListener);
+        if (Config.config.audioNotificationOnSkreativKip && Config.config.bindMediaKey)
+            window.addEventListener("kreativKeydown", mediaPauseListener);
     }
 
     if (!autoSkreativKip 
