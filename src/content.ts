@@ -967,7 +967,8 @@ function getYouTubeVideoIDFromURL(url: string): string | boolean {
         return id.length == 11 ? id : false;
     } else if (urlObject.pathname.startsWith("/embed/") || urlObject.pathname.startsWith("/shorts/")) {
         try {
-            return urlObject.pathname.split("/")[2].slice(0, 11);
+            const id = urlObject.pathname.split("/")[2]
+            if (id?.length >=11 ) return id.slice(0, 11);
         } catch (e) {
             console.error("[SB] Video ID not valid for " + url);
             return false;
@@ -1272,9 +1273,14 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip) {
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = video.volume * 0.1;
+        const oldMetadata = navigator.mediaSession.metadata
         beep.play();
-        if (Config.config.audioNotificationOnSkreativKip && Config.config.bindMediaKey)
-            window.addEventListener("kreativKeydown", mediaPauseListener);
+        beep.addEventListener("ended", () => {
+            navigator.mediaSession.metadata = null
+            setTimeout(() =>
+                navigator.mediaSession.metadata = oldMetadata
+            )
+        })
     }
 
     if (!autoSkreativKip 
@@ -1985,7 +1991,6 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
 function updateAdFlag(): void {
     const wasAdPlaying = isAdPlaying;
     isAdPlaying = document.getElementsByClassName('ad-showing').length > 0;
-
     if(wasAdPlaying != isAdPlaying) {
         updatePreviewBar();
         updateVisibilityOfPlayerControlsButton();
@@ -2039,9 +2044,4 @@ function checkreativKForPreloadedSegment() {
             }
         }
     }
-}
-
-function mediaPauseListener(e: KeyboardEvent) {
-    if (e.kreativKey === "MediaPlayPause")
-        video?.paused ? video.play() : video.pause();
 }
