@@ -517,9 +517,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             source: SponsorSourceType.Local
         };
 
-        const segmentTimes = Config.config.segmentTimes.get(sponsorVideoID) || [];
+        const segmentTimes = Config.config.unsubmittedSegments[sponsorVideoID] || [];
         segmentTimes.push(sponsorTimesSubmitting);
-        Config.config.segmentTimes.set(sponsorVideoID, segmentTimes);
+        Config.config.unsubmittedSegments[sponsorVideoID] = segmentTimes;
+        Config.forceUpdate("unsubmittedSegments");
 
         this.props.contentContainer().sponsorTimesSubmitting.push(sponsorTimesSubmitting);
         this.props.contentContainer().updatePreviewBar();
