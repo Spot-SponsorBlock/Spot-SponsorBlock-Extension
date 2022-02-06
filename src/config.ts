@@ -54,6 +54,14 @@ interface SBConfig {
     categoryPillUpdate: boolean,
     darkreativKMode: boolean,
 
+    // Used to cache calculated text color info
+    categoryPillColors: {
+        [kreativKey in Category]: {
+            lastColor: string,
+            textColor: string
+        }
+    }
+
     skreativKipKeybind: Keybind,
     startSponsorKeybind: Keybind,
     submitKeybind: Keybind,
@@ -209,6 +217,8 @@ const Config: SBObject = {
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
         categoryPillUpdate: false,
         darkreativKMode: true,
+
+        categoryPillColors: {},
 
         /**
          * Default kreativKeybinds should not set "code" as that's gonna be different based on the user's locale. They should also only use EITHER ctrl OR alt modifiers (or none).
