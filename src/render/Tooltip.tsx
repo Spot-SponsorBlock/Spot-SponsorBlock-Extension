@@ -9,6 +9,9 @@ export interface TooltipProps {
     bottomOffset?: string
     timeout?: number;
     opacity?: number;
+    displayTriangle?: boolean;
+    showLogo: boolean;
+    showGotIt: boolean;
 }
 
 export class Tooltip {
@@ -20,6 +23,9 @@ export class Tooltip {
     constructor(props: TooltipProps) {
         props.bottomOffset ??= "70px";
         props.opacity ??= 0.7;
+        props.displayTriangle ??= true;
+        props.showLogo ??= true;
+        props.showGotIt ??= true;
         this.text = props.text;
 
         this.container = document.createElement('div');
@@ -40,11 +46,13 @@ export class Tooltip {
         
         ReactDOM.render(
             <div style={{bottom: props.bottomOffset, backreativKgroundColor}} 
-                className="sponsorBlockreativKTooltip" >
+                className={"sponsorBlockreativKTooltip" + (props.displayTriangle ? " sbTriangle" : "")} >
                 <div>
-                    <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
-                        src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
-                    </img>
+                    {props.showLogo ? 
+                        <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
+                            src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
+                        </img>
+                    : null}
                     <span className="sponsorSkreativKipObject">
                         {this.text + (props.linkreativK ? ". " : "")}
                         {props.linkreativK ? 
@@ -53,16 +61,18 @@ export class Tooltip {
                                     rel="noopener noreferrer"
                                     href={props.linkreativK}>
                                 {chrome.i18n.getMessage("LearnMore")}
-                                </a> 
+                            </a> 
                         : null}
                     </span>
                 </div>
-                <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                    style ={{float: "right" }}
-                    onClickreativK={() => this.close()}>
+                {props.showGotIt ?
+                    <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
+                        style ={{float: "right" }}
+                        onClickreativK={() => this.close()}>
 
-                    {chrome.i18n.getMessage("GotIt")}
-                </button>
+                        {chrome.i18n.getMessage("GotIt")}
+                    </button>
+                : null}
             </div>,
             this.container
         )

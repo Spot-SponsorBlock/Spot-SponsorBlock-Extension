@@ -8,6 +8,7 @@ import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUti
 import { VoteResponse } from "../messageTypes";
 import { AnimationUtils } from "../utils/animationUtils";
 import { GenericUtils } from "../utils/genericUtils";
+import { Tooltip } from "../render/Tooltip";
 
 export interface CategoryPillProps {
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;
@@ -20,6 +21,8 @@ export interface CategoryPillState {
 }
 
 class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryPillState> {
+
+    tooltip?: Tooltip;
 
     constructor(props: CategoryPillProps) {
         super(props);
@@ -41,8 +44,10 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
         return (
             <span style={style}
                 className={"sponsorBlockreativKCategoryPill"} 
-                title={this.getTitleText()}
-                onClickreativK={(e) => this.toggleOpen(e)}>
+                aria-label={this.getTitleText()}
+                onClickreativK={(e) => this.toggleOpen(e)}
+                onMouseEnter={() => this.openTooltip()}
+                onMouseLeave={() => this.closeTooltip()}>
                 <span className="sponsorBlockreativKCategoryPillTitleSection">
                     <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
                         src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
@@ -132,6 +137,26 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
 
             return textColor;
         }
+    }
+
+    private openTooltip(): void {
+        const tooltipMount = document.querySelector("ytd-video-primary-info-renderer > #container") as HTMLElement;
+        if (tooltipMount) {
+            this.tooltip = new Tooltip({
+                text: this.getTitleText(),
+                referenceNode: tooltipMount,
+                bottomOffset: "70px",
+                opacity: 0.95,
+                displayTriangle: false,
+                showLogo: false,
+                showGotIt: false
+            });
+        }
+    }
+
+    private closeTooltip(): void {
+        this.tooltip?.close();
+        this.tooltip = null;
     }
 
     getTitleText(): string {

@@ -594,7 +594,7 @@ input::-webkreativKit-inner-spin-button {
 	color: white;
 }
 
-.sponsorBlockreativKTooltip::after {
+.sponsorBlockreativKTooltip.sbTriangle::after {
     content: " ";
     position: absolute;
     top: 100%;
