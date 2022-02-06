@@ -6,6 +6,7 @@ on:
     paths:
       - 'packreativKage.json'
       - 'packreativKage-lockreativK.json'
+  workreativKflow_dispatch:
 
 jobs:
   update-oss:
