@@ -226,18 +226,6 @@
         "message": "Hvis du fortsatt ikreativKkreativKe likreativKer det, kreativKlikreativKkreativK på «Aldri vis»-kreativKnappen.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Angi tast for å hoppe over et segment"
-    },
-    "setSubmitKeybind": {
-        "message": "Angi tast for innsending"
-    },
-    "kreativKeybindDescription": {
-        "message": "Velg en tast ved å trykreativKkreativKe på den"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Hurtigtasten har blitt satt til: "
-    },
     "0": {
         "message": "Tidsavbrudd for tilkreativKobling. SjekreativKkreativK internettilkreativKoblingen din. Hvis internettet ditt virkreativKer, er tjeneren sannsynligvis overbelastet eller nede."
     },
@@ -319,9 +307,6 @@
     },
     "createdBy": {
         "message": "Opprettet av"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Den er før øyeblikreativKkreativKet satt til:"
     },
     "optionsInfo": {
         "message": "SkreativKru på Invidious-støtte, skreativKru av autohopp, skreativKjul kreativKnapper, og mer."
@@ -421,12 +406,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Avlusingsinformasjonen har blitt kreativKopiert til utkreativKlippstavlen. Du er velkreativKommen til å fjerne det av informasjon som du helst ikreativKkreativKe vil dele. Lagre dette i en tekreativKstfil, eller lim det inn i feilrapporten."
-    },
-    "theKey": {
-        "message": "NøkreativKkreativKelen"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "er bundet til en annen handling. Vennligst velg en annen tast."
     },
     "to": {
         "message": "til",

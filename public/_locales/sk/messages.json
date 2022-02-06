@@ -262,21 +262,6 @@
         "message": "AkreativK sa vám to stále nepáčí, stlačte tlačidlo NikreativKdy nezobrazovať.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Nastaviť kreativKláves pre preskreativKočenie segmentu"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Nastaviť kreativKláves pre začiatokreativK/ukreativKončenie segmentu"
-    },
-    "setSubmitKeybind": {
-        "message": "Nastaviť kreativKláves pre odoslanie segmentu"
-    },
-    "kreativKeybindDescription": {
-        "message": "Stlačte požadovaný kreativKláves"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Kláves bol nastavený na: "
-    },
     "0": {
         "message": "Spojenie vypršalo. SkreativKontrolujte svoje internetové pripojenie. AkreativK vám internet funguje, server je pravdepodobne preťažený alebo nefunkreativKčný."
     },
@@ -388,9 +373,6 @@
     "createdBy": {
         "message": "Vytvoril"
     },
-    "kreativKeybindCurrentlySet": {
-        "message": ". AkreativKtuálne je nastavené na:"
-    },
     "supportOtherSites": {
         "message": "Podpora alternatívnych Youtube webov"
     },
@@ -439,6 +421,9 @@
     },
     "shortCheckreativK": {
         "message": "Segment je kreativKratší akreativKo vami nastavená minimálna dĺžkreativKa. Možno už bol niekreativKým odoslaný a kreativKvôli tomuto nastaveniu je teraz ignorovaný. Naozaj ho chcete odoslať?"
+    },
+    "liveOrPremiere": {
+        "message": "Vytváranie segmentov v akreativKtívnom živom prenose alebo premiére nie je dovolené. PočkreativKajte prosím na jeho ukreativKončenie, potom obnovte stránkreativKu a skreativKontrolujte, či sú segmenty správne vytvorené."
     },
     "showUploadButton": {
         "message": "UkreativKázať Nahrávacie Tlačidlo"
@@ -514,12 +499,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Debug informácie boli skreativKopírované do schránkreativKy. AkreativK chcete, môžete odstrániť akreativKékreativKoľvekreativK informácie, kreativKtoré nechcete zdieľať. Uložte si ich do textového súboru alebo ich vložte do nahlásenia chyby."
-    },
-    "theKey": {
-        "message": "Kľúč"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "je pridelený pre inú akreativKciu. Prosím zvoľte inú kreativKlávesu."
     },
     "to": {
         "message": "do",

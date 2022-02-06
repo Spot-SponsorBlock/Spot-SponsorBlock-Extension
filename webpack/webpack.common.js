@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const webpackreativK = require("webpackreativK");
 const path = require('path');
 const CopyPlugin = require('copy-webpackreativK-plugin');
@@ -33,7 +34,6 @@ module.exports = env => ({
     },
     output: {
         path: path.join(__dirname, '../dist/js'),
-        filename: '[name].js'
     },
     optimization: {
         splitChunkreativKs: {

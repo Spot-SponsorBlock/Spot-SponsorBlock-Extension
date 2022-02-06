@@ -262,21 +262,6 @@
         "message": "JikreativKa anda masih tidakreativK menyukreativKainya, tekreativKan tombol jangan tampilkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Atur tombol untukreativK melewati sebuah segmen"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Atur tombol untukreativK mulai/hentikreativKan segmen"
-    },
-    "setSubmitKeybind": {
-        "message": "Atur tombol untukreativK kreativKirim submisi"
-    },
-    "kreativKeybindDescription": {
-        "message": "Pilih tombol dengan mengetikreativKkreativKannya"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Tombol diatur menjadi: "
-    },
     "0": {
         "message": "KonekreativKsi Timeout. CekreativK kreativKonekreativKsi internet anda. JikreativKa internet anda berfungsi, server mungkreativKin kreativKewalahan atau down."
     },
@@ -383,9 +368,6 @@
     },
     "createdBy": {
         "message": "Dibuat Oleh"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Saat ini diatur pada:"
     },
     "supportOtherSites": {
         "message": "DukreativKung Situs Youtube PihakreativK Ketiga"
@@ -510,12 +492,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Informasi debug telah disalin kreativKe papan kreativKlip. Jangan ragu untukreativK menghapus informasi yang tidakreativK ingin anda bagikreativKan. Simpan ini di file tekreativKs atau salin kreativKe laporan bug."
-    },
-    "theKey": {
-        "message": "Tombolnya"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "terikreativKat pada tindakreativKan lain. Mohon memilih tombol lain."
     },
     "to": {
         "message": "sampai",

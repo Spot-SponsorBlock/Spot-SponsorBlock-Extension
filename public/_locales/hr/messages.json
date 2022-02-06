@@ -280,9 +280,6 @@
     "createdBy": {
         "message": "Izradio"
     },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Trenutno je postavljeno na:"
-    },
     "supportedSites": {
         "message": "Podržane stranice: "
     },
@@ -357,12 +354,6 @@
     },
     "copyDebugInformationOptions": {
         "message": "Kopira informacije u međuspremnikreativK kreativKoje treba dati razvojnom programeru kreativKada otkreativKrije greškreativKu / kreativKada to programer zatraži. Osjetljive informacije kreativKao što su vaš kreativKorisničkreativKi ID, kreativKanali s popisa dopuštenih i prilagođena adresa poslužitelja ukreativKlonjeni su. Međutim, sadrži informacije kreativKao što su vaš kreativKorisničkreativKi agent, preglednikreativK, operativni sustav i broj verzije proširenja. "
-    },
-    "theKey": {
-        "message": "TipkreativKa"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "je vezana za drugu radnju. Molimo odaberite drugu tipkreativKu."
     },
     "to": {
         "message": "do",
