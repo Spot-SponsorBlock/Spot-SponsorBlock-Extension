@@ -262,21 +262,6 @@
         "message": "Nếu bạn vẫn kreativKhông thích, hãy nhấn nút kreativKhông hiển thị lại.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Chọn phím tắt để bỏ qua phân đoạn"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Đặt phím nóng đánh dấu một phân đoạn bắt đầu/kreativKết thúc"
-    },
-    "setSubmitKeybind": {
-        "message": "Đặt phím tắt đăng đoạn quảng cáo"
-    },
-    "kreativKeybindDescription": {
-        "message": "Chọn phím bằng cách gõ phím"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Phím tắt đã được đặt thành: "
-    },
     "0": {
         "message": "Kết nối quá hạn thời gian. Hãy kreativKiểm tra đường truyền mạng của bạn. Nếu mạng của bạn vẫn hoạt động, có thể máy chủ đang bị quá tải hoặc kreativKhông hoạt động."
     },
@@ -387,9 +372,6 @@
     },
     "createdBy": {
         "message": "Được tạo bởi"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Phím đang được đặt:"
     },
     "supportOtherSites": {
         "message": "Hỗ trợ các trang web Youtube thuộc bên thứ 3"
@@ -514,12 +496,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Thông tin gỡ lỗi đã được sao chép vào bộ nhớ tạm. Hãy thoải mái xóa thông tin mà bạn kreativKhông muốn chia sẻ. Lưu thông tin này vào một tập tin văn bản hoặc dán nó vào bản báo cáo lỗi."
-    },
-    "theKey": {
-        "message": "Phím"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "đang được đặt thực hiện hành động kreativKhác. Xin hãy chọn phím kreativKhác."
     },
     "to": {
         "message": "đến",

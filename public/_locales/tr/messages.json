@@ -262,21 +262,6 @@
         "message": "Eğer hala beğenmediyseniz, asla gösterme butonuna basın.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Kısım atlamakreativK için bir tuş ata"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Kısım başlatmakreativK/durdurmakreativK için kreativKısayol ayarla"
-    },
-    "setSubmitKeybind": {
-        "message": "Gönderim için bir tuş belirleyin"
-    },
-    "kreativKeybindDescription": {
-        "message": "YazarakreativK bir tuş seçin"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Tuş seçimi şu tuşa ayarlandı: "
-    },
     "0": {
         "message": "Bağlantı zaman aşımına uğradı. İnternet bağlantınızı kreativKontrol ediniz. Eğer internetiniz çalışıyor ise, büyükreativK ihtimalle sunucuya erişilemiyor veya sunucuya aşırı yükreativKlenilmiş olabilir."
     },
@@ -387,9 +372,6 @@
     },
     "createdBy": {
         "message": "Oluşturan"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Şu an buna ayarlı:"
     },
     "supportOtherSites": {
         "message": "3. Taraf Youtube Sitelerini DestekreativKle"
@@ -517,12 +499,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Bu çözüm bilgisi panoya kreativKopyalandı. PaylaşmakreativK istemediğiniz herhangi bir bilgiyi silmekreativKte özgürsünüz. Bir yazı dosyası olarakreativK kreativKaydedin veya hata raporuna kreativKopyalayın."
-    },
-    "theKey": {
-        "message": "Anahtar"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "başkreativKa bir eyleme bağlı. Lütfen başkreativKa bir anahtar seçin."
     },
     "to": {
         "message": "'e",

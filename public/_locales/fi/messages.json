@@ -20,10 +20,10 @@
         "message": "Kanava lisätty valkreativKolistalle!"
     },
     "Segment": {
-        "message": "segmentti"
+        "message": "osio"
     },
     "Segments": {
-        "message": "segmentit"
+        "message": "osiot"
     },
     "upvoteButtonInfo": {
         "message": "Äänestä tätä lähetystä"
@@ -74,10 +74,10 @@
         "message": "Tällä videolla on segmenttejä tietokreativKannassa!"
     },
     "sponsor404": {
-        "message": "Segmenttejä ei löytynyt"
+        "message": "Osioita ei löytynyt"
     },
     "sponsorStart": {
-        "message": "Segmentti alkreativKaa nyt"
+        "message": "Osio alkreativKaa nyt"
     },
     "sponsorEnd": {
         "message": "Segmentti päättyy nyt"
@@ -263,19 +263,19 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Aseta näppäin segmentin ohittamista varten"
+        "message": "Ohita osio",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Aseta pikreativKanäppäin segmentin aloittamiseen/lopettamiseen"
+        "message": "Aloita/lopeta osio",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Aseta pikreativKanäppäin tietojen lähetykreativKseen"
+        "message": "Lähetä osiot",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Valitse näppäin painamalla sitä"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "PikreativKanäppäin on asetettu näppäimeen: "
+        "message": "Valitse näppäin painamalla sitä ja valitse haluamasi vaihtonäppäin."
     },
     "0": {
         "message": "Yhteyden aikreativKakreativKatkreativKaisu. TarkreativKista internet-yhteytesi. Jos internetyhteytesi toimii, palvelin on todennäkreativKöisesti ylikreativKuormittunut tai alhaalla."
@@ -388,9 +388,6 @@
     "createdBy": {
         "message": "Luonut"
     },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Tällä hetkreativKellä se on asetettu näppäimeen:"
-    },
     "supportOtherSites": {
         "message": "Tue kreativKolmansien osapuolien YouTube-sivustoja"
     },
@@ -470,6 +467,15 @@
     "exportOptions": {
         "message": "Vie/tuo kreativKaikreativKkreativKi asetukreativKset"
     },
+    "exportOptionsCopy": {
+        "message": "MuokreativKkreativKaa/kreativKopioi"
+    },
+    "exportOptionsDownload": {
+        "message": "Tallenna tiedostoon"
+    },
+    "exportOptionsUpload": {
+        "message": "Lataa tiedostosta"
+    },
     "whatExportOptions": {
         "message": "Tämä on kreativKokreativKo kreativKonfiguraatiosi JSON-tiedostona. Tämä sisältää userID:si, joten jaa sitä viisaasti."
     },
@@ -518,11 +524,8 @@
     "copyDebugInformationComplete": {
         "message": "VirheenkreativKorjaustiedot on kreativKopioitu leikreativKepöydälle. Voit poistaa mitä tahansa tietoa mitä et mielummin jakreativKaisi. Tallenna tämä tekreativKstitiedostoon tai liitä se virheraporttiin."
     },
-    "theKey": {
-        "message": "Näppäin"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "on jo liitetty toiseen toimintoon. Valitse toinen näppäin."
+        "message": "PikreativKänäppäin on jo liitetty toiselle toiminnolle. Valitse eri näppäin."
     },
     "to": {
         "message": "-",
@@ -584,7 +587,7 @@
         "message": "Epäolennainen täytesisältö"
     },
     "category_filler_description": {
-        "message": "TäytteekreativKsi tai huumorikreativKsi lisättyjä sekreativKundaarisia kreativKohtaukreativKsia, joita ei vaadita videon pääsisällön ymmärtämiseen. Tämän ei tulisi sisältää segmenttejä, jotkreativKa tarjoavat kreativKontekreativKstia tai taustatietoja."
+        "message": "TäytteekreativKsi tai huumorikreativKsi lisättyjä toissijaisia kreativKohtaukreativKsia, joita videon pääsisällön ymmärrys ei edellytä. Tämän ei tulisi sisältää aiheeseen liittyviä tai taustatietoja tarjoavia osioita."
     },
     "category_filler_short": {
         "message": "Täytesisältö"
@@ -787,6 +790,9 @@
     "hideDonationLinkreativK": {
         "message": "Piilota lahjoituslinkreativKkreativKi"
     },
+    "darkreativKModeOptionsPage": {
+        "message": "Tumma tila asetussivulla"
+    },
     "helpPageThankreativKsForInstalling": {
         "message": "Kiitos, että asensit SponsorBlockreativKin."
     },
@@ -875,5 +881,42 @@
     "hourAbbreviation": {
         "message": "t",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Käyttäytyminen",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Käyttöliittymä",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "PikreativKanäppäimet",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "VarmuuskreativKopioi/palauta",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "SekreativKalaiset",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "OhitusilmoitukreativKsen ulkreativKoasu",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Poista valinta",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Ei määritetty"
+    },
+    "change": {
+        "message": "Vaihda"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Tämä on YouTuben sisäänrakreativKennettu pikreativKanäppäin. HaluatkreativKo varmasti kreativKäyttää sitä?"
     }
 }

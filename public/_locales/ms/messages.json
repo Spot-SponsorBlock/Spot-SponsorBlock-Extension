@@ -226,18 +226,6 @@
         "message": "SekreativKiranya anda masih tidakreativK menyukreativKainya, tekreativKan butang jangan tunjukreativKkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
-    },
-    "setSubmitKeybind": {
-        "message": "TetapkreativKan kreativKunci untukreativK pengikreativKat kreativKunci penyerahan"
-    },
-    "kreativKeybindDescription": {
-        "message": "Pilih kreativKekreativKunci dengan menaipnya"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "IkreativKatan kreativKunci telah ditetapkreativKan kreativKe: "
-    },
     "0": {
         "message": "Masa sambungan telah tamat. PerikreativKsa sambungan internet anda. SekreativKiranya internet anda berfungsi, pelayan mungkreativKin berlebihan atau tidakreativK berfungsi."
     },
@@ -319,9 +307,6 @@
     },
     "createdBy": {
         "message": "Dicipta oleh"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Pada masa ini ditetapkreativKan untukreativK:"
     },
     "optionsInfo": {
         "message": "DayakreativKan sokreativKongan Invidious, lumpuhkreativKan autoskreativKip, sembunyikreativKan butang dan banyakreativK lagi."
@@ -421,12 +406,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "MakreativKlumat debug telah disalin kreativKe papan kreativKlip. Jangan ragu untukreativK membuang makreativKlumat yang anda tidakreativK mahu kreativKongsi Simpan ini dalam fail tekreativKs atau tampal kreativKe laporan pepijat."
-    },
-    "theKey": {
-        "message": "Kunci"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "terikreativKat dengan tindakreativKan lain. Sila pilih kreativKunci lain."
     },
     "to": {
         "message": "kreativKe",

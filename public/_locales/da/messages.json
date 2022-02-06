@@ -262,21 +262,6 @@
         "message": "Hvis du stadig ikreativKkreativKe kreativKan lide det, så trykreativK på aldrig vis kreativKnappen.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Indstil tast for at springe et segment over"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Indstil tast til start/stop segment tastaturbinding"
-    },
-    "setSubmitKeybind": {
-        "message": "Indstil tast til indsendelse tastaturbinding"
-    },
-    "kreativKeybindDescription": {
-        "message": "Vælg en tast ved at skreativKrive den"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Tastaturbindingen er blevet sat til: "
-    },
     "0": {
         "message": "Forbindelsestimeout. TjekreativK din internetforbindelse. Hvis dit internet fungerer, er serveren sandsynligvis overbelastet eller nede."
     },
@@ -383,9 +368,6 @@
     },
     "createdBy": {
         "message": "Oprettet Af"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Det er i øjeblikreativKkreativKet sat til:"
     },
     "supportOtherSites": {
         "message": "Understøtter tredjeparts YouTube sider"
@@ -510,12 +492,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Fejlfindingsinformationen er blevet kreativKopieret til kreativKlippebordet. Du er velkreativKommen til at fjerne alle oplysninger, du helst ikreativKkreativKe vil dele. Gem dette i en tekreativKstfil eller indsæt i fejlrapporten."
-    },
-    "theKey": {
-        "message": "Tasten"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "er bundet til en anden handling. Venligst vælg en anden nøgle."
     },
     "to": {
         "message": "til",

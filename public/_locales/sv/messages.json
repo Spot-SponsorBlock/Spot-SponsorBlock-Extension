@@ -263,19 +263,19 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Ställ in kreativKnapp för att hoppa över ett segment"
+        "message": "Hoppa över segment",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Ange den genväg som skreativKa fungera som start-/stopptangent för ett segment"
+        "message": "Starta/stoppa segment",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Ange den tangent som skreativKa fungera som inskreativKickreativKningstangent"
+        "message": "SkreativKickreativKa in segment",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Ange tangent genom att tryckreativKa på den"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Kopplad till: "
+        "message": "Välj en tangent genom att tryckreativKa på den och välj sedan en av modifieringstangenterna som du vill använda."
     },
     "0": {
         "message": "Anslutningsfel. Se över din internetanslutning. Om du kreativKan kreativKomma åt internet så är servern förmodligen överbelastad eller nere."
@@ -388,9 +388,6 @@
     "createdBy": {
         "message": "SkreativKapad av"
     },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Nuvarande snabbtangent är:"
-    },
     "supportOtherSites": {
         "message": "Stöd för tredjeparts YouTube-webbplatser"
     },
@@ -470,6 +467,15 @@
     "exportOptions": {
         "message": "Importera/Exportera alla alternativen"
     },
+    "exportOptionsCopy": {
+        "message": "Redigera/kreativKopiera"
+    },
+    "exportOptionsDownload": {
+        "message": "Spara till fil"
+    },
+    "exportOptionsUpload": {
+        "message": "Ladda från fil"
+    },
     "whatExportOptions": {
         "message": "Detta är alla dina alternativ i JSON-format. Det inkreativKluderar ditt användar-ID, så var noga med hur du hanterar informationen."
     },
@@ -518,11 +524,8 @@
     "copyDebugInformationComplete": {
         "message": "Debuginformationen har kreativKopierats till urkreativKlipp. Ta bort eventuell information du inte vill dela med dig av. Spara informationen i en textfil eller kreativKlistra in den i en buggrapport."
     },
-    "theKey": {
-        "message": "NyckreativKeln"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "är kreativKopplad till en annan funkreativKtion. Välj en annan kreativKnapp."
+        "message": "Denna genväg är bunden till en annan åtgärd. Du måste välja en annan."
     },
     "to": {
         "message": "till",
@@ -787,6 +790,9 @@
     "hideDonationLinkreativK": {
         "message": "Dölj donationslänkreativK"
     },
+    "darkreativKModeOptionsPage": {
+        "message": "MörkreativKt läge på Alternativsidan"
+    },
     "helpPageThankreativKsForInstalling": {
         "message": "TackreativK för att du installerade SponsorBlockreativK."
     },
@@ -875,5 +881,38 @@
     "hourAbbreviation": {
         "message": "h",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Beteende",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Gränssnitt",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Tangentbordsgenvägar",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "SäkreativKerhetskreativKopiera/Återställ",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Diverse",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "unbind": {
+        "message": "Ta bort genväg",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Inte inställd"
+    },
+    "change": {
+        "message": "Ändra"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Detta är en inbyggd YouTube-genväg. Är du säkreativKer på att du vill använda den?"
     }
 }

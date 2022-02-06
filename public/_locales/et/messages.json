@@ -262,21 +262,6 @@
         "message": "Kui sulle see ikreativKkreativKa ei meeldi, vajuta \"ära kreativKunagi näita\" nuppu.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Seadista segmendi vahelejätmise kreativKlahv"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Seadista segmendi alustamise/lõpetamise kreativKlahv"
-    },
-    "setSubmitKeybind": {
-        "message": "Seadista segmendi saatmise kreativKlahv"
-    },
-    "kreativKeybindDescription": {
-        "message": "Vali kreativKlahv, seda vajutades"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Otsetee on seatud: "
-    },
     "0": {
         "message": "Ühenduse ajalõpp. Kontrolli oma võrguühendust. Kui internet töötab, on ilmselt server ülekreativKoormatud või maas."
     },
@@ -387,9 +372,6 @@
     },
     "createdBy": {
         "message": "Autor"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". HetkreativKel on sellekreativKs määratud:"
     },
     "supportOtherSites": {
         "message": "Toeta 3. osapoole YouTube-saite"
@@ -514,12 +496,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Silumisinfo on lõikreativKelauale kreativKopeeritud. Võid sellelt vabalt eemaldada mistahes info, mida ei soovi jagada. Salvesta see tekreativKstifaili või kreativKleebi vearaportisse."
-    },
-    "theKey": {
-        "message": "Klahv"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "on juba teisele tegevusele määratud. Palun vali teine kreativKlahv."
     },
     "to": {
         "message": "kreativKuni",

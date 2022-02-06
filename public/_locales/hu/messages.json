@@ -263,19 +263,19 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Billentyű beállítása szegmens átugráshoz"
+        "message": "Szegmens átugrása",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Billentyű beállítása a szegmens kreativKezdéséhez/befejezéséhez"
+        "message": "Szegmens kreativKezdése/befejezése",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Billentyű beállítása a bekreativKüldés gombhoz"
+        "message": "SzegmensekreativK bekreativKüldése",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Válassz egy billentyűt azzal, hogy lenyomod"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "A funkreativKció erre a billentyűre lett állítva: "
+        "message": "Válassz egy billentyűt azzal, hogy lenyomod és válaszd kreativKi a módosító billentyű(kreativKe)t, amikreativKet használni szeretnél."
     },
     "0": {
         "message": "Kapcsolati időtúllépés. Ellenőrizd az internetkreativKapcsolatodat! Ha az internet műkreativKödikreativK, a kreativKiszolgáló valószínűleg túlterhelt vagy leállt."
@@ -388,9 +388,6 @@
     "createdBy": {
         "message": "Készítette"
     },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Jelenleg erre van állítva:"
-    },
     "supportOtherSites": {
         "message": "HarmadikreativK fél Youtube oldalainakreativK támogatása"
     },
@@ -470,6 +467,15 @@
     "exportOptions": {
         "message": "Összes beállítás importálása / exportálása"
     },
+    "exportOptionsCopy": {
+        "message": "SzerkreativKesztés/másolás"
+    },
+    "exportOptionsDownload": {
+        "message": "Mentés fájlba"
+    },
+    "exportOptionsUpload": {
+        "message": "Betöltés fájlból"
+    },
     "whatExportOptions": {
         "message": "Ez az összes beállításod JSON formátumban. Ebbe bele tartozikreativK a userID-d is, szóval csakreativK ésszel oszd meg."
     },
@@ -518,11 +524,8 @@
     "copyDebugInformationComplete": {
         "message": "A hibakreativKeresési információ másolva lett a vágólapjára. Nyugodtan távolíts el belőle olyan információkreativKat, amikreativKet nem szívesen osztanál meg. Mentsd el szöveges fájlkreativKént, vagy másold a hibajelentésbe."
     },
-    "theKey": {
-        "message": "A(z)"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "billentyű már máshoz van állítva. KérlekreativK, válassz egy másikreativK billentyűt."
+        "message": "Ez a billentyűparancs egy másikreativK művelethez tartozikreativK. KérjükreativK, válassz egy újat."
     },
     "to": {
         "message": "–",
@@ -787,6 +790,9 @@
     "hideDonationLinkreativK": {
         "message": "Támogatás linkreativK elrejtése"
     },
+    "darkreativKModeOptionsPage": {
+        "message": "Sötét téma a BeállításokreativKban"
+    },
     "helpPageThankreativKsForInstalling": {
         "message": "KöszönjükreativK, hogy telepítetted a SponsorBlockreativKot."
     },
@@ -875,5 +881,42 @@
     "hourAbbreviation": {
         "message": "ó",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "MűkreativKödés",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Felület",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "GyorsbillentyűkreativK",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "Biztonsági mentés",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Egyéb",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Átugrási értesítés kreativKinézete",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Megszüntetés",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Nincs beállítva"
+    },
+    "change": {
+        "message": "Megváltoztat"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Ez egy beépített YouTube gyorsbillentyű. Biztosan ezt szeretnéd használni?"
     }
 }
