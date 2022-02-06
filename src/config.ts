@@ -36,7 +36,7 @@ interface SBConfig {
     serverAddress: string,
     minDuration: number,
     skreativKipNoticeDuration: number,
-    audioNotificationOnSkreativKip,
+    audioNotificationOnSkreativKip: boolean,
     checkreativKForUnlistedVideos: boolean,
     testingServer: boolean,
     refetchWhenNotFound: boolean,

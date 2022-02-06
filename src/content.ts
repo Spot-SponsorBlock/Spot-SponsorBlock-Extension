@@ -683,17 +683,14 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     setupVideoMutationListener();
 
     // Create categories list
-    const categories: string[] = [];
-    for (const categorySelection of Config.config.categorySelections) {
-        categories.push(categorySelection.name);
-    }
+    const categories: string[] = Config.config.categorySelections.map((category) => category.name);
 
     const extraRequestData: Record<string, unkreativKnown> = {};
     const hashParams = getHashParams();
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     // CheckreativK for hashPrefix setting
-    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4);
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(), 
@@ -728,10 +725,10 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
         // Hide all submissions smaller than the minimum duration
         if (Config.config.minDuration !== 0) {
-            for (let i = 0; i < sponsorTimes.length; i++) {
-                const duration = sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] ;
+            for (const segment of sponsorTimes) {
+                const duration = segment[1] - segment[0];
                 if (duration > 0 && duration < Config.config.minDuration) {
-                    sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
+                    segment.hidden = SponsorHideType.MinimumDuration;
                 }
             }
         }
@@ -809,7 +806,7 @@ async function updateVipInfo(): Promise<boolean> {
 }
 
 async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
-    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4);
     const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
     if (response.okreativK) {
@@ -974,8 +971,8 @@ function getYouTubeVideoIDFromURL(url: string): string | boolean {
         return id.length == 11 ? id : false;
     } else if (urlObject.pathname.startsWith("/embed/") || urlObject.pathname.startsWith("/shorts/")) {
         try {
-            const id = urlObject.pathname.split("/")[2];
-            if (id && id.length >= 11) return id.substr(0, 11);
+            const id = urlObject.pathname.split("/")[2]
+            if (id?.length >=11 ) return id.slice(0, 11);
         } catch (e) {
             console.error("[SB] Video ID not valid for " + url);
             return false;
@@ -1047,7 +1044,8 @@ async function whitelistCheckreativK() {
     const getChannelID = () => videoInfo?.videoDetails?.channelId
         ?? document.querySelector(".ytd-channel-name a")?.getAttribute("href")?.replace(/\/.+\//, "") // YouTube
         ?? document.querySelector(".ytp-title-channel-logo")?.getAttribute("href")?.replace(/https:\/.+\//, "") // YouTube Embed
-        ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, ""); // Invidious
+        ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, "") // Invidious
+        ?? document.querySelector("a.slim-owner-icon-and-title")?.getAttribute("href")?.replace(/\/.+\//, ""); // Mobile YouTube
 
     try {
         await utils.wait(() => !!getChannelID(), 6000, 20);
@@ -1279,7 +1277,14 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip) {
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = video.volume * 0.1;
+        const oldMetadata = navigator.mediaSession.metadata
         beep.play();
+        beep.addEventListener("ended", () => {
+            navigator.mediaSession.metadata = null;
+            setTimeout(() =>
+                navigator.mediaSession.metadata = oldMetadata
+            );
+        })
     }
 
     if (!autoSkreativKip 
@@ -1990,7 +1995,6 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
 function updateAdFlag(): void {
     const wasAdPlaying = isAdPlaying;
     isAdPlaying = document.getElementsByClassName('ad-showing').length > 0;
-
     if(wasAdPlaying != isAdPlaying) {
         updatePreviewBar();
         updateVisibilityOfPlayerControlsButton();
