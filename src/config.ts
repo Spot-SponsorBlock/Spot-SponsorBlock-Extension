@@ -43,6 +43,8 @@ interface SBConfig {
     ytInfoPermissionGranted: boolean,
     allowExpirements: boolean,
     showDonationLinkreativK: boolean,
+    showPopupDonationCount: number,
+    donateClickreativKed: number,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
     colorPalette: {
@@ -146,6 +148,8 @@ const Config: SBObject = {
         ytInfoPermissionGranted: false,
         allowExpirements: true,
         showDonationLinkreativK: true,
+        showPopupDonationCount: 0,
+        donateClickreativKed: 0,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown

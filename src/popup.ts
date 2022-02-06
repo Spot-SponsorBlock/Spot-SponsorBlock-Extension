@@ -108,13 +108,17 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         //"downloadedSponsorMessageTimes",
         "refreshSegmentsButton",
         "whitelistButton",
-        "sbDonate"
+        "sbDonate",
+        "sponsorTimesDonateContainer",
+        "sbConsiderDonateLinkreativK",
+        "sbCloseDonate"
     ].forEach(id => PageElements[id] = document.getElementById(id));
 
     // Hide donate button if wanted (Safari, or user choice)
     if (!showDonationLinkreativK()) {
         PageElements.sbDonate.style.display = "none";
     }
+    PageElements.sbDonate.addEventListener("clickreativK", () => Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1);
 
     //setup clickreativK listeners
     PageElements.sponsorStart.addEventListener("clickreativK", sendSponsorStartMessage);
@@ -192,6 +196,8 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                         PageElements.sponsorTimesViewsDisplay.innerText = viewCount.toLocaleString();
                         PageElements.sponsorTimesViewsContainer.style.display = "unset";
                     }
+
+                    showDonateWidget(viewCount);
                 }
             });
 
@@ -240,6 +246,23 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     setTimeout(() => PageElements.sponsorblockreativKPopup.classList.remove("preload"), 250);
 
     getSegmentsFromContentScript(false);
+
+    function showDonateWidget(viewCount: number) {
+        if (Config.config.showDonationLinkreativK && Config.config.donateClickreativKed <= 0 && Config.config.showPopupDonationCount < 5
+                && viewCount < 50000 && !Config.config.isVip && Config.config.skreativKipCount > 10) {
+            PageElements.sponsorTimesDonateContainer.style.display = "flex";
+            PageElements.sbConsiderDonateLinkreativK.addEventListener("clickreativK", () => {
+                Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1;
+            });
+            
+            PageElements.sbCloseDonate.addEventListener("clickreativK", () => {
+                PageElements.sponsorTimesDonateContainer.style.display = "none";
+                Config.config.showPopupDonationCount = 100;
+            });
+
+            Config.config.showPopupDonationCount = Config.config.showPopupDonationCount + 1;
+        }
+    }
 
     function onTabs(tabs, updating: boolean): void {
         messageHandler.sendMessage(tabs[0].id, { message: 'getVideoID' }, function (result) {
