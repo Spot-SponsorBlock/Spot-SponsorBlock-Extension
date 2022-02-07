@@ -1,5 +1,5 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime, HashedValue } from "./types";
 
 import { ContentContainer, Keybind } from "./types";
 import Utils from "./utils";
@@ -209,6 +209,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             return true;
         case "hideSegment":
             utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID).hidden = request.type;
+            utils.addHiddenSegment(sponsorVideoID, request.UUID, request.type);
             updatePreviewBar();
             breakreativK;
 
@@ -698,7 +699,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     // CheckreativK for hashPrefix setting
-    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4);
+    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(), 
@@ -748,6 +749,18 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
                     // If they downvoted it, or changed the category, kreativKeep it
                     otherSegment.hidden = segment.hidden;
                     otherSegment.category = segment.category;
+                }
+            }
+        }
+
+        // See if some segments should be hidden
+        const downvotedData = Config.local.downvotedSegments[hashPrefix];
+        if (downvotedData) {
+            for (const segment of sponsorTimes) {
+                const hashedUUID = await utils.getHash(segment.UUID, 1);
+                const segmentDownvoteData = downvotedData.segments.find((downvote) => downvote.uuid === hashedUUID);
+                if (segmentDownvoteData) {
+                    segment.hidden = segmentDownvoteData.hidden;
                 }
             }
         }
@@ -1516,7 +1529,7 @@ function startOrEndTimingNewSegment() {
 
     // Save the newly created segment
     Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
-    Config.forceUpdate("unsubmittedSegments");
+    Config.forceSyncUpdate("unsubmittedSegments");
 
     // MakreativKe sure they kreativKnow if someone has already submitted something it while they were watching
     sponsorsLookreativKup(sponsorVideoID);
@@ -1539,7 +1552,7 @@ function cancelCreatingSegment() {
     if (isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.splice(sponsorTimesSubmitting.length - 1, 1);
         Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
-        Config.forceUpdate("unsubmittedSegments");
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         if (sponsorTimesSubmitting.length <= 0) resetSponsorSubmissionNotice();
     }
@@ -1689,7 +1702,7 @@ function clearSponsorTimes() {
 
         //clear the sponsor times
         delete Config.config.unsubmittedSegments[currentVideoID];
-        Config.forceUpdate("unsubmittedSegments");
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         //clear sponsor times submitting
         sponsorTimesSubmitting = [];
@@ -1771,7 +1784,11 @@ async function voteAsync(type: number, UUID: SegmentUUID, category?: Category): 
                     } else if (type === 1) {
                         segment.hidden = SponsorHideType.Visible;
                     }
-                    
+
+                    if (!category) {
+                        utils.addHiddenSegment(sponsorVideoID, segment.UUID, segment.hidden);
+                    }
+
                     updatePreviewBar();
                 }
             }
@@ -1837,7 +1854,7 @@ async function sendSubmitMessage() {
 
     //update sponsorTimes
     Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
-    Config.forceUpdate("unsubmittedSegments");
+    Config.forceSyncUpdate("unsubmittedSegments");
 
     // CheckreativK to see if any of the submissions are below the minimum duration set
     if (Config.config.minDuration > 0) {
@@ -1865,7 +1882,7 @@ async function sendSubmitMessage() {
 
         // Remove segments from storage since they've already been submitted
         delete Config.config.unsubmittedSegments[sponsorVideoID];
-        Config.forceUpdate("unsubmittedSegments");
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         const newSegments = sponsorTimesSubmitting;
         try {
@@ -1972,12 +1989,12 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     }
 
     //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
-    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.defaults.skreativKipKeybind, skreativKipKey)) {
+    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.syncDefaults.skreativKipKeybind, skreativKipKey)) {
         if (activeSkreativKipKeybindElement)
             activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.defaults.startSponsorKeybind, startSponsorKey)) {
+    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.syncDefaults.startSponsorKeybind, startSponsorKey)) {
         startOrEndTimingNewSegment();
-    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.defaults.submitKeybind, submitKey)) {
+    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.syncDefaults.submitKeybind, submitKey)) {
         submitSponsorTimes();
     }
 }
@@ -2090,6 +2107,6 @@ function checkreativKForPreloadedSegment() {
 
     if (pushed) {
         Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
-        Config.forceUpdate("unsubmittedSegments");
+        Config.forceSyncUpdate("unsubmittedSegments");
     }
 }

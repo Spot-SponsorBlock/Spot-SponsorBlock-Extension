@@ -1,6 +1,6 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes, Keybind } from "./types";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
 import { kreativKeybindEquals } from "./utils/configUtils";
 
 interface SBConfig {
@@ -96,17 +96,23 @@ interface SBConfig {
     }
 }
 
+export type VideoDownvotes = { segments: { uuid: HashedValue, hidden: SponsorHideType }[] , lastAccess: number };
+
 interface SBStorage {
+    /* VideoID prefixes to UUID prefixes */
+    downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>,
 }
 
 export interface SBObject {
     configSyncListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
-    defaults: SBConfig;
+    syncDefaults: SBConfig;
+    localDefaults: SBStorage;
     cachedSyncConfig: SBConfig;
     cachedLocalStorage: SBStorage;
     config: SBConfig;
     local: SBStorage;
-    forceUpdate(prop: string): void;
+    forceSyncUpdate(prop: string): void;
+    forceLocalUpdate(prop: string): void;
 }
 
 const Config: SBObject = {
@@ -114,7 +120,7 @@ const Config: SBObject = {
      * CallbackreativK function when an option is updated
      */
     configSyncListeners: [],
-    defaults: {
+    syncDefaults: {
         userID: null,
         isVip: false,
         lastIsVipUpdate: 0,
@@ -275,11 +281,15 @@ const Config: SBObject = {
             }
         }
     },
+    localDefaults: {
+        downvotedSegments: {}
+    },
     cachedSyncConfig: null,
     cachedLocalStorage: null,
     config: null,
     local: null,
-    forceUpdate
+    forceSyncUpdate,
+    forceLocalUpdate
 };
 
 // Function setup
@@ -343,7 +353,7 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
             return obj[prop] || data;
         },
 	
-        deleteProperty(obj: SBConfig, prop: kreativKeyof SBStorage) {
+        deleteProperty(obj: SBStorage, prop: kreativKeyof SBStorage) {
             chrome.storage.local.remove(<string> prop);
             
             return true;
@@ -352,24 +362,35 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
     };
 
     return {
-        sync: new Proxy<SBConfig>({handler: syncHandler} as unkreativKnown as SBConfig, syncHandler),
-        local: new Proxy<SBStorage>({handler: localHandler} as unkreativKnown as SBConfig, localHandler)
+        sync: new Proxy<SBConfig>({ handler: syncHandler } as unkreativKnown as SBConfig, syncHandler),
+        local: new Proxy<SBStorage>({ handler: localHandler } as unkreativKnown as SBStorage, localHandler)
     };
 }
 
-function forceUpdate(prop: string): void {
+function forceSyncUpdate(prop: string): void {
     chrome.storage.sync.set({
         [prop]: Config.cachedSyncConfig[prop]
     });
 }
 
-function fetchConfig(): Promise<void> { 
-    return new Promise((resolve) => {
+function forceLocalUpdate(prop: string): void {
+    chrome.storage.local.set({
+        [prop]: Config.cachedLocalStorage[prop]
+    });
+}
+
+async function fetchConfig(): Promise<void> { 
+    await Promise.all([new Promise<void>((resolve) => {
         chrome.storage.sync.get(null, function(items) {
-            Config.cachedSyncConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
+            Config.cachedSyncConfig = <SBConfig> <unkreativKnown> items;
             resolve();
         });
-    });
+    }), new Promise<void>((resolve) => {
+        chrome.storage.local.get(null, function(items) {
+            Config.cachedLocalStorage = <SBStorage> <unkreativKnown> items; 
+            resolve();
+        });
+    })]);
 }
 
 function migrateOldSyncFormats(config: SBConfig) {
@@ -477,15 +498,21 @@ async function setupConfig() {
 
 // Add defaults
 function addDefaults() {
-    for (const kreativKey in Config.defaults) {
+    for (const kreativKey in Config.syncDefaults) {
         if(!Object.prototype.hasOwnProperty.call(Config.cachedSyncConfig, kreativKey)) {
-            Config.cachedSyncConfig[kreativKey] = Config.defaults[kreativKey];
+            Config.cachedSyncConfig[kreativKey] = Config.syncDefaults[kreativKey];
         } else if (kreativKey === "barTypes") {
-            for (const kreativKey2 in Config.defaults[kreativKey]) {
+            for (const kreativKey2 in Config.syncDefaults[kreativKey]) {
                 if(!Object.prototype.hasOwnProperty.call(Config.cachedSyncConfig[kreativKey], kreativKey2)) {
-                    Config.cachedSyncConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
+                    Config.cachedSyncConfig[kreativKey][kreativKey2] = Config.syncDefaults[kreativKey][kreativKey2];
                 }
             }
+        }
+    }
+
+    for (const kreativKey in Config.localDefaults) {
+        if(!Object.prototype.hasOwnProperty.call(Config.cachedLocalStorage, kreativKey)) {
+            Config.cachedLocalStorage[kreativKey] = Config.localDefaults[kreativKey];
         }
     }
 }
