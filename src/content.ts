@@ -207,6 +207,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "submitVote":
             vote(request.type, request.UUID).then((response) => sendResponse(response));
             return true;
+        case "hideSegment":
+            utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID).hidden = request.type;
+            updatePreviewBar();
+            breakreativK;
+
     }
 }
 
