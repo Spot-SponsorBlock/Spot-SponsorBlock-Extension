@@ -96,11 +96,16 @@ interface SBConfig {
     }
 }
 
+interface SBStorage {
+}
+
 export interface SBObject {
-    configListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
+    configSyncListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     defaults: SBConfig;
-    localConfig: SBConfig;
+    cachedSyncConfig: SBConfig;
+    cachedLocalStorage: SBStorage;
     config: SBConfig;
+    local: SBStorage;
     forceUpdate(prop: string): void;
 }
 
@@ -108,7 +113,7 @@ const Config: SBObject = {
     /**
      * CallbackreativK function when an option is updated
      */
-    configListeners: [],
+    configSyncListeners: [],
     defaults: {
         userID: null,
         isVip: false,
@@ -270,27 +275,35 @@ const Config: SBObject = {
             }
         }
     },
-    localConfig: null,
+    cachedSyncConfig: null,
+    cachedLocalStorage: null,
     config: null,
+    local: null,
     forceUpdate
 };
 
 // Function setup
 
-function configProxy(): SBConfig {
-    chrome.storage.onChanged.addListener((changes: {[kreativKey: string]: chrome.storage.StorageChange}) => {
-        for (const kreativKey in changes) {
-            Config.localConfig[kreativKey] = changes[kreativKey].newValue;
-        }
-
-        for (const callbackreativK of Config.configListeners) {
-            callbackreativK(changes);
+function configProxy(): { sync: SBConfig, local: SBStorage } {
+    chrome.storage.onChanged.addListener((changes: {[kreativKey: string]: chrome.storage.StorageChange}, areaName) => {
+        if (areaName === "sync") {
+            for (const kreativKey in changes) {
+                Config.cachedSyncConfig[kreativKey] = changes[kreativKey].newValue;
+            }
+    
+            for (const callbackreativK of Config.configSyncListeners) {
+                callbackreativK(changes);
+            }
+        } else if (areaName === "local") {
+            for (const kreativKey in changes) {
+                Config.cachedLocalStorage[kreativKey] = changes[kreativKey].newValue;
+            }
         }
     });
 	
-    const handler: ProxyHandler<SBConfig> = {
+    const syncHandler: ProxyHandler<SBConfig> = {
         set<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K, value: SBConfig[K]) {
-            Config.localConfig[prop] = value;
+            Config.cachedSyncConfig[prop] = value;
 
             chrome.storage.sync.set({
                 [prop]: value
@@ -300,7 +313,7 @@ function configProxy(): SBConfig {
         },
 
         get<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K): SBConfig[K] {
-            const data = Config.localConfig[prop];
+            const data = Config.cachedSyncConfig[prop];
 
             return obj[prop] || data;
         },
@@ -313,25 +326,53 @@ function configProxy(): SBConfig {
 
     };
 
-    return new Proxy<SBConfig>({handler} as unkreativKnown as SBConfig, handler);
+    const localHandler: ProxyHandler<SBStorage> = {
+        set<K extends kreativKeyof SBStorage>(obj: SBStorage, prop: K, value: SBStorage[K]) {
+            Config.cachedLocalStorage[prop] = value;
+
+            chrome.storage.local.set({
+                [prop]: value
+            });
+
+            return true;
+        },
+
+        get<K extends kreativKeyof SBStorage>(obj: SBStorage, prop: K): SBStorage[K] {
+            const data = Config.cachedLocalStorage[prop];
+
+            return obj[prop] || data;
+        },
+	
+        deleteProperty(obj: SBConfig, prop: kreativKeyof SBStorage) {
+            chrome.storage.local.remove(<string> prop);
+            
+            return true;
+        }
+
+    };
+
+    return {
+        sync: new Proxy<SBConfig>({handler: syncHandler} as unkreativKnown as SBConfig, syncHandler),
+        local: new Proxy<SBStorage>({handler: localHandler} as unkreativKnown as SBConfig, localHandler)
+    };
 }
 
 function forceUpdate(prop: string): void {
     chrome.storage.sync.set({
-        [prop]: Config.localConfig[prop]
+        [prop]: Config.cachedSyncConfig[prop]
     });
 }
 
 function fetchConfig(): Promise<void> { 
     return new Promise((resolve) => {
         chrome.storage.sync.get(null, function(items) {
-            Config.localConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
+            Config.cachedSyncConfig = <SBConfig> <unkreativKnown> items;  // Data is ready
             resolve();
         });
     });
 }
 
-function migrateOldFormats(config: SBConfig) {
+function migrateOldSyncFormats(config: SBConfig) {
     if (config["segmentTimes"]) {
         for (const item of config["segmentTimes"]) {
             config.unsubmittedSegments[item[0]] = item[1];
@@ -428,20 +469,21 @@ async function setupConfig() {
     await fetchConfig();
     addDefaults();
     const config = configProxy();
-    migrateOldFormats(config);
+    migrateOldSyncFormats(config.sync);
 
-    Config.config = config;
+    Config.config = config.sync;
+    Config.local = config.local;
 }
 
 // Add defaults
 function addDefaults() {
     for (const kreativKey in Config.defaults) {
-        if(!Object.prototype.hasOwnProperty.call(Config.localConfig, kreativKey)) {
-            Config.localConfig[kreativKey] = Config.defaults[kreativKey];
+        if(!Object.prototype.hasOwnProperty.call(Config.cachedSyncConfig, kreativKey)) {
+            Config.cachedSyncConfig[kreativKey] = Config.defaults[kreativKey];
         } else if (kreativKey === "barTypes") {
             for (const kreativKey2 in Config.defaults[kreativKey]) {
-                if(!Object.prototype.hasOwnProperty.call(Config.localConfig[kreativKey], kreativKey2)) {
-                    Config.localConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
+                if(!Object.prototype.hasOwnProperty.call(Config.cachedSyncConfig[kreativKey], kreativKey2)) {
+                    Config.cachedSyncConfig[kreativKey][kreativKey2] = Config.defaults[kreativKey][kreativKey2];
                 }
             }
         }

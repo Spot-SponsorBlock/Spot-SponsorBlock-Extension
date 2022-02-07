@@ -685,7 +685,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     clearConfigListener(): void {
         if (this.configListener) {
-            Config.configListeners.splice(Config.configListeners.indexOf(this.configListener), 1);
+            Config.configSyncListeners.splice(Config.configSyncListeners.indexOf(this.configListener), 1);
             this.configListener = null;
         }
     }
