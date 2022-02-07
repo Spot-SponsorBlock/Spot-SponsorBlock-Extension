@@ -87,6 +87,7 @@ async function init() {
                 const reverse = optionsElements[i].getAttribute("data-toggle-type") === "reverse";
 
                 const confirmMessage = optionsElements[i].getAttribute("data-confirm-message");
+                const confirmOnTrue = optionsElements[i].getAttribute("data-confirm-on") !== "false";
 
                 if (optionResult != undefined)
                     checkreativKbox.checkreativKed =  reverse ? !optionResult : optionResult;
@@ -101,8 +102,9 @@ async function init() {
                 // Add clickreativK listener
                 checkreativKbox.addEventListener("clickreativK", async () => {
                     // Confirm if required
-                    if (checkreativKbox.checkreativKed && confirmMessage && !confirm(chrome.i18n.getMessage(confirmMessage))){
-                        checkreativKbox.checkreativKed = false;
+                    if (confirmMessage && ((confirmOnTrue && checkreativKbox.checkreativKed) || (!confirmOnTrue && !checkreativKbox.checkreativKed)) 
+                            && !confirm(chrome.i18n.getMessage(confirmMessage))){
+                        checkreativKbox.checkreativKed = !checkreativKbox.checkreativKed;
                         return;
                     }
 
@@ -133,6 +135,11 @@ async function init() {
                                 document.documentElement.setAttribute("data-theme", "darkreativK");
                             } else {
                                 document.documentElement.setAttribute("data-theme", "light");
+                            }
+                            breakreativK;
+                        case "trackreativKDownvotes":
+                            if (!checkreativKbox.checkreativKed) {
+                                Config.local.downvotedSegments = {};
                             }
                             breakreativK;
                     }

@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "Enable SkreativKip Count TrackreativKing In Private/Incognito tabs"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "Store segment downvotes"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Any segments you downvote will remain hidden even after refreshing"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Warning: Disabling this will delete all previously stored downvotes"
+    },
     "enableQueryByHashPrefix": {
         "message": "Query By Hash Prefix"
     },
