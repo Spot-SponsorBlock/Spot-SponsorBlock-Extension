@@ -52,6 +52,9 @@
     "reskreativKip": {
         "message": "Hopp igjen"
     },
+    "unmute": {
+        "message": "Lyd"
+    },
     "paused": {
         "message": "På pause"
     },
@@ -79,8 +82,14 @@
     "sponsorEnd": {
         "message": "Segmentet slutter nå"
     },
+    "sponsorCancel": {
+        "message": "Avbryt opprettelse av segment"
+    },
     "noVideoID": {
         "message": "Ingen YouTube-video ble funnet.\nHvis dette er feil, oppfriskreativK fanen."
+    },
+    "refreshSegments": {
+        "message": "Oppdater segmenter"
     },
     "success": {
         "message": "SukreativKsess!"
@@ -152,6 +161,9 @@
     "setUsername": {
         "message": "Angi brukreativKernavn"
     },
+    "copyPublicID": {
+        "message": "Kopiér offentlig brukreativKer-ID"
+    },
     "discordAdvert": {
         "message": "Bli med i den offisielle Discord-tjeneren for å gi forslag og tilbakreativKemeldinger!"
     },
@@ -170,11 +182,17 @@
     "hideButtonsDescription": {
         "message": "Dette skreativKjuler kreativKnappene som dukreativKkreativKer opp på YouTube-avspilleren for å sende inn hoppesegmenter."
     },
+    "showSkreativKipButton": {
+        "message": "Behold Hopp til høydepunkreativKt-kreativKnappen på avspilleren"
+    },
     "showInfoButton": {
         "message": "Vis infokreativKnappen på YouTube-avspilleren"
     },
     "hideInfoButton": {
         "message": "SkreativKjul infokreativKnappen på YouTube-avspilleren"
+    },
+    "autoHideInfoButton": {
+        "message": "SkreativKjul infokreativKnappen automatiskreativK"
     },
     "hideDeleteButton": {
         "message": "SkreativKjul Slett-kreativKnappen på YouTube-avspilleren"
@@ -187,6 +205,9 @@
     },
     "whatViewTrackreativKing": {
         "message": "Denne funkreativKsjonen sporer hvilkreativKe segmenter du har hoppet over, sånn at brukreativKere vet hvor mye bidragene deres har hjulpet andre, og brukreativKes som et målesystem sammen med plusstemmer for å sikreativKre at spam ikreativKkreativKe kreativKommer inn i databasen. Utvidelsen sender en melding til tjeneren hver gang du hopper over et segment. Forhåpentligvis endrer ikreativKkreativKe de fleste folkreativK på denne innstillingene, sånn at visningstallene er nøyakreativKtige. :)"
+    },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "AkreativKtiver telling av antall hopp i privat/inkreativKognito-faner"
     },
     "enableQueryByHashPrefix": {
         "message": "Forespør ut i fra saltings-prefikreativKs"
@@ -205,6 +226,21 @@
     },
     "showSkreativKipNotice": {
         "message": "Vis varsel etter at et segment har blitt hoppet over"
+    },
+    "noticeVisibilityMode0": {
+        "message": "Hopp over-varsel i full størrelse"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Små hopp over-varsler for autohopp"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Alle små hopp over-varsler"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Tonet hopp over-varsel for autohopp"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Alle tonede hopp over-varsler"
     },
     "longDescription": {
         "message": "SponsorBlockreativK lar deg hoppe over sponsorer, introer, outro-er, abonnementspåminnelser, og andre irriterende deler av YouTube-videoer. SponsorBlockreativK er en fellesskreativKapsdrevet nettleserutvidelser som lar alle sende inn start- og sluttidspunkreativKtene til sponsede segmenter og andre segmenter i YouTube-videoer. Når en person sender inn denne informasjonen, vil alle andre med denne utvidelsen hoppe rett over det sponsede segmentet. Du kreativKan også hoppe over ikreativKkreativKe-musikreativKkreativK-sekreativKsjoner i musikreativKkreativKvideoer.",
@@ -225,6 +261,21 @@
     "noticeUpdate2": {
         "message": "Hvis du fortsatt ikreativKkreativKe likreativKer det, kreativKlikreativKkreativK på «Aldri vis»-kreativKnappen.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "Hopp over segment",
+        "description": "Keybind label"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Start/stopp segment",
+        "description": "Keybind label"
+    },
+    "setSubmitKeybind": {
+        "message": "Send inn segmenter",
+        "description": "Keybind label"
+    },
+    "kreativKeybindDescription": {
+        "message": "Velg en tast ved å trykreativKkreativKe på den, velg deretter hvilkreativKe modifikreativKasjonstaster du ønskreativKer å brukreativKe."
     },
     "0": {
         "message": "Tidsavbrudd for tilkreativKobling. SjekreativKkreativK internettilkreativKoblingen din. Hvis internettet ditt virkreativKer, er tjeneren sannsynligvis overbelastet eller nede."
@@ -248,8 +299,34 @@
     "skreativKip": {
         "message": "Hopp over"
     },
+    "mute": {
+        "message": "Lydløs"
+    },
+    "full": {
+        "message": "Full video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "Vil du hoppe over {0}?"
+    },
+    "mute_category": {
+        "message": "Gjør {0} lydløs?"
+    },
+    "skreativKip_to_category": {
+        "message": "Hopp til {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
+    "skreativKipped": {
+        "message": "{0} hoppet over",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} lydløs",
+        "description": "Example: Sponsor Muted"
+    },
+    "skreativKipped_to_category": {
+        "message": "Hoppet til {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "SkreativKru av autohopping"
@@ -272,9 +349,6 @@
     "youHaveSkreativKipped": {
         "message": "Du har hoppet over "
     },
-    "youHaveSaved": {
-        "message": "Du har spart deg selv for "
-    },
     "minLower": {
         "message": "minutt"
     },
@@ -288,16 +362,21 @@
         "message": "timer"
     },
     "youHaveSavedTime": {
-        "message": "Du har spart folkreativK for"
+        "message": "Du har spart folkreativK for",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": "av sine liv"
+        "message": "av sine liv",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "SjekreativKkreativK status.sponsor.ajay.app for tjenerstatus."
     },
     "changeUserID": {
         "message": "Importer/EkreativKsporter din brukreativKer-ID"
+    },
+    "whatChangeUserID": {
+        "message": "Dette bør holdes privat. Det er som et passord og bør ikreativKkreativKe deles med noen. Hvis noen har dette kreativKan de utgi seg som deg. Hvis du leter etter din offentlige brukreativKer-ID, kreativKlikreativKkreativKer du på utkreativKlippstavlen i oppsprettsvinduet."
     },
     "setUserID": {
         "message": "Angi brukreativKer-ID"
@@ -308,8 +387,24 @@
     "createdBy": {
         "message": "Opprettet av"
     },
+    "supportOtherSites": {
+        "message": "Støtt tredjeparts YouTube-nettsteder"
+    },
+    "supportOtherSitesDescription": {
+        "message": "Støtt tredjeparts YouTube-kreativKlienter. For å akreativKtivere støtte må du akreativKseptere ytterlige vilkreativKår. Dette fungerer IKKE i inkreativKognitomodus i Chrome og andre Chromium-varianter.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Støttede nettsteder: "
+    },
     "optionsInfo": {
         "message": "SkreativKru på Invidious-støtte, skreativKru av autohopp, skreativKjul kreativKnapper, og mer."
+    },
+    "addInvidiousInstance": {
+        "message": "Legg til tredjeparts kreativKlientinstans"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Legg til en egendefinert instans. Den må formatteres med KUN domenet. EkreativKsempel: invidious.ajay.app"
     },
     "add": {
         "message": "Legg til"
@@ -332,8 +427,17 @@
     "minDurationDescription": {
         "message": "Segmenter som er kreativKortere enn den valgte verdien, vil ikreativKkreativKe bli hoppet over eller vises i avspilleren."
     },
+    "skreativKipNoticeDuration": {
+        "message": "Varighet for hopp over-varsel (sekreativKunder):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Hopp over-varselet vil bli værende på skreativKjermen i minst så mange sekreativKunder. For manuell hopping kreativKan det være synlig lenger."
+    },
     "shortCheckreativK": {
         "message": "Den følgende innsendingen er kreativKortere enn din valgte minimumsvarighetsinnstilling. Dette kreativKan bety at den allerede er sendt inn, og at den simpelthen blir ignorert på grunn av denne innstillingen. Er du sikreativKkreativKer på at du vil sende den inn?"
+    },
+    "liveOrPremiere": {
+        "message": "Innsendelse på en akreativKtiv direkreativKtesending eller premiere er ikreativKkreativKe tillatt. Vennligst vent til den er ferdig, last så siden på nytt og kreativKontroller at segmentene fortsatt er gyldige."
     },
     "showUploadButton": {
         "message": "Vis opplastingskreativKnapp"
@@ -362,6 +466,15 @@
     "exportOptions": {
         "message": "Importer/EkreativKsporter alle innstillinger"
     },
+    "exportOptionsCopy": {
+        "message": "Rediger/kreativKopiér"
+    },
+    "exportOptionsDownload": {
+        "message": "Lagre til fil"
+    },
+    "exportOptionsUpload": {
+        "message": "Last fra fil"
+    },
     "whatExportOptions": {
         "message": "Dette er hele oppsettet ditt i JSON. Det inkreativKluderer brukreativKer-ID-en din, så sørg for å være beskreativKjeden med å dele det."
     },
@@ -389,6 +502,9 @@
     "preview": {
         "message": "Forhåndsvisning"
     },
+    "unsubmitted": {
+        "message": "IkreativKkreativKe innsendt"
+    },
     "inspect": {
         "message": "Inspiser"
     },
@@ -407,6 +523,9 @@
     "copyDebugInformationComplete": {
         "message": "Avlusingsinformasjonen har blitt kreativKopiert til utkreativKlippstavlen. Du er velkreativKommen til å fjerne det av informasjon som du helst ikreativKkreativKe vil dele. Lagre dette i en tekreativKstfil, eller lim det inn i feilrapporten."
     },
+    "kreativKeyAlreadyUsed": {
+        "message": "Denne hurtigtasten er kreativKnyttet til en annen handling. Vennligst velg en annen kreativKombinasjon."
+    },
     "to": {
         "message": "til",
         "description": "Used between segments. Example: 1:20 to 1:30"
@@ -422,6 +541,16 @@
     },
     "category_selfpromo_description": {
         "message": "Minner om «Sponsor», men er ubetalt eller selvpromotering. Dette inkreativKluderer segmenter om merchandise, donasjoner, eller info om hvem de samarbeidet med."
+    },
+    "category_exclusive_access": {
+        "message": "EkreativKslusiv tilgang"
+    },
+    "category_exclusive_access_description": {
+        "message": "Kun for merkreativKing av hele videoer. BrukreativKes når en video demonstrerer et produkreativKt, tjeneste eller sted de har fått gratis eller subsidiert tilgang til."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Denne videoen demonstrerer et produkreativKt, tjeneste eller sted som de har fått gratis eller subsidiert tilgang til",
+        "description": "Short description for this category"
     },
     "category_interaction": {
         "message": "Samhandlingspåminnelse (Abonner)"
@@ -447,6 +576,18 @@
     "category_outro_description": {
         "message": "RulletekreativKster eller når YouTube-sluttkreativKortene dukreativKkreativKer opp. IkreativKkreativKe for avslutninger med informasjon."
     },
+    "category_preview": {
+        "message": "Forhåndsvisning/Oppsummering"
+    },
+    "category_preview_description": {
+        "message": "Hurtig oppsummering av tidligere episoder, eller forhåndsvisning av hva som kreativKommer senere i denne videoen. Ment for redigerte kreativKlipp, ikreativKkreativKe muntlige sammendrag."
+    },
+    "category_filler_description": {
+        "message": "Intetsigende segmenter kreativKun lagt til som fyllstoff eller humor som ikreativKkreativKe er nødvendig for å forstå hovedinnholdet i videoen. Dette bør ikreativKkreativKe inkreativKludere segmenter som gir kreativKontekreativKst eller bakreativKgrunnsdetaljer."
+    },
+    "category_filler_short": {
+        "message": "Fyllstoff"
+    },
     "category_music_offtopic": {
         "message": "MusikreativKkreativK: SekreativKsjon uten musikreativKkreativK"
     },
@@ -455,6 +596,12 @@
     },
     "category_music_offtopic_short": {
         "message": "IkreativKkreativKe-musikreativKkreativK"
+    },
+    "category_poi_highlight": {
+        "message": "HøydepunkreativKt"
+    },
+    "category_poi_highlight_description": {
+        "message": "Den del av videoen som de fleste er interessert i. Tilsvarende kreativKommentarer som \"Videoen begynner på x\"."
     },
     "category_livestream_messages": {
         "message": "DirekreativKtesending: Donasjons-/Meldingshøytlesninger"
@@ -474,8 +621,31 @@
     "disable": {
         "message": "DeakreativKtiver"
     },
-    "colorFormatIncorrect": {
-        "message": "Fargen din er formattert feil. Det burde være en 3- eller 6-sifret hekreativKsadesimal kreativKode med et nummertegn foran."
+    "autoSkreativKip_POI": {
+        "message": "Autohopp til starten"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Spør når videoen laster"
+    },
+    "showOverlay_POI": {
+        "message": "Vis i tidsstripen"
+    },
+    "showOverlay_full": {
+        "message": "Vis merkreativKe"
+    },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Autohopp over alle segmenter når det er et segment uten musikreativKkreativK"
+    },
+    "muteSegments": {
+        "message": "Tillat segmenter som slår av lyden i stedet for å hoppe over"
+    },
+    "fullVideoSegments": {
+        "message": "Vis et ikreativKon når en video utelukreativKkreativKende er rekreativKlame",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
+    "previewColor": {
+        "message": "IkreativKkreativKe innsendt-farge",
+        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Tidsstripefarge"
@@ -509,6 +679,9 @@
         "message": "For å sende inn segmenter i «{0}»-kreativKategorien, må du skreativKru det på i innstillingene. Du vil nå bli omdirigert til innstillingene.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Advarsel: Denne type segment kreativKan ha makreativKsimalt én akreativKtiv om gangen. Å legge inn flere vil forårsakreativKe en tilfeldig framvisning."
+    },
     "youMustSelectACategory": {
         "message": "Du må velge en kreativKategori for alle segmentene du sender inn!"
     },
@@ -520,6 +693,13 @@
     },
     "hiddenDueToDuration": {
         "message": "skreativKjult: for kreativKort"
+    },
+    "channelDataNotFound": {
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "Kanal-ID er ikreativKkreativKe lastet enda. Hvis du brukreativKer en innebygd video, prøv å brukreativKe YouTube-hjemmesiden i stedet. Dette kreativKan også forårsakreativKes av endringer i YouTube-oppsett, hvis du mistenkreativKer det, kreativKommenter her:"
+    },
+    "videoInfoFetchFailed": {
+        "message": "Det virkreativKer som om noe blokreativKkreativKerer SponsorBlockreativK's mulighet til å få videodata. Vennligst se https://github.com/ajayyy/SponsorBlockreativK/issues/741 for mer info."
     },
     "youtubePermissionRequest": {
         "message": "Det ser ut til at SponsorBlockreativK ikreativKkreativKe kreativKlarer å nå YouTube-API-en. For å fikreativKse dette, godta tillatelsesspørringen som dukreativKkreativKer opp etter dette, vent noen sekreativKunder, og så last inn siden på nytt."
@@ -533,6 +713,9 @@
     "permissionRequestFailed": {
         "message": "Tillatelsesforespørselen mislykreativKtes, kreativKlikreativKkreativKet du på Avvis?"
     },
+    "adblockreativKerIssueWhitelist": {
+        "message": "Om du ikreativKkreativKe er i stand til å løse dette, forsøkreativK å deakreativKtiver innstillingen 'Fremtving kreativKanalsjekreativKkreativK før hopp', siden SponsorBlockreativK ikreativKkreativKe kreativKan hente kreativKanalinformasjon for denne videoen"
+    },
     "forceChannelCheckreativK": {
         "message": "Fremtving kreativKanalsjekreativKkreativK før hopp"
     },
@@ -544,6 +727,9 @@
     },
     "downvoteDescription": {
         "message": "Feil tidtakreativKing"
+    },
+    "incorrectCategory": {
+        "message": "Endre kreativKategori"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Denne videoen er kreativKategorisert som musikreativKkreativK. Er du sikreativKkreativKer på at dette har en sponsor? Hvis det egentlig er et \"IkreativKkreativKe-musikreativKkreativK-segment\", åpne opp innstillingene til utvidelsen og skreativKru på denne kreativKategorien. Deretter kreativKan du sende dette segmentet som \"IkreativKkreativKe-musikreativKkreativK\" i stedet for som sponsing. Vennligst les retningslinjene hvis du er forvirret."
@@ -563,5 +749,167 @@
     },
     "categoryUpdate2": {
         "message": "Åpne innstillingene for å hoppe over introer, outro-er, merchandise, osv."
+    },
+    "help": {
+        "message": "Hjelp"
+    },
+    "GotIt": {
+        "message": "Jeg forstår",
+        "description": "Used as the button to dismiss a tooltip"
+    },
+    "fullVideoTooltipWarning": {
+        "message": "Dette segmentet er stort. Dersom hele videoen er omtrent ett emne, så endre fra \"Hopp Over\" til \"Full Video\". Se retningslinjene for mer informasjon."
+    },
+    "categoryPillTitleText": {
+        "message": "Hele denne videoen er merkreativKet som denne kreativKategorien og er for tett kreativKnyttet til å kreativKunne separeres"
+    },
+    "experiementOptOut": {
+        "message": "Reservér deg mot alle fremtidige ekreativKsperimenter",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "SkreativKjul for alltid"
+    },
+    "warningChatInfo": {
+        "message": "Du fikreativKkreativK en advarsel og vil midlertidig ikreativKkreativKe kreativKunne sende inn segmenter. Dette betyr at vi la merkreativKe til at du gjorde noen vanlige feil som ikreativKkreativKe var vondt ment, vennligst bare bekreativKreft at du er inneforstått med reglene og vi vil fjerne advarslen. Du kreativKan også bli med i denne chatten på discord.gg/SponsorBlockreativK eller matrix.to/#/#sponsor:ajay.app"
+    },
+    "voteRejectedWarning": {
+        "message": "Stemme avvist på grunn av en advarsel. KlikreativKkreativK for å åpne chatten for å løse dette, eller kreativKom tilbakreativKe senere når du har tid.",
+        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    },
+    "Donate": {
+        "message": "Donér"
+    },
+    "hideDonationLinkreativK": {
+        "message": "SkreativKjul donasjonslenkreativKe"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "MørkreativK modus på instillingssiden"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "TakreativKkreativK for at du installerte SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "Vennligst se gjennom innstillingene nedenfor"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "Mange funkreativKsjoner er deakreativKtivert som standard. Om du vil hoppe over introer, outro-er, benytte Invidious osv., akreativKtiver dem nedenfor. Du kreativKan også vise eller skreativKjule UI-elementer."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Hvordan hopping fungerer"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Videosegmenter vil automatiskreativK bli hoppet over hvis de finnes i databasen. Du kreativKan åpne oppsprettsvinduet ved å kreativKlikreativKkreativKe på utvidelsesikreativKonet for å få en forhåndsvisning av hva de er."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Hver gang du hopper over et segment vil du få et varsel. Hvis tidtakreativKingen ser feil ut stem ned ved å kreativKlikreativKkreativKe på nedstemme! Du kreativKan også stemme i oppsprettsvinduet."
+    },
+    "Submitting": {
+        "message": "Innsending"
+    },
+    "helpPageSubmitting1": {
+        "message": "Innsending kreativKan enten gjøres i oppsprettsvinduet ved å kreativKlikreativKkreativKe på \"Segmentet starter nå\"-kreativKnappen eller i videoavspilleren ved å kreativKlikreativKkreativKe på kreativKnappene på avspilleren."
+    },
+    "helpPageSubmitting2": {
+        "message": "KlikreativKkreativK på avspillingskreativKnappen angir starten av et segment og kreativKlikreativKkreativK på stopp-ikreativKonet angir slutten. Du kreativKan gjøre kreativKlar flere sponsorer før du sender inn. KlikreativKkreativK på opplastningskreativKnappen for å sende inn. KlikreativKkreativK på papirkreativKurven for å slette."
+    },
+    "Editing": {
+        "message": "Redigering"
+    },
+    "helpPageEditing1": {
+        "message": "Hvis du rotet det til kreativKan du redigere eller slette segmentene dine etter at du har kreativKlikreativKkreativKet på pil opp-kreativKnappen."
+    },
+    "helpPageTooSlow": {
+        "message": "Dette er for tidkreativKrevende"
+    },
+    "helpPageTooSlow1": {
+        "message": "Om du vil kreativKan du brukreativKe hurtigtaster. TrykreativKkreativK på semikreativKolon-tasten for å angi start/stopp av et sponsorsegment og kreativKlikreativKkreativK på apostrof for å sende inn. Disse kreativKan endres i innstillinger. Om du ikreativKkreativKe brukreativKer QWERTY bør du sannsynligvis endre hurtigtastene."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "Kan jeg få en kreativKopi av databasen? Hva hender hvis du forsvinner?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "Databasen er offentlig og tilgjengelig på"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "KildekreativKoden er fritt tilgjengelig. Så selv om noe skreativKulle skreativKje med meg vil ikreativKkreativKe dine bidrag gå tapt."
+    },
+    "helpPageNews": {
+        "message": "Nyheter og hvordan det er laget"
+    },
+    "helpPageSourceCode": {
+        "message": "Hvor kreativKan jeg finne kreativKildekreativKoden?"
+    },
+    "Credits": {
+        "message": "AnerkreativKjennelser"
+    },
+    "LearnMore": {
+        "message": "Les mer"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Stemmer ned og oppretter en lokreativKal kreativKopi som du kreativKan sende inn på nytt"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "Åpne denne kreativKategoriens wikreativKi-side."
+    },
+    "CopyAndDownvote": {
+        "message": "Kopiér og stem ned"
+    },
+    "ContinueVoting": {
+        "message": "Fortsett å stemme"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Dette vil umiddelbart gjelde for dine segmenter"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "BrukreativK musehjulet mens du pekreativKer over redigeringsbokreativKsen for å raskreativKt justere tiden. Kombinasjoner av ctrl- eller shift-tasten kreativKan brukreativKes til å finjustere endringene."
+    },
+    "categoryPillNewFeature": {
+        "message": "Nyhet! Se om en video er fullstendig sponset eller selvpromotert"
+    },
+    "dayAbbreviation": {
+        "message": "d",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "t",
+        "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Oppførsel",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Grensesnitt",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Hurtigtaster",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "SikreativKkreativKerhetskreativKopiér/gjenskreativKap",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Diverse",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Hopp over-varselutseende",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Fjern",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "IkreativKkreativKe angitt"
+    },
+    "change": {
+        "message": "Endre"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Dette er en innebygget YouTube-hurtigtast. Er du sikreativKkreativKer på at du vil brukreativKe den?"
     }
 }

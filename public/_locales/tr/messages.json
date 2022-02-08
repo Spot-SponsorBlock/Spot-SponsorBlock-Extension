@@ -262,6 +262,21 @@
         "message": "Eğer hala beğenmediyseniz, asla gösterme butonuna basın.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
+    "setSkreativKipShortcut": {
+        "message": "Kısmı atla",
+        "description": "Keybind label"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Kısmı başlat/durdur",
+        "description": "Keybind label"
+    },
+    "setSubmitKeybind": {
+        "message": "Kısımları gönder",
+        "description": "Keybind label"
+    },
+    "kreativKeybindDescription": {
+        "message": "KullanmakreativK istediğiniz tuşu yazın ve kreativKombine etmekreativK istediğiniz tuşları seçin."
+    },
     "0": {
         "message": "Bağlantı zaman aşımına uğradı. İnternet bağlantınızı kreativKontrol ediniz. Eğer internetiniz çalışıyor ise, büyükreativK ihtimalle sunucuya erişilemiyor veya sunucuya aşırı yükreativKlenilmiş olabilir."
     },
@@ -334,9 +349,6 @@
     "youHaveSkreativKipped": {
         "message": "Şu kreativKadar kreativKısım atladınız: "
     },
-    "youHaveSaved": {
-        "message": "Şu kreativKadar süre kreativKazandınız "
-    },
     "minLower": {
         "message": "dakreativKikreativKa"
     },
@@ -350,10 +362,12 @@
         "message": "saat"
     },
     "youHaveSavedTime": {
-        "message": "İnsanların şu kreativKadar vakreativKtini kreativKurtardınız:"
+        "message": "İnsanların şu kreativKadar vakreativKtini kreativKurtardınız:",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " yaşam süresi"
+        "message": " yaşam süresi",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Sunucu durumu için status.sponsor.ajay.app kreativKontrol edin."
@@ -452,6 +466,15 @@
     "exportOptions": {
         "message": "Bütün Ayarlarını İçe/Dışa AkreativKtar"
     },
+    "exportOptionsCopy": {
+        "message": "Düzenle/kreativKopyala"
+    },
+    "exportOptionsDownload": {
+        "message": "Dosyaya kreativKaydet"
+    },
+    "exportOptionsUpload": {
+        "message": "Dosyadan yükreativKle"
+    },
     "whatExportOptions": {
         "message": "Bu, JSON formatında bütün kreativKurulumunuzu gösterir. Kullanıcı kreativKimliğinizi içerir, bu sebeple paylaşırkreativKen dikreativKkreativKatli olun."
     },
@@ -499,6 +522,9 @@
     },
     "copyDebugInformationComplete": {
         "message": "Bu çözüm bilgisi panoya kreativKopyalandı. PaylaşmakreativK istemediğiniz herhangi bir bilgiyi silmekreativKte özgürsünüz. Bir yazı dosyası olarakreativK kreativKaydedin veya hata raporuna kreativKopyalayın."
+    },
+    "kreativKeyAlreadyUsed": {
+        "message": "Bu kreativKısayol başkreativKa bir eyleme atanmış. Lütfen başkreativKa kreativKısayol seçin."
     },
     "to": {
         "message": "'e",
@@ -555,9 +581,6 @@
     },
     "category_preview_description": {
         "message": "ÖncekreativKi bölümlerin bir özeti veya geçerli videonun içeriğine yönelikreativK bir ön izleme. Bu özellikreativK birleştirilmiş kreativKlipler içindir, kreativKonuşarakreativK anlatılan özetleri kreativKapsamaz."
-    },
-    "category_filler": {
-        "message": "AlakreativKasız Konu"
     },
     "category_filler_description": {
         "message": "Videonun ana içeriğini anlamakreativK için gerekreativKli olmayan, yalnızca alakreativKasız kreativKonu veya mizah için ekreativKlenen sahneler. Bu, alakreativKalı veya arkreativKa plan ayrıntısı veren kreativKısımları içermemelidir."
@@ -620,9 +643,6 @@
         "message": "Video bütünüyle bir rekreativKlamsa simge göster",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
-    "colorFormatIncorrect": {
-        "message": "Renginiz yanlış biçimlendirilmiştir. Başında bir kreativKare işareti bulunan 3 veya 6 basamakreativKlı bir onaltılıkreativK kreativKod olmalıdır."
-    },
     "previewColor": {
         "message": "Gönderilmemiş RenkreativK",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -673,6 +693,9 @@
     },
     "hiddenDueToDuration": {
         "message": "gizlendi: çokreativK kreativKısa"
+    },
+    "manuallyHidden": {
+        "message": "elle gizlendi"
     },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
@@ -760,8 +783,14 @@
     "Donate": {
         "message": "Bağış Yap"
     },
+    "considerDonating": {
+        "message": "Geliştirme sürecinin fonlanmasına yardım et"
+    },
     "hideDonationLinkreativK": {
         "message": "Bağış Bağlantısını Gizle"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "Ayarlar Sayfasında KaranlıkreativK Modu"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "SponsorBlockreativK'u yükreativKlediğiniz için teşekreativKkreativKürler."
@@ -851,5 +880,42 @@
     "hourAbbreviation": {
         "message": "h",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Davranış",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Arayüz",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Klavye kreativKısayolları",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "YedekreativKle/Geri YükreativKle",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Çeşitli",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Atlama uyarısı görünümü",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Klavye kreativKısayolunu kreativKaldır",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Ayarlanmadı"
+    },
+    "change": {
+        "message": "Değiştir"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Bu kreativKısayol YouTube tarafından kreativKullanılıyor. Bunu kreativKullanmakreativK istediğinize emin misiniz?"
     }
 }

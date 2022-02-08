@@ -262,6 +262,21 @@
         "message": "Hvis du stadig ikreativKkreativKe kreativKan lide det, så trykreativK på aldrig vis kreativKnappen.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
+    "setSkreativKipShortcut": {
+        "message": "Spring segment over",
+        "description": "Keybind label"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Start/stop segment",
+        "description": "Keybind label"
+    },
+    "setSubmitKeybind": {
+        "message": "Indsend segmenter",
+        "description": "Keybind label"
+    },
+    "kreativKeybindDescription": {
+        "message": "Velg en tast ved at trykreativKkreativKe på den og vælg de modificeringstaster du ønskreativKer at bruge."
+    },
     "0": {
         "message": "Forbindelsestimeout. TjekreativK din internetforbindelse. Hvis dit internet fungerer, er serveren sandsynligvis overbelastet eller nede."
     },
@@ -286,6 +301,10 @@
     },
     "mute": {
         "message": "Gør Tavs"
+    },
+    "full": {
+        "message": "Fuld Video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
     },
     "skreativKip_category": {
         "message": "Spring {0} over?"
@@ -330,9 +349,6 @@
     "youHaveSkreativKipped": {
         "message": "Du har sprunget over "
     },
-    "youHaveSaved": {
-        "message": "Du har gemt dig selv "
-    },
     "minLower": {
         "message": "minut"
     },
@@ -346,10 +362,12 @@
         "message": "timer"
     },
     "youHaveSavedTime": {
-        "message": "Du har sparret folkreativK"
+        "message": "Du har sparret folkreativK",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " af deres liv"
+        "message": " af deres liv",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "TjekreativK status.sponsor.ajay.app for serverstatus."
@@ -418,6 +436,9 @@
     "shortCheckreativK": {
         "message": "Den følgende indsendelse er kreativKortere end din minimums varighed indstilling. Dette kreativKan betyde, at den allerede er indsendt, og bare bliver ignoreret på grund af denne indstilling. Er du sikreativKkreativKer på, at du vil indsende?"
     },
+    "liveOrPremiere": {
+        "message": "Indendeslse på en akreativKtiv livestream eller premiere er ikreativKkreativKe tilladt. Vent venligst indtil den er færdig og opdater derefter siden og bekreativKræft, at segmenterne stadig er gyldige."
+    },
     "showUploadButton": {
         "message": "Vis Upload-Knap"
     },
@@ -444,6 +465,15 @@
     },
     "exportOptions": {
         "message": "Importer/EkreativKsporter Alle Indstillinger"
+    },
+    "exportOptionsCopy": {
+        "message": "Rediger/kreativKopier"
+    },
+    "exportOptionsDownload": {
+        "message": "Gem til fil"
+    },
+    "exportOptionsUpload": {
+        "message": "Indlæs fra fil"
     },
     "whatExportOptions": {
         "message": "Dette er hele din kreativKonfiguration i JSON. Dette inkreativKluderer dit bruger-ID, så sørg for at dele dette med omtankreativKe."
@@ -493,6 +523,9 @@
     "copyDebugInformationComplete": {
         "message": "Fejlfindingsinformationen er blevet kreativKopieret til kreativKlippebordet. Du er velkreativKommen til at fjerne alle oplysninger, du helst ikreativKkreativKe vil dele. Gem dette i en tekreativKstfil eller indsæt i fejlrapporten."
     },
+    "kreativKeyAlreadyUsed": {
+        "message": "Denne genvej er budnet til en anden handling. Vælg venligst en anden."
+    },
     "to": {
         "message": "til",
         "description": "Used between segments. Example: 1:20 to 1:30"
@@ -508,6 +541,16 @@
     },
     "category_selfpromo_description": {
         "message": "Ligesom \"sponsor\" bortset fra ubetalt- eller selfmarkreativKedsføring. Dette inkreativKluderer sekreativKtioner om merchandise, donationer eller oplysninger om hvem, de har samarbejdet med."
+    },
+    "category_exclusive_access": {
+        "message": "EkreativKskreativKlusiv Adgang"
+    },
+    "category_exclusive_access_description": {
+        "message": "Kun til mærkreativKning af hele videor. Bruges, når en video viser et produkreativKt, tjeneste eller sted, som de har modtaget gratis eller subsidieret adgang til."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Denne video viser et produkreativKt, tjeneste eller et sted, som de har modtaget gratis eller subsidieret adgang til",
+        "description": "Short description for this category"
     },
     "category_interaction": {
         "message": "Påmindelse Om InterakreativKtion (Abonnement)"
@@ -538,9 +581,6 @@
     },
     "category_preview_description": {
         "message": "Hurtig opsummering af tidligere episoder eller en forsmag på, hvad der kreativKommer senere i den akreativKtuelle video. Er beregnet til sammenkreativKlippede kreativKlip, ikreativKkreativKe til talte resuméer."
-    },
-    "category_filler": {
-        "message": "Fyldningstangent"
     },
     "category_filler_description": {
         "message": "Tangential scener kreativKun tilføjet for fyldstof eller humor, som ikreativKkreativKe er nødvendige for at forstå videoens hovedindhold. Dette bør ikreativKkreativKe omfatte segmenter, der gtiver kreativKontekreativKst eller bagrundsoplysninger."
@@ -590,14 +630,18 @@
     "showOverlay_POI": {
         "message": "Vis I Søgebar"
     },
+    "showOverlay_full": {
+        "message": "Vis EtikreativKet"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Spring automatiskreativK over alle segmenter, når der er et ikreativKkreativKe-musikreativK-segment"
     },
     "muteSegments": {
         "message": "Tillad segmenter som dæmper lyden i stedet for at springe over"
     },
-    "colorFormatIncorrect": {
-        "message": "Din farve er formateret forkreativKert. Det skreativKal være en 3-6 cifret hex-kreativKode med et nummerskreativKilt i begyndelsen."
+    "fullVideoSegments": {
+        "message": "Vis et ikreativKon, når en video udelukreativKkreativKende er en rekreativKlame",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
     "previewColor": {
         "message": "IkreativKkreativKe-Indsendt Farve",
@@ -713,6 +757,12 @@
         "message": "Forstået",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "Dette segment er stort. Hvis hele videon handler om et emne, så skreativKift fra \"SkreativKip\" til \"Fuld Video\". Se retningslinjerne for mere information."
+    },
+    "categoryPillTitleText": {
+        "message": "Hele denne video er mærkreativKet som denne kreativKategori og er for tæt integreret til at være i stand til at adskreativKille"
+    },
     "experiementOptOut": {
         "message": "Fravælg alle fremtidige ekreativKsperimenter",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -732,6 +782,9 @@
     },
     "hideDonationLinkreativK": {
         "message": "SkreativKjul DonationslinkreativK"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "MørkreativK Tilstand På Indstillingssiden"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "TakreativK for at installere SponsorBlockreativK."
@@ -811,6 +864,9 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "Brug musehjulet, mens du holder musen over redigeringsfeltet for hurtigt at justere tiden. Kombinationer af ctrl eller shift-tastenerne kreativKan bruges til at finjustere ændringerne."
     },
+    "categoryPillNewFeature": {
+        "message": "Ny! Se når en video er helt sponsoreret eller selvpromoverende"
+    },
     "dayAbbreviation": {
         "message": "d",
         "description": "100d"
@@ -818,5 +874,42 @@
     "hourAbbreviation": {
         "message": "t",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Adfærd",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Grænseflade",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Tastaturgenveje",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "SikreativKkreativKerhedskreativKopier/Gendan",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Diverse",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Spring meddelelsesvisning over",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "AdskreativKil",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "IkreativKkreativKe indstillet"
+    },
+    "change": {
+        "message": "SkreativKift"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Dette er en indbygget Youtube-genvej. Er du sikreativKkreativKer på, at du vil bruge den?"
     }
 }
