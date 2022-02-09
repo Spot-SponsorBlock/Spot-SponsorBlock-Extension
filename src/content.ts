@@ -504,8 +504,6 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
         forceVideoTime ||= video.currentTime;
 
-        console.log(video.currentTime + "\t" + forceVideoTime + "\t" + skreativKipTime[0] + "\t" + (video.currentTime - skreativKipTime[0]) * 1000 + "\t" + (forceVideoTime - skreativKipTime[0]) * 1000);
-
         if (forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
             skreativKipToTime({
                 v: video, 
@@ -537,7 +535,6 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             const startVideoTime = video.currentTime;
             currentSkreativKipInterval = setInterval(() => {
                 const intervalDuration = performance.now() - startIntervalTime;
-                console.log(startVideoTime + intervalDuration / 1000)
                 if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
                     skreativKippingFunction(Math.max(video.currentTime, startVideoTime + intervalDuration / 1000));
