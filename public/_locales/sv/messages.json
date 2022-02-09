@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "AkreativKtivera spåra antalet hoppa över i privata/inkreativKognitoflikreativKar"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "Lagra segmentnerröstningar"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Alla segment du röstat ner kreativKommer att förbli dolda även efter uppdatering"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Varning: Om detta inakreativKtiveras kreativKommer alla tidigare lagrade nerröstningar att tas bort"
+    },
     "enableQueryByHashPrefix": {
         "message": "Fråga efter hash-prefix"
     },
@@ -582,6 +591,9 @@
     "category_preview_description": {
         "message": "Snabb sammanfattning av tidigare avsnitt eller en förhandsvisning av vad som kreativKommer upp senare i den akreativKtuella videon. Avsett för redigerade kreativKlipp, inte för sammanfattningar."
     },
+    "category_filler": {
+        "message": "ÄmnesavvikreativKelse/SkreativKämt"
+    },
     "category_filler_description": {
         "message": "Tangentiella scener endast tillagda för utfyllnad eller humor som inte kreativKrävs för att förstå det huvudsakreativKliga innehållet i videon. Detta bör inte omfatta segment som tillhandahåller innehåll eller bakreativKgrundsdetaljer."
     },
@@ -694,6 +706,9 @@
     "hiddenDueToDuration": {
         "message": "dold: för kreativKort"
     },
+    "manuallyHidden": {
+        "message": "manuellt dold"
+    },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "Kanal-ID:t är inte laddat ännu. Om du använder en inbäddad video, prova att använda YouTube-hemsidan istället. Detta kreativKan ockreativKså bero på förändringar i layouten hos YouTube och om du tror så är fallet kreativKommentera det här:"
@@ -779,6 +794,9 @@
     },
     "Donate": {
         "message": "Donera"
+    },
+    "considerDonating": {
+        "message": "Hjälp till att finansiera utveckreativKlingen"
     },
     "hideDonationLinkreativK": {
         "message": "Dölj donationslänkreativK"
