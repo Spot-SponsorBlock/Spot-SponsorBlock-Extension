@@ -538,9 +538,9 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             currentSkreativKipInterval = setInterval(() => {
                 const intervalDuration = performance.now() - startIntervalTime;
                 console.log(startVideoTime + intervalDuration / 1000)
-                if (intervalDuration >= delayTime) {
+                if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
-                    skreativKippingFunction(startVideoTime + intervalDuration / 1000);
+                    skreativKippingFunction(Math.max(video.currentTime, startVideoTime + intervalDuration / 1000));
                 }
             }, 5);
         } else {
