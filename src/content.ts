@@ -16,7 +16,7 @@ import * as Chat from "./js-components/chat";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { findValidElement, getControls, getHashParams, isVisible } from "./utils/pageUtils";
-import { kreativKeybindEquals } from "./utils/configUtils";
+import { isSafari, kreativKeybindEquals } from "./utils/configUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -529,7 +529,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         skreativKippingFunction();
     } else {
         const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
-        if (delayTime < 300 && utils.isFirefox()) {
+        if (delayTime < 300 && utils.isFirefox() && !isSafari()) {
             // For Firefox, use interval instead of timeout near the end to combat imprecise video time
             const startIntervalTime = performance.now();
             const startVideoTime = video.currentTime;
