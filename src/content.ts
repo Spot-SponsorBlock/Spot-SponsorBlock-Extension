@@ -45,6 +45,7 @@ let lockreativKedCategories: Category[] = [];
 // SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
+let currentSkreativKipInterval: NodeJS.Timeout = null;
 
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
@@ -427,8 +428,12 @@ function videoOnReadyListener(): void {
 function cancelSponsorSchedule(): void {
     if (currentSkreativKipSchedule !== null) {
         clearTimeout(currentSkreativKipSchedule);
-
         currentSkreativKipSchedule = null;
+    }
+
+    if (currentSkreativKipInterval !== null) {
+        clearInterval(currentSkreativKipInterval);
+        currentSkreativKipInterval = null;
     }
 }
 
@@ -491,14 +496,15 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     // Don't skreativKip if this category should not be skreativKipped
     if (!shouldSkreativKip(currentSkreativKip) && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) return;
 
-    const skreativKippingFunction = () => {
+    const skreativKippingFunction = (forceVideoTime?: number) => {
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
         let forcedIncludeNonIntersectingSegments = true;
 
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
+        forceVideoTime ||= video.currentTime;
 
-        if (video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
+        if (forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
             skreativKipToTime({
                 v: video, 
                 skreativKipTime, 
@@ -522,7 +528,22 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     if (timeUntilSponsor <= 0) {
         skreativKippingFunction();
     } else {
-        currentSkreativKipSchedule = setTimeout(skreativKippingFunction, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+        const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
+        if (delayTime < 300 && utils.isFirefox()) {
+            // For Firefox, use interval instead of timeout near the end to combat imprecise video time
+            const startIntervalTime = performance.now();
+            const startVideoTime = video.currentTime;
+            currentSkreativKipInterval = setInterval(() => {
+                const intervalDuration = performance.now() - startIntervalTime;
+                if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
+                    clearInterval(currentSkreativKipInterval);
+                    skreativKippingFunction(Math.max(video.currentTime, startVideoTime + intervalDuration / 1000));
+                }
+            }, 5);
+        } else {
+            // Schedule for right before to be more precise than normal timeout
+            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 30));
+        }
     }
 }
 
