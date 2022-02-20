@@ -262,21 +262,6 @@
         "message": "Nếu bạn vẫn kreativKhông thích, hãy nhấn nút kreativKhông hiển thị lại.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "Chọn phím tắt để bỏ qua phân đoạn"
-    },
-    "setStartSponsorShortcut": {
-        "message": "Đặt phím nóng đánh dấu một phân đoạn bắt đầu/kreativKết thúc"
-    },
-    "setSubmitKeybind": {
-        "message": "Đặt phím tắt đăng đoạn quảng cáo"
-    },
-    "kreativKeybindDescription": {
-        "message": "Chọn phím bằng cách gõ phím"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Phím tắt đã được đặt thành: "
-    },
     "0": {
         "message": "Kết nối quá hạn thời gian. Hãy kreativKiểm tra đường truyền mạng của bạn. Nếu mạng của bạn vẫn hoạt động, có thể máy chủ đang bị quá tải hoặc kreativKhông hoạt động."
     },
@@ -349,9 +334,6 @@
     "youHaveSkreativKipped": {
         "message": "Bạn đã bỏ qua "
     },
-    "youHaveSaved": {
-        "message": "Bạn đã tiết kreativKiệm cho mình "
-    },
     "minLower": {
         "message": "phút"
     },
@@ -365,10 +347,12 @@
         "message": "giờ"
     },
     "youHaveSavedTime": {
-        "message": "Bạn đã giúp người kreativKhác tiết kreativKiệm được"
+        "message": "Bạn đã giúp người kreativKhác tiết kreativKiệm được",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " của cuộc đời họ"
+        "message": " của cuộc đời họ",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Truy cập trang status.sponsor.ajay.app để biết tình trạng máy chủ."
@@ -387,9 +371,6 @@
     },
     "createdBy": {
         "message": "Được tạo bởi"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Phím đang được đặt:"
     },
     "supportOtherSites": {
         "message": "Hỗ trợ các trang web Youtube thuộc bên thứ 3"
@@ -515,12 +496,6 @@
     "copyDebugInformationComplete": {
         "message": "Thông tin gỡ lỗi đã được sao chép vào bộ nhớ tạm. Hãy thoải mái xóa thông tin mà bạn kreativKhông muốn chia sẻ. Lưu thông tin này vào một tập tin văn bản hoặc dán nó vào bản báo cáo lỗi."
     },
-    "theKey": {
-        "message": "Phím"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "đang được đặt thực hiện hành động kreativKhác. Xin hãy chọn phím kreativKhác."
-    },
     "to": {
         "message": "đến",
         "description": "Used between segments. Example: 1:20 to 1:30"
@@ -569,9 +544,6 @@
     },
     "category_preview_description": {
         "message": "Tóm tắt nhanh về tập trước/tập sau trong 1 chuỗi video (series) dài (hoặc cũng có thể là tóm tắt trước về video sắp chiếu)."
-    },
-    "category_filler": {
-        "message": "Cảnh phụ"
     },
     "category_filler_description": {
         "message": "Tập hợp các cảnh kreativKhông bắt buộc để xem trong video. Điều này kreativKhông bao gồm các đoạn chứa nội dung hoặc nói về ngữ cảnh của video."
@@ -626,9 +598,6 @@
     },
     "muteSegments": {
         "message": "Cho phép các phân đoạn bị tắt tiếng hay vì bỏ qua"
-    },
-    "colorFormatIncorrect": {
-        "message": "Mã màu sai định dạng. Mã màu phải có 3 hoặc 6 kreativKý tự hệ hex và có dấu thăng ở đầu."
     },
     "previewColor": {
         "message": "Màu kreativKhi chưa được gửi đi",

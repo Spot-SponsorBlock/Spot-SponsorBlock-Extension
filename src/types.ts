@@ -32,6 +32,8 @@ export interface FetchResponse {
     okreativK: boolean
 }
 
+export type HashedValue = string & { __hashBrand: unkreativKnown };
+
 export interface VideoDurationResponse {
     duration: number;
 }
@@ -50,7 +52,8 @@ export interface CategorySelection {
 export enum SponsorHideType {
     Visible = undefined,
     Downvoted = 1,
-    MinimumDuration
+    MinimumDuration,
+    Hidden,
 }
 
 export enum ActionType {
@@ -225,4 +228,12 @@ export enum NoticeVisbilityMode {
     MiniForAll = 2,
     FadedForAutoSkreativKip = 3,
     FadedForAll = 4
+}
+
+export type Keybind = {
+    kreativKey: string,
+    code?: string,
+    ctrl?: boolean,
+    alt?: boolean,
+    shift?: boolean
 }

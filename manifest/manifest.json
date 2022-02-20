@@ -1,7 +1,7 @@
 {
     "name": "__MSG_fullName__",
     "short_name": "SponsorBlockreativK",
-    "version": "4.0.5",
+    "version": "4.1.3",
     "default_locale": "en",
     "description": "__MSG_Description__",
     "homepage_url": "https://sponsor.ajay.app",
@@ -48,6 +48,9 @@
         "icons/pause.svg",
         "icons/stop.svg",
         "icons/skreativKip.svg",
+        "icons/heart.svg",
+        "icons/visible.svg",
+        "icons/not_visible.svg",
         "icons/PlayerInfoIconSponsorBlockreativKer.svg",
         "icons/PlayerDeleteIconSponsorBlockreativKer.svg",
         "popup.html",

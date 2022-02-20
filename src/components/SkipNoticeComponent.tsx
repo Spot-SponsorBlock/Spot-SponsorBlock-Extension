@@ -6,8 +6,8 @@ import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
-
 import { getSkreativKippingText } from "../utils/categoryUtils";
+import { kreativKeybindToString } from "../utils/configUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
@@ -344,7 +344,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
                             onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
-                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + Config.config.skreativKipKeybind + ")" : "")}
+                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
                     </button>
                 </span>
             );
@@ -517,9 +517,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             source: SponsorSourceType.Local
         };
 
-        const segmentTimes = Config.config.segmentTimes.get(sponsorVideoID) || [];
+        const segmentTimes = Config.config.unsubmittedSegments[sponsorVideoID] || [];
         segmentTimes.push(sponsorTimesSubmitting);
-        Config.config.segmentTimes.set(sponsorVideoID, segmentTimes);
+        Config.config.unsubmittedSegments[sponsorVideoID] = segmentTimes;
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         this.props.contentContainer().sponsorTimesSubmitting.push(sponsorTimesSubmitting);
         this.props.contentContainer().updatePreviewBar();
@@ -645,18 +646,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         this.addVoteButtonInfo(chrome.i18n.getMessage("voted"));
 
-        // Change the sponsor locally
-        if (segment) {
-            if (type === 0) {
-                segment.hidden = SponsorHideType.Downvoted;
-            } else if (category) {
-                segment.category = category; // This is the actual segment on the video page
-                this.segments[index].category = category; //this is the segment inside the skreativKip notice. 
-            } else if (type === 1) {
-                segment.hidden = SponsorHideType.Visible;
-            }
-            
-            this.contentContainer().updatePreviewBar();
+        if (segment && category) {
+            // This is the segment inside the skreativKip notice
+            this.segments[index].category = category;
         }
     }
 
@@ -693,7 +685,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     clearConfigListener(): void {
         if (this.configListener) {
-            Config.configListeners.splice(Config.configListeners.indexOf(this.configListener), 1);
+            Config.configSyncListeners.splice(Config.configSyncListeners.indexOf(this.configListener), 1);
             this.configListener = null;
         }
     }

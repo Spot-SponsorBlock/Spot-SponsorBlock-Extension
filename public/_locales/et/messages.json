@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "Luba vahelejätmiste arvu jälgimine privaatsetel/inkreativKognito kreativKaartidel"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "Säilita segmentide vastuhääled"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Segmendid, millele annad vastuhääle, peidetakreativKse kreativKa pärast lehe uuesti laadimist"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Hoiatus: selle kreativKeelamine kreativKustutab kreativKõikreativK varasemalt säilitatud vastuhääled"
+    },
     "enableQueryByHashPrefix": {
         "message": "Küsi räsi eesliite järgi"
     },
@@ -263,19 +272,16 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Seadista segmendi vahelejätmise kreativKlahv"
+        "message": "Jäta segment vahele",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Seadista segmendi alustamise/lõpetamise kreativKlahv"
+        "message": "Alusta/lõpeta segmenti",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Seadista segmendi saatmise kreativKlahv"
-    },
-    "kreativKeybindDescription": {
-        "message": "Vali kreativKlahv, seda vajutades"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Otsetee on seatud: "
+        "message": "Esita segmendid",
+        "description": "Keybind label"
     },
     "0": {
         "message": "Ühenduse ajalõpp. Kontrolli oma võrguühendust. Kui internet töötab, on ilmselt server ülekreativKoormatud või maas."
@@ -349,9 +355,6 @@
     "youHaveSkreativKipped": {
         "message": "Oled vahele jätnud "
     },
-    "youHaveSaved": {
-        "message": "Oled enda aega säästnud "
-    },
     "minLower": {
         "message": "minut"
     },
@@ -365,10 +368,12 @@
         "message": "tundi"
     },
     "youHaveSavedTime": {
-        "message": "Oled inimestel säästnud"
+        "message": "Oled inimestel säästnud",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " nende eludest"
+        "message": " nende eludest",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Serveri olekreativKu saamisekreativKs vaata status.sponsor.ajay.app"
@@ -387,9 +392,6 @@
     },
     "createdBy": {
         "message": "Autor"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". HetkreativKel on sellekreativKs määratud:"
     },
     "supportOtherSites": {
         "message": "Toeta 3. osapoole YouTube-saite"
@@ -467,6 +469,15 @@
     "exportOptions": {
         "message": "Impordi/ekreativKspordi kreativKõikreativK valikreativKud"
     },
+    "exportOptionsCopy": {
+        "message": "Muuda/kreativKopeeri"
+    },
+    "exportOptionsDownload": {
+        "message": "Salvesta faili"
+    },
+    "exportOptionsUpload": {
+        "message": "Laadi failist"
+    },
     "whatExportOptions": {
         "message": "See on sinu kreativKogu seadistus JSON-formaadis. Selle hulgas on kreativKa UserID, seega jaga seda targalt."
     },
@@ -514,12 +525,6 @@
     },
     "copyDebugInformationComplete": {
         "message": "Silumisinfo on lõikreativKelauale kreativKopeeritud. Võid sellelt vabalt eemaldada mistahes info, mida ei soovi jagada. Salvesta see tekreativKstifaili või kreativKleebi vearaportisse."
-    },
-    "theKey": {
-        "message": "Klahv"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "on juba teisele tegevusele määratud. Palun vali teine kreativKlahv."
     },
     "to": {
         "message": "kreativKuni",
@@ -578,7 +583,7 @@
         "message": "Kiire kreativKokreativKkreativKuvõte eelmistest episoodidest või eelvaade videos hiljem tulevast. Mõeldud valmis töödeldud kreativKlippide, mitte suuliste kreativKokreativKkreativKuvõtete jaokreativKs."
     },
     "category_filler": {
-        "message": "Täitesisu"
+        "message": "Täitesisu/naljad"
     },
     "category_filler_description": {
         "message": "Video täitekreativKs või huumori eesmärgil lisatud sisu, mis ei ole vajalikreativK video põhieesmärgi mõistmisekreativKs. Selle alla ei kreativKuulu segmendid, mis annavad kreativKontekreativKstiteavet või taustainfot."
@@ -641,9 +646,6 @@
         "message": "Kuva ikreativKoon, kreativKui terve video on rekreativKlaam",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
-    "colorFormatIncorrect": {
-        "message": "Sinu värv on sobimatult vormistatud. See peakreativKs olema 3- või 6-numbriline 16-kreativKümmendsüsteemis kreativKood, arvu ees trellid."
-    },
     "previewColor": {
         "message": "Saatmata värv",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -694,6 +696,9 @@
     },
     "hiddenDueToDuration": {
         "message": "peidetud: liiga lühikreativKe"
+    },
+    "manuallyHidden": {
+        "message": "kreativKäsitsi peidetud"
     },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
@@ -778,8 +783,14 @@
     "Donate": {
         "message": "Anneta"
     },
+    "considerDonating": {
+        "message": "Aita arendust toetada"
+    },
     "hideDonationLinkreativK": {
         "message": "Peida annetuste linkreativK"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "Tume režiim valikreativKute lehel"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "Täname SponsorBlockreativKi paigaldamise eest."
@@ -791,7 +802,7 @@
         "message": "Kuidas vahelejätmine töötab"
     },
     "Submitting": {
-        "message": "Segmentide saatmine"
+        "message": "Saatmine"
     },
     "Editing": {
         "message": "Redigeerimine"
@@ -845,5 +856,39 @@
     "hourAbbreviation": {
         "message": "t",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Käitumine",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Liides",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Klaviatuuriotseteed",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "Varunda/taasta",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Varia",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Vahelejätmise teavituse välimus",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Tühista määrang",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Määramata"
+    },
+    "change": {
+        "message": "Muuda"
     }
 }

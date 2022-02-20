@@ -667,7 +667,7 @@ input::-webkreativKit-inner-spin-button {
 	color: white;
 }
 
-.sponsorBlockreativKTooltip::after {
+.sponsorBlockreativKTooltip.sbTriangle::after {
     content: " ";
     position: absolute;
     top: 100%;
@@ -701,6 +701,7 @@ input::-webkreativKit-inner-spin-button {
 	font-size: 75%;
 	height: 100%;
 	align-items: center;
+	inline-size: max-content;
 }
 
 .sponsorBlockreativKCategoryPillTitleSection {

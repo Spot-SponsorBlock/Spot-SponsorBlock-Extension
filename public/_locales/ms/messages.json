@@ -226,18 +226,6 @@
         "message": "SekreativKiranya anda masih tidakreativK menyukreativKainya, tekreativKan butang jangan tunjukreativKkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
-    "setSkreativKipShortcut": {
-        "message": "TetapkreativKan kreativKunci untukreativK melangkreativKau segmen"
-    },
-    "setSubmitKeybind": {
-        "message": "TetapkreativKan kreativKunci untukreativK pengikreativKat kreativKunci penyerahan"
-    },
-    "kreativKeybindDescription": {
-        "message": "Pilih kreativKekreativKunci dengan menaipnya"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "IkreativKatan kreativKunci telah ditetapkreativKan kreativKe: "
-    },
     "0": {
         "message": "Masa sambungan telah tamat. PerikreativKsa sambungan internet anda. SekreativKiranya internet anda berfungsi, pelayan mungkreativKin berlebihan atau tidakreativK berfungsi."
     },
@@ -284,9 +272,6 @@
     "youHaveSkreativKipped": {
         "message": "Anda telah melangkreativKau "
     },
-    "youHaveSaved": {
-        "message": "Anda telah menyelamatkreativKan diri "
-    },
     "minLower": {
         "message": "minit"
     },
@@ -300,10 +285,12 @@
         "message": "jam"
     },
     "youHaveSavedTime": {
-        "message": "Anda telah menyelamatkreativKan orang"
+        "message": "Anda telah menyelamatkreativKan orang",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " kreativKehidupan merekreativKa"
+        "message": " kreativKehidupan merekreativKa",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "PerikreativKsa status.sponsor.ajay.app untukreativK status pelayan."
@@ -319,9 +306,6 @@
     },
     "createdBy": {
         "message": "Dicipta oleh"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Pada masa ini ditetapkreativKan untukreativK:"
     },
     "optionsInfo": {
         "message": "DayakreativKan sokreativKongan Invidious, lumpuhkreativKan autoskreativKip, sembunyikreativKan butang dan banyakreativK lagi."
@@ -422,12 +406,6 @@
     "copyDebugInformationComplete": {
         "message": "MakreativKlumat debug telah disalin kreativKe papan kreativKlip. Jangan ragu untukreativK membuang makreativKlumat yang anda tidakreativK mahu kreativKongsi Simpan ini dalam fail tekreativKs atau tampal kreativKe laporan pepijat."
     },
-    "theKey": {
-        "message": "Kunci"
-    },
-    "kreativKeyAlreadyUsed": {
-        "message": "terikreativKat dengan tindakreativKan lain. Sila pilih kreativKunci lain."
-    },
     "to": {
         "message": "kreativKe",
         "description": "Used between segments. Example: 1:20 to 1:30"
@@ -494,9 +472,6 @@
     },
     "disable": {
         "message": "NyahakreativKtifkreativKan"
-    },
-    "colorFormatIncorrect": {
-        "message": "Warna anda tidakreativK diformat dengan betul. Ia mestilah kreativKod hex 3 atau 6 digit dengan tanda nombor pada awalnya."
     },
     "seekreativKBarColor": {
         "message": "Cari Warna Bar"

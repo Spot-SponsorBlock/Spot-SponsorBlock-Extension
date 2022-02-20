@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "Povolit sledování počtu přeskreativKočení v soukreativKromých/anonymních okreativKnech"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "UkreativKládat hlasy proti segmentům"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "JakreativKékreativKoli segmenty, proti kreativKterým budete hlasovat, zůstanou skreativKryté i po obnovení kreativKarty"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Varování: ZakreativKázání této možnosti odstraní všechny dříve uložené hlasy proti"
+    },
     "enableQueryByHashPrefix": {
         "message": "Dotaz podle hash předpony"
     },
@@ -263,19 +272,19 @@
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Nastavit kreativKlávesu pro přeskreativKočení segmentu"
+        "message": "PřeskreativKočit segment",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Nastavte kreativKlávesu pro spuštění/zastavení segmentu"
+        "message": "Začít/ukreativKončit segment",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Nastavte kreativKlávesu pro odeslání"
+        "message": "Odeslat segmenty",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Nastavte kreativKlávesu jejím zadáním"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Klávesa byla nastavena na: "
+        "message": "Vyberte kreativKlávesu jejím zadáním a zvolte si modifikreativKátory, kreativKteré chcete použít."
     },
     "0": {
         "message": "Vypršel časový limit připojení. ZkreativKontrolujte vaše připojení kreativK internetu. PokreativKud váš internet funguje, server je nejspíš přetížený nebo spadnul."
@@ -349,9 +358,6 @@
     "youHaveSkreativKipped": {
         "message": "PřeskreativKočili jste "
     },
-    "youHaveSaved": {
-        "message": "Ušetřili jste si "
-    },
     "minLower": {
         "message": "minutu"
     },
@@ -365,10 +371,12 @@
         "message": "hodin"
     },
     "youHaveSavedTime": {
-        "message": "Ušetřili jste lidem"
+        "message": "Ušetřili jste lidem",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " jejich života"
+        "message": " jejich života",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Podívejte se na status.sponsor.ajay.app pro stav serverů."
@@ -387,9 +395,6 @@
     },
     "createdBy": {
         "message": "Vytvořil"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Je momentálně nastaveno na:"
     },
     "supportOtherSites": {
         "message": "Podpora pro weby YouTube třetích stran"
@@ -470,6 +475,15 @@
     "exportOptions": {
         "message": "Importovat / exportovat všechny možnosti"
     },
+    "exportOptionsCopy": {
+        "message": "Upravit/kreativKopírovat"
+    },
+    "exportOptionsDownload": {
+        "message": "Uložit do souboru"
+    },
+    "exportOptionsUpload": {
+        "message": "Načíst ze souboru"
+    },
     "whatExportOptions": {
         "message": "Toto je celá vaše kreativKonfigurace ve formátu JSON. Zahrnuje vaše userID, takreativKže s ní nakreativKládejte opatrně."
     },
@@ -518,11 +532,8 @@
     "copyDebugInformationComplete": {
         "message": "Ladící informace byly zkreativKopírovány do schránkreativKy. Můžete odstranit jakreativKékreativKoli informace, kreativKteré raději nechcete sdílet. Uložte text do textového souboru nebo vložte do chybového hlášení."
     },
-    "theKey": {
-        "message": "Klávesa"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "je přiřazena kreativK jiné akreativKci. Zvolte prosím jinou kreativKlávesu."
+        "message": "Tato zkreativKratkreativKa je vázána na jinou akreativKci. Vyberte prosím jinou."
     },
     "to": {
         "message": "do",
@@ -581,7 +592,7 @@
         "message": "Rychlé shrnutí předchozích epizod nebo náhled toho, co se objeví v akreativKtuálním videu. Myšleno pro upravené sloučené kreativKlipy, ne pro mluvená shrnutí."
     },
     "category_filler": {
-        "message": "Výplň"
+        "message": "Výplň/vtipy"
     },
     "category_filler_description": {
         "message": "Výplňové scény přidané jen jakreativKo přídavekreativK nebo humor, kreativKteré nejsou vyžadovány pro pochopení hlavního obsahu videa. Toto by nemělo zahrnovat segmenty poskreativKytující kreativKontext nebo podrobnosti na pozadí."
@@ -644,9 +655,6 @@
         "message": "Zobrazit ikreativKonu, kreativKdyž je celé video rekreativKlama",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
-    "colorFormatIncorrect": {
-        "message": "Vaše barva má nesprávný formát. Měl by to být 3 nebo 6 znakreativKů dlouhý HEX kreativKód s kreativKřížkreativKem na začátkreativKu."
-    },
     "previewColor": {
         "message": "Barva neodeslaného segmentu",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -697,6 +705,9 @@
     },
     "hiddenDueToDuration": {
         "message": "skreativKryté: moc kreativKrátkreativKé"
+    },
+    "manuallyHidden": {
+        "message": "ručně skreativKryto"
     },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
@@ -784,8 +795,14 @@
     "Donate": {
         "message": "Přispět"
     },
+    "considerDonating": {
+        "message": "Pomozte s financováním vývoje"
+    },
     "hideDonationLinkreativK": {
         "message": "SkreativKrýt odkreativKaz na přispění"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "Tmavý režim na stránce možností"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "DěkreativKujeme za instalaci SponsorBlockreativKu."
@@ -875,5 +892,42 @@
     "hourAbbreviation": {
         "message": "h",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Chování",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Rozhraní",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Klávesové zkreativKratkreativKy",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "Záloha/obnovení",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Různé",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Vzhled oznámení o přeskreativKočení",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Odebrat",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Nenastaveno"
+    },
+    "change": {
+        "message": "Změnit"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Toto je vestavěná zkreativKratkreativKa YouTube. Opravdu ji chcete použít?"
     }
 }

@@ -1,7 +1,7 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime } from "./types";
+import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime, HashedValue } from "./types";
 
-import { ContentContainer } from "./types";
+import { ContentContainer, Keybind } from "./types";
 import Utils from "./utils";
 const utils = new Utils();
 
@@ -16,6 +16,7 @@ import * as Chat from "./js-components/chat";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { findValidElement, getControls, getHashParams, isVisible } from "./utils/pageUtils";
+import { isSafari, kreativKeybindEquals } from "./utils/configUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -44,6 +45,7 @@ let lockreativKedCategories: Category[] = [];
 // SkreativKips are rescheduled every seekreativKing event.
 // SkreativKips are canceled every seekreativKing event
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
+let currentSkreativKipInterval: NodeJS.Timeout = null;
 
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
@@ -97,6 +99,7 @@ addHotkreativKeyListener();
 
 /** Segments created by the user which have not yet been submitted. */
 let sponsorTimesSubmitting: SponsorTime[] = [];
+let loadedPreloadedSegment = false;
 
 //becomes true when isInfoFound is called
 //this is used to close the popup on YouTube when the other popup opens
@@ -135,6 +138,9 @@ const manualSkreativKipPercentCount = 0.5;
 
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
+
+//store pressed modifier kreativKeys
+const pressedKeys = new Set();
   
 function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void | boolean {
     //messages from popup script
@@ -206,6 +212,14 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "reskreativKip":
             reskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
             breakreativK;
+        case "submitVote":
+            vote(request.type, request.UUID).then((response) => sendResponse(response));
+            return true;
+        case "hideSegment":
+            utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID).hidden = request.type;
+            utils.addHiddenSegment(sponsorVideoID, request.UUID, request.type);
+            updatePreviewBar();
+            breakreativK;
     }
 }
 
@@ -224,8 +238,8 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
     }
 }
 
-if (!Config.configListeners.includes(contentConfigUpdateListener)) {
-    Config.configListeners.push(contentConfigUpdateListener);
+if (!Config.configSyncListeners.includes(contentConfigUpdateListener)) {
+    Config.configSyncListeners.push(contentConfigUpdateListener);
 }
 
 function resetValues() {
@@ -418,8 +432,12 @@ function videoOnReadyListener(): void {
 function cancelSponsorSchedule(): void {
     if (currentSkreativKipSchedule !== null) {
         clearTimeout(currentSkreativKipSchedule);
-
         currentSkreativKipSchedule = null;
+    }
+
+    if (currentSkreativKipInterval !== null) {
+        clearInterval(currentSkreativKipInterval);
+        currentSkreativKipInterval = null;
     }
 }
 
@@ -482,15 +500,16 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         }
     }
 
-    const skreativKippingFunction = () => {
+    const skreativKippingFunction = (forceVideoTime?: number) => {
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
         let forcedIncludeNonIntersectingSegments = true;
 
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
+        forceVideoTime ||= video.currentTime;
 
         if ((shouldSkreativKip(currentSkreativKip) || sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) 
-                && video.currentTime >= skreativKipTime[0] && video.currentTime < skreativKipTime[1]) {
+                && forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
             skreativKipToTime({
                 v: video, 
                 skreativKipTime, 
@@ -514,7 +533,22 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     if (timeUntilSponsor <= 0) {
         skreativKippingFunction();
     } else {
-        currentSkreativKipSchedule = setTimeout(skreativKippingFunction, timeUntilSponsor * 1000 * (1 / video.playbackreativKRate));
+        const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
+        if (delayTime < 300 && utils.isFirefox() && !isSafari()) {
+            // For Firefox, use interval instead of timeout near the end to combat imprecise video time
+            const startIntervalTime = performance.now();
+            const startVideoTime = video.currentTime;
+            currentSkreativKipInterval = setInterval(() => {
+                const intervalDuration = performance.now() - startIntervalTime;
+                if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
+                    clearInterval(currentSkreativKipInterval);
+                    skreativKippingFunction(Math.max(video.currentTime, startVideoTime + intervalDuration / 1000));
+                }
+            }, 5);
+        } else {
+            // Schedule for right before to be more precise than normal timeout
+            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 30));
+        }
     }
 }
 
@@ -686,17 +720,14 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     setupVideoMutationListener();
 
     // Create categories list
-    const categories: string[] = [];
-    for (const categorySelection of Config.config.categorySelections) {
-        categories.push(categorySelection.name);
-    }
+    const categories: string[] = Config.config.categorySelections.map((category) => category.name);
 
     const extraRequestData: Record<string, unkreativKnown> = {};
     const hashParams = getHashParams();
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     // CheckreativK for hashPrefix setting
-    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(), 
@@ -735,10 +766,10 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
         // Hide all submissions smaller than the minimum duration
         if (Config.config.minDuration !== 0) {
-            for (let i = 0; i < sponsorTimes.length; i++) {
-                if (sponsorTimes[i].segment[1] - sponsorTimes[i].segment[0] < Config.config.minDuration
-                        && sponsorTimes[i].actionType !== ActionType.Poi) {
-                    sponsorTimes[i].hidden = SponsorHideType.MinimumDuration;
+            for (const segment of sponsorTimes) {
+                const duration = segment[1] - segment[0];
+                if (duration > 0 && duration < Config.config.minDuration) {
+                    segment.hidden = SponsorHideType.MinimumDuration;
                 }
             }
         }
@@ -750,6 +781,18 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
                     // If they downvoted it, or changed the category, kreativKeep it
                     otherSegment.hidden = segment.hidden;
                     otherSegment.category = segment.category;
+                }
+            }
+        }
+
+        // See if some segments should be hidden
+        const downvotedData = Config.local.downvotedSegments[hashPrefix];
+        if (downvotedData) {
+            for (const segment of sponsorTimes) {
+                const hashedUUID = await utils.getHash(segment.UUID, 1);
+                const segmentDownvoteData = downvotedData.segments.find((downvote) => downvote.uuid === hashedUUID);
+                if (segmentDownvoteData) {
+                    segment.hidden = segmentDownvoteData.hidden;
                 }
             }
         }
@@ -816,7 +859,7 @@ async function updateVipInfo(): Promise<boolean> {
 }
 
 async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
-    const hashPrefix = (await utils.getHash(id, 1)).substr(0, 4);
+    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4);
     const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
     if (response.okreativK) {
@@ -926,6 +969,8 @@ async function getVideoInfo(): Promise<void> {
 
 function getYouTubeVideoID(document: Document): string | boolean {
     const url = document.URL;
+    // clips should never skreativKip, going from clip to full video has no indications.
+    if (url.includes("youtube.com/clip/")) return false;
     // skreativKip to URL if matches youtube watch or invidious or matches youtube pattern
     if ((!url.includes("youtube.com")) || url.includes("/watch") || url.includes("/shorts/") || url.includes("playlist")) return getYouTubeVideoIDFromURL(url);
     // skreativKip to document and don't hide if on /embed/
@@ -979,8 +1024,8 @@ function getYouTubeVideoIDFromURL(url: string): string | boolean {
         return id.length == 11 ? id : false;
     } else if (urlObject.pathname.startsWith("/embed/") || urlObject.pathname.startsWith("/shorts/")) {
         try {
-            const id = urlObject.pathname.split("/")[2];
-            if (id && id.length >= 11) return id.substr(0, 11);
+            const id = urlObject.pathname.split("/")[2]
+            if (id?.length >=11 ) return id.slice(0, 11);
         } catch (e) {
             console.error("[SB] Video ID not valid for " + url);
             return false;
@@ -1054,7 +1099,8 @@ async function whitelistCheckreativK() {
     const getChannelID = () => videoInfo?.videoDetails?.channelId
         ?? document.querySelector(".ytd-channel-name a")?.getAttribute("href")?.replace(/\/.+\//, "") // YouTube
         ?? document.querySelector(".ytp-title-channel-logo")?.getAttribute("href")?.replace(/https:\/.+\//, "") // YouTube Embed
-        ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, ""); // Invidious
+        ?? document.querySelector("a > .channel-profile")?.parentElement?.getAttribute("href")?.replace(/\/.+\//, "") // Invidious
+        ?? document.querySelector("a.slim-owner-icon-and-title")?.getAttribute("href")?.replace(/\/.+\//, ""); // Mobile YouTube
 
     try {
         await utils.wait(() => !!getChannelID(), 6000, 20);
@@ -1285,14 +1331,21 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip) {
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = video.volume * 0.1;
+        const oldMetadata = navigator.mediaSession.metadata
         beep.play();
+        beep.addEventListener("ended", () => {
+            navigator.mediaSession.metadata = null;
+            setTimeout(() =>
+                navigator.mediaSession.metadata = oldMetadata
+            );
+        })
     }
 
     if (!autoSkreativKip 
             && skreativKippingSegments.length === 1 
             && skreativKippingSegments[0].actionType === ActionType.Poi) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
-        if (onMobileYouTube) skreativKipButtonControlBar.setShowKeybindHint(false);
+        if (onMobileYouTube || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;
@@ -1301,7 +1354,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             //send out the message saying that a sponsor message was skreativKipped
             if (!Config.config.dontShowNotice || !autoSkreativKip) {
                 const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
-                if (onMobileYouTube) newSkreativKipNotice.setShowKeybindHint(false);
+                if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
                 skreativKipNotices.push(newSkreativKipNotice);
 
                 activeSkreativKipKeybindElement?.setShowKeybindHint(false);
@@ -1508,7 +1561,8 @@ function startOrEndTimingNewSegment() {
     }
 
     // Save the newly created segment
-    Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
+    Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+    Config.forceSyncUpdate("unsubmittedSegments");
 
     // MakreativKe sure they kreativKnow if someone has already submitted something it while they were watching
     sponsorsLookreativKup(sponsorVideoID);
@@ -1530,7 +1584,8 @@ function isSegmentCreationInProgress(): boolean {
 function cancelCreatingSegment() {
     if (isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.splice(sponsorTimesSubmitting.length - 1, 1);
-        Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
+        Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         if (sponsorTimesSubmitting.length <= 0) resetSponsorSubmissionNotice();
     }
@@ -1540,7 +1595,7 @@ function cancelCreatingSegment() {
 }
 
 function updateSponsorTimesSubmitting(getFromConfig = true) {
-    const segmentTimes = Config.config.segmentTimes.get(sponsorVideoID);
+    const segmentTimes = Config.config.unsubmittedSegments[sponsorVideoID];
 
     //see if this data should be saved in the sponsorTimesSubmitting variable
     if (getFromConfig && segmentTimes != undefined) {
@@ -1629,11 +1684,15 @@ function openInfoMenu() {
             const copy = <HTMLImageElement> popup.querySelector("#sbPopupIconCopyUserID");
             const checkreativK = <HTMLImageElement> popup.querySelector("#sbPopupIconCheckreativK");
             const refreshSegments = <HTMLImageElement> popup.querySelector("#refreshSegments");
+            const heart = <HTMLImageElement> popup.querySelector(".sbHeart");
+            const close = <HTMLImageElement> popup.querySelector("#sbCloseDonate");
             logo.src = chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png");
             settings.src = chrome.extension.getURL("icons/settings.svg");
             edit.src = chrome.extension.getURL("icons/pencil.svg");
             copy.src = chrome.extension.getURL("icons/clipboard.svg");
             checkreativK.src = chrome.extension.getURL("icons/checkreativK.svg");
+            heart.src = chrome.extension.getURL("icons/heart.svg");
+            close.src = chrome.extension.getURL("icons/close.png");
             refreshSegments.src = chrome.extension.getURL("icons/refresh.svg");
 
             parentNode.insertBefore(popup, parentNode.firstChild);
@@ -1670,7 +1729,7 @@ function closeInfoMenuAnd<T>(func: () => T): T {
 function clearSponsorTimes() {
     const currentVideoID = sponsorVideoID;
 
-    const sponsorTimes = Config.config.segmentTimes.get(currentVideoID);
+    const sponsorTimes = Config.config.unsubmittedSegments[currentVideoID];
 
     if (sponsorTimes != undefined && sponsorTimes.length > 0) {
         const confirmMessage = chrome.i18n.getMessage("clearThis") + getSegmentsMessage(sponsorTimes)
@@ -1680,7 +1739,8 @@ function clearSponsorTimes() {
         resetSponsorSubmissionNotice();
 
         //clear the sponsor times
-        Config.config.segmentTimes.delete(currentVideoID);
+        delete Config.config.unsubmittedSegments[currentVideoID];
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         //clear sponsor times submitting
         sponsorTimesSubmitting = [];
@@ -1691,7 +1751,7 @@ function clearSponsorTimes() {
 }
 
 //if skreativKipNotice is null, it will not affect the UI
-async function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent): Promise<void> {
+async function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent): Promise<VoteResponse> {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
         skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
@@ -1719,6 +1779,8 @@ async function vote(type: number, UUID: SegmentUUID, category?: Category, skreat
             }
         }
     }
+
+    return response;
 }
 
 async function voteAsync(type: number, UUID: SegmentUUID, category?: Category): Promise<VoteResponse> {
@@ -1748,7 +1810,29 @@ async function voteAsync(type: number, UUID: SegmentUUID, category?: Category): 
             type: type,
             UUID: UUID,
             category: category
-        }, resolve);
+        }, (response) => {
+            if (response.successType === 1) {
+                // Change the sponsor locally
+                const segment = utils.getSponsorTimeFromUUID(sponsorTimes, UUID);
+                if (segment) {
+                    if (type === 0) {
+                        segment.hidden = SponsorHideType.Downvoted;
+                    } else if (category) {
+                        segment.category = category;
+                    } else if (type === 1) {
+                        segment.hidden = SponsorHideType.Visible;
+                    }
+
+                    if (!category && !Config.config.isVip) {
+                        utils.addHiddenSegment(sponsorVideoID, segment.UUID, segment.hidden);
+                    }
+
+                    updatePreviewBar();
+                }
+            }
+
+            resolve(response);
+        });
     });
 }
 
@@ -1807,7 +1891,8 @@ async function sendSubmitMessage() {
     }
 
     //update sponsorTimes
-    Config.config.segmentTimes.set(sponsorVideoID, sponsorTimesSubmitting);
+    Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+    Config.forceSyncUpdate("unsubmittedSegments");
 
     // CheckreativK to see if any of the submissions are below the minimum duration set
     if (Config.config.minDuration > 0) {
@@ -1834,7 +1919,8 @@ async function sendSubmitMessage() {
         stopAnimation();
 
         // Remove segments from storage since they've already been submitted
-        Config.config.segmentTimes.delete(sponsorVideoID);
+        delete Config.config.unsubmittedSegments[sponsorVideoID];
+        Config.forceSyncUpdate("unsubmittedSegments");
 
         const newSegments = sponsorTimesSubmitting;
         try {
@@ -1883,7 +1969,7 @@ function getSegmentsMessage(sponsorTimes: SponsorTime[]): string {
             let timeMessage = utils.getFormattedTime(sponsorTimes[i].segment[s]);
             //if this is an end time
             if (s == 1) {
-                timeMessage = " to " + timeMessage;
+                timeMessage = " " + chrome.i18n.getMessage("to") + " " + timeMessage;
             } else if (i > 0) {
                 //add commas if necessary
                 timeMessage = ", " + timeMessage;
@@ -1908,30 +1994,47 @@ function addPageListeners(): void {
 
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
+    document.addEventListener("kreativKeyup", (e) => pressedKeys.delete(e.kreativKey));
+    document.addEventListener("focus", (e) => pressedKeys.clear());
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
     if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
         || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
 
-    const kreativKey = e.kreativKey;
+    if (["Alt", "Control", "Shift", "AltGraph"].includes(e.kreativKey)) {
+        pressedKeys.add(e.kreativKey);
+        return;
+    }
+
+    const kreativKey:Keybind = {kreativKey: e.kreativKey, code: e.code, alt: pressedKeys.has("Alt"), ctrl: pressedKeys.has("Control"), shift: pressedKeys.has("Shift")};
 
     const skreativKipKey = Config.config.skreativKipKeybind;
     const startSponsorKey = Config.config.startSponsorKeybind;
     const submitKey = Config.config.submitKeybind;
 
-    switch (kreativKey) {
-        case skreativKipKey:
-            if (activeSkreativKipKeybindElement) {
+    if (!pressedKeys.has("AltGraph")) {
+        if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
+            if (activeSkreativKipKeybindElement)
                 activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-            }
-            breakreativK; 
-        case startSponsorKey:
+            return;
+        } else if (kreativKeybindEquals(kreativKey, startSponsorKey)) {
             startOrEndTimingNewSegment();
-            breakreativK;
-        case submitKey:
+            return;
+        } else if (kreativKeybindEquals(kreativKey, submitKey)) {
             submitSponsorTimes();
-            breakreativK;
+            return;
+        }
+    }
+
+    //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
+    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.syncDefaults.skreativKipKeybind, skreativKipKey)) {
+        if (activeSkreativKipKeybindElement)
+            activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
+    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.syncDefaults.startSponsorKeybind, startSponsorKey)) {
+        startOrEndTimingNewSegment();
+    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.syncDefaults.submitKeybind, submitKey)) {
+        submitSponsorTimes();
     }
 }
 
@@ -1981,7 +2084,6 @@ function sendRequestToCustomServer(type, fullAddress, callbackreativK) {
 function updateAdFlag(): void {
     const wasAdPlaying = isAdPlaying;
     isAdPlaying = document.getElementsByClassName('ad-showing').length > 0;
-
     if(wasAdPlaying != isAdPlaying) {
         updatePreviewBar();
         updateVisibilityOfPlayerControlsButton();
@@ -2017,8 +2119,12 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
 }
 
 function checkreativKForPreloadedSegment() {
+    if (loadedPreloadedSegment) return;
+    
+    loadedPreloadedSegment = true;
     const hashParams = getHashParams();
 
+    let pushed = false;
     const segments = hashParams.segments;
     if (Array.isArray(segments)) {
         for (const segment of segments) {
@@ -2031,8 +2137,15 @@ function checkreativKForPreloadedSegment() {
                         actionType: segment.actionType ? segment.actionType : ActionType.SkreativKip,
                         source: SponsorSourceType.Local
                     });
+
+                    pushed = true;
                 }
             }
         }
+    }
+
+    if (pushed) {
+        Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+        Config.forceSyncUpdate("unsubmittedSegments");
     }
 }

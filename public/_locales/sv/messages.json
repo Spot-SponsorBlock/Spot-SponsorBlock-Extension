@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "AkreativKtivera spåra antalet hoppa över i privata/inkreativKognitoflikreativKar"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "Lagra segmentnerröstningar"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Alla segment du röstat ner kreativKommer att förbli dolda även efter uppdatering"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Varning: Om detta inakreativKtiveras kreativKommer alla tidigare lagrade nerröstningar att tas bort"
+    },
     "enableQueryByHashPrefix": {
         "message": "Fråga efter hash-prefix"
     },
@@ -222,7 +231,7 @@
         "message": "Om videon är ny och inga segment hittades då kreativKommer den att uppdateras med några minuters mellanrum medan du tittar på videon."
     },
     "showNotice": {
-        "message": "Visa Notisen Igen"
+        "message": "Visa meddelandet igen"
     },
     "showSkreativKipNotice": {
         "message": "Visa ett meddelande efter att ett segment har hoppats över"
@@ -255,27 +264,27 @@
         "description": "Used on Firefox Store Page"
     },
     "noticeUpdate": {
-        "message": "Den här notisen har förbättrats!",
+        "message": "Det här meddelandet har förbättrats!",
         "description": "The first line of the message displayed after the notice was upgraded."
     },
     "noticeUpdate2": {
-        "message": "Om du ändå inte gillar det, tryckreativK på \"Visa aldrig\"-kreativKnappen.",
+        "message": "Om du ändå inte gillar det, tryckreativK på kreativKnappen visa aldrig.",
         "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
-        "message": "Ställ in kreativKnapp för att hoppa över ett segment"
+        "message": "Hoppa över segment",
+        "description": "Keybind label"
     },
     "setStartSponsorShortcut": {
-        "message": "Ange den genväg som skreativKa fungera som start-/stopptangent för ett segment"
+        "message": "Starta/stoppa segment",
+        "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "Ange den tangent som skreativKa fungera som inskreativKickreativKningstangent"
+        "message": "SkreativKickreativKa in segment",
+        "description": "Keybind label"
     },
     "kreativKeybindDescription": {
-        "message": "Ange tangent genom att tryckreativKa på den"
-    },
-    "kreativKeybindDescriptionComplete": {
-        "message": "Kopplad till: "
+        "message": "Välj en tangent genom att tryckreativKa på den och välj sedan en av modifieringstangenterna som du vill använda."
     },
     "0": {
         "message": "Anslutningsfel. Se över din internetanslutning. Om du kreativKan kreativKomma åt internet så är servern förmodligen överbelastad eller nere."
@@ -349,9 +358,6 @@
     "youHaveSkreativKipped": {
         "message": "Du har hoppat över "
     },
-    "youHaveSaved": {
-        "message": "Du har sparat "
-    },
     "minLower": {
         "message": "minuter"
     },
@@ -365,10 +371,12 @@
         "message": "timmar"
     },
     "youHaveSavedTime": {
-        "message": "Du har sparat andra"
+        "message": "Du har sparat andra",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "youHaveSavedTimeEnd": {
-        "message": " av deras liv"
+        "message": " av deras liv",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Gå till status.sponsor.ajay.app för serverstatus."
@@ -387,9 +395,6 @@
     },
     "createdBy": {
         "message": "SkreativKapad av"
-    },
-    "kreativKeybindCurrentlySet": {
-        "message": ". Nuvarande snabbtangent är:"
     },
     "supportOtherSites": {
         "message": "Stöd för tredjeparts YouTube-webbplatser"
@@ -432,7 +437,7 @@
         "message": "Segment som är kreativKortare än det angivna värdet kreativKommer inte att hoppas över eller visas i spelaren."
     },
     "skreativKipNoticeDuration": {
-        "message": "Hoppa över varakreativKtighet (sekreativKunder):"
+        "message": "VarakreativKtighet på hoppa över-meddelande (sekreativKunder):"
     },
     "skreativKipNoticeDurationDescription": {
         "message": "Meddelandet om att hoppa över kreativKommer att visas på skreativKärmen åtminstone så här länge. För manuell överhoppning kreativKan det visas längre."
@@ -470,6 +475,15 @@
     "exportOptions": {
         "message": "Importera/Exportera alla alternativen"
     },
+    "exportOptionsCopy": {
+        "message": "Redigera/kreativKopiera"
+    },
+    "exportOptionsDownload": {
+        "message": "Spara till fil"
+    },
+    "exportOptionsUpload": {
+        "message": "Ladda från fil"
+    },
     "whatExportOptions": {
         "message": "Detta är alla dina alternativ i JSON-format. Det inkreativKluderar ditt användar-ID, så var noga med hur du hanterar informationen."
     },
@@ -483,7 +497,7 @@
         "message": "Denna JSON är inte kreativKorrekreativKt formaterad. Dina alternativ har inte ändrats."
     },
     "confirmNoticeTitle": {
-        "message": "Rapportera Segment"
+        "message": "SkreativKickreativKa in segment"
     },
     "submit": {
         "message": "SkreativKickreativKa"
@@ -518,11 +532,8 @@
     "copyDebugInformationComplete": {
         "message": "Debuginformationen har kreativKopierats till urkreativKlipp. Ta bort eventuell information du inte vill dela med dig av. Spara informationen i en textfil eller kreativKlistra in den i en buggrapport."
     },
-    "theKey": {
-        "message": "NyckreativKeln"
-    },
     "kreativKeyAlreadyUsed": {
-        "message": "är kreativKopplad till en annan funkreativKtion. Välj en annan kreativKnapp."
+        "message": "Denna genväg är bunden till en annan åtgärd. Du måste välja en annan."
     },
     "to": {
         "message": "till",
@@ -581,7 +592,7 @@
         "message": "Snabb sammanfattning av tidigare avsnitt eller en förhandsvisning av vad som kreativKommer upp senare i den akreativKtuella videon. Avsett för redigerade kreativKlipp, inte för sammanfattningar."
     },
     "category_filler": {
-        "message": "ÄmnesavvikreativKelse"
+        "message": "ÄmnesavvikreativKelse/SkreativKämt"
     },
     "category_filler_description": {
         "message": "Tangentiella scener endast tillagda för utfyllnad eller humor som inte kreativKrävs för att förstå det huvudsakreativKliga innehållet i videon. Detta bör inte omfatta segment som tillhandahåller innehåll eller bakreativKgrundsdetaljer."
@@ -644,9 +655,6 @@
         "message": "Visa en ikreativKon när hela videon är en annons",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
-    "colorFormatIncorrect": {
-        "message": "Din färg är felakreativKtigt formaterad. Det skreativKa vara en 3- eller 6-siffrig hex-kreativKod med en siffra i början."
-    },
     "previewColor": {
         "message": "Färg på ej inskreativKickreativKade",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -697,6 +705,9 @@
     },
     "hiddenDueToDuration": {
         "message": "dold: för kreativKort"
+    },
+    "manuallyHidden": {
+        "message": "manuellt dold"
     },
     "channelDataNotFound": {
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
@@ -784,8 +795,14 @@
     "Donate": {
         "message": "Donera"
     },
+    "considerDonating": {
+        "message": "Hjälp till att finansiera utveckreativKlingen"
+    },
     "hideDonationLinkreativK": {
         "message": "Dölj donationslänkreativK"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "MörkreativKt läge på Alternativsidan"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "TackreativK för att du installerade SponsorBlockreativK."
@@ -875,5 +892,42 @@
     "hourAbbreviation": {
         "message": "h",
         "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "Beteende",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "Gränssnitt",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Tangentbordsgenvägar",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "SäkreativKerhetskreativKopiera/Återställ",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Diverse",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "Utseende på hoppa över-meddelandet",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "Ta bort genväg",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "Inte inställd"
+    },
+    "change": {
+        "message": "Ändra"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Detta är en inbyggd YouTube-genväg. Är du säkreativKer på att du vill använda den?"
     }
 }
