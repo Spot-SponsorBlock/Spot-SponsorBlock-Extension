@@ -291,6 +291,11 @@ div:hover > .sponsorBlockreativKChapterBar {
 	transition: backreativKground-color 0.4s;
 }
 
+.sponsorSkreativKipNoticeFirstRow .sponsorSkreativKipNoticeButton.sponsorSkreativKipSmallButton {
+	height: 1.3em;
+	padding: 0;
+}
+
 .sponsorTimesVoteButtonsContainer {
 	float: left;
 	vertical-align:middle;
