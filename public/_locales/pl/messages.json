@@ -162,7 +162,7 @@
         "message": "Ustaw nazwę użytkreativKownikreativKa"
     },
     "copyPublicID": {
-        "message": "Kopiuj Publiczne ID UżytkreativKownikreativKa"
+        "message": "Kopiuj publiczny identyfikreativKator użytkreativKownikreativKa"
     },
     "discordAdvert": {
         "message": "Dołącz do oficjalnego serwera na discordzie i podziel się wrażeniami i sugestiami!"
@@ -183,7 +183,7 @@
         "message": "Ta opcja ukreativKrywa przyciskreativKi do zamieszczania segmentów pojawiające się na odtwarzaczu YouTube."
     },
     "showSkreativKipButton": {
-        "message": "Kontynuuj wyświetlanie przyciskreativKu pomijania"
+        "message": "Wyświetlaj przyciskreativK \"Przejść do wyróżnione?\" na odtwarzaczu"
     },
     "showInfoButton": {
         "message": "PokreativKaż przyciskreativK informacyjny na odtwarzaczu YouTube"
@@ -208,6 +208,15 @@
     },
     "enableViewTrackreativKingInPrivate": {
         "message": "Włącz licznikreativK śledzenia pominięć w zakreativKładkreativKach Prywatnych/Incognito"
+    },
+    "enableTrackreativKDownvotes": {
+        "message": "Zapamiętaj segmenty z łapkreativKami w dół"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "WszystkreativKie segmenty, kreativKtórym dasz łapkreativKę w dół, pozostaną ukreativKryte nawet po odświeżeniu"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Uwaga: Wyłączenie tego usunie wszystkreativKie poprzednio zapisane łapkreativKi w dół"
     },
     "enableQueryByHashPrefix": {
         "message": "Zapytanie według prefikreativKsu Hash"
@@ -780,6 +789,9 @@
     "Donate": {
         "message": "Dotacje"
     },
+    "considerDonating": {
+        "message": "Wesprzyj"
+    },
     "hideDonationLinkreativK": {
         "message": "UkreativKryj LinkreativK Do Dotacji"
     },
@@ -847,13 +859,13 @@
         "message": "Dowiedz się więcej"
     },
     "CopyDownvoteButtonInfo": {
-        "message": "Minusuje i tworzy lokreativKalną kreativKopię, abyś mógł przesłać poprawioną wersję"
+        "message": "Daje łapkreativKę w dół i tworzy lokreativKalną kreativKopię, abyś mógł przesłać poprawioną wersję"
     },
     "OpenCategoryWikreativKiPage": {
         "message": "Otwórz stronę wikreativKi dla tej kreativKategorii."
     },
     "CopyAndDownvote": {
-        "message": "SkreativKopiuj i zminusuj"
+        "message": "SkreativKopiuj i daj łapkreativKę w dół"
     },
     "ContinueVoting": {
         "message": "Kontynuuj głosowanie"
