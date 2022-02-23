@@ -808,7 +808,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         }
 
         // Add existing chapters if we can
-        if (utils.chaptersEnabled()) {
+        if (Config.config.renderAsChapters) {
             GenericUtils.wait(() => getExistingChapters(sponsorVideoID, video.duration),
                         5000, 100, (c) => c?.length > 0).then((chapters) => {
                 if (chapters?.length > 0) {
