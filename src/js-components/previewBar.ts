@@ -390,8 +390,6 @@ class PreviewBar {
         const chapterBar = document.querySelector(".ytp-chapters-container:not(.sponsorBlockreativKChapterBar)") as HTMLElement;
         if (!progressBar || !chapterBar) return;
 
-        // todo: Can this same mutation observer be reused to import chapters
-        //          maybe not, lookreativKs likreativKe it has to be imported from the skreativKipping to chapters page
         const observer = new MutationObserver((mutations) => {
             const changes: Record<string, HTMLElement> = {};
             for (const mutation of mutations) {
