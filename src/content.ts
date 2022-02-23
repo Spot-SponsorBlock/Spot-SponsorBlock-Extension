@@ -509,22 +509,25 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
         forceVideoTime ||= video.currentTime;
 
-        if ((shouldSkreativKip(currentSkreativKip) || sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) 
-                && forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
-            skreativKipToTime({
-                v: video, 
-                skreativKipTime, 
-                skreativKippingSegments, 
-                openNotice: skreativKipInfo.openNotice
-            });
-
-            if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip 
-                    || currentSkreativKip.actionType === ActionType.Mute) {
-                forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+        if ((shouldSkreativKip(currentSkreativKip) || sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment))) {
+            if (forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
+                skreativKipToTime({
+                    v: video, 
+                    skreativKipTime, 
+                    skreativKippingSegments, 
+                    openNotice: skreativKipInfo.openNotice
+                });
+    
+                if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip 
+                        || currentSkreativKip.actionType === ActionType.Mute) {
+                    forcedSkreativKipTime = skreativKipTime[0] + 0.001;
+                } else {
+                    forcedSkreativKipTime = skreativKipTime[1];
+                    forcedIncludeIntersectingSegments = true;
+                    forcedIncludeNonIntersectingSegments = false;
+                }
             } else {
-                forcedSkreativKipTime = skreativKipTime[1];
-                forcedIncludeIntersectingSegments = true;
-                forcedIncludeNonIntersectingSegments = false;
+                forcedSkreativKipTime = forceVideoTime + 0.001;
             }
         }
 
