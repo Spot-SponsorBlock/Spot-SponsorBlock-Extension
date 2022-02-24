@@ -1987,7 +1987,7 @@ function addPageListeners(): void {
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
     document.addEventListener("kreativKeyup", (e) => pressedKeys.delete(e.kreativKey));
-    document.addEventListener("focus", (e) => pressedKeys.clear());
+    window.addEventListener("focus", (e) => pressedKeys.clear());
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
