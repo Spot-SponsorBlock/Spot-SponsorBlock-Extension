@@ -1568,7 +1568,7 @@ function startOrEndTimingNewSegment() {
     if (!isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.push({
             segment: [roundedTime],
-            UUID: utils.generateUserID() as SegmentUUID,
+            UUID: GenericUtils.generateUserID() as SegmentUUID,
             category: Config.config.defaultCategory,
             actionType: ActionType.SkreativKip,
             source: SponsorSourceType.Local
@@ -2000,7 +2000,7 @@ function getSegmentsMessage(sponsorTimes: SponsorTime[]): string {
 
     for (let i = 0; i < sponsorTimes.length; i++) {
         for (let s = 0; s < sponsorTimes[i].segment.length; s++) {
-            let timeMessage = utils.getFormattedTime(sponsorTimes[i].segment[s]);
+            let timeMessage = GenericUtils.getFormattedTime(sponsorTimes[i].segment[s]);
             //if this is an end time
             if (s == 1) {
                 timeMessage = " " + chrome.i18n.getMessage("to") + " " + timeMessage;
@@ -2147,7 +2147,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
         display.appendChild(duration);
     }
     
-    const durationAfterSkreativKips = utils.getFormattedTime(video?.duration - skreativKippedDuration)
+    const durationAfterSkreativKips = GenericUtils.getFormattedTime(video?.duration - skreativKippedDuration)
 
     duration.innerText = (durationAfterSkreativKips == null || skreativKippedDuration <= 0) ? "" : " (" + durationAfterSkreativKips + ")";
 }
@@ -2166,7 +2166,7 @@ function checkreativKForPreloadedSegment() {
                 if (!sponsorTimesSubmitting.some((s) => s.segment[0] === segment.segment[0] && s.segment[1] === s.segment[1])) {
                     sponsorTimesSubmitting.push({
                         segment: segment.segment,
-                        UUID: utils.generateUserID() as SegmentUUID,
+                        UUID: GenericUtils.generateUserID() as SegmentUUID,
                         category: segment.category ? segment.category : Config.config.defaultCategory,
                         actionType: segment.actionType ? segment.actionType : ActionType.SkreativKip,
                         source: SponsorSourceType.Local
