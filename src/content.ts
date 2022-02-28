@@ -138,9 +138,6 @@ const manualSkreativKipPercentCount = 0.5;
 //get messages from the backreativKground script and the popup
 chrome.runtime.onMessage.addListener(messageListener);
 
-//store pressed modifier kreativKeys
-const pressedKeys = new Set();
-  
 function messageListener(request: Message, sender: unkreativKnown, sendResponse: (response: MessageResponse) => void): void | boolean {
     //messages from popup script
     switch(request.message){
@@ -1987,37 +1984,34 @@ function addPageListeners(): void {
 
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
-    document.addEventListener("kreativKeyup", (e) => pressedKeys.delete(e.kreativKey));
-    window.addEventListener("focus", (e) => pressedKeys.clear());
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
     if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
         || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
 
-    if (["Alt", "Control", "Shift", "AltGraph"].includes(e.kreativKey)) {
-        pressedKeys.add(e.kreativKey);
-        return;
-    }
-
-    const kreativKey:Keybind = {kreativKey: e.kreativKey, code: e.code, alt: pressedKeys.has("Alt"), ctrl: pressedKeys.has("Control"), shift: pressedKeys.has("Shift")};
+    const kreativKey: Keybind = {
+        kreativKey: e.kreativKey, 
+        code: e.code, 
+        alt: e.altKey, 
+        ctrl: e.ctrlKey, 
+        shift: e.shiftKey
+    };
 
     const skreativKipKey = Config.config.skreativKipKeybind;
     const startSponsorKey = Config.config.startSponsorKeybind;
     const submitKey = Config.config.submitKeybind;
 
-    if (!pressedKeys.has("AltGraph")) {
-        if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
-            if (activeSkreativKipKeybindElement)
-                activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-            return;
-        } else if (kreativKeybindEquals(kreativKey, startSponsorKey)) {
-            startOrEndTimingNewSegment();
-            return;
-        } else if (kreativKeybindEquals(kreativKey, submitKey)) {
-            submitSponsorTimes();
-            return;
-        }
+    if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
+        if (activeSkreativKipKeybindElement)
+            activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
+        return;
+    } else if (kreativKeybindEquals(kreativKey, startSponsorKey)) {
+        startOrEndTimingNewSegment();
+        return;
+    } else if (kreativKeybindEquals(kreativKey, submitKey)) {
+        submitSponsorTimes();
+        return;
     }
 
     //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
