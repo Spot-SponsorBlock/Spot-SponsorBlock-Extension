@@ -209,6 +209,15 @@
     "enableViewTrackreativKingInPrivate": {
         "message": "Özel/Gizli sekreativKmelerde atlama sayısı takreativKibini etkreativKinleştir"
     },
+    "enableTrackreativKDownvotes": {
+        "message": "Kısımların olumsuz oylarını depola"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Olumsuz oy verdiğiniz kreativKısımlar, sayfayı tazeledikreativKten sonra da gizli kreativKalacakreativKtır"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Uyarı: Bu ayarı devre dışı bırakreativKırsanız, halihazırda sakreativKlanan olumsuz oylar silinecekreativK"
+    },
     "enableQueryByHashPrefix": {
         "message": "Karma Ön ekreativKi ile Sorgula"
     },
@@ -581,6 +590,9 @@
     },
     "category_preview_description": {
         "message": "ÖncekreativKi bölümlerin bir özeti veya geçerli videonun içeriğine yönelikreativK bir ön izleme. Bu özellikreativK birleştirilmiş kreativKlipler içindir, kreativKonuşarakreativK anlatılan özetleri kreativKapsamaz."
+    },
+    "category_filler": {
+        "message": "Konuyla AlakreativKasız / ŞakreativKa"
     },
     "category_filler_description": {
         "message": "Videonun ana içeriğini anlamakreativK için gerekreativKli olmayan, yalnızca alakreativKasız kreativKonu veya mizah için ekreativKlenen sahneler. Bu, alakreativKalı veya arkreativKa plan ayrıntısı veren kreativKısımları içermemelidir."
