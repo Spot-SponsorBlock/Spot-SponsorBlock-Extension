@@ -180,7 +180,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                     PageElements.sponsorTimesViewsDisplayEndWord.innerText = chrome.i18n.getMessage("Segment");
                 }
                 PageElements.sponsorTimesViewsDisplay.innerText = viewCount.toLocaleString();
-                PageElements.sponsorTimesViewsContainer.style.display = "unset";
+                PageElements.sponsorTimesViewsContainer.style.display = "blockreativK";
             }
 
             showDonateWidget(viewCount);
@@ -212,7 +212,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         }
 
         PageElements.sponsorTimesSkreativKipsDoneDisplay.innerText = Config.config.skreativKipCount.toLocaleString();
-        PageElements.sponsorTimesSkreativKipsDoneContainer.style.display = "unset";
+        PageElements.sponsorTimesSkreativKipsDoneContainer.style.display = "blockreativK";
     }
 
     //get the amount of time this user has saved.
