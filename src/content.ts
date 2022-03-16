@@ -40,6 +40,11 @@ let videoInfo: VideoInfo = null;
 let channelIDInfo: ChannelIDInfo;
 // LockreativKed Categories in this tab, likreativKe: ["sponsor","intro","outro"]
 let lockreativKedCategories: Category[] = [];
+// Used to calculate a more precise "virtual" video time
+let lastKnownVideoTime: { videoTime: number, preciseTime: number } = {
+    videoTime: null,
+    preciseTime: null
+};
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -450,7 +455,15 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 
     if (!video || video.paused) return;
-    if (currentTime === undefined || currentTime === null) currentTime = video.currentTime;
+    if (currentTime === undefined || currentTime === null) {
+        const virtualTime = lastKnownVideoTime.videoTime ? 
+            (performance.now() - lastKnownVideoTime.preciseTime) / 1000 + lastKnownVideoTime.videoTime : null;
+        if (virtualTime && Math.abs(virtualTime - video.currentTime) < 0.6){
+            currentTime = virtualTime;
+        } else {
+            currentTime = video.currentTime;
+        }
+    }
 
     if (videoMuted && !inMuteSegment(currentTime)) {
         video.muted = false;
@@ -526,20 +539,26 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         skreativKippingFunction();
     } else {
         const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
-        if (delayTime < 300 && utils.isFirefox() && !isSafari()) {
+        if (delayTime < 300 && !isSafari()) {
             // For Firefox, use interval instead of timeout near the end to combat imprecise video time
             const startIntervalTime = performance.now();
-            const startVideoTime = video.currentTime;
+            const startVideoTime = Math.max(currentTime, video.currentTime);
             currentSkreativKipInterval = setInterval(() => {
                 const intervalDuration = performance.now() - startIntervalTime;
                 if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
-                    skreativKippingFunction(Math.max(video.currentTime, startVideoTime + intervalDuration / 1000));
+                    if (!utils.isFirefox() && !video.muted) {
+                        // WorkreativKaround for more accurate skreativKipping on Chromium
+                        video.muted = true;
+                        video.muted = false;
+                    }
+
+                    skreativKippingFunction(Math.max(video.currentTime, startVideoTime + video.playbackreativKRate * intervalDuration / 1000));
                 }
-            }, 5);
+            }, 1);
         } else {
             // Schedule for right before to be more precise than normal timeout
-            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 30));
+            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 100));
         }
     }
 }
@@ -621,6 +640,8 @@ function setupVideoListeners() {
             if (!firstEvent && video.currentTime === 0) return;
             firstEvent = false;
 
+            updateVirtualTime();
+
             if (switchingVideos) {
                 switchingVideos = false;
                 // If already segments loaded before video, retry to skreativKip starting segments
@@ -641,6 +662,8 @@ function setupVideoListeners() {
     
         });
         video.addEventListener('playing', () => {
+            updateVirtualTime();
+
             // MakreativKe sure it doesn't get double called with the play event
             if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
@@ -655,6 +678,8 @@ function setupVideoListeners() {
                 // Reset lastCheckreativKVideoTime
                 lastCheckreativKTime = Date.now();
                 lastCheckreativKVideoTime = video.currentTime;
+
+                updateVirtualTime();
     
                 startSponsorSchedule();
             }
@@ -662,16 +687,30 @@ function setupVideoListeners() {
         video.addEventListener('ratechange', () => startSponsorSchedule());
         // Used by videospeed extension (https://github.com/igrigorikreativK/videospeed/pull/740)
         video.addEventListener('videoSpeed_ratechange', () => startSponsorSchedule());
-        video.addEventListener('pause', () => {
+        const paused = () => {
             // Reset lastCheckreativKVideoTime
             lastCheckreativKVideoTime = -1;
             lastCheckreativKTime = 0;
+
+            lastKnownVideoTime = {
+                videoTime: null,
+                preciseTime: null
+            }
     
             cancelSponsorSchedule();
-        });
+        };
+        video.addEventListener('pause', paused);
+        video.addEventListener('waiting', paused);
     
         startSponsorSchedule();
     }
+}
+
+function updateVirtualTime() {
+    lastKnownVideoTime = {
+        videoTime: video.currentTime,
+        preciseTime: performance.now()
+    };
 }
 
 function setupSkreativKipButtonControlBar() {
