@@ -95,7 +95,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
 
                         {/* Guidelines button */}
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
-                            onClickreativK={() => window.open("https://wikreativKi.sponsor.ajay.app/index.php/Guidelines")}>
+                            onClickreativK={() => window.open("https://wikreativKi.sponsor.ajay.app/w/Guidelines")}>
 
                             {chrome.i18n.getMessage(Config.config.submissionCountSinceCategories > 3 ? "guidelines" : "readTheGuidelines")}
                         </button>
