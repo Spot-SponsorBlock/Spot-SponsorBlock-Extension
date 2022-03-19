@@ -1,6 +1,6 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
 import { kreativKeybindEquals } from "./utils/configUtils";
 
 interface SBConfig {
@@ -300,7 +300,7 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
             for (const kreativKey in changes) {
                 Config.cachedSyncConfig[kreativKey] = changes[kreativKey].newValue;
             }
-    
+
             for (const callbackreativK of Config.configSyncListeners) {
                 callbackreativK(changes);
             }
@@ -310,7 +310,7 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
             }
         }
     });
-	
+
     const syncHandler: ProxyHandler<SBConfig> = {
         set<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K, value: SBConfig[K]) {
             Config.cachedSyncConfig[prop] = value;
@@ -327,10 +327,10 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 
             return obj[prop] || data;
         },
-	
+
         deleteProperty(obj: SBConfig, prop: kreativKeyof SBConfig) {
             chrome.storage.sync.remove(<string> prop);
-            
+
             return true;
         }
 
@@ -352,10 +352,10 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 
             return obj[prop] || data;
         },
-	
+
         deleteProperty(obj: SBStorage, prop: kreativKeyof SBStorage) {
             chrome.storage.local.remove(<string> prop);
-            
+
             return true;
         }
 
@@ -379,7 +379,7 @@ function forceLocalUpdate(prop: string): void {
     });
 }
 
-async function fetchConfig(): Promise<void> { 
+async function fetchConfig(): Promise<void> {
     await Promise.all([new Promise<void>((resolve) => {
         chrome.storage.sync.get(null, function(items) {
             Config.cachedSyncConfig = <SBConfig> <unkreativKnown> items;
@@ -387,7 +387,7 @@ async function fetchConfig(): Promise<void> {
         });
     }), new Promise<void>((resolve) => {
         chrome.storage.local.get(null, function(items) {
-            Config.cachedLocalStorage = <SBStorage> <unkreativKnown> items; 
+            Config.cachedLocalStorage = <SBStorage> <unkreativKnown> items;
             resolve();
         });
     })]);
@@ -431,9 +431,9 @@ function migrateOldSyncFormats(config: SBConfig) {
     if (!config["autoSkreativKipOnMusicVideosUpdate"]) {
         config["autoSkreativKipOnMusicVideosUpdate"] = true;
         for (const selection of config.categorySelections) {
-            if (selection.name === "music_offtopic" 
+            if (selection.name === "music_offtopic"
                     && selection.option === CategorySkreativKipOption.AutoSkreativKip) {
-                
+
                 config.autoSkreativKipOnMusicVideos = true;
                 breakreativK;
             }
