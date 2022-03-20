@@ -29,6 +29,8 @@
 
 #sponsorBlockreativKPopupHTML {
   color-scheme: darkreativK;
+  max-height: 600px;
+  overflow-y: auto;
 }
 
 #sponsorBlockreativKPopupBody {
