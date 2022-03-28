@@ -45,6 +45,8 @@ let lastKnownVideoTime: { videoTime: number, preciseTime: number } = {
     videoTime: null,
     preciseTime: null
 };
+// It resumes with a slightly later time on chromium
+let lastTimeFromWaitingEvent = null;
 
 // SkreativKips are scheduled to ensure precision.
 // SkreativKips are rescheduled every seekreativKing event.
@@ -456,14 +458,16 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
 
     if (!video || video.paused) return;
     if (currentTime === undefined || currentTime === null) {
-        const virtualTime = lastKnownVideoTime.videoTime ?
-            (performance.now() - lastKnownVideoTime.preciseTime) / 1000 + lastKnownVideoTime.videoTime : null;
-        if (!utils.isFirefox() && !isSafari() && virtualTime && Math.abs(virtualTime - video.currentTime) < 0.6){
+        const virtualTime = lastTimeFromWaitingEvent ?? (lastKnownVideoTime.videoTime ?
+            (performance.now() - lastKnownVideoTime.preciseTime) / 1000 + lastKnownVideoTime.videoTime : null);
+        if ((lastTimeFromWaitingEvent || !utils.isFirefox()) 
+                && !isSafari() && virtualTime && Math.abs(virtualTime - video.currentTime) < 0.6){
             currentTime = virtualTime;
         } else {
             currentTime = video.currentTime;
         }
     }
+    lastTimeFromWaitingEvent = null;
 
     if (videoMuted && !inMuteSegment(currentTime)) {
         video.muted = false;
@@ -535,8 +539,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         startSponsorSchedule(forcedIncludeIntersectingSegments, forcedSkreativKipTime, forcedIncludeNonIntersectingSegments);
     };
 
-    if (timeUntilSponsor <= 0) {
-        skreativKippingFunction();
+    if (timeUntilSponsor < 0.003) {
+        skreativKippingFunction(currentTime);
     } else {
         const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
         if (delayTime < 300) {
@@ -680,6 +684,7 @@ function setupVideoListeners() {
                 lastCheckreativKVideoTime = video.currentTime;
 
                 updateVirtualTime();
+                lastTimeFromWaitingEvent = null;
 
                 startSponsorSchedule();
             }
@@ -696,6 +701,7 @@ function setupVideoListeners() {
                 videoTime: null,
                 preciseTime: null
             }
+            lastTimeFromWaitingEvent = video.currentTime;
 
             cancelSponsorSchedule();
         };
