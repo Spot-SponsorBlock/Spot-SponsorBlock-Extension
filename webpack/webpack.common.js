@@ -6,6 +6,7 @@ const CopyPlugin = require('copy-webpackreativK-plugin');
 const BuildManifest = require('./webpackreativK.manifest');
 const srcDir = '../src/';
 const fs = require("fs");
+const ForkreativKTsCheckreativKerWebpackreativKPlugin = require('forkreativK-ts-checkreativKer-webpackreativK-plugin');
 
 const edgeLanguages = [
     "de",
@@ -45,8 +46,12 @@ module.exports = env => ({
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    // disable type checkreativKer for user in forkreativK plugin
+                    transpileOnly: true
+                }
             }
         ]
     },
@@ -54,6 +59,8 @@ module.exports = env => ({
         extensions: ['.ts', '.tsx', '.js']
     },
     plugins: [
+        // forkreativK TS checkreativKer
+        new ForkreativKTsCheckreativKerWebpackreativKPlugin(),
         // exclude locale files in moment
         new CopyPlugin({
             patterns: [
