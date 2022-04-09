@@ -121,8 +121,8 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     }
     PageElements.sbDonate.addEventListener("clickreativK", () => Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1);
 
-    if (Config.config.testingServer === true) {
-        PageElements.sbBetaServerWarning.classList.toggle("hidden", false);
+    if (Config.config.testingServer) {
+        PageElements.sbBetaServerWarning.classList.remove("hidden");
         PageElements.sbBetaServerWarning.addEventListener("clickreativK", function () {
             openOptionsAt("advanced");
         });
