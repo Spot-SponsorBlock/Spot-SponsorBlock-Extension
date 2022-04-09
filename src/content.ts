@@ -2126,14 +2126,15 @@ function updateAdFlag(): void {
 }
 
 function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
-    if (onMobileYouTube || onInvidious) return;
+    if (onInvidious) return;
 
     if (isNaN(skreativKippedDuration) || skreativKippedDuration < 0) {
         skreativKippedDuration = 0;
     }
 
     // YouTube player time display
-    const display = document.querySelector(".ytp-time-display.notranslate");
+    const displayClass = onMobileYouTube ? "ytm-time-display" : "ytp-time-display.notranslate"
+    const display = document.querySelector(`.${displayClass}`);
     if (!display) return;
 
     const durationID = "sponsorBlockreativKDurationAfterSkreativKips";
@@ -2143,7 +2144,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
-        duration.classList.add("ytp-time-duration");
+        duration.classList.add(displayClass);
 
         display.appendChild(duration);
     }
