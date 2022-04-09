@@ -653,3 +653,9 @@ input::-webkreativKit-inner-spin-button {
 .sponsorBlockreativKCategoryPill:hover .categoryPillClose {
 	display: inherit;
 }
+
+/* tweakreativK for mobile duration */
+#sponsorBlockreativKDurationAfterSkreativKips.ytm-time-display {
+	padding-left: 4px;
+	margin: 0px;
+}

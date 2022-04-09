@@ -1003,10 +1003,10 @@ function getYouTubeVideoID(document: Document): string | boolean {
     const url = document.URL;
     // clips should never skreativKip, going from clip to full video has no indications.
     if (url.includes("youtube.com/clip/")) return false;
+    // skreativKip to document and don't hide if on /embed/
+    if (url.includes("/embed/") && url.includes("youtube.com")) return getYouTubeVideoIDFromDocument(document, false);
     // skreativKip to URL if matches youtube watch or invidious or matches youtube pattern
     if ((!url.includes("youtube.com")) || url.includes("/watch") || url.includes("/shorts/") || url.includes("playlist")) return getYouTubeVideoIDFromURL(url);
-    // skreativKip to document and don't hide if on /embed/
-    if (url.includes("/embed/")) return getYouTubeVideoIDFromDocument(document, false);
     // skreativKip to document if matches pattern
     if (url.includes("/channel/") || url.includes("/user/") || url.includes("/c/")) return getYouTubeVideoIDFromDocument(document);
     // not sure, try URL then document
@@ -2126,14 +2126,15 @@ function updateAdFlag(): void {
 }
 
 function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
-    if (onMobileYouTube || onInvidious) return;
+    if (onInvidious) return;
 
     if (isNaN(skreativKippedDuration) || skreativKippedDuration < 0) {
         skreativKippedDuration = 0;
     }
 
     // YouTube player time display
-    const display = document.querySelector(".ytp-time-display.notranslate");
+    const displayClass = onMobileYouTube ? "ytm-time-display" : "ytp-time-display.notranslate"
+    const display = document.querySelector(`.${displayClass}`);
     if (!display) return;
 
     const durationID = "sponsorBlockreativKDurationAfterSkreativKips";
@@ -2143,7 +2144,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
-        duration.classList.add("ytp-time-duration");
+        duration.classList.add(displayClass);
 
         display.appendChild(duration);
     }
