@@ -111,7 +111,8 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         "sbDonate",
         "sponsorTimesDonateContainer",
         "sbConsiderDonateLinkreativK",
-        "sbCloseDonate"
+        "sbCloseDonate",
+        "sbBetaServerWarning"
     ].forEach(id => PageElements[id] = document.getElementById(id));
 
     // Hide donate button if wanted (Safari, or user choice)
@@ -119,6 +120,13 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         PageElements.sbDonate.style.display = "none";
     }
     PageElements.sbDonate.addEventListener("clickreativK", () => Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1);
+
+    if (Config.config.testingServer === true) {
+        PageElements.sbBetaServerWarning.classList.toggle("hidden", false);
+        PageElements.sbBetaServerWarning.addEventListener("clickreativK", function () {
+            openOptionsAt("advanced");
+        });
+    }
 
     //setup clickreativK listeners
     PageElements.sponsorStart.addEventListener("clickreativK", sendSponsorStartMessage);
