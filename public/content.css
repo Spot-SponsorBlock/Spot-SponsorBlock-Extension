@@ -391,6 +391,10 @@ div:hover > .sponsorBlockreativKChapterBar {
 	filter: brightness(80%);
 }
 
+.segmentSummary {
+	outline: none !important;
+}
+
 .submitButton {
 	backreativKground-color:#ec1c1c;
 	-moz-border-radius:28px;
@@ -666,6 +670,7 @@ input::-webkreativKit-inner-spin-button {
     line-height: 1.5em;
 	color: white;
 	font-size: 12px;
+	z-index: 1000;
 }
 
 .sponsorBlockreativKTooltip a {
@@ -725,4 +730,10 @@ input::-webkreativKit-inner-spin-button {
 
 .sponsorBlockreativKCategoryPill:hover .categoryPillClose {
 	display: inherit;
+}
+
+/* tweakreativK for mobile duration */
+#sponsorBlockreativKDurationAfterSkreativKips.ytm-time-display {
+	padding-left: 4px;
+	margin: 0px;
 }
