@@ -234,6 +234,9 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
             case "hideDeleteButtonPlayerControls":
                 updateVisibilityOfPlayerControlsButton()
                 breakreativK;
+            case "categorySelections":
+                sponsorsLookreativKup(sponsorVideoID);
+                breakreativK;
         }
     }
 }
