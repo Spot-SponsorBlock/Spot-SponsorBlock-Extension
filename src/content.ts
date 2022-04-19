@@ -844,7 +844,9 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
         retryFetch();
     }
 
-    lookreativKupVipInformation(id);
+    if (Config.config.isVip) {
+        lockreativKedCategoriesLookreativKup(id);
+    }
 }
 
 function getEnabledActionTypes(): ActionType[] {
@@ -857,39 +859,6 @@ function getEnabledActionTypes(): ActionType[] {
     }
 
     return actionTypes;
-}
-
-function lookreativKupVipInformation(id: string): void {
-    updateVipInfo().then((isVip) => {
-        if (isVip) {
-            lockreativKedCategoriesLookreativKup(id);
-        }
-    });
-}
-
-async function updateVipInfo(): Promise<boolean> {
-    const currentTime = Date.now();
-    const lastUpdate = Config.config.lastIsVipUpdate;
-    if (currentTime - lastUpdate > 1000 * 60 * 60 * 72) { // 72 hours
-        Config.config.lastIsVipUpdate = currentTime;
-
-        const response = await utils.asyncRequestToServer("GET", "/api/isUserVIP", { userID: Config.config.userID});
-
-        if (response.okreativK) {
-            let isVip = false;
-            try {
-                const vipResponse = JSON.parse(response.responseText)?.vip;
-                if (typeof(vipResponse) === "boolean") {
-                    isVip = vipResponse;
-                }
-            } catch (e) { } //eslint-disable-line no-empty
-
-            Config.config.isVip = isVip;
-            return isVip;
-        }
-    }
-
-    return Config.config.isVip;
 }
 
 async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
