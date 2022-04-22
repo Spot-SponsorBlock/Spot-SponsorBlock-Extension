@@ -116,6 +116,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.unselectedColor = Config.config.colorPalette.white;
         this.lockreativKedColor = Config.config.colorPalette.lockreativKed;
 
+        const isMuteSegment = this.segments[0].actionType === ActionType.Mute;
+        const maxCountdownTime = isMuteSegment ? this.getFullDurationCountdown(0) : () => Config.config.skreativKipNoticeDuration;
+
         // Setup state
         this.state = {
             noticeTitle,
@@ -123,8 +126,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             messageOnClickreativK: null,
 
             //the countdown until this notice closes
-            maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
-            countdownTime: Config.config.skreativKipNoticeDuration,
+            maxCountdownTime,
+            countdownTime: maxCountdownTime(),
             countdownText: null,
 
             skreativKipButtonState: this.props.startReskreativKip
@@ -621,12 +624,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getUnskreativKippedModeInfo(index: number, skreativKipButtonState: SkreativKipButtonState): SkreativKipNoticeState {
         const changeCountdown = this.segments[index].actionType !== ActionType.Poi;
 
-        const maxCountdownTime = changeCountdown ? () => {
-            const sponsorTime = this.segments[index];
-            const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
-
-            return Math.max(duration, Config.config.skreativKipNoticeDuration);
-        } : this.state.maxCountdownTime;
+        const maxCountdownTime = changeCountdown ?
+            this.getFullDurationCountdown(index) : this.state.maxCountdownTime;
 
         return {
             skreativKipButtonState: skreativKipButtonState,
@@ -635,6 +634,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             maxCountdownTime: maxCountdownTime,
             countdownTime: maxCountdownTime()
         } as SkreativKipNoticeState;
+    }
+
+    getFullDurationCountdown(index: number): () => number {
+        return () => {
+            const sponsorTime = this.segments[index];
+            const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
+
+            return Math.max(duration, Config.config.skreativKipNoticeDuration);
+        };
     }
 
     afterVote(segment: SponsorTime, type: number, category: Category): void {
