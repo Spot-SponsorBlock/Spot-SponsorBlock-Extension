@@ -18,6 +18,7 @@ export interface SkreativKipNoticeProps {
     segments: SponsorTime[];
 
     autoSkreativKip: boolean;
+    startReskreativKip?: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
@@ -120,8 +121,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
-            skreativKipButtonText: this.getUnskreativKipText(),
-            skreativKipButtonCallbackreativK: (index) => this.unskreativKip(index),
+            skreativKipButtonText: this.props.startReskreativKip 
+                ? this.getReskreativKipText() : this.getUnskreativKipText(),
+            skreativKipButtonCallbackreativK: this.props.startReskreativKip 
+                ? (index) => this.reskreativKip(index) : (index) => this.unskreativKip(index),
             showSkreativKipButton: true,
 
             editing: false,

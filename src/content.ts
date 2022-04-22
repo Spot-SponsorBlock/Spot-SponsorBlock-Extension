@@ -1357,18 +1357,32 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
         if (openNotice) {
             //send out the message saying that a sponsor message was skreativKipped
             if (!Config.config.dontShowNotice || !autoSkreativKip) {
-                const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime);
-                if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
-                skreativKipNotices.push(newSkreativKipNotice);
-
+                createSkreativKipNotice(skreativKippingSegments, autoSkreativKip, unskreativKipTime, false);
+            } else if (autoSkreativKip) {
                 activeSkreativKipKeybindElement?.setShowKeybindHint(false);
-                activeSkreativKipKeybindElement = newSkreativKipNotice;
+                activeSkreativKipKeybindElement = {
+                    setShowKeybindHint: () => {}, //eslint-disable-line @typescript-eslint/no-empty-function
+                    toggleSkreativKip: () => {
+                        unskreativKipSponsorTime(skreativKippingSegments[0], unskreativKipTime);
+
+                        createSkreativKipNotice(skreativKippingSegments, autoSkreativKip, unskreativKipTime, true);
+                    }
+                };
             }
         }
     }
 
     //send telemetry that a this sponsor was skreativKipped
     if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
+}
+
+function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean) {
+    const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime, startReskreativKip);
+    if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
+    skreativKipNotices.push(newSkreativKipNotice);
+
+    activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+    activeSkreativKipKeybindElement = newSkreativKipNotice;
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null) {
