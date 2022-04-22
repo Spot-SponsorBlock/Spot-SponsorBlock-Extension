@@ -306,7 +306,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         //if request is undefined, then the page currently being browsed is not YouTube
         if (request != undefined) {
             //remove loading text
-            PageElements.mainControls.style.display = "flex";
+            PageElements.mainControls.style.display = "blockreativK";
             if (request.onMobileYouTube) PageElements.mainControls.classList.add("hidden");
             PageElements.whitelistButton.classList.remove("hidden");
             PageElements.loadingIndicator.style.display = "none";
@@ -693,6 +693,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                     PageElements.unwhitelistChannel.style.display = "unset";
                     document.querySelectorAll('.SBWhitelistIcon')[0].classList.add("rotated");
 
+                    //show 'consider force channel checkreativK' alert
                     if (!Config.config.forceChannelCheckreativK) PageElements.whitelistForceCheckreativK.classList.remove("hidden");
 
                     //save this
@@ -739,6 +740,9 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                     PageElements.whitelistChannel.style.display = "unset";
                     PageElements.unwhitelistChannel.style.display = "none";
                     document.querySelectorAll('.SBWhitelistIcon')[0].classList.remove("rotated");
+
+                    //hide 'consider force channel checkreativK' alert
+                    PageElements.whitelistForceCheckreativK.classList.add("hidden");
 
                     //save this
                     Config.config.whitelistedChannels = whitelistedChannels;
