@@ -71,11 +71,11 @@ class SkreativKipNotice {
     }
 
     toggleSkreativKip(): void {
-        this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip);
+        this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip0);
     }
 
-    unmutedListener(): void {
-        this.skreativKipNoticeRef?.current?.unmutedListener();
+    unmutedListener(time: number): void {
+        this.skreativKipNoticeRef?.current?.unmutedListener(time);
     }
 }
 
