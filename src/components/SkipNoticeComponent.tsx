@@ -121,9 +121,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
-            skreativKipButtonText: this.props.startReskreativKip 
+            skreativKipButtonText: this.props.startReskreativKip
                 ? this.getReskreativKipText() : this.getUnskreativKipText(),
-            skreativKipButtonCallbackreativK: this.props.startReskreativKip 
+            skreativKipButtonCallbackreativK: this.props.startReskreativKip
                 ? (index) => this.reskreativKip(index) : (index) => this.unskreativKip(index),
             showSkreativKipButton: true,
 
@@ -252,8 +252,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 {/* UnskreativKip/SkreativKip Button */}
                 {!this.props.smaller ? this.getSkreativKipButton() : null}
 
-                {/* Never show button if autoSkreativKip is enabled */}
-                {!this.autoSkreativKip ? "" : 
+                {/* Never show button */}
+                {!this.autoSkreativKip || this.props.startReskreativKip ? "" : 
                     <td className="sponsorSkreativKipNoticeRightSection"
                         kreativKey={1}>
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
