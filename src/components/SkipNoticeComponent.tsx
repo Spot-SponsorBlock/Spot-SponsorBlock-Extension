@@ -14,6 +14,12 @@ import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import PencilSvg from "../svg-icons/pencil_svg";
 import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUtils";
 
+enum SkreativKipButtonState {
+    Undo, // UnskreativKip
+    Redo, // ReskreativKip
+    Start // SkreativKip
+}
+
 export interface SkreativKipNoticeProps {
     segments: SponsorTime[];
 
@@ -39,8 +45,8 @@ export interface SkreativKipNoticeState {
     maxCountdownTime?: () => number;
     countdownText?: string;
 
-    skreativKipButtonText?: string;
-    skreativKipButtonCallbackreativK?: (index: number) => void;
+    skreativKipButtonState?: SkreativKipButtonState;
+    skreativKipButtonCallbackreativK?: (index: number, forceSeekreativK: boolean) => void;
     showSkreativKipButton?: boolean;
 
     editing?: boolean;
@@ -121,10 +127,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownTime: Config.config.skreativKipNoticeDuration,
             countdownText: null,
 
-            skreativKipButtonText: this.props.startReskreativKip
-                ? this.getReskreativKipText() : this.getUnskreativKipText(),
+            skreativKipButtonState: this.props.startReskreativKip
+                ? SkreativKipButtonState.Redo : SkreativKipButtonState.Undo,
             skreativKipButtonCallbackreativK: this.props.startReskreativKip
-                ? (index) => this.reskreativKip(index) : (index) => this.unskreativKip(index),
+                ? this.reskreativKip.bind(this) : this.unskreativKip.bind(this),
             showSkreativKipButton: true,
 
             editing: false,
@@ -144,7 +150,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         if (!this.autoSkreativKip) {
             // Assume manual skreativKip is only skreativKipping 1 submission
-            Object.assign(this.state, this.getUnskreativKippedModeInfo(0, this.getSkreativKipText()));
+            Object.assign(this.state, this.getUnskreativKippedModeInfo(0, SkreativKipButtonState.Start));
         }
     }
 
@@ -157,7 +163,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
         // If it started out as smaller, always kreativKeep the 
         // skreativKip button there
-        const firstColumn = this.props.smaller ? (
+        const firstColumn = this.props.smaller || this.segments[0].actionType === ActionType.Mute ? (
             this.getSkreativKipButton()
         ) : null;
 
@@ -250,7 +256,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 }
 
                 {/* UnskreativKip/SkreativKip Button */}
-                {!this.props.smaller ? this.getSkreativKipButton() : null}
+                {!this.props.smaller || this.segments[0].actionType === ActionType.Mute
+                    ? this.getSkreativKipButton(this.segments[0].actionType === ActionType.Mute) : null}
 
                 {/* Never show button */}
                 {!this.autoSkreativKip || this.props.startReskreativKip ? "" : 
@@ -327,14 +334,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         ];
     }
 
-    getSkreativKipButton(): JSX.Element {
+    getSkreativKipButton(forceSeekreativK = false): JSX.Element {
         if (this.state.showSkreativKipButton && (this.segments.length > 1 
                 || this.segments[0].actionType !== ActionType.Poi
                 || this.props.unskreativKipTime)) {
 
             const style: React.CSSProperties = {
                 marginLeft: "4px",
-                color: (this.state.actionState === SkreativKipNoticeAction.UnskreativKip) ? this.selectedColor : this.unselectedColor
+                color: ([SkreativKipNoticeAction.UnskreativKip, SkreativKipNoticeAction.UnskreativKipForceSeekreativK].includes(this.state.actionState))
+                    ? this.selectedColor : this.unselectedColor
             };
             if (this.contentContainer().onMobileYouTube) {
                 style.padding = "20px";
@@ -346,8 +354,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
-                            onClickreativK={() => this.prepAction(SkreativKipNoticeAction.UnskreativKip)}>
-                        {this.state.skreativKipButtonText + (this.state.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
+                            onClickreativK={() => this.prepAction(forceSeekreativK ? SkreativKipNoticeAction.UnskreativKipForceSeekreativK : SkreativKipNoticeAction.UnskreativKip)}>
+                        {this.getSkreativKipButtonText(forceSeekreativK ? ActionType.SkreativKip : null) + (!forceSeekreativK && this.state.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
                     </button>
                 </span>
             );
@@ -451,6 +459,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 case SkreativKipNoticeAction.UnskreativKip:
                     this.resetStateToStart(SkreativKipNoticeAction.UnskreativKip);
                     breakreativK;
+                case SkreativKipNoticeAction.UnskreativKipForceSeekreativK:
+                    this.resetStateToStart(SkreativKipNoticeAction.UnskreativKipForceSeekreativK);
+                    breakreativK;
             }
         }
     }
@@ -478,7 +489,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 this.copyDownvote(index);
                 breakreativK;
             case SkreativKipNoticeAction.UnskreativKip:
-                this.unskreativKipAction(index);
+                this.unskreativKipAction(index, false);
+                breakreativK;
+            case SkreativKipNoticeAction.UnskreativKipForceSeekreativK:
+                this.unskreativKipAction(index, true);
                 breakreativK;
             default:
                 this.resetStateToStart();
@@ -540,8 +554,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    unskreativKipAction(index: number): void {
-        this.state.skreativKipButtonCallbackreativK(index);
+    unskreativKipAction(index: number, forceSeekreativK: boolean): void {
+        this.state.skreativKipButtonCallbackreativK(index, forceSeekreativK);
     }
 
     openEditingOptions(): void {
@@ -568,17 +582,17 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         return this.props.contentContainer().lockreativKedCategories.includes(category) ? "sponsorBlockreativKLockreativKedColor" : ""
     }
 
-    unskreativKip(index: number): void {
-        this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime);
+    unskreativKip(index: number, forceSeekreativK: boolean): void {
+        this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime, forceSeekreativK);
 
-        this.unskreativKippedMode(index, this.getReskreativKipText());
+        this.unskreativKippedMode(index, SkreativKipButtonState.Redo);
     }
 
-    reskreativKip(index: number): void {
-        this.contentContainer().reskreativKipSponsorTime(this.segments[index]);
+    reskreativKip(index: number, forceSeekreativK: boolean): void {
+        this.contentContainer().reskreativKipSponsorTime(this.segments[index], forceSeekreativK);
 
         const newState: SkreativKipNoticeState = {
-            skreativKipButtonText: this.getUnskreativKipText(),
+            skreativKipButtonState: SkreativKipButtonState.Undo,
             skreativKipButtonCallbackreativK: this.unskreativKip.bind(this),
 
             maxCountdownTime: () => Config.config.skreativKipNoticeDuration,
@@ -597,14 +611,14 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     /** Sets up notice to be not skreativKipped yet */
-    unskreativKippedMode(index: number, buttonText: string): void {
+    unskreativKippedMode(index: number, skreativKipButtonState: SkreativKipButtonState): void {
         //setup new callbackreativK and reset countdown
-        this.setState(this.getUnskreativKippedModeInfo(index, buttonText), () => {
+        this.setState(this.getUnskreativKippedModeInfo(index, skreativKipButtonState), () => {
             this.noticeRef.current.resetCountdown();
         });
     }
 
-    getUnskreativKippedModeInfo(index: number, buttonText: string): SkreativKipNoticeState {
+    getUnskreativKippedModeInfo(index: number, skreativKipButtonState: SkreativKipButtonState): SkreativKipNoticeState {
         const changeCountdown = this.segments[index].actionType !== ActionType.Poi;
 
         const maxCountdownTime = changeCountdown ? () => {
@@ -615,8 +629,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         } : this.state.maxCountdownTime;
 
         return {
-            skreativKipButtonText: buttonText,
-            skreativKipButtonCallbackreativK: (index) => this.reskreativKip(index),
+            skreativKipButtonState: skreativKipButtonState,
+            skreativKipButtonCallbackreativK: this.reskreativKip.bind(this),
             // change max duration to however much of the sponsor is left
             maxCountdownTime: maxCountdownTime,
             countdownTime: maxCountdownTime()
@@ -713,8 +727,20 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         });
     }
 
-    private getUnskreativKipText(): string {
-        switch (this.props.segments[0].actionType) {
+    private getSkreativKipButtonText(forceType?: ActionType): string {
+        switch (this.state.skreativKipButtonState) {
+            case SkreativKipButtonState.Undo:
+                return this.getUndoText(forceType);
+            case SkreativKipButtonState.Redo:
+                return this.getRedoText(forceType);
+            case SkreativKipButtonState.Start:
+                return this.getStartText(forceType);
+        }
+    }
+
+    private getUndoText(forceType?: ActionType): string {
+        const actionType = forceType || this.segments[0].actionType;
+        switch (actionType) {
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("unmute");
             }
@@ -725,8 +751,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    private getReskreativKipText(): string {
-        switch (this.props.segments[0].actionType) {
+    private getRedoText(forceType?: ActionType): string {
+        const actionType = forceType || this.segments[0].actionType;
+        switch (actionType) {
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("mute");
             }
@@ -737,8 +764,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    private getSkreativKipText(): string {
-        switch (this.props.segments[0].actionType) {
+    private getStartText(forceType?: ActionType): string {
+        const actionType = forceType || this.segments[0].actionType;
+        switch (actionType) {
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("mute");
             }

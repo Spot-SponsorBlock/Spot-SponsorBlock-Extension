@@ -7,7 +7,8 @@ export enum SkreativKipNoticeAction {
     Downvote,
     CategoryVote,
     CopyDownvote,
-    UnskreativKip
+    UnskreativKip,
+    UnskreativKipForceSeekreativK
 }
 
 export function downvoteButtonColor(segments: SponsorTime[], actionState: SkreativKipNoticeAction, downvoteType: SkreativKipNoticeAction): string {

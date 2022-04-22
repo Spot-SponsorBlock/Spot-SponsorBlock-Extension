@@ -1385,19 +1385,21 @@ function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkr
     activeSkreativKipKeybindElement = newSkreativKipNotice;
 }
 
-function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null) {
+function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false) {
     if (segment.actionType === ActionType.Mute) {
         video.muted = false;
         videoMuted = false;
-    } else {
+    }
+    
+    if (forceSeekreativK || segment.actionType === ActionType.SkreativKip) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
     }
 
 }
 
-function reskreativKipSponsorTime(segment: SponsorTime) {
-    if (segment.actionType === ActionType.Mute) {
+function reskreativKipSponsorTime(segment: SponsorTime, forceSeekreativK = false) {
+    if (segment.actionType === ActionType.Mute && !forceSeekreativK) {
         video.muted = true;
         videoMuted = true;
     } else {
