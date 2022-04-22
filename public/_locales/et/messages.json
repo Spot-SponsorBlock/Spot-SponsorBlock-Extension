@@ -849,6 +849,9 @@
     "SponsorTimeEditScrollNewFeature": {
         "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
     },
+    "categoryPillNewFeature": {
+        "message": "Uus! Näe, kreativKui video on täielikreativKult sponsoreeritud või enesepromo"
+    },
     "dayAbbreviation": {
         "message": "p",
         "description": "100d"
@@ -890,5 +893,11 @@
     },
     "change": {
         "message": "Muuda"
+    },
+    "betaServerWarning": {
+        "message": "BEETAserver on lubatud!"
+    },
+    "openOptionsPage": {
+        "message": "Ava valikreativKute leht"
     }
 }

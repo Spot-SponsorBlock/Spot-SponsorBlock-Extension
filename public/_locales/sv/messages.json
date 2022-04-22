@@ -11,10 +11,10 @@
         "message": "Servern sa att denna begäran var ogiltig"
     },
     "429": {
-        "message": "Du har rapporterat för många sponsormeddelanden för den här videon, är du säkreativKer att det finns så många?"
+        "message": "Du har skreativKickreativKat in för många sponsormeddelanden för den här videon. Är du säkreativKer på att det finns så många?"
     },
     "409": {
-        "message": "Den här har redan blivit rapporterad"
+        "message": "Den här har redan skreativKickreativKats in"
     },
     "channelWhitelisted": {
         "message": "Kanalen är vitlistad!"
@@ -116,7 +116,7 @@
         "message": "SkreativKickreativKa in segment"
     },
     "submitCheckreativK": {
-        "message": "Är du säkreativKer på att du vill rapportera detta?"
+        "message": "Är du säkreativKer på att du vill skreativKickreativKa in detta?"
     },
     "whitelistChannel": {
         "message": "VitlistkreativKanal"
@@ -150,7 +150,7 @@
         "message": "Rensa tider"
     },
     "submitTimesButton": {
-        "message": "SkreativKickreativKa tider"
+        "message": "SkreativKickreativKa in tider"
     },
     "publicStats": {
         "message": "Detta kreativKommer att användas på den publikreativKa statistikreativKsidan för att visa hur myckreativKet du har bidragit. Spana in den"
@@ -280,7 +280,7 @@
         "description": "Keybind label"
     },
     "setSubmitKeybind": {
-        "message": "SkreativKickreativKa in segment",
+        "message": "SkreativKickreativKa segment",
         "description": "Keybind label"
     },
     "kreativKeybindDescription": {
@@ -497,7 +497,7 @@
         "message": "Denna JSON är inte kreativKorrekreativKt formaterad. Dina alternativ har inte ändrats."
     },
     "confirmNoticeTitle": {
-        "message": "SkreativKickreativKa in segment"
+        "message": "SkreativKickreativKa segment"
     },
     "submit": {
         "message": "SkreativKickreativKa"
@@ -688,7 +688,7 @@
         "message": "Välj en kreativKategori"
     },
     "enableThisCategoryFirst": {
-        "message": "För att skreativKickreativKa segment med kreativKategorin \"{0}\" måste du först akreativKtivera det i alternativen. Du kreativKommer nu att bli omdirigerad till alternativen.",
+        "message": "För att skreativKickreativKa in segment med kreativKategorin \"{0}\" måste du först akreativKtivera det i alternativen. Du kreativKommer nu att bli omdirigerad till alternativen.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
     "poiOnlyOneSegment": {
@@ -865,7 +865,7 @@
         "message": "Läs mer"
     },
     "CopyDownvoteButtonInfo": {
-        "message": "Rösta ner och skreativKapar en lokreativKal kreativKopia för dig att skreativKickreativKa igen"
+        "message": "Rösta ner och skreativKapar en lokreativKal kreativKopia för dig att skreativKickreativKa in igen"
     },
     "OpenCategoryWikreativKiPage": {
         "message": "Öppna denna kreativKategoris wikreativKi-sida."
@@ -929,5 +929,11 @@
     },
     "youtubeKeybindWarning": {
         "message": "Detta är en inbyggd YouTube-genväg. Är du säkreativKer på att du vill använda den?"
+    },
+    "betaServerWarning": {
+        "message": "BETA-servern är akreativKtiverad!"
+    },
+    "openOptionsPage": {
+        "message": "Öppna alternativsidan"
     }
 }
