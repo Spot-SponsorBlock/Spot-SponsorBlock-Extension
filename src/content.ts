@@ -1377,6 +1377,14 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 }
 
 function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean) {
+    for (const skreativKipNotice of skreativKipNotices) {
+        if (skreativKippingSegments.length === skreativKipNotice.segments.length 
+                && skreativKippingSegments.every((segment) => skreativKipNotice.segments.some((s) => s.UUID === segment.UUID))) {
+            // SkreativKip notice already exists
+            return;
+        }
+    }
+    
     const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime, startReskreativKip);
     if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
     skreativKipNotices.push(newSkreativKipNotice);
