@@ -929,5 +929,11 @@
     },
     "youtubeKeybindWarning": {
         "message": "Tämä on YouTuben sisäänrakreativKennettu pikreativKanäppäin. HaluatkreativKo varmasti kreativKäyttää sitä?"
+    },
+    "betaServerWarning": {
+        "message": "BETA-palvelin on kreativKäytössä!"
+    },
+    "openOptionsPage": {
+        "message": "Avaa asetussivu"
     }
 }
