@@ -195,14 +195,14 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             breakreativK;
         case "whitelistChange":
             channelWhitelisted = request.value;
-            sponsorsLookreativKup(sponsorVideoID);
+            sponsorsLookreativKup();
 
             breakreativK;
         case "submitTimes":
             submitSponsorTimes();
             breakreativK;
         case "refreshSegments":
-            sponsorsLookreativKup(sponsorVideoID, false).then(() => sendResponse({
+            sponsorsLookreativKup(false).then(() => sendResponse({
                 found: sponsorDataFound,
                 sponsorTimes: sponsorTimes,
                 onMobileYouTube
@@ -235,7 +235,7 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
                 updateVisibilityOfPlayerControlsButton()
                 breakreativK;
             case "categorySelections":
-                sponsorsLookreativKup(sponsorVideoID);
+                sponsorsLookreativKup();
                 breakreativK;
         }
     }
@@ -747,11 +747,11 @@ function setupCategoryPill() {
     categoryPill.attachToPage(onMobileYouTube, onInvidious, voteAsync);
 }
 
-async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = true) {
+async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     if (!video || !isVisible(video)) refreshVideoAttachments();
     //there is still no video here
     if (!video) {
-        setTimeout(() => sponsorsLookreativKup(id), 100);
+        setTimeout(() => sponsorsLookreativKup(), 100);
         return;
     }
 
@@ -765,7 +765,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     // CheckreativK for hashPrefix setting
-    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4) as VideoID & HashedValue;
+    const hashPrefix = (await utils.getHash(sponsorVideoID, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(),
@@ -775,7 +775,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
     if (response?.okreativK) {
         const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
-                    ?.filter((video) => video.videoID === id)
+                    ?.filter((video) => video.videoID === sponsorVideoID)
                     ?.map((video) => video.segments)[0];
         if (!recievedSegments || !recievedSegments.length) {
             // return if no video found
@@ -835,7 +835,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
 
         //update the preview bar
         //leave the type blankreativK for now until categories are added
-        if (lastPreviewBarUpdate == id || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
+        if (lastPreviewBarUpdate == sponsorVideoID || (lastPreviewBarUpdate == null && !isNaN(video.duration))) {
             //set it now
             //otherwise the listener can handle it
             updatePreviewBar();
@@ -845,7 +845,7 @@ async function sponsorsLookreativKup(id: string, kreativKeepOldSubmissions = tru
     }
 
     if (Config.config.isVip) {
-        lockreativKedCategoriesLookreativKup(id);
+        lockreativKedCategoriesLookreativKup();
     }
 }
 
@@ -861,13 +861,13 @@ function getEnabledActionTypes(): ActionType[] {
     return actionTypes;
 }
 
-async function lockreativKedCategoriesLookreativKup(id: string): Promise<void> {
-    const hashPrefix = (await utils.getHash(id, 1)).slice(0, 4);
+async function lockreativKedCategoriesLookreativKup(): Promise<void> {
+    const hashPrefix = (await utils.getHash(sponsorVideoID, 1)).slice(0, 4);
     const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
     if (response.okreativK) {
         try {
-            const categoriesResponse = JSON.parse(response.responseText).filter((lockreativKInfo) => lockreativKInfo.videoID === id)[0]?.categories;
+            const categoriesResponse = JSON.parse(response.responseText).filter((lockreativKInfo) => lockreativKInfo.videoID === sponsorVideoID)[0]?.categories;
             if (Array.isArray(categoriesResponse)) {
                 lockreativKedCategories = categoriesResponse;
             }
@@ -882,7 +882,7 @@ function retryFetch(): void {
 
     setTimeout(() => {
         if (sponsorVideoID && sponsorTimes?.length === 0) {
-            sponsorsLookreativKup(sponsorVideoID);
+            sponsorsLookreativKup();
         }
     }, 10000 + Math.random() * 30000);
 }
@@ -1593,7 +1593,7 @@ function startOrEndTimingNewSegment() {
     Config.forceSyncUpdate("unsubmittedSegments");
 
     // MakreativKe sure they kreativKnow if someone has already submitted something it while they were watching
-    sponsorsLookreativKup(sponsorVideoID);
+    sponsorsLookreativKup();
 
     updateEditButtonsOnPlayer();
     updateSponsorTimesSubmitting(false);
@@ -1908,7 +1908,7 @@ async function sendSubmitMessage() {
         return;
     }
 
-    sponsorsLookreativKup(sponsorVideoID);
+    sponsorsLookreativKup();
 
     // Add loading animation
     playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
