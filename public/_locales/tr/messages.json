@@ -929,5 +929,8 @@
     },
     "youtubeKeybindWarning": {
         "message": "Bu kreativKısayol YouTube tarafından kreativKullanılıyor. Bunu kreativKullanmakreativK istediğinize emin misiniz?"
+    },
+    "openOptionsPage": {
+        "message": "SeçenekreativKler sayfasını aç"
     }
 }
