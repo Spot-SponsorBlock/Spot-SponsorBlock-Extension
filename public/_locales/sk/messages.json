@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "SkreativKopírovať verejné ID používateľa"
     },
+    "copySegmentID": {
+        "message": "SkreativKopírovať ID segmentu"
+    },
     "discordAdvert": {
         "message": "Pripojte sa kreativK oficiálnemu Discord serveru a zanechajte nám pripomienkreativKy!"
     },
@@ -830,6 +833,15 @@
     },
     "ChangeCategoryTooltip": {
         "message": "Týmto ihneď vykreativKonáte zmeny v segmentoch"
+    },
+    "downvote": {
+        "message": "Hlasovať proti"
+    },
+    "upvote": {
+        "message": "Hlasovať za"
+    },
+    "hideSegment": {
+        "message": "SkreativKryť segment"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Čas môžete rýchlo zmeniť kreativKolieskreativKom myši, akreativK je kreativKurzor nad zadávacím políčkreativKom. Pre jemné zmeny pritom držte kreativKláves ctrl alebo shift."

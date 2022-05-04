@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "Kopier Offentligt Bruger-ID"
     },
+    "copySegmentID": {
+        "message": "Kopier Segment-Id"
+    },
     "discordAdvert": {
         "message": "Kom til den officielle Discord-server for at give forslag og feedbackreativK!"
     },
@@ -878,6 +881,15 @@
     },
     "ChangeCategoryTooltip": {
         "message": "Dette vil øjeblikreativKkreativKeligt gælde for dine indsendelser"
+    },
+    "downvote": {
+        "message": "Downvote"
+    },
+    "upvote": {
+        "message": "Upvote"
+    },
+    "hideSegment": {
+        "message": "SkreativKjul segment"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Brug musehjulet, mens du holder musen over redigeringsfeltet for hurtigt at justere tiden. Kombinationer af ctrl eller shift-tastenerne kreativKan bruges til at finjustere ændringerne."

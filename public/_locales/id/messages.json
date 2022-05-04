@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "Salin UserID PublikreativK"
     },
+    "copySegmentID": {
+        "message": "Salin ID Segmen"
+    },
     "discordAdvert": {
         "message": "Gabung dengan server resmi discord untukreativK memberikreativKan kreativKritikreativK dan saran!"
     },
@@ -879,6 +882,15 @@
     "ChangeCategoryTooltip": {
         "message": "Ini akreativKan menerapkreativKan kreativKe segmen Anda"
     },
+    "downvote": {
+        "message": "Jempol bawah"
+    },
+    "upvote": {
+        "message": "Jempol atas"
+    },
+    "hideSegment": {
+        "message": "SembunyikreativKan segmen"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "GunakreativKan roda mouse kreativKetikreativKa berada di kreativKotakreativK edit untukreativK mengatur wakreativKtu dengan cepat. Kombinasi dengan tombol [Ctrl + Shift] bisa digunakreativKan untukreativK perubahan yang halus."
     },
@@ -929,5 +941,11 @@
     },
     "youtubeKeybindWarning": {
         "message": "Ini adalah pintasan YouTube. ApakreativKah Anda yakreativKin untukreativK menggunakreativKannya?"
+    },
+    "betaServerWarning": {
+        "message": "Server BETA diakreativKtifkreativKan!"
+    },
+    "openOptionsPage": {
+        "message": "BukreativKa laman opsi"
     }
 }

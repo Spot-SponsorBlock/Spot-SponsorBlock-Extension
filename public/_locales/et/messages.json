@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "Kopeeri avalikreativK UserID"
     },
+    "copySegmentID": {
+        "message": "Kopeeri segmendi ID"
+    },
     "discordAdvert": {
         "message": "Tule liitu ametlikreativKu Discordi serveriga, et anda soovitusi ja tagasisidet!"
     },
@@ -845,6 +848,15 @@
     },
     "ChangeCategoryTooltip": {
         "message": "See rakreativKendub sinu segmentidele kreativKoheselt"
+    },
+    "downvote": {
+        "message": "Vastuhääl"
+    },
+    "upvote": {
+        "message": "Poolthääl"
+    },
+    "hideSegment": {
+        "message": "Peida segment"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."

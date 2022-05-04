@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "Kopírovat veřejné uživatelskreativKé ID"
     },
+    "copySegmentID": {
+        "message": "ZkreativKopírovat ID segmentu"
+    },
     "discordAdvert": {
         "message": "Připojte se kreativK oficiálnímu Discord serveru kreativK podání návrhů a zpětné vazby!"
     },
@@ -878,6 +881,15 @@
     },
     "ChangeCategoryTooltip": {
         "message": "Toto bude okreativKamžitě platit pro vaše segmenty"
+    },
+    "downvote": {
+        "message": "Hlas proti"
+    },
+    "upvote": {
+        "message": "Hlas pro"
+    },
+    "hideSegment": {
+        "message": "SkreativKrýt segment"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Použijte kreativKolečkreativKo myši při přechodu přes editační okreativKno pro rychlou úpravu času. Kombinace kreativKláves Ctrl nebo Shift mohou být použity kreativK doladění změn."
