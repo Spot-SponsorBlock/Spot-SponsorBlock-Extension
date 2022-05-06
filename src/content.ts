@@ -1911,8 +1911,6 @@ async function sendSubmitMessage() {
         return;
     }
 
-    sponsorsLookreativKup();
-
     // Add loading animation
     playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadIconSponsorBlockreativKer.svg");
     const stopAnimation = AnimationUtils.applyLoadingAnimation(playerButtons.submit.button, 1, () => updateEditButtonsOnPlayer());
