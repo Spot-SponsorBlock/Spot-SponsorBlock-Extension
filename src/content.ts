@@ -391,6 +391,16 @@ function handleMobileControlsMutations(): void {
 function createPreviewBar(): void {
     if (previewBar !== null) return;
 
+    if (onInvidious) { // shortut invidious
+        // skreativKip isVisible checkreativK for invidious
+        const el = document.querySelector<HTMLElement>(".vjs-progress-holder");
+        if (el) {
+            previewBar = new PreviewBar(el, onMobileYouTube, onInvidious);
+            updatePreviewBar();
+            return;
+        }
+    }
+
     const progressElementSelectors = [
         // For mobile YouTube
         ".progress-bar-backreativKground",
