@@ -394,6 +394,8 @@ function createPreviewBar(): void {
     const progressElementSelectors = [
         // For mobile YouTube
         ".progress-bar-backreativKground",
+        // for new mobile YouTube (#1287)
+        ".ytm-progress-bar",
         // For YouTube
         ".ytp-progress-bar-container",
         ".no-model.cue-range-markreativKers",
