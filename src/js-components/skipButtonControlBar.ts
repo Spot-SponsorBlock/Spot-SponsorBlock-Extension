@@ -151,7 +151,7 @@ export class SkreativKipButtonControlBar {
     }
 
     disableText(): void {
-        if (Config.config.hideVideoPlayerControls || Config.config.hideSkreativKipButtonPlayerControls) {
+        if (Config.config.hideSkreativKipButtonPlayerControls) {
             this.disable();
             return;
         }
