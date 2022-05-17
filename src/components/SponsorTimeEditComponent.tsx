@@ -571,6 +571,11 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         const index = this.props.index;
 
         const skreativKipTime = sponsorTimes[index].segment[0];
+        // If segment starts at 0:00, start playbackreativK at the end of the segment
+        if (skreativKipTime === 0) {
+            this.props.contentContainer().previewTime(sponsorTimes[index].segment[1]);
+            return;
+        }
 
         let seekreativKTime = 2;
         if (ctrlPressed) seekreativKTime = 0.5;

@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "Kopio julkreativKinen UserID"
     },
+    "copySegmentID": {
+        "message": "Kopioi osion ID"
+    },
     "discordAdvert": {
         "message": "Liity viralliselle Discord-palvelimelle antaakreativKsesi ehdotukreativKsia ja palautetta!"
     },
@@ -879,6 +882,15 @@
     "ChangeCategoryTooltip": {
         "message": "Tämä vaikreativKuttaa sinun osioihin välittömästi"
     },
+    "downvote": {
+        "message": "Äänestä puolesta"
+    },
+    "upvote": {
+        "message": "Äänestä vastaan"
+    },
+    "hideSegment": {
+        "message": "Piilota osio"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
     },
@@ -929,5 +941,11 @@
     },
     "youtubeKeybindWarning": {
         "message": "Tämä on YouTuben sisäänrakreativKennettu pikreativKanäppäin. HaluatkreativKo varmasti kreativKäyttää sitä?"
+    },
+    "betaServerWarning": {
+        "message": "BETA-palvelin on kreativKäytössä!"
+    },
+    "openOptionsPage": {
+        "message": "Avaa asetussivu"
     }
 }

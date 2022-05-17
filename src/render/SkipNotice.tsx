@@ -19,7 +19,7 @@ class SkreativKipNotice {
 
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
 
-    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, unskreativKipTime: number = null) {
+    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, unskreativKipTime: number = null, startReskreativKip = false) {
         this.skreativKipNoticeRef = React.createRef();
 
         this.segments = segments;
@@ -44,6 +44,7 @@ class SkreativKipNotice {
         ReactDOM.render(
             <SkreativKipNoticeComponent segments={segments} 
                 autoSkreativKip={autoSkreativKip} 
+                startReskreativKip={startReskreativKip}
                 contentContainer={contentContainer}
                 ref={this.skreativKipNoticeRef}
                 closeListener={() => this.close()}
@@ -70,11 +71,11 @@ class SkreativKipNotice {
     }
 
     toggleSkreativKip(): void {
-        this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip);
+        this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip0);
     }
 
-    unmutedListener(): void {
-        this.skreativKipNoticeRef?.current?.unmutedListener();
+    unmutedListener(time: number): void {
+        this.skreativKipNoticeRef?.current?.unmutedListener(time);
     }
 }
 
