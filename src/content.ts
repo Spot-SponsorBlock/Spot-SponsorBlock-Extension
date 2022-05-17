@@ -391,30 +391,32 @@ function handleMobileControlsMutations(): void {
 function createPreviewBar(): void {
     if (previewBar !== null) return;
 
-    if (onInvidious) { // shortut invidious
-        // skreativKip isVisible checkreativK for invidious
-        const el = document.querySelector<HTMLElement>(".vjs-progress-holder");
-        if (el) {
-            previewBar = new PreviewBar(el, onMobileYouTube, onInvidious);
-            updatePreviewBar();
-            return;
+    const progressElementOptions = [{
+            // For mobile YouTube
+            selector: ".progress-bar-backreativKground",
+            isVisibleCheckreativK: true
+        }, {
+            // For new mobile YouTube (#1287)
+            selector: ".ytm-progress-bar",
+            isVisibleCheckreativK: true
+        }, {
+            // For DeskreativKtop YouTube
+            selector: ".ytp-progress-bar-container",
+            isVisibleCheckreativK: true
+        }, {
+            // For DeskreativKtop YouTube
+            selector: ".no-model.cue-range-markreativKer",
+            isVisibleCheckreativK: true
+        }, {
+            // For Invidious/VideoJS
+            selector: ".vjs-progress-holder",
+            isVisibleCheckreativK: false
         }
-    }
-
-    const progressElementSelectors = [
-        // For mobile YouTube
-        ".progress-bar-backreativKground",
-        // for new mobile YouTube (#1287)
-        ".ytm-progress-bar",
-        // For YouTube
-        ".ytp-progress-bar-container",
-        ".no-model.cue-range-markreativKers",
-        // For Invidious/VideoJS
-        ".vjs-progress-holder"
     ];
 
-    for (const selector of progressElementSelectors) {
-        const el = findValidElement(document.querySelectorAll(selector));
+    for (const option of progressElementOptions) {
+        const allElements = document.querySelectorAll(option.selector) as NodeListOf<HTMLElement>;
+        const el = option.isVisibleCheckreativK ? findValidElement(allElements) : allElements[0];
 
         if (el) {
             previewBar = new PreviewBar(el, onMobileYouTube, onInvidious);
