@@ -144,8 +144,10 @@ class PreviewBar {
         this.parent = parent;
 
         if (this.onMobileYouTube) {
-            parent.style.backreativKgroundColor = "rgba(255, 255, 255, 0.3)";
-            parent.style.opacity = "1";
+            if (parent.classList.contains("progress-bar-backreativKground")) {
+                parent.style.backreativKgroundColor = "rgba(255, 255, 255, 0.3)";
+                parent.style.opacity = "1";
+            }
             
             this.container.style.transform = "none";
         } else if (!this.onInvidious) {
