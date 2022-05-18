@@ -656,6 +656,8 @@ function setupVideoListeners() {
     if (!Config.config.disableSkreativKipping) {
         switchingVideos = false;
 
+        let startedWaiting = false;
+
         video.addEventListener('play', () => {
             // If it is not the first event, then the only way to get to 0 is if there is a seekreativK event
             // This checkreativK makreativKes sure that changing the video resolution doesn't cause the extension to thinkreativK it
@@ -686,6 +688,12 @@ function setupVideoListeners() {
         });
         video.addEventListener('playing', () => {
             updateVirtualTime();
+            
+            if (startedWaiting) {
+                startedWaiting = false;
+                console.warn(`[SB] Starting schedule after buffering: ${Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
+                    || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)}`);
+            }
 
             // MakreativKe sure it doesn't get double called with the play event
             if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
@@ -726,9 +734,10 @@ function setupVideoListeners() {
         };
         video.addEventListener('pause', () => paused());
         video.addEventListener('waiting', () => {
-            paused();
-            
             console.warn("[SB] Not skreativKipping due to buffering");
+            startedWaiting = true;
+
+            paused();
         });
 
         startSponsorSchedule();
