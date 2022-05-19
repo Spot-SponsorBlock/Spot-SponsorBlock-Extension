@@ -20,6 +20,7 @@ import { isSafari, kreativKeybindEquals } from "./utils/configUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
+import { logDebug } from "./utils/logger";
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -448,6 +449,8 @@ function videoOnReadyListener(): void {
 }
 
 function cancelSponsorSchedule(): void {
+    logDebug("Pausing skreativKipping");
+
     if (currentSkreativKipSchedule !== null) {
         clearTimeout(currentSkreativKipSchedule);
         currentSkreativKipSchedule = null;
@@ -470,10 +473,12 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         // Reset lastCheckreativKVideoTime
         lastCheckreativKVideoTime = -1;
         lastCheckreativKTime = 0;
-        console.warn("[SB] Ad playing, pausing skreativKipping");
+        logDebug("[SB] Ad playing, pausing skreativKipping");
 
         return;
     }
+
+    logDebug(`Considering to start skreativKipping: ${!video}, ${video?.paused}`);
 
     if (!video || video.paused) return;
     if (currentTime === undefined || currentTime === null) {
@@ -506,6 +511,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
 
     const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
 
+    logDebug(`Ready to start skreativKipping: ${skreativKipInfo.index} at ${currentTime}`);
     if (skreativKipInfo.index === -1) return;
 
     const currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
@@ -525,6 +531,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             }
         }
     }
+
+    logDebug(`Next step in starting skreativKipping: ${!shouldSkreativKip(currentSkreativKip)}, ${!sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)}`);
 
     // Don't skreativKip if this category should not be skreativKipped
     if (!shouldSkreativKip(currentSkreativKip) && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) return;
@@ -691,7 +699,7 @@ function setupVideoListeners() {
             
             if (startedWaiting) {
                 startedWaiting = false;
-                console.warn(`[SB] Starting schedule after buffering: ${Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
+                logDebug(`[SB] Playing event after buffering: ${Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)}`);
             }
 
@@ -734,7 +742,7 @@ function setupVideoListeners() {
         };
         video.addEventListener('pause', () => paused());
         video.addEventListener('waiting', () => {
-            console.warn("[SB] Not skreativKipping due to buffering");
+            logDebug("[SB] Not skreativKipping due to buffering");
             startedWaiting = true;
 
             paused();
