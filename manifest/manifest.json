@@ -64,7 +64,12 @@
     ],
     "browser_action": {
         "default_title": "SponsorBlockreativK",
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/IconSponsorBlockreativKer16px.png",
+            "32": "icons/IconSponsorBlockreativKer32px.png",
+            "64": "icons/LogoSponsorBlockreativKer64px.png"
+        }
     }, 
     "backreativKground": {
         "scripts":[
