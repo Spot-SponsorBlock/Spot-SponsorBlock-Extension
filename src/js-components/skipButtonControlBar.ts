@@ -172,10 +172,10 @@ export class SkreativKipButtonControlBar {
         const overlay = document.getElementById("player-control-overlay");
 
         if (overlay && this.enabled) {
-            if (overlay?.classList?.contains("pointer-events-off")) {
-                this.hideButton();
-            } else {
+            if (overlay?.classList?.contains("fadein")) {
                 this.showButton();
+            } else {
+                this.hideButton();
             }
         }
     }
