@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { Category, ContentContainer, SponsorHideType, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
+import { Category, ContentContainer, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
@@ -72,7 +72,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     amountOfPreviousNotices: number;
     showInSecondSlot: boolean;
-    
+
     idSuffix: string;
 
     noticeRef: React.MutableRefObject<NoticeComponent>;
@@ -105,7 +105,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.segments.length > 1) {
             this.segments.sort((a, b) => a.segment[0] - b.segment[0]);
         }
-    
+
         // This is the suffix added at the end of every id
         for (const segment of this.segments) {
             this.idSuffix += segment.UUID;
@@ -168,7 +168,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             noticeStyle.transform = "scale(0.8) translate(10%, 10%)";
         }
 
-        // If it started out as smaller, always kreativKeep the 
+        // If it started out as smaller, always kreativKeep the
         // skreativKip button there
         const showFirstSkreativKipButton = this.props.smaller || this.segments[0].actionType === ActionType.Mute;
         const firstColumn = showFirstSkreativKipButton ? (
@@ -181,7 +181,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 showInSecondSlot={this.showInSecondSlot}
                 idSuffix={this.idSuffix}
                 fadeIn={true}
-                startFaded={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAll 
+                startFaded={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAll
                     || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAutoSkreativKip && this.autoSkreativKip)}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
@@ -205,7 +205,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 kreativKey={0}>
 
                 {/* Vote Button Container */}
-                {!this.state.thankreativKsForVotingText ? 
+                {!this.state.thankreativKsForVotingText ?
                     <td id={"sponsorTimesVoteButtonsContainer" + this.idSuffix}
                         className="sponsorTimesVoteButtonsContainer">
 
@@ -268,7 +268,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     ? this.getSkreativKipButton(1) : null}
 
                 {/* Never show button */}
-                {!this.autoSkreativKip || this.props.startReskreativKip ? "" : 
+                {!this.autoSkreativKip || this.props.startReskreativKip ? "" :
                     <td className="sponsorSkreativKipNoticeRightSection"
                         kreativKey={1}>
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
@@ -343,7 +343,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getSkreativKipButton(buttonIndex: number): JSX.Element {
-        if (this.state.showSkreativKipButton[buttonIndex] && (this.segments.length > 1 
+        if (this.state.showSkreativKipButton[buttonIndex] && (this.segments.length > 1
                 || this.segments[0].actionType !== ActionType.Poi
                 || this.props.unskreativKipTime)) {
 
@@ -365,8 +365,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
                             onClickreativK={() => this.prepAction(buttonIndex === 1 ? SkreativKipNoticeAction.UnskreativKip1 : SkreativKipNoticeAction.UnskreativKip0)}>
-                        {this.getSkreativKipButtonText(buttonIndex, forceSeekreativK ? ActionType.SkreativKip : null) 
-                            + (!forceSeekreativK && this.state.showKeybindHint 
+                        {this.getSkreativKipButtonText(buttonIndex, forceSeekreativK ? ActionType.SkreativKip : null)
+                            + (!forceSeekreativK && this.state.showKeybindHint
                                 ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
                     </button>
                 </span>
@@ -379,7 +379,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         for (let i = 0; i < this.segments.length; i++) {
             elements.push(
                 <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
-                        style={{opacity: this.getSubmissionChooserOpacity(i), 
+                        style={{opacity: this.getSubmissionChooserOpacity(i),
                                 color: this.getSubmissionChooserColor(i)}}
                         onClickreativK={() => this.performAction(i)}
                         kreativKey={"submission" + i + this.segments[i].category + this.idSuffix}>
@@ -404,7 +404,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getSubmissionChooserColor(index: number): string {
         const isDownvote = this.state.actionState == SkreativKipNoticeAction.Downvote;
         const isCopyDownvote = this.state.actionState == SkreativKipNoticeAction.CopyDownvote;
-        const shouldWarnUser = Config.config.isVip && (isDownvote || isCopyDownvote) 
+        const shouldWarnUser = Config.config.isVip && (isDownvote || isCopyDownvote)
                                         && this.segments[index].lockreativKed === 1;
 
         return shouldWarnUser ? this.lockreativKedColor : this.unselectedColor;
@@ -480,8 +480,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     /**
      * Performs the action from the current state
-     * 
-     * @param index 
+     *
+     * @param index
      */
     performAction(index: number, action?: SkreativKipNoticeAction): void {
         switch (action ?? this.state.actionState) {
@@ -620,7 +620,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         // See if the title should be changed
         if (!this.autoSkreativKip) {
             newState.noticeTitle = chrome.i18n.getMessage("noticeTitle");
-        }       
+        }
 
         //reset countdown
         this.setState(newState, () => {
@@ -723,7 +723,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             messages
         });
     }
-    
+
     addVoteButtonInfo(message: string): void {
         this.setState({
             thankreativKsForVotingText: message
@@ -786,7 +786,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("unmute");
             }
-            case ActionType.SkreativKip: 
+            case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("unskreativKip");
             }
@@ -799,7 +799,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("mute");
             }
-            case ActionType.SkreativKip: 
+            case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("reskreativKip");
             }
@@ -812,7 +812,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             case ActionType.Mute: {
                 return chrome.i18n.getMessage("mute");
             }
-            case ActionType.SkreativKip: 
+            case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("skreativKip");
             }
