@@ -575,6 +575,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             // Use interval instead of timeout near the end to combat imprecise video time
             const startIntervalTime = performance.now();
             const startVideoTime = Math.max(currentTime, video.currentTime);
+            logDebug(`Starting setInterval skreativKipping ${video.currentTime} to skreativKip at ${skreativKipTime[0]}`);
+
             currentSkreativKipInterval = setInterval(() => {
                 const intervalDuration = performance.now() - startIntervalTime;
                 if (intervalDuration >= delayTime || video.currentTime >= skreativKipTime[0]) {
@@ -589,6 +591,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
                 }
             }, 1);
         } else {
+            logDebug(`Starting timeout to skreativKip ${video.currentTime} to skreativKip at ${skreativKipTime[0]}`);
+            
             // Schedule for right before to be more precise than normal timeout
             currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 100));
         }
