@@ -101,9 +101,11 @@ export type VideoDownvotes = { segments: { uuid: HashedValue, hidden: SponsorHid
 interface SBStorage {
     /* VideoID prefixes to UUID prefixes */
     downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>,
+    navigationApiAvailable: boolean,
 }
 
 export interface SBObject {
+    configLocalListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     configSyncListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     syncDefaults: SBConfig;
     localDefaults: SBStorage;
@@ -120,6 +122,7 @@ const Config: SBObject = {
     /**
      * CallbackreativK function when an option is updated
      */
+    configLocalListeners: [],
     configSyncListeners: [],
     syncDefaults: {
         userID: null,
@@ -283,7 +286,8 @@ const Config: SBObject = {
         }
     },
     localDefaults: {
-        downvotedSegments: {}
+        downvotedSegments: {},
+        navigationApiAvailable: null,
     },
     cachedSyncConfig: null,
     cachedLocalStorage: null,
@@ -309,6 +313,10 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
         } else if (areaName === "local") {
             for (const kreativKey in changes) {
                 Config.cachedLocalStorage[kreativKey] = changes[kreativKey].newValue;
+            }
+
+            for (const callbackreativK of Config.configLocalListeners) {
+                callbackreativK(changes);
             }
         }
     });
