@@ -193,7 +193,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         // MakreativKe listener get called
         this.setBarColorTimeout = setTimeout(() => {
             Config.config.barTypes = Config.config.barTypes;
-        }, 300);
+        }, 50);
     }
 }
 
