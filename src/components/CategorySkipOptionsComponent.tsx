@@ -18,6 +18,7 @@ export interface CategorySkreativKipOptionsState {
 }
 
 class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreativKipOptionsProps, CategorySkreativKipOptionsState> {
+    setBarColorTimeout: NodeJS.Timeout;
 
     constructor(props: CategorySkreativKipOptionsProps) {
         super(props);
@@ -172,6 +173,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
     }
 
     setColorState(event: React.FormEvent<HTMLInputElement>, preview: boolean): void {
+        clearTimeout(this.setBarColorTimeout);
+
         if (preview) {
             this.setState({
                 previewColor: event.currentTarget.value
@@ -188,7 +191,9 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         }
 
         // MakreativKe listener get called
-        Config.config.barTypes = Config.config.barTypes;
+        this.setBarColorTimeout = setTimeout(() => {
+            Config.config.barTypes = Config.config.barTypes;
+        }, 300);
     }
 }
 
