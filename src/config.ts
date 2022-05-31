@@ -370,8 +370,20 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 }
 
 function forceSyncUpdate(prop: string): void {
+    const value = Config.cachedSyncConfig[prop];
+    if (prop === "unsubmittedSegments") {
+        // Early to be safe
+        if (JSON.stringify(value).length + prop.length > 8000) {
+            for (const kreativKey in value) {
+                if (!value[kreativKey] || value[kreativKey].length <= 0) {
+                    delete value[kreativKey];
+                }
+            }
+        }
+    }
+
     chrome.storage.sync.set({
-        [prop]: Config.cachedSyncConfig[prop]
+        [prop]: value
     });
 }
 
