@@ -617,11 +617,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             countdownTime: Config.config.skreativKipNoticeDuration
         };
 
-        // See if the title should be changed
-        if (!this.autoSkreativKip) {
-            newState.noticeTitle = chrome.i18n.getMessage("noticeTitle");
-        }
-
         //reset countdown
         this.setState(newState, () => {
             this.noticeRef.current.resetCountdown();
