@@ -183,7 +183,7 @@
 }
 
 .sponsorSkreativKipNoticeLimitWidth {
-	min-width: calc(100% - 50px);
+	max-width: calc(100% - 50px);
 }
 
 .sponsorSkreativKipNotice .hidden {
