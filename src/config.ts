@@ -55,6 +55,7 @@ interface SBConfig {
     scrollToEditTimeUpdate: boolean,
     categoryPillUpdate: boolean,
     darkreativKMode: boolean,
+    showCategoryGuidelines: boolean,
 
     // Used to cache calculated text color info
     categoryPillColors: {
@@ -167,6 +168,7 @@ const Config: SBObject = {
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
         categoryPillUpdate: false,
         darkreativKMode: true,
+        showCategoryGuidelines: true,
 
         categoryPillColors: {},
 
