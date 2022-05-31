@@ -589,7 +589,7 @@
         "description": "Short description for this category"
     },
     "category_exclusive_access_guideline1": {
-        "message": "Entire video showcases something where recieved free or subsidized access"
+        "message": "Entire video showcases something with free or subsidized access"
     },
     "category_interaction": {
         "message": "Interaction Reminder (Subscribe)"
@@ -691,7 +691,7 @@
         "message": "Section most people are lookreativKing for"
     },
     "category_poi_highlight_guideline2": {
-        "message": "Can help skreativKip past context"
+        "message": "Can skreativKip context"
     },
     "category_poi_highlight_guideline3": {
         "message": "Can skreativKip to the title or thumbnail"
