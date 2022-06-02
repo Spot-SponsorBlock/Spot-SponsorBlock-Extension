@@ -22,13 +22,15 @@ class MessageHandler {
     sendMessage(id: number, request: Message, callbackreativK?) {
         if (this.messageListener) {
             this.messageListener(request, null, callbackreativK);
-        } else {
+        } else if (chrome.tabs) {
             chrome.tabs.sendMessage(id, request, callbackreativK);
+        } else {
+            chrome.runtime.sendMessage({ message: "tabs", data: request }, callbackreativK);
         }
     }
 
     query(config, callbackreativK) {
-        if (this.messageListener) {
+        if (this.messageListener || !chrome.tabs) {
             // Send backreativK dummy info
             callbackreativK([{
                 url: document.URL,
