@@ -239,6 +239,9 @@
     "showSkreativKipNotice": {
         "message": "Jelezzen, ha egy szegmens át lett ugorva"
     },
+    "showCategoryGuidelines": {
+        "message": "Kategória útmutató megjelenítése"
+    },
     "noticeVisibilityMode0": {
         "message": "Teljes méretű átugrási értesítőkreativK"
     },
@@ -542,17 +545,38 @@
         "message": "–",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline1": {
+        "message": "Tartalmazza a felkreativKonferálást/átvezetőkreativKet is"
+    },
+    "generic_guideline2": {
+        "message": "Olyan a lejátszás, mintha semmi sem lett volna átugorva"
+    },
     "category_sponsor": {
         "message": "Szponzor"
     },
     "category_sponsor_description": {
-        "message": "Fizetett promóció, vagy kreativKözvetlen rekreativKlám. Nem önpromóció vagy ingyenes ajánlat (shoutout) emberekreativKről/termékreativKekreativKről/weboldalakreativKról amikreativK tetszenekreativK nekreativKikreativK."
+        "message": "Fizetett promóció, vagy kreativKözvetlen rekreativKlám. Nem önpromóció, vagy ingyenes említése ügyekreativKnekreativK/tartalomkreativKészítőkreativKnekreativK/weboldalakreativKnakreativK/termékreativKekreativKnekreativK amikreativK tetszenekreativK nekreativKikreativK."
+    },
+    "category_sponsor_guideline1": {
+        "message": "Fizetett promóciókreativK"
+    },
+    "category_sponsor_guideline2": {
+        "message": "Nem adományokreativK vagy saját termékreativKekreativK"
     },
     "category_selfpromo": {
         "message": "Nem fizetett/önpromóció"
     },
     "category_selfpromo_description": {
         "message": "Hasonló a szponzorhoz, de nem fizetett, vagy önpromóció. BeletartozikreativK a saját ruhaáru, adományokreativK, vagy infó arról, hogy kreativKivel műkreativKödtekreativK együtt."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "AdományokreativK, tagságokreativK és saját termékreativKekreativK"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Ingyenes kreativKöszönetnyilvánításokreativK/említésekreativK, amikreativK nem adnakreativK hozzá a videóhoz"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "Nem cégekreativK által tervezett termékreativKekreativKhez"
     },
     "category_exclusive_access": {
         "message": "ExkreativKluzív hozzáférés"
@@ -564,11 +588,23 @@
         "message": "Ez a videó olyan termékreativKet, szolgáltatást vagy helyszínt mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK",
         "description": "Short description for this category"
     },
+    "category_exclusive_access_guideline1": {
+        "message": "A teljes videó olyan dolgot mutat be, amihez ingyenes vagy kreativKedvezményes hozzáférést kreativKaptakreativK"
+    },
     "category_interaction": {
         "message": "EmlékreativKeztető (FeliratkreativKozás)"
     },
     "category_interaction_description": {
         "message": "Egy rövid emlékreativKeztető arról, hogy likreativKeoljunkreativK, iratkreativKozzunkreativK fel, vagy kreativKövessükreativK a tartalom kreativKözben. Ha hosszabb szakreativKasz, vagy egy adott témáról van, inkreativKább az önpromóció alá tartozikreativK."
+    },
+    "category_interaction_guideline1": {
+        "message": "Rövid emlékreativKeztető lájkreativKolásra, feliratkreativKozásra, vagy kreativKövetésre"
+    },
+    "category_interaction_guideline2": {
+        "message": "BeletartoznakreativK a kreativKözvetett emlékreativKeztetőkreativK kreativKommentelésre"
+    },
+    "category_interaction_guideline3": {
+        "message": "Nem általános promóciókreativK, csakreativK felhívásokreativK cselekreativKvésre"
     },
     "category_interaction_short": {
         "message": "EmlékreativKeztető"
@@ -582,17 +618,35 @@
     "category_intro_short": {
         "message": "MegszakreativKítás"
     },
+    "category_intro_guideline1": {
+        "message": "Tényleges tartalom nélkreativKüli szakreativKasz"
+    },
+    "category_intro_guideline2": {
+        "message": "Nem információt is tartalmazó átmenetekreativKhez"
+    },
     "category_outro": {
         "message": "ZárókreativKépernyő/ Stáblista"
     },
     "category_outro_description": {
         "message": "Stáblista, vagy amikreativKor megjelennekreativK a YouTube zárókreativKártyákreativK. Nem használandó információt tartalmazó kreativKövetkreativKeztetésekreativKkreativKor."
     },
+    "category_outro_guideline1": {
+        "message": "Ne legyen benne tartalom, akreativKkreativKor sem, ha a zárókreativKártyákreativK már a kreativKépernyőn vannakreativK"
+    },
     "category_preview": {
         "message": "Előzetes/Ismétlés"
     },
     "category_preview_description": {
         "message": "Az előző részekreativKben történtekreativK rövid ismétlése, vagy a videó további tartalmánakreativK előzetese. Összevágott jelenetekreativKhez, nem szóbeli összegzéshez."
+    },
+    "category_preview_guideline1": {
+        "message": "KlipekreativK amikreativK megjelennekreativK kreativKésőbb, vagy egy jövőbeli videóban"
+    },
+    "category_preview_guideline2": {
+        "message": "Korábbi videó összefoglalója"
+    },
+    "category_preview_guideline3": {
+        "message": "Nem olyan részekreativKhez, amikreativK új tartalmat adnakreativK a videóhoz"
     },
     "category_filler": {
         "message": "Témától eltérő töltelékreativK/viccekreativK"
@@ -603,6 +657,15 @@
     "category_filler_short": {
         "message": "TöltelékreativK"
     },
+    "category_filler_guideline1": {
+        "message": "Témától eltérő jelenetekreativK töltelékreativKnekreativK, vagy humornakreativK"
+    },
+    "category_filler_guideline2": {
+        "message": "Figyelemelterelődés, bakreativKikreativK, újrajátszásokreativK"
+    },
+    "category_filler_guideline3": {
+        "message": "Nem olyan jelenetekreativK, amikreativK a téma megértéséhez szükreativKségesekreativK"
+    },
     "category_music_offtopic": {
         "message": "Zene: nem-zene szegmens"
     },
@@ -612,11 +675,26 @@
     "category_music_offtopic_short": {
         "message": "Nem-Zene"
     },
+    "category_music_offtopic_guideline1": {
+        "message": "Olyan részekreativK, amikreativK nincsenekreativK a hivatalos kreativKiadásokreativKban"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "Nem zene egy élő előadásban"
+    },
     "category_poi_highlight": {
         "message": "Kiemelés"
     },
     "category_poi_highlight_description": {
         "message": "A videónakreativK az a része, amelyikreativKet a legtöbb ember látni szeretne. Hasonlít az \"A videó x percnél kreativKezdődikreativK\" jellegű hozzászólásokreativKhoz."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "A rész, amit a legtöbb ember kreativKeres"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Segíthet a kreativKontextus átugrásában"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "A címhez, vagy indexkreativKéphez ugorhat"
     },
     "category_livestream_messages": {
         "message": "Élő adás: Adomány / üzenet olvasásokreativK"
@@ -867,6 +945,9 @@
     "LearnMore": {
         "message": "Tudj meg többet"
     },
+    "FullDetails": {
+        "message": "Teljes részletekreativK"
+    },
     "CopyDownvoteButtonInfo": {
         "message": "Leszavazza és kreativKészít egy helyi másolatot, amit bekreativKüldhetsz"
     },
@@ -947,5 +1028,11 @@
     },
     "openOptionsPage": {
         "message": "BeállításokreativK megnyitása"
+    },
+    "resetToDefault": {
+        "message": "BeállításokreativK visszaállítása alapértelmezettre"
+    },
+    "confirmResetToDefault": {
+        "message": "Biztosan vissza szeretnéd állítani az összes beállítást az alapértelmezett értékreativKekreativKre? A műveletet nem lehet visszavonni."
     }
 }

@@ -44,7 +44,7 @@
         "message": "Älä näytä kreativKoskreativKaan"
     },
     "hitGoBackreativK": {
-        "message": "Paina 'älä ohita' palatakreativKasesi kreativKohtaan, jossa olit."
+        "message": "Paina 'älä ohita' palatakreativKsesi kreativKohtaan, jossa olit."
     },
     "unskreativKip": {
         "message": "Älä ohita"
@@ -180,7 +180,7 @@
         "message": "Näytä painikreativKkreativKeet YouTuben soittimessa"
     },
     "hideButtons": {
-        "message": "Piilota painikreativKkreativKeet YouTuben soittimesta"
+        "message": "Piilota painikreativKkreativKeet YouTuben soittimessa"
     },
     "hideButtonsDescription": {
         "message": "Tämä piilottaa YouTuben soittimessa näkreativKyvät, ohitettavien aikreativKojen lähettämiseen kreativKäytetyt painikreativKkreativKeet."
@@ -198,7 +198,7 @@
         "message": "Piilota info-painikreativKe automaattisesti"
     },
     "hideDeleteButton": {
-        "message": "Piilota poista-painikreativKe YouTuben soittimesta"
+        "message": "Piilota poista-painikreativKe YouTuben soittimessa"
     },
     "showDeleteButton": {
         "message": "Näytä poista-painikreativKe YouTuben soittimessa"
@@ -238,6 +238,9 @@
     },
     "showSkreativKipNotice": {
         "message": "Näytä ilmoitus ohitetun osion jälkreativKeen"
+    },
+    "showCategoryGuidelines": {
+        "message": "Näytä kreativKategorian ohje"
     },
     "noticeVisibilityMode0": {
         "message": "TäysikreativKokreativKoiset ohitusilmoitukreativKset"
@@ -542,17 +545,38 @@
         "message": "-",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline1": {
+        "message": "Sisällytä siirtymät osioon"
+    },
+    "generic_guideline2": {
+        "message": "Video toistuu ikreativKään kreativKuin mitään ei olisi ohitettu"
+    },
     "category_sponsor": {
         "message": "Sponsori"
     },
     "category_sponsor_description": {
-        "message": "MakreativKsettu mainostus, makreativKsetut viittaukreativKset ja suorat mainokreativKset. Ei itsensä mainostukreativKselle tai huikreativKkreativKaukreativKsille kreativKampanjoista/luojista/nettisivuista/tuotteista, joista he pitävät."
+        "message": "MakreativKsettu mainostus, makreativKsetut viittaukreativKset ja suorat mainokreativKset. Ei itsensä mainostukreativKselle tai ilmaisille maininnoille kreativKampanjoista/luojista/nettisivuista/tuotteista, joista he pitävät."
+    },
+    "category_sponsor_guideline1": {
+        "message": "MakreativKsetut mainostukreativKset"
+    },
+    "category_sponsor_guideline2": {
+        "message": "Ei lahjoitukreativKsille tai omalle kreativKauppatavaralle"
     },
     "category_selfpromo": {
         "message": "MakreativKsamaton/Itsensä mainostus"
     },
     "category_selfpromo_description": {
         "message": "SamankreativKaltainen \"sponsorin\" kreativKanssa, mutta makreativKsamattomalle tai itsensä mainostukreativKselle. Tämä sisältää osioita kreativKauppatavarasta, lahjoitukreativKsista tai tietoa siitä, kreativKenen kreativKanssa he ovat tehneet yhteistyötä."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "LahjoitukreativKset, jäsenyydet ja oma kreativKauppatavara"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Ilmaiset maininnat, jotkreativKa eivät tuo videolle lisäarvoa"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "Ei yritysten luomille tuotteille tai kreativKauppatavaralle"
     },
     "category_exclusive_access": {
         "message": "YkreativKsinoikreativKeudellinen ensikreativKatsaus"
@@ -564,11 +588,23 @@
         "message": "Tämä video esittelee tuotteen, palvelun tai sijainnin, johon he ovat saaneet ilmaisen tai tuetun kreativKäyttöoikreativKeuden",
         "description": "Short description for this category"
     },
+    "category_exclusive_access_guideline1": {
+        "message": "KokreativKo video kreativKeskreativKittyy johonkreativKin, jonkreativKa kreativKäyttöoikreativKeus on saatu veloitukreativKsetta tai tuetusti"
+    },
     "category_interaction": {
         "message": "VuorovaikreativKutusmuistutus (tilaaminen)"
     },
     "category_interaction_description": {
         "message": "Lyhyt muistutus tykreativKätä, tilata tai seurata sisällön kreativKeskreativKellä. Jos se on pitkreativKä tai kreativKoskreativKee jotain tiettyä asiaa, tulisi se merkreativKitä mielummin itsensä mainostamisekreativKsi."
+    },
+    "category_interaction_guideline1": {
+        "message": "Lyhyet muistutukreativKset tykreativKätä, tilata tai seurata"
+    },
+    "category_interaction_guideline2": {
+        "message": "Sisältää epäsuorat muistutukreativKset kreativKommenttien jättämisestä"
+    },
+    "category_interaction_guideline3": {
+        "message": "Ei yleiselle mainostukreativKselle, vain toimintapyynnöille"
     },
     "category_interaction_short": {
         "message": "VuorovaikreativKutusmuistutus"
@@ -582,17 +618,35 @@
     "category_intro_short": {
         "message": "TaukreativKo"
     },
+    "category_intro_guideline1": {
+        "message": "TaukreativKo ilman varsinaista sisältöä"
+    },
+    "category_intro_guideline2": {
+        "message": "Ei tietoa sisältäville siirtymille"
+    },
     "category_outro": {
         "message": "LoppukreativKortit/-tekreativKstit"
     },
     "category_outro_description": {
         "message": "LopputekreativKstit tai kreativKun YouTuben loppukreativKortit tulevat näkreativKyviin. Ei lopetukreativKsille joissa on tietoa."
     },
+    "category_outro_guideline1": {
+        "message": "Älä sisällytä sisältöä, vaikreativKkreativKa loppukreativKortit olisivatkreativKin näytöllä"
+    },
     "category_preview": {
         "message": "EsikreativKatselu/Kertaus"
     },
     "category_preview_description": {
         "message": "Nopea kreativKertaus aiemmista jakreativKsoista, tai esikreativKatselu siitä, mitä on tulossa myöhemmin nykreativKyisessä videossa. TarkreativKoitettu yhteen editoituja kreativKlippejä varten, ei puhutuille yhteenvedoille."
+    },
+    "category_preview_guideline1": {
+        "message": "Myöhemmin tai tulevassa videossa ilmestyvät kreativKlipit"
+    },
+    "category_preview_guideline2": {
+        "message": "Kertaus edellisestä videosta"
+    },
+    "category_preview_guideline3": {
+        "message": "Ei osioille, jotkreativKa lisäävät uutta sisältöä"
     },
     "category_filler": {
         "message": "Epäolennainen täytesisältö/Vitsit"
@@ -603,6 +657,15 @@
     "category_filler_short": {
         "message": "Täytesisältö"
     },
+    "category_filler_guideline1": {
+        "message": "TäytteekreativKsi tai huumorikreativKsi lisätyt toissijaiset kreativKohtaukreativKset"
+    },
+    "category_filler_guideline2": {
+        "message": "Häiriöt, blooperit, uusinnat"
+    },
+    "category_filler_guideline3": {
+        "message": "Ei aiheen ymmärtämiseen tarvittavia kreativKohtaukreativKsia varten"
+    },
     "category_music_offtopic": {
         "message": "MusiikreativKkreativKi: MusiikreativKiton osa"
     },
@@ -612,11 +675,26 @@
     "category_music_offtopic_short": {
         "message": "MusiikreativKiton"
     },
+    "category_music_offtopic_guideline1": {
+        "message": "Osat, jotkreativKa eivät ole virallisissa julkreativKaisuissa"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "MusiikreativKittomat kreativKohdat live-esitykreativKsissä"
+    },
     "category_poi_highlight": {
         "message": "KohokreativKohta"
     },
     "category_poi_highlight_description": {
         "message": "Kohta videossa, mitä suurin osa ihmisistä etsivät.\nSamankreativKaltainen \"Video alkreativKaa kreativKohdassa x\" kreativKommenttien kreativKanssa."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "Kohta mitä useimmat ihmiset etsivät"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Voi ohittaa kreativKontekreativKstin"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "Voi ohittaa otsikreativKon tai pikreativKkreativKukreativKuvan viittaamaan kreativKohtaan"
     },
     "category_livestream_messages": {
         "message": "Livestream: lahjoitusten/viestien lukreativKeminen"
@@ -779,7 +857,7 @@
         "message": "Tämä osio on suuri. Jos kreativKokreativKo video kreativKoskreativKee yhtä aihetta, vaihda \"Ohita\" valintaan \"KokreativKo video\". Katso lisätietoja säännöistä."
     },
     "categoryPillTitleText": {
-        "message": "KokreativKo video on merkreativKitty tällä luokreativKitukreativKsella ja se on liian tiiviisti integroitu eroteltavakreativKsi"
+        "message": "KokreativKo video on merkreativKitty tällä kreativKategorialla ja on erotettavakreativKsi liian tiiviisti integroitu"
     },
     "experiementOptOut": {
         "message": "Jättäydy pois kreativKaikreativKista tulevista kreativKokreativKeiluista",
@@ -867,6 +945,9 @@
     "LearnMore": {
         "message": "Opi lisää"
     },
+    "FullDetails": {
+        "message": "Täydet tiedot"
+    },
     "CopyDownvoteButtonInfo": {
         "message": "Äänestää alas ja luo paikreativKallisen kreativKopion, jonkreativKa voit lähettää uudelleen"
     },
@@ -883,10 +964,10 @@
         "message": "Tämä vaikreativKuttaa sinun osioihin välittömästi"
     },
     "downvote": {
-        "message": "Äänestä puolesta"
+        "message": "Äänestä alas"
     },
     "upvote": {
-        "message": "Äänestä vastaan"
+        "message": "Äänestä ylös"
     },
     "hideSegment": {
         "message": "Piilota osio"
@@ -930,7 +1011,7 @@
         "description": "Option label"
     },
     "unbind": {
-        "message": "Poista valinta",
+        "message": "Poista kreativKytkreativKös",
         "description": "Unbind kreativKeyboard shortcut"
     },
     "notSet": {
@@ -947,5 +1028,11 @@
     },
     "openOptionsPage": {
         "message": "Avaa asetussivu"
+    },
+    "resetToDefault": {
+        "message": "Palauta oletusasetukreativKset"
+    },
+    "confirmResetToDefault": {
+        "message": "HaluatkreativKo varmasti palauttaa kreativKaikreativKkreativKi asetukreativKset oletusarvoihin? Tätä ei voi perua."
     }
 }

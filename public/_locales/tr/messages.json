@@ -17,7 +17,7 @@
         "message": "Bu daha önce zaten gönderilmiş"
     },
     "channelWhitelisted": {
-        "message": "Kanal beyazlistede!"
+        "message": "Kanala izin verildi!"
     },
     "Segment": {
         "message": "kreativKısım"
@@ -164,6 +164,9 @@
     "copyPublicID": {
         "message": "HerkreativKese AçıkreativK Kullanıcı Kimliğini Kopyala"
     },
+    "copySegmentID": {
+        "message": "Segment Kimliğini Kopyala"
+    },
     "discordAdvert": {
         "message": "Öneri ve geri bildirimleriniz için resmi Discord serverımıza kreativKatılın!"
     },
@@ -235,6 +238,9 @@
     },
     "showSkreativKipNotice": {
         "message": "Bir Kısmı AtladıkreativKtan Sonra Uyarı Göster"
+    },
+    "showCategoryGuidelines": {
+        "message": "Kategori Yardımını Göster"
     },
     "noticeVisibilityMode0": {
         "message": "Tam Boyutlu Atlama Bildirimleri"
@@ -539,17 +545,38 @@
         "message": "'e",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline1": {
+        "message": "Segue geçişlerini dahil et"
+    },
+    "generic_guideline2": {
+        "message": "Hiçbir şey atlanmamış gibi oynuyor"
+    },
     "category_sponsor": {
         "message": "Sponsor"
     },
     "category_sponsor_description": {
         "message": "Ücretli tanıtım, ücretli yönlendirmeler ve doğrudan rekreativKlamlar. Kendini pazarlayan veya beğendiği içerikreativK üreticilerine/sitelere/ürünlere atıfta bulunanlar için değil."
     },
+    "category_sponsor_guideline1": {
+        "message": "Ücretli promosyonlar"
+    },
+    "category_sponsor_guideline2": {
+        "message": "Bağışlar veya özel ürünler için değil"
+    },
     "category_selfpromo": {
         "message": "KarşılıkreativKsız/Kendi RekreativKlamı"
     },
     "category_selfpromo_description": {
         "message": "\"Sponsor\" seçeneğinden farkreativKı para kreativKarşılığı olmaması veya kreativKendi rekreativKlamını yapmasıdır. Buna kreativKendi markreativKalı ürünlerini satmakreativK, bağış toplamakreativK ve videoda işbirliği yaptığı kreativKimselerden bahsetmekreativK dahildir."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "Bağışlar, üyelikreativKler ve özel ürünler"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Videoya ekreativKlenmeyen ücretsiz kreativKonuşmalar"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "Kurumsal tasarım ürünleri ve malları için değil"
     },
     "category_exclusive_access": {
         "message": "Özel Erişim"
@@ -561,11 +588,23 @@
         "message": "Bu video; yayıncıya özel ücretle veya ücretsiz sunulan bir ürünün, hizmetin veya bir yerin rekreativKlamını yapıyor",
         "description": "Short description for this category"
     },
+    "category_exclusive_access_guideline1": {
+        "message": "Tüm video, ücretsiz veya sübvansiyonlu erişime sahip bir şeyi sergiliyor"
+    },
     "category_interaction": {
         "message": "EtkreativKileşim Hatırlatıcısı (AbonelikreativK)"
     },
     "category_interaction_description": {
         "message": "Videonun ortasında beğenmekreativK, abone olmakreativK veya takreativKip etmekreativK için kreativKısa bir hatırlatma olan kreativKısımdır. Eğer süresi uzunsa veya belirli bir şey hakreativKkreativKındaysa, kreativKendi rekreativKlamını yapan kreativKategorisi seçilmelidir."
+    },
+    "category_interaction_guideline1": {
+        "message": "BeğenmekreativK, abone olmakreativK veya takreativKip etmekreativK için kreativKısa hatırlatıcılar"
+    },
+    "category_interaction_guideline2": {
+        "message": "Yorum yapmakreativK için dolaylı hatırlatıcılar içerir"
+    },
+    "category_interaction_guideline3": {
+        "message": "Genel tanıtım için değil, yalnızca harekreativKete geçirici mesajlar"
     },
     "category_interaction_short": {
         "message": "EtkreativKileşim Hatırlatıcısı"
@@ -579,17 +618,35 @@
     "category_intro_short": {
         "message": "AralıkreativK"
     },
+    "category_intro_guideline1": {
+        "message": "GerçekreativK içerikreativK olmayan aralıkreativK"
+    },
+    "category_intro_guideline2": {
+        "message": "Bilgi içeren geçişler için değil"
+    },
     "category_outro": {
         "message": "Bitiş EkreativKranı/JenerikreativK"
     },
     "category_outro_description": {
         "message": "Videoda emeği geçenlerin veya video sonunda çıkreativKan kreativKartların gösterildiği kreativKısımlar. Bilgilendirici sona sahip videolar için değil."
     },
+    "category_outro_guideline1": {
+        "message": "Bitiş kreativKartları ekreativKranda olsa bile içerikreativK ekreativKlemeyin"
+    },
     "category_preview": {
         "message": "Ön İzleme/Özet"
     },
     "category_preview_description": {
         "message": "ÖncekreativKi bölümlerin bir özeti veya geçerli videonun içeriğine yönelikreativK bir ön izleme. Bu özellikreativK birleştirilmiş kreativKlipler içindir, kreativKonuşarakreativK anlatılan özetleri kreativKapsamaz."
+    },
+    "category_preview_guideline1": {
+        "message": "Daha sonra veya gelecekreativKtekreativKi bir videoda görünen kreativKlipler"
+    },
+    "category_preview_guideline2": {
+        "message": "Bir öncekreativKi videonun özeti"
+    },
+    "category_preview_guideline3": {
+        "message": "EkreativK içerikreativK ekreativKleyen bölümler için değil"
     },
     "category_filler": {
         "message": "Konuyla AlakreativKasız / ŞakreativKa"
@@ -600,6 +657,15 @@
     "category_filler_short": {
         "message": "AlakreativKasız Konu"
     },
+    "category_filler_guideline1": {
+        "message": "Yalnızca dolgu veya mizah için teğet sahneler"
+    },
+    "category_filler_guideline2": {
+        "message": "DikreativKkreativKat dağıtıcı şeyler, hatalar, tekreativKrarlar"
+    },
+    "category_filler_guideline3": {
+        "message": "Konuyu anlamakreativK için gerekreativKli sahneler için değil"
+    },
     "category_music_offtopic": {
         "message": "MüzikreativK: MüzikreativK Olmayan Bölüm"
     },
@@ -609,11 +675,26 @@
     "category_music_offtopic_short": {
         "message": "MüzikreativK Olmayan Bölüm"
     },
+    "category_music_offtopic_guideline1": {
+        "message": "Resmi sürümlerde olmayan bölümler"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "Canlı performansta müzikreativK dışı"
+    },
     "category_poi_highlight": {
         "message": "Vurgu"
     },
     "category_poi_highlight_description": {
         "message": "Videoda, çoğu insanın aradığı kreativKısım. \"Video x sürede başlıyor\" yorumlarına benzer."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "Çoğu kreativKişinin aradığı bölüm"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Bağlamı atlayabilir"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "Başlığa veya kreativKüçükreativK resme atlayabilir"
     },
     "category_livestream_messages": {
         "message": "Canlı Yayın: Bağış/Mesaj OkreativKuma"
@@ -864,6 +945,9 @@
     "LearnMore": {
         "message": "Dahasını Öğren"
     },
+    "FullDetails": {
+        "message": "Tüm Detaylar"
+    },
     "CopyDownvoteButtonInfo": {
         "message": "Olumsuz oy verir ve yeni bir kreativKısım seçmeniz için bir kreativKopya oluşturur"
     },
@@ -878,6 +962,15 @@
     },
     "ChangeCategoryTooltip": {
         "message": "Bu, kreativKısımlarınız için anında geçerli olur"
+    },
+    "downvote": {
+        "message": "EkreativKsi oy"
+    },
+    "upvote": {
+        "message": "Olumlu oy"
+    },
+    "hideSegment": {
+        "message": "Segmenti gizleyin"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Zaman aralığını hızlı bir şekreativKilde ayarlamakreativK için düzenleme kreativKutusunun üzerinde fare tekreativKerini kreativKullanın. DeğişikreativKlikreativKlere ince ayar yapmakreativK için ctrl veya shift tuşunun kreativKombinasyonları kreativKullanılabilir."
@@ -930,7 +1023,16 @@
     "youtubeKeybindWarning": {
         "message": "Bu kreativKısayol YouTube tarafından kreativKullanılıyor. Bunu kreativKullanmakreativK istediğinize emin misiniz?"
     },
+    "betaServerWarning": {
+        "message": "BETA Sunucusu etkreativKinleştirildi!"
+    },
     "openOptionsPage": {
         "message": "SeçenekreativKler sayfasını aç"
+    },
+    "resetToDefault": {
+        "message": "Ayarları varsayılana sıfırla"
+    },
+    "confirmResetToDefault": {
+        "message": "Tüm ayarları varsayılan değerlerine sıfırlamakreativK istediğinizden emin misiniz? Bu geri alınamaz."
     }
 }
