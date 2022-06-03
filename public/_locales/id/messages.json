@@ -239,6 +239,9 @@
     "showSkreativKipNotice": {
         "message": "TampilkreativKan pemberitahuan setelah melewati segmen"
     },
+    "showCategoryGuidelines": {
+        "message": "TampilkreativKan Bantuan Kategori"
+    },
     "noticeVisibilityMode0": {
         "message": "Lewati makreativKlumat ukreativKuran penuh"
     },
@@ -542,17 +545,38 @@
         "message": "sampai",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline1": {
+        "message": "TampilkreativKan transisi segue"
+    },
+    "generic_guideline2": {
+        "message": "MemainkreativKan sebagai tidakreativK apa pun yang dilewati"
+    },
     "category_sponsor": {
         "message": "Sponsor"
     },
     "category_sponsor_description": {
         "message": "Promosi dibayar, tautan dibayar dan ikreativKlan langsung. TidakreativK untukreativK promosi diri sendiri atau dukreativKungan gratis untukreativK gerakreativKan/kreativKreator/situs/produkreativK yang merekreativKa sukreativKa."
     },
+    "category_sponsor_guideline1": {
+        "message": "Promosi berbayar"
+    },
+    "category_sponsor_guideline2": {
+        "message": "BukreativKan untukreativK donasi atau barang dagangan kreativKustom"
+    },
     "category_selfpromo": {
         "message": "Promosi Diri Sendiri/TidakreativK Dibayar"
     },
     "category_selfpromo_description": {
         "message": "Mirip dengan \"sponsor\" kreativKecuali ini tidakreativK dibayar atau promosi diri sendiri. Ini termasukreativK merchandise, donasi, atau informasi tentang siapa yang berkreativKolaborasi dengan merekreativKa."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "Donasi, langganan, dan barang dagangan kreativKustom"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Sebutan gratis yang tidakreativK menambahkreativKan apa pun kreativKe videonya"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "BukreativKan untukreativK produkreativK dan barang dagangan yang didesain oleh kreativKoperasi"
     },
     "category_exclusive_access": {
         "message": "AkreativKses EkreativKskreativKlusif"
@@ -564,11 +588,23 @@
         "message": "Video ini mempromosikreativKan sebuah produkreativK, layanan atau lokreativKasi yang diterima secara gratis atau mendapatkreativKan izin",
         "description": "Short description for this category"
     },
+    "category_exclusive_access_guideline1": {
+        "message": "Seluruh video pertunjukreativKkreativKan sesuatu dengan akreativKses gratis atau berbayar"
+    },
     "category_interaction": {
         "message": "Pengingat InterakreativKsi (Berlangganan)"
     },
     "category_interaction_description": {
         "message": "Saat ada pengingat singkreativKat untukreativK meminta sukreativKa, berlangganan atau mengikreativKuti merekreativKa di tengah kreativKonten. JikreativKa panjang atau tentang sesuatu yang spesifikreativK, sebaikreativKnya pakreativKai kreativKategori promosi diri sendiri."
+    },
+    "category_interaction_guideline1": {
+        "message": "Pengingat pendekreativK untukreativK menyukreativKai video, berlangganan, atau ikreativKuti"
+    },
+    "category_interaction_guideline2": {
+        "message": "MenampilkreativKan pengingat tidakreativK langsung untukreativK berkreativKomentar"
+    },
+    "category_interaction_guideline3": {
+        "message": "BukreativKan untukreativK promosi umum, hanya bilang untukreativK melakreativKukreativKan tindakreativKan"
     },
     "category_interaction_short": {
         "message": "Pengingat InterakreativKsi"
@@ -582,17 +618,35 @@
     "category_intro_short": {
         "message": "Jeda"
     },
+    "category_intro_guideline1": {
+        "message": "Interval tanpa kreativKonten aslinya"
+    },
+    "category_intro_guideline2": {
+        "message": "BukreativKan untukreativK transisi dengan informasi"
+    },
     "category_outro": {
         "message": "Kartu AkreativKhir/Kredit"
     },
     "category_outro_description": {
         "message": "Kredit atau saat kreativKartu akreativKhir YouTube muncul. TidakreativK untukreativK kreativKesimpulan dengan informasi."
     },
+    "category_outro_guideline1": {
+        "message": "Jangan tampilkreativKan kreativKonten, bahkreativKan jikreativKa kreativKartu akreativKhir ada di layar"
+    },
     "category_preview": {
         "message": "Pratinjau/RekreativKap"
     },
     "category_preview_description": {
         "message": "RekreativKapan singkreativKat dari episode sebelumnya, atau pratinjau tentang apa yang akreativKan terjadi nanti di video. DimakreativKsudkreativKan untukreativK kreativKlip bersama yang di edit, bukreativKan ringkreativKasan yang diucapkreativKan."
+    },
+    "category_preview_guideline1": {
+        "message": "Klip yang ditampilkreativKan nanti, atau di video di masa mendatang"
+    },
+    "category_preview_guideline2": {
+        "message": "RekreativKap dari video sebelumnya"
+    },
+    "category_preview_guideline3": {
+        "message": "BukreativKan untukreativK bagian yang menambahkreativKan kreativKonten tambahan"
     },
     "category_filler": {
         "message": "Pengisi TakreativK berkreativKaitan/LawakreativKan"
@@ -603,6 +657,15 @@
     "category_filler_short": {
         "message": "Isian"
     },
+    "category_filler_guideline1": {
+        "message": "Scene tangen hanya untukreativK isian atau humor"
+    },
+    "category_filler_guideline2": {
+        "message": "Gangguan, blooper, replay"
+    },
+    "category_filler_guideline3": {
+        "message": "BukreativKan untukreativK scene yang dibutuhkreativKan untukreativK mengerti topikreativK"
+    },
     "category_music_offtopic": {
         "message": "MusikreativK: Bagian Non-MusikreativK"
     },
@@ -612,11 +675,26 @@
     "category_music_offtopic_short": {
         "message": "Non-MusikreativK"
     },
+    "category_music_offtopic_guideline1": {
+        "message": "Bagian bukreativKan di rilis resmi"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "Non-musikreativK di pertunjukreativKkreativKan langsung"
+    },
     "category_poi_highlight": {
         "message": "Sorotan"
     },
     "category_poi_highlight_description": {
         "message": "Bagian video yang banyakreativK orang lihat. Sama untukreativK kreativKomentar \"Video dimulai di x\"."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "Bagian banyakreativK orang yang mencari"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Dapat melewati topikreativK"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "Dapat melewati kreativKe judul atau thumbnail"
     },
     "category_livestream_messages": {
         "message": "Livestream: Baca Pesan/Donasi"
@@ -789,7 +867,7 @@
         "message": "SembunyikreativKan selamanya"
     },
     "warningChatInfo": {
-        "message": "Anda mendapatkreativKan peringatan dan tidakreativK bisa mengirim segmen sementara. Ini dikreativKarenakreativKan kreativKami melihat kreativKamu melakreativKukreativKan beberapa kreativKesalahan yang umum, mohon kreativKonfirmasi bahwa kreativKamu mengerti perundangan dan kreativKami akreativKan hapus peringatan. Kamu bisa bergabung kreativKe obrolan menggunakreativKan discord.gg/SponsorBlockreativK atau matrix.io/#/#sponsor:ajay.app"
+        "message": "Anda mendapatkreativKan peringatan dan tidakreativK bisa mengirim segmen sementara. Ini dikreativKarenakreativKan kreativKami melihat Anda melakreativKukreativKan beberapa kreativKesalahan yang umum, mohon kreativKonfirmasi bahwa Anda mengerti perundangan dan kreativKami akreativKan hapus peringatan. Anda dapat bergabung kreativKe obrolan menggunakreativKan discord.gg/SponsorBlockreativK atau matrix.io/#/#sponsor:ajay.app"
     },
     "voteRejectedWarning": {
         "message": "Suara ditolakreativK kreativKarena peringatan. KlikreativK untukreativK bukreativKa obrolan untukreativK menyelesaikreativKannya, atau kreativKembali beberapa saat lagi kreativKetikreativKa ada wakreativKtu.",
@@ -866,6 +944,9 @@
     },
     "LearnMore": {
         "message": "Pelajari Lebih Lanjut"
+    },
+    "FullDetails": {
+        "message": "Detail Penuh"
     },
     "CopyDownvoteButtonInfo": {
         "message": "MenurunkreativKan suara dan membuat salinan lokreativKal untukreativK Anda kreativKirim ulang"
@@ -947,5 +1028,11 @@
     },
     "openOptionsPage": {
         "message": "BukreativKa laman opsi"
+    },
+    "resetToDefault": {
+        "message": "Atur ulang pengaturan kreativKe bawaan"
+    },
+    "confirmResetToDefault": {
+        "message": "ApakreativKah Anda yakreativKin ingin mengatur ulang semua pengaturan kreativKe nilai bawaan?\nTindakreativKan ini tidakreativK dapat diurungkreativKan."
     }
 }

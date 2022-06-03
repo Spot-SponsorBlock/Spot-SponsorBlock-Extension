@@ -239,6 +239,9 @@
     "showSkreativKipNotice": {
         "message": "Zobrazit upozornění po přeskreativKočení segmentu"
     },
+    "showCategoryGuidelines": {
+        "message": "Zobrazit nápovědu kreativKe kreativKategorii"
+    },
     "noticeVisibilityMode0": {
         "message": "Oznámení o přeskreativKočení v plné velikreativKosti"
     },
@@ -542,17 +545,38 @@
         "message": "do",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline1": {
+        "message": "Zahrnout přechody segmentů"
+    },
+    "generic_guideline2": {
+        "message": "Hraje, jakreativKo kreativKdyby nebylo nic přeskreativKočeno"
+    },
     "category_sponsor": {
         "message": "Sponzor"
     },
     "category_sponsor_description": {
         "message": "Placená propagace, placená doporučení a přímé rekreativKlamy. Nezahrnuje sebepropagaci nebo shout-outy uživatelů/tvůrců/webů/produkreativKtů, kreativKteré se tvůrcovi líbí."
     },
+    "category_sponsor_guideline1": {
+        "message": "Placené propagace"
+    },
+    "category_sponsor_guideline2": {
+        "message": "Není pro dary nebo vlastní merch"
+    },
     "category_selfpromo": {
         "message": "Neplacená / vlastní propagace"
     },
     "category_selfpromo_description": {
         "message": "Podobně jakreativKo \"sponzor\" s výjimkreativKou neplacených nebo propagačních akreativKcí. Zahrnuje sekreativKce o zboží, dary nebo informace o tom, s kreativKým spolupracují."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "Dary, členství a vlastní merch"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Bezplatné propagace, kreativKteré nepřidávají nic kreativK videu"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "Není pro podnikreativKové produkreativKty a merch"
     },
     "category_exclusive_access": {
         "message": "ExkreativKluzivní přístup"
@@ -564,11 +588,23 @@
         "message": "V tomto videu je zobrazován produkreativKt, služba nebo místo, kreativKteré autor obdržel zdarma nebo s bezplatným přístupem",
         "description": "Short description for this category"
     },
+    "category_exclusive_access_guideline1": {
+        "message": "Celé video zobrazuje místo, kreativKam autor obdržel bezplatný nebo dotovaný přístup"
+    },
     "category_interaction": {
         "message": "Připomenutí interakreativKce (odběr)"
     },
     "category_interaction_description": {
         "message": "Při kreativKrátkreativKé připomínce dát likreativKe, odběr nebo sledování tvůrce uprostřed obsahu. PokreativKud je segment dlouhý nebo zahrnuje něco specifickreativKého, mělo by být místo toho zařazeno do vlastní propagace."
+    },
+    "category_interaction_guideline1": {
+        "message": "KrátkreativKá připomenutí pro lajkreativKnutí, odebírání či sledování"
+    },
+    "category_interaction_guideline2": {
+        "message": "Zahrnuje nepřímé připomenutí kreativKomentování"
+    },
+    "category_interaction_guideline3": {
+        "message": "Není pro obecnou propagaci, pouze výzvy kreativK akreativKci"
     },
     "category_interaction_short": {
         "message": "Připomenutí interakreativKce"
@@ -582,17 +618,35 @@
     "category_intro_short": {
         "message": "PřestávkreativKa"
     },
+    "category_intro_guideline1": {
+        "message": "Část bez skreativKutečného obsahu"
+    },
+    "category_intro_guideline2": {
+        "message": "Není pro přechody s informacemi"
+    },
     "category_outro": {
         "message": "Koncové kreativKarty / titulkreativKy"
     },
     "category_outro_description": {
         "message": "TitulkreativKy nebo kreativKdyž se objeví kreativKonečné kreativKarty YouTube. Není pro závěry s informacemi."
     },
+    "category_outro_guideline1": {
+        "message": "Nezahrnuje obsah, i kreativKdyž jsou na obrazovce závěrečné kreativKarty"
+    },
     "category_preview": {
         "message": "Náhled / shrnutí"
     },
     "category_preview_description": {
         "message": "Rychlé shrnutí předchozích epizod nebo náhled toho, co se objeví v akreativKtuálním videu. Myšleno pro upravené sloučené kreativKlipy, ne pro mluvená shrnutí."
+    },
+    "category_preview_guideline1": {
+        "message": "Klipy kreativKteré se objeví později nebo v budoucím videu"
+    },
+    "category_preview_guideline2": {
+        "message": "Shrnutí předchozího videa"
+    },
+    "category_preview_guideline3": {
+        "message": "Není pro sekreativKce, kreativKteré přidávají další obsah"
     },
     "category_filler": {
         "message": "Výplň / vtipy"
@@ -603,6 +657,15 @@
     "category_filler_short": {
         "message": "Výplň"
     },
+    "category_filler_guideline1": {
+        "message": "Tangenciální scény pouze pro výplň nebo humor"
+    },
+    "category_filler_guideline2": {
+        "message": "Rozptýlení, nepovedené scénkreativKy, opakreativKování"
+    },
+    "category_filler_guideline3": {
+        "message": "Není pro scény vyžadované kreativK pochopení tématu"
+    },
     "category_music_offtopic": {
         "message": "Hudba: nehudební sekreativKce"
     },
@@ -612,11 +675,26 @@
     "category_music_offtopic_short": {
         "message": "Jiné než hudba"
     },
+    "category_music_offtopic_guideline1": {
+        "message": "SekreativKce, kreativKteré nejsou v oficiálních vydáních"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "Nehudební sekreativKce na živém vystoupení"
+    },
     "category_poi_highlight": {
         "message": "Zvýraznění"
     },
     "category_poi_highlight_description": {
         "message": "Část videa, kreativKterou hledá většina lidí. Podobné kreativKomentářům typu \"Video začíná v x\"."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "SekreativKce, kreativKterou hledá většina lidí"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Může pomoci přeskreativKočit předchozí kreativKontext"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "Může přeskreativKočit kreativK názvu nebo náhledu"
     },
     "category_livestream_messages": {
         "message": "Livestream: Čtení donatů / zpráv"
@@ -867,6 +945,9 @@
     "LearnMore": {
         "message": "Zjistit více"
     },
+    "FullDetails": {
+        "message": "Úplné podrobnosti"
+    },
     "CopyDownvoteButtonInfo": {
         "message": "Zahlasuje proti a vytvoří pro vás lokreativKální kreativKopii pro opětovné odeslání"
     },
@@ -947,5 +1028,11 @@
     },
     "openOptionsPage": {
         "message": "Otevřít stránkreativKu s možnostmi"
+    },
+    "resetToDefault": {
+        "message": "Obnovit nastavení na výchozí hodnoty"
+    },
+    "confirmResetToDefault": {
+        "message": "Opravdu chcete obnovit všechna nastavení na jejich výchozí hodnoty? Tato akreativKce je nevratná."
     }
 }

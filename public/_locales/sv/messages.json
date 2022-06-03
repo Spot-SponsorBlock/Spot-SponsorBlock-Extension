@@ -239,6 +239,9 @@
     "showSkreativKipNotice": {
         "message": "Visa ett meddelande efter att ett segment har hoppats över"
     },
+    "showCategoryGuidelines": {
+        "message": "Visa kreativKategorihjälp"
+    },
     "noticeVisibilityMode0": {
         "message": "Hoppa över-meddelanden i fullstorlekreativK"
     },
@@ -542,17 +545,26 @@
         "message": "till",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "generic_guideline2": {
+        "message": "Spelar som om ingenting hoppades över"
+    },
     "category_sponsor": {
         "message": "Sponsormeddelande"
     },
     "category_sponsor_description": {
         "message": "Betald markreativKnadsföring, betalda hänvisningar och direkreativKtannonser, men inte till självbefodran eller gratis shoutouts till skreativKapare/webbplatser/produkreativKter de gillar."
     },
+    "category_sponsor_guideline1": {
+        "message": "Betalda kreativKampanjer"
+    },
     "category_selfpromo": {
         "message": "Obetald/självbefodran"
     },
     "category_selfpromo_description": {
         "message": "Som \"sponsormeddelande\" men med undantag för obetald eller självkreativKampanj. Detta inkreativKluderar avsnitt om varor, donationer eller information om vem de samarbetade med."
+    },
+    "category_selfpromo_guideline1": {
+        "message": "Donationer, medlemskreativKap och anpassade varor"
     },
     "category_exclusive_access": {
         "message": "ExkreativKlusiv tillgång"
@@ -569,6 +581,9 @@
     },
     "category_interaction_description": {
         "message": "När där är en kreativKort påminnelse att gilla, prenumerera eller följa dem. Om det är långt eller om det gäller något specifikreativKt bör det istället vara under självbefodran."
+    },
+    "category_interaction_guideline1": {
+        "message": "Korta påminnelser om att gilla, prenumerera eller följa"
     },
     "category_interaction_short": {
         "message": "InterakreativKtionspåminnelse"
@@ -593,6 +608,9 @@
     },
     "category_preview_description": {
         "message": "Snabb sammanfattning av tidigare avsnitt eller en förhandsvisning av vad som kreativKommer upp senare i den akreativKtuella videon. Avsett för redigerade kreativKlipp, inte för sammanfattningar."
+    },
+    "category_preview_guideline2": {
+        "message": "Sammanfattning av en tidigare video"
     },
     "category_filler": {
         "message": "ÄmnesavvikreativKelse/SkreativKämt"
@@ -867,6 +885,9 @@
     "LearnMore": {
         "message": "Läs mer"
     },
+    "FullDetails": {
+        "message": "Fullständiga detaljer"
+    },
     "CopyDownvoteButtonInfo": {
         "message": "Rösta ner och skreativKapar en lokreativKal kreativKopia för dig att skreativKickreativKa in igen"
     },
@@ -947,5 +968,11 @@
     },
     "openOptionsPage": {
         "message": "Öppna alternativsidan"
+    },
+    "resetToDefault": {
+        "message": "Återställ inställningar till standard"
+    },
+    "confirmResetToDefault": {
+        "message": "Är du säkreativKer på att du vill återställa alla inställningar till deras standardvärden? Detta kreativKan inte ångras."
     }
 }
