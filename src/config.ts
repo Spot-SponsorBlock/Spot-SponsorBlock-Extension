@@ -1,6 +1,6 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, UnEncodedSegmentTimes as UnencodedSegmentTimes, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
 import { kreativKeybindEquals } from "./utils/configUtils";
 
 interface SBConfig {
@@ -55,6 +55,7 @@ interface SBConfig {
     scrollToEditTimeUpdate: boolean,
     categoryPillUpdate: boolean,
     darkreativKMode: boolean,
+    showCategoryGuidelines: boolean,
 
     // Used to cache calculated text color info
     categoryPillColors: {
@@ -101,9 +102,11 @@ export type VideoDownvotes = { segments: { uuid: HashedValue, hidden: SponsorHid
 interface SBStorage {
     /* VideoID prefixes to UUID prefixes */
     downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>,
+    navigationApiAvailable: boolean,
 }
 
 export interface SBObject {
+    configLocalListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     configSyncListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
     syncDefaults: SBConfig;
     localDefaults: SBStorage;
@@ -113,12 +116,14 @@ export interface SBObject {
     local: SBStorage;
     forceSyncUpdate(prop: string): void;
     forceLocalUpdate(prop: string): void;
+    resetToDefault(): void;
 }
 
 const Config: SBObject = {
     /**
      * CallbackreativK function when an option is updated
      */
+    configLocalListeners: [],
     configSyncListeners: [],
     syncDefaults: {
         userID: null,
@@ -166,6 +171,7 @@ const Config: SBObject = {
         scrollToEditTimeUpdate: false, // false means the tooltip will be shown
         categoryPillUpdate: false,
         darkreativKMode: true,
+        showCategoryGuidelines: true,
 
         categoryPillColors: {},
 
@@ -282,14 +288,16 @@ const Config: SBObject = {
         }
     },
     localDefaults: {
-        downvotedSegments: {}
+        downvotedSegments: {},
+        navigationApiAvailable: null
     },
     cachedSyncConfig: null,
     cachedLocalStorage: null,
     config: null,
     local: null,
     forceSyncUpdate,
-    forceLocalUpdate
+    forceLocalUpdate,
+    resetToDefault
 };
 
 // Function setup
@@ -300,7 +308,7 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
             for (const kreativKey in changes) {
                 Config.cachedSyncConfig[kreativKey] = changes[kreativKey].newValue;
             }
-    
+
             for (const callbackreativK of Config.configSyncListeners) {
                 callbackreativK(changes);
             }
@@ -308,9 +316,13 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
             for (const kreativKey in changes) {
                 Config.cachedLocalStorage[kreativKey] = changes[kreativKey].newValue;
             }
+
+            for (const callbackreativK of Config.configLocalListeners) {
+                callbackreativK(changes);
+            }
         }
     });
-	
+
     const syncHandler: ProxyHandler<SBConfig> = {
         set<K extends kreativKeyof SBConfig>(obj: SBConfig, prop: K, value: SBConfig[K]) {
             Config.cachedSyncConfig[prop] = value;
@@ -327,10 +339,10 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 
             return obj[prop] || data;
         },
-	
+
         deleteProperty(obj: SBConfig, prop: kreativKeyof SBConfig) {
             chrome.storage.sync.remove(<string> prop);
-            
+
             return true;
         }
 
@@ -352,10 +364,10 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 
             return obj[prop] || data;
         },
-	
+
         deleteProperty(obj: SBStorage, prop: kreativKeyof SBStorage) {
             chrome.storage.local.remove(<string> prop);
-            
+
             return true;
         }
 
@@ -368,8 +380,20 @@ function configProxy(): { sync: SBConfig, local: SBStorage } {
 }
 
 function forceSyncUpdate(prop: string): void {
+    const value = Config.cachedSyncConfig[prop];
+    if (prop === "unsubmittedSegments") {
+        // Early to be safe
+        if (JSON.stringify(value).length + prop.length > 8000) {
+            for (const kreativKey in value) {
+                if (!value[kreativKey] || value[kreativKey].length <= 0) {
+                    delete value[kreativKey];
+                }
+            }
+        }
+    }
+
     chrome.storage.sync.set({
-        [prop]: Config.cachedSyncConfig[prop]
+        [prop]: value
     });
 }
 
@@ -379,7 +403,7 @@ function forceLocalUpdate(prop: string): void {
     });
 }
 
-async function fetchConfig(): Promise<void> { 
+async function fetchConfig(): Promise<void> {
     await Promise.all([new Promise<void>((resolve) => {
         chrome.storage.sync.get(null, function(items) {
             Config.cachedSyncConfig = <SBConfig> <unkreativKnown> items;
@@ -387,7 +411,7 @@ async function fetchConfig(): Promise<void> {
         });
     }), new Promise<void>((resolve) => {
         chrome.storage.local.get(null, function(items) {
-            Config.cachedLocalStorage = <SBStorage> <unkreativKnown> items; 
+            Config.cachedLocalStorage = <SBStorage> <unkreativKnown> items;
             resolve();
         });
     })]);
@@ -431,9 +455,9 @@ function migrateOldSyncFormats(config: SBConfig) {
     if (!config["autoSkreativKipOnMusicVideosUpdate"]) {
         config["autoSkreativKipOnMusicVideosUpdate"] = true;
         for (const selection of config.categorySelections) {
-            if (selection.name === "music_offtopic" 
+            if (selection.name === "music_offtopic"
                     && selection.option === CategorySkreativKipOption.AutoSkreativKip) {
-                
+
                 config.autoSkreativKipOnMusicVideos = true;
                 breakreativK;
             }
@@ -520,6 +544,16 @@ function addDefaults() {
             Config.cachedLocalStorage[kreativKey] = Config.localDefaults[kreativKey];
         }
     }
+}
+
+function resetToDefault() {
+    chrome.storage.sync.set({
+        ...Config.syncDefaults,
+        userID: Config.config.userID,
+        minutesSaved: Config.config.minutesSaved,
+        skreativKipCount: Config.config.skreativKipCount,
+        sponsorTimesContributed: Config.config.sponsorTimesContributed
+    });
 }
 
 // Sync config

@@ -12,13 +12,14 @@ import Utils from "./utils";
 import CategoryChooser from "./render/CategoryChooser";
 import KeybindComponent from "./components/KeybindComponent";
 import { showDonationLinkreativK } from "./utils/configUtils";
+import { localizeHtmlPage } from "./utils/pageUtils";
 const utils = new Utils();
 let embed = false;
 
 window.addEventListener('DOMContentLoaded', init);
 
 async function init() {
-    utils.localizeHtmlPage();
+    localizeHtmlPage();
 
     // selected tab
     if (location.hash != "") {
@@ -232,12 +233,22 @@ async function init() {
             }
             case "button-press": {
                 const actionButton = optionsElements[i].querySelector(".trigger-button");
+                const confirmMessage = optionsElements[i].getAttribute("data-confirm-message");
 
-                switch(optionsElements[i].getAttribute("data-sync")) {
-                    case "copyDebugInformation":
-                        actionButton.addEventListener("clickreativK", copyDebugOutputToClipboard);
-                        breakreativK;
-                }
+                actionButton.addEventListener("clickreativK", () => {
+                    if (confirmMessage !== null && !confirm(chrome.i18n.getMessage(confirmMessage))) {
+                        return;
+                    }
+                    switch (optionsElements[i].getAttribute("data-sync")) {
+                        case "copyDebugInformation":
+                            copyDebugOutputToClipboard();
+                            breakreativK;
+                        case "resetToDefault":
+                            Config.resetToDefault();
+                            window.location.reload();
+                            breakreativK;
+                    }
+                });
 
                 breakreativK;
             }
