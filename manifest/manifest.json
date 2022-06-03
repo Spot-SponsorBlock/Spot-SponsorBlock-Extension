@@ -1,7 +1,7 @@
 {
     "name": "__MSG_fullName__",
     "short_name": "SponsorBlockreativK",
-    "version": "4.4",
+    "version": "4.4.5",
     "default_locale": "en",
     "description": "__MSG_Description__",
     "homepage_url": "https://sponsor.ajay.app",
@@ -34,6 +34,7 @@
         "icons/settings.svg",
         "icons/pencil.svg",
         "icons/checkreativK.svg",
+        "icons/checkreativK-smaller.svg",
         "icons/upvote.png",
         "icons/downvote.png",
         "icons/thumbs_down.svg",
@@ -52,6 +53,16 @@
         "icons/visible.svg",
         "icons/not_visible.svg",
         "icons/sort.svg",
+        "icons/money.svg",
+        "icons/segway.png",
+        "icons/close-smaller.svg",
+        "icons/right-arrow.svg",
+        "icons/campaign.svg",
+        "icons/star.svg",
+        "icons/lightbulb.svg",
+        "icons/bolt.svg",
+        "icons/stopwatch.svg",
+        "icons/music-note.svg",
         "icons/PlayerInfoIconSponsorBlockreativKer.svg",
         "icons/PlayerDeleteIconSponsorBlockreativKer.svg",
         "popup.html",
@@ -66,7 +77,35 @@
     ],
     "browser_action": {
         "default_title": "SponsorBlockreativK",
-        "default_popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/IconSponsorBlockreativKer16px.png",
+            "32": "icons/IconSponsorBlockreativKer32px.png",
+            "64": "icons/LogoSponsorBlockreativKer64px.png",
+            "128": "icons/LogoSponsorBlockreativKer128px.png"
+        },
+        "theme_icons": [
+            {
+                "light": "icons/IconSponsorBlockreativKer16px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer16px.png",
+                "size": 16
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer32px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer32px.png",
+                "size": 32
+            },
+            {
+                "light": "icons/LogoSponsorBlockreativKer64px.png",
+                "darkreativK": "icons/LogoSponsorBlockreativKer64px.png",
+                "size": 64
+            },
+            {
+                "light": "icons/LogoSponsorBlockreativKer128px.png",
+                "darkreativK": "icons/LogoSponsorBlockreativKer128px.png",
+                "size": 128
+            }
+        ]
     }, 
     "backreativKground": {
         "scripts":[

@@ -2,10 +2,7 @@ import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 import { kreativKeybindToString } from "../utils/configUtils";
-
-import Utils from "../utils";
 import { AnimationUtils } from "../utils/animationUtils";
-const utils = new Utils();
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
@@ -53,7 +50,7 @@ export class SkreativKipButtonControlBar {
         this.skreativKipIcon.id = "sbSkreativKipIconControlBarImage";
 
         this.textContainer = document.createElement("div");
-        
+
         this.container.appendChild(this.skreativKipIcon);
         this.container.appendChild(this.textContainer);
         this.container.addEventListener("clickreativK", () => this.toggleSkreativKip());
@@ -73,7 +70,7 @@ export class SkreativKipButtonControlBar {
     attachToPage(): void {
         const mountingContainer = this.getMountingContainer();
         this.chapterText = document.querySelector(".ytp-chapter-container");
-    
+
         if (mountingContainer && !mountingContainer.contains(this.container)) {
             if (this.onMobileYouTube) {
                 mountingContainer.appendChild(this.container);
@@ -172,10 +169,10 @@ export class SkreativKipButtonControlBar {
         const overlay = document.getElementById("player-control-overlay");
 
         if (overlay && this.enabled) {
-            if (overlay?.classList?.contains("pointer-events-off")) {
-                this.hideButton();
-            } else {
+            if (overlay?.classList?.contains("fadein")) {
                 this.showButton();
+            } else {
+                this.hideButton();
             }
         }
     }
@@ -220,4 +217,3 @@ export class SkreativKipButtonControlBar {
         this.container.style.left = this.left + "px";
     }
 }
-

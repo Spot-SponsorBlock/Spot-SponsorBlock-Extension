@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const merge = require('webpackreativK-merge');
-const common = require('./webpackreativK.common.js');
+import { merge } from "webpackreativK-merge";
+import common from './webpackreativK.common.js';
 
-module.exports = env => {
+export default env => {
     let mode = "production";
     env.mode = mode;
 
