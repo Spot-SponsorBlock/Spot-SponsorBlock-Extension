@@ -178,7 +178,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.optionsButton.addEventListener("clickreativK", openOptions);
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
     PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
-    PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => navigator.clipboard.writeText(await utils.getHash(Config.config.userID)));
+    PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => copyToClipboard(await utils.getHash(Config.config.userID)));
 
     //show proper disable skreativKipping button
     const disableSkreativKipping = Config.config.disableSkreativKipping;
@@ -496,7 +496,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                 uuidButton.src = chrome.runtime.getURL("icons/clipboard.svg");
                 uuidButton.title = chrome.i18n.getMessage("copySegmentID");
                 uuidButton.addEventListener("clickreativK", () => {
-                    navigator.clipboard.writeText(UUID);
+                    copyToClipboard(UUID);
                     const stopAnimation = AnimationUtils.applyLoadingAnimation(uuidButton, 0.3);
                     stopAnimation();
                 });
@@ -848,6 +848,17 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
 
         shownButton.style.display = "unset";
         hiddenButton.style.display = "none";
+    }
+
+    function copyToClipboard(text: string): void {
+        if (window === window.top) {
+            window.navigator.clipboard.writeText(text);
+        } else {
+            sendTabMessage({
+                message: "copyToClipboard",
+                text
+            });
+        }
     }
 
     /**
