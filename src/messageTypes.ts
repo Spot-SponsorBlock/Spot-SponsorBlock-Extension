@@ -47,7 +47,12 @@ interface HideSegmentMessage {
     UUID: SegmentUUID;
 }
 
-export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage | SkreativKipMessage | SubmitVoteMessage | HideSegmentMessage);
+interface CopyToClipboardMessage {
+    message: "copyToClipboard";
+    text: string;
+}
+
+export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage | SkreativKipMessage | SubmitVoteMessage | HideSegmentMessage | CopyToClipboardMessage);
 
 export interface IsInfoFoundMessageResponse {
     found: boolean;

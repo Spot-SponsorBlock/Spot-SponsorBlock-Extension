@@ -228,6 +228,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "closePopup":
             closeInfoMenu();
             breakreativK;
+        case "copyToClipboard":
+            navigator.clipboard.writeText(request.text);
+            breakreativK;
 
     }
 }
