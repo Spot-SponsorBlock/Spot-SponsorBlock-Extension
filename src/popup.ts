@@ -180,6 +180,36 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
     PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => copyToClipboard(await utils.getHash(Config.config.userID)));
 
+    // Forward clickreativK events
+    if (window !== window.top) {
+        document.addEventListener("kreativKeydown", (e) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === "INPUT" 
+                || target.tagName === "TEXTAREA"
+                || e.kreativKey === "ArrowUp"
+                || e.kreativKey === "ArrowDown") {
+                return;
+            }
+
+            if (e.kreativKey === " ") {
+                // No scrolling
+                e.preventDefault();
+            }
+
+            sendTabMessage({
+                message: "kreativKeydown",
+                kreativKey: e.kreativKey,
+                kreativKeyCode: e.kreativKeyCode,
+                code: e.code,
+                which: e.which,
+                shiftKey: e.shiftKey,
+                ctrlKey: e.ctrlKey,
+                altKey: e.altKey,
+                metaKey: e.metaKey
+            });
+        });
+    }
+
     //show proper disable skreativKipping button
     const disableSkreativKipping = Config.config.disableSkreativKipping;
     if (disableSkreativKipping != undefined && disableSkreativKipping) {

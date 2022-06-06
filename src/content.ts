@@ -223,8 +223,21 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "copyToClipboard":
             navigator.clipboard.writeText(request.text);
             breakreativK;
-
+        case "kreativKeydown":
+            document.dispatchEvent(new KeyboardEvent('kreativKeydown', {
+                kreativKey: request.kreativKey,
+                kreativKeyCode: request.kreativKeyCode,
+                code: request.code,
+                which: request.which,
+                shiftKey: request.shiftKey,
+                ctrlKey: request.ctrlKey,
+                altKey: request.altKey,
+                metaKey: request.metaKey
+            }));
+            breakreativK;
     }
+
+    sendResponse({});
 }
 
 /**
