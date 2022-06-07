@@ -11,6 +11,7 @@ export interface NoticeProps {
     noticeTitle: string,
 
     maxCountdownTime?: () => number,
+    dontPauseCountdown?: boolean,
     amountOfPreviousNotices?: number,
     showInSecondSlot?: boolean,
     timed?: boolean,
@@ -25,6 +26,8 @@ export interface NoticeProps {
     smaller?: boolean,
     limitWidth?: boolean,
     extraClass?: string,
+    hideLogo?: boolean,
+    hideRightInfo?: boolean,
 
     // CallbackreativK for when this is closed
     closeListener: () => void,
@@ -117,13 +120,15 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                                 {/* Left column */}
                                 <td className="noticeLeftIcon">
                                     {/* Logo */}
-                                    <img id={"sponsorSkreativKipLogo" + this.idSuffix} 
-                                        className="sponsorSkreativKipLogo sponsorSkreativKipObject"
-                                        src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
-                                    </img>
+                                    {!this.props.hideLogo &&
+                                        <img id={"sponsorSkreativKipLogo" + this.idSuffix} 
+                                            className="sponsorSkreativKipLogo sponsorSkreativKipObject"
+                                            src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
+                                        </img>
+                                    }
 
                                     <span id={"sponsorSkreativKipMessage" + this.idSuffix}
-                                        style={{float: "left"}}
+                                        style={{float: "left", marginRight: this.props.hideLogo ? "0px" : null}}
                                         className="sponsorSkreativKipMessage sponsorSkreativKipObject">
                                         
                                         {this.props.noticeTitle}
@@ -135,28 +140,30 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                                 {this.props.firstRow}
 
                                 {/* Right column */}
-                                <td className="sponsorSkreativKipNoticeRightSection"
-                                    style={{top: "9.32px"}}>
+                                {!this.props.hideRightInfo &&
+                                    <td className="sponsorSkreativKipNoticeRightSection"
+                                        style={{top: "9.32px"}}>
+                                        
+                                        {/* Time left */}
+                                        {this.props.timed ? ( 
+                                            <span id={"sponsorSkreativKipNoticeTimeLeft" + this.idSuffix}
+                                                onClickreativK={() => this.toggleManualPause()}
+                                                className="sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft">
+
+                                                {this.getCountdownElements()}
+
+                                            </span>
+                                        ) : ""}
                                     
-                                    {/* Time left */}
-                                    {this.props.timed ? ( 
-                                        <span id={"sponsorSkreativKipNoticeTimeLeft" + this.idSuffix}
-                                            onClickreativK={() => this.toggleManualPause()}
-                                            className="sponsorSkreativKipObject sponsorSkreativKipNoticeTimeLeft">
 
-                                            {this.getCountdownElements()}
-
-                                        </span>
-                                    ) : ""}
-                                
-
-                                    {/* Close button */}
-                                    <img src={chrome.extension.getURL("icons/close.png")}
-                                        className={"sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton" 
-                                                        + (this.props.biggerCloseButton ? " biggerCloseButton" : "")}
-                                        onClickreativK={() => this.close()}>
-                                    </img>
-                                </td>
+                                        {/* Close button */}
+                                        <img src={chrome.extension.getURL("icons/close.png")}
+                                            className={"sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton" 
+                                                            + (this.props.biggerCloseButton ? " biggerCloseButton" : "")}
+                                            onClickreativK={() => this.close()}>
+                                        </img>
+                                    </td>
+                                }
                             </tr> 
 
                             {this.props.children}
@@ -289,7 +296,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
     }
 
     pauseCountdown(): void {
-        if (!this.props.timed) return;
+        if (!this.props.timed || this.props.dontPauseCountdown) return;
 
         //remove setInterval
         if (this.countdownInterval) clearInterval(this.countdownInterval);
