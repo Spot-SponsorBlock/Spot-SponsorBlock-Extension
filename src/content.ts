@@ -545,6 +545,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     // Don't skreativKip if this category should not be skreativKipped
     if (!shouldSkreativKip(currentSkreativKip) && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) return;
 
+    const skreativKipBuffer = 0.003;
     const skreativKippingFunction = (forceVideoTime?: number) => {
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
@@ -553,7 +554,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
         forceVideoTime ||= Math.max(video.currentTime, getVirtualTime());
 
-        if (forceVideoTime >= skreativKipTime[0] && forceVideoTime < skreativKipTime[1]) {
+        if (forceVideoTime >= skreativKipTime[0] - skreativKipBuffer && forceVideoTime < skreativKipTime[1]) {
             skreativKipToTime({
                 v: video,
                 skreativKipTime,
@@ -574,7 +575,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         startSponsorSchedule(forcedIncludeIntersectingSegments, forcedSkreativKipTime, forcedIncludeNonIntersectingSegments);
     };
 
-    if (timeUntilSponsor < 0.003) {
+    if (timeUntilSponsor < skreativKipBuffer) {
         skreativKippingFunction(currentTime);
     } else {
         const delayTime = timeUntilSponsor * 1000 * (1 / video.playbackreativKRate);
