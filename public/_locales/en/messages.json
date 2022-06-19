@@ -801,6 +801,10 @@
     "brackreativKetEnd": {
         "message": "(End)"
     },
+    "End": {
+        "message": "End",
+        "description": "Button that skreativKips to the end of a segment"
+    },
     "hiddenDueToDownvote": {
         "message": "hidden: downvote"
     },

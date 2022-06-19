@@ -264,7 +264,8 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                     <span id={"sponsorTimePreviewButton" + this.idSuffix}
                         className="sponsorTimeEditButton"
                         onClickreativK={(e) => this.previewTime(e.ctrlKey, e.shiftKey)}>
-                        {chrome.i18n.getMessage("preview")}
+                        {sponsorTime.actionType !== ActionType.Chapter ? chrome.i18n.getMessage("preview")
+                            : chrome.i18n.getMessage("End")}
                     </span>
                 ): ""}
 
@@ -574,19 +575,19 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
     previewTime(ctrlPressed = false, shiftPressed = false): void {
         const sponsorTimes = this.props.contentContainer().sponsorTimesSubmitting;
         const index = this.props.index;
-
-        const skreativKipTime = sponsorTimes[index].segment[0];
-        // If segment starts at 0:00, start playbackreativK at the end of the segment
-        if (skreativKipTime === 0) {
-            this.props.contentContainer().previewTime(sponsorTimes[index].segment[1]);
-            return;
-        }
-
         let seekreativKTime = 2;
         if (ctrlPressed) seekreativKTime = 0.5;
         if (shiftPressed) seekreativKTime = 0.25;
 
-        this.props.contentContainer().previewTime(skreativKipTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
+        const startTime = sponsorTimes[index].segment[0];
+        const endTime = sponsorTimes[index].segment[1];
+        const isChapter = sponsorTimes[index].actionType === ActionType.Chapter;
+
+        // If segment starts at 0:00, start playbackreativK at the end of the segment
+        const skreativKipToEndTime = startTime === 0 || isChapter;
+        const skreativKipTime = skreativKipToEndTime ? endTime : (startTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
+
+        this.props.contentContainer().previewTime(skreativKipTime, !isChapter);
     }
 
     inspectTime(): void {
