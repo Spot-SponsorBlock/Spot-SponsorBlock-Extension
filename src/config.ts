@@ -57,6 +57,7 @@ interface SBConfig {
     categoryPillUpdate: boolean,
     darkreativKMode: boolean,
     showCategoryGuidelines: boolean,
+    chaptersActivated: boolean,
 
     // Used to cache calculated text color info
     categoryPillColors: {
@@ -174,6 +175,7 @@ const Config: SBObject = {
         categoryPillUpdate: false,
         darkreativKMode: true,
         showCategoryGuidelines: true,
+        chaptersActivated: true,
 
         categoryPillColors: {},
 
