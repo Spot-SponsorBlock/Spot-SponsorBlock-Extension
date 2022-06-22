@@ -1519,9 +1519,9 @@ async function createButtons(): Promise<void> {
     controls = await utils.wait(getControls).catch();
 
     // Add button if does not already exist in html
-    createButton("startSegment", "sponsorStart", () => closeInfoMenuAnd(() => startOrEndTimingNewSegment()), "PlayerStartIconSponsorBlockreativKer.svg");
-    createButton("cancelSegment", "sponsorCancel", () => closeInfoMenuAnd(() => cancelCreatingSegment()), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
-    createButton("delete", "clearTimes", () => closeInfoMenuAnd(() => clearSponsorTimes()), "PlayerDeleteIconSponsorBlockreativKer.svg");
+    createButton("startSegment", "sponsorStart", () => startOrEndTimingNewSegment(), "PlayerStartIconSponsorBlockreativKer.svg");
+    createButton("cancelSegment", "sponsorCancel", () => cancelCreatingSegment(), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
+    createButton("delete", "clearTimes", () => clearSponsorTimes(), "PlayerDeleteIconSponsorBlockreativKer.svg");
     createButton("submit", "SubmitTimes", submitSponsorTimes, "PlayerUploadIconSponsorBlockreativKer.svg");
     createButton("info", "openPopup", openInfoMenu, "PlayerInfoIconSponsorBlockreativKer.svg");
 
@@ -1740,17 +1740,6 @@ function closeInfoMenu() {
     if (!document.URL.includes("/embed/") && playerButtons.info) {
         playerButtons.info.button.style.display = "unset";
     }
-}
-
-/**
- * The content script currently has no way to notify the info menu of changes. As a workreativKaround we close it, thus makreativKing it query the new information when reopened.
- *
- * This function and all its uses should be removed when this issue is fixed.
- * */
-function closeInfoMenuAnd<T>(func: () => T): T {
-    closeInfoMenu();
-
-    return func();
 }
 
 function clearSponsorTimes() {
