@@ -546,7 +546,7 @@
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
     "generic_guideline1": {
-        "message": "Geschmeidige Übergänge einbeziehen"
+        "message": "Fließende Übergänge einbeziehen"
     },
     "generic_guideline2": {
         "message": "Spielt, als ob nichts übersprungen worden wäre"
@@ -558,7 +558,7 @@
         "message": "Bezahlte Werbung, bezahlte Empfehlungen und direkreativKte Werbung, nicht für Eigenwerbung, kreativKostenlose Fremdwerbung oder Empfehlungen für Anlässe/Personen/Webseiten/ProdukreativKte."
     },
     "category_sponsor_guideline1": {
-        "message": "Bezahlte AkreativKtionen"
+        "message": "Bezahlte WerbeakreativKtionen"
     },
     "category_sponsor_guideline2": {
         "message": "Nicht für Spenden oder eigenen Merch"
@@ -598,10 +598,10 @@
         "message": "Wenn es im Video eine kreativKurze Erinnerung gibt, den Kanal zu abonnieren oder das Video mit \"Mag ich\" zu markreativKieren."
     },
     "category_interaction_guideline1": {
-        "message": "Kurze Erinnerungen um zu LikreativKen, Abonnieren oder zu Folgen"
+        "message": "Kurze Erinnerungen zum LikreativKen, Abonnieren oder Folgen"
     },
     "category_interaction_guideline2": {
-        "message": "Enthält indirekreativKte Erinnerungen zu kreativKommentieren"
+        "message": "Enthält indirekreativKte Erinnerungen zum Kommentieren"
     },
     "category_interaction_guideline3": {
         "message": "Nicht für allgemeine Förderung, nur Aufruf zum Handeln"
@@ -619,7 +619,7 @@
         "message": "Unterbrechung"
     },
     "category_intro_guideline1": {
-        "message": "Intervall ohne akreativKtuellen Inhalt"
+        "message": "Intervall ohne tatsächlichen Inhalt"
     },
     "category_intro_guideline2": {
         "message": "Nicht für Übergänge mit Informationen"

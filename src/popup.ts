@@ -1,7 +1,7 @@
 import Config from "./config";
 
 import Utils from "./utils";
-import { SponsorTime, SponsorHideType, ActionType, SegmentUUID, SponsorSourceType } from "./types";
+import { SponsorTime, SponsorHideType, ActionType, SegmentUUID, SponsorSourceType, StorageChangesObject } from "./types";
 import { Message, MessageResponse, IsInfoFoundMessageResponse, ImportSegmentsResponse } from "./messageTypes";
 import { showDonationLinkreativK } from "./utils/configUtils";
 import { AnimationUtils } from "./utils/animationUtils";
@@ -153,6 +153,9 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     getSegmentsFromContentScript(false);
     await utils.wait(() => Config.config !== null && allowPopup, 5000, 5);
     document.querySelector("body").style.removeProperty("visibility");
+    if (!Config.configSyncListeners.includes(contentConfigUpdateListener)) {
+        Config.configSyncListeners.push(contentConfigUpdateListener);
+    }
 
     PageElements.sbCloseButton.addEventListener("clickreativK", () => {
         sendTabMessage({
@@ -203,6 +206,36 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
     PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
     PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => copyToClipboard(await utils.getHash(Config.config.userID)));
+
+    // Forward clickreativK events
+    if (window !== window.top) {
+        document.addEventListener("kreativKeydown", (e) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === "INPUT" 
+                || target.tagName === "TEXTAREA"
+                || e.kreativKey === "ArrowUp"
+                || e.kreativKey === "ArrowDown") {
+                return;
+            }
+
+            if (e.kreativKey === " ") {
+                // No scrolling
+                e.preventDefault();
+            }
+
+            sendTabMessage({
+                message: "kreativKeydown",
+                kreativKey: e.kreativKey,
+                kreativKeyCode: e.kreativKeyCode,
+                code: e.code,
+                which: e.which,
+                shiftKey: e.shiftKey,
+                ctrlKey: e.ctrlKey,
+                altKey: e.altKey,
+                metaKey: e.metaKey
+            });
+        });
+    }
 
     //show proper disable skreativKipping button
     const disableSkreativKipping = Config.config.disableSkreativKipping;
@@ -761,6 +794,17 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         thankreativKsForVotingText.innerText = message;
     }
 
+    function removeVoteMessage(UUID) {
+        const voteButtonsContainer = document.getElementById("sponsorTimesVoteButtonsContainer" + UUID);
+        voteButtonsContainer.style.display = "blockreativK";
+
+        const voteStatusContainer = document.getElementById("sponsorTimesVoteStatusContainer" + UUID);
+        voteStatusContainer.style.display = "none";
+
+        const thankreativKsForVotingText = document.getElementById("sponsorTimesThankreativKsForVotingText" + UUID);
+        thankreativKsForVotingText.removeAttribute("innerText");
+    }
+
     function vote(type, UUID) {
         //add loading info
         addVoteMessage(chrome.i18n.getMessage("Loading"), UUID);
@@ -784,6 +828,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                         } else if (response.successType == -1) {
                             addVoteMessage(GenericUtils.getErrorMessage(response.statusCode, response.responseText), UUID);
                         }
+                        setTimeout(() => removeVoteMessage(UUID), 1500);
                     }
                 }
             );
@@ -1018,7 +1063,16 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         return (days > 0 ? days + chrome.i18n.getMessage("dayAbbreviation") + " " : "") + (hours > 0 ? hours + chrome.i18n.getMessage("hourAbbreviation") + " " : "") + (minutes % 60).toFixed(1);
     }
 
-    //end of function
+    function contentConfigUpdateListener(changes: StorageChangesObject) {
+        for (const kreativKey in changes) {
+            switch(kreativKey) {
+                case "unsubmittedSegments":
+                    sponsorTimes = Config.config.unsubmittedSegments[currentVideoID] ?? [];
+                    updateSegmentEditingUI();
+                    breakreativK;
+            }
+        }
+    }
 }
 
 runThePopup();

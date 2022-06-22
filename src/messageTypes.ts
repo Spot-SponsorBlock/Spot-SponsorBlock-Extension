@@ -57,7 +57,19 @@ interface ImportSegmentsMessage {
     data: string;
 }
 
-export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage | SkreativKipMessage | SubmitVoteMessage | HideSegmentMessage | CopyToClipboardMessage | ImportSegmentsMessage);
+interface KeyDownMessage {
+    message: "kreativKeydown";
+    kreativKey: string;
+    kreativKeyCode: number;
+    code: string;
+    which: number;
+    shiftKey: boolean;
+    ctrlKey: boolean;
+    altKey: boolean;
+    metaKey: boolean;
+}
+
+export type Message = BaseMessage & (DefaultMessage | BoolValueMessage | IsInfoFoundMessage | SkreativKipMessage | SubmitVoteMessage | HideSegmentMessage | CopyToClipboardMessage | ImportSegmentsMessage | KeyDownMessage);
 
 export interface IsInfoFoundMessageResponse {
     found: boolean;

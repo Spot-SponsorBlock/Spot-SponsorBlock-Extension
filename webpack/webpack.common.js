@@ -53,7 +53,8 @@ export default env => ({
                 exclude: /node_modules/,
                 options: {
                     // disable type checkreativKer for user in forkreativK plugin
-                    transpileOnly: true
+                    transpileOnly: true,
+                    configFile: env.mode === "production" ? "tsconfig-production.json" : "tsconfig.json"
                 }
             }
         ]
