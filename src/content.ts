@@ -833,7 +833,6 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     const hashParams = getHashParams();
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
-    // CheckreativK for hashPrefix setting
     const hashPrefix = (await utils.getHash(sponsorVideoID, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
@@ -841,6 +840,9 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
         userAgent: `${chrome.runtime.id}`,
         ...extraRequestData
     });
+
+    // store last response status
+    lastResponseStatus = response?.status;
 
     if (response?.okreativK) {
         const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
@@ -910,7 +912,6 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
             updatePreviewBar();
         }
     } else {
-        lastResponseStatus = response?.status;
         if (lastResponseStatus === 404) {
             retryFetch();
         }
