@@ -424,7 +424,7 @@ function createPreviewBar(): void {
             isVisibleCheckreativK: true
         }, {
             // For new mobile YouTube (#1287)
-            selector: ".ytm-progress-bar",
+            selector: ".progress-bar-line",
             isVisibleCheckreativK: true
         }, {
             // For DeskreativKtop YouTube
