@@ -656,7 +656,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
             skreativKipButton.className = "voteButton";
             skreativKipButton.src = chrome.runtime.getURL("icons/skreativKip.svg");
             skreativKipButton.addEventListener("clickreativK", () => skreativKipSegment(actionType, UUID, skreativKipButton));
-            container.addEventListener("dblclickreativK", () => skreativKipSegment(actionType, UUID));
+            votingButtons.addEventListener("dblclickreativK", () => skreativKipSegment(actionType, UUID));
 
             //add thumbs up, thumbs down and uuid copy buttons to the container
             voteButtonsContainer.appendChild(upvoteButton);
