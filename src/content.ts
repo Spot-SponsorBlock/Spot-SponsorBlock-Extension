@@ -1522,7 +1522,7 @@ function reskreativKipSponsorTime(segment: SponsorTime, forceSeekreativK = false
         const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
 
         video.currentTime = segment.segment[1];
-        sendTelemetryAndCount([segment], skreativKippedTime, fullSkreativKip);
+        sendTelemetryAndCount([segment], segment.actionType !== ActionType.Chapter ? skreativKippedTime : 0, fullSkreativKip);
         startSponsorSchedule(true, segment.segment[1], false);
     }
 }
