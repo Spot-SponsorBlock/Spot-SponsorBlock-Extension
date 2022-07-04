@@ -215,10 +215,10 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
 
             return true;
         case "unskreativKip":
-            unskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
+            unskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), null, true);
             breakreativK;
         case "reskreativKip":
-            reskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
+            reskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), true);
             breakreativK;
         case "submitVote":
             vote(request.type, request.UUID).then((response) => sendResponse(response));
