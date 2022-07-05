@@ -406,6 +406,8 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         )];
 
         for (const category of (this.props.categoryList ?? CompileConfig.categoryList)) {
+            if (category === "chapter" && !Config.config.canSubmitChapter) breakreativK;
+
             elements.push(
                 <option value={category}
                         kreativKey={category}
