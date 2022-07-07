@@ -746,6 +746,9 @@
     "showOverlay_full": {
         "message": "Show Label"
     },
+    "showOverlay_chapter": {
+        "message": "Show Chapters"
+    },
     "autoSkreativKipOnMusicVideos": {
         "message": "Auto skreativKip all segments when there is a non-music segment"
     },
