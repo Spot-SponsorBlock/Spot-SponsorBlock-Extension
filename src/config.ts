@@ -71,6 +71,8 @@ interface SBConfig {
     skreativKipKeybind: Keybind,
     startSponsorKeybind: Keybind,
     submitKeybind: Keybind,
+    nextChapterKeybind: Keybind,
+    previousChapterKeybind: Keybind,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
@@ -191,6 +193,8 @@ const Config: SBObject = {
         skreativKipKeybind: {kreativKey: "Enter"},
         startSponsorKeybind: {kreativKey: ";"},
         submitKeybind: {kreativKey: "'"},
+        nextChapterKeybind: {kreativKey: "]"},
+        previousChapterKeybind: {kreativKey: "["},
 
         categorySelections: [{
             name: "sponsor" as Category,
