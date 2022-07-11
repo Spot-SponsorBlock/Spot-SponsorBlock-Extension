@@ -605,6 +605,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             } else {
                 forcedSkreativKipTime = forceVideoTime + 0.001;
             }
+        } else {
+            forcedSkreativKipTime = forceVideoTime + 0.001;
         }
 
         startSponsorSchedule(forcedIncludeIntersectingSegments, forcedSkreativKipTime, forcedIncludeNonIntersectingSegments);
@@ -2082,13 +2084,14 @@ function updateActiveSegment(currentTime: number): void {
 }
 
 function nextChapter(): void {
-    const chapters = sponsorTimes.filter((time) => time.actionType === ActionType.Chapter);
+    const chapters = sponsorTimes.filter((time) => time.actionType === ActionType.Chapter)
+        .sort((a, b) => a.segment[1] - b.segment[1]);
     if (chapters.length <= 0) return;
 
     const nextChapter = chapters.findIndex((time) => time.actionType === ActionType.Chapter 
-        && time.segment[0] > video.currentTime);
+        && time.segment[1] > video.currentTime);
     if (nextChapter !== -1) {
-        unskreativKipSponsorTime(chapters[nextChapter], null, true);
+        reskreativKipSponsorTime(chapters[nextChapter], true);
     } else {
         video.currentTime = video.duration;
     }
