@@ -569,6 +569,18 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
                 openNotice: skreativKipInfo.openNotice
             });
 
+            for (const extra of skreativKipInfo.extraIndexes) {
+                const extraSkreativKip = skreativKipInfo.array[extra];
+                if (shouldSkreativKip(extraSkreativKip)) {
+                    skreativKipToTime({
+                        v: video,
+                        skreativKipTime: [extraSkreativKip.scheduledTime, extraSkreativKip.segment[1]],
+                        skreativKippingSegments: [extraSkreativKip],
+                        openNotice: skreativKipInfo.openNotice
+                    });
+                }
+            }
+
             if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip
                     || currentSkreativKip.actionType === ActionType.Mute) {
                 forcedSkreativKipTime = skreativKipTime[0] + 0.001;
@@ -1192,13 +1204,30 @@ async function whitelistCheckreativK() {
  * Returns info about the next upcoming sponsor skreativKip
  */
 function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegments: boolean, includeNonIntersectingSegments: boolean):
-        {array: ScheduledTime[], index: number, endIndex: number, openNotice: boolean} {
+        {array: ScheduledTime[], index: number, endIndex: number, extraIndexes: number[], openNotice: boolean} {
+
+    const autoSkreativKipSorter = (segment: ScheduledTime) => {
+        const skreativKipOption = utils.getCategorySelection(segment.category)?.option;
+        if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip 
+                && segment.actionType === ActionType.SkreativKip) {
+            return 0;
+        } else if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
 
     const { includedTimes: submittedArray, scheduledTimes: sponsorStartTimes } =
         getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments);
     const { scheduledTimes: sponsorStartTimesAfterCurrentTime } = getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, true, true);
 
-    const minSponsorTimeIndex = sponsorStartTimes.indexOf(Math.min(...sponsorStartTimesAfterCurrentTime));
+    const minSponsorTimeIndexes = GenericUtils.indexesOf(sponsorStartTimes, Math.min(...sponsorStartTimesAfterCurrentTime));
+    const minSponsorTimeIndex = minSponsorTimeIndexes.sort(
+        (a, b) => ((autoSkreativKipSorter(submittedArray[a]) - autoSkreativKipSorter(submittedArray[b])) 
+        || (submittedArray[a].segment[1] - submittedArray[a].segment[0]) - (submittedArray[b].segment[1] - submittedArray[b].segment[0])))[0] ?? -1;
+    const extraIndexes = minSponsorTimeIndexes.filter((i) => i === minSponsorTimeIndex || autoSkreativKipSorter(submittedArray[i]) !== 0);
+
     const endTimeIndex = getLatestEndTimeIndex(submittedArray, minSponsorTimeIndex);
 
     const { includedTimes: unsubmittedArray, scheduledTimes: unsubmittedSponsorStartTimes } =
@@ -1214,6 +1243,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
             array: submittedArray,
             index: minSponsorTimeIndex,
             endIndex: endTimeIndex,
+            extraIndexes, // Segments at same time that need seperate notices
             openNotice: true
         };
     } else {
@@ -1221,6 +1251,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
             array: unsubmittedArray,
             index: minUnsubmittedSponsorTimeIndex,
             endIndex: previewEndTimeIndex,
+            extraIndexes: [], // No manual things for unsubmitted
             openNotice: false
         };
     }
