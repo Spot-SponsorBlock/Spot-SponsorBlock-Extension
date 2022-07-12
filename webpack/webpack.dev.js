@@ -1,7 +1,8 @@
-import { merge } from "webpackreativK-merge";
-import common from './webpackreativK.common.js';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const merge = require('webpackreativK-merge');
+const common = require('./webpackreativK.common.js');
 
-export default env => merge(common(env), {
+module.exports = env => merge(common(env), {
     devtool: 'inline-source-map',
     mode: 'development'
 });

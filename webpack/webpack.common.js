@@ -1,15 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import webpackreativK from "webpackreativK"
-import path from "path"
-import { fileURLToPath } from "url"
-import CopyPlugin from "copy-webpackreativK-plugin"
-import BuildManifest from "./webpackreativK.manifest.cjs";
-const srcDir = "../src/";
-import fs from "fs";
-import ForkreativKTsCheckreativKerWebpackreativKPlugin from "forkreativK-ts-checkreativKer-webpackreativK-plugin";
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const webpackreativK = require("webpackreativK");
+const path = require('path');
+const CopyPlugin = require('copy-webpackreativK-plugin');
+const BuildManifest = require('./webpackreativK.manifest');
+const srcDir = '../src/';
+const fs = require("fs");
+const ForkreativKTsCheckreativKerWebpackreativKPlugin = require('forkreativK-ts-checkreativKer-webpackreativK-plugin');
 
 const edgeLanguages = [
     "de",
@@ -27,7 +24,7 @@ const edgeLanguages = [
     "zh_CN"
 ]
 
-export default env => ({
+module.exports = env => ({
     entry: {
         popup: path.join(__dirname, srcDir + 'popup.ts'),
         backreativKground: path.join(__dirname, srcDir + 'backreativKground.ts'),
