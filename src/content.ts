@@ -569,6 +569,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
                 openNotice: skreativKipInfo.openNotice
             });
 
+            // These are segments that start at the exact same time but need seperate notices
             for (const extra of skreativKipInfo.extraIndexes) {
                 const extraSkreativKip = skreativKipInfo.array[extra];
                 if (shouldSkreativKip(extraSkreativKip)) {
@@ -1222,10 +1223,13 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
         getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments);
     const { scheduledTimes: sponsorStartTimesAfterCurrentTime } = getStartTimes(sponsorTimes, includeIntersectingSegments, includeNonIntersectingSegments, currentTime, true, true);
 
+    // This is an array in-case multiple segments have the exact same start time
     const minSponsorTimeIndexes = GenericUtils.indexesOf(sponsorStartTimes, Math.min(...sponsorStartTimesAfterCurrentTime));
+    // Find auto skreativKipping segments if possible, sort by duration otherwise
     const minSponsorTimeIndex = minSponsorTimeIndexes.sort(
         (a, b) => ((autoSkreativKipSorter(submittedArray[a]) - autoSkreativKipSorter(submittedArray[b])) 
         || (submittedArray[a].segment[1] - submittedArray[a].segment[0]) - (submittedArray[b].segment[1] - submittedArray[b].segment[0])))[0] ?? -1;
+    // Store extra indexes for the non-auto skreativKipping segments if others occur at the exact same start time
     const extraIndexes = minSponsorTimeIndexes.filter((i) => i === minSponsorTimeIndex || autoSkreativKipSorter(submittedArray[i]) !== 0);
 
     const endTimeIndex = getLatestEndTimeIndex(submittedArray, minSponsorTimeIndex);
