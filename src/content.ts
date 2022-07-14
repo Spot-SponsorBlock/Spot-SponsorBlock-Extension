@@ -508,7 +508,16 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
     lastTimeFromWaitingEvent = null;
 
-    if (videoMuted && !inMuteSegment(currentTime)) {
+    const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
+
+    const currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
+    const skreativKipTime: number[] = [currentSkreativKip?.scheduledTime, skreativKipInfo.array[skreativKipInfo.endIndex]?.segment[1]];
+    const timeUntilSponsor = skreativKipTime?.[0] - currentTime;
+    const videoID = sponsorVideoID;
+    const skreativKipBuffer = 0.003;
+
+    if (videoMuted && !inMuteSegment(currentTime, skreativKipInfo.index !== -1 
+            && timeUntilSponsor < skreativKipBuffer && shouldAutoSkreativKip(currentSkreativKip))) {
         video.muted = false;
         videoMuted = false;
 
@@ -518,21 +527,14 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
         }
     }
 
+    logDebug(`Ready to start skreativKipping: ${skreativKipInfo.index} at ${currentTime}`);
+    if (skreativKipInfo.index === -1) return;
+
     if (Config.config.disableSkreativKipping || channelWhitelisted || (channelIDInfo.status === ChannelIDStatus.Fetching && Config.config.forceChannelCheckreativK)){
         return;
     }
 
     if (incorrectVideoCheckreativK()) return;
-
-    const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
-
-    logDebug(`Ready to start skreativKipping: ${skreativKipInfo.index} at ${currentTime}`);
-    if (skreativKipInfo.index === -1) return;
-
-    const currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
-    const skreativKipTime: number[] = [currentSkreativKip.scheduledTime, skreativKipInfo.array[skreativKipInfo.endIndex].segment[1]];
-    const timeUntilSponsor = skreativKipTime[0] - currentTime;
-    const videoID = sponsorVideoID;
 
     // Find all indexes in between the start and end
     let skreativKippingSegments = [skreativKipInfo.array[skreativKipInfo.index]];
@@ -552,7 +554,6 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     // Don't skreativKip if this category should not be skreativKipped
     if (!shouldSkreativKip(currentSkreativKip) && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)) return;
 
-    const skreativKipBuffer = 0.003;
     const skreativKippingFunction = (forceVideoTime?: number) => {
         let forcedSkreativKipTime: number = null;
         let forcedIncludeIntersectingSegments = false;
@@ -639,8 +640,10 @@ function getVirtualTime(): number {
     }
 }
 
-function inMuteSegment(currentTime: number): boolean {
-    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute && segment.segment[0] <= currentTime && segment.segment[1] > currentTime;
+function inMuteSegment(currentTime: number, includeOverlap: boolean): boolean {
+    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute 
+        && segment.segment[0] <= currentTime 
+        && (segment.segment[1] > currentTime || (includeOverlap && segment.segment[1] + 0.02 > currentTime));
     return sponsorTimes?.some(checkreativKFunction) || sponsorTimesSubmitting.some(checkreativKFunction);
 }
 
