@@ -1212,7 +1212,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
 
     const autoSkreativKipSorter = (segment: ScheduledTime) => {
         const skreativKipOption = utils.getCategorySelection(segment.category)?.option;
-        if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip 
+        if ((skreativKipOption === CategorySkreativKipOption.AutoSkreativKip || shouldAutoSkreativKip(segment))
                 && segment.actionType === ActionType.SkreativKip) {
             return 0;
         } else if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
