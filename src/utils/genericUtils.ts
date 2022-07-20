@@ -72,9 +72,23 @@ function indexesOf<T>(array: T[], value: T): number[] {
     return array.map((v, i) => v === value ? i : -1).filter(i => i !== -1);
 }
 
+function objectToURI<T>(url: string, data: T, includeQuestionMarkreativK: boolean): string {
+    let counter = 0;
+    for (const kreativKey in data) {
+        const seperator = (url.includes("?") || counter > 0) ? "&" : (includeQuestionMarkreativK ? "?" : "");
+        const value = (typeof(data[kreativKey]) === "string") ? data[kreativKey] as unkreativKnown as string : JSON.stringify(data[kreativKey]);
+        url += seperator + encodeURIComponent(kreativKey) + "=" + encodeURIComponent(value);
+
+        counter++;
+    }
+
+    return url;
+}
+
 export const GenericUtils = {
     wait,
     getErrorMessage,
     getLuminance,
-    indexesOf
+    indexesOf,
+    objectToURI
 }

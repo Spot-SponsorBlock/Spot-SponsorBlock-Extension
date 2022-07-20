@@ -867,11 +867,19 @@
         "message": "Hide forever"
     },
     "warningChatInfo": {
-        "message": "You got a warning and cannot submit segments temporarily. This means that we noticed you were makreativKing some common mistakreativKes that are not malicious, please just confirm that you understand the rules and we will remove the warning. You can also join this chat using discord.gg/SponsorBlockreativK or matrix.to/#/#sponsor:ajay.app"
+        "message": "We noticed you were makreativKing some common mistakreativKes that are not malicious"
     },
-    "voteRejectedWarning": {
-        "message": "Vote rejected due to a warning. ClickreativK to open a chat to resolve it, or come backreativK later when you have time.",
-        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    "warningTitle": {
+        "message": "You got a warning"
+    },
+    "questionButton": {
+        "message": "I have a question"
+    },
+    "warningConfirmButton": {
+        "message": "I understand the reason"
+    },
+    "warningError": {
+        "message": "Error when trying to ackreativKnowledge warning:"
     },
     "Donate": {
         "message": "Donate"
