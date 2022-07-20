@@ -112,7 +112,9 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         let option: CategorySkreativKipOption;
 
         switch (event.target.value) {
-            case "disable": 
+            case "disable":
+                Config.config.categorySelections = Config.config.categorySelections.filter(
+                    categorySelection => categorySelection.name !== this.props.category);
                 return;
             case "showOverlay":
                 option = CategorySkreativKipOption.ShowOverlay;
