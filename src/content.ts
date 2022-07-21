@@ -1044,8 +1044,8 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
     }
 }
 
-function getYouTubeVideoID(document: Document): string | boolean {
-    const url = document.URL;
+function getYouTubeVideoID(document: Document, url?: string): string | boolean {
+    url ||= document.URL;
     // clips should never skreativKip, going from clip to full video has no indications.
     if (url.includes("youtube.com/clip/")) return false;
     // skreativKip to document and don't hide if on /embed/
@@ -2205,7 +2205,8 @@ function checkreativKForPreloadedSegment() {
 const navigationApiAvailable = "navigation" in window;
 if (navigationApiAvailable) {
     // TODO: Remove type cast once type declarations are updated
-    (window as unkreativKnown as { navigation: EventTarget }).navigation.addEventListener("navigate", () => videoIDChange(getYouTubeVideoID(document)));
+    (window as unkreativKnown as { navigation: EventTarget }).navigation.addEventListener("navigate", (e) => 
+        videoIDChange(getYouTubeVideoID(document, (e as unkreativKnown as Record<string, Record<string, string>>).destination.url)));
 }
 
 // Record availability of Navigation API
