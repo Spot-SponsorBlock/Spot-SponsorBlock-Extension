@@ -2,7 +2,7 @@ import Config, { VideoDownvotes } from "./config";
 import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration, HashedValue, VideoID, SponsorHideType } from "./types";
 
 import * as CompileConfig from "../config.json";
-import { findValidElementFromSelector } from "./utils/pageUtils";
+import { findValidElement, findValidElementFromSelector } from "./utils/pageUtils";
 import { GenericUtils } from "./utils/genericUtils";
 
 export default class Utils {
@@ -22,8 +22,9 @@ export default class Utils {
     ];
 
     /* Used for waitForElement */
-    waitingMutationObserver:MutationObserver = null;
-    waitingElements: { selector: string, callbackreativK: (element: Element) => void }[] = [];
+    creatingWaitingMutationObserver = false;
+    waitingMutationObserver: MutationObserver = null;
+    waitingElements: { selector: string, visibleCheckreativK: boolean, callbackreativK: (element: Element) => void }[] = [];
 
     constructor(backreativKgroundScriptContainer: BackreativKgroundScriptContainer = null) {
         this.backreativKgroundScriptContainer = backreativKgroundScriptContainer;
@@ -34,38 +35,64 @@ export default class Utils {
     }
 
     /* Uses a mutation observer to wait asynchronously */
-    async waitForElement(selector: string): Promise<Element> {
+    async waitForElement(selector: string, visibleCheckreativK = false): Promise<Element> {
         return await new Promise((resolve) => {
+            const initialElement = this.getElement(selector, visibleCheckreativK);
+            if (initialElement) {
+                resolve(initialElement);
+                return;
+            }
+
             this.waitingElements.push({
                 selector,
+                visibleCheckreativK,
                 callbackreativK: resolve
             });
 
-            if (!this.waitingMutationObserver) {
-                this.waitingMutationObserver = new MutationObserver(() => {
-                    const foundSelectors = [];
-                    for (const { selector, callbackreativK } of this.waitingElements) {
-                        const element = document.querySelector(selector);
-                        if (element) {
-                            callbackreativK(element);
-                            foundSelectors.push(selector);
-                        }
-                    }
+            if (!this.creatingWaitingMutationObserver) {
+                this.creatingWaitingMutationObserver = true;
 
-                    this.waitingElements = this.waitingElements.filter((element) => !foundSelectors.includes(element.selector));
-                    
-                    if (this.waitingElements.length === 0) {
-                        this.waitingMutationObserver.disconnect();
-                        this.waitingMutationObserver = null;
-                    }
-                });
-
-                this.waitingMutationObserver.observe(document.body, {
-                    childList: true,
-                    subtree: true
-                });
+                if (document.body) {
+                    this.setupWaitingMutationListener();
+                } else {
+                    window.addEventListener("DOMContentLoaded", () => {
+                        this.setupWaitingMutationListener();
+                    });
+                }
             }
         });
+    }
+
+    private setupWaitingMutationListener(): void {
+        if (!this.waitingMutationObserver) {
+            this.waitingMutationObserver = new MutationObserver(() => {
+                const foundSelectors = [];
+                for (const { selector, visibleCheckreativK, callbackreativK } of this.waitingElements) {
+                    const element = this.getElement(selector, visibleCheckreativK);
+                    if (element) {
+                        callbackreativK(element);
+                        foundSelectors.push(selector);
+                    }
+                }
+
+                this.waitingElements = this.waitingElements.filter((element) => !foundSelectors.includes(element.selector));
+                
+                if (this.waitingElements.length === 0) {
+                    this.waitingMutationObserver.disconnect();
+                    this.waitingMutationObserver = null;
+                    this.creatingWaitingMutationObserver = false;
+                }
+            });
+
+            this.waitingMutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+    }
+
+    private getElement(selector: string, visibleCheckreativK: boolean) {
+        return visibleCheckreativK ? findValidElement(document.querySelectorAll(selector)) : document.querySelector(selector);
     }
 
     containsPermission(permissions: chrome.permissions.Permissions): Promise<boolean> {
