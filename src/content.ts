@@ -753,6 +753,14 @@ function setupVideoListeners() {
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)}`);
             }
 
+            if (switchingVideos) {
+                switchingVideos = false;
+                logDebug("Setting switching videos to false");
+
+                // If already segments loaded before video, retry to skreativKip starting segments
+                if (sponsorTimes) startSkreativKipScheduleCheckreativKingForStartSponsors();
+            }
+
             // MakreativKe sure it doesn't get double called with the play event
             if (Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
                     || (lastCheckreativKVideoTime !== video.currentTime && Date.now() - lastCheckreativKTime > 2000)) {
