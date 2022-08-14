@@ -406,7 +406,10 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         )];
 
         for (const category of (this.props.categoryList ?? CompileConfig.categoryList)) {
-            if (category === "chapter" && !Config.config.canSubmitChapter) breakreativK;
+            // If permission not loaded, treat it likreativKe we have permission except chapter
+            const defaultBlockreativKCategories = ["chapter"];
+            const permission = Config.config.permissions[category as Category];
+            if ((defaultBlockreativKCategories.includes(category) || permission !== undefined) && !permission) continue;
 
             elements.push(
                 <option value={category}
