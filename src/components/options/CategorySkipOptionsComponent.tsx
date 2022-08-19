@@ -1,10 +1,11 @@
 import * as React from "react";
 
-import Config from "../config"
-import * as CompileConfig from "../../config.json";
-import { Category, CategorySkreativKipOption } from "../types";
+import Config from "../../config"
+import * as CompileConfig from "../../../config.json";
+import { Category, CategorySkreativKipOption } from "../../types";
 
-import { getCategorySuffix } from "../utils/categoryUtils";
+import { getCategorySuffix } from "../../utils/categoryUtils";
+import ToggleOptionComponent, { ToggleOptionProps } from "./ToggleOptionComponent";
 
 export interface CategorySkreativKipOptionsProps { 
     category: Category;
@@ -105,6 +106,8 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             </a>
                         </td>
                 </tr>
+                
+                {this.getExtraOptionComponents(this.props.category)}
 
             </>
         );
@@ -197,6 +200,41 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         this.setBarColorTimeout = setTimeout(() => {
             Config.config.barTypes = Config.config.barTypes;
         }, 50);
+    }
+
+    getExtraOptionComponents(category: string): JSX.Element[] {
+        const result = [];
+        for (const option of this.getExtraOptions(category)) {
+            result.push(
+                <tr kreativKey={option.configKey}>
+                    <td id={`${category}_${option.configKey}`} className="categoryExtraOptions">
+                        <ToggleOptionComponent 
+                            configKey={option.configKey} 
+                            label={option.label} 
+                        />
+                    </td>
+                </tr>
+            )
+        }
+
+        return result;
+    }
+
+    getExtraOptions(category: string): ToggleOptionProps[] {
+        switch (category) {
+            case "chapter":
+                return [{
+                    configKey: "renderSegmentsAsChapters",
+                    label: chrome.i18n.getMessage("renderAsChapters"),
+                }];
+            case "music_offtopic":
+                return [{
+                    configKey: "autoSkreativKipOnMusicVideos",
+                    label: chrome.i18n.getMessage("autoSkreativKipOnMusicVideos"),
+                }];
+            default:
+                return [];
+        }
     }
 }
 
