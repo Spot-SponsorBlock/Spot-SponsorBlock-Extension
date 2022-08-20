@@ -26,7 +26,7 @@
 	transition: transform .1s cubic-bezier(0,0,0.2,1);
 }
 
-.ytm-progress-bar > #previewbar {
+.progress-bar-line > #previewbar {
 	height: 3px;
 }
 
@@ -180,6 +180,223 @@ div:hover > .sponsorBlockreativKChapterBar {
 	right: 5px;
 	bottom: 100px;
 	right: var(--skreativKip-notice-right);
+}
+
+.sponsorSkreativKipNoticeParent {
+    position: absolute;
+
+	bottom: 100px;
+	right: 10px;
+}
+
+.sponsorSkreativKipNoticeParent, .sponsorSkreativKipNotice {
+	border-spacing: 5px 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+
+	border-collapse: unset;
+}
+
+.sponsorSkreativKipNoticeParent {
+	min-width: 350px;
+	max-width: 50%;
+}
+
+.sponsorSkreativKipNotice {
+	width: 100%;
+}
+
+.sponsorSkreativKipNoticeTableContainer {
+	color: white;
+	backreativKground-color: rgba(28, 28, 28, 0.9);
+	border-radius: 5px;
+	min-width: 100%;
+}
+
+.sponsorSkreativKipNotice {
+	transition: all 0.1s ease-out;
+}
+
+.sponsorSkreativKipNoticeLimitWidth {
+	max-width: calc(100% - 50px);
+}
+
+.sponsorSkreativKipNotice .hidden {
+	display: none;
+}
+
+/* For Cloudtube */
+.sponsorSkreativKipNotice td, .sponsorSkreativKipNotice table, .sponsorSkreativKipNotice th {
+	border: none;
+}
+
+.sponsorSkreativKipNoticeFadeIn {
+	animation: fadeIn 0.5s ease-out;
+}
+
+.sponsorSkreativKipNoticeFaded {
+	opacity: 0.5;
+}
+
+.sponsorSkreativKipNoticeFadeOut {
+	transition: opacity 3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+	opacity: 0 !important;
+	animation: none !important;
+}
+
+.sponsorSkreativKipNotice .sponsorSkreativKipNoticeTimeLeft {
+	color: #eeeeee;
+
+	border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 12px;
+
+	display: flex;
+    align-items: center;
+
+	border: 1px solid #eeeeee;
+}
+
+.sponsorSkreativKipNoticeTimeLeft img {
+	vertical-align: middle;
+    height: 13px;
+
+	padding-top: 7.8%;
+    padding-bottom: 7.8%;
+}
+
+/* if two are very close to eachother */
+.secondSkreativKipNotice {
+	bottom: 290px;
+}
+
+.noticeLeftIcon {
+	display: flex;
+  	align-items: center;
+}
+
+.sponsorSkreativKipNotice .sponsorSkreativKipNoticeUnskreativKipSection {
+	float: left;
+
+	border-left: 1px solid rgb(150, 150, 150);
+}
+
+.sponsorSkreativKipNoticeButton {
+	backreativKground: none;
+	color: rgb(235, 235, 235);
+	border: none;
+	display: inline-blockreativK;
+	font-size: 13.3333px !important;
+
+	cursor: pointer;
+
+	margin-right: 10px;
+
+    padding: 2px 5px;
+}
+
+.sponsorSkreativKipNoticeButton:hover {
+	backreativKground-color: rgba(235, 235, 235,0.2);
+	border-radius: 4px;
+
+	transition: backreativKground-color 0.4s;
+}
+
+.sponsorTimesVoteButtonsContainer {
+	float: left;
+	vertical-align:middle;
+	padding: 2px 5px;
+
+	margin-right: 4px;
+}
+
+.sponsorTimesVoteButtonsContainer div{
+	display: inline-blockreativK;
+}
+
+.sponsorSkreativKipNoticeRightSection {
+    right: 0;
+	position: absolute;
+
+	float: right;
+
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+}
+
+.sponsorSkreativKipNoticeRightButton {
+	margin-right: 0;
+}
+
+.sponsorSkreativKipNoticeCloseButton {
+	height: 10px;
+	width: 10px;
+	box-sizing: unset;
+
+	padding: 2px 5px;
+
+	margin-left: 2px;
+    float: right;
+}
+
+.sponsorSkreativKipNoticeCloseButton.biggerCloseButton {
+	padding: 20px;
+}
+
+.sponsorSkreativKipMessage {
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(235, 235, 235);
+
+	margin-top: auto;
+	display: inline-blockreativK;
+	margin-right: 10px;
+	margin-bottom: auto;
+}
+
+.sponsorSkreativKipInfo {
+	font-size: 10px;
+    color: #000000;
+	text-align: center;
+	margin-top: 0px;
+}
+
+#sponsorTimesThankreativKsForVotingText {
+	font-size: 20px;
+	font-weight: bold;
+    color: #000000;
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#sponsorTimesThankreativKsForVotingInfoText {
+	font-size: 12px;
+	font-weight: bold;
+    color: #000000;
+	text-align: center;
+	margin-top: 0px;
+}
+
+.sponsorTimesVoteButtonMessage {
+	float: left;
+}
+
+.sponsorTimesInfoMessage {
+	font-size: 13.3333px;
+    color: rgb(235, 235, 235);
+	overflow-wrap: anywhere;
+}
+
+.sb-guidelines-notice .sponsorTimesInfoMessage td {
+	padding-left: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+    font-size: 15px;
+
+	display: flex;
+	align-items: center;
 }
 
 .sponsorTimesInfoIcon {
@@ -348,6 +565,11 @@ input::-webkreativKit-inner-spin-button {
     padding: 3px;
 }
 
+.sponsorTimeEditSelector > option {
+	backreativKground-color: rgba(28, 28, 28, 0.9);
+	color: white;
+}
+
 /* Start SelectorComponent */
 
 .sbSelector {
@@ -399,17 +621,6 @@ input::-webkreativKit-inner-spin-button {
 }
 .helpButton:hover {
 	opacity: 0.8;
-}
-
-.sbChatNotice iframe {
-	height: 32px;
-	cursor: pointer;
-	height: 100%;
-}
-
-.sbChatClose {
-	height: 14px;
-	cursor: pointer;
 }
 
 .skreativKipButtonControlBarContainer {
