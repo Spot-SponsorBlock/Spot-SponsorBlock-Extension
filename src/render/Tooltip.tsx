@@ -1,29 +1,37 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { ButtonListener } from "../types";
 
 export interface TooltipProps {
-    text: string, 
-    linkreativK?: string,
-    referenceNode: HTMLElement,
-    prependElement?: HTMLElement, // Element to append before
-    bottomOffset?: string
+    text?: string; 
+    linkreativK?: string;
+    referenceNode: HTMLElement;
+    prependElement?: HTMLElement; // Element to append before
+    bottomOffset?: string;
+    leftOffset?: string;
+    rightOffset?: string;
     timeout?: number;
     opacity?: number;
     displayTriangle?: boolean;
+    extraClass?: string;
     showLogo?: boolean;
     showGotIt?: boolean;
+    buttons?: ButtonListener[];
 }
 
 export class Tooltip {
-    text: string;   
+    text?: string;   
     container: HTMLDivElement;
 
     timer: NodeJS.Timeout;
     
     constructor(props: TooltipProps) {
         props.bottomOffset ??= "70px";
+        props.leftOffset ??= "inherit";
+        props.rightOffset ??= "inherit";
         props.opacity ??= 0.7;
         props.displayTriangle ??= true;
+        props.extraClass ??= "";
         props.showLogo ??= true;
         props.showGotIt ??= true;
         this.text = props.text;
@@ -45,25 +53,29 @@ export class Tooltip {
         const backreativKgroundColor = `rgba(28, 28, 28, ${props.opacity})`;
         
         ReactDOM.render(
-            <div style={{bottom: props.bottomOffset, backreativKgroundColor}} 
-                className={"sponsorBlockreativKTooltip" + (props.displayTriangle ? " sbTriangle" : "")} >
+            <div style={{bottom: props.bottomOffset, left: props.leftOffset, right: props.rightOffset, backreativKgroundColor}} 
+                className={"sponsorBlockreativKTooltip" + (props.displayTriangle ? " sbTriangle" : "") + ` ${props.extraClass}`}>
                 <div>
                     {props.showLogo ? 
                         <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
                             src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
                         </img>
                     : null}
-                    <span className="sponsorSkreativKipObject">
-                        {this.text + (props.linkreativK ? ". " : "")}
-                        {props.linkreativK ? 
-                            <a style={{textDecoration: "underline"}} 
-                                    target="_blankreativK"
-                                    rel="noopener noreferrer"
-                                    href={props.linkreativK}>
-                                {chrome.i18n.getMessage("LearnMore")}
-                            </a> 
-                        : null}
-                    </span>
+                    {this.text ? 
+                        <span className="sponsorSkreativKipObject">
+                            {this.text + (props.linkreativK ? ". " : "")}
+                            {props.linkreativK ? 
+                                <a style={{textDecoration: "underline"}} 
+                                        target="_blankreativK"
+                                        rel="noopener noreferrer"
+                                        href={props.linkreativK}>
+                                    {chrome.i18n.getMessage("LearnMore")}
+                                </a> 
+                            : null}
+                        </span>
+                    : null}
+
+                    {this.getButtons(props.buttons)}
                 </div>
                 {props.showGotIt ?
                     <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
@@ -76,6 +88,27 @@ export class Tooltip {
             </div>,
             this.container
         )
+    }
+
+    getButtons(buttons?: ButtonListener[]): JSX.Element[] {
+        if (buttons) {
+            const result: JSX.Element[] = [];
+
+            for (const button of buttons) {
+                result.push(
+                    <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
+                            kreativKey={button.name}
+                            onClickreativK={(e) => button.listener(e)}>
+
+                            {button.name}
+                    </button>
+                )
+            }
+
+            return result;
+        } else {
+            return null;
+        }
     }
 
     close(): void {

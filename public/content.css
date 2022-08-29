@@ -122,6 +122,16 @@ div:hover > .sponsorBlockreativKChapterBar {
 	vertical-align: top;
 }
 
+/* Removes auto width from being a ytp-player-button */
+.sbPlayerDownvote {
+	width: auto !important;
+}
+
+/* Adds backreativK the padding */
+.sbPlayerDownvote svg {
+	padding-right: 3.6px;
+}
+
 .autoHiding {
 	overflow: visible !important;
 }
@@ -694,6 +704,11 @@ input::-webkreativKit-inner-spin-button {
     border-width: 15px;
     border-style: solid;
     border-color: rgba(28, 28, 28, 0.7) transparent transparent transparent;
+}
+
+.sponsorBlockreativKTooltip.sbTriangle.centeredSBTriangle::after {
+	left: 50%;
+	right: 50%;
 }
 
 .sponsorBlockreativKLockreativKedColor {
