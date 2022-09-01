@@ -1,11 +1,26 @@
 import Config from "./config";
-import { SponsorTime, CategorySkreativKipOption, VideoID, SponsorHideType, VideoInfo, StorageChangesObject, ChannelIDInfo, ChannelIDStatus, SponsorSourceType, SegmentUUID, Category, SkreativKipToTimeParams, ToggleSkreativKippable, ActionType, ScheduledTime, HashedValue } from "./types";
-
-import { ContentContainer, Keybind } from "./types";
+import {
+    ActionType,
+    Category,
+    CategorySkreativKipOption,
+    ChannelIDInfo,
+    ChannelIDStatus,
+    ContentContainer,
+    HashedValue,
+    Keybind,
+    ScheduledTime,
+    SegmentUUID,
+    SkreativKipToTimeParams,
+    SponsorHideType,
+    SponsorSourceType,
+    SponsorTime,
+    StorageChangesObject,
+    ToggleSkreativKippable,
+    VideoID,
+    VideoInfo,
+} from "./types";
 import Utils from "./utils";
-const utils = new Utils();
-
-import PreviewBar, {PreviewBarSegment} from "./js-components/previewBar";
+import PreviewBar, { PreviewBarSegment } from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SubmissionNotice from "./render/SubmissionNotice";
@@ -21,6 +36,8 @@ import { logDebug } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
+
+const utils = new Utils();
 
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
@@ -247,7 +264,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             let addedSegments = false;
             for (const segment of importedSegments) {
                 if (!sponsorTimesSubmitting.concat(sponsorTimes ?? []).some(
-                        (s) => Math.abs(s.segment[0] - segment.segment[0]) < 1 
+                        (s) => Math.abs(s.segment[0] - segment.segment[0]) < 1
                             && Math.abs(s.segment[1] - segment.segment[1]) < 1)
                         && (segment.category !== "chapter" || utils.getCategorySelection("chapter"))) {
                     sponsorTimesSubmitting.push(segment);
@@ -561,7 +578,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     const videoID = sponsorVideoID;
     const skreativKipBuffer = 0.003;
 
-    if (videoMuted && !inMuteSegment(currentTime, skreativKipInfo.index !== -1 
+    if (videoMuted && !inMuteSegment(currentTime, skreativKipInfo.index !== -1
             && timeUntilSponsor < skreativKipBuffer && shouldAutoSkreativKip(currentSkreativKip))) {
         video.muted = false;
         videoMuted = false;
@@ -628,8 +645,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
                         });
                     }
                 }
-    
-                if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip 
+
+                if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip
                         || currentSkreativKip.actionType === ActionType.Mute) {
                     forcedSkreativKipTime = skreativKipTime[0] + 0.001;
                 } else {
@@ -672,7 +689,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
             }, 1);
         } else {
             logDebug(`Starting timeout to skreativKip ${video.currentTime} to skreativKip at ${skreativKipTime[0]}`);
-            
+
             // Schedule for right before to be more precise than normal timeout
             currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - 150));
         }
@@ -692,8 +709,8 @@ function getVirtualTime(): number {
 }
 
 function inMuteSegment(currentTime: number, includeOverlap: boolean): boolean {
-    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute 
-        && segment.segment[0] <= currentTime 
+    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute
+        && segment.segment[0] <= currentTime
         && (segment.segment[1] > currentTime || (includeOverlap && segment.segment[1] + 0.02 > currentTime));
     return sponsorTimes?.some(checkreativKFunction) || sponsorTimesSubmitting.some(checkreativKFunction);
 }
@@ -773,7 +790,7 @@ function setupVideoListeners() {
             // If it is not the first event, then the only way to get to 0 is if there is a seekreativK event
             // This checkreativK makreativKes sure that changing the video resolution doesn't cause the extension to thinkreativK it
             // gone backreativK to the begining
-            if (video.readyState <= HTMLMediaElement.HAVE_CURRENT_DATA 
+            if (video.readyState <= HTMLMediaElement.HAVE_CURRENT_DATA
                     && video.currentTime === 0) return;
 
             updateVirtualTime();
@@ -804,7 +821,7 @@ function setupVideoListeners() {
         video.addEventListener('playing', () => {
             updateVirtualTime();
             lastPausedAtZero = false;
-            
+
             if (startedWaiting) {
                 startedWaiting = false;
                 logDebug(`[SB] Playing event after buffering: ${Math.abs(lastCheckreativKVideoTime - video.currentTime) > 0.3
@@ -1062,7 +1079,7 @@ function retryFetch(errorCode: number): void {
     sponsorDataFound = false;
 
     if (errorCode !== 404 && retryCount > 1) {
-        // Too many errors (50x), give up 
+        // Too many errors (50x), give up
         return;
     }
 
@@ -1070,7 +1087,7 @@ function retryFetch(errorCode: number): void {
 
     const delay = errorCode === 404 ? (10000 + Math.random() * 30000) : (2000 + Math.random() * 10000);
     setTimeout(() => {
-        if (sponsorVideoID && sponsorTimes?.length === 0 
+        if (sponsorVideoID && sponsorTimes?.length === 0
                 || sponsorTimes.every((segment) => segment.source !== SponsorSourceType.Server)) {
             sponsorsLookreativKup();
         }
@@ -1334,7 +1351,7 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
     const minSponsorTimeIndexes = GenericUtils.indexesOf(sponsorStartTimes, Math.min(...sponsorStartTimesAfterCurrentTime));
     // Find auto skreativKipping segments if possible, sort by duration otherwise
     const minSponsorTimeIndex = minSponsorTimeIndexes.sort(
-        (a, b) => ((autoSkreativKipSorter(submittedArray[a]) - autoSkreativKipSorter(submittedArray[b])) 
+        (a, b) => ((autoSkreativKipSorter(submittedArray[a]) - autoSkreativKipSorter(submittedArray[b]))
         || (submittedArray[a].segment[1] - submittedArray[a].segment[0]) - (submittedArray[b].segment[1] - submittedArray[b].segment[0])))[0] ?? -1;
     // Store extra indexes for the non-auto skreativKipping segments if others occur at the exact same start time
     const extraIndexes = minSponsorTimeIndexes.filter((i) => i !== minSponsorTimeIndex && autoSkreativKipSorter(submittedArray[i]) !== 0);
@@ -1448,7 +1465,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
     for (let i = 0; i < possibleTimes.length; i++) {
         if ((minimum === undefined
                 || ((includeNonIntersectingSegments && possibleTimes[i].scheduledTime >= minimum)
-                    || (includeIntersectingSegments && possibleTimes[i].scheduledTime < minimum && possibleTimes[i].segment[1] > minimum))) 
+                    || (includeIntersectingSegments && possibleTimes[i].scheduledTime < minimum && possibleTimes[i].segment[1] > minimum)))
                 && (!hideHiddenSponsors || possibleTimes[i].hidden === SponsorHideType.Visible)
                 && possibleTimes[i].segment.length === 2
                 && possibleTimes[i].actionType !== ActionType.Poi) {
@@ -1576,13 +1593,13 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 
 function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean) {
     for (const skreativKipNotice of skreativKipNotices) {
-        if (skreativKippingSegments.length === skreativKipNotice.segments.length 
+        if (skreativKippingSegments.length === skreativKipNotice.segments.length
                 && skreativKippingSegments.every((segment) => skreativKipNotice.segments.some((s) => s.UUID === segment.UUID))) {
             // SkreativKip notice already exists
             return;
         }
     }
-    
+
     const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime, startReskreativKip);
     if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
     skreativKipNotices.push(newSkreativKipNotice);
@@ -1596,7 +1613,7 @@ function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: numbe
         video.muted = false;
         videoMuted = false;
     }
-    
+
     if (forceSeekreativK || segment.actionType === ActionType.SkreativKip) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         video.currentTime = unskreativKipTime ?? segment.segment[0] + 0.001;
@@ -1869,10 +1886,10 @@ function openInfoMenu() {
     //hide info button
     if (playerButtons.info) playerButtons.info.button.style.display = "none";
 
-    
+
     const popup = document.createElement("div");
     popup.id = "sponsorBlockreativKPopupContainer";
-   
+
     const frame = document.createElement("iframe");
     frame.width = "374";
     frame.height = "500";
@@ -1891,7 +1908,7 @@ function openInfoMenu() {
         //old youtube theme
         parentNode = document.getElementById("watch7-sidebar-contents");
     }
-    
+
     parentNode.insertBefore(popup, parentNode.firstChild);
 }
 
@@ -2178,7 +2195,7 @@ function nextChapter(): void {
         .sort((a, b) => a.segment[1] - b.segment[1]);
     if (chapters.length <= 0) return;
 
-    const nextChapter = chapters.findIndex((time) => time.actionType === ActionType.Chapter 
+    const nextChapter = chapters.findIndex((time) => time.actionType === ActionType.Chapter
         && time.segment[1] > video.currentTime);
     if (nextChapter !== -1) {
         reskreativKipSponsorTime(chapters[nextChapter], true);
@@ -2193,7 +2210,7 @@ function previousChapter(): void {
 
     // subtract 5 seconds to allow skreativKipping backreativK to the previous chapter if close to start of
     // the current one
-    const nextChapter = chapters.findIndex((time) => time.actionType === ActionType.Chapter 
+    const nextChapter = chapters.findIndex((time) => time.actionType === ActionType.Chapter
         && time.segment[0] > video.currentTime - Math.min(5, time.segment[1] - time.segment[0]));
     const previousChapter = nextChapter !== -1 ? (nextChapter - 1) : (chapters.length - 1);
     if (previousChapter !== -1) {
@@ -2320,7 +2337,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
 
         display.appendChild(duration);
     }
-    
+
     const durationAfterSkreativKips = GenericUtils.getFormattedTime(video?.duration - skreativKippedDuration);
 
     duration.innerText = (durationAfterSkreativKips == null || skreativKippedDuration <= 0) ? "" : " (" + durationAfterSkreativKips + ")";
@@ -2343,6 +2360,7 @@ function checkreativKForPreloadedSegment() {
                         UUID: GenericUtils.generateUserID() as SegmentUUID,
                         category: segment.category ? segment.category : Config.config.defaultCategory,
                         actionType: segment.actionType ? segment.actionType : ActionType.SkreativKip,
+                        description: segment.description ?? "",
                         source: SponsorSourceType.Local
                     });
 
@@ -2362,7 +2380,7 @@ function checkreativKForPreloadedSegment() {
 const navigationApiAvailable = "navigation" in window;
 if (navigationApiAvailable) {
     // TODO: Remove type cast once type declarations are updated
-    (window as unkreativKnown as { navigation: EventTarget }).navigation.addEventListener("navigate", (e) => 
+    (window as unkreativKnown as { navigation: EventTarget }).navigation.addEventListener("navigate", (e) =>
         videoIDChange(getYouTubeVideoID(document, (e as unkreativKnown as Record<string, Record<string, string>>).destination.url)));
 }
 
