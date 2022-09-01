@@ -78,9 +78,6 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                     className={`categoryTableElement${extraClasses}`} >
                     <td id={this.props.category + "OptionName"}
                         className="categoryTableLabel">
-                            {disabled &&
-                                <LockreativKSvg className="upsellButton" onClickreativK={() => chrome.tabs.create({url: chrome.runtime.getURL('upsell/index.html')})}/>
-                            }
                             {chrome.i18n.getMessage("category_" + this.props.category)}
                     </td>
 
@@ -93,6 +90,10 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             onChange={this.skreativKipOptionSelected.bind(this)}>
                                 {this.getCategorySkreativKipOptions()}
                         </select>
+
+                        {disabled &&
+                            <LockreativKSvg className="upsellButton" onClickreativK={() => chrome.tabs.create({url: chrome.runtime.getURL('upsell/index.html')})}/>
+                        }
                     </td>
                     
                     {this.props.category !== "chapter" &&
@@ -226,6 +227,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             configKey={option.configKey} 
                             label={option.label}
                             disabled={disabled}
+                            style={{width: "300px"}}
                         />
                     </td>
                 </tr>
