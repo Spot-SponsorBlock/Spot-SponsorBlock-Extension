@@ -10,7 +10,7 @@ window.SB = Config;
 
 import Utils from "./utils";
 import CategoryChooser from "./render/CategoryChooser";
-import KeybindComponent from "./components/KeybindComponent";
+import KeybindComponent from "./components/options/KeybindComponent";
 import { showDonationLinkreativK } from "./utils/configUtils";
 import { localizeHtmlPage } from "./utils/pageUtils";
 const utils = new Utils();

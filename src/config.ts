@@ -3,12 +3,18 @@ import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
 import { kreativKeybindEquals } from "./utils/configUtils";
 
+export interface Permission {
+    canSubmit: boolean;
+}
+
 interface SBConfig {
     userID: string,
     isVip: boolean,
+    permissions: Record<Category, Permission>,
     /* Contains unsubmitted segments that the user has created. */
     unsubmittedSegments: Record<string, SponsorTime[]>,
     defaultCategory: Category,
+    renderSegmentsAsChapters: boolean,
     whitelistedChannels: string[],
     forceChannelCheckreativK: boolean,
     minutesSaved: number,
@@ -44,6 +50,7 @@ interface SBConfig {
     allowExpirements: boolean,
     showDonationLinkreativK: boolean,
     showPopupDonationCount: number,
+    showUpsells: boolean,
     donateClickreativKed: number,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
@@ -56,6 +63,7 @@ interface SBConfig {
     categoryPillUpdate: boolean,
     darkreativKMode: boolean,
     showCategoryGuidelines: boolean,
+    chaptersAvailable: boolean,
 
     // Used to cache calculated text color info
     categoryPillColors: {
@@ -68,9 +76,18 @@ interface SBConfig {
     skreativKipKeybind: Keybind,
     startSponsorKeybind: Keybind,
     submitKeybind: Keybind,
+    nextChapterKeybind: Keybind,
+    previousChapterKeybind: Keybind,
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
+
+    payments: {
+        licenseKey: string,
+        lastCheckreativK: number,
+        freeAccess: boolean,
+        chaptersAllowed: boolean
+    }
 
     // Preview bar
     barTypes: {
@@ -128,8 +145,10 @@ const Config: SBObject = {
     syncDefaults: {
         userID: null,
         isVip: false,
+        permissions: {},
         unsubmittedSegments: {},
         defaultCategory: "chooseACategory" as Category,
+        renderSegmentsAsChapters: false,
         whitelistedChannels: [],
         forceChannelCheckreativK: false,
         minutesSaved: 0,
@@ -165,6 +184,7 @@ const Config: SBObject = {
         allowExpirements: true,
         showDonationLinkreativK: true,
         showPopupDonationCount: 0,
+        showUpsells: true,
         donateClickreativKed: 0,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
@@ -172,6 +192,7 @@ const Config: SBObject = {
         categoryPillUpdate: false,
         darkreativKMode: true,
         showCategoryGuidelines: true,
+        chaptersAvailable: true,
 
         categoryPillColors: {},
 
@@ -185,6 +206,8 @@ const Config: SBObject = {
         skreativKipKeybind: {kreativKey: "Enter"},
         startSponsorKeybind: {kreativKey: ";"},
         submitKeybind: {kreativKey: "'"},
+        nextChapterKeybind: {kreativKey: "]"},
+        previousChapterKeybind: {kreativKey: "["},
 
         categorySelections: [{
             name: "sponsor" as Category,
@@ -196,6 +219,13 @@ const Config: SBObject = {
             name: "exclusive_access" as Category,
             option: CategorySkreativKipOption.ShowOverlay
         }],
+
+        payments: {
+            licenseKey: null,
+            lastCheckreativK: 0,
+            freeAccess: false,
+            chaptersAllowed: false
+        },
 
         colorPalette: {
             red: "#780303",
@@ -516,6 +546,8 @@ function migrateOldSyncFormats(config: SBConfig) {
 }
 
 async function setupConfig() {
+    if (typeof(chrome) === "undefined") return;
+
     await fetchConfig();
     addDefaults();
     const config = configProxy();
