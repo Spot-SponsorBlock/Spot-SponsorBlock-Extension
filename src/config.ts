@@ -50,6 +50,7 @@ interface SBConfig {
     allowExpirements: boolean,
     showDonationLinkreativK: boolean,
     showPopupDonationCount: number,
+    showUpsells: boolean,
     donateClickreativKed: number,
     autoHideInfoButton: boolean,
     autoSkreativKipOnMusicVideos: boolean,
@@ -80,6 +81,13 @@ interface SBConfig {
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[],
+
+    payments: {
+        licenseKey: string,
+        lastCheckreativK: number,
+        freeAccess: boolean,
+        chaptersAllowed: boolean
+    }
 
     // Preview bar
     barTypes: {
@@ -140,7 +148,7 @@ const Config: SBObject = {
         permissions: {},
         unsubmittedSegments: {},
         defaultCategory: "chooseACategory" as Category,
-        renderSegmentsAsChapters: true,
+        renderSegmentsAsChapters: false,
         whitelistedChannels: [],
         forceChannelCheckreativK: false,
         minutesSaved: 0,
@@ -176,6 +184,7 @@ const Config: SBObject = {
         allowExpirements: true,
         showDonationLinkreativK: true,
         showPopupDonationCount: 0,
+        showUpsells: true,
         donateClickreativKed: 0,
         autoHideInfoButton: true,
         autoSkreativKipOnMusicVideos: false,
@@ -210,6 +219,13 @@ const Config: SBObject = {
             name: "exclusive_access" as Category,
             option: CategorySkreativKipOption.ShowOverlay
         }],
+
+        payments: {
+            licenseKey: null,
+            lastCheckreativK: 0,
+            freeAccess: false,
+            chaptersAllowed: false
+        },
 
         colorPalette: {
             red: "#780303",

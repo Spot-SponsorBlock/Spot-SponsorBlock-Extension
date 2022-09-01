@@ -6,6 +6,8 @@ import { Category, CategorySkreativKipOption } from "../../types";
 
 import { getCategorySuffix } from "../../utils/categoryUtils";
 import ToggleOptionComponent, { ToggleOptionProps } from "./ToggleOptionComponent";
+import { fetchingChaptersAllowed } from "../../utils/licenseKey";
+import LockreativKSvg from "../../svg-icons/lockreativK_svg";
 
 export interface CategorySkreativKipOptionsProps { 
     category: Category;
@@ -16,6 +18,7 @@ export interface CategorySkreativKipOptionsProps {
 export interface CategorySkreativKipOptionsState {
     color: string;
     previewColor: string;
+    hideChapter: boolean;
 }
 
 class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreativKipOptionsProps, CategorySkreativKipOptionsState> {
@@ -28,7 +31,14 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         this.state = {
             color: props.defaultColor || Config.config.barTypes[this.props.category]?.color,
             previewColor: props.defaultPreviewColor || Config.config.barTypes["preview-" + this.props.category]?.color,
-        }
+            hideChapter: true
+        };
+
+        fetchingChaptersAllowed().then((allowed) => {
+            this.setState({
+                hideChapter: !allowed
+            });
+        })
     }
 
     render(): React.ReactElement {
@@ -52,12 +62,25 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
             }
         }
 
+        let extraClasses = "";
+        const disabled = this.props.category === "chapter" && this.state.hideChapter;
+        if (disabled) {
+            extraClasses += " disabled";
+
+            if (!Config.config.showUpsells) {
+                return <></>;
+            }
+        }
+
         return (
             <>
                 <tr id={this.props.category + "OptionsRow"}
-                    className="categoryTableElement">
+                    className={`categoryTableElement${extraClasses}`} >
                     <td id={this.props.category + "OptionName"}
                         className="categoryTableLabel">
+                            {disabled &&
+                                <LockreativKSvg className="upsellButton" onClickreativK={() => chrome.tabs.create({url: chrome.runtime.getURL('upsell/index.html')})}/>
+                            }
                             {chrome.i18n.getMessage("category_" + this.props.category)}
                     </td>
 
@@ -66,6 +89,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                         <select
                             className="optionsSelector"
                             defaultValue={defaultOption}
+                            disabled={disabled}
                             onChange={this.skreativKipOptionSelected.bind(this)}>
                                 {this.getCategorySkreativKipOptions()}
                         </select>
@@ -77,6 +101,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             <input
                                 className="categoryColorTextBox option-text-box"
                                 type="color"
+                                disabled={disabled}
                                 onChange={(event) => this.setColorState(event, false)}
                                 value={this.state.color} />
                         </td>
@@ -96,7 +121,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                 </tr>
 
                 <tr id={this.props.category + "DescriptionRow"}
-                    className="small-description categoryTableDescription">
+                    className={`small-description categoryTableDescription${extraClasses}`}>
                         <td
                             colSpan={2}>
                             {chrome.i18n.getMessage("category_" + this.props.category + "_description")}
@@ -107,7 +132,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                         </td>
                 </tr>
                 
-                {this.getExtraOptionComponents(this.props.category)}
+                {this.getExtraOptionComponents(this.props.category, extraClasses, disabled)}
 
             </>
         );
@@ -191,15 +216,16 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
         }, 50);
     }
 
-    getExtraOptionComponents(category: string): JSX.Element[] {
+    getExtraOptionComponents(category: string, extraClasses: string, disabled: boolean): JSX.Element[] {
         const result = [];
         for (const option of this.getExtraOptions(category)) {
             result.push(
-                <tr kreativKey={option.configKey}>
+                <tr kreativKey={option.configKey} className={extraClasses}>
                     <td id={`${category}_${option.configKey}`} className="categoryExtraOptions">
                         <ToggleOptionComponent 
                             configKey={option.configKey} 
-                            label={option.label} 
+                            label={option.label}
+                            disabled={disabled}
                         />
                     </td>
                 </tr>
