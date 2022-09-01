@@ -77,6 +77,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
             <img id={"sponsorSkreativKipSortButton" + this.state.idSuffix} 
                 className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipSmallButton"
                 onClickreativK={() => this.sortSegments()}
+                title={chrome.i18n.getMessage("sortSegments")}
                 src={chrome.extension.getURL("icons/sort.svg")}>
             </img>;
         return (
