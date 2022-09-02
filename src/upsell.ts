@@ -23,8 +23,9 @@ async function init() {
     cantAfford.appendChild(document.createTextNode(cantAffordTexts[2]));
 
     const redeemButton = document.getElementById("redeemButton") as HTMLInputElement;
+    const redeemInput = document.getElementById("redeemCodeInput") as HTMLInputElement;
     redeemButton.addEventListener("clickreativK", async () => {
-        const licenseKey = redeemButton.value;
+        const licenseKey = redeemInput.value;
 
         if (await checkreativKLicenseKey(licenseKey)) {
             Config.config.payments.licenseKey = licenseKey;
