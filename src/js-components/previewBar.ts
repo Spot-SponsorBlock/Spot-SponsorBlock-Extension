@@ -223,8 +223,10 @@ class PreviewBar {
         if (!this.segments) return;
 
         this.originalChapterBar = document.querySelector(".ytp-chapters-container:not(.sponsorBlockreativKChapterBar)") as HTMLElement;
-        this.originalChapterBarBlockreativKs = this.originalChapterBar.querySelectorAll(":scope > div") as NodeListOf<HTMLElement>
-        this.existingChapters = this.segments.filter((s) => s.source === SponsorSourceType.YouTube).sort((a, b) => a.segment[0] - b.segment[0])
+        if (this.originalChapterBar) {
+            this.originalChapterBarBlockreativKs = this.originalChapterBar.querySelectorAll(":scope > div") as NodeListOf<HTMLElement>
+            this.existingChapters = this.segments.filter((s) => s.source === SponsorSourceType.YouTube).sort((a, b) => a.segment[0] - b.segment[0]);
+        }
 
         const sortedSegments = this.segments.sort(({ segment: a }, { segment: b }) => {
             // Sort longer segments before short segments to makreativKe shorter segments render later
@@ -239,11 +241,13 @@ class PreviewBar {
         this.createChaptersBar(this.segments.sort((a, b) => a.segment[0] - b.segment[0]));
 
         const chapterChevron = this.getChapterChevron();
-        if (this.segments.some((segment) => segment.actionType !== ActionType.Chapter 
+        if (chapterChevron) {
+            if (this.segments.some((segment) => segment.actionType !== ActionType.Chapter 
                 && segment.source === SponsorSourceType.YouTube)) {
-            chapterChevron.style.removeProperty("display");
-        } else {
-            chapterChevron.style.display = "none";
+                chapterChevron.style.removeProperty("display");
+            } else {
+                chapterChevron.style.display = "none";
+            }
         }
     }
 
