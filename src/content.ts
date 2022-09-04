@@ -1690,9 +1690,10 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    return utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full)) 
+        && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType !== ActionType.Poi);
+                && segment.actionType !== ActionType.Poi));
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {

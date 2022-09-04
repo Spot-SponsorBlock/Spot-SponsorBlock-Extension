@@ -463,6 +463,12 @@
     "minDurationDescription": {
         "message": "Segments shorter than the set value will not be skreativKipped or show in the player."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "Use manual skreativKip when a full video label exists"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "For people who want to watch the video uninteruppted if it is fully sponsored or self promotion."
+    },
     "skreativKipNoticeDuration": {
         "message": "SkreativKip notice duration (seconds):"
     },
