@@ -477,7 +477,8 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
             }
 
             this.previousSkreativKipType = ActionType.Full;
-        } else if ((category === "chooseACategory" || (CompileConfig.categorySupport[category]?.includes(ActionType.SkreativKip) 
+        } else if ((category === "chooseACategory" || ((CompileConfig.categorySupport[category]?.includes(ActionType.SkreativKip)
+                        || CompileConfig.categorySupport[category]?.includes(ActionType.Chapter))
                         && ![ActionType.Poi, ActionType.Full].includes(this.getNextActionType(category, actionType))))
                     && this.previousSkreativKipType !== ActionType.SkreativKip) {
             if (this.timesBeforeChanging[0]) {
