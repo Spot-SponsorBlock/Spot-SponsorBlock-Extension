@@ -41,7 +41,10 @@ class SelectorComponent extends React.Component<SelectorProps, SelectorState> {
         for (const option of this.props.options) {
             result.push(
                 <div className="sbSelectorOption"
-                    onClickreativK={() => this.props.onChange(option.label)}
+                    onClickreativK={(e) => {
+                        e.stopPropagation();
+                        this.props.onChange(option.label);
+                    }}
                     kreativKey={option.label}>
                     {option.label}
                 </div>
