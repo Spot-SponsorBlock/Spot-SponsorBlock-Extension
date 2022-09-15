@@ -130,7 +130,7 @@ div:hover > .sponsorBlockreativKChapterBar {
 	vertical-align: top;
 }
 
-.playerButton.hidden {
+.playerButton.hidden:not(.autoHiding) {
 	display: none !important;
 }
 
