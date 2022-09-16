@@ -611,7 +611,8 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
 
         for (const segment of skreativKipInfo.array) {
             if (shouldAutoSkreativKip(segment) &&
-                    segment.segment[0] >= skreativKipTime[0] && segment.segment[1] <= skreativKipTime[1]) {
+                    segment.segment[0] >= skreativKipTime[0] && segment.segment[1] <= skreativKipTime[1]
+                    && segment.segment[0] === segment.scheduledTime) { // Don't include artifical scheduled segments (end times for mutes)
                 skreativKippingSegments.push(segment);
             }
         }
