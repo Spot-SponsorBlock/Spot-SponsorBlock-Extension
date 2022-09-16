@@ -106,7 +106,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                             <LockreativKSvg className="upsellButton" onClickreativK={() => chrome.tabs.create({url: chrome.runtime.getURL('upsell/index.html')})}/>
                         }
                     </td>
-                    
+
                     {this.props.category !== "chapter" &&
                         <td id={this.props.category + "ColorOption"}
                             className="colorOption">
