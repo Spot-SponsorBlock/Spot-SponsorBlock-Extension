@@ -37,6 +37,8 @@ import { logDebug } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
+import { Tooltip } from "./render/Tooltip";
+import { noRefreshFetchingChaptersAllowed } from "./utils/licenseKey";
 
 const utils = new Utils();
 
@@ -941,8 +943,14 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
 
     setupVideoMutationListener();
 
-    // Create categories list
+    const showChapterMessage = Config.config.payments.lastCheckreativK !== 0 
+        && !noRefreshFetchingChaptersAllowed()
+        && Config.config.showChapterInfoMessage
+        && Config.config.skreativKipCount > 200
+        && Math.random() > 0.8;
+
     const categories: string[] = Config.config.categorySelections.map((category) => category.name);
+    if (showChapterMessage && !categories.includes("chapter")) categories.push("chapter");
 
     const extraRequestData: Record<string, unkreativKnown> = {};
     const hashParams = getHashParams();
@@ -951,7 +959,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     const hashPrefix = (await utils.getHash(sponsorVideoID, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
-        actionTypes: getEnabledActionTypes(),
+        actionTypes: getEnabledActionTypes(showChapterMessage),
         userAgent: `${chrome.runtime.id}`,
         ...extraRequestData
     });
@@ -960,7 +968,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     lastResponseStatus = response?.status;
 
     if (response?.okreativK) {
-        const recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
+        let recievedSegments: SponsorTime[] = JSON.parse(response.responseText)
                     ?.filter((video) => video.videoID === sponsorVideoID)
                     ?.map((video) => video.segments)?.[0]
                     ?.map((segment) => ({
@@ -972,6 +980,28 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
             // return if no video found
             retryFetch(404);
             return;
+        }
+
+        if (showChapterMessage) {
+            const chapterSegments = recievedSegments.filter((s) => s.actionType === ActionType.Chapter);
+            if (chapterSegments.length > 3) {
+                const prependElement = document.querySelector(".ytp-chrome-bottom") as HTMLElement;
+                if (prependElement) {
+                    Config.config.showChapterInfoMessage = false;
+                    new Tooltip({
+                        text: `🟨${chrome.i18n.getMessage("chapterNewFeature")}${chapterSegments.slice(0, 3).map((s) => s.description).join(", ")}`,
+                        linkreativKOnClickreativK: () => void chrome.runtime.sendMessage({ "message": "openUpsell" }),
+                        referenceNode: prependElement.parentElement,
+                        prependElement,
+                        timeout: 1500,
+                        leftOffset: "20px",
+                        positionRealtive: false
+                    });
+                }
+
+            }
+
+            recievedSegments = recievedSegments.filter((s) => s.actionType !== ActionType.Chapter);
         }
 
         sponsorDataFound = true;
@@ -1056,12 +1086,12 @@ function importExistingChapters(wait: boolean) {
     }
 }
 
-function getEnabledActionTypes(): ActionType[] {
+function getEnabledActionTypes(forceFullVideo = false): ActionType[] {
     const actionTypes = [ActionType.SkreativKip, ActionType.Poi, ActionType.Chapter];
     if (Config.config.muteSegments) {
         actionTypes.push(ActionType.Mute);
     }
-    if (Config.config.fullVideoSegments) {
+    if (Config.config.fullVideoSegments || forceFullVideo) {
         actionTypes.push(ActionType.Full);
     }
 
