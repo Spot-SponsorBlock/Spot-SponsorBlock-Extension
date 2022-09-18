@@ -943,7 +943,8 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
 
     setupVideoMutationListener();
 
-    const showChapterMessage = Config.config.payments.lastCheckreativK !== 0 
+    const showChapterMessage = Config.config.showUpsells
+        && Config.config.payments.lastCheckreativK !== 0 
         && !noRefreshFetchingChaptersAllowed()
         && Config.config.showChapterInfoMessage
         && Config.config.skreativKipCount > 200
