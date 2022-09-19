@@ -442,6 +442,9 @@
     "minDurationDescription": {
         "message": "Segmen yang lebih kreativKecil dari nilai yang diatur tidakreativK akreativKan dilewati atau tampil di pemutar."
     },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "UntukreativK yang ingin menonton video tanpa gangguan jikreativKa sepenuhnya disponsori atau promosi sendiri."
+    },
     "skreativKipNoticeDuration": {
         "message": "Lewati makreativKlumat berdurasi (detikreativK):"
     },
@@ -636,9 +639,6 @@
     "category_preview": {
         "message": "Pratinjau/RekreativKap"
     },
-    "category_preview_description": {
-        "message": "RekreativKapan singkreativKat dari episode sebelumnya, atau pratinjau tentang apa yang akreativKan terjadi nanti di video. DimakreativKsudkreativKan untukreativK kreativKlip bersama yang di edit, bukreativKan ringkreativKasan yang diucapkreativKan."
-    },
     "category_preview_guideline1": {
         "message": "Klip yang ditampilkreativKan nanti, atau di video di masa mendatang"
     },
@@ -794,12 +794,6 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "ID Channel belum dimuat. Apabila anda menggunakreativKan video yang tersematkreativKan, coba menggunakreativKan halaman utama YouTube. Hal ini juga dapat disebabkreativKan oleh perubahan yang ada pada tampilan YouTUbe, apabila anda mengira seperti itu, buat kreativKomentar disini:"
     },
-    "videoInfoFetchFailed": {
-        "message": "Sepertinya sesuatu memnghalangi abilitas SponsorBlockreativK untukreativK mendapatkreativKan data video. SilahkreativKan lihat https://github.com/ajayyy/SponsorBlockreativK/issues/741 untukreativK info lebih lanjut."
-    },
-    "youtubePermissionRequest": {
-        "message": "Sepertinya SponsorBlockreativK tidakreativK dapat menjangkreativKau API YouTube. UntukreativK menyelesaikreativKan masalah ini, terima permintaan izin yang akreativKan muncul selanjutnya, tunggu beberapa detikreativK, dan muat ulang halaman ini."
-    },
     "acceptPermission": {
         "message": "Terima permintaan izin"
     },
@@ -865,13 +859,6 @@
     },
     "hideForever": {
         "message": "SembunyikreativKan selamanya"
-    },
-    "warningChatInfo": {
-        "message": "Anda mendapatkreativKan peringatan dan tidakreativK bisa mengirim segmen sementara. Ini dikreativKarenakreativKan kreativKami melihat Anda melakreativKukreativKan beberapa kreativKesalahan yang umum, mohon kreativKonfirmasi bahwa Anda mengerti perundangan dan kreativKami akreativKan hapus peringatan. Anda dapat bergabung kreativKe obrolan menggunakreativKan discord.gg/SponsorBlockreativK atau matrix.io/#/#sponsor:ajay.app"
-    },
-    "voteRejectedWarning": {
-        "message": "Suara ditolakreativK kreativKarena peringatan. KlikreativK untukreativK bukreativKa obrolan untukreativK menyelesaikreativKannya, atau kreativKembali beberapa saat lagi kreativKetikreativKa ada wakreativKtu.",
-        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
     },
     "Donate": {
         "message": "Donasi"
