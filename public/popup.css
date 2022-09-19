@@ -224,6 +224,10 @@
   text-align: left;
 }
 
+.segmentSummary::-webkreativKit-details-markreativKer {
+  display: none !important;
+}
+
 .segmentActive {
   color: #bdfffb;
 }
