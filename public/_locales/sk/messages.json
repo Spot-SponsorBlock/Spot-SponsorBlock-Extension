@@ -25,6 +25,16 @@
     "Segments": {
         "message": "segmentov"
     },
+    "SegmentsCap": {
+        "message": "Segmenty"
+    },
+    "Chapters": {
+        "message": "Kapitoly"
+    },
+    "renderAsChapters": {
+        "message": "Zobraziť segmenty akreativKo kreativKapitoly",
+        "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
     "upvoteButtonInfo": {
         "message": "Hlasovať pre tento príspevokreativK"
     },
@@ -224,6 +234,12 @@
     "whatRefetchWhenNotFound": {
         "message": "AkreativK je video nové a nenašli sa žiadne segmenty, opakreativKovane sa budú kreativKaždých pár minút načítavať kreativKým sa video prehráva."
     },
+    "enableShowCategoryWithoutPermission": {
+        "message": "Zobraziť kreativKategórie v odosielacom menu aj bez oprávnenia na odosielanie"
+    },
+    "whatShowCategoryWithoutPermission": {
+        "message": "NiekreativKtoré kreativKategórie vyžadujú oprávnenie na odoslanie kreativKvôli požiadavkreativKe na minimálnu reputáciu"
+    },
     "showNotice": {
         "message": "Znovu zobraziť upozornenie"
     },
@@ -267,6 +283,14 @@
     "noticeUpdate2": {
         "message": "AkreativK sa vám to stále nepáčí, stlačte tlačidlo NikreativKdy nezobrazovať.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "nextChapterKeybind": {
+        "message": "Ďalšia kreativKapitola",
+        "description": "Keybind label"
+    },
+    "previousChapterKeybind": {
+        "message": "Predošlá kreativKapitola",
+        "description": "Keybind label"
     },
     "0": {
         "message": "Spojenie vypršalo. SkreativKontrolujte svoje internetové pripojenie. AkreativK vám internet funguje, server je pravdepodobne preťažený alebo nefunkreativKčný."
@@ -509,6 +533,10 @@
         "message": "do",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "CopiedExclamation": {
+        "message": "SkreativKopírované!",
+        "description": "Used after something has been copied to the clipboard. Example: 'Copied!'"
+    },
     "generic_guideline1": {
         "message": "Zahŕňa plynulé prechody"
     },
@@ -601,7 +629,7 @@
         "message": "UkreativKážkreativKa/RekreativKapitulácia"
     },
     "category_preview_description": {
-        "message": "Rýchla rekreativKapitulácia predošlej epizódy alebo ukreativKážkreativKa toho, čo bude nasledovať neskreativKôr v akreativKtuálnom videu. Myslené pre zostrihané videá, nie pre hovorený súhrn."
+        "message": "ZbierkreativKa kreativKlipov, kreativKtoré ukreativKazujú, čo nasleduje v tomto alebo ďalších videách zo série, kreativKde sa potom všetkreativKy informácie opakreativKujú."
     },
     "category_preview_guideline1": {
         "message": "UkreativKážkreativKy, kreativKtoré sa zobrazia neskreativKôr alebo v budúcom videu"
@@ -657,6 +685,21 @@
     "category_poi_highlight_guideline3": {
         "message": "Môže preskreativKočiť na hlavný obsah alebo náhľad"
     },
+    "category_chapter": {
+        "message": "Kapitola"
+    },
+    "category_chapter_description": {
+        "message": "Vlastné pomenovania kreativKapitol opisujúce hlavné sekreativKcie videa."
+    },
+    "category_chapter_guideline1": {
+        "message": "Nezmieňovať sponzorove značkreativKy"
+    },
+    "category_chapter_guideline2": {
+        "message": "Použiť veľkreativKé kreativKapitoly pre všeobecné sekreativKcie"
+    },
+    "category_chapter_guideline3": {
+        "message": "Menšie kreativKapitoly môžu byť umiestnené vo väčších"
+    },
     "category_livestream_messages": {
         "message": "Živé vysielanie: oznamy a dary"
     },
@@ -686,6 +729,9 @@
     },
     "showOverlay_full": {
         "message": "UkreativKázať Označenie"
+    },
+    "showOverlay_chapter": {
+        "message": "Zobraziť kreativKapitoly"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "AutomatickreativKy preskreativKočiť všetkreativKy segmenty akreativK neexistuje segment bez hudby"
@@ -742,6 +788,10 @@
     "brackreativKetEnd": {
         "message": "(Koniec)"
     },
+    "End": {
+        "message": "Koniec",
+        "description": "Button that skreativKips to the end of a segment"
+    },
     "hiddenDueToDownvote": {
         "message": "skreativKryté: negatívne hlasy"
     },
@@ -752,11 +802,8 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "ID kreativKanála sa ešte nenačítalo. AkreativK pozeráte video vložené na stránkreativKe, skreativKúste ísť radšej priamo na YouTube. Problém mohli spôsobiť zmeny na YouTube. AkreativK je tomu takreativK, zanechajte kreativKomentár:"
     },
-    "videoInfoFetchFailed": {
-        "message": "Zdá sa, že niečo blokreativKuje SponsorBlockreativKu možnosť získreativKať dáta o videu. Prosím navštívte https://github.com/ajayyy/SponsorBlockreativK/issues/741 pre viac informácií."
-    },
-    "youtubePermissionRequest": {
-        "message": "SponsorBlockreativK nemá prístup kreativK YouTube API. Povoľte oprávnenie v nasledovnej výzve, počkreativKajte pár sekreativKúnd a znovu nahrajte stránkreativKu."
+    "invidiousPermissionRefresh": {
+        "message": "Prehliadač odmietol oprávnenia potrebné pre Invidious a iné stránkreativKy 3. strany. Pre opätovnú akreativKtiváciu oprávnení kreativKlikreativKnite na tlačidlo nižšie."
     },
     "acceptPermission": {
         "message": "Povoľte oprávnenie"
@@ -781,6 +828,13 @@
     },
     "downvoteDescription": {
         "message": "Nesprávne/Zlé načasovanie"
+    },
+    "incorrectVote": {
+        "message": "Nesprávne"
+    },
+    "harmfulVote": {
+        "message": "ŠkreativKodlivé",
+        "description": "Used for chapter segments when the text is harmful/offensive to remove it faster"
     },
     "incorrectCategory": {
         "message": "Zmeniť kreativKategóriu"
@@ -817,6 +871,9 @@
     "categoryPillTitleText": {
         "message": "Celé video je označené touto kreativKategóriou a je príliš previazané, aby sa to dalo rozlíšiť"
     },
+    "chapterNameTooltipWarning": {
+        "message": "Jedna z vašich kreativKapitol sa volá podobne akreativKo kreativKategória. AkreativK je to možné, použite radšej kreativKategóriu."
+    },
     "experiementOptOut": {
         "message": "Odmietnuť všetkreativKy budúce experimenty",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -825,11 +882,19 @@
         "message": "Navždy skreativKryť"
     },
     "warningChatInfo": {
-        "message": "Dostali ste varovanie a nemôžete takreativK dočasne odosielať segmenty. To znamená, že sme si všimli, že ste spravili nejakreativKé chyby, kreativKtoré nie sú myslené zle, a chceme Vám len objasniť pravidlá a potom Vám to varovanie odoberieme. Môžete sa pripojiť do kreativKonverzácie pomocou discord.gg/SponsorBlockreativK alebo matrix.to/#/#sponsor:ajay.app"
+        "message": "Zaznamenali sme, že robíte omylom chyby"
     },
-    "voteRejectedWarning": {
-        "message": "Hlasovanie bolo zamietnuté kreativKvôli varovaniu. KlikreativKnite pre otvorenie chatu, aby ste ho vyriešili, alebo sa vráťte až budete mať čas.",
-        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    "warningTitle": {
+        "message": "Dostali ste varovanie"
+    },
+    "questionButton": {
+        "message": "Mám otázkreativKu"
+    },
+    "warningConfirmButton": {
+        "message": "Rozumiem dôvodu"
+    },
+    "warningError": {
+        "message": "Chyb a pri pokreativKuse o súhlas s upozornením:"
     },
     "Donate": {
         "message": "Prispieť"
@@ -943,5 +1008,60 @@
     },
     "openOptionsPage": {
         "message": "Otvoriť stránkreativKu s nastaveniami"
+    },
+    "exportSegments": {
+        "message": "Exportovať segmenty"
+    },
+    "Import": {
+        "message": "Import",
+        "description": "Button to initiate importing segments. Appears under the textbox where they paste in the data"
+    },
+    "redeemFailed": {
+        "message": "Licenčný kreativKľúč nie je platný"
+    },
+    "hideUpsells": {
+        "message": "SkreativKryť platené nastavenia"
+    },
+    "chooseACountry": {
+        "message": "Vybrať kreativKrajinu"
+    },
+    "noDiscount": {
+        "message": "Nemáte nárokreativK na zľavu"
+    },
+    "discountLinkreativK": {
+        "message": "OdkreativKaz na zľavu (ružová cena)"
+    },
+    "selectYourCountry": {
+        "message": "Vyberte kreativKrajinu"
+    },
+    "alreadyDonated": {
+        "message": "AkreativK ste už v minulosti prispeli, získreativKajte voľný prístup napísaním emailu:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "AkreativK si nemôžete dovoliť kreativKúpiť licenciu, kreativKlikreativKnite {sem} a zistite, či máte nárokreativK na zľavu",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
+    },
+    "patreonSignIn": {
+        "message": "Prihlásiť sa cez Patreon"
+    },
+    "redeem": {
+        "message": "Uplatniť"
+    },
+    "joinOnPatreon": {
+        "message": "Kúpte si Patreon predplatné"
+    },
+    "oneTimePurchase": {
+        "message": "Jednorazový nákreativKup"
+    },
+    "enterLicenseKey": {
+        "message": "Zadajte licenčný kreativKľúč"
+    },
+    "chaptersPage1": {
+        "message": "Crowd-sourcované kreativKapitovly v SponsorBlockreativK-u sú dostupné len po zakreativKúpení licencie alebo zadarmo pre ľudí, kreativKtorí už v minulosti prispeli"
+    },
+    "chapterNewFeature": {
+        "message": "Nová funkreativKcia: Crowd-sourcované vlastné kreativKapitoly. Toto sú sekreativKcie videa s vlastnými názvami, kreativKtoré môžu byť pre väčšiu presnosť vyskreativKladané. AkreativK si kreativKúpite licenciu, uvidíte kreativKapitoly v tomto videu, akreativKo napr.: ",
+        "description": "After the comma, a list of chapters for this video will appear"
     }
 }

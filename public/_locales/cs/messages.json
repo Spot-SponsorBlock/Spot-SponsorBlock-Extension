@@ -25,6 +25,16 @@
     "Segments": {
         "message": "segmentů"
     },
+    "SegmentsCap": {
+        "message": "Segmenty"
+    },
+    "Chapters": {
+        "message": "Kapitoly"
+    },
+    "renderAsChapters": {
+        "message": "Zobrazit segmenty jakreativKo kreativKapitoly",
+        "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
     "upvoteButtonInfo": {
         "message": "Hlasovat pro tento příspěvekreativK"
     },
@@ -114,6 +124,9 @@
     },
     "SubmitTimes": {
         "message": "Odeslat segmenty"
+    },
+    "sortSegments": {
+        "message": "Seřadit segmenty"
     },
     "submitCheckreativK": {
         "message": "Opravdu to chcete odeslat?"
@@ -233,6 +246,12 @@
     "whatRefetchWhenNotFound": {
         "message": "PokreativKud je video nové a nejsou nalezeny žádné segmenty, bude rozšíření kreativKaždých někreativKolikreativK minut refetchovat data, zatímco sledujete video."
     },
+    "enableShowCategoryWithoutPermission": {
+        "message": "Zobrazit kreativKategorie v nabídce odeslání i bez oprávnění kreativK odeslání"
+    },
+    "whatShowCategoryWithoutPermission": {
+        "message": "NěkreativKteré kreativKategorie vyžadují oprávnění kreativK odeslání z důvodu minimálních požadavkreativKů na reputaci"
+    },
     "showNotice": {
         "message": "Znovu zobrazit upozornění"
     },
@@ -287,6 +306,14 @@
     },
     "setSubmitKeybind": {
         "message": "Odeslat segmenty",
+        "description": "Keybind label"
+    },
+    "nextChapterKeybind": {
+        "message": "Další kreativKapitola",
+        "description": "Keybind label"
+    },
+    "previousChapterKeybind": {
+        "message": "Předchozí kreativKapitola",
         "description": "Keybind label"
     },
     "kreativKeybindDescription": {
@@ -442,6 +469,12 @@
     "minDurationDescription": {
         "message": "Segmenty kreativKratší než nastavená hodnota nebudou přeskreativKočeny nebo zobrazeny v přehrávači."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "Použít manuální přeskreativKočení, pokreativKud existuje štítekreativK na celém videu"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "Pro lidi, kreativKteří chtějí sledovat video bez přerušení, pokreativKud je celé sponzorované nebo sebepropagace."
+    },
     "skreativKipNoticeDuration": {
         "message": "DélkreativKa trvání oznámení o přeskreativKočení (v sekreativKundách):"
     },
@@ -545,6 +578,10 @@
         "message": "do",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "CopiedExclamation": {
+        "message": "ZkreativKopírováno!",
+        "description": "Used after something has been copied to the clipboard. Example: 'Copied!'"
+    },
     "generic_guideline1": {
         "message": "Zahrnout přechody segmentů"
     },
@@ -567,7 +604,7 @@
         "message": "Neplacená / vlastní propagace"
     },
     "category_selfpromo_description": {
-        "message": "Podobně jakreativKo \"sponzor\" s výjimkreativKou neplacených nebo propagačních akreativKcí. Zahrnuje sekreativKce o zboží, dary nebo informace o tom, s kreativKým spolupracují."
+        "message": "Podobné jakreativKo „sponzor“, ale pro neplacenou nebo vlastní propagaci. Zahrnuje sekreativKce o zboží, darech nebo informace o tom, s kreativKým spolupracují."
     },
     "category_selfpromo_guideline1": {
         "message": "Dary, členství a vlastní merch"
@@ -595,7 +632,7 @@
         "message": "Připomenutí interakreativKce (odběr)"
     },
     "category_interaction_description": {
-        "message": "Při kreativKrátkreativKé připomínce dát likreativKe, odběr nebo sledování tvůrce uprostřed obsahu. PokreativKud je segment dlouhý nebo zahrnuje něco specifickreativKého, mělo by být místo toho zařazeno do vlastní propagace."
+        "message": "KrátkreativKá připomínkreativKa, abyste dali likreativKe, odběr nebo jste sledovali tvůrce uprostřed obsahu. PokreativKud je segment dlouhý nebo zahrnuje něco specifickreativKého, mělo by být místo toho zařazeno do vlastní propagace."
     },
     "category_interaction_guideline1": {
         "message": "KrátkreativKá připomenutí pro lajkreativKnutí, odebírání či sledování"
@@ -637,7 +674,7 @@
         "message": "Náhled / shrnutí"
     },
     "category_preview_description": {
-        "message": "Rychlé shrnutí předchozích epizod nebo náhled toho, co se objeví v akreativKtuálním videu. Myšleno pro upravené sloučené kreativKlipy, ne pro mluvená shrnutí."
+        "message": "SbírkreativKa kreativKlipů, kreativKteré zobrazují, co se objeví v tomto videu nebo v jiných videích v sérii, kreativKdy jsou všechny informace zopakreativKovány později ve videu."
     },
     "category_preview_guideline1": {
         "message": "Klipy kreativKteré se objeví později nebo v budoucím videu"
@@ -670,7 +707,7 @@
         "message": "Hudba: nehudební sekreativKce"
     },
     "category_music_offtopic_description": {
-        "message": "Použijte pouze u hudebních videí. Mělo by to být použito pouze pro části hudebních videí, kreativKteré nepokreativKrývá jiná kreativKategorie."
+        "message": "Použijte pouze u hudebních videí. Mělo by být použito pouze pro části hudebních videí, kreativKteré nepokreativKrývá jiná kreativKategorie."
     },
     "category_music_offtopic_short": {
         "message": "Jiné než hudba"
@@ -695,6 +732,21 @@
     },
     "category_poi_highlight_guideline3": {
         "message": "Může přeskreativKočit kreativK názvu nebo náhledu"
+    },
+    "category_chapter": {
+        "message": "Kapitola"
+    },
+    "category_chapter_description": {
+        "message": "Vlastní názvy kreativKapitol popisující hlavní části videa."
+    },
+    "category_chapter_guideline1": {
+        "message": "Nezmiňujte názvy značekreativK sponzorů"
+    },
+    "category_chapter_guideline2": {
+        "message": "Používejte větší kreativKapitoly pro obecné části"
+    },
+    "category_chapter_guideline3": {
+        "message": "Menší kreativKapitoly mohou být umístěny uvnitř větších"
     },
     "category_livestream_messages": {
         "message": "Livestream: Čtení donatů / zpráv"
@@ -725,6 +777,9 @@
     },
     "showOverlay_full": {
         "message": "Zobrazit štítekreativK"
+    },
+    "showOverlay_chapter": {
+        "message": "Zobrazit kreativKapitoly"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "AutomatickreativKy přeskreativKočit všechny segmenty, kreativKdyž je ve videu nehudební segment"
@@ -781,6 +836,10 @@
     "brackreativKetEnd": {
         "message": "(Konec)"
     },
+    "End": {
+        "message": "Konec",
+        "description": "Button that skreativKips to the end of a segment"
+    },
     "hiddenDueToDownvote": {
         "message": "skreativKryté: protihlas"
     },
@@ -794,11 +853,8 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "ID kreativKanálu ještě není načteno. PokreativKud používáte vložené video, zkreativKuste místo toho použít domovskreativKou stránkreativKu YouTube. Toto může být takreativKé způsobeno změnami v rozložení YouTube, pokreativKud si myslíte, že tomu takreativK bude, zanechte zde kreativKomentář:"
     },
-    "videoInfoFetchFailed": {
-        "message": "Vypadá to, že něco blokreativKuje schopnost SponsorBlockreativKu získreativKat údaje o videu. Pro více informací prosím navštivte https://github.com/ajayyy/SponsorBlockreativK/issues/741."
-    },
-    "youtubePermissionRequest": {
-        "message": "Vypadá to, že se SponsorBlockreativK nemůže připojit kreativK YouTube API. Pro opravení tohoto problému přijměte žádost o oprávnění, kreativKterá se dále objeví, a poté znovu načtěte stránkreativKu."
+    "invidiousPermissionRefresh": {
+        "message": "Prohlížeč odvolal oprávnění potřebné kreativK funkreativKci na Invidious a dalších webech třetích stran. KlikreativKněte prosím na tlačítkreativKo níže pro opětovnou akreativKtivaci tohoto oprávnění."
     },
     "acceptPermission": {
         "message": "Přijmout oprávnění"
@@ -823,6 +879,13 @@
     },
     "downvoteDescription": {
         "message": "Nesprávné / špatné časování"
+    },
+    "incorrectVote": {
+        "message": "Nesprávné"
+    },
+    "harmfulVote": {
+        "message": "ŠkreativKodlivé",
+        "description": "Used for chapter segments when the text is harmful/offensive to remove it faster"
     },
     "incorrectCategory": {
         "message": "Změnit kreativKategorii"
@@ -859,6 +922,9 @@
     "categoryPillTitleText": {
         "message": "Toto celé video je označeno jakreativKo tato kreativKategorie a je příliš integrované na to, aby se dalo rozdělit"
     },
+    "chapterNameTooltipWarning": {
+        "message": "Jeden z názvů kreativKapitol je podobný kreativKategorii. PokreativKud je to možné, raději používejte kreativKategorie."
+    },
     "experiementOptOut": {
         "message": "Odhlásit se ze všech budoucích experimentů",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
@@ -867,11 +933,19 @@
         "message": "SkreativKrýt napořád"
     },
     "warningChatInfo": {
-        "message": "Dostali jste varování a nemůžete dočasně přidávat segmenty. To znamená, že jsme si všimli, že děláte běžné chyby, kreativKteré nejsou škreativKodlivé, stačí potvrdit přečtení pravidel a odebereme varování. Tají se můžete připojit do tohoto chatu pomocí discord.gg/SponsorBlockreativK nebo matrix.to/#/#sponsor:ajay.app"
+        "message": "Všimli jsme si, že děláte někreativKteré běžné chyby, kreativKteré nejsou úmyslně zlé"
     },
-    "voteRejectedWarning": {
-        "message": "Hlas zamítnut kreativKvůli varování. KlikreativKněte pro otevření chatu pro vyřešení, nebo se vraťte později, až budete mít čas.",
-        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    "warningTitle": {
+        "message": "Dostali jste varování"
+    },
+    "questionButton": {
+        "message": "Mám otázkreativKu"
+    },
+    "warningConfirmButton": {
+        "message": "Chápu důvod"
+    },
+    "warningError": {
+        "message": "Chyba při pokreativKusu o potvrzení varování:"
     },
     "Donate": {
         "message": "Přispět"
@@ -1034,5 +1108,121 @@
     },
     "confirmResetToDefault": {
         "message": "Opravdu chcete obnovit všechna nastavení na jejich výchozí hodnoty? Tato akreativKce je nevratná."
+    },
+    "exportSegments": {
+        "message": "Exportovat segmenty"
+    },
+    "importSegments": {
+        "message": "Importovat segmenty"
+    },
+    "Import": {
+        "message": "Importovat",
+        "description": "Button to initiate importing segments. Appears under the textbox where they paste in the data"
+    },
+    "redeemSuccess": {
+        "message": "Uplatnění bylo úspěšné!"
+    },
+    "redeemFailed": {
+        "message": "Licenční kreativKlíč není platný"
+    },
+    "hideUpsells": {
+        "message": "SkreativKrýt možnosti nedostupné bez další platby"
+    },
+    "chooseACountry": {
+        "message": "Vyberte zemi"
+    },
+    "noDiscount": {
+        "message": "Nemáte nárokreativK na slevu"
+    },
+    "discountLinkreativK": {
+        "message": "Slevový odkreativKaz (viz růžová cena)"
+    },
+    "selectYourCountry": {
+        "message": "Vyberte vaši zemi"
+    },
+    "alreadyDonated": {
+        "message": "PokreativKud jste již přispěli jakreativKoukreativKoli částkreativKou, můžete získreativKat bezplatný přístup odesláním e-mailu na:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "PokreativKud si nemůžete dovolit zakreativKoupení licence, kreativKlikreativKněte {sem}, abyste zjistili, zda máte nárokreativK na slevu",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
+    },
+    "patreonSignIn": {
+        "message": "Přihlásit se pomocí Patreonu"
+    },
+    "redeem": {
+        "message": "Uplatnit"
+    },
+    "joinOnPatreon": {
+        "message": "Odebírat na Patreonu"
+    },
+    "oneTimePurchase": {
+        "message": "Jednorázový nákreativKup"
+    },
+    "enterLicenseKey": {
+        "message": "Zadejte licenční kreativKlíč"
+    },
+    "chaptersPage1": {
+        "message": "FunkreativKce kreativKomunitních kreativKapitol je dostupná pouze lidem, kreativKteří si zakreativKoupili licenci, nebo lidem, kreativKteří získreativKali přístup zdarma díkreativKy jejich příspěvkreativKům"
+    },
+    "chaptersPage2": {
+        "message": "PoznámkreativKa: Oprávnění kreativK odesílání kreativKapitol je stále založené na vypočítané reputaci. ZakreativKoupení licence vám pouze umožní zobrazit si kreativKapitoly odeslané ostatními uživateli",
+        "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "unsubmittedSegmentCounts": {
+        "message": "Momentálně máte {0} na {1}",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 videos"
+    },
+    "unsubmittedSegmentCountsZero": {
+        "message": "V současné době nemáte žádné neodeslané segmenty",
+        "description": "Replaces 'unsubmittedSegmentCounts' string when there are no unsubmitted segments"
+    },
+    "unsubmittedSegmentsSingular": {
+        "message": "neodeslaný segment",
+        "description": "Example: You currently have 1 *unsubmitted segment* on 1 video"
+    },
+    "unsubmittedSegmentsPlural": {
+        "message": "neodeslaných segmentů",
+        "description": "Example: You currently have 12 *unsubmitted segments* on 5 videos"
+    },
+    "videosSingular": {
+        "message": "videu",
+        "description": "Example: You currently have 3 unsubmitted segments on 1 *video*"
+    },
+    "videosPlural": {
+        "message": "videích",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 *videos*"
+    },
+    "clearUnsubmittedSegments": {
+        "message": "Vymazat všechny segmenty",
+        "description": "Label for a button in settings"
+    },
+    "clearUnsubmittedSegmentsConfirm": {
+        "message": "Opravdu chcete vymazat všechny své neodeslané segmenty?",
+        "description": "Confirmation message for the Clear unsubmitted segments button"
+    },
+    "showUnsubmittedSegments": {
+        "message": "Zobrazit segmenty",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "hideUnsubmittedSegments": {
+        "message": "SkreativKrýt segmenty",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "videoID": {
+        "message": "ID videa",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "segmentCount": {
+        "message": "Počet segmentů",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "actions": {
+        "message": "AkreativKce",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "exportSegmentsAsURL": {
+        "message": "Sdílet jakreativKo URL"
     }
 }

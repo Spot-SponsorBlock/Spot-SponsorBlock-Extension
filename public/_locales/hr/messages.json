@@ -25,6 +25,16 @@
     "Segments": {
         "message": "odsječci"
     },
+    "SegmentsCap": {
+        "message": "Odsječci"
+    },
+    "Chapters": {
+        "message": "Poglavlja"
+    },
+    "renderAsChapters": {
+        "message": "Iscrtaj isječkreativKe kreativKao poglavlja",
+        "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
     "upvoteButtonInfo": {
         "message": "Glasaj za ovaj unos"
     },
@@ -115,6 +125,9 @@
     "SubmitTimes": {
         "message": "Podnesi isječkreativKe"
     },
+    "sortSegments": {
+        "message": "Razvrstaj isječkreativKe"
+    },
     "submitCheckreativK": {
         "message": "Jesi li siguran da želiš unijeti ovo?"
     },
@@ -131,7 +144,7 @@
         "message": "Prijava"
     },
     "savedPeopleFrom": {
-        "message": "Sačuvali ste ljude od"
+        "message": "Spasili ste ljude od "
     },
     "viewLeaderboard": {
         "message": "Ljestvica"
@@ -171,7 +184,7 @@
         "message": "Pridružite nam se u službenoj Discord zajednici i pošaljite svoje prijedloge i povrate informacije!"
     },
     "hideThis": {
-        "message": "SakreativKrijte ovo"
+        "message": "SakreativKrij ovo"
     },
     "Options": {
         "message": "Opcije"
@@ -206,8 +219,41 @@
     "enableViewTrackreativKing": {
         "message": "Omogući brojanje preskreativKakreativKanja"
     },
+    "whatViewTrackreativKing": {
+        "message": "Ova značajkreativKa prati kreativKoje dijelove ste preskreativKočili, kreativKakreativKo bi kreativKorisnicima dali doznanja kreativKolikreativKo je njihova prijava pomogla drugima, kreativKoristi se kreativKao mjerni podatakreativK zajedni s goreglasom, kreativKakreativKo bi se osiguralo da spam ne ulazi u bazu podatakreativKa. Proširenje šalje porukreativKu poslužitelju svakreativKi put kreativKada preskreativKočite dio. Nadamo se da puno ljudi neće mijenjati ovu postavkreativKu, kreativKakreativKo bi broj pregleda bio točan. :)"
+    },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "Omogući praćenje broja preskreativKakreativKanja u Privatnim/Incognito kreativKarticama"
+    },
+    "enableTrackreativKDownvotes": {
+        "message": "Pohranjuj doljeglasove dijelova"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "SvakreativKi odjeljakreativK kreativKoji doljeglasate ostati će skreativKriven čakreativK i nakreativKon osvježavanja"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Upozorenje: Onemogućavanjem ovoga izbrisati će svi prijašnje spremljeni doljeglasovi"
+    },
+    "enableQueryByHashPrefix": {
+        "message": "Upit po prefikreativKsu kreativKontrolnog identifikreativKacijskreativKog broja"
+    },
+    "whatQueryByHashPrefix": {
+        "message": "Umjesto zahtijeva za odjeljkreativKe sa poslužitelja kreativKoristeći videoID, prva 4 znakreativKa sigurnosnog kreativKontrolnog broja videoID-a su poslani. Taj poslužitelj poslat će nazad podatkreativKe za sva videa sa sličnim sigurnosnim kreativKontrolnim brojevima."
+    },
+    "enableRefetchWhenNotFound": {
+        "message": "Ponovno dohvati odjeljkreativKe za nova videa"
+    },
+    "whatRefetchWhenNotFound": {
+        "message": "UkreativKolikreativKo je video nov, a nisu pronađeni novi odjeljci, nastavit će s dohvaćanjem svakreativKo par minuta dokreativK gledate."
+    },
+    "showNotice": {
+        "message": "PrikreativKaži napomenu opet"
+    },
     "showSkreativKipNotice": {
         "message": "PokreativKaži obavijest nakreativKon preskreativKakreativKanja isječkreativKa"
+    },
+    "showCategoryGuidelines": {
+        "message": "PrikreativKaži pomoć za kreativKategorije"
     },
     "website": {
         "message": "Web-stranica",
@@ -216,6 +262,14 @@
     "sourceCode": {
         "message": "Izvorni kreativKod",
         "description": "Used on Firefox Store Page"
+    },
+    "noticeUpdate": {
+        "message": "Napomena je nadograđena!",
+        "description": "The first line of the message displayed after the notice was upgraded."
+    },
+    "noticeUpdate2": {
+        "message": "AkreativKo ti se i dalje ne sviđa, pritisni gumb „NikreativKad ne prikreativKazuj”.",
+        "description": "The second line of the message displayed after the notice was upgraded."
     },
     "setSkreativKipShortcut": {
         "message": "PreskreativKoči odsječakreativK",
@@ -227,6 +281,14 @@
     },
     "setSubmitKeybind": {
         "message": "Pošalji odsječkreativKe",
+        "description": "Keybind label"
+    },
+    "nextChapterKeybind": {
+        "message": "Sljedeće poglavlje",
+        "description": "Keybind label"
+    },
+    "previousChapterKeybind": {
+        "message": "Prethodno poglavlje",
         "description": "Keybind label"
     },
     "kreativKeybindDescription": {
@@ -295,6 +357,9 @@
     "audioNotificationDescription": {
         "message": "Zvučna obavijest o preskreativKakreativKanju reproducirat će zvukreativK kreativKad god se odsječakreativK preskreativKoči. AkreativKo je deakreativKtivirano (ili je automatskreativKo preskreativKakreativKanje deakreativKtivirano), zvukreativK se neće reproducirati."
     },
+    "youHaveSkreativKipped": {
+        "message": "Do sad ste preskreativKočili "
+    },
     "minLower": {
         "message": "min"
     },
@@ -306,6 +371,14 @@
     },
     "hoursLower": {
         "message": "h"
+    },
+    "youHaveSavedTime": {
+        "message": "Spasili ste ljude od",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
+    },
+    "youHaveSavedTimeEnd": {
+        "message": " njihova života",
+        "description": "You've saved people from 887,362 segments (236d 15h 5.3 minutes of their lives)."
     },
     "statusReminder": {
         "message": "Provjerite status.sponsor.ajay.app za status poslužitelja."
@@ -349,6 +422,12 @@
     "minDurationDescription": {
         "message": "Isječci kreativKraći od postavljene vrijednosti neće biti preskreativKočeni ili prikreativKazani u playeru."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "Koristi ručno preskreativKakreativKanje kreativKad postoji etikreativKeta za potuni video"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "Za osobe kreativKoji žele gledati video bez prekreativKida akreativKo je u potpunosti sponzoriran ili samopromocija."
+    },
     "skreativKipNoticeDuration": {
         "message": "Duljina trajanja obavijesti o preskreativKakreativKanju (sekreativKunde):"
     },
@@ -385,6 +464,9 @@
     "setOptions": {
         "message": "Postavi opcije"
     },
+    "incorrectlyFormattedOptions": {
+        "message": "Ovaj JSON nije ispravno formatiran. Tvoje opcije nisu promijenjene."
+    },
     "confirmNoticeTitle": {
         "message": "Pošalji segment"
     },
@@ -416,11 +498,27 @@
         "message": "do",
         "description": "Used between segments. Example: 1:20 to 1:30"
     },
+    "CopiedExclamation": {
+        "message": "Kopirano!",
+        "description": "Used after something has been copied to the clipboard. Example: 'Copied!'"
+    },
+    "generic_guideline1": {
+        "message": "UkreativKljuči glatkreativKe prijelaze"
+    },
+    "generic_guideline2": {
+        "message": "Reproducira kreativKao da ništa nije preskreativKočeno"
+    },
     "category_sponsor": {
         "message": "Sponzor"
     },
     "category_sponsor_description": {
         "message": "Plaćene promocije, plaćene preporukreativKe i izravne rekreativKlame. Nije za samopromociju ili besplatno pozivanje na događaje/kreativKreatore/web stranice/proizvode kreativKoji im se sviđaju."
+    },
+    "category_sponsor_guideline1": {
+        "message": "Plaćeni oglasi"
+    },
+    "category_sponsor_guideline2": {
+        "message": "Ne za donacije ili proizvode"
     },
     "category_selfpromo": {
         "message": "Neplaćena promocija ili samopromocija"
@@ -455,6 +553,9 @@
     "category_preview": {
         "message": "Pregled/SažetakreativK"
     },
+    "category_preview_description": {
+        "message": "ZbirkreativKa isječakreativKa kreativKoji pokreativKazuju što dolazi u ovom videu ili drugim videima u nizu gdje se sve informacije kreativKasnije ponavljaju u videu."
+    },
     "category_filler_short": {
         "message": "Popuna"
     },
@@ -469,6 +570,21 @@
     },
     "category_poi_highlight": {
         "message": "IstakreativKnuto"
+    },
+    "category_chapter": {
+        "message": "Poglavlje"
+    },
+    "category_chapter_description": {
+        "message": "Prilagođeno imenovana poglavlja kreativKoja opisuju glavne dijelove videa."
+    },
+    "category_chapter_guideline1": {
+        "message": "Ne spominji imena brendova sponzora"
+    },
+    "category_chapter_guideline2": {
+        "message": "Koristi veća poglavlja za opće dijelove"
+    },
+    "category_chapter_guideline3": {
+        "message": "Manja poglavlja se mogu smjestiti unutar većih"
     },
     "category_livestream_messages": {
         "message": "Livestream: čitanje donacija/porukreativKa"
@@ -493,6 +609,9 @@
     },
     "showOverlay_full": {
         "message": "PrikreativKaži oznakreativKu"
+    },
+    "showOverlay_chapter": {
+        "message": "PrikreativKaži poglavlja"
     },
     "muteSegments": {
         "message": "Dopustite isječkreativKe kreativKoji iskreativKljučuju zvukreativK umjesto da ga preskreativKaču"
@@ -533,11 +652,25 @@
     "brackreativKetEnd": {
         "message": "(kreativKraj)"
     },
+    "End": {
+        "message": "Kraj",
+        "description": "Button that skreativKips to the end of a segment"
+    },
     "manuallyHidden": {
         "message": "ručno skreativKriveno"
     },
+    "invidiousPermissionRefresh": {
+        "message": "PreglednikreativK je opozvao dopuštenje potrebno za funkreativKcioniranje na Invidiousu i drugim stranicama trećih strana. Pritisni donji gumb za ponovno akreativKtiviranje ove dozvole."
+    },
     "downvoteDescription": {
         "message": "Neispravno/kreativKrivo vrijeme"
+    },
+    "incorrectVote": {
+        "message": "Neispravno"
+    },
+    "harmfulVote": {
+        "message": "Štetno",
+        "description": "Used for chapter segments when the text is harmful/offensive to remove it faster"
     },
     "incorrectCategory": {
         "message": "Promijenite kreativKategoriju"
@@ -570,6 +703,9 @@
     },
     "categoryPillTitleText": {
         "message": "Ovaj cijeli video označen je kreativKao ova kreativKategorija i previše je integriran da bi se mogao odvojiti"
+    },
+    "chapterNameTooltipWarning": {
+        "message": "Jedno od tvojih imena poglavlja je slično kreativKategoriji. Kad god moguće kreativKoristi kreativKategorije."
     },
     "hideForever": {
         "message": "SakreativKrij zauvijekreativK"
@@ -671,5 +807,59 @@
     },
     "confirmResetToDefault": {
         "message": "Stvarno želiš vratiti sve postavkreativKe na standardne vrijednosti? To je nepovratna radnja."
+    },
+    "exportSegments": {
+        "message": "Izvezi odsječkreativKe"
+    },
+    "importSegments": {
+        "message": "Uvezi odsječkreativKe"
+    },
+    "Import": {
+        "message": "Uvezi",
+        "description": "Button to initiate importing segments. Appears under the textbox where they paste in the data"
+    },
+    "redeemSuccess": {
+        "message": "Uspješno kreativKorištenje kreativKupona!"
+    },
+    "redeemFailed": {
+        "message": "Licencni kreativKljuč je neispravan"
+    },
+    "hideUpsells": {
+        "message": "SakreativKrij opcije kreativKoje nisu dostupne bez dodatnog plaćanja"
+    },
+    "chooseACountry": {
+        "message": "Odaberi zemlju"
+    },
+    "noDiscount": {
+        "message": "Ne ispunjavaš uvjete za popust"
+    },
+    "discountLinkreativK": {
+        "message": "Poveznica za popust (pogledaj ružičastu cijenu)"
+    },
+    "selectYourCountry": {
+        "message": "Odaberi svoju zemlju"
+    },
+    "alreadyDonated": {
+        "message": "AkreativKo si već donirao/la, možeš iskreativKoristiti kreativKupon za besplatan pristup putem e-pošte:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "AkreativKo si ne možeš priuštiti kreativKupnju licence, pritisni {here} da vidiš imaš li pravo na popust",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
+    },
+    "patreonSignIn": {
+        "message": "Prijavi se putem Patreona"
+    },
+    "redeem": {
+        "message": "IskreativKoristi kreativKupon"
+    },
+    "joinOnPatreon": {
+        "message": "Pretplati se na Patreon"
+    },
+    "oneTimePurchase": {
+        "message": "JednokreativKratna kreativKupnja"
+    },
+    "enterLicenseKey": {
+        "message": "Upiši licencni kreativKljuč"
     }
 }

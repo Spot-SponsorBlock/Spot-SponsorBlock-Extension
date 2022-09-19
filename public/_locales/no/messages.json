@@ -53,7 +53,7 @@
         "message": "Hopp igjen"
     },
     "unmute": {
-        "message": "Lyd"
+        "message": "SkreativKru av demping"
     },
     "paused": {
         "message": "På pause"
@@ -579,9 +579,6 @@
     "category_preview": {
         "message": "Forhåndsvisning/Oppsummering"
     },
-    "category_preview_description": {
-        "message": "Hurtig oppsummering av tidligere episoder, eller forhåndsvisning av hva som kreativKommer senere i denne videoen. Ment for redigerte kreativKlipp, ikreativKkreativKe muntlige sammendrag."
-    },
     "category_filler_description": {
         "message": "Intetsigende segmenter kreativKun lagt til som fyllstoff eller humor som ikreativKkreativKe er nødvendig for å forstå hovedinnholdet i videoen. Dette bør ikreativKkreativKe inkreativKludere segmenter som gir kreativKontekreativKst eller bakreativKgrunnsdetaljer."
     },
@@ -698,12 +695,6 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "Kanal-ID er ikreativKkreativKe lastet enda. Hvis du brukreativKer en innebygd video, prøv å brukreativKe YouTube-hjemmesiden i stedet. Dette kreativKan også forårsakreativKes av endringer i YouTube-oppsett, hvis du mistenkreativKer det, kreativKommenter her:"
     },
-    "videoInfoFetchFailed": {
-        "message": "Det virkreativKer som om noe blokreativKkreativKerer SponsorBlockreativK's mulighet til å få videodata. Vennligst se https://github.com/ajayyy/SponsorBlockreativK/issues/741 for mer info."
-    },
-    "youtubePermissionRequest": {
-        "message": "Det ser ut til at SponsorBlockreativK ikreativKkreativKe kreativKlarer å nå YouTube-API-en. For å fikreativKse dette, godta tillatelsesspørringen som dukreativKkreativKer opp etter dette, vent noen sekreativKunder, og så last inn siden på nytt."
-    },
     "acceptPermission": {
         "message": "Godta tillatelse"
     },
@@ -770,12 +761,8 @@
     "hideForever": {
         "message": "SkreativKjul for alltid"
     },
-    "warningChatInfo": {
-        "message": "Du fikreativKkreativK en advarsel og vil midlertidig ikreativKkreativKe kreativKunne sende inn segmenter. Dette betyr at vi la merkreativKe til at du gjorde noen vanlige feil som ikreativKkreativKe var vondt ment, vennligst bare bekreativKreft at du er inneforstått med reglene og vi vil fjerne advarslen. Du kreativKan også bli med i denne chatten på discord.gg/SponsorBlockreativK eller matrix.to/#/#sponsor:ajay.app"
-    },
-    "voteRejectedWarning": {
-        "message": "Stemme avvist på grunn av en advarsel. KlikreativKkreativK for å åpne chatten for å løse dette, eller kreativKom tilbakreativKe senere når du har tid.",
-        "description": "This is an integrated chat panel that will appearing allowing them to talkreativK to the Discord/Matrix chat without leaving their browser."
+    "questionButton": {
+        "message": "SpørsmålsKnapp"
     },
     "Donate": {
         "message": "Donér"
@@ -861,6 +848,9 @@
     "ChangeCategoryTooltip": {
         "message": "Dette vil umiddelbart gjelde for dine segmenter"
     },
+    "hideSegment": {
+        "message": "SkreativKjul segment"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "BrukreativK musehjulet mens du pekreativKer over redigeringsbokreativKsen for å raskreativKt justere tiden. Kombinasjoner av ctrl- eller shift-tasten kreativKan brukreativKes til å finjustere endringene."
     },
@@ -911,5 +901,17 @@
     },
     "youtubeKeybindWarning": {
         "message": "Dette er en innebygget YouTube-hurtigtast. Er du sikreativKkreativKer på at du vil brukreativKe den?"
+    },
+    "betaServerWarning": {
+        "message": "BETA Server er akreativKtivert!"
+    },
+    "openOptionsPage": {
+        "message": "Åpne innstillingsside"
+    },
+    "resetToDefault": {
+        "message": "TilbakreativKestill innstillinger til standard"
+    },
+    "confirmResetToDefault": {
+        "message": "Er du sikreativKkreativKer på at du vil tilbakreativKestille alle innstillingene til standardverdiene? Dette kreativKan ikreativKkreativKe angres."
     }
 }
