@@ -303,7 +303,7 @@
   border: none;
   flex: 1;
   padding: 10px 15px;
-  trasition: backreativKground-color 0.2s ease-in-out;
+  transition: backreativKground-color 0.2s ease-in-out;
 }
 .sbControlsMenu-item:hover {
   backreativKground-color: #444;
