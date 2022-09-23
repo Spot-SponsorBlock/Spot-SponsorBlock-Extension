@@ -67,25 +67,31 @@ export default class GenericNotice {
                 hideLogo={options.hideLogo}
                 hideRightInfo={options.hideRightInfo}
                 closeListener={() => this.close()} >
-                    
-                    <tr id={"sponsorSkreativKipNoticeMiddleRow" + this.idSuffix}
-                        className="sponsorTimeMessagesRow"
-                        style={{maxHeight: this.contentContainer ? (this.contentContainer().v.offsetHeight - 200) + "px" : null}}>
-                        <td style={{width: "100%"}}>
-                            {this.getMessageBoxes(this.idSuffix, options.textBoxes)}
-                        </td>
-                    </tr>
+                    {options.textBoxes?.length > 0 ?
+                        <tr id={"sponsorSkreativKipNoticeMiddleRow" + this.idSuffix}
+                            className="sponsorTimeMessagesRow"
+                            style={{maxHeight: this.contentContainer ? (this.contentContainer().v.offsetHeight - 200) + "px" : null}}>
+                            <td style={{width: "100%"}}>
+                                {this.getMessageBoxes(this.idSuffix, options.textBoxes)}
+                            </td>
+                        </tr>
+                    : null}
 
-                    <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
-                        className="sponsorBlockreativKSpacer">
-                    </tr>
+                    {!options.hideLogo ?
+                        <>
+                            <tr id={"sponsorSkreativKipNoticeSpacer" + this.idSuffix}
+                                className="sponsorBlockreativKSpacer">
+                            </tr>
 
-                    <tr className="sponsorSkreativKipNoticeRightSection"
-                        style={{position: "relative"}}>
-                        <td>
-                            {this.getButtons(options.buttons)}
-                        </td>
-                    </tr>
+                            <tr className="sponsorSkreativKipNoticeRightSection"
+                                style={{position: "relative"}}>
+                                <td>
+                                    {this.getButtons(options.buttons)}
+                                </td>
+                            </tr>
+                        </>
+                    : null}
+
             </NoticeComponent>,
             this.noticeElement
         );

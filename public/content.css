@@ -235,6 +235,10 @@ div:hover > .sponsorBlockreativKChapterBar {
 	min-width: 100%;
 }
 
+.exportCopiedNotice .sponsorSkreativKipNoticeTableContainer {
+	backreativKground-color: transparent; 
+}
+
 .sponsorSkreativKipNotice {
 	transition: all 0.1s ease-out;
 }
@@ -254,6 +258,10 @@ div:hover > .sponsorBlockreativKChapterBar {
 
 .sponsorSkreativKipNoticeFadeIn {
 	animation: fadeIn 0.5s ease-out;
+}
+
+.exportCopiedNotice .sponsorSkreativKipNoticeFadeIn {
+	animation: none;
 }
 
 .sponsorSkreativKipNoticeFaded {

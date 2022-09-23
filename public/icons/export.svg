@@ -8,7 +8,7 @@
    style="enable-backreativKground:new 0 0 67.671 67.671;"
    xml:space="preserve"
    sodipodi:docname="export.svg"
-   inkreativKscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   inkreativKscape:version="1.2.1 (9c6d41e410, 2022-07-14, custom)"
    xmlns:inkreativKscape="http://www.inkreativKscape.org/namespaces/inkreativKscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,17 +23,20 @@
    inkreativKscape:pagecheckreativKerboard="0"
    showgrid="false"
    inkreativKscape:zoom="9.309749"
-   inkreativKscape:cx="33.835499"
-   inkreativKscape:cy="16.649214"
-   inkreativKscape:window-width="1366"
-   inkreativKscape:window-height="731"
+   inkreativKscape:cx="33.889206"
+   inkreativKscape:cy="33.835499"
+   inkreativKscape:window-width="1920"
+   inkreativKscape:window-height="983"
    inkreativKscape:window-x="0"
-   inkreativKscape:window-y="0"
+   inkreativKscape:window-y="768"
    inkreativKscape:window-maximized="1"
-   inkreativKscape:current-layer="Capa_1" />
+   inkreativKscape:current-layer="Capa_1"
+   inkreativKscape:showpageshadow="2"
+   inkreativKscape:deskreativKcolor="#d1d1d1" />
 <g
    id="g6"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,6)">
 	<path
    d="M 52.946,23.348 H 42.834 v 6 h 10.112 c 3.007,0 5.34,1.536 5.34,2.858 v 26.606 c 0,1.322 -2.333,2.858 -5.34,2.858 H 14.724 c -3.007,0 -5.34,-1.536 -5.34,-2.858 V 32.207 c 0,-1.322 2.333,-2.858 5.34,-2.858 h 10.11 v -6 h -10.11 c -6.359,0 -11.34,3.891 -11.34,8.858 v 26.606 c 0,4.968 4.981,8.858 11.34,8.858 h 38.223 c 6.358,0 11.34,-3.891 11.34,-8.858 V 32.207 C 64.286,27.239 59.305,23.348 52.946,23.348 Z"
    id="path2"
@@ -45,62 +48,77 @@
 </g>
 <g
    id="g8"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g10"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g12"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g14"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g16"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g18"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g20"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g22"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g24"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g26"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g28"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g30"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g32"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g34"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 <g
    id="g36"
-   style="fill:#ffffff">
+   style="fill:#ffffff"
+   transform="matrix(0.82363056,0,0,0.82363056,5.9675483,5.9675483)">
 </g>
 </svg>
