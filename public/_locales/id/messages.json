@@ -387,17 +387,8 @@
     "statusReminder": {
         "message": "CekreativK status.sponsor.ajay.app untukreativK status server."
     },
-    "changeUserID": {
-        "message": "Impor/EkreativKspor UserID"
-    },
     "whatChangeUserID": {
         "message": "Ini harus dirahasiakreativKan. Ini seperti kreativKata sandi dan tidakreativK boleh dibagikreativKan kreativKepada siapa pun. JikreativKa seseorang mempunyai ini, merekreativKa bisa menyamar jadi anda. JikreativKa anda mencari UserID publikreativK anda, kreativKlikreativK ikreativKon papan tulis di popup."
-    },
-    "setUserID": {
-        "message": "Atur UserID"
-    },
-    "userIDChangeWarning": {
-        "message": "Peringatan: Pengubahan UserID bersifat permanen. ApakreativKah anda yakreativKin ingin melakreativKukreativKan ini? PastikreativKan kreativKamu sudah mencadangkreativKan yang lama untukreativK berjaga."
     },
     "createdBy": {
         "message": "Dibuat Oleh"
@@ -492,9 +483,6 @@
     },
     "exportOptionsUpload": {
         "message": "Muat dari file"
-    },
-    "whatExportOptions": {
-        "message": "Ini adalah seluruh kreativKonfigurasi anda di JSON. Ini mencakreativKup userID anda, makreativKa pastikreativKan anda membagikreativKan ini dengan bijakreativK."
     },
     "setOptions": {
         "message": "Atur Opsi"
@@ -650,9 +638,6 @@
     },
     "category_filler": {
         "message": "Pengisi TakreativK berkreativKaitan/LawakreativKan"
-    },
-    "category_filler_description": {
-        "message": "Adegan tangensial ditambahkreativKan hanya untukreativK pengisi atau humor yang tidakreativK diperlukreativKan untukreativK memahami isi utama video. Ini tidakreativK boleh mencakreativKup segmen yang memberikreativKan detail kreativKontekreativKs atau latar belakreativKang."
     },
     "category_filler_short": {
         "message": "Isian"

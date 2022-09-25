@@ -121,6 +121,9 @@
     "SubmitTimes": {
         "message": "Kısımları gönder"
     },
+    "sortSegments": {
+        "message": "Kısımları Sırala"
+    },
     "submitCheckreativK": {
         "message": "Bunu göndermekreativK istediğinize emin misiniz?"
     },
@@ -238,6 +241,9 @@
     },
     "whatRefetchWhenNotFound": {
         "message": "Eğer video yeni ve kreativKısımları bulunmuyorsa, sen videoyu izlerkreativKen her birkreativKaç dakreativKikreativKada bir kreativKısımları edinmeye çalışır."
+    },
+    "enableShowCategoryWithoutPermission": {
+        "message": "Gönderim izni olmasa bile gönderim menüsünde kreativKategorileri gösterme"
     },
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
@@ -402,16 +408,16 @@
         "message": "Sunucu durumu için status.sponsor.ajay.app kreativKontrol edin."
     },
     "changeUserID": {
-        "message": "Kullanıcı kreativKimliğini Dışarı/İçeri AkreativKtar"
+        "message": "Özel Kullanıcı Kimliğini İçe/Dışa AkreativKtar"
     },
     "whatChangeUserID": {
         "message": "Bu gizli tutulmalıdır. Bu bir şifre gibidir ve kreativKimseyle paylaşılmamalıdır. Eğer birisi buna sahipse, seni takreativKlit edebilir. HerkreativKese açıkreativK kreativKullanıcı kreativKimliğinizi arıyorsanız, açılır pencerede pano simgesine tıkreativKlayın."
     },
     "setUserID": {
-        "message": "Kullanıcı kreativKimliği Belirle"
+        "message": "Özel Kullanıcı Kimliğini Ayarla"
     },
     "userIDChangeWarning": {
-        "message": "Uyarı: Kullanıcı kreativKimliği değiştirmekreativK kreativKalıcıdır. Bunu yapmakreativK istediğinizden emin misiniz? EskreativKisini yedekreativKlediğinizden emin olun."
+        "message": "Uyarı: Özel Kullanıcı Kimliğini değiştirmekreativK kreativKalıcıdır. Bunu yapmakreativK istediğinizden emin misiniz? Her ihtimale kreativKarşı eskreativKisini yedekreativKlediğinizden emin olun."
     },
     "createdBy": {
         "message": "Oluşturan"
@@ -503,9 +509,6 @@
     },
     "exportOptionsUpload": {
         "message": "Dosyadan yükreativKle"
-    },
-    "whatExportOptions": {
-        "message": "Bu, JSON formatında bütün kreativKurulumunuzu gösterir. Kullanıcı kreativKimliğinizi içerir, bu sebeple paylaşırkreativKen dikreativKkreativKatli olun."
     },
     "setOptions": {
         "message": "SeçenekreativKleri Ayarla"
@@ -665,9 +668,6 @@
     },
     "category_filler": {
         "message": "Konuyla AlakreativKasız / ŞakreativKa"
-    },
-    "category_filler_description": {
-        "message": "Videonun ana içeriğini anlamakreativK için gerekreativKli olmayan, yalnızca alakreativKasız kreativKonu veya mizah için ekreativKlenen sahneler. Bu, alakreativKalı veya arkreativKa plan ayrıntısı veren kreativKısımları içermemelidir."
     },
     "category_filler_short": {
         "message": "AlakreativKasız Konu"

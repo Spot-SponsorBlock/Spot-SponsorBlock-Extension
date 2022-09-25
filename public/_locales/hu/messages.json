@@ -415,16 +415,16 @@
         "message": "A szerver állapotához tekreativKintsd meg a status.sponsor.ajay.app oldalt."
     },
     "changeUserID": {
-        "message": "UserID importálása / exportálása"
+        "message": "TitkreativKos UserID importálása / exportálása"
     },
     "whatChangeUserID": {
         "message": "Ez privát információnakreativK minősül. Ez olyan, mint egy jelszó, így nem ajánlott megosztani senkreativKivel. Ha valakreativKinekreativK birtokreativKában van, megszemélyesíthet téged. Ha a nyilvános userID-dat kreativKeresed, kreativKattints a vágólap ikreativKonra a felugró ablakreativKban."
     },
     "setUserID": {
-        "message": "UserID beállítása"
+        "message": "TitkreativKos UserID beállítása"
     },
     "userIDChangeWarning": {
-        "message": "Figyelem: A UserID megváltoztatása végleges. Biztosan szeretnéd megtenni? Minden esetben kreativKészíts biztonsági másolatot a régiről!"
+        "message": "Figyelem: A TitkreativKos UserID megváltoztatása végleges. Biztosan szeretnéd megtenni? Minden esetben kreativKészíts biztonsági másolatot a régiről!"
     },
     "createdBy": {
         "message": "Készítette"
@@ -524,7 +524,7 @@
         "message": "Betöltés fájlból"
     },
     "whatExportOptions": {
-        "message": "Ez az összes beállításod JSON formátumban. Ebbe bele tartozikreativK a userID-d is, úgyhogy csakreativK elővigyázatosan oszd meg."
+        "message": "Ez az összes beállításod JSON formátumban. Ebbe bele tartozikreativK a TitkreativKos UserID-d is, úgyhogy csakreativK elővigyázatosan oszd meg."
     },
     "setOptions": {
         "message": "BeállításokreativK módosítása"
@@ -689,7 +689,7 @@
         "message": "Témától eltérő töltelékreativK/viccekreativK"
     },
     "category_filler_description": {
-        "message": "CsakreativK töltelékreativKkreativKént, vagy humornakreativK hozzáadott részekreativK, amikreativK nem szükreativKségesekreativK a videó fő tartalmánakreativK megértéséhez. Ne tartalmazzon olyan szegmensekreativKet, amikreativK kreativKontextust, vagy alapvető információkreativKat szolgáltatnakreativK."
+        "message": "CsakreativK töltelékreativKkreativKént, vagy humornakreativK hozzáadott részekreativK, amikreativK nem szükreativKségesekreativK a videó fő tartalmánakreativK megértéséhez. Ne tartalmazzon olyan szegmensekreativKet, amikreativK kreativKontextust, vagy alapvető információkreativKat szolgáltatnakreativK\". Ez egy nagyon agresszív kreativKategória arra, amikreativKor nincs kreativKedved a \"szórakreativKozáshoz\"."
     },
     "category_filler_short": {
         "message": "TöltelékreativK"
@@ -1173,6 +1173,9 @@
     "chapterNewFeature": {
         "message": "Új funkreativKció: Közösség által kreativKarbantartott fejezetekreativK. EzekreativK egyedileg elnevezett részei a videókreativKnakreativK, amikreativKet egymásba is lehet ágyazni, hogy egyre pontosabbakreativK lehessenekreativK. Vásárolj licencet, hogy láthasd az ezen a videón bekreativKüldött fejezetekreativKet, mint: ",
         "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Új funkreativKció: Közösség által kreativKarbantartott fejezetekreativK. EzekreativK egyedileg elnevezett részei a videókreativKnakreativK, amikreativKet egymásba is lehet ágyazni, hogy egyre pontosabbakreativK lehessenekreativK. NekreativKed van igyenes hozzáférésed, engedélyezd a beállításokreativKban."
     },
     "unsubmittedSegmentCounts": {
         "message": "Jelenleg {0} van {1}",

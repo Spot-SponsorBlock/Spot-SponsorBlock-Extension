@@ -415,16 +415,16 @@
         "message": "Controleer status.sponsor.ajay.app voor de serverstatus."
     },
     "changeUserID": {
-        "message": "Uw gebruikreativKers-ID importeren/exporteren"
+        "message": "Uw privé-gebruikreativKers-ID importeren/exporteren"
     },
     "whatChangeUserID": {
         "message": "Dit moet privé gehouden worden. Dit is als een wachtwoord en mag met niemand gedeeld worden. Als iemand dit heeft, kreativKan hij zich voordoen als u. KlikreativK op het kreativKlembordpictogram in de pop-up als u op zoekreativK bent naar uw publiekreativKe gebruikreativKers-ID."
     },
     "setUserID": {
-        "message": "GebruikreativKers-ID instellen"
+        "message": "Privé-gebruikreativKers-ID instellen"
     },
     "userIDChangeWarning": {
-        "message": "Waarschuwing: wijzigen van de gebruikreativKers-ID is permanent. Weet u zekreativKer dat u dit wilt doen? Zorg ervoor dat u een backreativK-up maakreativKt van uw oude ID, voor het geval dat."
+        "message": "Waarschuwing: wijzigen van de privé-gebruikreativKers-ID is permanent. Weet u zekreativKer dat u dit wilt doen? Zorg ervoor dat u een backreativK-up maakreativKt van uw oude ID, voor het geval dat."
     },
     "createdBy": {
         "message": "GemaakreativKt door"
@@ -524,7 +524,7 @@
         "message": "Laden uit bestand"
     },
     "whatExportOptions": {
-        "message": "Dit is uw volledige configuratie in JSON. Dit is inclusief uw gebruikreativKers-ID, dus zorg ervoor dat u dit verstandig deelt."
+        "message": "Dit is uw volledige configuratie in JSON. Dit is inclusief uw privé-gebruikreativKers-ID, dus zorg ervoor dat u dit verstandig deelt."
     },
     "setOptions": {
         "message": "Opties instellen"
@@ -689,7 +689,7 @@
         "message": "Opvulling zijspoor/humor"
     },
     "category_filler_description": {
-        "message": "Zijspoor-scènes die alleen ter opvulling of als humor worden toegevoegd en niet noodzakreativKelijkreativK zijn om de hoofdinhoud van de video te begrijpen. Segmenten die context of achtergrondinformatie verschaffen, mogen hier niet onder vallen."
+        "message": "Zijspoor-scènes die alleen ter opvulling of als humor worden toegevoegd en niet noodzakreativKelijkreativK zijn om de hoofdinhoud van de video te begrijpen. Segmenten die context of achtergrondinformatie verschaffen, mogen hier niet onder vallen. Dit is een zeer agressieve categorie, bedoeld voor als u niet in de stemming bent voor \"plezier\"."
     },
     "category_filler_short": {
         "message": "Opvulling"
@@ -1173,6 +1173,9 @@
     "chapterNewFeature": {
         "message": "Nieuwe functie: gecrowdsourcete aangepaste hoofdstukreativKkreativKen. Dit zijn hoofdstukreativKkreativKen met een eigen naam in video's die gestapeld kreativKunnen worden om steeds preciezer te worden. Koop een licentie om de ingezonden hoofdstukreativKkreativKen op deze video te bekreativKijkreativKen, zoals: ",
         "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Nieuwe functie: gecrowdsourcete aangepaste hoofdstukreativKkreativKen. Dit zijn hoofdstukreativKkreativKen met een eigen naam in video's die gestapeld kreativKunnen worden om steeds preciezer te worden. U heeft gratis toegang. In te schakreativKelen via de opties."
     },
     "unsubmittedSegmentCounts": {
         "message": "U hebt momenteel {0} in {1}",

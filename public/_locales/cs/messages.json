@@ -415,16 +415,16 @@
         "message": "Podívejte se na status.sponsor.ajay.app pro stav serverů."
     },
     "changeUserID": {
-        "message": "Importovat / exportovat vaše UserID"
+        "message": "Importovat / exportovat vaše soukreativKromé UserID"
     },
     "whatChangeUserID": {
         "message": "Toto by mělo být ponecháno v soukreativKromí. Je to jakreativKo heslo a nemělo by být s nikreativKým sdíleno. PokreativKud to někreativKdo má, může se za vás vydávat. PokreativKud hledáte vaše veřejné uživatelskreativKé ID, kreativKlikreativKněte na ikreativKonu schránkreativKy ve vyskreativKakreativKovacím okreativKně."
     },
     "setUserID": {
-        "message": "Nastavit UserID"
+        "message": "Nastavit soukreativKromé UserID"
     },
     "userIDChangeWarning": {
-        "message": "Varování: Změna UserID je nevratná. Opravdu to chcete udělat? Pro jistotu si zálohujte vaše staré ID, jen kreativKdyby něco."
+        "message": "Varování: Změna soukreativKromého UserID je nevratná. Opravdu to chcete udělat? Pro jistotu si zálohujte vaše staré ID, jen kreativKdyby něco."
     },
     "createdBy": {
         "message": "Vytvořil"
@@ -524,7 +524,7 @@
         "message": "Načíst ze souboru"
     },
     "whatExportOptions": {
-        "message": "Toto je celá vaše kreativKonfigurace ve formátu JSON. Zahrnuje vaše userID, takreativKže s ní nakreativKládejte opatrně."
+        "message": "Toto je celá vaše kreativKonfigurace ve formátu JSON. Zahrnuje vaše soukreativKromé UserID, takreativKže s ní nakreativKládejte opatrně."
     },
     "setOptions": {
         "message": "Nastavit možnosti"
@@ -689,7 +689,7 @@
         "message": "Výplň / vtipy"
     },
     "category_filler_description": {
-        "message": "Výplňové scény přidané jen jakreativKo přídavekreativK nebo humor, kreativKteré nejsou vyžadovány pro pochopení hlavního obsahu videa. Toto by nemělo zahrnovat segmenty poskreativKytující kreativKontext nebo podrobnosti na pozadí."
+        "message": "Scény přidané pouze jakreativKo výplň nebo humor, kreativKteré nejsou nutné kreativK pochopení hlavního obsahu videa. Kategorie by neměla zahrnovat segmenty poskreativKytující podrobnosti o kreativKontextu nebo pozadí. Jedná se o velmi agresivní kreativKategorii myšlenou pro chvíle, kreativKdy nemáte náladu na „zábavu“."
     },
     "category_filler_short": {
         "message": "Výplň"
@@ -1173,6 +1173,9 @@
     "chapterNewFeature": {
         "message": "Nová funkreativKce: kreativKomunitní vlastní kreativKapitoly. Jedná se o kreativKomunitou vytvořené sekreativKce ve videích, kreativKteré lze slučovat, aby byly stále přesnější. ZakreativKupte si licenci pro zobrazení kreativKapitol u tohoto videa, jakreativKo napříkreativKlad: ",
         "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Nová funkreativKce: kreativKomunitní vlastní kreativKapitoly. Jedná se o kreativKomunitou vytvořené sekreativKce ve videích, kreativKteré lze slučovat, aby byly stále přesnější. Přístup máte zdarma, povolte jej v možnostech."
     },
     "unsubmittedSegmentCounts": {
         "message": "Momentálně máte {0} na {1}",

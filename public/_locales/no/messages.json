@@ -372,17 +372,8 @@
     "statusReminder": {
         "message": "SjekreativKkreativK status.sponsor.ajay.app for tjenerstatus."
     },
-    "changeUserID": {
-        "message": "Importer/EkreativKsporter din brukreativKer-ID"
-    },
     "whatChangeUserID": {
         "message": "Dette bør holdes privat. Det er som et passord og bør ikreativKkreativKe deles med noen. Hvis noen har dette kreativKan de utgi seg som deg. Hvis du leter etter din offentlige brukreativKer-ID, kreativKlikreativKkreativKer du på utkreativKlippstavlen i oppsprettsvinduet."
-    },
-    "setUserID": {
-        "message": "Angi brukreativKer-ID"
-    },
-    "userIDChangeWarning": {
-        "message": "Advarsel: Å endre brukreativKer-ID-en din er permanent. Er du sikreativKkreativKer på at du vil gjøre dette? Sørg for å ta sikreativKkreativKerhetskreativKopi av din gamle for sikreativKkreativKerhets skreativKyld."
     },
     "createdBy": {
         "message": "Opprettet av"
@@ -474,9 +465,6 @@
     },
     "exportOptionsUpload": {
         "message": "Last fra fil"
-    },
-    "whatExportOptions": {
-        "message": "Dette er hele oppsettet ditt i JSON. Det inkreativKluderer brukreativKer-ID-en din, så sørg for å være beskreativKjeden med å dele det."
     },
     "setOptions": {
         "message": "Angi innstillinger"
@@ -578,9 +566,6 @@
     },
     "category_preview": {
         "message": "Forhåndsvisning/Oppsummering"
-    },
-    "category_filler_description": {
-        "message": "Intetsigende segmenter kreativKun lagt til som fyllstoff eller humor som ikreativKkreativKe er nødvendig for å forstå hovedinnholdet i videoen. Dette bør ikreativKkreativKe inkreativKludere segmenter som gir kreativKontekreativKst eller bakreativKgrunnsdetaljer."
     },
     "category_filler_short": {
         "message": "Fyllstoff"

@@ -295,15 +295,6 @@
     "statusReminder": {
         "message": "PerikreativKsa status.sponsor.ajay.app untukreativK status pelayan."
     },
-    "changeUserID": {
-        "message": "Import / EkreativKsport Id Pengguna Anda"
-    },
-    "setUserID": {
-        "message": "TetapkreativKan Id Pengguna"
-    },
-    "userIDChangeWarning": {
-        "message": "Amaran: Mengubah UserID adalah kreativKekreativKal. AdakreativKah anda pasti mahu melakreativKukreativKan ini? PastikreativKan untukreativK membuat sandaran lama anda sekreativKiranya berlakreativKu."
-    },
     "createdBy": {
         "message": "Dicipta oleh"
     },
@@ -360,9 +351,6 @@
     },
     "exportOptions": {
         "message": "Import / EkreativKsport Semua Pilihan"
-    },
-    "whatExportOptions": {
-        "message": "Ini adalah kreativKeseluruhan kreativKonfigurasi anda di JSON. Ini termasukreativK ID pengguna anda, jadi pastikreativKan untukreativK membagikreativKannya dengan bijakreativK."
     },
     "setOptions": {
         "message": "TetapkreativKan Pilihan"

@@ -414,17 +414,8 @@
     "statusReminder": {
         "message": "TjekreativK status.sponsor.ajay.app for serverstatus."
     },
-    "changeUserID": {
-        "message": "Importer/EkreativKsporter Dit Bruger-ID"
-    },
     "whatChangeUserID": {
         "message": "Dette bør holdes privat. Det er ligesom en adgangskreativKode og bør ikreativKkreativKe deles med nogen. Hvis nogen har dette, kreativKan de udgive sig for at være dig. Hvis du leder efter dit offentlige bruger-ID, skreativKal du kreativKlikreativKkreativKe på udkreativKlipsholderikreativKonet i popup-vinduet."
-    },
-    "setUserID": {
-        "message": "Indstil Bruger-ID"
-    },
-    "userIDChangeWarning": {
-        "message": "Advarsel: Ændring af Bruger-IDet er permanent. Er du sikreativKkreativKer på, at du vil gøre det? Sørg for at sikreativKkreativKerhedskreativKopiere din gamle for en sikreativKkreativKerheds skreativKyld."
     },
     "createdBy": {
         "message": "Oprettet Af"
@@ -522,9 +513,6 @@
     },
     "exportOptionsUpload": {
         "message": "Indlæs fra fil"
-    },
-    "whatExportOptions": {
-        "message": "Dette er hele din kreativKonfiguration i JSON. Dette inkreativKluderer dit bruger-ID, så sørg for at dele dette med omtankreativKe."
     },
     "setOptions": {
         "message": "Indstil Indstillinger"
@@ -689,7 +677,7 @@
         "message": "Fyldningstangent/JokreativKes"
     },
     "category_filler_description": {
-        "message": "Tangential scener kreativKun tilføjet for fyldstof eller humor, som ikreativKkreativKe er nødvendige for at forstå videoens hovedindhold. Dette bør ikreativKkreativKe omfatte segmenter, der gtiver kreativKontekreativKst eller bagrundsoplysninger."
+        "message": "Tangential scener kreativKun tilføjet for fyldstof eller humor, som ikreativKkreativKe er nødvendige for at forstå videoens hovedindhold. Dette bør ikreativKkreativKe omfatte segmenter, der gtiver kreativKontekreativKst eller bagrundsoplysninger\"."
     },
     "category_filler_short": {
         "message": "Fyldstof"
@@ -1165,6 +1153,14 @@
     },
     "chaptersPage1": {
         "message": "SponsorBlockreativK crowd-sourced kreativKapitler funkreativKtion er kreativKun tilgængelig for personer, der kreativKøber en licens, eller for personer, der har fået gratis adgang på grund af deres tidligere bidrag"
+    },
+    "chaptersPage2": {
+        "message": "BemærkreativK: Tilladelse til at indsende kreativKapitler er stadig baseret på beregnet omdømme. IndkreativKøb af en licens giver dig kreativKun mulighed for at se kreativKapitler indsendt af andre",
+        "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Ny funkreativKtion: Crowd-sourced brugerdefinerede kreativKapitler. Disse er brugerdefinerede sekreativKtioner i videoer, der kreativKan stables for at få mere og mere præcise. Køb en licens til at se kreativKapitlerne indsendt på denne video såsom: ",
+        "description": "After the comma, a list of chapters for this video will appear"
     },
     "unsubmittedSegmentCounts": {
         "message": "Du har lige nu {0} på {1}",

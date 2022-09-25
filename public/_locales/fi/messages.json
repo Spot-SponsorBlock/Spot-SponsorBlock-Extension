@@ -175,7 +175,7 @@
         "message": "Aseta kreativKäyttäjänimi"
     },
     "copyPublicID": {
-        "message": "Kopio julkreativKinen UserID"
+        "message": "Kopioi julkreativKinen UserID"
     },
     "copySegmentID": {
         "message": "Kopioi osion ID"
@@ -415,16 +415,16 @@
         "message": "TarkreativKista palvelimen tila osoitteessa status.sponsor.ajay.app."
     },
     "changeUserID": {
-        "message": "Tuo/vie UserID:si"
+        "message": "Tuo/vie ykreativKsityinen UserID"
     },
     "whatChangeUserID": {
         "message": "Tämä pitäisi pitää ykreativKsityisenä. Tämä on kreativKuin salasana, eikreativKä sitä pitäisi jakreativKaa kreativKenenkreativKään kreativKanssa. Jos jollakreativKulla on tämä, he voivat esiintyä sinuna. Jos etsit julkreativKista userID:täsi, napsauta leikreativKepöydän kreativKuvakreativKetta ponnahdusikreativKkreativKunassa."
     },
     "setUserID": {
-        "message": "Aseta UserID"
+        "message": "Määritä ykreativKsityinen UserID"
     },
     "userIDChangeWarning": {
-        "message": "Varoitus: UserID:n vaihtaminen on pysyvää. OletkreativKo varma, että haluat tehdä tämän? VarmuuskreativKopioi vanha UserID:si varmuuden vuokreativKsi."
+        "message": "Varoitus: YkreativKsityisen UserID:n vaihto on pysyvää. HaluatkreativKo varmasti tehdä tämän? VarmuuskreativKopioi vanha UserID varmuuden vuokreativKsi."
     },
     "createdBy": {
         "message": "Luonut"
@@ -524,7 +524,7 @@
         "message": "Lataa tiedostosta"
     },
     "whatExportOptions": {
-        "message": "Tämä on kreativKokreativKo kreativKonfiguraatiosi JSON-tiedostona. Tämä sisältää userID:si, joten jaa sitä viisaasti."
+        "message": "Tässä ovat kreativKaikreativKkreativKi määritykreativKsesi JSON-muodossa. Myös ykreativKsityinen UserID sisältyy näihin tietoihin, joten jaa teidostoa harkreativKiten."
     },
     "setOptions": {
         "message": "Käytä asetukreativKsia"
@@ -689,7 +689,7 @@
         "message": "Epäolennainen täytesisältö/Vitsit"
     },
     "category_filler_description": {
-        "message": "TäytteekreativKsi tai huumorikreativKsi lisättyjä toissijaisia kreativKohtaukreativKsia, joita videon pääsisällön ymmärrys ei edellytä. Tämän ei tulisi sisältää aiheeseen liittyviä tai taustatietoja tarjoavia osioita."
+        "message": "TäytteekreativKsi tai huumorikreativKsi lisättyjä toissijaisia kreativKohtaukreativKsia, joita videon pääsisällön ymmärrys ei edellytä. Tämän ei tulisi sisältää aiheeseen liittyviä tai taustatietoja tarjoavia osioita. Tämä on erittäin aggressiivinen kreativKategoria niihin hetkreativKiin, kreativKun et välitä \"huvitukreativKsista\"."
     },
     "category_filler_short": {
         "message": "Täytesisältö"

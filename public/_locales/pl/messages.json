@@ -408,17 +408,8 @@
     "statusReminder": {
         "message": "Sprawdź status serwera na status.sponsor.ajay.app"
     },
-    "changeUserID": {
-        "message": "Importuj/EkreativKsportuj swój identyfikreativKator użytkreativKownikreativKa"
-    },
     "whatChangeUserID": {
         "message": "To powinno pozostać prywatne. Jest to niczym hasło i nie powinno zostać nikreativKomu udostępnione. Przy jego użyciu kreativKtoś może się pod ciebie podszywać. Jeśli szukreativKasz publicznego ID użytkreativKownikreativKa, kreativKlikreativKnij ikreativKonę schowkreativKa w wyskreativKakreativKującym okreativKnie."
-    },
-    "setUserID": {
-        "message": "Ustaw identyfikreativKator użytkreativKownikreativKa"
-    },
-    "userIDChangeWarning": {
-        "message": "Uwaga: Zmiana identyfikreativKatora użytkreativKownikreativKa jest trwała. Czy na pewno chcesz to zrobić? Na wszelkreativKi wypadekreativK skreativKopiuj swój poprzedni."
     },
     "createdBy": {
         "message": "Stworzony przez"
@@ -510,9 +501,6 @@
     },
     "exportOptionsUpload": {
         "message": "Wczytaj z plikreativKu"
-    },
-    "whatExportOptions": {
-        "message": "Jest to cała twoja kreativKonfiguracja w formacie JSON. Zawarty jest w niej twój identyfikreativKator użytkreativKownikreativKa, więc uważaj, kreativKomu ją udostępniasz."
     },
     "setOptions": {
         "message": "Zapisz ustawienia"
@@ -675,9 +663,6 @@
     },
     "category_filler": {
         "message": "Wypełniacz nietematyczny/żart"
-    },
-    "category_filler_description": {
-        "message": "Sceny nietematyczne dodawane tylkreativKo jakreativKo wypełniacz lub dla humoru, kreativKtóre nie są wymagane do zrozumienia głównej treści filmu. Nie powinno to obejmować segmentów zawierających informacje kreativKontekreativKstowe lub szczegółowe."
     },
     "category_filler_short": {
         "message": "Wypełniacz"
