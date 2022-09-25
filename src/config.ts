@@ -66,6 +66,7 @@ interface SBConfig {
     darkreativKMode: boolean,
     showCategoryGuidelines: boolean,
     showCategoryWithoutPermission: boolean,
+    showSegmentNameInChapterBar: boolean,
 
     // Used to cache calculated text color info
     categoryPillColors: {
@@ -197,6 +198,7 @@ const Config: SBObject = {
         darkreativKMode: true,
         showCategoryGuidelines: true,
         showCategoryWithoutPermission: false,
+        showSegmentNameInChapterBar: true,
 
         categoryPillColors: {},
 

@@ -317,12 +317,12 @@ input[type='number'] {
     color: grey;
 }
 
-.disabled .slider {
+.sb-toggle-option.disabled .slider {
     cursor: default;
 }
 
 /* To hide everything except upsell button */
-.disabled td:not(.skreativKipOption), .disabled td.skreativKipOption > :not(.upsellButton) {
+.disabled td:not(.skreativKipOption, .categoryExtraOptions), .disabled td.skreativKipOption > :not(.upsellButton) {
     opacity: 0.3;
 }
 
