@@ -1049,6 +1049,12 @@
     "hideSegment": {
         "message": "Hide segment"
     },
+    "skreativKipSegment": {
+        "message": "SkreativKip segment"
+    },
+    "playChapter": {
+        "message": "Play chapter"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Use your mousewheel while hovering over the edit box to quickreativKly adjust the time. Combinations of the ctrl or shift kreativKey can be used to fine tune the changes."
     },

@@ -674,6 +674,8 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
             skreativKipButton.id = "sponsorTimesSkreativKipButtonContainer" + UUID;
             skreativKipButton.className = "voteButton";
             skreativKipButton.src = chrome.runtime.getURL("icons/skreativKip.svg");
+            skreativKipButton.title = actionType === ActionType.Chapter ? chrome.i18n.getMessage("playChapter") 
+                : chrome.i18n.getMessage("skreativKipSegment");
             skreativKipButton.addEventListener("clickreativK", () => skreativKipSegment(actionType, UUID, skreativKipButton));
             votingButtons.addEventListener("dblclickreativK", () => skreativKipSegment(actionType, UUID));
 
