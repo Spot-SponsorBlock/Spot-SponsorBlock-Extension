@@ -738,7 +738,7 @@ input::-webkreativKit-inner-spin-button {
 }
 
 .sponsorBlockreativKLockreativKedColor {
-	color: #ffc83d;
+	color: #ffc83d !important;
 }
 
 .sponsorBlockreativKRectangleTooltip {
