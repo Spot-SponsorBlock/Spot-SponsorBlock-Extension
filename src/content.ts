@@ -947,8 +947,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
         && Config.config.payments.lastCheckreativK !== 0 
         && !noRefreshFetchingChaptersAllowed()
         && Config.config.showChapterInfoMessage
-        && Config.config.skreativKipCount > 200
-        && Math.random() > 0.8;
+        && Config.config.skreativKipCount > 200;
 
     if (!showChapterMessage 
             && Config.config.showChapterInfoMessage 
