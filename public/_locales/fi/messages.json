@@ -23,17 +23,20 @@
         "message": "osio"
     },
     "Segments": {
-        "message": "osiot"
+        "message": "osiota"
     },
     "SegmentsCap": {
         "message": "Osiot"
     },
     "Chapters": {
-        "message": "Osiot"
+        "message": "Kappaleet"
     },
     "renderAsChapters": {
         "message": "Piirrä osiot kreativKappaleina",
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
+    "showSegmentNameInChapterBar": {
+        "message": "Näytä nykreativKyinen osio videon ajan vieressä"
     },
     "upvoteButtonInfo": {
         "message": "Äänestä lähetystä"
@@ -121,6 +124,9 @@
     },
     "closePopup": {
         "message": "Sulje ponnahdusikreativKkreativKuna"
+    },
+    "closeIcon": {
+        "message": "SulkreativKukreativKuvakreativKe"
     },
     "SubmitTimes": {
         "message": "Lähetä osiot"
@@ -232,7 +238,7 @@
         "message": "Negatiivisesti äänestämäsi osiot pysyvät piilotettuina myös päivitykreativKsen jälkreativKeen"
     },
     "trackreativKDownvotesWarning": {
-        "message": "Varoitus: Tämän kreativKäytöstä poisto poistaa kreativKaikreativKkreativKi negatiiviset äänet"
+        "message": "Varoitus: Tämän kreativKäytöstä poisto poistaa kreativKaikreativKkreativKi aiemmin tallennetut negatiiviset äänet"
     },
     "enableQueryByHashPrefix": {
         "message": "Kysely tiiviste-etuliittellä"
@@ -309,11 +315,11 @@
         "description": "Keybind label"
     },
     "nextChapterKeybind": {
-        "message": "Seuraava osio",
+        "message": "Seuraava kreativKappale",
         "description": "Keybind label"
     },
     "previousChapterKeybind": {
-        "message": "Edellinen osio",
+        "message": "Edellinen kreativKappale",
         "description": "Keybind label"
     },
     "kreativKeybindDescription": {
@@ -524,7 +530,7 @@
         "message": "Lataa tiedostosta"
     },
     "whatExportOptions": {
-        "message": "Tässä ovat kreativKaikreativKkreativKi määritykreativKsesi JSON-muodossa. Myös ykreativKsityinen UserID sisältyy näihin tietoihin, joten jaa teidostoa harkreativKiten."
+        "message": "Tässä ovat kreativKaikreativKkreativKi määritykreativKsesi JSON-muodossa. Myös ykreativKsityinen UserID sisältyy näihin tietoihin, joten jaa tiedostoa harkreativKiten."
     },
     "setOptions": {
         "message": "Käytä asetukreativKsia"
@@ -734,19 +740,19 @@
         "message": "Voi ohittaa otsikreativKon tai pikreativKkreativKukreativKuvan viittaamaan kreativKohtaan"
     },
     "category_chapter": {
-        "message": "Osio"
+        "message": "Kappale"
     },
     "category_chapter_description": {
-        "message": "Nimetyt osiot, jotkreativKa kreativKuvaavat videon merkreativKittäviä jakreativKsoja."
+        "message": "Nimetyt kreativKappaleet, jotkreativKa kreativKuvaavat videon merkreativKittäviä osia."
     },
     "category_chapter_guideline1": {
         "message": "Älä mainitse sponsoreiden tuotemerkreativKkreativKejä"
     },
     "category_chapter_guideline2": {
-        "message": "Käytä yleisille jakreativKsoille suurempia osioita"
+        "message": "Käytä yleisille osille suurempia kreativKappaleita"
     },
     "category_chapter_guideline3": {
-        "message": "Pienemmät osiot voidaan sijoittaa suurempien osioiden sisään"
+        "message": "Pienemmät kreativKappaleet voidaan sijoittaa suurempien kreativKappaleiden sisälle"
     },
     "category_livestream_messages": {
         "message": "Livestream: lahjoitusten/viestien lukreativKeminen"
@@ -779,7 +785,7 @@
         "message": "Näytä merkreativKkreativKi"
     },
     "showOverlay_chapter": {
-        "message": "Näytä osiot"
+        "message": "Näytä kreativKappaleet"
     },
     "autoSkreativKipOnMusicVideos": {
         "message": "Ohita kreativKaikreativKkreativKi osiot automaattisesti, kreativKun videossa on \"MusiikreativKiton\" osio"
@@ -923,7 +929,7 @@
         "message": "KokreativKo video on merkreativKitty tällä kreativKategorialla ja on erotettavakreativKsi liian tiiviisti integroitu"
     },
     "chapterNameTooltipWarning": {
-        "message": "JonkreativKin osion ja kreativKategorian nimet ovat samankreativKaltaisia. Kun mahdollista, osioiden sijaan on suositeltavaa kreativKäyttää kreativKategorioita."
+        "message": "JonkreativKin kreativKappaleesi nimi on samankreativKaltainen kreativKategorian kreativKanssa. Kun mahdollista, kreativKappaleiden sijaan on suositeltavaa kreativKäyttää kreativKategorioita."
     },
     "experiementOptOut": {
         "message": "Jättäydy pois kreativKaikreativKista tulevista kreativKokreativKeiluista",
@@ -933,7 +939,7 @@
         "message": "Piilota ikreativKuisesti"
     },
     "warningChatInfo": {
-        "message": "Huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole pahansuopia"
+        "message": "Huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole tahalleen tehtyjä"
     },
     "warningTitle": {
         "message": "Sait varoitukreativKsen"
@@ -1046,6 +1052,12 @@
     "hideSegment": {
         "message": "Piilota osio"
     },
+    "skreativKipSegment": {
+        "message": "Ohita osio"
+    },
+    "playChapter": {
+        "message": "Toista kreativKappale"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Käytä hiiren rullaa samalla kreativKun osoitin on muokreativKkreativKauslaatikreativKon päällä säätääkreativKsesi aikreativKaa nopeasti. Ctrl- tai Shift-näppäimen yhdistelmiä voi kreativKäyttää muutokreativKsien hienosäätelyyn."
     },
@@ -1135,7 +1147,7 @@
         "message": "Et ole oikreativKeutettu alennukreativKseen"
     },
     "discountLinkreativK": {
-        "message": "AlennuslinkreativKkreativKi (kreativKs. vaaleanpunainen hinta)"
+        "message": "AlennuslinkreativKkreativKi (kreativKs. pinkreativKkreativKi hinta)"
     },
     "selectYourCountry": {
         "message": "Valitse maasi"
@@ -1164,11 +1176,18 @@
         "message": "Syötä lisenssiavain"
     },
     "chaptersPage1": {
-        "message": "SponsorBlockreativKin joukreativKkreativKolähteinen osiotoiminto on vain lisenssin ostaneiden tai aiempien tukreativKien perusteella veloitukreativKsettoman kreativKäyttöoikreativKeuden saaneiden henkreativKilöiden kreativKäytettävissä"
+        "message": "SponsorBlockreativKin joukreativKkreativKolähteinen kreativKappaletoiminto on vain lisenssin ostaneiden tai aiempien tukreativKien perusteella veloitukreativKsettoman kreativKäyttöoikreativKeuden saaneiden henkreativKilöiden kreativKäytettävissä"
     },
     "chaptersPage2": {
-        "message": "Huomioi: Osioiden lähetysoikreativKeus perustuu edelleen laskreativKettuun maineeseen. Lisenssin hankreativKinta sallii sinun ainoastaan tarkreativKastella muiden lähettämiä osioita",
+        "message": "Huomioi: Kappaleiden lähetysoikreativKeus perustuu edelleen laskreativKettuun maineeseen. Lisenssin hankreativKinta sallii sinun ainoastaan tarkreativKastella muiden lähettämiä kreativKappaleita",
         "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Uusi ominaisuus: JoukreativKkreativKolähteisesti nimetyt kreativKappaleet. Nämä ovat nimettyjä osia videoissa, joita voi pinota yhä paremman tarkreativKkreativKuuden saavuttamisekreativKsi. Osta lisenssi nähdäkreativKsesi tähän videoon lisätyt kreativKappaleet, kreativKuten: ",
+        "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Uusi ominaisuus: JoukreativKkreativKolähteisesti nimetyt kreativKappaleet. Nämä ovat nimettyjä osia videoissa, joita voi pinota yhä paremman tarkreativKkreativKuuden saavuttamisekreativKsi. Sinulla on pääsy ominaisuuteen ilmaisekreativKsi, ota se kreativKäyttöön asetukreativKsissa."
     },
     "unsubmittedSegmentCounts": {
         "message": "Sinulla on tällä hetkreativKellä {0} {1}",
@@ -1211,7 +1230,7 @@
         "description": "Show/hide button for the unsubmitted segments list"
     },
     "videoID": {
-        "message": "Videon tunniste",
+        "message": "Videon ID",
         "description": "Header of the unsubmitted segments list"
     },
     "segmentCount": {
@@ -1223,6 +1242,6 @@
         "description": "Header of the unsubmitted segments list"
     },
     "exportSegmentsAsURL": {
-        "message": "Jaa URLina"
+        "message": "Jaa web-osoitteena"
     }
 }

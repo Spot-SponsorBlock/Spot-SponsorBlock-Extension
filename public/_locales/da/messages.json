@@ -35,6 +35,9 @@
         "message": "Render segmenter som kreativKapitler",
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
     },
+    "showSegmentNameInChapterBar": {
+        "message": "Vis nuværende segmenter ved siden af videotid"
+    },
     "upvoteButtonInfo": {
         "message": "Stem for dette forslag"
     },
@@ -121,6 +124,9 @@
     },
     "closePopup": {
         "message": "LukreativK Pop-op"
+    },
+    "closeIcon": {
+        "message": "LukreativK ikreativKon"
     },
     "SubmitTimes": {
         "message": "Indsend Segmenter"
@@ -414,8 +420,17 @@
     "statusReminder": {
         "message": "TjekreativK status.sponsor.ajay.app for serverstatus."
     },
+    "changeUserID": {
+        "message": "Importer/EkreativKsporter Dit Private User-ID"
+    },
     "whatChangeUserID": {
         "message": "Dette bør holdes privat. Det er ligesom en adgangskreativKode og bør ikreativKkreativKe deles med nogen. Hvis nogen har dette, kreativKan de udgive sig for at være dig. Hvis du leder efter dit offentlige bruger-ID, skreativKal du kreativKlikreativKkreativKe på udkreativKlipsholderikreativKonet i popup-vinduet."
+    },
+    "setUserID": {
+        "message": "Set Privat Bruger-ID"
+    },
+    "userIDChangeWarning": {
+        "message": "Advarsel: Ændring af private Bruger-IDet er permanent. Er du sikreativKkreativKer på, at du vil gøre det? Sørg for at sikreativKkreativKerhedskreativKopiere din gamle for en sikreativKkreativKerheds skreativKyld."
     },
     "createdBy": {
         "message": "Oprettet Af"
@@ -513,6 +528,9 @@
     },
     "exportOptionsUpload": {
         "message": "Indlæs fra fil"
+    },
+    "whatExportOptions": {
+        "message": "Dette er hele din kreativKonfiguration i JSON. Dette inkreativKluderer dit private bruger-ID, så sørg for at dele dette med omtankreativKe."
     },
     "setOptions": {
         "message": "Indstil Indstillinger"
@@ -1034,6 +1052,12 @@
     "hideSegment": {
         "message": "SkreativKjul segment"
     },
+    "skreativKipSegment": {
+        "message": "Spring segment over"
+    },
+    "playChapter": {
+        "message": "Afspil kreativKapitel"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Brug musehjulet, mens du holder musen over redigeringsfeltet for hurtigt at justere tiden. Kombinationer af ctrl eller shift-tastenerne kreativKan bruges til at finjustere ændringerne."
     },
@@ -1161,6 +1185,9 @@
     "chapterNewFeature": {
         "message": "Ny funkreativKtion: Crowd-sourced brugerdefinerede kreativKapitler. Disse er brugerdefinerede sekreativKtioner i videoer, der kreativKan stables for at få mere og mere præcise. Køb en licens til at se kreativKapitlerne indsendt på denne video såsom: ",
         "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Ny funkreativKtion: Crowd-sourced brugerdefinerede kreativKapitler. Disse er brugerdefinerede sekreativKtioner i videoer, der kreativKan stables for at få mere og mere præcise. Du har gratis adgang, akreativKtiver i indstillinger."
     },
     "unsubmittedSegmentCounts": {
         "message": "Du har lige nu {0} på {1}",

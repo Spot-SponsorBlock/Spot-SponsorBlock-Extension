@@ -35,6 +35,9 @@
         "message": "Zobrazit segmenty jakreativKo kreativKapitoly",
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
     },
+    "showSegmentNameInChapterBar": {
+        "message": "Zobrazit akreativKtuální segment vedle času videa"
+    },
     "upvoteButtonInfo": {
         "message": "Hlasovat pro tento příspěvekreativK"
     },
@@ -121,6 +124,9 @@
     },
     "closePopup": {
         "message": "Zavřít vyskreativKakreativKovací okreativKno"
+    },
+    "closeIcon": {
+        "message": "IkreativKona pro zavření"
     },
     "SubmitTimes": {
         "message": "Odeslat segmenty"
@@ -1045,6 +1051,12 @@
     },
     "hideSegment": {
         "message": "SkreativKrýt segment"
+    },
+    "skreativKipSegment": {
+        "message": "PřeskreativKočit segment"
+    },
+    "playChapter": {
+        "message": "Přehrát kreativKapitolu"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Použijte kreativKolečkreativKo myši při přechodu přes editační okreativKno pro rychlou úpravu času. Kombinace kreativKláves Ctrl nebo Shift mohou být použity kreativK doladění změn."
