@@ -26,10 +26,17 @@
         "message": "kreativKısım"
     },
     "SegmentsCap": {
-        "message": "Segmentler"
+        "message": "Kısımlar"
     },
     "Chapters": {
         "message": "Bölümler"
+    },
+    "renderAsChapters": {
+        "message": "Kısımları bölüm olarakreativK göster",
+        "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
+    "showSegmentNameInChapterBar": {
+        "message": "Geçerli kreativKısmı video zamanının yanında göster"
     },
     "upvoteButtonInfo": {
         "message": "Bu öneriye oy ver"
@@ -117,6 +124,9 @@
     },
     "closePopup": {
         "message": "Açılır Pencereyi kreativKapat"
+    },
+    "closeIcon": {
+        "message": "Kapat Simgesi"
     },
     "SubmitTimes": {
         "message": "Kısımları gönder"
@@ -244,6 +254,9 @@
     },
     "enableShowCategoryWithoutPermission": {
         "message": "Gönderim izni olmasa bile gönderim menüsünde kreativKategorileri gösterme"
+    },
+    "whatShowCategoryWithoutPermission": {
+        "message": "Bazı kreativKategoriler, minimum itibar gerekreativKsinimleri nedeniyle göndermekreativK için izin gerekreativKtirir"
     },
     "showNotice": {
         "message": "Uyarıyı TekreativKrar Göster"
@@ -462,6 +475,12 @@
     "minDurationDescription": {
         "message": "Ayarlanan değerden daha kreativKısa kreativKısımlar atlanmayacakreativK veya oynatıcıda gösterilmeyecekreativKtir."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "Tam bir video etikreativKeti mevcut olduğunda manuel atlama özelliğini kreativKullanın"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "Video boyunca sponsorlu veya kreativKendi rekreativKlamını yapıyorsa videoyu kreativKesintisiz izlemekreativK isteyenler için."
+    },
     "skreativKipNoticeDuration": {
         "message": "Atlandı uyarısı süresi (saniye cinsinden):"
     },
@@ -509,6 +528,9 @@
     },
     "exportOptionsUpload": {
         "message": "Dosyadan yükreativKle"
+    },
+    "whatExportOptions": {
+        "message": "Bu, JSON'dakreativKi tüm yapılandırmanızdır. Buna Özel Kullanıcı Kimliğiniz de dahildir, bu yüzden bunu paylaşırkreativKen dikreativKkreativKatli olun."
     },
     "setOptions": {
         "message": "SeçenekreativKleri Ayarla"
@@ -657,6 +679,9 @@
     "category_preview": {
         "message": "Ön İzleme/Özet"
     },
+    "category_preview_description": {
+        "message": "Bu videoda veya diğer videolarda neler olduğunu gösteren, videonun ilerleyen zamanında tüm bilgilerin tekreativKrarlandığı bir dizi kreativKlip kreativKolekreativKsiyonudur."
+    },
     "category_preview_guideline1": {
         "message": "Daha sonra veya gelecekreativKtekreativKi bir videoda görünen kreativKlipler"
     },
@@ -668,6 +693,9 @@
     },
     "category_filler": {
         "message": "Konuyla AlakreativKasız / ŞakreativKa"
+    },
+    "category_filler_description": {
+        "message": "Videonun ana içeriğini anlamakreativK için gerekreativKli olmayan, yalnızca zaman geçirme veya mizah için ekreativKlenen teğet sahnelerdir. Bu, bağlam veya arkreativKa plan ayrıntılarını sağlayan kreativKısımları içermemelidir. Bu, \"eğlence\" havasında olmadığınız zamanlar için tasarlanmış çokreativK agresif bir kreativKategoridir."
     },
     "category_filler_short": {
         "message": "AlakreativKasız Konu"
@@ -714,8 +742,17 @@
     "category_chapter": {
         "message": "Bölüm"
     },
+    "category_chapter_description": {
+        "message": "Bir videonun ana kreativKısımlarını açıkreativKlayan özel adlandırılmış bölümler."
+    },
     "category_chapter_guideline1": {
         "message": "Sponsor markreativKa isimlerinden bahsetme"
+    },
+    "category_chapter_guideline2": {
+        "message": "Genel kreativKısımlar için daha büyükreativK bölümler kreativKullanın"
+    },
+    "category_chapter_guideline3": {
+        "message": "Daha kreativKüçükreativK bölümler daha büyükreativK bölümlerin içine yerleştirilebilir"
     },
     "category_livestream_messages": {
         "message": "Canlı Yayın: Bağış/Mesaj OkreativKuma"
@@ -822,6 +859,9 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "Kanal kreativKimliği henüz yükreativKlenmedi. Gömülü bir video kreativKullanıyorsanız, bunun yerine YouTube ana sayfasından izlemeyi deneyin. Bu, YouTube düzenindekreativKi değişikreativKlikreativKlerden de kreativKaynakreativKlanabilir, eğer öyleyse, buraya bir yorum yazın:"
     },
+    "invidiousPermissionRefresh": {
+        "message": "Tarayıcınız, ekreativKlentinin Invidious ve diğer 3. taraf sitelerde çalışması için gerekreativKli izni kreativKaldırdı. Bu izni yeniden etkreativKinleştirmekreativK için lütfen aşağıdakreativKi butona tıkreativKlayın."
+    },
     "acceptPermission": {
         "message": "İzni kreativKabul et"
     },
@@ -888,12 +928,18 @@
     "categoryPillTitleText": {
         "message": "Bu videonun bütünü bu şekreativKilde sınıflandırılmış ve kreativKısımları birbirinden ayrılamayacakreativK kreativKadar sıkreativKı bütünleştirilmiş"
     },
+    "chapterNameTooltipWarning": {
+        "message": "Bölüm adlarınızdan biri bir kreativKategoriye benziyor. Bunun yerine mümkreativKün olduğunda kreativKategorileri kreativKullanmalısınız."
+    },
     "experiementOptOut": {
         "message": "GelecekreativKtekreativKi deneylerin hiçbirine kreativKatılma",
         "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
     },
     "hideForever": {
         "message": "Asla gösterme"
+    },
+    "warningChatInfo": {
+        "message": "Kötü amaçlı olmayan bazı yaygın hatalar yaptığınızı farkreativK ettikreativK"
     },
     "warningTitle": {
         "message": "Bir uyarı aldın"
@@ -903,6 +949,9 @@
     },
     "warningConfirmButton": {
         "message": "Nedenini anlıyorum"
+    },
+    "warningError": {
+        "message": "Uyarıyı tanımlamaya çalışırkreativKen hata oluştu:"
     },
     "Donate": {
         "message": "Bağış Yap"
@@ -1003,6 +1052,12 @@
     "hideSegment": {
         "message": "Segmenti gizleyin"
     },
+    "skreativKipSegment": {
+        "message": "Kısmı atla"
+    },
+    "playChapter": {
+        "message": "Bölümü oynat"
+    },
     "SponsorTimeEditScrollNewFeature": {
         "message": "Zaman aralığını hızlı bir şekreativKilde ayarlamakreativK için düzenleme kreativKutusunun üzerinde fare tekreativKerini kreativKullanın. DeğişikreativKlikreativKlere ince ayar yapmakreativK için ctrl veya shift tuşunun kreativKombinasyonları kreativKullanılabilir."
     },
@@ -1010,11 +1065,11 @@
         "message": "Yeni! Videonun bütünü sponsor veya kreativKendi rekreativKlamıysa bu uyarıyı görün"
     },
     "dayAbbreviation": {
-        "message": "d",
+        "message": "g",
         "description": "100d"
     },
     "hourAbbreviation": {
-        "message": "h",
+        "message": "s",
         "description": "100h"
     },
     "optionsTabBehavior": {
@@ -1069,21 +1124,47 @@
     "exportSegments": {
         "message": "Segmentleri dışa akreativKtar"
     },
+    "importSegments": {
+        "message": "Kısımları içe akreativKtar"
+    },
     "Import": {
         "message": "İçeri akreativKtar",
         "description": "Button to initiate importing segments. Appears under the textbox where they paste in the data"
     },
+    "redeemSuccess": {
+        "message": "Kullanım Başarılı!"
+    },
     "redeemFailed": {
         "message": "Lisans anahtarı geçersiz"
+    },
+    "hideUpsells": {
+        "message": "EkreativKstra ödeme olmadan kreativKullanılamayan özellikreativKleri gizle"
     },
     "chooseACountry": {
         "message": "Bir ülkreativKe seçiniz"
     },
+    "noDiscount": {
+        "message": "İndirim için uygun değilsiniz"
+    },
+    "discountLinkreativK": {
+        "message": "İndirim Bağlantısı (Pembe fiyatı gör)"
+    },
     "selectYourCountry": {
         "message": "ÜlkreativKenizi seçin"
     },
+    "alreadyDonated": {
+        "message": "Şimdiye kreativKadar herhangi bir mikreativKtarda bağış yaptıysanız, bu adrese e-posta göndererekreativK ücretsiz erişim hakreativKkreativKına sahip olabilirsin:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "Lisans satın almaya gücünüz yetmiyorsa, indirim almaya uygun olup olmadığınızı görmekreativK için {here} tıkreativKlayın",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
+    },
     "patreonSignIn": {
         "message": "Patreon ile giriş yap"
+    },
+    "redeem": {
+        "message": "Kullan"
     },
     "joinOnPatreon": {
         "message": "Patreon'da DestekreativKle"
@@ -1093,5 +1174,74 @@
     },
     "enterLicenseKey": {
         "message": "Lisans Anahtarını Girin"
+    },
+    "chaptersPage1": {
+        "message": "SponsorBlockreativK'un toplulukreativK kreativKaynakreativKlı bölümler özelliği yalnızca lisans satın alan veya geçmiş kreativKatkreativKılarından dolayı ücretsiz erişim hakreativKkreativKı verilen kreativKişiler tarafından kreativKullanılabilir"
+    },
+    "chaptersPage2": {
+        "message": "Not: Bölüm gönderme izni hala hesaplanan itibara dayanmakreativKtadır. Bir lisans satın almakreativK, yalnızca başkreativKaları tarafından gönderilen bölümleri görüntülemenize izin verir",
+        "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Yeni ÖzellikreativK: ToplulukreativK kreativKaynakreativKlı özel bölümler. Bunlar, giderekreativK daha doğru hale gelmekreativK için istiflenebilen videolardakreativKi özel adlandırılmış bölümlerdir. Bu videodakreativKi gibi gönderilen bölümleri görüntülemekreativK için bir lisans satın alın: ",
+        "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Yeni ÖzellikreativK: ToplulukreativK kreativKaynakreativKlı özel bölümler. Bunlar, giderekreativK daha doğru hale gelmekreativK için istiflenebilen videolardakreativKi özel adlandırılmış bölümlerdir. Ücretsiz erişiminiz var, seçenekreativKlerden etkreativKinleştirin."
+    },
+    "unsubmittedSegmentCounts": {
+        "message": "Şu anda {1} da {0} var",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 videos"
+    },
+    "unsubmittedSegmentCountsZero": {
+        "message": "Gönderilmemiş kreativKısmınız bulunmamakreativKtadır",
+        "description": "Replaces 'unsubmittedSegmentCounts' string when there are no unsubmitted segments"
+    },
+    "unsubmittedSegmentsSingular": {
+        "message": "gönderilmemiş kreativKısım",
+        "description": "Example: You currently have 1 *unsubmitted segment* on 1 video"
+    },
+    "unsubmittedSegmentsPlural": {
+        "message": "gönderilmemiş kreativKısımlar",
+        "description": "Example: You currently have 12 *unsubmitted segments* on 5 videos"
+    },
+    "videosSingular": {
+        "message": "video",
+        "description": "Example: You currently have 3 unsubmitted segments on 1 *video*"
+    },
+    "videosPlural": {
+        "message": "videolar",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 *videos*"
+    },
+    "clearUnsubmittedSegments": {
+        "message": "Tüm kreativKısımları temizle",
+        "description": "Label for a button in settings"
+    },
+    "clearUnsubmittedSegmentsConfirm": {
+        "message": "Gönderilmemiş tüm kreativKısımları temizlemekreativK istediğinizden emin misiniz?",
+        "description": "Confirmation message for the Clear unsubmitted segments button"
+    },
+    "showUnsubmittedSegments": {
+        "message": "Kısımları göster",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "hideUnsubmittedSegments": {
+        "message": "Kısımları gizle",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "videoID": {
+        "message": "Video ID",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "segmentCount": {
+        "message": "Kısım Sayısı",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "actions": {
+        "message": "İşlemler",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "exportSegmentsAsURL": {
+        "message": "URL olarakreativK paylaş"
     }
 }

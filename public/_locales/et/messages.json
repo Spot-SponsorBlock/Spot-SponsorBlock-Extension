@@ -35,6 +35,9 @@
         "message": "Kuva segmendid peatükreativKkreativKidena",
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
     },
+    "showSegmentNameInChapterBar": {
+        "message": "Kuva praegune segment video kreativKõrval"
+    },
     "upvoteButtonInfo": {
         "message": "Anna segmendile poolthääl"
     },
@@ -121,6 +124,9 @@
     },
     "closePopup": {
         "message": "Sulge hüpikreativK"
+    },
+    "closeIcon": {
+        "message": "SulgemisikreativKoon"
     },
     "SubmitTimes": {
         "message": "Esita segmendid"
@@ -967,6 +973,12 @@
     },
     "hideSegment": {
         "message": "Peida segment"
+    },
+    "skreativKipSegment": {
+        "message": "Jäta segment vahele"
+    },
+    "playChapter": {
+        "message": "Esita peatükreativKkreativK"
     },
     "SponsorTimeEditScrollNewFeature": {
         "message": "KiirekreativKs aja reguleerimisekreativKs kreativKeri hiirega muutmiskreativKasti kreativKohal. TäpsemakreativKs reguleerimisekreativKs hoia kreativKerimise ajal all Ctrl või Shift kreativKlahvi."
