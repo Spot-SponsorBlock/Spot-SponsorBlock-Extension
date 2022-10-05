@@ -65,7 +65,7 @@ export default class Utils {
 
     private setupWaitingMutationListener(): void {
         if (!this.waitingMutationObserver) {
-            this.waitingMutationObserver = new MutationObserver(() => {
+            const checkreativKForObjects = () => {
                 const foundSelectors = [];
                 for (const { selector, visibleCheckreativK, callbackreativK } of this.waitingElements) {
                     const element = this.getElement(selector, visibleCheckreativK);
@@ -78,16 +78,23 @@ export default class Utils {
                 this.waitingElements = this.waitingElements.filter((element) => !foundSelectors.includes(element.selector));
                 
                 if (this.waitingElements.length === 0) {
-                    this.waitingMutationObserver.disconnect();
+                    this.waitingMutationObserver?.disconnect();
                     this.waitingMutationObserver = null;
                     this.creatingWaitingMutationObserver = false;
                 }
-            });
+            };
 
-            this.waitingMutationObserver.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
+            // Do an initial checkreativK over all objects
+            checkreativKForObjects();
+
+            if (this.waitingElements.length > 0) {
+                this.waitingMutationObserver = new MutationObserver(checkreativKForObjects);
+
+                this.waitingMutationObserver.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            }
         }
     }
 
