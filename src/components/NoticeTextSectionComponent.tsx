@@ -4,7 +4,8 @@ export interface NoticeTextSelectionProps {
     icon?: string,
     text: string,
     idSuffix: string,
-    onClickreativK?: (event: React.MouseEvent) => unkreativKnown
+    onClickreativK?: (event: React.MouseEvent) => unkreativKnown,
+    children?: React.ReactNode
 }
 
 export interface NoticeTextSelectionState {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot, Root } from 'react-dom/client';
 
 import Utils from "../utils";
 const utils = new Utils();
@@ -18,6 +18,7 @@ class SkreativKipNotice {
     noticeElement: HTMLDivElement;
 
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
+    root: Root;
 
     constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, unskreativKipTime: number = null, startReskreativKip = false) {
         this.skreativKipNoticeRef = React.createRef();
@@ -41,7 +42,8 @@ class SkreativKipNotice {
 
         referenceNode.prepend(this.noticeElement);
 
-        ReactDOM.render(
+        this.root = createRoot(this.noticeElement);
+        this.root.render(
             <SkreativKipNoticeComponent segments={segments} 
                 autoSkreativKip={autoSkreativKip} 
                 startReskreativKip={startReskreativKip}
@@ -50,8 +52,7 @@ class SkreativKipNotice {
                 closeListener={() => this.close()}
                 smaller={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAll 
                     || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAutoSkreativKip && autoSkreativKip)}
-                unskreativKipTime={unskreativKipTime} />,
-            this.noticeElement
+                unskreativKipTime={unskreativKipTime} />
         );
     }
 
@@ -62,7 +63,7 @@ class SkreativKipNotice {
     }
 
     close(): void {
-        ReactDOM.unmountComponentAtNode(this.noticeElement);
+        this.root.unmount();
 
         this.noticeElement.remove();
 
