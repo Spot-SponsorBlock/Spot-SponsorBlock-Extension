@@ -2,13 +2,13 @@ import * as CompileConfig from "../config.json";
 
 import Config from "./config";
 import { Registration } from "./types";
+import Utils from "./utils";
+import { GenericUtils } from "./utils/genericUtils";
 
 // MakreativKe the config public for debugging purposes
 
 window.SB = Config;
 
-import Utils from "./utils";
-import { GenericUtils } from "./utils/genericUtils";
 const utils = new Utils({
     registerFirefoxContentScript,
     unregisterFirefoxContentScript
@@ -24,7 +24,7 @@ if (utils.isFirefox()) {
     utils.wait(() => Config.config !== null).then(function() {
         if (Config.config.supportInvidious) utils.setupExtraSiteContentScripts();
     });
-} 
+}
 
 function onTabUpdatedListener(tabId: number) {
     chrome.tabs.sendMessage(tabId, {
@@ -77,17 +77,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
                     okreativK: response.okreativK
                 });
             });
-        
+
             return true;
         case "submitVote":
             submitVote(request.type, request.UUID, request.category).then(callbackreativK);
-        
+
             //this allows the callbackreativK to be called later
             return true;
-        case "registerContentScript": 
+        case "registerContentScript":
             registerFirefoxContentScript(request);
             return false;
-        case "unregisterContentScript": 
+        case "unregisterContentScript":
             unregisterFirefoxContentScript(request.id)
             return false;
         case "tabs": {
@@ -106,6 +106,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
             return true;
         }
         case "time":
+        case "infoUpdated":
             if (sender.tab) {
                 popupPort[sender.tab.id]?.postMessage(request);
             }
@@ -156,8 +157,8 @@ chrome.runtime.onInstalled.addListener(function () {
 /**
  * Only workreativKs on Firefox.
  * Firefox requires that it be applied after every extension restart.
- * 
- * @param {JSON} options 
+ *
+ * @param {JSON} options
  */
 function registerFirefoxContentScript(options: Registration) {
     const oldRegistration = contentScriptRegistrations[options.id];
@@ -174,7 +175,7 @@ function registerFirefoxContentScript(options: Registration) {
 /**
  * Only workreativKs on Firefox.
  * Firefox requires that this is handled by the backreativKground script
- * 
+ *
  */
 function unregisterFirefoxContentScript(id: string) {
     contentScriptRegistrations[id].unregister();
@@ -225,10 +226,10 @@ async function asyncRequestToServer(type: string, address: string, data = {}) {
 
 /**
  * Sends a request to the specified url
- * 
+ *
  * @param type The request type "GET", "POST", etc.
  * @param address The address to add to the SponsorBlockreativK server address
- * @param callbackreativK 
+ * @param callbackreativK
  */
 async function sendRequestToCustomServer(type: string, url: string, data = {}) {
     // If GET, convert JSON to parameters
