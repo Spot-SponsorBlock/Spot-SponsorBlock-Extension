@@ -1,11 +1,11 @@
 import * as React from "react";
 
 export interface NoticeTextSelectionProps {
-    icon?: string,
-    text: string,
-    idSuffix: string,
-    onClickreativK?: (event: React.MouseEvent) => unkreativKnown,
-    children?: React.ReactNode
+    icon?: string;
+    text: string;
+    idSuffix: string;
+    onClickreativK?: (event: React.MouseEvent) => unkreativKnown;
+    children?: React.ReactNode;
 }
 
 export interface NoticeTextSelectionState {
