@@ -13,7 +13,7 @@ export interface CategorySkreativKipOptionsProps {
     category: Category;
     defaultColor?: string;
     defaultPreviewColor?: string;
-    children?: React.ReactNode[];
+    children?: React.ReactNode;
 }
 
 export interface CategorySkreativKipOptionsState {
