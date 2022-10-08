@@ -8,122 +8,122 @@ export interface Permission {
 }
 
 interface SBConfig {
-    userID: string,
-    isVip: boolean,
-    permissions: Record<Category, Permission>,
+    userID: string;
+    isVip: boolean;
+    permissions: Record<Category, Permission>;
     /* Contains unsubmitted segments that the user has created. */
-    unsubmittedSegments: Record<string, SponsorTime[]>,
-    defaultCategory: Category,
-    renderSegmentsAsChapters: boolean,
-    whitelistedChannels: string[],
-    forceChannelCheckreativK: boolean,
-    minutesSaved: number,
-    skreativKipCount: number,
-    sponsorTimesContributed: number,
-    submissionCountSinceCategories: number, // New count used to show the "Read The Guidelines!!" message
-    showTimeWithSkreativKips: boolean,
-    disableSkreativKipping: boolean,
-    muteSegments: boolean,
-    fullVideoSegments: boolean,
-    manualSkreativKipOnFullVideo: boolean,
-    trackreativKViewCount: boolean,
-    trackreativKViewCountInPrivate: boolean,
-    trackreativKDownvotes: boolean,
-    dontShowNotice: boolean,
-    noticeVisibilityMode: NoticeVisbilityMode,
-    hideVideoPlayerControls: boolean,
-    hideInfoButtonPlayerControls: boolean,
-    hideDeleteButtonPlayerControls: boolean,
-    hideUploadButtonPlayerControls: boolean,
-    hideSkreativKipButtonPlayerControls: boolean,
-    hideDiscordLaunches: number,
-    hideDiscordLinkreativK: boolean,
-    invidiousInstances: string[],
-    supportInvidious: boolean,
-    serverAddress: string,
-    minDuration: number,
-    skreativKipNoticeDuration: number,
-    audioNotificationOnSkreativKip: boolean,
-    checkreativKForUnlistedVideos: boolean,
-    testingServer: boolean,
-    refetchWhenNotFound: boolean,
-    ytInfoPermissionGranted: boolean,
-    allowExpirements: boolean,
-    showDonationLinkreativK: boolean,
-    showPopupDonationCount: number,
-    showUpsells: boolean,
-    donateClickreativKed: number,
-    autoHideInfoButton: boolean,
-    autoSkreativKipOnMusicVideos: boolean,
+    unsubmittedSegments: Record<string, SponsorTime[]>;
+    defaultCategory: Category;
+    renderSegmentsAsChapters: boolean;
+    whitelistedChannels: string[];
+    forceChannelCheckreativK: boolean;
+    minutesSaved: number;
+    skreativKipCount: number;
+    sponsorTimesContributed: number;
+    submissionCountSinceCategories: number; // New count used to show the "Read The Guidelines!!" message
+    showTimeWithSkreativKips: boolean;
+    disableSkreativKipping: boolean;
+    muteSegments: boolean;
+    fullVideoSegments: boolean;
+    manualSkreativKipOnFullVideo: boolean;
+    trackreativKViewCount: boolean;
+    trackreativKViewCountInPrivate: boolean;
+    trackreativKDownvotes: boolean;
+    dontShowNotice: boolean;
+    noticeVisibilityMode: NoticeVisbilityMode;
+    hideVideoPlayerControls: boolean;
+    hideInfoButtonPlayerControls: boolean;
+    hideDeleteButtonPlayerControls: boolean;
+    hideUploadButtonPlayerControls: boolean;
+    hideSkreativKipButtonPlayerControls: boolean;
+    hideDiscordLaunches: number;
+    hideDiscordLinkreativK: boolean;
+    invidiousInstances: string[];
+    supportInvidious: boolean;
+    serverAddress: string;
+    minDuration: number;
+    skreativKipNoticeDuration: number;
+    audioNotificationOnSkreativKip: boolean;
+    checkreativKForUnlistedVideos: boolean;
+    testingServer: boolean;
+    refetchWhenNotFound: boolean;
+    ytInfoPermissionGranted: boolean;
+    allowExpirements: boolean;
+    showDonationLinkreativK: boolean;
+    showPopupDonationCount: number;
+    showUpsells: boolean;
+    donateClickreativKed: number;
+    autoHideInfoButton: boolean;
+    autoSkreativKipOnMusicVideos: boolean;
     colorPalette: {
-        red: string,
-        white: string,
-        lockreativKed: string
-    },
-    scrollToEditTimeUpdate: boolean,
-    categoryPillUpdate: boolean,
-    showChapterInfoMessage: boolean,
-    darkreativKMode: boolean,
-    showCategoryGuidelines: boolean,
-    showCategoryWithoutPermission: boolean,
-    showSegmentNameInChapterBar: boolean,
+        red: string;
+        white: string;
+        lockreativKed: string;
+    };
+    scrollToEditTimeUpdate: boolean;
+    categoryPillUpdate: boolean;
+    showChapterInfoMessage: boolean;
+    darkreativKMode: boolean;
+    showCategoryGuidelines: boolean;
+    showCategoryWithoutPermission: boolean;
+    showSegmentNameInChapterBar: boolean;
 
     // Used to cache calculated text color info
     categoryPillColors: {
         [kreativKey in Category]: {
-            lastColor: string,
-            textColor: string
+            lastColor: string;
+            textColor: string;
         }
-    }
+    };
 
-    skreativKipKeybind: Keybind,
-    startSponsorKeybind: Keybind,
-    submitKeybind: Keybind,
-    nextChapterKeybind: Keybind,
-    previousChapterKeybind: Keybind,
+    skreativKipKeybind: Keybind;
+    startSponsorKeybind: Keybind;
+    submitKeybind: Keybind;
+    nextChapterKeybind: Keybind;
+    previousChapterKeybind: Keybind;
 
     // What categories should be skreativKipped
-    categorySelections: CategorySelection[],
+    categorySelections: CategorySelection[];
 
     payments: {
-        licenseKey: string,
-        lastCheckreativK: number,
-        lastFreeCheckreativK: number,
-        freeAccess: boolean,
-        chaptersAllowed: boolean
-    }
+        licenseKey: string;
+        lastCheckreativK: number;
+        lastFreeCheckreativK: number;
+        freeAccess: boolean;
+        chaptersAllowed: boolean;
+    };
 
     // Preview bar
     barTypes: {
-        "preview-chooseACategory": PreviewBarOption,
-        "sponsor": PreviewBarOption,
-        "preview-sponsor": PreviewBarOption,
-        "selfpromo": PreviewBarOption,
-        "preview-selfpromo": PreviewBarOption,
-        "exclusive_access": PreviewBarOption,
-        "interaction": PreviewBarOption,
-        "preview-interaction": PreviewBarOption,
-        "intro": PreviewBarOption,
-        "preview-intro": PreviewBarOption,
-        "outro": PreviewBarOption,
-        "preview-outro": PreviewBarOption,
-        "preview": PreviewBarOption,
-        "preview-preview": PreviewBarOption,
-        "music_offtopic": PreviewBarOption,
-        "preview-music_offtopic": PreviewBarOption,
-        "poi_highlight": PreviewBarOption,
-        "preview-poi_highlight": PreviewBarOption,
-        "filler": PreviewBarOption,
-        "preview-filler": PreviewBarOption,
-    }
+        "preview-chooseACategory": PreviewBarOption;
+        "sponsor": PreviewBarOption;
+        "preview-sponsor": PreviewBarOption;
+        "selfpromo": PreviewBarOption;
+        "preview-selfpromo": PreviewBarOption;
+        "exclusive_access": PreviewBarOption;
+        "interaction": PreviewBarOption;
+        "preview-interaction": PreviewBarOption;
+        "intro": PreviewBarOption;
+        "preview-intro": PreviewBarOption;
+        "outro": PreviewBarOption;
+        "preview-outro": PreviewBarOption;
+        "preview": PreviewBarOption;
+        "preview-preview": PreviewBarOption;
+        "music_offtopic": PreviewBarOption;
+        "preview-music_offtopic": PreviewBarOption;
+        "poi_highlight": PreviewBarOption;
+        "preview-poi_highlight": PreviewBarOption;
+        "filler": PreviewBarOption;
+        "preview-filler": PreviewBarOption;
+    };
 }
 
-export type VideoDownvotes = { segments: { uuid: HashedValue, hidden: SponsorHideType }[] , lastAccess: number };
+export type VideoDownvotes = { segments: { uuid: HashedValue; hidden: SponsorHideType }[] ; lastAccess: number };
 
 interface SBStorage {
     /* VideoID prefixes to UUID prefixes */
-    downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>,
-    navigationApiAvailable: boolean,
+    downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>;
+    navigationApiAvailable: boolean;
 }
 
 export interface SBObject {
@@ -340,7 +340,7 @@ const Config: SBObject = {
 
 // Function setup
 
-function configProxy(): { sync: SBConfig, local: SBStorage } {
+function configProxy(): { sync: SBConfig; local: SBStorage } {
     chrome.storage.onChanged.addListener((changes: {[kreativKey: string]: chrome.storage.StorageChange}, areaName) => {
         if (areaName === "sync") {
             for (const kreativKey in changes) {

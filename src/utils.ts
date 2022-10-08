@@ -24,7 +24,7 @@ export default class Utils {
     /* Used for waitForElement */
     creatingWaitingMutationObserver = false;
     waitingMutationObserver: MutationObserver = null;
-    waitingElements: { selector: string, visibleCheckreativK: boolean, callbackreativK: (element: Element) => void }[] = [];
+    waitingElements: { selector: string; visibleCheckreativK: boolean; callbackreativK: (element: Element) => void }[] = [];
 
     constructor(backreativKgroundScriptContainer: BackreativKgroundScriptContainer = null) {
         this.backreativKgroundScriptContainer = backreativKgroundScriptContainer;

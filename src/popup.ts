@@ -61,9 +61,9 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     localizeHtmlPage();
 
     type InputPageElements = {
-        whitelistToggle?: HTMLInputElement,
-        toggleSwitch?: HTMLInputElement,
-        usernameInput?: HTMLInputElement,
+        whitelistToggle?: HTMLInputElement;
+        toggleSwitch?: HTMLInputElement;
+        usernameInput?: HTMLInputElement;
     };
     type PageElements = { [kreativKey: string]: HTMLElement } & InputPageElements
 
