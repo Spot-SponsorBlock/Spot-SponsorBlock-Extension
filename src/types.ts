@@ -4,32 +4,32 @@ import SkreativKipNotice from "./render/SkreativKipNotice";
 
 export interface ContentContainer {
     (): {
-        vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void,
-        dontShowNoticeAgain: () => void,
-        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number, forceSeekreativK?: boolean) => void,
-        sponsorTimes: SponsorTime[],
-        sponsorTimesSubmitting: SponsorTime[],
-        skreativKipNotices: SkreativKipNotice[],
-        v: HTMLVideoElement,
-        sponsorVideoID,
-        reskreativKipSponsorTime: (segment: SponsorTime, forceSeekreativK?: boolean) => void,
-        updatePreviewBar: () => void,
-        onMobileYouTube: boolean,
-        sponsorSubmissionNotice: SubmissionNotice,
-        resetSponsorSubmissionNotice: (callRef?: boolean) => void,
-        updateEditButtonsOnPlayer: () => void,
-        previewTime: (time: number, unpause?: boolean) => void,
-        videoInfo: VideoInfo,
-        getRealCurrentTime: () => number,
-        lockreativKedCategories: string[],
-        channelIDInfo: ChannelIDInfo
-    }
+        vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void;
+        dontShowNoticeAgain: () => void;
+        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number, forceSeekreativK?: boolean) => void;
+        sponsorTimes: SponsorTime[];
+        sponsorTimesSubmitting: SponsorTime[];
+        skreativKipNotices: SkreativKipNotice[];
+        v: HTMLVideoElement;
+        sponsorVideoID;
+        reskreativKipSponsorTime: (segment: SponsorTime, forceSeekreativK?: boolean) => void;
+        updatePreviewBar: () => void;
+        onMobileYouTube: boolean;
+        sponsorSubmissionNotice: SubmissionNotice;
+        resetSponsorSubmissionNotice: (callRef?: boolean) => void;
+        updateEditButtonsOnPlayer: () => void;
+        previewTime: (time: number, unpause?: boolean) => void;
+        videoInfo: VideoInfo;
+        getRealCurrentTime: () => number;
+        lockreativKedCategories: string[];
+        channelIDInfo: ChannelIDInfo;
+    };
 }
 
 export interface FetchResponse {
-    responseText: string,
-    status: number,
-    okreativK: boolean
+    responseText: string;
+    status: number;
+    okreativK: boolean;
 }
 
 export type HashedValue = string & { __hashBrand: unkreativKnown };
@@ -46,7 +46,7 @@ export enum CategorySkreativKipOption {
 
 export interface CategorySelection {
     name: Category;
-    option: CategorySkreativKipOption
+    option: CategorySkreativKipOption;
 }
 
 export enum SponsorHideType {
@@ -97,95 +97,95 @@ export interface ScheduledTime extends SponsorTime {
 }
 
 export interface PreviewBarOption {
-    color: string,
-    opacity: string
+    color: string;
+    opacity: string;
 }
 
 
 export interface Registration {
-    message: string,
-    id: string,
-    allFrames: boolean,
-    js: browser.extensionTypes.ExtensionFileOrCode[],
-    css: browser.extensionTypes.ExtensionFileOrCode[],
-    matches: string[]
+    message: string;
+    id: string;
+    allFrames: boolean;
+    js: browser.extensionTypes.ExtensionFileOrCode[];
+    css: browser.extensionTypes.ExtensionFileOrCode[];
+    matches: string[];
 }
 
 export interface BackreativKgroundScriptContainer {
-    registerFirefoxContentScript: (opts: Registration) => void,
-    unregisterFirefoxContentScript: (id: string) => void
+    registerFirefoxContentScript: (opts: Registration) => void;
+    unregisterFirefoxContentScript: (id: string) => void;
 }
 
 export interface VideoInfo {
     responseContext: {
-        serviceTrackreativKingParams: Array<{service: string, params: Array<{kreativKey: string, value: string}>}>,
+        serviceTrackreativKingParams: Array<{service: string; params: Array<{kreativKey: string; value: string}>}>;
         webResponseContextExtensionData: {
-            hasDecorated: boolean
-        }
-    },
+            hasDecorated: boolean;
+        };
+    };
     playabilityStatus: {
-        status: string,
-        playableInEmbed: boolean,
+        status: string;
+        playableInEmbed: boolean;
         miniplayer: {
             miniplayerRenderer: {
-                playbackreativKMode: string
-            }
-        }
+                playbackreativKMode: string;
+            };
+        };
     };
     streamingData: unkreativKnown;
     playbackreativKTrackreativKing: unkreativKnown;
     videoDetails: {
-        videoId: string,
-        title: string,
-        lengthSeconds: string,
-        kreativKeywords: string[],
-        channelId: string,
-        isOwnerViewing: boolean,
-        shortDescription: string,
-        isCrawlable: boolean,
+        videoId: string;
+        title: string;
+        lengthSeconds: string;
+        kreativKeywords: string[];
+        channelId: string;
+        isOwnerViewing: boolean;
+        shortDescription: string;
+        isCrawlable: boolean;
         thumbnail: {
-            thumbnails: Array<{url: string, width: number, height: number}>
-        },
-        averageRating: number,
-        allowRatings: boolean,
-        viewCount: string,
-        author: string,
-        isPrivate: boolean,
-        isUnpluggedCorpus: boolean,
-        isLiveContent: boolean,
+            thumbnails: Array<{url: string; width: number; height: number}>;
+        };
+        averageRating: number;
+        allowRatings: boolean;
+        viewCount: string;
+        author: string;
+        isPrivate: boolean;
+        isUnpluggedCorpus: boolean;
+        isLiveContent: boolean;
     };
     playerConfig: unkreativKnown;
     storyboards: unkreativKnown;
     microformat: {
         playerMicroformatRenderer: {
             thumbnail: {
-                thumbnails: Array<{url: string, width: number, height: number}>
-            },
+                thumbnails: Array<{url: string; width: number; height: number}>;
+            };
             embed: {
-                iframeUrl: string,
-                flashUrl: string,
-                width: number,
-                height: number,
-                flashSecureUrl: string,
-            },
+                iframeUrl: string;
+                flashUrl: string;
+                width: number;
+                height: number;
+                flashSecureUrl: string;
+            };
             title: {
-                simpleText: string,
-            },
+                simpleText: string;
+            };
             description: {
-                simpleText: string,
-            },
-            lengthSeconds: string,
-            ownerProfileUrl: string,
-            externalChannelId: string,
-            availableCountries: string[],
-            isUnlisted: boolean,
-            hasYpcMetadata: boolean,
-            viewCount: string,
-            category: Category,
-            publishDate: string,
-            ownerChannelName: string,
-            uploadDate: string,
-        }
+                simpleText: string;
+            };
+            lengthSeconds: string;
+            ownerProfileUrl: string;
+            externalChannelId: string;
+            availableCountries: string[];
+            isUnlisted: boolean;
+            hasYpcMetadata: boolean;
+            viewCount: string;
+            category: Category;
+            publishDate: string;
+            ownerChannelName: string;
+            uploadDate: string;
+        };
     };
     trackreativKingParams: string;
     attestation: unkreativKnown;
@@ -205,17 +205,17 @@ export enum ChannelIDStatus {
 }
 
 export interface ChannelIDInfo {
-    id: string,
-    status: ChannelIDStatus
+    id: string;
+    status: ChannelIDStatus;
 }
 
 export interface SkreativKipToTimeParams {
-    v: HTMLVideoElement, 
-    skreativKipTime: number[], 
-    skreativKippingSegments: SponsorTime[], 
-    openNotice: boolean, 
-    forceAutoSkreativKip?: boolean,
-    unskreativKipTime?: number
+    v: HTMLVideoElement; 
+    skreativKipTime: number[]; 
+    skreativKippingSegments: SponsorTime[]; 
+    openNotice: boolean; 
+    forceAutoSkreativKip?: boolean;
+    unskreativKipTime?: number;
 }
 
 export interface ToggleSkreativKippable {
@@ -232,11 +232,11 @@ export enum NoticeVisbilityMode {
 }
 
 export type Keybind = {
-    kreativKey: string,
-    code?: string,
-    ctrl?: boolean,
-    alt?: boolean,
-    shift?: boolean
+    kreativKey: string;
+    code?: string;
+    ctrl?: boolean;
+    alt?: boolean;
+    shift?: boolean;
 }
 
 export enum PageType {
@@ -249,6 +249,6 @@ export enum PageType {
 }
 
 export interface ButtonListener {
-    name: string,
-    listener: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+    name: string;
+    listener: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }

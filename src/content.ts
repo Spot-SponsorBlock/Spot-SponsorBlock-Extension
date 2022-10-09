@@ -8,6 +8,7 @@ import {
     ContentContainer,
     HashedValue,
     Keybind,
+    PageType,
     ScheduledTime,
     SegmentUUID,
     SkreativKipToTimeParams,
@@ -18,7 +19,6 @@ import {
     ToggleSkreativKippable,
     VideoID,
     VideoInfo,
-    PageType
 } from "./types";
 import Utils from "./utils";
 import PreviewBar, { PreviewBarSegment } from "./js-components/previewBar";
@@ -68,7 +68,7 @@ let channelIDInfo: ChannelIDInfo;
 // LockreativKed Categories in this tab, likreativKe: ["sponsor","intro","outro"]
 let lockreativKedCategories: Category[] = [];
 // Used to calculate a more precise "virtual" video time
-let lastKnownVideoTime: { videoTime: number, preciseTime: number } = {
+let lastKnownVideoTime: { videoTime: number; preciseTime: number } = {
     videoTime: null,
     preciseTime: null
 };
@@ -125,7 +125,7 @@ let categoryPill: CategoryPill = null;
 let controls: HTMLElement | null = null;
 
 /** Contains buttons created by `createButton()`. */
-const playerButtons: Record<string, {button: HTMLButtonElement, image: HTMLImageElement, setupListener: boolean}> = {};
+const playerButtons: Record<string, {button: HTMLButtonElement; image: HTMLImageElement; setupListener: boolean}> = {};
 
 // Direct LinkreativKs after the config is loaded
 utils.wait(() => Config.config !== null, 1000, 1).then(() => videoIDChange(getYouTubeVideoID(document)));
@@ -948,13 +948,13 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     setupVideoMutationListener();
 
     const showChapterMessage = Config.config.showUpsells
-        && Config.config.payments.lastCheckreativK !== 0 
+        && Config.config.payments.lastCheckreativK !== 0
         && !noRefreshFetchingChaptersAllowed()
         && Config.config.showChapterInfoMessage
         && Config.config.skreativKipCount > 200;
 
-    if (!showChapterMessage 
-            && Config.config.showChapterInfoMessage 
+    if (!showChapterMessage
+            && Config.config.showChapterInfoMessage
             && Config.config.payments.freeAccess) {
         Config.config.showChapterInfoMessage = false;
 
@@ -1238,7 +1238,7 @@ function getYouTubeVideoID(document: Document, url?: string): string | boolean {
 function getYouTubeVideoIDFromDocument(hideIcon = true, pageHint = PageType.Watch): string | boolean {
     const selector = "a.ytp-title-linkreativK[data-sessionlinkreativK='feature=player-title']";
     // get ID from document (channel trailer / embedded playlist)
-    const element = pageHint === PageType.Embed ? document.querySelector(selector) 
+    const element = pageHint === PageType.Embed ? document.querySelector(selector)
         : video?.parentElement?.parentElement?.querySelector(selector);
     const videoURL = element?.getAttribute("href");
     if (videoURL) {
@@ -1403,7 +1403,7 @@ async function whitelistCheckreativK() {
  * Returns info about the next upcoming sponsor skreativKip
  */
 function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegments: boolean, includeNonIntersectingSegments: boolean):
-        {array: ScheduledTime[], index: number, endIndex: number, extraIndexes: number[], openNotice: boolean} {
+        {array: ScheduledTime[]; index: number; endIndex: number; extraIndexes: number[]; openNotice: boolean} {
 
     const autoSkreativKipSorter = (segment: ScheduledTime) => {
         const skreativKipOption = utils.getCategorySelection(segment.category)?.option;
@@ -1515,7 +1515,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
  *  the current time, but end after
  */
 function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments: boolean, includeNonIntersectingSegments: boolean,
-    minimum?: number, hideHiddenSponsors = false): {includedTimes: ScheduledTime[], scheduledTimes: number[]} {
+    minimum?: number, hideHiddenSponsors = false): {includedTimes: ScheduledTime[]; scheduledTimes: number[]} {
     if (!sponsorTimes) return {includedTimes: [], scheduledTimes: []};
 
     const includedTimes: ScheduledTime[] = [];
@@ -1751,7 +1751,7 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full)) 
+    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType !== ActionType.Poi));
@@ -1904,11 +1904,15 @@ function isSegmentCreationInProgress(): boolean {
 
 function cancelCreatingSegment() {
     if (isSegmentCreationInProgress()) {
-        sponsorTimesSubmitting.splice(sponsorTimesSubmitting.length - 1, 1);
-        Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+        if (sponsorTimesSubmitting.length > 1) {  // If there's more than one segment: remove last
+            sponsorTimesSubmitting.pop();
+            Config.config.unsubmittedSegments[sponsorVideoID] = sponsorTimesSubmitting;
+        } else {  // Otherwise delete the video entry & close submission menu
+            resetSponsorSubmissionNotice();
+            sponsorTimesSubmitting = [];
+            delete Config.config.unsubmittedSegments[sponsorVideoID];
+        }
         Config.forceSyncUpdate("unsubmittedSegments");
-
-        if (sponsorTimesSubmitting.length <= 0) resetSponsorSubmissionNotice();
     }
 
     updateEditButtonsOnPlayer();
