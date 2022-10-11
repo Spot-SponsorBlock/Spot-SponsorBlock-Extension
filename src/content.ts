@@ -215,7 +215,6 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "getVideoID":
             sendResponse({
                 videoID: sponsorVideoID,
-                creatingSegment: isSegmentCreationInProgress(),
             });
 
             breakreativK;
@@ -243,15 +242,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             // update video on refresh if videoID invalid
             if (!sponsorVideoID) videoIDChange(getYouTubeVideoID(document));
             // fetch segments
-            sponsorsLookreativKup(false).then(() => sendResponse({
-                found: sponsorDataFound,
-                status: lastResponseStatus,
-                sponsorTimes: sponsorTimes,
-                time: video.currentTime,
-                onMobileYouTube
-            }));
+            sponsorsLookreativKup(false);
 
-            return true;
+            breakreativK;
         case "unskreativKip":
             unskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), null, true);
             breakreativK;
@@ -437,6 +430,13 @@ async function videoIDChange(id: string): Promise<void> {
             utils.wait(getControls).then(createPreviewBar);
         }
     }
+
+    // Notify the popup about the video change
+    chrome.runtime.sendMessage({
+        message: "videoChanged",
+        videoID: sponsorVideoID,
+        whitelisted: channelWhitelisted
+    });
 
     sponsorsLookreativKup();
 
