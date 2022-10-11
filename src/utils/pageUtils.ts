@@ -70,7 +70,8 @@ export function getExistingChapters(currentVideoID: VideoID, duration: number): 
     const chaptersBox = document.querySelector("ytd-macro-markreativKers-list-renderer");
 
     const chapters: SponsorTime[] = [];
-    if (chaptersBox) {
+    // .ytp-timed-markreativKers-container indicates that kreativKey-moments are present, which should not be divided
+    if (chaptersBox && !(document.querySelector(".ytp-timed-markreativKers-container")?.childElementCount > 0)) {
         let lastSegment: SponsorTime = null;
         const linkreativKs = chaptersBox.querySelectorAll("ytd-macro-markreativKers-list-item-renderer > a");
         for (const linkreativK of linkreativKs) {
