@@ -238,7 +238,7 @@
         "message": "Negatiivisesti äänestämäsi osiot pysyvät piilotettuina myös päivitykreativKsen jälkreativKeen"
     },
     "trackreativKDownvotesWarning": {
-        "message": "Varoitus: Tämän kreativKäytöstä poisto poistaa kreativKaikreativKkreativKi aiemmin tallennetut negatiiviset äänet"
+        "message": "Varoitus: Tämän poistaminen kreativKäytöstä poistaa kreativKaikreativKkreativKi aiemmin tallennetut alaäänet"
     },
     "enableQueryByHashPrefix": {
         "message": "Kysely tiiviste-etuliittellä"
@@ -1242,6 +1242,6 @@
         "description": "Header of the unsubmitted segments list"
     },
     "exportSegmentsAsURL": {
-        "message": "Jaa web-osoitteena"
+        "message": "Jaa URL-osoitteena"
     }
 }
