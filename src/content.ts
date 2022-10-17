@@ -271,8 +271,13 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             for (const segment of importedSegments) {
                 if (!sponsorTimesSubmitting.some(
                         (s) => Math.abs(s.segment[0] - segment.segment[0]) < 1
-                            && Math.abs(s.segment[1] - segment.segment[1]) < 1)
-                        && (segment.category !== "chapter" || utils.getCategorySelection("chapter"))) {
+                            && Math.abs(s.segment[1] - segment.segment[1]) < 1)) {
+                    if (segment.category === "chapter" && !utils.getCategorySelection("chapter")) {
+                        segment.category = "chooseACategory" as Category;
+                        segment.actionType = ActionType.SkreativKip;
+                        segment.description = "";
+                    }
+
                     sponsorTimesSubmitting.push(segment);
                     addedSegments = true;
                 }
