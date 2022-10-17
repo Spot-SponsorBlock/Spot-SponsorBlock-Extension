@@ -284,6 +284,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
 
                 updateEditButtonsOnPlayer();
                 updateSponsorTimesSubmitting(false);
+                submitSponsorTimes();
             }
 
             sendResponse({
