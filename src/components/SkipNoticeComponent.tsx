@@ -373,6 +373,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 </span>
             );
         }
+        return null;
     }
 
     getSubmissionChooser(): JSX.Element[] {
