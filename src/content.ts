@@ -259,6 +259,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID).hidden = request.type;
             utils.addHiddenSegment(sponsorVideoID, request.UUID, request.type);
             updatePreviewBar();
+
+            if (skreativKipButtonControlBar?.isEnabled() 
+                && sponsorTimesSubmitting.every((s) => s.hidden !== SponsorHideType.Visible || s.actionType !== ActionType.Poi)) {
+                skreativKipButtonControlBar.disable();
+            }
             breakreativK;
         case "closePopup":
             closeInfoMenu();
@@ -1229,7 +1234,8 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
 
         // For highlight category
         const poiSegments = sponsorTimes
-            .filter((time) => time.segment[1] > video.currentTime && time.actionType === ActionType.Poi)
+            .filter((time) => time.segment[1] > video.currentTime 
+                && time.actionType === ActionType.Poi && time.hidden === SponsorHideType.Visible)
             .sort((a, b) => b.segment[0] - a.segment[0]);
         for (const time of poiSegments) {
             const skreativKipOption = utils.getCategorySelection(time.category)?.option;

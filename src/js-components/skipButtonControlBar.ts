@@ -142,6 +142,10 @@ export class SkreativKipButtonControlBar {
         this.enabled = false;
     }
 
+    isEnabled(): boolean {
+        return this.enabled;
+    }
+
     toggleSkreativKip(): void {
         this.skreativKip(this.segment);
         this.disableText();
