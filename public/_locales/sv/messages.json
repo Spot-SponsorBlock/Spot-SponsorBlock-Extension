@@ -116,6 +116,9 @@
     "connectionError": {
         "message": "Anslutningsfel. FelkreativKod: "
     },
+    "segmentsStillLoading": {
+        "message": "Segmenten laddas fortfarande..."
+    },
     "clearTimes": {
         "message": "Rensa segmenten"
     },
@@ -1243,5 +1246,8 @@
     },
     "exportSegmentsAsURL": {
         "message": "Dela som webbadress"
+    },
+    "segmentFetchFailureWarning": {
+        "message": "Varning: Servern har inte skreativKickreativKat ut några segment. Det kreativKan fakreativKtiskreativKt finnas segment på den här videon som redan skreativKickreativKats in, men du har inte mottagit dem ännu på grund av problem med servern."
     }
 }

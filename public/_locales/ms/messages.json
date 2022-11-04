@@ -25,6 +25,19 @@
     "Segments": {
         "message": "segmen"
     },
+    "SegmentsCap": {
+        "message": "Segmen"
+    },
+    "Chapters": {
+        "message": "Bab"
+    },
+    "renderAsChapters": {
+        "message": "Render segmen sebagai bab",
+        "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
+    },
+    "showSegmentNameInChapterBar": {
+        "message": "TunjukreativKkreativKan Segmen Semasa Di Sebelah Masa Video"
+    },
     "upvoteButtonInfo": {
         "message": "SokreativKong penyerahan ini"
     },
@@ -51,6 +64,9 @@
     },
     "reskreativKip": {
         "message": "ReskreativKip"
+    },
+    "unmute": {
+        "message": "Nyahredam"
     },
     "paused": {
         "message": "Dijeda"
@@ -79,8 +95,14 @@
     "sponsorEnd": {
         "message": "Segmen BerakreativKhir SekreativKarang"
     },
+    "sponsorCancel": {
+        "message": "BatalkreativKan Membuat Segmen"
+    },
     "noVideoID": {
         "message": "Tiada video YouTube dijumpai.\nSekreativKiranya ini tidakreativK betul, muat semula tab."
+    },
+    "refreshSegments": {
+        "message": "Muat semula segmen"
     },
     "success": {
         "message": "Berjaya!"
@@ -94,6 +116,9 @@
     "connectionError": {
         "message": "Ralat sambungan telah berlakreativKu. Kod salah: "
     },
+    "segmentsStillLoading": {
+        "message": "Segmen masih dimuatkreativKan..."
+    },
     "clearTimes": {
         "message": "KosongkreativKan Segmen"
     },
@@ -103,8 +128,14 @@
     "closePopup": {
         "message": "Tutup Pop timbul"
     },
+    "closeIcon": {
+        "message": "Tutup IkreativKon"
+    },
     "SubmitTimes": {
         "message": "Hantar Segmen"
+    },
+    "sortSegments": {
+        "message": "Susun Segmen"
     },
     "submitCheckreativK": {
         "message": "AdakreativKah anda pasti mahu menghantarnya?"
@@ -152,6 +183,12 @@
     "setUsername": {
         "message": "TetapkreativKan Nama Pengguna"
     },
+    "copyPublicID": {
+        "message": "Salin PenggunaID Awam"
+    },
+    "copySegmentID": {
+        "message": "Salin ID Segmen"
+    },
     "discordAdvert": {
         "message": "Mari sertai pelayan perselisihan rasmi untukreativK memberi cadangan dan makreativKlum balas!"
     },
@@ -170,11 +207,17 @@
     "hideButtonsDescription": {
         "message": "Ini menyembunyikreativKan butang yang muncul di pemain YouTube untukreativK menyerahkreativKan segmen langkreativKau."
     },
+    "showSkreativKipButton": {
+        "message": "Simpan Butang LangkreativKau Ke Sorotan Di Pemain"
+    },
     "showInfoButton": {
         "message": "TunjukreativKkreativKan Butang MakreativKlumat Pada Pemain YouTube"
     },
     "hideInfoButton": {
         "message": "SembunyikreativKan Butang MakreativKlumat Pada Pemain YouTube"
+    },
+    "autoHideInfoButton": {
+        "message": "Auto-sembunyikreativKan Butang MakreativKlumat"
     },
     "hideDeleteButton": {
         "message": "SembunyikreativKan Butang Padam Pada Pemain YouTube"
@@ -188,6 +231,18 @@
     "whatViewTrackreativKing": {
         "message": "Fungsi ini mengesan segmen mana yang telah anda lewati untukreativK memberi tahu pengguna seberapa banyakreativK penyerahan merekreativKa telah membantu orang lain dan digunakreativKan sebagai metrikreativK bersama dengan suara positif untukreativK memastikreativKan bahawa spam tidakreativK masukreativK kreativKe dalam pangkreativKalan data. Sambungan tersebut menghantar mesej kreativKe pelayan setiap kreativKali anda melewatkreativKan segmen. Mudah-mudahan kreativKebanyakreativKan orang tidakreativK mengubah tetapan ini supaya nombor paparan tepat. :)"
     },
+    "enableViewTrackreativKingInPrivate": {
+        "message": "BolehkreativKan PenjejakreativKan kreativKiraan LangkreativKau Di Dalam Tab Persendirian/InkreativKognito"
+    },
+    "enableTrackreativKDownvotes": {
+        "message": "Simpan segmen undi turun"
+    },
+    "whatTrackreativKDownvotes": {
+        "message": "Segmen yang anda undi turun akreativKan kreativKekreativKal tersembunyi walaupun selepas memuat semulakreativKan"
+    },
+    "trackreativKDownvotesWarning": {
+        "message": "Amaran: MelumpuhkreativKan ini akreativKan padam semua undi turun yang tersimpan sebelum ini"
+    },
     "enableQueryByHashPrefix": {
         "message": "Pertanyaan Oleh Awalan Hash"
     },
@@ -200,11 +255,35 @@
     "whatRefetchWhenNotFound": {
         "message": "SekreativKiranya videonya baru, dan tidakreativK ada segmen yang dijumpai, video akreativKan terus diambil setiap beberapa minit semasa anda menonton."
     },
+    "enableShowCategoryWithoutPermission": {
+        "message": "TunjukreativK kreativKategori dalam menu penghantaran walaupun tanpa kreativKebenaran penghantaran"
+    },
+    "whatShowCategoryWithoutPermission": {
+        "message": "Beberapa kreativKategori memerlukreativKan kreativKebenaran untukreativK hantar disebabkreativKan kreativKeperluan reputasi minimum"
+    },
     "showNotice": {
         "message": "TunjukreativKkreativKan Notis Lagi"
     },
     "showSkreativKipNotice": {
         "message": "TunjukreativKkreativKan MakreativKluman Setelah Segmen DilangkreativKau"
+    },
+    "showCategoryGuidelines": {
+        "message": "TunjukreativKkreativKan Bantuan Kategori"
+    },
+    "noticeVisibilityMode0": {
+        "message": "Saiz Penuh LangkreativKau Notis"
+    },
+    "noticeVisibilityMode1": {
+        "message": "Notis LangkreativKau Kecil untukreativK Auto LangkreativKau"
+    },
+    "noticeVisibilityMode2": {
+        "message": "Semua Kecil Notis LangkreativKau"
+    },
+    "noticeVisibilityMode3": {
+        "message": "Notis LangkreativKau Pudar untukreativK Auto LangkreativKau"
+    },
+    "noticeVisibilityMode4": {
+        "message": "Semua Pudar Notis LangkreativKau"
     },
     "longDescription": {
         "message": "SponsorBlockreativK membolehkreativKan anda melewati penaja, intro, outro, peringatan langganan, dan bahagian lain dari video YouTube yang menjengkreativKelkreativKan. SponsorBlockreativK adalah pelanjutan penyemakreativK imbas yang banyakreativK untukreativK membolehkreativKan sesiapa sahaja menghantar segmen tajaan dan masa tayangan dari segmen video YouTube yang lain. Setelah satu orang menyerahkreativKan makreativKlumat ini, semua orang yang mempunyai pelanjutan ini akreativKan melangkreativKau segmen yang ditaja. Anda juga boleh melangkreativKau bahagian muzikreativK video muzikreativK bukreativKan.",
@@ -225,6 +304,29 @@
     "noticeUpdate2": {
         "message": "SekreativKiranya anda masih tidakreativK menyukreativKainya, tekreativKan butang jangan tunjukreativKkreativKan.",
         "description": "The second line of the message displayed after the notice was upgraded."
+    },
+    "setSkreativKipShortcut": {
+        "message": "LangkreativKau segmen",
+        "description": "Keybind label"
+    },
+    "setStartSponsorShortcut": {
+        "message": "Mula/berhenti segmen",
+        "description": "Keybind label"
+    },
+    "setSubmitKeybind": {
+        "message": "Hantar segmen",
+        "description": "Keybind label"
+    },
+    "nextChapterKeybind": {
+        "message": "Bab seterusnya",
+        "description": "Keybind label"
+    },
+    "previousChapterKeybind": {
+        "message": "Bab sebelumnya",
+        "description": "Keybind label"
+    },
+    "kreativKeybindDescription": {
+        "message": "Pilih kreativKekreativKunci dengan menaipnya dan pilih mana-mana kreativKekreativKunci pengubah suai yang anda ingin gunakreativKan."
     },
     "0": {
         "message": "Masa sambungan telah tamat. PerikreativKsa sambungan internet anda. SekreativKiranya internet anda berfungsi, pelayan mungkreativKin berlebihan atau tidakreativK berfungsi."
@@ -248,8 +350,34 @@
     "skreativKip": {
         "message": "LangkreativKau"
     },
+    "mute": {
+        "message": "Redam"
+    },
+    "full": {
+        "message": "Seluruh Video",
+        "description": "Used for the name of the option to label an entire video as sponsor or self promotion."
+    },
     "skreativKip_category": {
         "message": "LangkreativKau {0}?"
+    },
+    "mute_category": {
+        "message": "Redam {0}?"
+    },
+    "skreativKip_to_category": {
+        "message": "LangkreativKau kreativKepada {0}?",
+        "description": "Used for skreativKipping to things (SkreativKip to Highlight)"
+    },
+    "skreativKipped": {
+        "message": "{0} MelangkreativKau",
+        "description": "Example: Sponsor SkreativKipped"
+    },
+    "muted": {
+        "message": "{0} Diredam",
+        "description": "Example: Sponsor Muted"
+    },
+    "skreativKipped_to_category": {
+        "message": "MelangkreativKau kreativKepada {0}",
+        "description": "Used for skreativKipping to things (SkreativKipped to Highlight)"
     },
     "disableAutoSkreativKip": {
         "message": "LumpuhkreativKan LangkreativKau Auto"
@@ -295,11 +423,39 @@
     "statusReminder": {
         "message": "PerikreativKsa status.sponsor.ajay.app untukreativK status pelayan."
     },
+    "changeUserID": {
+        "message": "Import/EkreativKsport PenggunaID Persendirian Anda"
+    },
+    "whatChangeUserID": {
+        "message": "Ini patut dirahsiakreativKan. Ini seperti kreativKata laluan dan tidakreativK patut untukreativK dikreativKongsi dengan sesiapa. JikreativKa seseorang mempunyai ini, merekreativKa boleh menyamar sebagai anda. JikreativKa anda sedang mencari untukreativK penggunaID awam anda, tekreativKan ikreativKon papan kreativKeratan di dalam pop timbul."
+    },
+    "setUserID": {
+        "message": "TetapkreativKan PenggunaanID Peribadi"
+    },
+    "userIDChangeWarning": {
+        "message": "Amaran: Mengubah PenggunaanID Peribadi adalah kreativKekreativKal. AdakreativKah anda pasti anda mahu melakreativKukreativKan ini? PastikreativKan untukreativK membuat sandaran anda yang lama untukreativK berjaga-jaga."
+    },
     "createdBy": {
         "message": "Dicipta oleh"
     },
+    "supportOtherSites": {
+        "message": "SokreativKong PihakreativK Ke-3 Laman YouTube"
+    },
+    "supportOtherSitesDescription": {
+        "message": "SokreativKong kreativKlien pihakreativK kreativKetiga YouTube. UntukreativK membolehkreativKan sokreativKong, anda perlu menerima kreativKebenaran tambahan. Ini TIDAK berfungsi dalam inkreativKognito pada Chrome dan varian Chromium lain.",
+        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
+    },
+    "supportedSites": {
+        "message": "Laman DisokreativKong: "
+    },
     "optionsInfo": {
         "message": "DayakreativKan sokreativKongan Invidious, lumpuhkreativKan autoskreativKip, sembunyikreativKan butang dan banyakreativK lagi."
+    },
+    "addInvidiousInstance": {
+        "message": "Tambah PihakreativK Ke-3 Contoh Klien"
+    },
+    "addInvidiousInstanceDescription": {
+        "message": "Tambah contoh tersuai. Ini mesti diformat HANYA dengan domain. Contoh: invidious.ajay.app"
     },
     "add": {
         "message": "Tambah"
@@ -322,8 +478,23 @@
     "minDurationDescription": {
         "message": "Segmen yang lebih pendekreativK daripada nilai yang ditetapkreativKan tidakreativK akreativKan dilangkreativKau atau ditunjukreativKkreativKan dalam pemain."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "GunakreativKan langkreativKau manual apabila label video penuh wujud"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "UntukreativK orang yang ingin menonton video penuh tanpa gangguan jikreativKa ia adalah ditaja sepenuhnya atau promosi diri."
+    },
+    "skreativKipNoticeDuration": {
+        "message": "Tenpoh masa notis langkreativKau (saat):"
+    },
+    "skreativKipNoticeDurationDescription": {
+        "message": "Notis langkreativKau akreativKan kreativKekreativKal di skreativKrin untukreativK sekreativKurang-kreativKurangnya beberapa saat ini. UntukreativK melangkreativKau secara manual, ia mungkreativKin dilihat lebih lama."
+    },
     "shortCheckreativK": {
         "message": "Penyerahan berikreativKut lebih pendekreativK daripada pilihan tempoh minimum anda. Ini mungkreativKin bermakreativKsud ini sudah dihantar, dan hanya diabaikreativKan kreativKerana pilihan ini. AdakreativKah anda pasti mahu menghantar?"
+    },
+    "liveOrPremiere": {
+        "message": "Menghantar pada siaran langsung akreativKtif atau tayangan perdana tidakreativK dibenarkreativKan. Sila tunggu sehingga ia selesai, kreativKemudian muat semula halaman dan mengesahkreativKan yang segmen masih sah."
     },
     "showUploadButton": {
         "message": "TunjukreativKkreativKan Butang Muat NaikreativK"
@@ -352,6 +523,18 @@
     "exportOptions": {
         "message": "Import / EkreativKsport Semua Pilihan"
     },
+    "exportOptionsCopy": {
+        "message": "Sunting/salin"
+    },
+    "exportOptionsDownload": {
+        "message": "Simpan kreativKe fail"
+    },
+    "exportOptionsUpload": {
+        "message": "MuatkreativKan dari fail"
+    },
+    "whatExportOptions": {
+        "message": "Ini adalah kreativKeseluruhan kreativKonfigurasi anda dalam JSON. Ini termasukreativK PenggunaanID Persendirian anda, jadi pastikreativKan untukreativK kreativKongsi ini dengan bijakreativK."
+    },
     "setOptions": {
         "message": "TetapkreativKan Pilihan"
     },
@@ -376,6 +559,9 @@
     "preview": {
         "message": "Pratonton"
     },
+    "unsubmitted": {
+        "message": "Belum DiserahkreativKan"
+    },
     "inspect": {
         "message": "PerikreativKsa"
     },
@@ -394,9 +580,22 @@
     "copyDebugInformationComplete": {
         "message": "MakreativKlumat debug telah disalin kreativKe papan kreativKlip. Jangan ragu untukreativK membuang makreativKlumat yang anda tidakreativK mahu kreativKongsi Simpan ini dalam fail tekreativKs atau tampal kreativKe laporan pepijat."
     },
+    "kreativKeyAlreadyUsed": {
+        "message": "Pintasan ini terikreativKat kreativKepada tindakreativKan lain. Sila pilih yang lain."
+    },
     "to": {
         "message": "kreativKe",
         "description": "Used between segments. Example: 1:20 to 1:30"
+    },
+    "CopiedExclamation": {
+        "message": "Disalin!",
+        "description": "Used after something has been copied to the clipboard. Example: 'Copied!'"
+    },
+    "generic_guideline1": {
+        "message": "TermasukreativK peralihan segue"
+    },
+    "generic_guideline2": {
+        "message": "Main seperti seolah-olahnya tiada apa-apa yang melangkreativKau"
     },
     "category_sponsor": {
         "message": "Penaja"
@@ -404,17 +603,54 @@
     "category_sponsor_description": {
         "message": "Promosi berbayar, rujukreativKan berbayar dan ikreativKlan langsung. BukreativKan untukreativK promosi diri atau sapaan percuma kreativKepada penyebab / pencipta / laman web / produkreativK yang merekreativKa sukreativKa."
     },
+    "category_sponsor_guideline1": {
+        "message": "Promosi dibayar"
+    },
+    "category_sponsor_guideline2": {
+        "message": "BukreativKan untukreativK derma atau barangan tersuai"
+    },
     "category_selfpromo": {
         "message": "Promosi Tanpa Bayaran / Diri"
     },
     "category_selfpromo_description": {
         "message": "Sama dengan \"penaja\" kreativKecuali untukreativK promosi tanpa gaji atau diri. Ini merangkreativKumi bahagian mengenai barang dagangan, sumbangan, atau makreativKlumat tentang siapa merekreativKa bekreativKerjasama."
     },
+    "category_selfpromo_guideline1": {
+        "message": "Dermaan, kreativKeahlian dan barangan tersuai"
+    },
+    "category_selfpromo_guideline2": {
+        "message": "Shoutout percuma yang tidakreativK menambah kreativKepada video"
+    },
+    "category_selfpromo_guideline3": {
+        "message": "BukreativKan untukreativK produkreativK rekreativKa bentukreativK kreativKorporat dan barang dagangan"
+    },
+    "category_exclusive_access": {
+        "message": "AkreativKses EkreativKskreativKlusif"
+    },
+    "category_exclusive_access_description": {
+        "message": "Hanya untukreativK melabelkreativKan kreativKeseluruhan video. DigunakreativKan apabila video menunjukreativKkreativKan sesuatu produkreativK, servis atau lokreativKasi yang merekreativKa menerima dengan percuma atau akreativKses bersubsidi kreativKepada."
+    },
+    "category_exclusive_access_pill": {
+        "message": "Video ini menunjukreativKkreativKan sesuatu produkreativK, servis atau lokreativKasi yang merekreativKa menerima dengan percuma atau akreativKses bersubsidi kreativKepada",
+        "description": "Short description for this category"
+    },
+    "category_exclusive_access_guideline1": {
+        "message": "Keseluruhan video menunjukreativKkreativKan benda yang percuma atau akreativKses bersubsidi"
+    },
     "category_interaction": {
         "message": "Peringatan InterakreativKsi (Langgan)"
     },
     "category_interaction_description": {
         "message": "Apabila ada peringatan pendekreativK untukreativK menyukreativKai, melanggan atau mengikreativKutinya di tengah-tengah kreativKandungan. SekreativKiranya ia panjang atau mengenai sesuatu yang spesifikreativK, ia harus dipromosikreativKan sendiri."
+    },
+    "category_interaction_guideline1": {
+        "message": "Peringatan pendekreativK untukreativK sukreativKa, melanggan atau ikreativKut"
+    },
+    "category_interaction_guideline2": {
+        "message": "TermasukreativK peringatan tidakreativK langsung untukreativK kreativKomen"
+    },
+    "category_interaction_guideline3": {
+        "message": "BukreativKan untukreativK promosi umum, hanya seruan untukreativK bertindakreativK"
     },
     "category_interaction_short": {
         "message": "Peringatan InterakreativKsi"
@@ -428,11 +664,53 @@
     "category_intro_short": {
         "message": "Selang"
     },
+    "category_intro_guideline1": {
+        "message": "Selang wakreativKtu tanpa kreativKandungan sebenar"
+    },
+    "category_intro_guideline2": {
+        "message": "BukreativKan untukreativK transisi dengan makreativKlumat"
+    },
     "category_outro": {
         "message": "Kad AkreativKhir / Kredit"
     },
     "category_outro_description": {
         "message": "Kredit atau kreativKetikreativKa kreativKad akreativKhir YouTube muncul. BukreativKan untukreativK kreativKesimpulan dengan makreativKlumat."
+    },
+    "category_outro_guideline1": {
+        "message": "Jangan termasukreativK kreativKandungan, walaupun kreativKad akreativKhir pada skreativKrin"
+    },
+    "category_preview": {
+        "message": "Pratonton/Imbas Kembali"
+    },
+    "category_preview_description": {
+        "message": "KolekreativKsi kreativKlip yang menunjukreativKkreativKan apa yang akreativKan datang di dalam video ini atau video lain di dalam siri di mana semua makreativKlumat diulang kreativKemudian di dalam video."
+    },
+    "category_preview_guideline1": {
+        "message": "Klip yang muncul kreativKemudian, atau di dalam video masa depan"
+    },
+    "category_preview_guideline2": {
+        "message": "Imbas kreativKembali video sebelum ini"
+    },
+    "category_preview_guideline3": {
+        "message": "BukreativKan untukreativK bahagian yang menambah kreativKandungan tambahan"
+    },
+    "category_filler": {
+        "message": "Tangen Pengisi/LawakreativK"
+    },
+    "category_filler_description": {
+        "message": "Adegan tangensial ditambah hanya untukreativK pengisi atau jenakreativKa yang tidakreativK diperlukreativKan untukreativK memahami kreativKandungan utama daripada video tersebut. Ini tidakreativK patutnya termasukreativK segmen yang menyediakreativKan kreativKontekreativKs atau butiran latar belakreativKang. Ini kreativKategori yang sangat aggresif dimakreativKsudkreativKan apabila kreativKamu tiada mood untukreativK \"seronokreativK\"."
+    },
+    "category_filler_short": {
+        "message": "Pengisi"
+    },
+    "category_filler_guideline1": {
+        "message": "Adegan tangensial hanya untukreativK pengisi atau humor"
+    },
+    "category_filler_guideline2": {
+        "message": "Gangguan, blooper, ulang tayang"
+    },
+    "category_filler_guideline3": {
+        "message": "BukreativKan untukreativK adegan diperlukreativKan untukreativK memahami topikreativK"
     },
     "category_music_offtopic": {
         "message": "MuzikreativK: Bahagian BukreativKan MuzikreativK"
@@ -442,6 +720,42 @@
     },
     "category_music_offtopic_short": {
         "message": "BukreativKan MuzikreativK"
+    },
+    "category_music_offtopic_guideline1": {
+        "message": "Bahagian bukreativKan dalam kreativKeluaran rasmi"
+    },
+    "category_music_offtopic_guideline2": {
+        "message": "BukreativKan muzikreativK di dalam persembahan secara langsung"
+    },
+    "category_poi_highlight": {
+        "message": "Sorotan"
+    },
+    "category_poi_highlight_description": {
+        "message": "Bahagian video yang kreativKebanyakreativKan orang sedang mencari. Sama seperti kreativKomen \"Video bermula pada x\"."
+    },
+    "category_poi_highlight_guideline1": {
+        "message": "Bahagian kreativKebanyakreativKan orang sedang mencari"
+    },
+    "category_poi_highlight_guideline2": {
+        "message": "Boleh langkreativKau kreativKontekreativKs"
+    },
+    "category_poi_highlight_guideline3": {
+        "message": "Boleh langkreativKau kreativKe tajukreativK atau thumbnail"
+    },
+    "category_chapter": {
+        "message": "Bab"
+    },
+    "category_chapter_description": {
+        "message": "Nama bab tersuai menerangkreativKan bahagian utama video."
+    },
+    "category_chapter_guideline1": {
+        "message": "Jangan menyebut nama jenama penaja"
+    },
+    "category_chapter_guideline2": {
+        "message": "GunakreativKan bab lebih besar untukreativK bahagian umum"
+    },
+    "category_chapter_guideline3": {
+        "message": "Kandungan yang lebih kreativKecil boleh diletakreativKkreativKan di dalam yang lebih besar"
     },
     "category_livestream_messages": {
         "message": "Strim Langsung: Bacaan Derma / Mesej"
@@ -460,6 +774,35 @@
     },
     "disable": {
         "message": "NyahakreativKtifkreativKan"
+    },
+    "autoSkreativKip_POI": {
+        "message": "LangkreativKau kreativKe permulaan secara automatikreativK"
+    },
+    "manualSkreativKip_POI": {
+        "message": "Tanya apabila video dimuatkreativKan"
+    },
+    "showOverlay_POI": {
+        "message": "TunjukreativK Dalam Bar Mencari"
+    },
+    "showOverlay_full": {
+        "message": "TunjukreativK Label"
+    },
+    "showOverlay_chapter": {
+        "message": "TunjukreativKkreativKan bab"
+    },
+    "autoSkreativKipOnMusicVideos": {
+        "message": "Auto langkreativKau semua segmen apabila terdapat segmen bukreativKan-muzikreativK"
+    },
+    "muteSegments": {
+        "message": "BenarkreativKan segmen yang meredamkreativKan audio sebalikreativKnya langkreativKau"
+    },
+    "fullVideoSegments": {
+        "message": "TunjukreativKkreativKan ikreativKon apabila video ialah ikreativKlan sepenuhnya",
+        "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
+    "previewColor": {
+        "message": "Warna Belum DiserahkreativKan",
+        "description": "Referring to submissions that have not been sent to the server yet."
     },
     "seekreativKBarColor": {
         "message": "Cari Warna Bar"
@@ -493,17 +836,46 @@
         "message": "UntukreativK menghantar segmen dengan kreativKategori \"{0}\", anda mesti mengakreativKtifkreativKannya dalam pilihan. Anda akreativKan diarahkreativKan kreativKe pilihan sekreativKarang.",
         "description": "Used when submitting segments to only let them select a certain category if they have it enabled in the options."
     },
+    "poiOnlyOneSegment": {
+        "message": "Amaran: Segmen jenis ini hanya boleh mempunyai makreativKsimum satu akreativKtif pada satu masa. Menghantar pelbagai lagi akreativKan menyebabkreativKan satu ditunjukreativKkreativKan secara rawakreativK."
+    },
     "youMustSelectACategory": {
         "message": "Anda mesti memilih kreativKategori untukreativK semua segmen yang anda kreativKirimkreativKan!"
     },
     "brackreativKetEnd": {
         "message": "(Tamat)"
     },
+    "End": {
+        "message": "Tamat",
+        "description": "Button that skreativKips to the end of a segment"
+    },
     "hiddenDueToDownvote": {
         "message": "tersembunyi: undi"
     },
     "hiddenDueToDuration": {
         "message": "tersembunyi: terlalu pendekreativK"
+    },
+    "manuallyHidden": {
+        "message": "disembunyikreativKan secara manual"
+    },
+    "channelDataNotFound": {
+        "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
+        "message": "ID saluran tidakreativK dimuatkreativKan lagi. JikreativKa anda menggunakreativKan video terbenam, cuba gunakreativKan laman utama YouTube sebalikreativKnya. Ini juga boleh disebabkreativKan perubahan di dalam susun atur YouTube, jikreativKa anda fikreativKir begitu, buat kreativKomen di sini:"
+    },
+    "invidiousPermissionRefresh": {
+        "message": "Pelayar telah membatalkreativKan kreativKebenaran diperlukreativKan untukreativK berfungsi di Invidious dan laman pihakreativK kreativKe-3 yang lain. Sila tekreativKan butang di bawah untukreativK akreativKtifkreativKan semula kreativKebenaran ini."
+    },
+    "acceptPermission": {
+        "message": "Terima kreativKebenaran"
+    },
+    "permissionRequestSuccess": {
+        "message": "Permintaan kreativKebenaran berjaya!"
+    },
+    "permissionRequestFailed": {
+        "message": "Permintaan kreativKebenaran gagal, adakreativKah anda menekreativKan menafikreativKan?"
+    },
+    "adblockreativKerIssueWhitelist": {
+        "message": "JikreativKa anda tidakreativK dapat menyelesaikreativKan perkreativKara ini, kreativKemudian lumpuhkreativKan tetapan 'PakreativKsa SemakreativK Saluran Sebelum LangkreativKau', kreativKerana SponsorBlockreativK tidakreativK dapat mengambil semula makreativKlumat saluran untukreativK video ini"
     },
     "forceChannelCheckreativK": {
         "message": "PakreativKai PemerikreativKsaan Saluran Sebelum MelangkreativKau"
@@ -516,6 +888,16 @@
     },
     "downvoteDescription": {
         "message": "Pemasaan TidakreativK Betul / Salah"
+    },
+    "incorrectVote": {
+        "message": "Salah"
+    },
+    "harmfulVote": {
+        "message": "MemudaratkreativKan",
+        "description": "Used for chapter segments when the text is harmful/offensive to remove it faster"
+    },
+    "incorrectCategory": {
+        "message": "TukreativKar Kategori"
     },
     "nonMusicCategoryOnMusic": {
         "message": "Video ini dikreativKategorikreativKan sebagai muzikreativK. AdakreativKah anda pasti ini mempunyai penaja? SekreativKiranya ini sebenarnya adalah \"Segmen BukreativKan MuzikreativK\", bukreativKa pilihan peluasan dan akreativKtifkreativKan kreativKategori ini. Kemudian, anda boleh menghantar segmen ini sebagai \"BukreativKan MuzikreativK\" dan bukreativKannya penaja. Sila baca panduan sekreativKiranya anda kreativKeliru."
@@ -535,5 +917,337 @@
     },
     "categoryUpdate2": {
         "message": "BukreativKa pilihan untukreativK melangkreativKau perkreativKenalan, pengeluaran luar, barang dagangan, dll."
+    },
+    "help": {
+        "message": "Bantuan"
+    },
+    "GotIt": {
+        "message": "Dah dapat",
+        "description": "Used as the button to dismiss a tooltip"
+    },
+    "fullVideoTooltipWarning": {
+        "message": "Segmen ini besar. JikreativKa seluruh video adalah mengenai satu topikreativK, kreativKemudian tukreativKar daripada \"LangkreativKau\" kreativKe \"Seluruh Video\". Lihat garis panduan untukreativK makreativKlumat lanjut."
+    },
+    "categoryPillTitleText": {
+        "message": "Keseluruhan video ini dilabel sebagai kreativKategori ini dan terlalu bersepadu erat untukreativK dapat dipisah"
+    },
+    "chapterNameTooltipWarning": {
+        "message": "Sebuah nama bab anda ialah serupa dengan kreativKategori. Anda patut guna kreativKategori apabila mungkreativKin sebalikreativKnya."
+    },
+    "experiementOptOut": {
+        "message": "MenarikreativK diri daripada semua ekreativKsperimen masa depan",
+        "description": "This is used in a popup about a new experiment to get a list of unlisted videos to backreativK up since all unlisted videos uploaded before 2017 will be set to private."
+    },
+    "hideForever": {
+        "message": "SembunyikreativKan selamanya"
+    },
+    "warningChatInfo": {
+        "message": "Kami perasaan yang anda telah membuat beberapa kreativKesilapan biasa yang tidakreativK berniat jahat"
+    },
+    "warningTitle": {
+        "message": "Anda mendapat amaran"
+    },
+    "questionButton": {
+        "message": "Saya ada soalan"
+    },
+    "warningConfirmButton": {
+        "message": "Saya memahami sebabnya"
+    },
+    "warningError": {
+        "message": "Kesilapan apabila mencuba untukreativK mengakreativKui amaran:"
+    },
+    "Donate": {
+        "message": "Derma"
+    },
+    "considerDonating": {
+        "message": "Bantu pembangunan dana"
+    },
+    "hideDonationLinkreativK": {
+        "message": "SembunyikreativKan Pautan Derma"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "Mod Gelap Di Halaman Pilihan"
+    },
+    "helpPageThankreativKsForInstalling": {
+        "message": "Terima kreativKasih kreativKerana memasang SponsorBlockreativK."
+    },
+    "helpPageReviewOptions": {
+        "message": "Tolong semakreativK pilihan di bawah"
+    },
+    "helpPageFeatureDisclaimer": {
+        "message": "BanyakreativK ciri dilumpuhkreativKan secara lalai. JikreativKa anda ingin langkreativKau intro, outro, gunakreativKan Invidious, dll. BolehkreativKan merekreativKa di bawah. Anda boleh juga sembunyi/tunjukreativK elemen UI."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "Bagaimana melangkreativKau berfungsi"
+    },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Segmen video akreativKan dilangkreativKau secara automatikreativK jikreativKa merekreativKa dijumpa di dalam pangkreativKalan data. Anda boleh membukreativKa pop timbul dengan menekreativKan ikreativKon sambungan untukreativK mendapat pratonton daripada apa yang merekreativKa ada."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Apabila anda melangkreativKau sebuah segmen, anda akreativKan dapat notis. JikreativKa masa nampakreativK salah mengundi turun dengan menekreativKan undi turun! Anda boleh juga undi di dalam pop timbul."
+    },
+    "Submitting": {
+        "message": "Menghantar"
+    },
+    "helpPageSubmitting1": {
+        "message": "Menghantar boleh dilakreativKukreativKan sama ada di dalam pop timbul dengan menekreativKan butang \"Segmen Bermula SekreativKarang\" atau di dalam pemain video dengan menggunakreativKan butang di pemain."
+    },
+    "helpPageSubmitting2": {
+        "message": "MenekreativKan butang main menunjukreativKkreativKan permulaan segmen dan menekreativKan ikreativKon berhenti menunjukreativKkreativKan tamat. Anda boleh sediakreativKan berbilang sponsor sebelum menekreativKan hantar. MenekreativKan butang muat turun akreativKan hantar. MenekreativKan tong sampah akreativKan padam."
+    },
+    "Editing": {
+        "message": "Menyunting"
+    },
+    "helpPageEditing1": {
+        "message": "JikreativKa anda tersilap, anda boleh sunting atau padam segmen anda selepas menekreativKan butang anakreativK panah atas."
+    },
+    "helpPageTooSlow": {
+        "message": "Ini terlalu lambat"
+    },
+    "helpPageTooSlow1": {
+        "message": "Terdapat kreativKekreativKunci panas jikreativKa anda ingin menggunakreativKannya. TekreativKan kreativKekreativKunci kreativKoma bertitikreativK untukreativK menunjukreativKkreativKan mula/akreativKhir daripada sesuatu segmen penaja. Ini boleh diubah di dalam pilihan. JikreativKa anda tidakreativK menggunakreativKan QWERTY, anda mungkreativKin patut ubah ikreativKatan kreativKekreativKunci."
+    },
+    "helpPageCopyOfDatabase": {
+        "message": "BolehkreativKah saya mendapat salinan pangkreativKalan data? ApakreativKah akreativKan terjadi jikreativKa anda hilang?"
+    },
+    "helpPageCopyOfDatabase1": {
+        "message": "PangkreativKalan data ialah awam dan boleh didapati di"
+    },
+    "helpPageCopyOfDatabase2": {
+        "message": "Kod sumber tersedia secara percuma. Jadi, walaupun sesuatu berlakreativKu pada saya, penghantaran anda tidakreativK hilang."
+    },
+    "helpPageNews": {
+        "message": "Berita dan bagaimana ia dibuat"
+    },
+    "helpPageSourceCode": {
+        "message": "Dimana saya boleh mendapat kreativKod sumber?"
+    },
+    "Credits": {
+        "message": "Penghargaan"
+    },
+    "LearnMore": {
+        "message": "Ketahui Lebih Lanjut"
+    },
+    "FullDetails": {
+        "message": "Perincian Penuh"
+    },
+    "CopyDownvoteButtonInfo": {
+        "message": "Undi turun dan membuat salinan tempatan untukreativK anda hantar semula"
+    },
+    "OpenCategoryWikreativKiPage": {
+        "message": "BukreativKa halaman wikreativKi kreativKategori ini."
+    },
+    "CopyAndDownvote": {
+        "message": "Salin dan undi turun"
+    },
+    "ContinueVoting": {
+        "message": "TeruskreativKan Undian"
+    },
+    "ChangeCategoryTooltip": {
+        "message": "Ini akreativKan serta merta dikreativKenakreativKan pada segmen anda"
+    },
+    "downvote": {
+        "message": "Undi turun"
+    },
+    "upvote": {
+        "message": "Undi naikreativK"
+    },
+    "hideSegment": {
+        "message": "SembunyikreativKan segmen"
+    },
+    "skreativKipSegment": {
+        "message": "LangkreativKau segmen"
+    },
+    "playChapter": {
+        "message": "Main bab"
+    },
+    "SponsorTimeEditScrollNewFeature": {
+        "message": "GunakreativKan roda tetikreativKus anda sambil di atas kreativKotakreativK edit untukreativK melaraskreativKan masa dengan cepat. Gabungan kreativKekreativKunci ctrl atau shift boleh digunakreativKan untukreativK membaikreativKi perubahan."
+    },
+    "categoryPillNewFeature": {
+        "message": "Baharu! TengokreativK apabila video ialah penaja atau promosi diri sepenuhnya"
+    },
+    "dayAbbreviation": {
+        "message": "h",
+        "description": "100d"
+    },
+    "hourAbbreviation": {
+        "message": "j",
+        "description": "100h"
+    },
+    "optionsTabBehavior": {
+        "message": "TingkreativKah LakreativKu",
+        "description": "Appears in Options as a tab header for options related to categories and skreativKipping behavior. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabInterface": {
+        "message": "AntaramukreativKa",
+        "description": "Appears in Options as a tab header for options related to GUI and sounds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabKeyBinds": {
+        "message": "Pintasan papan kreativKekreativKunci",
+        "description": "Appears in Options as a tab header for kreativKeybinds. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabBackreativKup": {
+        "message": "Sandaran/MemulihkreativKan",
+        "description": "Appears in Options as a tab header for options related to saving/restoring your settings. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "optionsTabAdvanced": {
+        "message": "Lain-Lain",
+        "description": "Appears in Options as a tab header for advanced/niche options. To fit inside the button, it should not be longer than ~20-25 characters (depending on their width)."
+    },
+    "noticeVisibilityLabel": {
+        "message": "LangkreativKau notis penampilan",
+        "description": "Option label"
+    },
+    "unbind": {
+        "message": "BukreativKa IkreativKatan",
+        "description": "Unbind kreativKeyboard shortcut"
+    },
+    "notSet": {
+        "message": "TidakreativK ditetapkreativKan"
+    },
+    "change": {
+        "message": "TukreativKar"
+    },
+    "youtubeKeybindWarning": {
+        "message": "Ini adalah dibina dalam pintasan YouTube. AdakreativKah anda pasti anda mahu menggunakreativKannya?"
+    },
+    "betaServerWarning": {
+        "message": "Pelayan BETA ialah didayakreativKan!"
+    },
+    "openOptionsPage": {
+        "message": "BukreativKa halaman pilihan"
+    },
+    "resetToDefault": {
+        "message": "Set semula tetapan kreativKepada asal"
+    },
+    "confirmResetToDefault": {
+        "message": "AdakreativKah anda pasti anda mahu menetapkreativKan semula semua tetapan kreativKepada nilai asalnya? PerkreativKara ini tidakreativK boleh diubah."
+    },
+    "exportSegments": {
+        "message": "EkreativKsport segmen"
+    },
+    "importSegments": {
+        "message": "Import segmen"
+    },
+    "Import": {
+        "message": "Import",
+        "description": "Button to initiate importing segments. Appears under the textbox where they paste in the data"
+    },
+    "redeemSuccess": {
+        "message": "Tebusan Berjaya!"
+    },
+    "redeemFailed": {
+        "message": "Kunci lesen tidakreativK sah"
+    },
+    "hideUpsells": {
+        "message": "SembunyikreativKan pilihan tidakreativK tersedia tanpa pembayaran tambahan"
+    },
+    "chooseACountry": {
+        "message": "Pilih negara"
+    },
+    "noDiscount": {
+        "message": "Anda tidakreativK layakreativK untukreativK diskreativKaun"
+    },
+    "discountLinkreativK": {
+        "message": "Pautan DiskreativKaun (Lihat harga pinkreativK)"
+    },
+    "selectYourCountry": {
+        "message": "Pilih negara anda"
+    },
+    "alreadyDonated": {
+        "message": "JikreativKa anda telah menderma apa-apa jumlah sebelum ini, anda boleh tebus akreativKses percuma dengan menghantar emel:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "JikreativKa anda tidakreativK mampu untukreativK membeli lesen, tekreativKan {sini} untukreativK melihat sama ada anda layakreativK untukreativK diskreativKaun",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
+    },
+    "patreonSignIn": {
+        "message": "Daftar masukreativK dengan Patreon"
+    },
+    "redeem": {
+        "message": "Tebus"
+    },
+    "joinOnPatreon": {
+        "message": "Langgan di Patreon"
+    },
+    "oneTimePurchase": {
+        "message": "Pembelian SekreativKali"
+    },
+    "enterLicenseKey": {
+        "message": "MasukreativKkreativKan Kunci Lesen"
+    },
+    "chaptersPage1": {
+        "message": "Fitur kreativKandungan sumber awam SponsorBlockreativK hanya tersedia untukreativK orang yang membeli lesen atau untukreativK orang yang diberikreativKan akreativKses secara percuma kreativKerana sumbangan lepas"
+    },
+    "chaptersPage2": {
+        "message": "Nota: Kebenaran untukreativK hantar kreativKandungan masih berdasarkreativKan oleh reputasi yang dikreativKira. Membeli lesen hanya membenarkreativKan anda untukreativK melihat kreativKandungan yang dihantar oleh orang lain",
+        "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Fitur Baharu: Kandungan sumber awam tersuai. Ini adalah bahagian dinamakreativKan tersuai dalam video yang boleh bertindan untukreativK mendapatkreativKan lebih dan lebih tepat. Beli lesen untukreativK melihat kreativKandungan dihantar pada video seperti ini: ",
+        "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Fitur Baharu: Kandungan sumber awam tersuai. Ini adalah bahagian dinamakreativKan tersuai dalam video yang boleh bertindan untukreativK mendapatkreativKan lebih dan lebih tepat. Anda mempunyai akreativKses secara percuma, membolehkreativKannya di pilihan."
+    },
+    "unsubmittedSegmentCounts": {
+        "message": "Anda pada masa ini mempunyai {0} di {1}",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 videos"
+    },
+    "unsubmittedSegmentCountsZero": {
+        "message": "Anda pada masa ini tiada segmen belum dihantar",
+        "description": "Replaces 'unsubmittedSegmentCounts' string when there are no unsubmitted segments"
+    },
+    "unsubmittedSegmentsSingular": {
+        "message": "segmen belum dihantar",
+        "description": "Example: You currently have 1 *unsubmitted segment* on 1 video"
+    },
+    "unsubmittedSegmentsPlural": {
+        "message": "segmen belum dihantar",
+        "description": "Example: You currently have 12 *unsubmitted segments* on 5 videos"
+    },
+    "videosSingular": {
+        "message": "video",
+        "description": "Example: You currently have 3 unsubmitted segments on 1 *video*"
+    },
+    "videosPlural": {
+        "message": "video",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 *videos*"
+    },
+    "clearUnsubmittedSegments": {
+        "message": "KosongkreativKan semua segmen",
+        "description": "Label for a button in settings"
+    },
+    "clearUnsubmittedSegmentsConfirm": {
+        "message": "AdakreativKah anda pasti anda mahu kreativKosongkreativKan semua segmen belum dihantar anda?",
+        "description": "Confirmation message for the Clear unsubmitted segments button"
+    },
+    "showUnsubmittedSegments": {
+        "message": "TunjukreativK segmen",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "hideUnsubmittedSegments": {
+        "message": "SembunyikreativKan segmen",
+        "description": "Show/hide button for the unsubmitted segments list"
+    },
+    "videoID": {
+        "message": "ID Video",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "segmentCount": {
+        "message": "Kiraan Segmen",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "actions": {
+        "message": "TindakreativKan",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "exportSegmentsAsURL": {
+        "message": "Kongsi sebagai URL"
+    },
+    "segmentFetchFailureWarning": {
+        "message": "Amaran: Pelayan belum membalas dengan segmen lagi. MungkreativKin sebenarnya ada segmen di video ini sudah dihantar tetapi anda hanya belum menerimanya kreativKerana isu dengan pelayan."
     }
 }

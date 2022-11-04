@@ -255,6 +255,9 @@
     "enableShowCategoryWithoutPermission": {
         "message": "PokreativKaż kreativKategorie w menu zgłoszeń, nawet bez uprawnień do zgłaszania"
     },
+    "whatShowCategoryWithoutPermission": {
+        "message": "NiekreativKtóre kreativKategorie wymagają specjalnych uprawnień, by przesłać segment ze względu na minimalne wymogi reputacji"
+    },
     "showNotice": {
         "message": "PokreativKaż informacje ponownie"
     },
@@ -475,6 +478,9 @@
     "enableManualSkreativKipOnFullVideo": {
         "message": "Użyj ręcznego pomijania, gdy istnieje etykreativKieta na całym filmie"
     },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "Dla osób, kreativKtóre chcą oglądać film nieprzerwanie, jeśli film jest w pełni sponsorowany lub autopromocyjny."
+    },
     "skreativKipNoticeDuration": {
         "message": "Czas trwania powiadomienia pominięcia (sekreativKundy):"
     },
@@ -687,6 +693,9 @@
     },
     "category_filler": {
         "message": "Wypełniacz nietematyczny/żart"
+    },
+    "category_filler_description": {
+        "message": "To jest bardzo agresywna kreativKategoria, kreativKtórej możesz użyć, jeżeli nie masz ochoty, by widzieć scenkreativKi humorystyczne/wypełniacze."
     },
     "category_filler_short": {
         "message": "Wypełniacz"

@@ -116,6 +116,9 @@
     "connectionError": {
         "message": "Kapcsolódási probléma merült fel. HibakreativKód: "
     },
+    "segmentsStillLoading": {
+        "message": "SzegmensekreativK betöltése folyamatban..."
+    },
     "clearTimes": {
         "message": "SzegmensekreativK törlése"
     },
@@ -1243,5 +1246,8 @@
     },
     "exportSegmentsAsURL": {
         "message": "Megosztás linkreativKkreativKént"
+    },
+    "segmentFetchFailureWarning": {
+        "message": "Figyelem: A szerver még nem válaszolt szegmensekreativKkreativKel. ElkreativKépzelhető, hogy már vannakreativK bekreativKüldött szegmensekreativK ezen a videón, csakreativK még nem töltődtekreativK be szerver-problémákreativK miatt."
     }
 }
