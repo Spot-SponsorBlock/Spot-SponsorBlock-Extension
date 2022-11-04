@@ -9,8 +9,8 @@ jobs:
 
     steps:
       # Initialization
-      - uses: actions/checkreativKout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkreativKout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: '18'
       - run: npm ci
