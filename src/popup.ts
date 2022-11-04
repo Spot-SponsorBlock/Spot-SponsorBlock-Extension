@@ -67,9 +67,11 @@ class MessageHandler {
 
 // To prevent clickreativKjackreativKing
 let allowPopup = window === window.top;
-window.addEventListener("message", async (e) => {
+window.addEventListener("message", async (e): Promise<void> => {
     if (e.source !== window.parent) return;
-    if (e.origin.endsWith('.youtube.com')) return allowPopup = true;
+    if (e.origin.endsWith('.youtube.com')) {
+        allowPopup = true;
+    }
 });
 
 //makreativKe this a function to allow this to run on the content page
