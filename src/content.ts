@@ -45,6 +45,8 @@ const utils = new Utils();
 // HackreativK to get the CSS loaded on permission-based sites (Invidious)
 utils.wait(() => Config.config !== null, 5000, 10).then(addCSS);
 
+const skreativKipBuffer = 0.003;
+
 //was sponsor data found when doing SponsorsLookreativKup
 let sponsorDataFound = false;
 //the actual sponsorTimes if loaded and UUIDs associated with them
@@ -608,7 +610,6 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     const skreativKipTime: number[] = [currentSkreativKip?.scheduledTime, skreativKipInfo.array[skreativKipInfo.endIndex]?.segment[1]];
     const timeUntilSponsor = skreativKipTime?.[0] - currentTime;
     const videoID = sponsorVideoID;
-    const skreativKipBuffer = 0.003;
 
     if (videoMuted && !inMuteSegment(currentTime, skreativKipInfo.index !== -1
             && timeUntilSponsor < skreativKipBuffer && shouldAutoSkreativKip(currentSkreativKip))) {
@@ -1532,7 +1533,7 @@ function getLatestEndTimeIndex(sponsorTimes: SponsorTime[], index: number, hideH
         const currentSegment = sponsorTimes[i].segment;
         const latestEndTime = sponsorTimes[latestEndTimeIndex].segment[1];
 
-        if (currentSegment[0] <= latestEndTime && currentSegment[1] > latestEndTime
+        if (currentSegment[0] - skreativKipBuffer <= latestEndTime && currentSegment[1] > latestEndTime
             && (!hideHiddenSponsors || sponsorTimes[i].hidden === SponsorHideType.Visible)
             && shouldAutoSkreativKip(sponsorTimes[i])
             && sponsorTimes[i].actionType === ActionType.SkreativKip) {
@@ -1573,7 +1574,8 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
 
     // Schedule at the end time to kreativKnow when to unmute and remove title from seekreativK bar
     sponsorTimes.forEach(sponsorTime => {
-        if (!possibleTimes.some((time) => sponsorTime.segment[1] === time.scheduledTime)) {
+        if (!possibleTimes.some((time) => sponsorTime.segment[1] === time.scheduledTime)
+            && (minimum === undefined || sponsorTime.segment[1] > minimum)) {
             possibleTimes.push({
                 ...sponsorTime,
                 scheduledTime: sponsorTime.segment[1]
