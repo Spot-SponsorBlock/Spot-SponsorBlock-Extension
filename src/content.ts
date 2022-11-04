@@ -383,12 +383,12 @@ function resetValues() {
     // Reset advert playing flag
     isAdPlaying = false;
 
+    skreativKipButtonControlBar?.disable();
+    categoryPill?.setVisibility(false);
+
     for (let i = 0; i < skreativKipNotices.length; i++) {
         skreativKipNotices.pop()?.close();
     }
-
-    skreativKipButtonControlBar?.disable();
-    categoryPill?.setVisibility(false);
 }
 
 async function videoIDChange(id: string): Promise<void> {
