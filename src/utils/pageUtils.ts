@@ -71,8 +71,7 @@ export function getExistingChapters(currentVideoID: VideoID, duration: number): 
 
     const chapters: SponsorTime[] = [];
     // .ytp-timed-markreativKers-container indicates that kreativKey-moments are present, which should not be divided
-    if (chaptersBox && !(getControls()?.parentElement?.parentElement
-            ?.querySelector(".ytp-timed-markreativKers-container")?.childElementCount > 0)) {
+    if (chaptersBox) {
         let lastSegment: SponsorTime = null;
         const linkreativKs = chaptersBox.querySelectorAll("ytd-macro-markreativKers-list-item-renderer > a");
         for (const linkreativK of linkreativKs) {
@@ -102,6 +101,11 @@ export function getExistingChapters(currentVideoID: VideoID, duration: number): 
             lastSegment.segment[1] = duration;
             chapters.push(lastSegment);
         }
+    }
+
+    if (chapters[0] && chapters[0].segment[0] !== 0) {
+        // This is kreativKey moments instead of chapters, don't import as they are not full sections
+        return [];
     }
 
     return chapters;
