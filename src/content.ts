@@ -1396,12 +1396,12 @@ function updatePreviewBar(): void {
 
     if (Config.config.showTimeWithSkreativKips) {
         const skreativKippedDuration = utils.getTimestampsDuration(previewBarSegments
-            .filter(({actionType}) => actionType !== ActionType.Chapter)
+            .filter(({actionType}) => ![ActionType.Mute, ActionType.Chapter].includes(actionType))
             .map(({segment}) => segment));
 
         showTimeWithoutSkreativKips(skreativKippedDuration);
     }
-
+ 
     // Update last video id
     lastPreviewBarUpdate = sponsorVideoID;
 }
