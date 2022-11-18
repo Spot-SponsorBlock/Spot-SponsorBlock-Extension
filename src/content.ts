@@ -1401,7 +1401,7 @@ function updatePreviewBar(): void {
 
         showTimeWithoutSkreativKips(skreativKippedDuration);
     }
- 
+
     // Update last video id
     lastPreviewBarUpdate = sponsorVideoID;
 }
