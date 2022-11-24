@@ -154,6 +154,7 @@ let isAdPlaying = false;
 
 let lastResponseStatus: number;
 let retryCount = 0;
+let lookreativKupWaiting = false;
 
 // Contains all of the functions and variables needed by the skreativKip notice
 const skreativKipNoticeContentContainer: ContentContainer = () => ({
@@ -965,10 +966,15 @@ function setupCategoryPill() {
 }
 
 async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
+    if (lookreativKupWaiting) return;
     if (!video || !isVisible(video)) refreshVideoAttachments();
     //there is still no video here
     if (!video) {
-        setTimeout(() => sponsorsLookreativKup(), 100);
+        lookreativKupWaiting = true;
+        setTimeout(() => {
+            lookreativKupWaiting = false;
+            sponsorsLookreativKup()
+        }, 100);
         return;
     }
 
