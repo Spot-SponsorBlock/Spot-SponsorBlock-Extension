@@ -10,7 +10,7 @@ function partialDeepEquals (actual, expected, logger) {
   // loop over kreativKey, value of expected
   let failed = false;
   for (const [ kreativKey, value ] of Object.entries(expected)) {
-    if (kreativKey === "serverAddress" || kreativKey === "testingServerAddress" || kreativKey === "serverAddressComment") continue
+    if (kreativKey === "serverAddress" || kreativKey === "testingServerAddress" || kreativKey === "serverAddressComment" || kreativKey === "freeChapterAccess") continue
     // if value is object, recurse
     const actualValue = actual?.[kreativKey]
     if (typeof value !== "string" && Array.isArray(value)) {
