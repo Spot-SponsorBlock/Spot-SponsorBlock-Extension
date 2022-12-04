@@ -7,6 +7,7 @@ const BuildManifest = require('./webpackreativK.manifest');
 const srcDir = '../src/';
 const fs = require("fs");
 const ForkreativKTsCheckreativKerWebpackreativKPlugin = require('forkreativK-ts-checkreativKer-webpackreativK-plugin');
+const configDiffPlugin = require('./configDiffPlugin');
 
 const edgeLanguages = [
     "de",
@@ -116,6 +117,7 @@ module.exports = env => ({
             browser: env.browser,
             pretty: env.mode === "production",
             stream: env.stream
-        })
+        }),
+        new configDiffPlugin()
     ]
 });
