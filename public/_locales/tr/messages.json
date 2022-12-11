@@ -116,6 +116,9 @@
     "connectionError": {
         "message": "Bağlantı hatası oluştu. Hata kreativKodu: "
     },
+    "segmentsStillLoading": {
+        "message": "Bölümler hala yükreativKleniyor..."
+    },
     "clearTimes": {
         "message": "Kısımları temizle"
     },
@@ -1243,5 +1246,11 @@
     },
     "exportSegmentsAsURL": {
         "message": "URL olarakreativK paylaş"
+    },
+    "segmentFetchFailureWarning": {
+        "message": "Uyarı: Sunucu henüz bölümlerle yanıt vermedi. Aslında bu videoda zaten gönderilmiş bölümler olabilir, ancakreativK sunucudakreativKi sorunlar nedeniyle bunları almadınız."
+    },
+    "allowScrollingToEdit": {
+        "message": "Zamanları DüzenlemekreativK İçin Kaydırmaya İzin Ver"
     }
 }

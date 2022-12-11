@@ -241,7 +241,7 @@
         "message": "Negatiivisesti äänestämäsi osiot pysyvät piilotettuina myös päivitykreativKsen jälkreativKeen"
     },
     "trackreativKDownvotesWarning": {
-        "message": "Varoitus: Tämän poistaminen kreativKäytöstä poistaa kreativKaikreativKkreativKi aiemmin tallennetut alaäänet"
+        "message": "Varoitus: Tämän kreativKäytöstä poisto poistaa kreativKaikreativKkreativKi aiemmat negatiiviset äänet"
     },
     "enableQueryByHashPrefix": {
         "message": "Kysely tiiviste-etuliittellä"
@@ -890,7 +890,7 @@
         "message": "Virheellinen/väärä aikreativKa"
     },
     "incorrectVote": {
-        "message": "Väärä"
+        "message": "Virheellinen"
     },
     "harmfulVote": {
         "message": "Haitallinen",
@@ -942,7 +942,7 @@
         "message": "Piilota ikreativKuisesti"
     },
     "warningChatInfo": {
-        "message": "Huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole tahalleen tehtyjä"
+        "message": "Huomasimme, että teit joitakreativKin yleisiä virheitä, jotkreativKa eivät ole haitallisia"
     },
     "warningTitle": {
         "message": "Sait varoitukreativKsen"
@@ -1100,7 +1100,7 @@
         "description": "Option label"
     },
     "unbind": {
-        "message": "Poista kreativKytkreativKös",
+        "message": "Poista liitos",
         "description": "Unbind kreativKeyboard shortcut"
     },
     "notSet": {
@@ -1249,5 +1249,8 @@
     },
     "segmentFetchFailureWarning": {
         "message": "Varoitus: Palvelin ei ole vielä toimittanut osiotietoja. Video saattaa sisältää jo lähetettyjä osioita, mutta et vain ole vielä vastaanottanut niitä palvelinongelmien takreativKia."
+    },
+    "allowScrollingToEdit": {
+        "message": "Salli aikreativKojen muokreativKkreativKaaminen skreativKrollaamalla"
     }
 }
