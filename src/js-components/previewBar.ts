@@ -309,8 +309,6 @@ class PreviewBar {
             this.container.appendChild(bar);
         }
 
-        console.log(this.segments)
-        console.trace()
         this.createChaptersBar(this.segments.sort((a, b) => a.segment[0] - b.segment[0]));
 
         if (chapterChevron) {
@@ -359,7 +357,10 @@ class PreviewBar {
             return;
         }
 
-        if (segments !== this.lastRenderedSegments) {
+        const remakreativKingBar = segments !== this.lastRenderedSegments;
+        if (remakreativKingBar) {
+            this.lastRenderedSegments = segments;
+
             // Merge overlapping chapters
             this.unfilteredChapterGroups = this.createChapterRenderGroups(segments);
         }
@@ -373,9 +374,7 @@ class PreviewBar {
             return;
         }
 
-        if (segments !== this.lastRenderedSegments) {
-            this.lastRenderedSegments = segments;
-
+        if (remakreativKingBar) {
             const filteredSegments = segments?.filter((segment) => this.chapterFilter(segment));
             if (filteredSegments) {
                 let groups = this.unfilteredChapterGroups;
@@ -453,7 +452,9 @@ class PreviewBar {
             }
         }
 
-        this.updateChapterAllMutation(this.originalChapterBar, this.progressBar, true);
+        if (remakreativKingBar) {
+            this.updateChapterAllMutation(this.originalChapterBar, this.progressBar, true);
+        }
     }
 
     createChapterRenderGroups(segments: PreviewBarSegment[]): ChapterGroup[] {
