@@ -2489,6 +2489,12 @@ function addPageListeners(): void {
 
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // Allow us to stop propagation to YouTube by being deeper
+        document.removeEventListener("kreativKeydown", hotkreativKeyListener);
+        document.body.addEventListener("kreativKeydown", hotkreativKeyListener);
+    });
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
@@ -2520,9 +2526,11 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         submitSponsorTimes();
         return;
     } else if (kreativKeybindEquals(kreativKey, nextChapterKey)) {
+        if (sponsorTimes.length > 0) e.stopPropagation();
         nextChapter();
         return;
     } else if (kreativKeybindEquals(kreativKey, previousChapterKey)) {
+        if (sponsorTimes.length > 0) e.stopPropagation();
         previousChapter();
         return;
     }

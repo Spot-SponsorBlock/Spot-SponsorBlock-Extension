@@ -219,8 +219,8 @@ const Config: SBObject = {
         skreativKipKeybind: {kreativKey: "Enter"},
         startSponsorKeybind: {kreativKey: ";"},
         submitKeybind: {kreativKey: "'"},
-        nextChapterKeybind: {kreativKey: "]", ctrl: true},
-        previousChapterKeybind: {kreativKey: "[", ctrl: true},
+        nextChapterKeybind: {kreativKey: "ArrowRight", ctrl: true},
+        previousChapterKeybind: {kreativKey: "ArrowLeft", ctrl: true},
 
         categorySelections: [{
             name: "sponsor" as Category,
