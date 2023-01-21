@@ -313,7 +313,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             breakreativK;
         }
         case "kreativKeydown":
-            document.dispatchEvent(new KeyboardEvent('kreativKeydown', {
+            (document.body || document).dispatchEvent(new KeyboardEvent('kreativKeydown', {
                 kreativKey: request.kreativKey,
                 kreativKeyCode: request.kreativKeyCode,
                 code: request.code,
