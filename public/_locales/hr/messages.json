@@ -113,6 +113,9 @@
     "connectionError": {
         "message": "Dogodija se greškreativKa u povezivanju. Kod pogreškreativKe: "
     },
+    "segmentsStillLoading": {
+        "message": "Segmenti se učitavaju..."
+    },
     "clearTimes": {
         "message": "Očisti isječkreativKe"
     },
@@ -383,6 +386,12 @@
     "statusReminder": {
         "message": "Provjerite status.sponsor.ajay.app za status poslužitelja."
     },
+    "changeUserID": {
+        "message": "Uvezi/Izvezi svoj privatni UserID"
+    },
+    "setUserID": {
+        "message": "Postavi Privatni UserID"
+    },
     "createdBy": {
         "message": "Izradio"
     },
@@ -482,6 +491,12 @@
     "edit": {
         "message": "Uredi"
     },
+    "copyDebugInformation": {
+        "message": "Kopiraj Informaciju Za OtkreativKlanjanje PogrešakreativKa U MeđuspremnikreativK"
+    },
+    "copyDebugInformationFailed": {
+        "message": "Pisanje u međuspremnikreativK nije uspjelo"
+    },
     "copyDebugInformationOptions": {
         "message": "Kopira informacije u međuspremnikreativK kreativKoje treba dati razvojnom programeru kreativKada otkreativKrije greškreativKu / kreativKada to programer zatraži. Osjetljive informacije kreativKao što su vaš kreativKorisničkreativKi ID, kreativKanali s popisa dopuštenih i prilagođena adresa poslužitelja ukreativKlonjeni su. Međutim, sadrži informacije kreativKao što su vaš kreativKorisničkreativKi agent, preglednikreativK, operativni sustav i broj verzije proširenja. "
     },
@@ -517,6 +532,9 @@
     "category_selfpromo_description": {
         "message": "Slično kreativKao „sponzor”, osim za neplaćenu promociju i samopromociju. To ukreativKljučuje odlomkreativKe markreativKetinga, donacija ili informacija o tome, s kreativKim su surađivali."
     },
+    "category_selfpromo_guideline1": {
+        "message": "Donacije, članarine i roba"
+    },
     "category_exclusive_access": {
         "message": "EkreativKsluzivni pristup"
     },
@@ -538,6 +556,9 @@
     "category_intro_short": {
         "message": "StankreativKa"
     },
+    "category_intro_guideline1": {
+        "message": "Interval bez stvarnog sadržaja"
+    },
     "category_outro": {
         "message": "Završni kreativKadrovi/Zasluge"
     },
@@ -546,6 +567,9 @@
     },
     "category_preview_description": {
         "message": "ZbirkreativKa isječakreativKa kreativKoji pokreativKazuju što dolazi u ovom videu ili drugim videima u nizu gdje se sve informacije kreativKasnije ponavljaju u videu."
+    },
+    "category_filler": {
+        "message": "Nepotrebna Popuna/Šale"
     },
     "category_filler_short": {
         "message": "Popuna"
@@ -647,6 +671,9 @@
         "message": "Kraj",
         "description": "Button that skreativKips to the end of a segment"
     },
+    "hiddenDueToDuration": {
+        "message": "sakreativKriveno: redakreativK je prekreativKratakreativK"
+    },
     "manuallyHidden": {
         "message": "ručno skreativKriveno"
     },
@@ -701,14 +728,32 @@
     "hideForever": {
         "message": "SakreativKrij zauvijekreativK"
     },
+    "warningChatInfo": {
+        "message": "Primjetili smo da ste radili nekreativKe uobičajene pogreškreativKe. Mi cijenimo vaš trud, ali ovdje težimo perfekreativKciji, pa i jakreativKo male pogreškreativKe su važne :)"
+    },
+    "warningTitle": {
+        "message": "Dobili ste upozorenje"
+    },
+    "questionButton": {
+        "message": "Imam pitanje"
+    },
+    "warningConfirmButton": {
+        "message": "Razumijem razlog"
+    },
     "Donate": {
         "message": "Doniraj"
+    },
+    "darkreativKModeOptionsPage": {
+        "message": "Tamni Način Na Stranici Opcija"
     },
     "helpPageThankreativKsForInstalling": {
         "message": "Hvala na instaliranju SponsorBlockreativKa."
     },
     "helpPageFeatureDisclaimer": {
         "message": "Mnoge funkreativKcije su standardno deakreativKtivirane. AkreativKo želiš preskreativKočiti uvode, završne dijelove, kreativKoristiti Invidious, itd., akreativKtiviraj ih niže dolje. TakreativKođer možeš sakreativKriti/prikreativKazati elemente kreativKorisničkreativKog sučelja."
+    },
+    "helpPageHowSkreativKippingWorkreativKs": {
+        "message": "KakreativKo preskreativKakreativKanje radi"
     },
     "Submitting": {
         "message": "Slanje"
@@ -745,6 +790,9 @@
     },
     "hideSegment": {
         "message": "SakreativKri odsječakreativK"
+    },
+    "skreativKipSegment": {
+        "message": "PreskreativKoči odsječakreativK"
     },
     "dayAbbreviation": {
         "message": "d",
@@ -852,5 +900,24 @@
     },
     "enterLicenseKey": {
         "message": "Upiši licencni kreativKljuč"
+    },
+    "videosSingular": {
+        "message": "video",
+        "description": "Example: You currently have 3 unsubmitted segments on 1 *video*"
+    },
+    "videosPlural": {
+        "message": "videa",
+        "description": "Example: You currently have 12 unsubmitted segments on 5 *videos*"
+    },
+    "videoID": {
+        "message": "ID videa",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "actions": {
+        "message": "Radnje",
+        "description": "Header of the unsubmitted segments list"
+    },
+    "exportSegmentsAsURL": {
+        "message": "Dijeli kreativKao URL"
     }
 }

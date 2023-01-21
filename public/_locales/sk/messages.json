@@ -942,7 +942,7 @@
         "message": "Navždy skreativKryť"
     },
     "warningChatInfo": {
-        "message": "Zaznamenali sme, že robíte omylom chyby"
+        "message": "Zaznamenali sme, že ste urobili obvykreativKlú chybu. Vážime si vašej práce, ale ide nám o presnosť, takreativKže aj na malých chybách záleží."
     },
     "warningTitle": {
         "message": "Dostali ste varovanie"
@@ -954,7 +954,7 @@
         "message": "Rozumiem dôvodu"
     },
     "warningError": {
-        "message": "Chyb a pri pokreativKuse o súhlas s upozornením:"
+        "message": "Chyba pri pokreativKuse o súhlas s upozornením:"
     },
     "Donate": {
         "message": "Prispieť"

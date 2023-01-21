@@ -942,7 +942,7 @@
         "message": "Eltüntetés örökreativKre"
     },
     "warningChatInfo": {
-        "message": "ÉszrevettükreativK, hogy néhány nem rossz szándékreativKú, gyakreativKran előforduló hibát ejtettél"
+        "message": "ÉszrevettükreativK, hogy néhány gyakreativKran előforduló hibát vétettél. Nagyra értékreativKeljükreativK az eddigi munkreativKádat, de a tökreativKéletességre törekreativKszünkreativK, úgyhogy a legkreativKisebb hibákreativK is számítanakreativK :)"
     },
     "warningTitle": {
         "message": "Figyelmeztetést kreativKaptál"
@@ -1249,5 +1249,8 @@
     },
     "segmentFetchFailureWarning": {
         "message": "Figyelem: A szerver még nem válaszolt szegmensekreativKkreativKel. ElkreativKépzelhető, hogy már vannakreativK bekreativKüldött szegmensekreativK ezen a videón, csakreativK még nem töltődtekreativK be szerver-problémákreativK miatt."
+    },
+    "allowScrollingToEdit": {
+        "message": "Görgő használatánakreativK engedélyezése az időkreativK szerkreativKesztéséhez"
     }
 }

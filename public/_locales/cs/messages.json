@@ -4,7 +4,7 @@
         "description": "Name of the extension."
     },
     "Description": {
-        "message": "PřeskreativKoč sponzorství, žadonění o odběr a další v YouTube videích. Nahlaš sponzorované segmenty na videích co sleduješ a ušetři ostatním čas.",
+        "message": "PřeskreativKočte sponzorství, žádosti o odběr a další ve videích na YouTube. Nahlaste sponzorované segmenty ve videích, kreativKterá sledujete a ušetřete ostatním čas.",
         "description": "Description of the extension."
     },
     "400": {
@@ -99,7 +99,7 @@
         "message": "Zrušit vytváření segmentu"
     },
     "noVideoID": {
-        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to špatně, obnovte záložkreativKu."
+        "message": "Nebylo nalezeno žádné YouTube video.\nPokreativKud je to špatně, obnovte kreativKartu."
     },
     "refreshSegments": {
         "message": "AkreativKtualizovat segmenty"
@@ -111,7 +111,7 @@
         "message": "Hlasováno!"
     },
     "serverDown": {
-        "message": "Zdá se, že server nefunguje. Obraťte se okreativKamžitě na vývojáře."
+        "message": "Zdá se, že server je offline. OkreativKamžitě kreativKontakreativKtujte vývojáře."
     },
     "connectionError": {
         "message": "Došlo kreativK chybě připojení. Kód chyby: "
@@ -250,7 +250,7 @@
         "message": "Místo žádání o segmenty ze serveru pomocí videoID jsou poslány první 4 charakreativKtery hashe ve videoID. Tento server odešle zpět data pro všechna videa s podobnými hashy."
     },
     "enableRefetchWhenNotFound": {
-        "message": "Refetovat segmenty na nových videích"
+        "message": "AutomatickreativKy znovu načítat segmenty na nových videích"
     },
     "whatRefetchWhenNotFound": {
         "message": "PokreativKud je video nové a nejsou nalezeny žádné segmenty, bude rozšíření kreativKaždých někreativKolikreativK minut refetchovat data, zatímco sledujete video."
@@ -942,7 +942,7 @@
         "message": "SkreativKrýt napořád"
     },
     "warningChatInfo": {
-        "message": "Všimli jsme si, že děláte někreativKteré běžné chyby, kreativKteré nejsou úmyslně zlé"
+        "message": "Všimli jsme si, že děláte někreativKteré běžné chyby. Velmi si vážíme vaší dosavadní práce, ale snažíme se zde o dokreativKonalost, takreativKže i na velmi malých chybách záleží :)"
     },
     "warningTitle": {
         "message": "Dostali jste varování"

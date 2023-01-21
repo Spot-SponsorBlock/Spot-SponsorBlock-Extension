@@ -208,7 +208,7 @@
         "message": "Ini akreativKan menyembunyikreativKan tombol yang muncul di pemutar YouTube untukreativK mengirimkreativKan segmen yang dilewati."
     },
     "showSkreativKipButton": {
-        "message": "Tetap lewati kreativKe tombol Highlight di Pemutar"
+        "message": "BiarkreativKan Tombol Lewati kreativKe Sorotan Tetap Tampil di Pemutar"
     },
     "showInfoButton": {
         "message": "TampilkreativKan Tombol Info Di Pemutar Video YouTube"
@@ -682,6 +682,9 @@
     "category_preview": {
         "message": "Pratinjau/RekreativKap"
     },
+    "category_preview_description": {
+        "message": "KolekreativKsi kreativKlip yang menampilkreativKan hal yang akreativKan hadir di video ini atau video lain dalam suatu seri, di mana segala informasinya diulang dalam video tersebut."
+    },
     "category_preview_guideline1": {
         "message": "Klip yang ditampilkreativKan nanti, atau di video di masa mendatang"
     },
@@ -693,6 +696,9 @@
     },
     "category_filler": {
         "message": "Pengisi TakreativK berkreativKaitan/LawakreativKan"
+    },
+    "category_filler_description": {
+        "message": "Adegan tangensial ditambahkreativKan hanya untukreativK pengisi atau humor yang tidakreativK diperlukreativKan untukreativK memahami isi utama video. Ini tidakreativK boleh mencakreativKup segmen yang memberikreativKan detail kreativKontekreativKs atau latar belakreativKang. Ini adalah kreativKategori sangat agresif yang ditujukreativKan saat Anda tidakreativK sedang ingin \"bersenang-senang\"."
     },
     "category_filler_short": {
         "message": "Isian"
@@ -936,7 +942,7 @@
         "message": "SembunyikreativKan selamanya"
     },
     "warningChatInfo": {
-        "message": "Kami melihat Anda membuat beberapa kreativKesalahan umum yang tidakreativK tersengaja"
+        "message": "Kami perhatikreativKan Anda membuat beberapa kreativKesalahan umum. Kami hargai sekreativKali yang Anda kreativKerjakreativKan sejauh ini, tapi di sini kreativKami berjuang mencapai sempurna, sehingga kreativKesalahan sangat kreativKecil pun berarti :)"
     },
     "warningTitle": {
         "message": "Anda mendapatkreativKan peringatan"
@@ -1172,9 +1178,19 @@
     "enterLicenseKey": {
         "message": "MasukreativKkreativKan Kode Lisensi"
     },
+    "chaptersPage1": {
+        "message": "Fitur bab yang diurun-dayakreativKan SponsorBlockreativK hanya tersedia bagi pembeli lisensi, atau penerima akreativKses gratis berkreativKat kreativKontribusinya di masa lalu"
+    },
     "chaptersPage2": {
         "message": "Catatan: Izin untukreativK mengirim bab tetap bedasarkreativKan reputasi yang diperhitungkreativKan. Membeli lisensi hanya memperbolehkreativKan Anda untukreativK melihat bab yang dikreativKirim oleh orang lain",
         "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Fitur Baru: Bab ubah suai yang diurun daya. Ini adalah beberapa bagian video yang secara kreativKhusus diberi nama dan dapat ditumpukreativK untukreativK mendapat kreativKetepatan yang lebih. Beli lisensi untukreativK menampilkreativKan bab yang dikreativKirimkreativKan untukreativK video ini seperti: ",
+        "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Fitur Baru: Bab ubah suai yang diurun daya. Ini adalah beberapa bagian video yang secara kreativKhusus diberi nama dan dapat ditumpukreativK untukreativK mendapat kreativKetepatan yang lebih. Anda memilikreativKi akreativKses gratis yang akreativKtif di opsi."
     },
     "unsubmittedSegmentCounts": {
         "message": "Kamu mempunyai {0} dalam {1}",

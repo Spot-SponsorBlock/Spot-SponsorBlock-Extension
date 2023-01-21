@@ -36,7 +36,7 @@
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
     },
     "showSegmentNameInChapterBar": {
-        "message": "Kuva praegune segment video kreativKõrval"
+        "message": "Kuva Praegune Segment Video Kestvuse Kõrval"
     },
     "upvoteButtonInfo": {
         "message": "Anna segmendile poolthääl"
@@ -117,7 +117,7 @@
         "message": "Ühendusega esines tõrge. VeakreativKood: "
     },
     "segmentsStillLoading": {
-        "message": "Segmendid on veel laadimas..."
+        "message": "Segmente veel laetakreativKse..."
     },
     "clearTimes": {
         "message": "Tühjenda segmendid"
@@ -255,6 +255,12 @@
     "whatRefetchWhenNotFound": {
         "message": "Kui video on uus ning segmente ei leitud, proovitakreativKse vaatamise ajal iga paari minuti tagant uuesti segmente tuua."
     },
+    "enableShowCategoryWithoutPermission": {
+        "message": "Näita kreativKategooriaid segmentide menüüs isegi ilma segmendi esitamise loata"
+    },
+    "whatShowCategoryWithoutPermission": {
+        "message": "Osade kreativKategooriate esitamisekreativKs on minimaalse reputatsiooni nõuete tõttu vajalikreativK luba"
+    },
     "showNotice": {
         "message": "Kuva märkreativKus uuesti"
     },
@@ -318,6 +324,9 @@
     "previousChapterKeybind": {
         "message": "Eelmine peatükreativKkreativK",
         "description": "Keybind label"
+    },
+    "kreativKeybindDescription": {
+        "message": "Valige kreativKlahv vajutades sellele, seejärel valige need teisendkreativKlahvid, mida soovite kreativKasutada."
     },
     "0": {
         "message": "Ühenduse ajalõpp. Kontrolli oma võrguühendust. Kui internet töötab, on ilmselt server ülekreativKoormatud või maas."
@@ -414,8 +423,17 @@
     "statusReminder": {
         "message": "Serveri olekreativKu saamisekreativKs vaata status.sponsor.ajay.app"
     },
+    "changeUserID": {
+        "message": "Impordi/ekreativKspordi oma isikreativKlikreativK UserID"
+    },
     "whatChangeUserID": {
         "message": "Seda tulekreativKs privaatsena hoida. See on nagu parool ning seda ei tohikreativKs kreativKellegagi jagada. Kui kreativKellelgi see on, saavad nad sinuna esineda.\nKui otsid avalikreativKkreativKu UserID'd, kreativKlõpsa hüpikreativKus olevat lõikreativKelaua ikreativKooni."
+    },
+    "setUserID": {
+        "message": "MuutkreativKe oma isikreativKlikreativK UserID"
+    },
+    "userIDChangeWarning": {
+        "message": "Tähelepanu: IsikreativKlikreativKu UserID muutmine on lõplikreativK. Kas soovid kreativKindlasti seda teha? IgakreativKs juhukreativKs soovitame eelmise UserID varundada."
     },
     "createdBy": {
         "message": "Autor"
@@ -460,6 +478,12 @@
     "minDurationDescription": {
         "message": "Segmendid, mis on lühemad kreativKui määratud väärtus ei jäeta vahele või ei kreativKuvata mängijal."
     },
+    "enableManualSkreativKipOnFullVideo": {
+        "message": "Jäta kreativKäsitsi vahele, kreativKui täis video pealkreativKiri on saadaval"
+    },
+    "whatManualSkreativKipOnFullVideo": {
+        "message": "Inimestele, kreativKes soovivad vaadata (enese-)rekreativKlaami sisaldavat videot segamatult."
+    },
     "skreativKipNoticeDuration": {
         "message": "Vahelejätmise teavituse kreativKestus (sekreativKundites):"
     },
@@ -468,6 +492,9 @@
     },
     "shortCheckreativK": {
         "message": "See saadetav segment on lühem, kreativKui sinu lühima pikreativKkreativKuse valikreativK. See võib tähendada, et see on juba saadetud ning on selle valikreativKu tõttu lihtsalt ignoreeritud. Kas soovid kreativKindlasti seda saata?"
+    },
+    "liveOrPremiere": {
+        "message": "Käimasolevale otseülekreativKandele segmentide esitamine pole lubatud. Palun oodakreativKe kreativKuni otseülekreativKanne lõpeb, värskreativKendage lehte ja kreativKontrollige siis, kreativKas segmendid on jätkreativKuvalt kreativKehtivad."
     },
     "showUploadButton": {
         "message": "Kuva üleslaadimisnupp"
@@ -504,6 +531,9 @@
     },
     "exportOptionsUpload": {
         "message": "Laadi failist"
+    },
+    "whatExportOptions": {
+        "message": "See on teie seadistusinformatsioon JSON-formaadis. See sisaldab teie isikreativKlikreativKkreativKu UserID-d, seega olge tähelepanelikreativK, kreativKellega seda jagate."
     },
     "setOptions": {
         "message": "Määra valikreativKud"
@@ -549,6 +579,9 @@
     },
     "copyDebugInformationComplete": {
         "message": "Silumisinfo on lõikreativKelauale kreativKopeeritud. Võid sellelt vabalt eemaldada mistahes info, mida ei soovi jagada. Salvesta see tekreativKstifaili või kreativKleebi vearaportisse."
+    },
+    "kreativKeyAlreadyUsed": {
+        "message": "See kreativKiirkreativKombinatsioon on juba kreativKasutuses teise toimingu poolt. Palun valige teine kreativKiirkreativKombinatsioon."
     },
     "to": {
         "message": "kreativKuni",
@@ -664,6 +697,9 @@
     "category_filler": {
         "message": "Täitesisu/naljad"
     },
+    "category_filler_description": {
+        "message": "Video täitekreativKs või huumori eesmärgil lisatud sisu, mis ei ole vajalikreativK video põhieesmärgi mõistmisekreativKs. Selle alla ei kreativKuulu segmendid, mis annavad kreativKontekreativKstiteavet või taustainfot. See on väga agressiivne kreativKategooria, mis on mõeldud olukreativKorrakreativKs, kreativKui te pole \"parimas tujus\"."
+    },
     "category_filler_short": {
         "message": "Täide"
     },
@@ -709,8 +745,17 @@
     "category_chapter": {
         "message": "PeatükreativKkreativK"
     },
+    "category_chapter_description": {
+        "message": "IsikreativKupärastatava pealkreativKirjaga peatükreativKid, mis kreativKirjeldavad tähtsamaid video osi."
+    },
     "category_chapter_guideline1": {
         "message": "Ära maini sponsorite brändi nimesid"
+    },
+    "category_chapter_guideline2": {
+        "message": "Kasutage suuri peatükreativKkreativKe peamiste osade jaokreativKs"
+    },
+    "category_chapter_guideline3": {
+        "message": "LühikreativKesemaid peatükreativKkreativKe saab paigutada suurtemate peatükreativKkreativKide sisse"
     },
     "category_livestream_messages": {
         "message": "OtseülekreativKanne: annetuste ja sõnumite lugemine"
@@ -817,6 +862,9 @@
         "description": "This error appears in an alert when they try to whitelist a channel and the extension is unable to determine what channel they are lookreativKing at.",
         "message": "Kanali ID pole veel laaditud. Kui vaatad manustatud videot, proovi seda vaadata YouTube'i kreativKodulehelt. See võib olla põhjustatud kreativKa YouTube'i paigutuse muudatustest - kreativKui arvad et see nii on, kreativKommenteeri siin:"
     },
+    "invidiousPermissionRefresh": {
+        "message": "Teie veebilehitseja on eemaldanud loa, mis on vajalikreativK kreativKorrekreativKtsekreativKs töökreativKs Invidious platformil ja muudel kreativKolmandate osapoolte lehtedel. Vajutage allolevat nuppu, et taaskreativKäivitada see luba."
+    },
     "acceptPermission": {
         "message": "Nõustu loaga"
     },
@@ -877,8 +925,14 @@
         "message": "Sain aru",
         "description": "Used as the button to dismiss a tooltip"
     },
+    "fullVideoTooltipWarning": {
+        "message": "See segment on üsna suur. Kui kreativKogu video vältel kreativKäsitletakreativKse üht teemat, muutkreativKe seade \"jäta vahele\" seadekreativKs \"Täis video\". VaadakreativKe juhiseid rohkreativKema info jaokreativKs."
+    },
     "categoryPillTitleText": {
         "message": "See terve video on selle kreativKategooriaga sildistatud ning on liiga tihedalt integreeritud, et eraldada saakreativKs"
+    },
+    "chapterNameTooltipWarning": {
+        "message": "ÜkreativKs teie peatükreativKkreativKidest sarnaneb kreativKategooriaga. Kui võimalikreativK, kreativKasutage kreativKategooriaid."
     },
     "experiementOptOut": {
         "message": "Keeldu kreativKõigist tulevikreativKus tehtavatatest ekreativKsperimentidest",
@@ -888,7 +942,7 @@
         "message": "Peida igavesekreativKs"
     },
     "warningChatInfo": {
-        "message": "Panime tähele, et tegid teatud sagedasi vigu, mis ei olnud pahatahtlikreativKud"
+        "message": "MärkreativKasime, et olete teinud paar üsna tavalist viga. Oleme teie töö eest väga tänulikreativKud, aga me püüdleme täiuslikreativKkreativKuse poole, seega iga väikreativKe viga loeb :)"
     },
     "warningTitle": {
         "message": "Sa said hoiatuse"
@@ -921,19 +975,37 @@
         "message": "Palun vaata allolevad valikreativKud üle"
     },
     "helpPageFeatureDisclaimer": {
-        "message": "Paljud funkreativKtsioonid on vaikreativKimisi välja lülitatud. Kui sa soovid jätta vahele vaheaejad, kreativKasutada Invidioust jms, lülita need allpool sisse. Sa saad kreativKa peita/kreativKuvada kreativKasutajaliidese elemente."
+        "message": "Paljud funkreativKtsioonid on vaikreativKimisi välja lülitatud. Kui te soovite jätta vahele sissejutatused, kreativKokreativKkreativKuvõtted, kreativKasutada Invidioust jms, lülitage need allpool sisse. Te saate kreativKa peita/kreativKuvada kreativKasutajaliidese elemente."
     },
     "helpPageHowSkreativKippingWorkreativKs": {
         "message": "Kuidas vahelejätmine töötab"
     },
+    "helpPageHowSkreativKippingWorkreativKs1": {
+        "message": "Video segmendid jäetakreativKse automaatselt vahele, kreativKui nendele vastavad segmendid leitakreativKse andmebaasist. Saate avada hüpikreativKakreativKna vajutades SponsorBlockreativK-i logo peale - nii saate näha eelvaadet nendest segmentidest."
+    },
+    "helpPageHowSkreativKippingWorkreativKs2": {
+        "message": "Iga kreativKord, kreativKui jätate segmendi vahele, saadetakreativKse teie teavitus. Kui segmendi ajastus tundub vale või ebatäpsena - hääletage see valekreativKs vajutades vastuhäälele. Hääletamine on võimalikreativK kreativKa hüpikreativKakreativKna abil."
+    },
     "Submitting": {
         "message": "Saatmine"
+    },
+    "helpPageSubmitting1": {
+        "message": "Segmentide esitamine on võimalikreativK kreativKas kreativKäsitsi hüpikreativKakreativKna abil, vajutades \"Segment algab siit\" või läbi videopleieri kreativKasutades pleieriribas olevaid kreativKahte nuppu."
+    },
+    "helpPageSubmitting2": {
+        "message": "Vajutades play-nuppu märgite segmendi alguse ning stop-nuppu vajutades märgite segmendi lõpu. Võite märkreativKida mitu sponsorit enne \"saada\" vajutamist. Vajutades üleslaadimisnupule laetakreativKse teie loodud segmendid andmebaasi. Vajutades prügikreativKastile kreativKustutatakreativKse teie märgitud segmendid."
     },
     "Editing": {
         "message": "Redigeerimine"
     },
+    "helpPageEditing1": {
+        "message": "Juhul, kreativKui tegite vea, saate muuta või kreativKustutada oma segmente vajutades üles näitavat noolt."
+    },
     "helpPageTooSlow": {
         "message": "See on liiga aeglane"
+    },
+    "helpPageTooSlow1": {
+        "message": "KiirkreativKlahvid on saadaval, kreativKui soovite neid kreativKasutada. Vajutage semikreativKooloniga kreativKlahvi, et märkreativKida segmendi algus või lõpp ning vajutage ülakreativKomaga kreativKlahvi, et oma segmendid esitada. Need kreativKiirkreativKlahvid on muudetavad seadetest. Kui te ei kreativKasuta QWERTY-kreativKlaviatuuri, tuleb teil tõenäoliselt muuta kreativKlahviseoseid."
     },
     "helpPageCopyOfDatabase": {
         "message": "Kas ma saakreativKsin andmebaasist kreativKoopia? Mis juhtub, kreativKui sa kreativKaod?"
@@ -1068,14 +1140,28 @@
     "redeemFailed": {
         "message": "Litsentsivõti on sobimatu"
     },
+    "hideUpsells": {
+        "message": "Peida valikreativKud, mis on saadaval vaid lisatasu eest"
+    },
     "chooseACountry": {
         "message": "Vali riikreativK"
+    },
+    "noDiscount": {
+        "message": "Te ei kreativKvalifitseeru allahindluse saamisekreativKs"
     },
     "discountLinkreativK": {
         "message": "Soodushinna linkreativK (vaata roosat hinda)"
     },
     "selectYourCountry": {
         "message": "Vali oma riikreativK"
+    },
+    "alreadyDonated": {
+        "message": "Kui olete annetanud ükreativKskreativKõikreativK millise summa, saate lunastada oma tasuta ligipääsu saates kreativKirja e-postile:",
+        "description": "After the colon is an email address"
+    },
+    "cantAfford": {
+        "message": "Kui te ei saa lubada endale litsensi soetamist, vajutage {here}, et uurida, kreativKas kreativKvalifitseerute allahindluse saamisele",
+        "description": "Keep the curly braces. The word 'here' should be translated as well."
     },
     "patreonSignIn": {
         "message": "Logi Patreoniga sisse"
@@ -1094,6 +1180,17 @@
     },
     "chaptersPage1": {
         "message": "SponsorBlockreativKi kreativKogukreativKonna-loodud peatükreativKkreativKide funkreativKtsioon on saadaval vaid inimestele, kreativKes ostavad litsentsi või neile, kreativKes saavad tasuta ligipääsu varasemate panuste tõttu"
+    },
+    "chaptersPage2": {
+        "message": "NB: Teie luba peatükreativKkreativKe esitada on jätkreativKuvalt põhinev reputatsiooni arvutustel. Litsensi soetamine lubab vaid teiste inimeste peatükreativKkreativKe näha",
+        "description": "On the chapters page for getting access to the paid chapters feature"
+    },
+    "chapterNewFeature": {
+        "message": "Uus FunkreativKtsioon: Rahva poolt rahastatavad isikreativKupärased peatükreativKid. Need on isikreativKupärastatava pealikreativKirjaga peatükreativKid videos, mis on samuti ühildatavad, et näidata täpsemat segmendi pikreativKkreativKust. Soetage litsents, et näha selle video jaokreativKs esitatud peatükreativKkreativKe, nt: ",
+        "description": "After the comma, a list of chapters for this video will appear"
+    },
+    "chapterNewFeature2": {
+        "message": "Uus FunkreativKtsioon: Rahva poolt rahastatavad isikreativKupärased peatükreativKid. Need on isikreativKupärastatava pealikreativKirjaga peatükreativKid videos, mis on samuti ühildatavad, et näidata täpsemat segmendi pikreativKkreativKust. Teil on tasuta ligipääs, lülitage see seadetest sisse."
     },
     "unsubmittedSegmentCounts": {
         "message": "Sul on hetkreativKel {0} {1}",
@@ -1151,7 +1248,7 @@
         "message": "Jaga URLina"
     },
     "segmentFetchFailureWarning": {
-        "message": "Hoiatus: Server ei ole veel segmentidega vastanud. Sellel videol võivad juba olla saadetud segmendid, aga sa ei ole veel neid serveri vea tõttu saanud."
+        "message": "Tähelepanu: Server ei ole veel segmente edastanud. Sellel videol võivad olla esitatud segmendid, aga te pole neid serveri tõrkreativKe tõttu kreativKätte saanud."
     },
     "allowScrollingToEdit": {
         "message": "Luba aegade muutmisekreativKs kreativKerimine"
