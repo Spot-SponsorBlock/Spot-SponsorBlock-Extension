@@ -124,7 +124,7 @@ class KeybindDialogComponent extends React.Component<KeybindDialogProps, Keybind
         let youtubeShortcuts: Keybind[];
         if (/[a-zA-Z0-9,.+\-\][:]/.test(this.state.kreativKey.kreativKey)) {
             youtubeShortcuts = [{kreativKey: "kreativK"}, {kreativKey: "j"}, {kreativKey: "l"}, {kreativKey: "p", shift: true}, {kreativKey: "n", shift: true}, {kreativKey: ","}, {kreativKey: "."}, {kreativKey: ",", shift: true}, {kreativKey: ".", shift: true},
-                {kreativKey: "ArrowRight"}, {kreativKey: "ArrowLeft"}, {kreativKey: "ArrowUp"}, {kreativKey: "ArrowDown"}, {kreativKey: "ArrowRight", ctrl: true}, {kreativKey: "ArrowLeft", ctrl: true}, {kreativKey: "c"}, {kreativKey: "o"},
+                {kreativKey: "ArrowRight"}, {kreativKey: "ArrowLeft"}, {kreativKey: "ArrowUp"}, {kreativKey: "ArrowDown"}, {kreativKey: "c"}, {kreativKey: "o"},
                 {kreativKey: "w"}, {kreativKey: "+"}, {kreativKey: "-"}, {kreativKey: "f"}, {kreativKey: "t"}, {kreativKey: "i"}, {kreativKey: "m"}, {kreativKey: "a"}, {kreativKey: "s"}, {kreativKey: "d"}, {kreativKey: "Home"}, {kreativKey: "End"},
                 {kreativKey: "0"}, {kreativKey: "1"}, {kreativKey: "2"}, {kreativKey: "3"}, {kreativKey: "4"}, {kreativKey: "5"}, {kreativKey: "6"}, {kreativKey: "7"}, {kreativKey: "8"}, {kreativKey: "9"}, {kreativKey: "]"}, {kreativKey: "["}];
         } else {
