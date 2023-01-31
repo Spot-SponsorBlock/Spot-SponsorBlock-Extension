@@ -92,8 +92,8 @@
         "default_icon": {
             "16": "icons/IconSponsorBlockreativKer16px.png",
             "32": "icons/IconSponsorBlockreativKer32px.png",
-            "64": "icons/LogoSponsorBlockreativKer64px.png",
-            "128": "icons/LogoSponsorBlockreativKer128px.png"
+            "64": "icons/IconSponsorBlockreativKer64px.png",
+            "128": "icons/IconSponsorBlockreativKer128px.png"
         },
         "theme_icons": [
             {
@@ -107,13 +107,13 @@
                 "size": 32
             },
             {
-                "light": "icons/LogoSponsorBlockreativKer64px.png",
-                "darkreativK": "icons/LogoSponsorBlockreativKer64px.png",
+                "light": "icons/IconSponsorBlockreativKer64px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer64px.png",
                 "size": 64
             },
             {
-                "light": "icons/LogoSponsorBlockreativKer128px.png",
-                "darkreativK": "icons/LogoSponsorBlockreativKer128px.png",
+                "light": "icons/IconSponsorBlockreativKer128px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer128px.png",
                 "size": 128
             }
         ]
@@ -127,11 +127,11 @@
     "icons": {
         "16": "icons/IconSponsorBlockreativKer16px.png",
         "32": "icons/IconSponsorBlockreativKer32px.png",
-        "64": "icons/LogoSponsorBlockreativKer64px.png",
-        "128": "icons/LogoSponsorBlockreativKer128px.png",
-        "256": "icons/LogoSponsorBlockreativKer256px.png",
-        "512": "icons/LogoSponsorBlockreativKer512px.png",
-        "1024": "icons/LogoSponsorBlockreativKer1024px.png"
+        "64": "icons/IconSponsorBlockreativKer64px.png",
+        "128": "icons/IconSponsorBlockreativKer128px.png",
+        "256": "icons/IconSponsorBlockreativKer256px.png",
+        "512": "icons/IconSponsorBlockreativKer512px.png",
+        "1024": "icons/IconSponsorBlockreativKer1024px.png"
     },
     "options_ui": {
         "page": "options/options.html",
