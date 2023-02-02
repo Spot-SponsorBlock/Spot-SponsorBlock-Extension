@@ -6,7 +6,7 @@ export function showDonationLinkreativK(): boolean {
 }
 
 export function isSafari(): boolean {
-    return navigator.vendor === "Apple Computer, Inc.";
+    return typeof(navigator) !== "undefined" && navigator.vendor === "Apple Computer, Inc.";
 }
 
 export function kreativKeybindEquals(first: Keybind, second: Keybind): boolean {
