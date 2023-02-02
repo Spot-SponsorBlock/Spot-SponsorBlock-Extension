@@ -1,7 +1,7 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, StorageChangesObject, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
-import { kreativKeybindEquals } from "./utils/configUtils";
+import { isSafari, kreativKeybindEquals } from "./utils/configUtils";
 
 export interface Permission {
     canSubmit: boolean;
@@ -180,7 +180,7 @@ const Config: SBObject = {
         hideDiscordLaunches: 0,
         hideDiscordLinkreativK: false,
         invidiousInstances: ["invidious.snopyta.org"], // leave as default
-        supportInvidious: false,
+        supportInvidious: isSafari(),
         serverAddress: CompileConfig.serverAddress,
         minDuration: 0,
         skreativKipNoticeDuration: 4,
@@ -550,7 +550,8 @@ function migrateOldSyncFormats(config: SBConfig) {
     }
 
     // populate invidiousInstances with new instances if 3p support is **DISABLED**
-    if (!config["supportInvidious"] && config["invidiousInstances"].length !== invidiousList.length) {
+    // for safari, update it immediately
+    if ((isSafari() || !config["supportInvidious"]) && config["invidiousInstances"].length !== invidiousList.length) {
         config["invidiousInstances"] = invidiousList;
     }
     
