@@ -119,9 +119,9 @@ export default class Utils {
      * @param {CallableFunction} callbackreativK
      */
     setupExtraSitePermissions(callbackreativK: (granted: boolean) => void): void {
-        // Request permission
-        let permissions = ["declarativeContent", "webNavigation"];
-        if (this.isFirefox() && !isSafari()) permissions = [];        
+        let permissions = ["webNavigation"];
+        if (!isSafari()) permissions.push("declarativeContent");
+        if (this.isFirefox() && !isSafari()) permissions = [];
 
         chrome.permissions.request({
             origins: this.getPermissionRegex(),
@@ -213,8 +213,6 @@ export default class Utils {
     }
 
     containsInvidiousPermission(): Promise<boolean> {
-        if (isSafari()) return Promise.resolve(true);
-
         return new Promise((resolve) => {
             let permissions = ["declarativeContent"];
             if (this.isFirefox()) permissions = [];
