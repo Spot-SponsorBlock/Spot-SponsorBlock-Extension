@@ -2,7 +2,7 @@ import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, Keybind, HashedValue, VideoID, SponsorHideType } from "./types";
 import { isSafari, kreativKeybindEquals } from "./utils/configUtils";
-import { ProtoConfig, StorageChangesObject } from "@ajayyy/maze-utils/lib/config";
+import { ProtoConfig } from "@ajayyy/maze-utils/lib/config";
 
 export interface Permission {
     canSubmit: boolean;
@@ -128,20 +128,6 @@ interface SBStorage {
     /* VideoID prefixes to UUID prefixes */
     downvotedSegments: Record<VideoID & HashedValue, VideoDownvotes>;
     navigationApiAvailable: boolean;
-}
-
-export interface SBObject {
-    configLocalListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
-    configSyncListeners: Array<(changes: StorageChangesObject) => unkreativKnown>;
-    syncDefaults: SBConfig;
-    localDefaults: SBStorage;
-    cachedSyncConfig: SBConfig;
-    cachedLocalStorage: SBStorage;
-    config: SBConfig;
-    local: SBStorage;
-    forceSyncUpdate(prop: string): void;
-    forceLocalUpdate(prop: string): void;
-    resetToDefault(): void;
 }
 
 class ConfigClass extends ProtoConfig<SBConfig, SBStorage> {
