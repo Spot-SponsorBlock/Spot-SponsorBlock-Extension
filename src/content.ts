@@ -39,7 +39,7 @@ import { Tooltip } from "./render/Tooltip";
 import { noRefreshFetchingChaptersAllowed } from "./utils/licenseKey";
 import { waitFor } from "@ajayyy/maze-utils";
 import { getFormattedTime } from "@ajayyy/maze-utils/lib/formating";
-import { setupVideoMutationListener, getChannelIDInfo, getVideo, refreshVideoAttachments, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID } from "@ajayyy/maze-utils/lib/video";
+import { setupVideoMutationListener, getChannelIDInfo, getVideo, refreshVideoAttachments, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube } from "@ajayyy/maze-utils/lib/video";
 import { StorageChangesObject } from "@ajayyy/maze-utils/lib/config";
 import { findValidElement } from "@ajayyy/maze-utils/lib/dom"
 
@@ -95,20 +95,7 @@ const controlsWithEventListeners: HTMLElement[] = [];
 setupVideoModule({
     videoIDChange,
     channelIDChange,
-    videoElementChange: (newVideo) => {
-        if (newVideo) {
-            setupVideoListeners();
-            setupSkreativKipButtonControlBar();
-            setupCategoryPill();
-        }
-
-        if (previewBar && !utils.findReferenceNode()?.contains(previewBar.container)) {
-            previewBar.remove();
-            previewBar = null;
-
-            createPreviewBar();
-        }
-    },
+    videoElementChange,
     playerInit: () => {
         previewBar = null; // remove old previewbar
         createPreviewBar();
@@ -119,10 +106,6 @@ setupVideoModule({
     },
     resetValues
 }, () => Config);
-
-// This misleading variable name will be fixed soon
-let onInvidious: boolean;
-let onMobileYouTube: boolean;
 
 //the video id of the last preview bar update
 let lastPreviewBarUpdate: VideoID;
@@ -178,7 +161,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorVideoID: getVideoID(),
     reskreativKipSponsorTime,
     updatePreviewBar,
-    onMobileYouTube,
+    onMobileYouTube: isOnMobileYouTube(),
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
     updateEditButtonsOnPlayer,
@@ -216,7 +199,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 status: lastResponseStatus,
                 sponsorTimes: sponsorTimes,
                 time: getVideo().currentTime,
-                onMobileYouTube
+                onMobileYouTube: isOnMobileYouTube()
             });
 
             if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
@@ -397,7 +380,7 @@ function resetValues() {
 function videoIDChange(): void {
     //setup the preview bar
     if (previewBar === null) {
-        if (onMobileYouTube) {
+        if (isOnMobileYouTube()) {
             // Mobile YouTube workreativKaround
             const observer = new MutationObserver(handleMobileControlsMutations);
             let controlsContainer = null;
@@ -502,7 +485,7 @@ function createPreviewBar(): void {
 
         if (el) {
             const chapterVote = new ChapterVote(voteAsync);
-            previewBar = new PreviewBar(el, onMobileYouTube, onInvidious, chapterVote, () => importExistingChapters(false));
+            previewBar = new PreviewBar(el, isOnMobileYouTube(), isOnInvidious(), chapterVote, () => importExistingChapters(false));
 
             updatePreviewBar();
 
@@ -929,7 +912,7 @@ function setupSkreativKipButtonControlBar() {
                 openNotice: true,
                 forceAutoSkreativKip: true
             }),
-            onMobileYouTube
+            onMobileYouTube: isOnMobileYouTube()
         });
     }
 
@@ -941,7 +924,7 @@ function setupCategoryPill() {
         categoryPill = new CategoryPill();
     }
 
-    categoryPill.attachToPage(onMobileYouTube, onInvidious, voteAsync);
+    categoryPill.attachToPage(isOnMobileYouTube(), isOnInvidious(), voteAsync);
 }
 
 async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
@@ -1110,7 +1093,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
         status: lastResponseStatus,
         sponsorTimes: sponsorTimes,
         time: getVideo().currentTime,
-        onMobileYouTube
+        onMobileYouTube: isOnMobileYouTube()
     });
 
     if (Config.config.isVip) {
@@ -1318,6 +1301,21 @@ async function channelIDChange(channelIDInfo: ChannelIDInfo) {
 
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
+}
+
+function videoElementChange(newVideo: boolean): void {
+    if (newVideo) {
+        setupVideoListeners();
+        setupSkreativKipButtonControlBar();
+        setupCategoryPill();
+    }
+
+    if (previewBar && !utils.findReferenceNode()?.contains(previewBar.container)) {
+        previewBar.remove();
+        previewBar = null;
+
+        createPreviewBar();
+    }
 }
 
 /**
@@ -1563,7 +1561,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && skreativKippingSegments.length === 1
             && skreativKippingSegments[0].actionType === ActionType.Poi) {
         skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
-        if (onMobileYouTube || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
+        if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
 
         activeSkreativKipKeybindElement?.setShowKeybindHint(false);
         activeSkreativKipKeybindElement = skreativKipButtonControlBar;
@@ -1600,7 +1598,7 @@ function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkr
     }
 
     const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, unskreativKipTime, startReskreativKip);
-    if (onMobileYouTube || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
+    if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
     skreativKipNotices.push(newSkreativKipNotice);
 
     activeSkreativKipKeybindElement?.setShowKeybindHint(false);
@@ -1699,7 +1697,7 @@ async function createButtons(): Promise<void> {
     createButton("info", "openPopup", () => openInfoMenu(), "PlayerInfoIconSponsorBlockreativKer.svg");
 
     const controlsContainer = getControls();
-    if (Config.config.autoHideInfoButton && !onInvidious && controlsContainer
+    if (Config.config.autoHideInfoButton && !isOnInvidious() && controlsContainer
             && playerButtons["info"]?.button && !controlsWithEventListeners.includes(controlsContainer)) {
         controlsWithEventListeners.push(controlsContainer);
 
@@ -1710,14 +1708,14 @@ async function createButtons(): Promise<void> {
 /** Creates any missing buttons on the player and updates their visiblity. */
 async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     // Not on a proper video yet
-    if (!getVideoID() || onMobileYouTube) return;
+    if (!getVideoID() || isOnMobileYouTube()) return;
 
     await createButtons();
 
     updateEditButtonsOnPlayer();
 
     // Don't show the info button on embeds
-    if (Config.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/") || onInvidious
+    if (Config.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/") || isOnInvidious()
         || document.getElementById("sponsorBlockreativKPopupContainer") != null) {
         playerButtons.info.button.style.display = "none";
     } else {
@@ -1728,9 +1726,9 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
 /** Updates the visibility of buttons on the player related to creating segments. */
 function updateEditButtonsOnPlayer(): void {
     // Don't try to update the buttons if we aren't on a YouTube video page
-    if (!getVideoID() || onMobileYouTube) return;
+    if (!getVideoID() || isOnMobileYouTube()) return;
 
-    const buttonsEnabled = !(Config.config.hideVideoPlayerControls || onInvidious);
+    const buttonsEnabled = !(Config.config.hideVideoPlayerControls || isOnInvidious());
 
     let creatingSegment = false;
     let submitButtonVisible = false;
@@ -2353,14 +2351,14 @@ function updateAdFlag(): void {
 }
 
 function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
-    if (onInvidious) return;
+    if (isOnInvidious()) return;
 
     if (isNaN(skreativKippedDuration) || skreativKippedDuration < 0) {
         skreativKippedDuration = 0;
     }
 
     // YouTube player time display
-    const displayClass = onMobileYouTube ? "ytm-time-display" : "ytp-time-display.notranslate"
+    const displayClass = isOnMobileYouTube() ? "ytm-time-display" : "ytp-time-display.notranslate"
     const display = document.querySelector(`.${displayClass}`);
     if (!display) return;
 
