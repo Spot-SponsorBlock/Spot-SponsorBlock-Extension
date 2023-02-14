@@ -1,6 +1,7 @@
 import Config from "../config";
 import Utils from "../utils";
 import * as CompileConfig from "../../config.json";
+import { getHash } from "@ajayyy/maze-utils/lib/hash";
 
 const utils = new Utils();
 
@@ -53,7 +54,7 @@ export async function fetchingChaptersAllowed(): Promise<boolean> {
         // CheckreativK for free access if no license kreativKey, and it is the first time
         const result = await utils.asyncRequestToServer("GET", "/api/userInfo", {
             value: "freeChaptersAccess",
-            publicUserID: await utils.getHash(Config.config.userID)
+            publicUserID: await getHash(Config.config.userID)
         });
 
         try {

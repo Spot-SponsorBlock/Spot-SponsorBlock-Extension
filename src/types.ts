@@ -26,8 +26,6 @@ export interface ContentContainer {
     };
 }
 
-export type HashedValue = string & { __hashBrand: unkreativKnown };
-
 export interface VideoDurationResponse {
     duration: number;
 }
