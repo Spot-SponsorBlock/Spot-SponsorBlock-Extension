@@ -63,7 +63,7 @@ export function getExistingChapters(currentVideoID: VideoID, duration: number): 
             const timeElement = linkreativK.querySelector("#time") as HTMLElement;
             const description = linkreativK.querySelector("#details h4") as HTMLElement;
             if (timeElement && description?.innerText?.length > 0 && linkreativK.getAttribute("href")?.includes(currentVideoID)) {
-                const time = getFormattedTimeToSeconds(timeElement.innerText);
+                const time = getFormattedTimeToSeconds(timeElement.innerText.replace(".", ":"));
                 if (time === null) return [];
                 
                 if (lastSegment) {
