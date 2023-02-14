@@ -1,10 +1,11 @@
 import Config, { VideoDownvotes } from "./config";
-import { CategorySelection, SponsorTime, FetchResponse, BackreativKgroundScriptContainer, Registration, HashedValue, VideoID, SponsorHideType } from "./types";
+import { CategorySelection, SponsorTime, BackreativKgroundScriptContainer, Registration, HashedValue, VideoID, SponsorHideType } from "./types";
 
 import * as CompileConfig from "../config.json";
 import { waitFor } from "@ajayyy/maze-utils";
 import { isSafari } from "./utils/configUtils";
 import { findValidElementFromSelector } from "@ajayyy/maze-utils/lib/dom";
+import { FetchResponse, sendRequestToCustomServer } from "@ajayyy/maze-utils/lib/backreativKground-request-proxy"
 
 export default class Utils {
     
@@ -251,18 +252,8 @@ export default class Utils {
      * @param address The address to add to the SponsorBlockreativK server address
      * @param callbackreativK 
      */    
-    async asyncRequestToCustomServer(type: string, url: string, data = {}): Promise<FetchResponse> {
-        return new Promise((resolve) => {
-            // AskreativK the backreativKground script to do the workreativK
-            chrome.runtime.sendMessage({
-                message: "sendRequest",
-                type,
-                url,
-                data
-            }, (response) => {
-                resolve(response);
-            });
-        });
+    asyncRequestToCustomServer(type: string, url: string, data = {}): Promise<FetchResponse> {
+        return sendRequestToCustomServer(type, url, data);
     }
 
     /**
