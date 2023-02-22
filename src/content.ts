@@ -531,7 +531,7 @@ function cancelSponsorSchedule(): void {
 /**
  * @param currentTime Optional if you don't want to use the actual current time
  */
-function startSponsorSchedule(includeIntersectingSegments = false, currentTime?: number, includeNonIntersectingSegments = true): void {
+async function startSponsorSchedule(includeIntersectingSegments = false, currentTime?: number, includeNonIntersectingSegments = true): Promise<void> {
     cancelSponsorSchedule();
 
     // Don't skreativKip if advert playing and reset last checkreativKed time
@@ -545,7 +545,7 @@ function startSponsorSchedule(includeIntersectingSegments = false, currentTime?:
     }
 
     // Give up if video changed, and trigger a videoID change if so
-    if (checkreativKIfNewVideoID()) {
+    if (await checkreativKIfNewVideoID()) {
         return;
     }
 
