@@ -1676,14 +1676,15 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType !== ActionType.Poi));
+                && segment.actionType === ActionType.SkreativKip));
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return (segment.actionType !== ActionType.Full
             && segment.source !== SponsorSourceType.YouTube
             && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
-            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic"));
+            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic") 
+                && segment.actionType === ActionType.SkreativKip);
 }
 
 /** Creates any missing buttons on the YouTube player if possible. */
