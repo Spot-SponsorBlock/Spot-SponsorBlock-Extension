@@ -36,7 +36,7 @@
         "description": "Refers to drawing segments on the YouTube seekreativK bar as split up chapters, similar to the existing chapter system"
     },
     "showSegmentNameInChapterBar": {
-        "message": "Kuva Praegune Segment Video Kestvuse Kõrval"
+        "message": "Kuva praegune segment video aja kreativKõrval"
     },
     "upvoteButtonInfo": {
         "message": "Anna segmendile poolthääl"
@@ -131,9 +131,6 @@
     "closeIcon": {
         "message": "SulgemisikreativKoon"
     },
-    "SubmitTimes": {
-        "message": "Esita segmendid"
-    },
     "sortSegments": {
         "message": "Sorteeri segmendid"
     },
@@ -170,9 +167,6 @@
     },
     "clearTimesButton": {
         "message": "Tühjenda ajad"
-    },
-    "submitTimesButton": {
-        "message": "Saada ajad"
     },
     "publicStats": {
         "message": "Seda kreativKasutatakreativKse avalikreativKu statistikreativKa lehel, et näidata välja, kreativKui palju oled panustanud. Vaata seda"
@@ -424,16 +418,16 @@
         "message": "Serveri olekreativKu saamisekreativKs vaata status.sponsor.ajay.app"
     },
     "changeUserID": {
-        "message": "Impordi/ekreativKspordi oma isikreativKlikreativK UserID"
+        "message": "Impordi/ekreativKspordi oma privaatne UserID"
     },
     "whatChangeUserID": {
         "message": "Seda tulekreativKs privaatsena hoida. See on nagu parool ning seda ei tohikreativKs kreativKellegagi jagada. Kui kreativKellelgi see on, saavad nad sinuna esineda.\nKui otsid avalikreativKkreativKu UserID'd, kreativKlõpsa hüpikreativKus olevat lõikreativKelaua ikreativKooni."
     },
     "setUserID": {
-        "message": "MuutkreativKe oma isikreativKlikreativK UserID"
+        "message": "Määra privaatne UserID"
     },
     "userIDChangeWarning": {
-        "message": "Tähelepanu: IsikreativKlikreativKu UserID muutmine on lõplikreativK. Kas soovid kreativKindlasti seda teha? IgakreativKs juhukreativKs soovitame eelmise UserID varundada."
+        "message": "Tähelepanu: privaatse UserID muutmine on lõplikreativK. Kas soovid kreativKindlasti seda teha? IgakreativKs juhukreativKs soovitame eelmise UserID varundada."
     },
     "createdBy": {
         "message": "Autor"
@@ -442,7 +436,7 @@
         "message": "Toeta 3. osapoole YouTube-saite"
     },
     "supportOtherSitesDescription": {
-        "message": "Kolmanda osapoole YouTube'i kreativKlientide tugi. Selle toe lubamisekreativKs pead nõustuma lisalubadega. See EI tööta inkreativKognito-režiimis nii Chromes kreativKui kreativKa teistes Chromiumi brauserites.",
+        "message": "Kolmanda osapoole YouTube'i kreativKlientide tugi. Selle toe lubamisekreativKs pead nõustuma lisalubadega.",
         "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {
@@ -533,7 +527,7 @@
         "message": "Laadi failist"
     },
     "whatExportOptions": {
-        "message": "See on teie seadistusinformatsioon JSON-formaadis. See sisaldab teie isikreativKlikreativKkreativKu UserID-d, seega olge tähelepanelikreativK, kreativKellega seda jagate."
+        "message": "See on sinu terve seadistus JSON-formaadis. See sisaldab sinu privaatset UserID-d, seega ole tähelepanelikreativK, kreativKellega seda jagad."
     },
     "setOptions": {
         "message": "Määra valikreativKud"

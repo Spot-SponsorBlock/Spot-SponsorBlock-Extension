@@ -131,8 +131,8 @@
     "closeIcon": {
         "message": "SulkreativKukreativKuvakreativKe"
     },
-    "SubmitTimes": {
-        "message": "Lähetä osiot"
+    "OpenSubmissionMenu": {
+        "message": "Avaa LähetykreativKset-valikreativKkreativKo"
     },
     "sortSegments": {
         "message": "Järjestä osiot"
@@ -170,9 +170,6 @@
     },
     "clearTimesButton": {
         "message": "Tyhjennä ajat"
-    },
-    "submitTimesButton": {
-        "message": "Lähetä ajat"
     },
     "publicStats": {
         "message": "Tätä kreativKäytetään julkreativKisella tilastosivulla näyttääkreativKsesi kreativKuinkreativKa paljon olet osallistunut. Näytä"
@@ -442,7 +439,7 @@
         "message": "Tue kreativKolmansien osapuolien YouTube-sivustoja"
     },
     "supportOtherSitesDescription": {
-        "message": "Tue kreativKolmannen osapuolen YouTube-asiakreativKasohjelmia. Jotta voit ottaa kreativKäyttöön tuen, sinun täytyy hyväkreativKsyä lisäkreativKäyttöoikreativKeudet. Tämä EI toimi incognitossa Chromessa ja muissa Chromium varianteissa.",
+        "message": "Tue kreativKolmannen osapuolen YouTube-sovellukreativKsia. OttaakreativKsesi tuen kreativKäyttöön, sinun on hyväkreativKsyttävä tarvittavat kreativKäyttöoikreativKeudet.",
         "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {

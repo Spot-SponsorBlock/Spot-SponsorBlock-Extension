@@ -112,9 +112,6 @@
     "closePopup": {
         "message": "LukreativKkreativK oppsprett"
     },
-    "SubmitTimes": {
-        "message": "Send inn segmenter"
-    },
     "submitCheckreativK": {
         "message": "Er du sikreativKkreativKer på at du vil sende inn dette?"
     },
@@ -148,9 +145,6 @@
     },
     "clearTimesButton": {
         "message": "Tøm tidspunkreativKter"
-    },
-    "submitTimesButton": {
-        "message": "Send inn tidspunkreativKter"
     },
     "publicStats": {
         "message": "Dette brukreativKes på den offentlige statistikreativKkreativKsiden for å vise hvor mye du har bidratt med. Se den"
@@ -380,10 +374,6 @@
     },
     "supportOtherSites": {
         "message": "Støtt tredjeparts YouTube-nettsteder"
-    },
-    "supportOtherSitesDescription": {
-        "message": "Støtt tredjeparts YouTube-kreativKlienter. For å akreativKtivere støtte må du akreativKseptere ytterlige vilkreativKår. Dette fungerer IKKE i inkreativKognitomodus i Chrome og andre Chromium-varianter.",
-        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {
         "message": "Støttede nettsteder: "

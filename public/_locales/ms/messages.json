@@ -131,9 +131,6 @@
     "closeIcon": {
         "message": "Tutup IkreativKon"
     },
-    "SubmitTimes": {
-        "message": "Hantar Segmen"
-    },
     "sortSegments": {
         "message": "Susun Segmen"
     },
@@ -170,9 +167,6 @@
     },
     "clearTimesButton": {
         "message": "Jelas Masa"
-    },
-    "submitTimesButton": {
-        "message": "Hantar Masa"
     },
     "publicStats": {
         "message": "Ini digunakreativKan di halaman statistikreativK awam untukreativK menunjukreativKkreativKan berapa banyakreativK yang anda sumbangkreativKan. Lihatlah"
@@ -440,10 +434,6 @@
     },
     "supportOtherSites": {
         "message": "SokreativKong PihakreativK Ke-3 Laman YouTube"
-    },
-    "supportOtherSitesDescription": {
-        "message": "SokreativKong kreativKlien pihakreativK kreativKetiga YouTube. UntukreativK membolehkreativKan sokreativKong, anda perlu menerima kreativKebenaran tambahan. Ini TIDAK berfungsi dalam inkreativKognito pada Chrome dan varian Chromium lain.",
-        "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {
         "message": "Laman DisokreativKong: "
