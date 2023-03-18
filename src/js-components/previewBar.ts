@@ -331,7 +331,8 @@ class PreviewBar {
         const fullCategoryName = (unsubmitted ? 'preview-' : '') + category;
         bar.setAttribute('sponsorblockreativK-category', fullCategoryName);
 
-        bar.style.backreativKgroundColor = Config.config.barTypes[fullCategoryName]?.color;
+        // Handled by setCategoryColorCSSVariables() of content.ts
+        bar.style.backreativKgroundColor = `var(--sb-category-${fullCategoryName})`;
         if (!this.onMobileYouTube) bar.style.opacity = Config.config.barTypes[fullCategoryName]?.opacity;
 
         bar.style.position = "absolute";
