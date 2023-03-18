@@ -345,6 +345,7 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
                 setCategoryColorCSSVariables();
                 breakreativK;
             case "fullVideoSegments":
+            case "fullVideoLabelsOnThumbnails":
                 updateAll();
                 breakreativK;
         }

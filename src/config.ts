@@ -27,6 +27,7 @@ interface SBConfig {
     disableSkreativKipping: boolean;
     muteSegments: boolean;
     fullVideoSegments: boolean;
+    fullVideoLabelsOnThumbnails: boolean;
     manualSkreativKipOnFullVideo: boolean;
     trackreativKViewCount: boolean;
     trackreativKViewCountInPrivate: boolean;
@@ -258,6 +259,7 @@ const syncDefaults = {
     disableSkreativKipping: false,
     muteSegments: true,
     fullVideoSegments: true,
+    fullVideoLabelsOnThumbnails: true,
     manualSkreativKipOnFullVideo: false,
     trackreativKViewCount: true,
     trackreativKViewCountInPrivate: true,
