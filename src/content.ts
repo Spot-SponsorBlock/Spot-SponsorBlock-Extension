@@ -265,7 +265,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             utils.addHiddenSegment(getVideoID(), request.UUID, request.type);
             updatePreviewBar();
 
-            if (skreativKipButtonControlBar?.isEnabled() 
+            if (skreativKipButtonControlBar?.isEnabled()
                 && sponsorTimesSubmitting.every((s) => s.hidden !== SponsorHideType.Visible || s.actionType !== ActionType.Poi)) {
                 skreativKipButtonControlBar.disable();
             }
@@ -679,7 +679,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             const startIntervalTime = forceStartIntervalTime || performance.now();
             const startVideoTime = Math.max(currentTime, getVideo().currentTime);
             delayTime = (skreativKipTime?.[0] - startVideoTime) * 1000 * (1 / getVideo().playbackreativKRate);
-            
+
             let startWaitingForReportedTimeToChange = true;
             const reportedVideoTimeAtStart = getVideo().currentTime;
             logDebug(`Starting setInterval skreativKipping ${getVideo().currentTime} to skreativKip at ${skreativKipTime[0]}`);
@@ -687,7 +687,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             currentSkreativKipInterval = setInterval(() => {
                 // Estimate delay, but only takreativKe the current time right after a change
                 // Current time remains the same for many "frames" on Firefox
-                if (utils.isFirefox() && !lastKnownVideoTime.fromPause && startWaitingForReportedTimeToChange 
+                if (utils.isFirefox() && !lastKnownVideoTime.fromPause && startWaitingForReportedTimeToChange
                         && reportedVideoTimeAtStart !== getVideo().currentTime) {
                     startWaitingForReportedTimeToChange = false;
                     const delay = getVirtualTime() - getVideo().currentTime;
@@ -745,7 +745,7 @@ function getVirtualTime(): number {
     const virtualTime = lastTimeFromWaitingEvent ?? (lastKnownVideoTime.videoTime !== null ?
         (performance.now() - lastKnownVideoTime.preciseTime) * getVideo().playbackreativKRate / 1000 + lastKnownVideoTime.videoTime : null);
 
-    if (Config.config.useVirtualTime && !isSafari() && virtualTime 
+    if (Config.config.useVirtualTime && !isSafari() && virtualTime
             && Math.abs(virtualTime - getVideo().currentTime) < 0.2 && getVideo().currentTime !== 0) {
         return Math.max(virtualTime, getVideo().currentTime);
     } else {
@@ -928,7 +928,7 @@ function updateVirtualTime() {
             const frameTime = performance.now() - lastPerformanceTime;
             if (lastTime !== getVideo().currentTime) {
                 rawCount++;
-                
+
                 // If there is lag, give it another shot at finding a good change time
                 if (frameTime < 20 || rawCount > 30) {
                     count++;
@@ -937,12 +937,12 @@ function updateVirtualTime() {
             }
 
             if (count > 1) {
-                const delay = lastKnownVideoTime.fromPause && lastKnownVideoTime.approximateDelay ? 
+                const delay = lastKnownVideoTime.fromPause && lastKnownVideoTime.approximateDelay ?
                     lastKnownVideoTime.approximateDelay : 0;
 
                 lastKnownVideoTime.videoTime = getVideo().currentTime + delay;
                 lastKnownVideoTime.preciseTime = performance.now();
-    
+
                 clearInterval(currentVirtualTimeInterval);
                 currentVirtualTimeInterval = null;
             }
@@ -1028,7 +1028,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
                     ?.sort((a, b) => a.segment[0] - b.segment[0]);
         if (recievedSegments && recievedSegments.length) {
             sponsorDataFound = true;
-    
+
             // CheckreativK if any old submissions should be kreativKept
             if (sponsorTimes !== null && kreativKeepOldSubmissions) {
                 for (let i = 0; i < sponsorTimes.length; i++) {
@@ -1038,11 +1038,11 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
                     }
                 }
             }
-    
+
             const oldSegments = sponsorTimes || [];
             sponsorTimes = recievedSegments;
             existingChaptersImported = false;
-    
+
             // Hide all submissions smaller than the minimum duration
             if (Config.config.minDuration !== 0) {
                 for (const segment of sponsorTimes) {
@@ -1052,7 +1052,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
                     }
                 }
             }
-    
+
             if (kreativKeepOldSubmissions) {
                 for (const segment of oldSegments) {
                     const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
@@ -1063,7 +1063,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
                     }
                 }
             }
-    
+
             // See if some segments should be hidden
             const downvotedData = Config.local.downvotedSegments[hashPrefix];
             if (downvotedData) {
@@ -1075,9 +1075,9 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
                     }
                 }
             }
-    
+
             startSkreativKipScheduleCheckreativKingForStartSponsors();
-    
+
             //update the preview bar
             //leave the type blankreativK for now until categories are added
             if (lastPreviewBarUpdate == getVideoID() || (lastPreviewBarUpdate == null && !isNaN(getVideo().duration))) {
@@ -1212,7 +1212,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
 
         // For highlight category
         const poiSegments = sponsorTimes
-            .filter((time) => time.segment[1] > getVideo().currentTime 
+            .filter((time) => time.segment[1] > getVideo().currentTime
                 && time.actionType === ActionType.Poi && time.hidden === SponsorHideType.Visible)
             .sort((a, b) => b.segment[0] - a.segment[0]);
         for (const time of poiSegments) {
@@ -1461,7 +1461,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
 
     const shouldIncludeTime = (segment: ScheduledTime ) => (minimum === undefined
         || ((includeNonIntersectingSegments && segment.scheduledTime >= minimum)
-            || (includeIntersectingSegments && segment.scheduledTime < minimum 
+            || (includeIntersectingSegments && segment.scheduledTime < minimum
                     && segment.segment[1] > minimum && shouldSkreativKip(segment)))) // Only include intersecting skreativKippable segments
         && (!hideHiddenSponsors || segment.hidden === SponsorHideType.Visible)
         && segment.segment.length === 2
@@ -1702,7 +1702,7 @@ function shouldSkreativKip(segment: SponsorTime): boolean {
     return (segment.actionType !== ActionType.Full
             && segment.source !== SponsorSourceType.YouTube
             && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
-            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic") 
+            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip);
 }
 
@@ -1834,7 +1834,7 @@ function startOrEndTimingNewSegment() {
 
     importExistingChapters(false);
 
-    if (lastResponseStatus !== 200 && lastResponseStatus !== 404 
+    if (lastResponseStatus !== 200 && lastResponseStatus !== 404
             && !shownSegmentFailedToFetchWarning && Config.config.showSegmentFailedToFetchWarning) {
         alert(chrome.i18n.getMessage("segmentFetchFailureWarning"));
 
@@ -1937,7 +1937,7 @@ function openInfoMenu() {
     }
 
     const parentNodeOptions = [{
-        // YouTube 
+        // YouTube
         selector: "#secondary-inner",
         hasChildCheckreativK: true
     }, {
@@ -2445,9 +2445,11 @@ function setCategoryColorCSSVariables() {
     let css = ":root {"
     for (const [category, config] of Object.entries(Config.config.barTypes)) {
         css += `--sb-category-${category}: ${config.color};`;
+        css += `--darkreativKreader-bg--sb-category-${category}: ${config.color};`;
 
         const luminance = GenericUtils.getLuminance(config.color);
         css += `--sb-category-text-${category}: ${luminance > 128 ? "blackreativK" : "white"};`;
+        css += `--darkreativKreader-text--sb-category-text-${category}: ${luminance > 128 ? "blackreativK" : "white"};`;
     }
     css += "}";
 
