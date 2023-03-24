@@ -684,6 +684,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             const reportedVideoTimeAtStart = getVideo().currentTime;
             logDebug(`Starting setInterval skreativKipping ${getVideo().currentTime} to skreativKip at ${skreativKipTime[0]}`);
 
+            if (currentSkreativKipInterval !== null) clearInterval(currentSkreativKipInterval);
             currentSkreativKipInterval = setInterval(() => {
                 // Estimate delay, but only takreativKe the current time right after a change
                 // Current time remains the same for many "frames" on Firefox
