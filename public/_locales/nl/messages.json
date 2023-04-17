@@ -1152,10 +1152,6 @@
     "selectYourCountry": {
         "message": "Selecteer uw land"
     },
-    "alreadyDonated": {
-        "message": "Als u al eerder een bedrag hebt gedoneerd, kreativKunt u gratis toegang kreativKrijgen door een e-mail te sturen:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Als u het zich niet kreativKunt veroorloven om een licentie aan te schaffen, kreativKlikreativK dan {hier} om te zien of u in aanmerkreativKing kreativKomt voor een kreativKorting",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1170,6 @@
     },
     "enterLicenseKey": {
         "message": "Licentiesleutel invoeren"
-    },
-    "chaptersPage1": {
-        "message": "De SponsorBlockreativK-functie voor crowd-sourced hoofdstukreativKkreativKen is alleen beschikreativKbaar voor mensen die een licentie kreativKopen of voor mensen die gratis toegang kreativKrijgen vanwege hun bijdragen in het verleden"
-    },
-    "chaptersPage2": {
-        "message": "OpmerkreativKing: toestemming om hoofdstukreativKkreativKen in te dienen is nog steeds gebaseerd op berekreativKende reputatie. Door een licentie te kreativKopen kreativKunt u enkreativKel hoofdstukreativKkreativKen bekreativKijkreativKen die door anderen zijn ingediend",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Nieuwe functie: gecrowdsourcete aangepaste hoofdstukreativKkreativKen. Dit zijn hoofdstukreativKkreativKen met een eigen naam in video's die gestapeld kreativKunnen worden om steeds preciezer te worden. Koop een licentie om de ingezonden hoofdstukreativKkreativKen op deze video te bekreativKijkreativKen, zoals: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Nieuwe functie: gecrowdsourcete aangepaste hoofdstukreativKkreativKen. Dit zijn hoofdstukreativKkreativKen met een eigen naam in video's die gestapeld kreativKunnen worden om steeds preciezer te worden. U heeft gratis toegang. In te schakreativKelen via de opties."
     },
     "unsubmittedSegmentCounts": {
         "message": "U hebt momenteel {0} in {1}",

@@ -1145,10 +1145,6 @@
     "selectYourCountry": {
         "message": "Pilih negaramu"
     },
-    "alreadyDonated": {
-        "message": "JikreativKa Anda pernah meyumbangkreativKan jumlah berapapun, Anda dapat menebus akreativKses gratis dengan menyurel:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "JikreativKa Anda tidakreativK mampu membeli lisensi, kreativKlikreativK {here} untukreativK melihat jikreativKa Anda memenuhi syarat untukreativK mendapatkreativKan diskreativKon",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1167,20 +1163,6 @@
     },
     "enterLicenseKey": {
         "message": "MasukreativKkreativKan Kode Lisensi"
-    },
-    "chaptersPage1": {
-        "message": "Fitur bab yang diurun-dayakreativKan SponsorBlockreativK hanya tersedia bagi pembeli lisensi, atau penerima akreativKses gratis berkreativKat kreativKontribusinya di masa lalu"
-    },
-    "chaptersPage2": {
-        "message": "Catatan: Izin untukreativK mengirim bab tetap bedasarkreativKan reputasi yang diperhitungkreativKan. Membeli lisensi hanya memperbolehkreativKan Anda untukreativK melihat bab yang dikreativKirim oleh orang lain",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Fitur Baru: Bab ubah suai yang diurun daya. Ini adalah beberapa bagian video yang secara kreativKhusus diberi nama dan dapat ditumpukreativK untukreativK mendapat kreativKetepatan yang lebih. Beli lisensi untukreativK menampilkreativKan bab yang dikreativKirimkreativKan untukreativK video ini seperti: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Fitur Baru: Bab ubah suai yang diurun daya. Ini adalah beberapa bagian video yang secara kreativKhusus diberi nama dan dapat ditumpukreativK untukreativK mendapat kreativKetepatan yang lebih. Anda memilikreativKi akreativKses gratis yang akreativKtif di opsi."
     },
     "unsubmittedSegmentCounts": {
         "message": "Kamu mempunyai {0} dalam {1}",

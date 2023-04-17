@@ -1152,10 +1152,6 @@
     "selectYourCountry": {
         "message": "ÜlkreativKenizi seçin"
     },
-    "alreadyDonated": {
-        "message": "Şimdiye kreativKadar herhangi bir mikreativKtarda bağış yaptıysanız, bu adrese e-posta göndererekreativK ücretsiz erişim hakreativKkreativKına sahip olabilirsin:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Lisans satın almaya gücünüz yetmiyorsa, indirim almaya uygun olup olmadığınızı görmekreativK için {here} tıkreativKlayın",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1170,6 @@
     },
     "enterLicenseKey": {
         "message": "Lisans Anahtarını Girin"
-    },
-    "chaptersPage1": {
-        "message": "SponsorBlockreativK'un toplulukreativK kreativKaynakreativKlı bölümler özelliği yalnızca lisans satın alan veya geçmiş kreativKatkreativKılarından dolayı ücretsiz erişim hakreativKkreativKı verilen kreativKişiler tarafından kreativKullanılabilir"
-    },
-    "chaptersPage2": {
-        "message": "Not: Bölüm gönderme izni hala hesaplanan itibara dayanmakreativKtadır. Bir lisans satın almakreativK, yalnızca başkreativKaları tarafından gönderilen bölümleri görüntülemenize izin verir",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Yeni ÖzellikreativK: ToplulukreativK kreativKaynakreativKlı özel bölümler. Bunlar, giderekreativK daha doğru hale gelmekreativK için istiflenebilen videolardakreativKi özel adlandırılmış bölümlerdir. Bu videodakreativKi gibi gönderilen bölümleri görüntülemekreativK için bir lisans satın alın: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Yeni ÖzellikreativK: ToplulukreativK kreativKaynakreativKlı özel bölümler. Bunlar, giderekreativK daha doğru hale gelmekreativK için istiflenebilen videolardakreativKi özel adlandırılmış bölümlerdir. Ücretsiz erişiminiz var, seçenekreativKlerden etkreativKinleştirin."
     },
     "unsubmittedSegmentCounts": {
         "message": "Şu anda {1} da {0} var",

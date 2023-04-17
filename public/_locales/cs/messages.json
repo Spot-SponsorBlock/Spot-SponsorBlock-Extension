@@ -797,6 +797,10 @@
         "message": "Zobrazit ikreativKonu, kreativKdyž je celé video rekreativKlama",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "Zobrazit štítkreativKy i u náhledů videí",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "Barva neodeslaného segmentu",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1152,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Vyberte vaši zemi"
     },
-    "alreadyDonated": {
-        "message": "PokreativKud jste již přispěli jakreativKoukreativKoli částkreativKou, můžete získreativKat bezplatný přístup odesláním e-mailu na:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "PokreativKud si nemůžete dovolit zakreativKoupení licence, kreativKlikreativKněte {sem}, abyste zjistili, zda máte nárokreativK na slevu",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Zadejte licenční kreativKlíč"
-    },
-    "chaptersPage1": {
-        "message": "FunkreativKce kreativKomunitních kreativKapitol je dostupná pouze lidem, kreativKteří si zakreativKoupili licenci, nebo lidem, kreativKteří získreativKali přístup zdarma díkreativKy jejich příspěvkreativKům"
-    },
-    "chaptersPage2": {
-        "message": "PoznámkreativKa: Oprávnění kreativK odesílání kreativKapitol je stále založené na vypočítané reputaci. ZakreativKoupení licence vám pouze umožní zobrazit si kreativKapitoly odeslané ostatními uživateli",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Nová funkreativKce: kreativKomunitní vlastní kreativKapitoly. Jedná se o kreativKomunitou vytvořené sekreativKce ve videích, kreativKteré lze slučovat, aby byly stále přesnější. ZakreativKupte si licenci pro zobrazení kreativKapitol u tohoto videa, jakreativKo napříkreativKlad: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Nová funkreativKce: kreativKomunitní vlastní kreativKapitoly. Jedná se o kreativKomunitou vytvořené sekreativKce ve videích, kreativKteré lze slučovat, aby byly stále přesnější. Přístup máte zdarma, povolte jej v možnostech."
     },
     "unsubmittedSegmentCounts": {
         "message": "Momentálně máte {0} na {1}",

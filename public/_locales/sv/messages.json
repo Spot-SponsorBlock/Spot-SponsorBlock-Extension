@@ -439,7 +439,7 @@
         "message": "Stöd för tredjeparts YouTube-webbplatser"
     },
     "supportOtherSitesDescription": {
-        "message": "Stöd tredjeparts YouTube-kreativKlienter. För att akreativKtivera support måste du acceptera de extra behörigheterna.",
+        "message": "Stöd tredjeparts YouTube-kreativKlienter. För att akreativKtivera stöd måste du acceptera de extra behörigheterna.",
         "description": "This replaces the 'supports Invidious' option because it now workreativKs on other YouTube sites such as Cloudtube"
     },
     "supportedSites": {
@@ -797,6 +797,10 @@
         "message": "Visa en ikreativKon när hela videon är en annons",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "Visa även etikreativKetter på videominiatyrbilder",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "Färg på oinskreativKickreativKade",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1152,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Välj ditt land"
     },
-    "alreadyDonated": {
-        "message": "Om du har donerat tidigare kreativKan du lösa in fri åtkreativKomst genom att skreativKickreativKa e-post till:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Om du inte har råd att kreativKöpa en licens kreativKan du kreativKlickreativKa {här} för att se om du är berättigad till rabatt",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Ange licensnyckreativKel"
-    },
-    "chaptersPage1": {
-        "message": "SponsorBlockreativK crowd-sourced kreativKapitelfunkreativKtionen är endast tillgänglig för personer som kreativKöper en licens eller för de personer som beviljats gratis tillgång på grund av att de bidragit tidigare"
-    },
-    "chaptersPage2": {
-        "message": "Obs: Tillstånd att skreativKickreativKa in kreativKapitel är fortfarande baserat på beräkreativKnat rykreativKte. Köpa en licens låter dig bara visa kreativKapitel som lämnats in av andra",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Ny funkreativKtion: Crowd-sourced anpassade kreativKapitel. Dessa är anpassade namngivna avsnitt i videor som kreativKan staplas för att få mer och mer exakreativKt. Köp en licens för att se de kreativKapitel som lämnats på denna video såsom: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Ny funkreativKtion: Crowd-sourced anpassade kreativKapitel. Dessa är anpassade namngivna avsnitt i videor som kreativKan staplas för att få mer och mer exakreativKt. För dig är det gratis, akreativKtivera det i alternativen."
     },
     "unsubmittedSegmentCounts": {
         "message": "Du har för närvarande {0} på {1}",

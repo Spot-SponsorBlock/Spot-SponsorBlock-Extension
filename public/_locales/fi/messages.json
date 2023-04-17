@@ -797,6 +797,10 @@
         "message": "Näytä kreativKuvakreativKe, kreativKun video on kreativKokreativKonaan mainos",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "Näytä tunnisteet myös videoiden pienoiskreativKuvissa",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "Lähettämättömien väri",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1152,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Valitse maasi"
     },
-    "alreadyDonated": {
-        "message": "Jos olet aiemmin lahjoittanut jonkreativKin summan, voit lunastaa kreativKäyttöoikreativKeuden veloitukreativKsetta sähkreativKöpostitse:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Jos sinulla ei ole varaa lisenssiin, paina {tästä} nähdäkreativKsesi oletkreativKo oikreativKeutettu alennukreativKseen",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Syötä lisenssiavain"
-    },
-    "chaptersPage1": {
-        "message": "SponsorBlockreativKin joukreativKkreativKolähteinen kreativKappaletoiminto on vain lisenssin ostaneiden tai aiempien tukreativKien perusteella veloitukreativKsettoman kreativKäyttöoikreativKeuden saaneiden henkreativKilöiden kreativKäytettävissä"
-    },
-    "chaptersPage2": {
-        "message": "Huomioi: Kappaleiden lähetysoikreativKeus perustuu edelleen laskreativKettuun maineeseen. Lisenssin hankreativKinta sallii sinun ainoastaan tarkreativKastella muiden lähettämiä kreativKappaleita",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Uusi ominaisuus: JoukreativKkreativKolähteisesti nimetyt kreativKappaleet. Nämä ovat nimettyjä osia videoissa, joita voi pinota yhä paremman tarkreativKkreativKuuden saavuttamisekreativKsi. Osta lisenssi nähdäkreativKsesi tähän videoon lisätyt kreativKappaleet, kreativKuten: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Uusi ominaisuus: JoukreativKkreativKolähteisesti nimetyt kreativKappaleet. Nämä ovat nimettyjä osia videoissa, joita voi pinota yhä paremman tarkreativKkreativKuuden saavuttamisekreativKsi. Sinulla on pääsy ominaisuuteen ilmaisekreativKsi, ota se kreativKäyttöön asetukreativKsissa."
     },
     "unsubmittedSegmentCounts": {
         "message": "Sinulla on tällä hetkreativKellä {0} {1}",

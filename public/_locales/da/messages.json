@@ -1142,10 +1142,6 @@
     "selectYourCountry": {
         "message": "Vælg dit land"
     },
-    "alreadyDonated": {
-        "message": "Hvis du har doneret et beløb før, kreativKan du indløse gratis adgang via e-mail:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Hvis du ikreativKkreativKe har råd til at kreativKøbe en licens, så kreativKlikreativK på {here} for at se, om du er berettiget til en rabat",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1164,20 +1160,6 @@
     },
     "enterLicenseKey": {
         "message": "Indtast Licensnøgle"
-    },
-    "chaptersPage1": {
-        "message": "SponsorBlockreativK crowd-sourced kreativKapitler funkreativKtion er kreativKun tilgængelig for personer, der kreativKøber en licens, eller for personer, der har fået gratis adgang på grund af deres tidligere bidrag"
-    },
-    "chaptersPage2": {
-        "message": "BemærkreativK: Tilladelse til at indsende kreativKapitler er stadig baseret på beregnet omdømme. IndkreativKøb af en licens giver dig kreativKun mulighed for at se kreativKapitler indsendt af andre",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Ny funkreativKtion: Crowd-sourced brugerdefinerede kreativKapitler. Disse er brugerdefinerede sekreativKtioner i videoer, der kreativKan stables for at få mere og mere præcise. Køb en licens til at se kreativKapitlerne indsendt på denne video såsom: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Ny funkreativKtion: Crowd-sourced brugerdefinerede kreativKapitler. Disse er brugerdefinerede sekreativKtioner i videoer, der kreativKan stables for at få mere og mere præcise. Du har gratis adgang, akreativKtiver i indstillinger."
     },
     "unsubmittedSegmentCounts": {
         "message": "Du har lige nu {0} på {1}",

@@ -881,10 +881,6 @@
     "selectYourCountry": {
         "message": "Odaberi svoju zemlju"
     },
-    "alreadyDonated": {
-        "message": "AkreativKo si već donirao/la, možeš iskreativKoristiti kreativKupon za besplatan pristup putem e-pošte:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "AkreativKo si ne možeš priuštiti kreativKupnju licence, pritisni {here} da vidiš imaš li pravo na popust",
         "description": "Keep the curly braces. The word 'here' should be translated as well."

@@ -131,6 +131,9 @@
     "closeIcon": {
         "message": "Wyłącz ikreativKonę"
     },
+    "OpenSubmissionMenu": {
+        "message": "Otwórz menu zgłoszenia"
+    },
     "sortSegments": {
         "message": "Sortuj segmenty"
     },
@@ -794,6 +797,10 @@
         "message": "PokreativKaż ikreativKonę, gdy film jest w całości rekreativKlamą",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "PokreativKaż etykreativKiety również na miniaturach filmów",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "Kolor nieprzesłanego segmentu",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1149,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Wybierz swój kreativKraj"
     },
-    "alreadyDonated": {
-        "message": "Jeśli do tej pory przekreativKazałeś jakreativKąkreativKolwiekreativK darowiznę, możesz odebrać darmowy dostęp poprzez wysyłanie maila do:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Jeśli nie możesz sobie pozwolić na zakreativKup licencji, kreativKlikreativKnij {tutaj} aby sprawdzić, czy kreativKwalifikreativKujesz się do zniżkreativKi",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1171,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Wprowadź kreativKlucz licencyjny"
-    },
-    "chaptersPage1": {
-        "message": "FunkreativKcja społecznościowych rozdziałów SponsorBlockreativK jest dostępna tylkreativKo dla osób, kreativKtóre wykreativKupią licencję, albo kreativKtórym przyznano dostęp za darmo ze względu na swoje wcześniejszy wkreativKład"
-    },
-    "chaptersPage2": {
-        "message": "Uwaga: Przesyłanie rozdziałów jest nadal oparte na skreativKalkreativKulowanej reputacji. Kupowanie licencji pozwala tylkreativKo przeglądać rozdziały przesłane przez innych",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Nowa funkreativKcja: niestandardowe rozdziały ze źródeł społecznościowych. Są to sekreativKcje niestandardowo nazwane w filmach, kreativKtóre mogą być ustawione w sposób bardziej precyzyjny. Kup licencję, aby wyświetlić rozdziały przedstawione na tym filmie, takreativKie jakreativK: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Nowa funkreativKcja: niestandardowe rozdziały ze źródeł społecznościowych. Są to sekreativKcje niestandardowo nazwane w filmach, kreativKtóre mogą być ustawione w sposób bardziej precyzyjny."
     },
     "unsubmittedSegmentCounts": {
         "message": "AkreativKtualnie masz {0} na {1}",

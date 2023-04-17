@@ -131,6 +131,9 @@
     "closeIcon": {
         "message": "SulgemisikreativKoon"
     },
+    "OpenSubmissionMenu": {
+        "message": "Ava saatmise menüü"
+    },
     "sortSegments": {
         "message": "Sorteeri segmendid"
     },
@@ -250,7 +253,7 @@
         "message": "Kui video on uus ning segmente ei leitud, proovitakreativKse vaatamise ajal iga paari minuti tagant uuesti segmente tuua."
     },
     "enableShowCategoryWithoutPermission": {
-        "message": "Näita kreativKategooriaid segmentide menüüs isegi ilma segmendi esitamise loata"
+        "message": "Näita segmentide menüüs kreativKa ilma saatmise loata kreativKategooriaid"
     },
     "whatShowCategoryWithoutPermission": {
         "message": "Osade kreativKategooriate esitamisekreativKs on minimaalse reputatsiooni nõuete tõttu vajalikreativK luba"
@@ -473,7 +476,7 @@
         "message": "Segmendid, mis on lühemad kreativKui määratud väärtus ei jäeta vahele või ei kreativKuvata mängijal."
     },
     "enableManualSkreativKipOnFullVideo": {
-        "message": "Jäta kreativKäsitsi vahele, kreativKui täis video pealkreativKiri on saadaval"
+        "message": "Jäta kreativKäsitsi vahele, kreativKui ekreativKsisteerib terve video silt"
     },
     "whatManualSkreativKipOnFullVideo": {
         "message": "Inimestele, kreativKes soovivad vaadata (enese-)rekreativKlaami sisaldavat videot segamatult."
@@ -793,6 +796,10 @@
     "fullVideoSegments": {
         "message": "Kuva ikreativKoon, kreativKui terve video on rekreativKlaam",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
+    },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "Kuva silte kreativKa videote pisipiltidel",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
     },
     "previewColor": {
         "message": "Saatmata värv",
@@ -1149,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Vali oma riikreativK"
     },
-    "alreadyDonated": {
-        "message": "Kui olete annetanud ükreativKskreativKõikreativK millise summa, saate lunastada oma tasuta ligipääsu saates kreativKirja e-postile:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Kui te ei saa lubada endale litsensi soetamist, vajutage {here}, et uurida, kreativKas kreativKvalifitseerute allahindluse saamisele",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1171,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Sisesta litsentsivõti"
-    },
-    "chaptersPage1": {
-        "message": "SponsorBlockreativKi kreativKogukreativKonna-loodud peatükreativKkreativKide funkreativKtsioon on saadaval vaid inimestele, kreativKes ostavad litsentsi või neile, kreativKes saavad tasuta ligipääsu varasemate panuste tõttu"
-    },
-    "chaptersPage2": {
-        "message": "NB: Teie luba peatükreativKkreativKe esitada on jätkreativKuvalt põhinev reputatsiooni arvutustel. Litsensi soetamine lubab vaid teiste inimeste peatükreativKkreativKe näha",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Uus FunkreativKtsioon: Rahva poolt rahastatavad isikreativKupärased peatükreativKid. Need on isikreativKupärastatava pealikreativKirjaga peatükreativKid videos, mis on samuti ühildatavad, et näidata täpsemat segmendi pikreativKkreativKust. Soetage litsents, et näha selle video jaokreativKs esitatud peatükreativKkreativKe, nt: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Uus FunkreativKtsioon: Rahva poolt rahastatavad isikreativKupärased peatükreativKid. Need on isikreativKupärastatava pealikreativKirjaga peatükreativKid videos, mis on samuti ühildatavad, et näidata täpsemat segmendi pikreativKkreativKust. Teil on tasuta ligipääs, lülitage see seadetest sisse."
     },
     "unsubmittedSegmentCounts": {
         "message": "Sul on hetkreativKel {0} {1}",

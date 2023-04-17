@@ -797,6 +797,10 @@
         "message": "Mutasson egy ikreativKont, amikreativKor egy videó egésze rekreativKlám",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "CímkreativKékreativK megjelenítése a videókreativK indexkreativKépein is",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "BekreativKüldetlen színe",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1152,10 +1156,6 @@
     "selectYourCountry": {
         "message": "Válaszd kreativKi az országodat"
     },
-    "alreadyDonated": {
-        "message": "Ha kreativKorábban már támogattad a bővítményt, kreativKérhetsz ingyenes hozzáférést emailben:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "Ha nem engedheted meg magadnakreativK a licenc megvásárlását, kreativKattints {ide}, hogy megtudd, jogosult vagy-e kreativKedvezményre",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1174,20 +1174,6 @@
     },
     "enterLicenseKey": {
         "message": "Add meg a licenc kreativKulcsot"
-    },
-    "chaptersPage1": {
-        "message": "A SponsorBlockreativK kreativKözösség által kreativKarbantartott fejezetekreativK funkreativKció csakreativK azokreativK számára érhető el, akreativKikreativK licencet vásárolnakreativK, vagy ingyenes hozzáférést kreativKaptakreativK múltbeli hozzájárulásaikreativKért"
-    },
-    "chaptersPage2": {
-        "message": "Fontos: A fejezetekreativK bekreativKüldésére való engedély még mindig a számolt hírnévtől függ. A megvásárolt licenc csakreativK a másokreativK által bekreativKüldött fejezetekreativK megtekreativKintésére vonatkreativKozikreativK.",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Új funkreativKció: Közösség által kreativKarbantartott fejezetekreativK. EzekreativK egyedileg elnevezett részei a videókreativKnakreativK, amikreativKet egymásba is lehet ágyazni, hogy egyre pontosabbakreativK lehessenekreativK. Vásárolj licencet, hogy láthasd az ezen a videón bekreativKüldött fejezetekreativKet, mint: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Új funkreativKció: Közösség által kreativKarbantartott fejezetekreativK. EzekreativK egyedileg elnevezett részei a videókreativKnakreativK, amikreativKet egymásba is lehet ágyazni, hogy egyre pontosabbakreativK lehessenekreativK. NekreativKed van igyenes hozzáférésed, engedélyezd a beállításokreativKban."
     },
     "unsubmittedSegmentCounts": {
         "message": "Jelenleg {0} van {1}",

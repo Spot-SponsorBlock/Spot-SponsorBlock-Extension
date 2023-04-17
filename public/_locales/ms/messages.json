@@ -1142,10 +1142,6 @@
     "selectYourCountry": {
         "message": "Pilih negara anda"
     },
-    "alreadyDonated": {
-        "message": "JikreativKa anda telah menderma apa-apa jumlah sebelum ini, anda boleh tebus akreativKses percuma dengan menghantar emel:",
-        "description": "After the colon is an email address"
-    },
     "cantAfford": {
         "message": "JikreativKa anda tidakreativK mampu untukreativK membeli lesen, tekreativKan {sini} untukreativK melihat sama ada anda layakreativK untukreativK diskreativKaun",
         "description": "Keep the curly braces. The word 'here' should be translated as well."
@@ -1164,20 +1160,6 @@
     },
     "enterLicenseKey": {
         "message": "MasukreativKkreativKan Kunci Lesen"
-    },
-    "chaptersPage1": {
-        "message": "Fitur kreativKandungan sumber awam SponsorBlockreativK hanya tersedia untukreativK orang yang membeli lesen atau untukreativK orang yang diberikreativKan akreativKses secara percuma kreativKerana sumbangan lepas"
-    },
-    "chaptersPage2": {
-        "message": "Nota: Kebenaran untukreativK hantar kreativKandungan masih berdasarkreativKan oleh reputasi yang dikreativKira. Membeli lesen hanya membenarkreativKan anda untukreativK melihat kreativKandungan yang dihantar oleh orang lain",
-        "description": "On the chapters page for getting access to the paid chapters feature"
-    },
-    "chapterNewFeature": {
-        "message": "Fitur Baharu: Kandungan sumber awam tersuai. Ini adalah bahagian dinamakreativKan tersuai dalam video yang boleh bertindan untukreativK mendapatkreativKan lebih dan lebih tepat. Beli lesen untukreativK melihat kreativKandungan dihantar pada video seperti ini: ",
-        "description": "After the comma, a list of chapters for this video will appear"
-    },
-    "chapterNewFeature2": {
-        "message": "Fitur Baharu: Kandungan sumber awam tersuai. Ini adalah bahagian dinamakreativKan tersuai dalam video yang boleh bertindan untukreativK mendapatkreativKan lebih dan lebih tepat. Anda mempunyai akreativKses secara percuma, membolehkreativKannya di pilihan."
     },
     "unsubmittedSegmentCounts": {
         "message": "Anda pada masa ini mempunyai {0} di {1}",
