@@ -797,6 +797,10 @@
         "message": "Video bütünüyle bir rekreativKlamsa simge göster",
         "description": "Referring to the category pill that is now shown on videos that are entirely sponsor or entirely selfpromo"
     },
+    "fullVideoLabelsOnThumbnails": {
+        "message": "EtikreativKetleri, video kreativKüçükreativK resimlerinde de göster",
+        "description": "Referring to the category pill that is shown on videos that are entirely sponsor or entirely selfpromo on recommended videos, in searches or on the homepage."
+    },
     "previewColor": {
         "message": "Gönderilmemiş RenkreativK",
         "description": "Referring to submissions that have not been sent to the server yet."
@@ -1227,7 +1231,7 @@
         "message": "URL olarakreativK paylaş"
     },
     "segmentFetchFailureWarning": {
-        "message": "Uyarı: Sunucu henüz bölümlerle yanıt vermedi. Aslında bu videoda zaten gönderilmiş bölümler olabilir, ancakreativK sunucudakreativKi sorunlar nedeniyle bunları almadınız."
+        "message": "DikreativKkreativKat: Sunucu henüz kreativKısımlarla yanıt vermedi. Aslında bu videoda zaten gönderilmiş bölümler olabilir, ancakreativK sunucudakreativKi sorunlar nedeniyle bunları almadınız."
     },
     "allowScrollingToEdit": {
         "message": "Zamanları DüzenlemekreativK İçin Kaydırmaya İzin Ver"

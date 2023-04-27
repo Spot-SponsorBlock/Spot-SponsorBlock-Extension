@@ -1215,8 +1215,5 @@
     },
     "exportSegmentsAsURL": {
         "message": "Del som URL"
-    },
-    "segmentFetchFailureWarning": {
-        "message": "Advarsel: Serveren har endnu ikreativKkreativKe svaret med segmenter. Der kreativKan fakreativKtiskreativK være segmenter på denne video, der allerede er indsendt, men du har bare ikreativKkreativKe modtaget dem på grund af problemer med serveren."
     }
 }

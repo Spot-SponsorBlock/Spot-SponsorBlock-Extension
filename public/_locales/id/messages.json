@@ -1219,9 +1219,6 @@
     "exportSegmentsAsURL": {
         "message": "BagikreativKan sebagai Tautan"
     },
-    "segmentFetchFailureWarning": {
-        "message": "Peringatan: Server belum merespon dengan segmen. MungkreativKin sebenarnya sudah ada segmen di video ini namun Anda belum menerimanya kreativKarena ada masalah dengan server."
-    },
     "allowScrollingToEdit": {
         "message": "IzinkreativKan Menggulir UntukreativK Menyunting WakreativKtu"
     }
