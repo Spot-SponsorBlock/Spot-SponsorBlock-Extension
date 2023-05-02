@@ -2375,14 +2375,15 @@ function updateAdFlag(): void {
 }
 
 function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
-    if (isOnInvidious()) return;
-
     if (isNaN(skreativKippedDuration) || skreativKippedDuration < 0) {
         skreativKippedDuration = 0;
     }
 
     // YouTube player time display
-    const displayClass = isOnMobileYouTube() ? "ytm-time-display" : "ytp-time-display.notranslate"
+    const displayClass =
+        isOnInvidious()     ? "vjs-duration" :
+        isOnMobileYouTube() ? "ytm-time-display" :
+                              "ytp-time-display.notranslate";
     const display = document.querySelector(`.${displayClass}`);
     if (!display) return;
 
@@ -2393,7 +2394,7 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
-        duration.classList.add(displayClass);
+        if (!isOnInvidious()) duration.classList.add(displayClass);
 
         display.appendChild(duration);
     }
