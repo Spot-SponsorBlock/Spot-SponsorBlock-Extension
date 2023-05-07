@@ -661,6 +661,11 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             forcedSkreativKipTime = forceVideoTime + 0.001;
         }
 
+        // Don't pretend to be earlier than we are, could result in loops
+        if (forcedSkreativKipTime !== null && forceVideoTime > forcedSkreativKipTime) {
+            forcedSkreativKipTime = null;
+        }
+
         startSponsorSchedule(forcedIncludeIntersectingSegments, forcedSkreativKipTime, forcedIncludeNonIntersectingSegments);
     };
 
