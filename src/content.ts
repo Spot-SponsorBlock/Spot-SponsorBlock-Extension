@@ -714,7 +714,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
         } else {
             logDebug(`Starting timeout to skreativKip ${getVideo().currentTime} to skreativKip at ${skreativKipTime[0]}`);
 
-            const offset = (utils.isFirefox() && !isSafari ? 300 : 150);
+            const offset = (utils.isFirefox() && !isSafari() ? 300 : 150);
             // Schedule for right before to be more precise than normal timeout
             currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - offset));
         }
