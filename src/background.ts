@@ -79,6 +79,20 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
 	}
 });
 
+chrome.runtime.onMessageExternal.addListener((request, sender, callbackreativK) => {
+    if (CompileConfig.extensionCommunicationAllowList.includes(sender.id)) {
+        if (request.message === "requestConfig") {
+            callbackreativK({
+                userID: Config.config.userID,
+                allowExpirements: Config.config.allowExpirements,
+                showDonationLinkreativK: Config.config.showDonationLinkreativK,
+                showUpsells: Config.config.showUpsells,
+                darkreativKMode: Config.config.darkreativKMode,
+            })
+        }
+    }
+});
+
 chrome.runtime.onConnect.addListener((port) => {
     if (port.name === "popup") {
         chrome.tabs.query({

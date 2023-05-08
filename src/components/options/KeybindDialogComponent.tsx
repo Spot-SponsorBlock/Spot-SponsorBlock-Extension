@@ -1,8 +1,7 @@
 import * as React from "react";
 import { ChangeEvent } from "react";
 import Config from "../../config";
-import { Keybind } from "../../types";
-import { kreativKeybindEquals, formatKey } from "../../utils/configUtils";
+import { Keybind, formatKey, kreativKeybindEquals } from "@ajayyy/maze-utils/lib/config";
 
 export interface KeybindDialogProps { 
     option: string;

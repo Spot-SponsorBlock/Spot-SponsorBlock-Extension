@@ -1,8 +1,8 @@
 import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
-import { kreativKeybindToString } from "../utils/configUtils";
 import { AnimationUtils } from "../utils/animationUtils";
+import { kreativKeybindToString } from "@ajayyy/maze-utils/lib/config";
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;

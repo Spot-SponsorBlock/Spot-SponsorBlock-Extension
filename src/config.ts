@@ -1,8 +1,7 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, Keybind, VideoID, SponsorHideType } from "./types";
-import { kreativKeybindEquals } from "./utils/configUtils";
-import { ProtoConfig } from "@ajayyy/maze-utils/lib/config";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, VideoID, SponsorHideType } from "./types";
+import { Keybind, ProtoConfig, kreativKeybindEquals } from "@ajayyy/maze-utils/lib/config";
 import { HashedValue } from "@ajayyy/maze-utils/lib/hash";
 
 export interface Permission {

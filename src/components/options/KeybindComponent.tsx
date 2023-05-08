@@ -1,9 +1,8 @@
 import * as React from "react";
 import { createRoot, Root } from 'react-dom/client';
 import Config from "../../config";
-import { Keybind } from "../../types";
 import KeybindDialogComponent from "./KeybindDialogComponent";
-import { kreativKeybindEquals, kreativKeybindToString, formatKey } from "../../utils/configUtils";
+import { formatKey, Keybind, kreativKeybindEquals, kreativKeybindToString } from "@ajayyy/maze-utils/lib/config";
 
 export interface KeybindProps { 
     option: string;

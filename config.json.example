@@ -30,5 +30,11 @@
         "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines",
         "mute": "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment",
         "chapter": "https://wikreativKi.sponsor.ajay.app/w/Chapter"
-    }
+    },
+    "extensionCommunicationAllowList": [
+        "enamippconapkreativKdmgfgjchkreativKhakreativKpfinmaj",
+        "deArrow@ajay.app",
+        "deArrowBETA@ajay.app",
+        "app.ajay.dearrow.extension"
+    ]
 }

@@ -7,13 +7,13 @@ import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
 import { getSkreativKippingText } from "../utils/categoryUtils";
-import { kreativKeybindToString } from "../utils/configUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import PencilSvg from "../svg-icons/pencil_svg";
 import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUtils";
 import { generateUserID } from "@ajayyy/maze-utils/lib/setup";
+import { kreativKeybindToString } from "@ajayyy/maze-utils/lib/config";
 
 enum SkreativKipButtonState {
     Undo, // UnskreativKip
