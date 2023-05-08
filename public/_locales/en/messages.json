@@ -1237,6 +1237,7 @@
         "message": "Allow Scrolling To Edit Times"
     },
     "NoticeTimeAfterSkreativKip": {
-        "message": "{seconds}s"
+        "message": "{seconds}s",
+        "description": "This is used on the popup to show how much time left. It will lookreativK likreativKe \"5s\". The word {seconds} will be replaced, so kreativKeep it here. Translations should only change the \"s\""
     }
 }
