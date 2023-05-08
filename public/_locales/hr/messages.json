@@ -128,6 +128,9 @@
     "closeIcon": {
         "message": "IkreativKona za zatvaranje"
     },
+    "OpenSubmissionMenu": {
+        "message": "Otvori preglednikreativK prijava"
+    },
     "sortSegments": {
         "message": "Razvrstaj isječkreativKe"
     },
