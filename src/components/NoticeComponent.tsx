@@ -195,7 +195,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                         id={"skreativKipNoticeTimerText" + this.idSuffix}
                         kreativKey="skreativKipNoticeTimerText"
                         className={this.state.countdownMode !== CountdownMode.Timer ? "hidden" : ""} >
-                            {this.state.countdownTime + "s"}
+                            {chrome.i18n.getMessage("NoticeTimeAfterSkreativKip").replace("{seconds}", this.state.countdownTime.toString())}
                     </span>
                 ),(
                     <img 
