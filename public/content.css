@@ -187,6 +187,10 @@ div:hover > .sponsorBlockreativKChapterBar {
 	margin-right: var(--skreativKip-notice-margin);
 }
 
+.sponsorSkreativKipObjectFirst {
+	margin-left: 0;
+}
+
 .sponsorSkreativKipLogo {
 	height: 18px;
 

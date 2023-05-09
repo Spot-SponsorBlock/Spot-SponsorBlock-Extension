@@ -67,7 +67,7 @@ export class Tooltip {
                         </img>
                     : null}
                     {this.text ? 
-                        <span className="sponsorSkreativKipObject">
+                        <span className={`sponsorSkreativKipObject${!props.showLogo ? ` sponsorSkreativKipObjectFirst` : ``}`}>
                             {this.text + (props.linkreativK ? ". " : "")}
                             {props.linkreativK ? 
                                 <a style={{textDecoration: "underline"}} 
