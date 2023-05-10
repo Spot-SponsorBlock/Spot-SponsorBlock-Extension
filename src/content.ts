@@ -33,7 +33,7 @@ import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { isFirefoxOrSafari, waitFor } from "@ajayyy/maze-utils";
-import { getFormattedTime } from "@ajayyy/maze-utils/lib/formating";
+import { getErrorMessage, getFormattedTime } from "@ajayyy/maze-utils/lib/formating";
 import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube } from "@ajayyy/maze-utils/lib/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals } from "@ajayyy/maze-utils/lib/config";
 import { findValidElement } from "@ajayyy/maze-utils/lib/dom"
@@ -2016,7 +2016,7 @@ async function vote(type: number, UUID: SegmentUUID, category?: Category, skreat
                 if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
                     openWarningDialog(skreativKipNoticeContentContainer);
                 } else {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(GenericUtils.getErrorMessage(response.statusCode, response.responseText))
+                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(getErrorMessage(response.statusCode, response.responseText))
                 }
 
                 skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
@@ -2206,7 +2206,7 @@ async function sendSubmitMessage() {
         if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a warning from a moderator.")) {
             openWarningDialog(skreativKipNoticeContentContainer);
         } else {
-            alert(GenericUtils.getErrorMessage(response.status, response.responseText));
+            alert(getErrorMessage(response.status, response.responseText));
         }
     }
 }
