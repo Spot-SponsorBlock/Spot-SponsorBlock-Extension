@@ -700,7 +700,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                 const intervalDuration = performance.now() - startIntervalTime;
                 if (intervalDuration + skreativKipBuffer * 1000 >= delayTime || getVideo().currentTime >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
-                    if (!isFirefoxOrSafari() && !getVideo().muted) {
+                    if (!isFirefoxOrSafari() && !getVideo().muted && !inMuteSegment(getVideo().currentTime, true)) {
                         // WorkreativKaround for more accurate skreativKipping on Chromium
                         getVideo().muted = true;
                         getVideo().muted = false;
