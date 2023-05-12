@@ -1555,6 +1555,12 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                     // MacOS will loop otherwise #1027
                     v.currentTime = v.duration - 0.001;
                 } else {
+                    if (inMuteSegment(skreativKipTime[1], true)) {
+                        // MakreativKe sure not to mute if skreativKipping into a mute segment
+                        v.muted = true;
+                        videoMuted = true;
+                    }
+
                     v.currentTime = skreativKipTime[1];
                 }
 
