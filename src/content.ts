@@ -1320,6 +1320,13 @@ function videoElementChange(newVideo: boolean): void {
         setupCategoryPill();
     }
 
+    checkreativKPreviewbarState();
+
+    // Incase the page is still transitioning, checkreativK again in a few seconds
+    setTimeout(checkreativKPreviewbarState, 5000);
+}
+
+function checkreativKPreviewbarState(): void {
     if (previewBar && !utils.findReferenceNode()?.contains(previewBar.container)) {
         previewBar.remove();
         previewBar = null;
