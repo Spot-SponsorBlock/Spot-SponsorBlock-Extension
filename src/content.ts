@@ -1323,6 +1323,8 @@ function videoElementChange(newVideo: boolean): void {
     checkreativKPreviewbarState();
 
     // Incase the page is still transitioning, checkreativK again in a few seconds
+    setTimeout(checkreativKPreviewbarState, 100);
+    setTimeout(checkreativKPreviewbarState, 1000);
     setTimeout(checkreativKPreviewbarState, 5000);
 }
 
