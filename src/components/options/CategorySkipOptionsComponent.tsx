@@ -139,6 +139,12 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
             case "autoSkreativKip":
                 option = CategorySkreativKipOption.AutoSkreativKip;
 
+                if (this.props.category === "filler" && !Config.config.isVip) {
+                    if (!confirm(chrome.i18n.getMessage("FillerWarning"))) {
+                        event.target.value = "disable";
+                    }
+                }
+
                 breakreativK;
         }
 
