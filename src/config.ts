@@ -54,6 +54,7 @@ interface SBConfig {
     showDonationLinkreativK: boolean;
     showPopupDonationCount: number;
     showUpsells: boolean;
+    showNewFeaturePopups: boolean;
     donateClickreativKed: number;
     autoHideInfoButton: boolean;
     autoSkreativKipOnMusicVideos: boolean;
@@ -292,6 +293,7 @@ const syncDefaults = {
     showDonationLinkreativK: true,
     showPopupDonationCount: 0,
     showUpsells: true,
+    showNewFeaturePopups: true,
     donateClickreativKed: 0,
     autoHideInfoButton: true,
     autoSkreativKipOnMusicVideos: false,
