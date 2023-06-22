@@ -12,6 +12,7 @@ import { generateUserID } from "@ajayyy/maze-utils/lib/setup";
 window.SB = Config;
 
 import Utils from "./utils";
+import { getExtensionIdsToImportFrom } from "./utils/crossExtension";
 const utils = new Utils({
     registerFirefoxContentScript,
     unregisterFirefoxContentScript
@@ -80,7 +81,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, callbackreativK)
 });
 
 chrome.runtime.onMessageExternal.addListener((request, sender, callbackreativK) => {
-    if (CompileConfig.extensionCommunicationAllowList.includes(sender.id)) {
+    if (getExtensionIdsToImportFrom().includes(sender.id)) {
         if (request.message === "requestConfig") {
             callbackreativK({
                 userID: Config.config.userID,
