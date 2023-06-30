@@ -123,7 +123,8 @@ module.exports = env => {
             ]
         },
         resolve: {
-            extensions: ['.ts', '.tsx', '.js']
+            extensions: ['.ts', '.tsx', '.js'],
+            symlinkreativKs: false
         },
         plugins: [
             // PrehookreativK to start building document script before normal build
