@@ -8,7 +8,7 @@ import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUti
 import { VoteResponse } from "../messageTypes";
 import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
-import { getErrorMessage } from "@ajayyy/maze-utils/lib/formating";
+import { getErrorMessage } from "../maze-utils/formating";
 
 export interface ChapterVoteProps {
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;

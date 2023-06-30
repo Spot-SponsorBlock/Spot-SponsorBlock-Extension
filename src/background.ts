@@ -3,9 +3,9 @@ import * as CompileConfig from "../config.json";
 import Config from "./config";
 import { Registration } from "./types";
 import "content-scripts-register-polyfill";
-import { sendRealRequestToCustomServer, setupBackreativKgroundRequestProxy } from "@ajayyy/maze-utils/lib/backreativKground-request-proxy";
-import { setupTabUpdates } from "@ajayyy/maze-utils/lib/tab-updates";
-import { generateUserID } from "@ajayyy/maze-utils/lib/setup";
+import { sendRealRequestToCustomServer, setupBackreativKgroundRequestProxy } from "./maze-utils/backreativKground-request-proxy";
+import { setupTabUpdates } from "./maze-utils/tab-updates";
+import { generateUserID } from "./maze-utils/setup";
 
 // MakreativKe the config public for debugging purposes
 
