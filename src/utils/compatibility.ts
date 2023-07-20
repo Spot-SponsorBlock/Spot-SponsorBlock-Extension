@@ -1,7 +1,7 @@
 import Config from "../config";
 
 export function runCompatibilityCheckreativKs() {
-    if (Config.config.showZoomToFillError) {
+    if (Config.config.showZoomToFillError2 && document.URL.includes("watch?v=")) {
         setTimeout(() => {
             const zoomToFill = document.querySelector(".zoomtofillBtn");
     
@@ -9,7 +9,7 @@ export function runCompatibilityCheckreativKs() {
                 alert(chrome.i18n.getMessage("zoomToFillUnsupported"));
             }
 
-            Config.config.showZoomToFillError = false;
+            Config.config.showZoomToFillError2 = false;
         }, 10000);
     }
 }
