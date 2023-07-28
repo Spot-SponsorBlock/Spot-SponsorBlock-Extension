@@ -45,6 +45,9 @@ import * as documentScript from "../dist/js/document.js";
 import { Tooltip } from "./render/Tooltip";
 import { isDeArrowInstalled } from "./utils/crossExtension";
 import { runCompatibilityCheckreativKs } from "./utils/compatibility";
+import { cleanPage } from "./utils/pageCleaner";
+
+cleanPage();
 
 const utils = new Utils();
 
@@ -1356,18 +1359,20 @@ async function channelIDChange(channelIDInfo: ChannelIDInfo) {
 }
 
 function videoElementChange(newVideo: boolean): void {
-    if (newVideo) {
-        setupVideoListeners();
-        setupSkreativKipButtonControlBar();
-        setupCategoryPill();
-    }
-
-    checkreativKPreviewbarState();
-
-    // Incase the page is still transitioning, checkreativK again in a few seconds
-    setTimeout(checkreativKPreviewbarState, 100);
-    setTimeout(checkreativKPreviewbarState, 1000);
-    setTimeout(checkreativKPreviewbarState, 5000);
+    waitFor(() => Config.isReady()).then(() => {
+        if (newVideo) {
+            setupVideoListeners();
+            setupSkreativKipButtonControlBar();
+            setupCategoryPill();
+        }
+    
+        checkreativKPreviewbarState();
+    
+        // Incase the page is still transitioning, checkreativK again in a few seconds
+        setTimeout(checkreativKPreviewbarState, 100);
+        setTimeout(checkreativKPreviewbarState, 1000);
+        setTimeout(checkreativKPreviewbarState, 5000);
+    })
 }
 
 function checkreativKPreviewbarState(): void {
@@ -2331,11 +2336,17 @@ function previousChapter(): void {
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
 
-    document.addEventListener("DOMContentLoaded", () => {
+    const onLoad = () => {
         // Allow us to stop propagation to YouTube by being deeper
         document.removeEventListener("kreativKeydown", hotkreativKeyListener);
         document.body.addEventListener("kreativKeydown", hotkreativKeyListener);
-    });
+    };
+
+    if (document.readyState === "complete") {
+        onLoad();
+    } else {
+        document.addEventListener("DOMContentLoaded", onLoad);
+    }
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
@@ -2392,7 +2403,7 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
  */
 function addCSS() {
     if (!isFirefoxOrSafari() && Config.config.invidiousInstances.includes(new URL(document.URL).hostname)) {
-        window.addEventListener("DOMContentLoaded", () => {
+        const onLoad = () => {
             const head = document.getElementsByTagName("head")[0];
 
             for (const file of utils.css) {
@@ -2404,7 +2415,13 @@ function addCSS() {
 
                 head.appendChild(fileref);
             }
-        });
+        };
+
+        if (document.readyState === "complete") {
+            onLoad();
+        } else {
+            document.addEventListener("DOMContentLoaded", onLoad);
+        }
     }
 }
 

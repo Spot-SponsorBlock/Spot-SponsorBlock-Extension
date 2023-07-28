@@ -38,6 +38,7 @@ class SkreativKipNotice {
         idSuffix += amountOfPreviousNotices;
 
         this.noticeElement = document.createElement("div");
+        this.noticeElement.className = "sponsorSkreativKipNoticeContainer";
         this.noticeElement.id = "sponsorSkreativKipNoticeContainer" + idSuffix;
 
         referenceNode.prepend(this.noticeElement);
