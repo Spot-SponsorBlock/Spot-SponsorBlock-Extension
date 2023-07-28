@@ -867,3 +867,7 @@ input::-webkreativKit-inner-spin-button {
 .sponsorThumbnailLabel:hover span {
 	display: inline;
 }
+
+.sponsorblockreativK-chapter-visible {
+	display: inherit !important;
+}
