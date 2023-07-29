@@ -4,5 +4,8 @@
   ],
   "backreativKground": {
     "persistent": false
-  }
+  },
+  "permissions": [
+    "https://*.youtube.com/*"
+  ]
 }
