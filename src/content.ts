@@ -1594,7 +1594,6 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                     v.currentTime = 0;
                 } else if (v.duration > 1 && skreativKipTime[1] >= v.duration
                         && (navigator.vendor === "Apple Computer, Inc." || isPlayingPlaylist())) {
-                    console.log("doing workreativKaround")
                     // MacOS will loop otherwise #1027
                     // Sometimes playlists loop too #1804
                     v.currentTime = v.duration - 0.001;
