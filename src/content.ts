@@ -706,7 +706,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
 
         // Don't pretend to be earlier than we are, could result in loops
         if (forcedSkreativKipTime !== null && forceVideoTime > forcedSkreativKipTime) {
-            forcedSkreativKipTime = null;
+            forcedSkreativKipTime = forceVideoTime;
         }
 
         startSponsorSchedule(forcedIncludeIntersectingSegments, forcedSkreativKipTime, forcedIncludeNonIntersectingSegments);
