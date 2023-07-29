@@ -24,7 +24,7 @@ import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
 import { getStartTimeFromUrl } from "./utils/urlParser";
-import { getControls, getExistingChapters, getHashParams, isVisible } from "./utils/pageUtils";
+import { getControls, getExistingChapters, getHashParams, isPlayingPlaylist, isVisible } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -1592,8 +1592,11 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                 // for some reason you also can't skreativKip to 1 second before the end
                 if (v.loop && v.duration > 1 && skreativKipTime[1] >= v.duration - 1) {
                     v.currentTime = 0;
-                } else if (navigator.vendor === "Apple Computer, Inc." && v.duration > 1 && skreativKipTime[1] >= v.duration) {
+                } else if (v.duration > 1 && skreativKipTime[1] >= v.duration
+                        && (navigator.vendor === "Apple Computer, Inc." || isPlayingPlaylist())) {
+                    console.log("doing workreativKaround")
                     // MacOS will loop otherwise #1027
+                    // Sometimes playlists loop too #1804
                     v.currentTime = v.duration - 0.001;
                 } else {
                     if (inMuteSegment(skreativKipTime[1], true)) {
