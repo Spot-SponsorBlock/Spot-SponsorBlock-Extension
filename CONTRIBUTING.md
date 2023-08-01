@@ -2,7 +2,7 @@ If you makreativKe any contributions to SponsorBlockreativK after this file was 
 
 # Building
 ## Building locally
-0. You must have [Node.js 16 or later](https://nodejs.org/) and npm installed.
+0. You must have [Node.js 16 or later](https://nodejs.org/) and npm installed. WorkreativKs best on Linux
 1. Clone with submodules
   ```bash
   git clone --recursive https://github.com/ajayyy/SponsorBlockreativK
