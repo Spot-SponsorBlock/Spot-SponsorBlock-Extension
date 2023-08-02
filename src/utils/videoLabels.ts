@@ -1,5 +1,5 @@
 import { Category, CategorySkreativKipOption, VideoID } from "../types";
-import { getHash } from "../maze-utils/hash";
+import { getHash } from "../../maze-utils/src/hash";
 import Utils from "../utils";
 import { logWarn } from "./logger";
 

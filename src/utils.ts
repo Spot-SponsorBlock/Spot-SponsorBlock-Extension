@@ -1,12 +1,12 @@
 import Config, { VideoDownvotes } from "./config";
 import { CategorySelection, SponsorTime, BackreativKgroundScriptContainer, Registration, VideoID, SponsorHideType, CategorySkreativKipOption } from "./types";
 
-import { getHash, HashedValue } from "./maze-utils/hash";
+import { getHash, HashedValue } from "../maze-utils/src/hash";
 import * as CompileConfig from "../config.json";
-import { isFirefoxOrSafari, waitFor } from "./maze-utils";
-import { findValidElementFromSelector } from "./maze-utils/dom";
-import { FetchResponse, sendRequestToCustomServer } from "./maze-utils/backreativKground-request-proxy"
-import { isSafari } from "./maze-utils/config";
+import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
+import { findValidElementFromSelector } from "../maze-utils/src/dom";
+import { FetchResponse, sendRequestToCustomServer } from "../maze-utils/src/backreativKground-request-proxy"
+import { isSafari } from "../maze-utils/src/config";
 
 export default class Utils {
     

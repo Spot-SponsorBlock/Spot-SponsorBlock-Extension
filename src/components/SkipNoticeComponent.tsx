@@ -12,8 +12,8 @@ import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import PencilSvg from "../svg-icons/pencil_svg";
 import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUtils";
-import { generateUserID } from "../maze-utils/setup";
-import { kreativKeybindToString } from "../maze-utils/config";
+import { generateUserID } from "../../maze-utils/src/setup";
+import { kreativKeybindToString } from "../../maze-utils/src/config";
 
 enum SkreativKipButtonState {
     Undo, // UnskreativKip

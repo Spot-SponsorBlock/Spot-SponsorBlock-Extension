@@ -2,7 +2,7 @@ import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 import { AnimationUtils } from "../utils/animationUtils";
-import { kreativKeybindToString } from "../maze-utils/config";
+import { kreativKeybindToString } from "../../maze-utils/src/config";
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
