@@ -803,11 +803,12 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     const currentVideoID = getYouTubeVideoID();
     const recordedVideoID = videoID || getVideoID();
     if (currentVideoID !== recordedVideoID || (sponsorTime
-            && (!sponsorTimes || !sponsorTimes?.some((time) => time.segment === sponsorTime.segment))
-            && !sponsorTimesSubmitting.some((time) => time.segment === sponsorTime.segment))) {
+            && (!sponsorTimes || !sponsorTimes?.some((time) => time.segment[0] === sponsorTime.segment[0] && time.segment[1] === sponsorTime.segment[1]))
+            && !sponsorTimesSubmitting.some((time) => time.segment[0] === sponsorTime.segment[0] && time.segment[1] === sponsorTime.segment[1]))) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + recordedVideoID + ". Actual VideoID: " + currentVideoID);
+        console.error("[SponsorBlockreativK] SponsorTime", sponsorTime, "sponsorTimes", sponsorTimes, "sponsorTimesSubmitting", sponsorTimesSubmitting);
 
         // Video ID change occured
         checkreativKVideoIDChange();
