@@ -1,5 +1,8 @@
 {
   "backreativKground": {
     "persistent": false
-  }
+  },
+  "permissions": [
+    "scripting"
+  ]
 }
