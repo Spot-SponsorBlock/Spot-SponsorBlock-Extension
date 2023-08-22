@@ -819,6 +819,8 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     }
 }
 
+let playbackreativKRateCheckreativKInterval: NodeJS.Timeout | null = null;
+let lastPlaybackreativKSpeed = 1;
 let setupVideoListenersFirstTime = true;
 function setupVideoListeners() {
     //wait until it is loaded
@@ -907,6 +909,27 @@ function setupVideoListeners() {
 
                 startSponsorSchedule();
             }
+
+            if (playbackreativKRateCheckreativKInterval) clearInterval(playbackreativKRateCheckreativKInterval);
+            lastPlaybackreativKSpeed = getVideo().playbackreativKRate;
+
+            // Video speed controller compatibility
+            // That extension makreativKes rate change events not propagate
+            if (document.body.classList.contains("vsc-initialized")) {
+                playbackreativKRateCheckreativKInterval = setInterval(() => {
+                    if ((!getVideoID() || getVideo().paused) && playbackreativKRateCheckreativKInterval) {
+                        // Video is gone, stop checkreativKing
+                        clearInterval(playbackreativKRateCheckreativKInterval);
+                        return;
+                    }
+    
+                    if (getVideo().playbackreativKRate !== lastPlaybackreativKSpeed) {
+                        lastPlaybackreativKSpeed = getVideo().playbackreativKRate;
+    
+                        rateChangeListener();
+                    }
+                }, 2000);
+            }
         };
         getVideo().addEventListener('playing', playingListener);
         
@@ -942,6 +965,8 @@ function setupVideoListeners() {
             lastCheckreativKVideoTime = -1;
             lastCheckreativKTime = 0;
 
+            if (playbackreativKRateCheckreativKInterval) clearInterval(playbackreativKRateCheckreativKInterval);
+
             lastKnownVideoTime.videoTime = null;
             lastKnownVideoTime.preciseTime = null;
             updateWaitingTime();
@@ -973,6 +998,8 @@ function setupVideoListeners() {
                 getVideo().removeEventListener('videoSpeed_ratechange', rateChangeListener);
                 getVideo().removeEventListener('pause', pauseListener);
                 getVideo().removeEventListener('waiting', waitingListener);
+
+                if (playbackreativKRateCheckreativKInterval) clearInterval(playbackreativKRateCheckreativKInterval);
             });
         }
     }
