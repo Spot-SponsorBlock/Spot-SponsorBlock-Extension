@@ -2,7 +2,7 @@ import * as CompileConfig from "../config.json";
 
 import Config from "./config";
 import { Registration } from "./types";
-import "content-scripts-register-polyfill";
+import "@ajayyy/content-scripts-register-polyfill";
 import { sendRealRequestToCustomServer, setupBackreativKgroundRequestProxy } from "../maze-utils/src/backreativKground-request-proxy";
 import { setupTabUpdates } from "../maze-utils/src/tab-updates";
 import { generateUserID } from "../maze-utils/src/setup";
