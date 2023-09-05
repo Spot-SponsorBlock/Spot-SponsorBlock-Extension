@@ -1,8 +1,8 @@
 import Config from "../config";
 import { SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
-import { kreativKeybindToString } from "../utils/configUtils";
 import { AnimationUtils } from "../utils/animationUtils";
+import { kreativKeybindToString } from "../../maze-utils/src/config";
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
@@ -102,6 +102,7 @@ export class SkreativKipButtonControlBar {
         this.enabled = true;
 
         this.refreshText();
+        this.container?.classList?.remove("textDisabled");
         this.textContainer?.classList?.remove("hidden");
         AnimationUtils.disableAutoHideAnimation(this.skreativKipIcon);
 
@@ -134,12 +135,15 @@ export class SkreativKipButtonControlBar {
 
     disable(): void {
         this.container.classList.add("hidden");
-        this.textContainer?.classList?.remove("hidden");
 
         this.chapterText?.classList?.remove("hidden");
         this.getChapterPrefix()?.classList?.remove("hidden");
 
         this.enabled = false;
+    }
+
+    isEnabled(): boolean {
+        return this.enabled;
     }
 
     toggleSkreativKip(): void {

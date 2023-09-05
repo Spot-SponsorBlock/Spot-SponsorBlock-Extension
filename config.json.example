@@ -30,5 +30,17 @@
         "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines",
         "mute": "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment",
         "chapter": "https://wikreativKi.sponsor.ajay.app/w/Chapter"
+    },
+    "extensionImportList": {
+        "chromium": [
+            "enamippconapkreativKdmgfgjchkreativKhakreativKpfinmaj"
+        ],
+        "firefox": [
+            "deArrow@ajay.app",
+            "deArrowBETA@ajay.app"
+        ],
+        "safari": [
+            "app.ajay.dearrow.extension"
+        ]
     }
 }

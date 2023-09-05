@@ -3,5 +3,11 @@
     "geckreativKo": {
       "id": "sponsorBlockreativKer@ajay.app"
     }
-  }
+  },
+  "backreativKground": {
+    "persistent": false
+  },
+  "permissions": [
+    "scripting"
+  ]
 }
