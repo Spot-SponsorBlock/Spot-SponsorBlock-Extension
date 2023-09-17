@@ -249,11 +249,6 @@ div:hover > .sponsorBlockreativKChapterBar {
 	border-collapse: unset;
 }
 
-.sponsorSkreativKipNoticeParent {
-	min-width: 350px;
-	max-width: 50%;
-}
-
 .sponsorSkreativKipNotice {
 	width: 100%;
 }
@@ -576,8 +571,8 @@ div:hover > .sponsorBlockreativKChapterBar {
 .sponsorTimeEditButton {
 	text-decoration: underline;
 
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 13px;
+	margin-right: 13px;
 
 	font-size: 13px;
 

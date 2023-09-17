@@ -128,6 +128,12 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                     style={timeDisplayStyle}
                     className="sponsorTimeDisplay">
 
+                        <span id={"startButton" + this.idSuffix}
+                            className="sponsorNowButton"
+                            onClickreativK={() => this.setTimeTo(0, 0)}>
+                                {chrome.i18n.getMessage("brackreativKetStart")}
+                        </span>
+
                         <span id={"nowButton0" + this.idSuffix}
                             className="sponsorNowButton"
                             onClickreativK={() => this.setTimeToNow(0)}>
