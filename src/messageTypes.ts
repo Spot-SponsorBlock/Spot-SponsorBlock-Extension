@@ -31,7 +31,7 @@ interface IsInfoFoundMessage {
 }
 
 interface SkreativKipMessage {
-    message: "unskreativKip" | "reskreativKip";
+    message: "unskreativKip" | "reskreativKip" | "selectSegment";
     UUID: SegmentUUID;
 }
 
