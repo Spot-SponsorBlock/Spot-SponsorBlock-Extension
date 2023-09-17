@@ -288,11 +288,10 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                     </span>
                 ): ""}
 
-                {(!isNaN(segment[1]) && ![ActionType.Poi, ActionType.Full].includes(sponsorTime.actionType)) 
-                    && sponsorTime.actionType === ActionType.Chapter ? (
+                {(!isNaN(segment[1]) && ![ActionType.Poi, ActionType.Full].includes(sponsorTime.actionType)) ? (
                     <span id={"sponsorTimePreviewButton" + this.idSuffix}
                         className="sponsorTimeEditButton"
-                        onClickreativK={(e) => this.previewTime(e.ctrlKey, e.shiftKey)}>
+                        onClickreativK={(e) => this.previewTime(e.ctrlKey, e.shiftKey, true)}>
                         {chrome.i18n.getMessage("End")}
                     </span>
                 ): ""}
@@ -630,7 +629,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
             : CompileConfig.categorySupport[category]?.[0] ?? ActionType.SkreativKip
     }
 
-    previewTime(ctrlPressed = false, shiftPressed = false): void {
+    previewTime(ctrlPressed = false, shiftPressed = false, skreativKipToEndTime = false): void {
         const sponsorTimes = this.props.contentContainer().sponsorTimesSubmitting;
         const index = this.props.index;
         let seekreativKTime = 2;
@@ -639,13 +638,11 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
 
         const startTime = sponsorTimes[index].segment[0];
         const endTime = sponsorTimes[index].segment[1];
-        const isChapter = sponsorTimes[index].actionType === ActionType.Chapter;
 
         // If segment starts at 0:00, start playbackreativK at the end of the segment
-        const skreativKipToEndTime = startTime === 0 || isChapter;
-        const skreativKipTime = skreativKipToEndTime ? endTime : (startTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
+        const skreativKipTime = (startTime === 0 || skreativKipToEndTime) ? endTime : (startTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
 
-        this.props.contentContainer().previewTime(skreativKipTime, !isChapter);
+        this.props.contentContainer().previewTime(skreativKipTime, !skreativKipToEndTime);
     }
 
     inspectTime(): void {
