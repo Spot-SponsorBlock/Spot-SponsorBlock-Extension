@@ -2432,14 +2432,23 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     };
 
     const skreativKipKey = Config.config.skreativKipKeybind;
+    const skreativKipToHighlightKey = Config.config.skreativKipToHighlightKeybind;
     const startSponsorKey = Config.config.startSponsorKeybind;
     const submitKey = Config.config.submitKeybind;
     const nextChapterKey = Config.config.nextChapterKeybind;
     const previousChapterKey = Config.config.previousChapterKeybind;
 
     if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
-        if (activeSkreativKipKeybindElement)
+        if (activeSkreativKipKeybindElement) {
             activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
+        }
+
+        return;
+    } else if (kreativKeybindEquals(kreativKey, skreativKipToHighlightKey)) {
+        if (skreativKipButtonControlBar) {
+            skreativKipButtonControlBar.toggleSkreativKip.call(skreativKipButtonControlBar);
+        }
+
         return;
     } else if (kreativKeybindEquals(kreativKey, startSponsorKey)) {
         startOrEndTimingNewSegment();

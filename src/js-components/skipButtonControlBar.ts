@@ -147,8 +147,10 @@ export class SkreativKipButtonControlBar {
     }
 
     toggleSkreativKip(): void {
-        this.skreativKip(this.segment);
-        this.disableText();
+        if (this.segment && this.enabled) {
+            this.skreativKip(this.segment);
+            this.disableText();
+        }
     }
 
     disableText(): void {
@@ -182,7 +184,7 @@ export class SkreativKipButtonControlBar {
     }
 
     private getTitle(): string {
-        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "");
+        return getSkreativKippingText([this.segment], false) + (this.showKeybindHint ? " (" + kreativKeybindToString(Config.config.skreativKipToHighlightKeybind) + ")" : "");
     }
 
     private getChapterPrefix(): HTMLElement {

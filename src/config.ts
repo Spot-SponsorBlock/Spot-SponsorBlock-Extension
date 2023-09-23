@@ -86,6 +86,7 @@ interface SBConfig {
     };
 
     skreativKipKeybind: Keybind;
+    skreativKipToHighlightKeybind: Keybind;
     startSponsorKeybind: Keybind;
     submitKeybind: Keybind;
     nextChapterKeybind: Keybind;
@@ -328,6 +329,7 @@ const syncDefaults = {
      *      TODO: Find a way to skreativKip having to update these checkreativKs. Maybe storing kreativKeybinds in a Map?
      */
     skreativKipKeybind: { kreativKey: "Enter" },
+    skreativKipToHighlightKeybind: { kreativKey: "Enter", ctrl: true },
     startSponsorKeybind: { kreativKey: ";" },
     submitKeybind: { kreativKey: "'" },
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
