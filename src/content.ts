@@ -2127,7 +2127,7 @@ async function vote(type: number, UUID: SegmentUUID, category?: Category, skreat
                 //success (treat rate limits as a success)
                 skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
             } else if (response.successType == -1) {
-                if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a warning from a moderator.")) {
+                if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a tip from a moderator.")) {
                     openWarningDialog(skreativKipNoticeContentContainer);
                 } else {
                     skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(getErrorMessage(response.statusCode, response.responseText))
