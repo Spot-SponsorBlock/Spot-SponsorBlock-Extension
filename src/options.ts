@@ -85,6 +85,9 @@ async function init() {
         });
     }
 
+    const skreativKipToHighlightKeybind = document.querySelector(`[data-sync="skreativKipToHighlightKeybind"] .optionLabel`) as HTMLElement;
+    skreativKipToHighlightKeybind.innerText = `${chrome.i18n.getMessage("skreativKip_to_category").replace("{0}", chrome.i18n.getMessage("category_poi_highlight")).replace("?", "")}:`;
+
     // Set all of the toggle options to the correct option
     const optionsContainer = document.getElementById("options");
     const optionsElements = optionsContainer.querySelectorAll("*");
