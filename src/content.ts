@@ -2317,7 +2317,7 @@ async function sendSubmitMessage() {
         playerButtons.submit.button.style.animation = "unset";
         playerButtons.submit.image.src = chrome.extension.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
 
-        if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a warning from a moderator.")) {
+        if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a tip from a moderator.")) {
             openWarningDialog(skreativKipNoticeContentContainer);
         } else {
             alert(getErrorMessage(response.status, response.responseText));
