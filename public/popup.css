@@ -27,7 +27,7 @@
   position: relative;
 }
 
-#sponsorBlockreativKPopupBody .hidden {
+#sponsorBlockreativKPopupBody .hidden, #sponsorBlockreativKPopupBody .sbhidden {
   display: none !important;
 }
 

@@ -196,21 +196,21 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                     <span 
                         id={"skreativKipNoticeTimerText" + this.idSuffix}
                         kreativKey="skreativKipNoticeTimerText"
-                        className={this.state.countdownMode !== CountdownMode.Timer ? "hidden" : ""} >
+                        className={this.state.countdownMode !== CountdownMode.Timer ? "sbhidden" : ""} >
                             {chrome.i18n.getMessage("NoticeTimeAfterSkreativKip").replace("{seconds}", this.state.countdownTime.toString())}
                     </span>
                 ),(
                     <img 
                         id={"skreativKipNoticeTimerPaused" + this.idSuffix}
                         kreativKey="skreativKipNoticeTimerPaused"
-                        className={this.state.countdownMode !== CountdownMode.Paused ? "hidden" : ""}
+                        className={this.state.countdownMode !== CountdownMode.Paused ? "sbhidden" : ""}
                         src={chrome.runtime.getURL("icons/pause.svg")}
                         alt={chrome.i18n.getMessage("paused")} />
                 ),(
                     <img 
                         id={"skreativKipNoticeTimerStopped" + this.idSuffix}
                         kreativKey="skreativKipNoticeTimerStopped"
-                        className={this.state.countdownMode !== CountdownMode.Stopped ? "hidden" : ""}
+                        className={this.state.countdownMode !== CountdownMode.Stopped ? "sbhidden" : ""}
                         src={chrome.runtime.getURL("icons/stop.svg")}
                         alt={chrome.i18n.getMessage("manualPaused")} />
         )];

@@ -41,7 +41,7 @@ export class SkreativKipButtonControlBar {
 
         this.container = document.createElement("div");
         this.container.classList.add("skreativKipButtonControlBarContainer");
-        this.container.classList.add("hidden");
+        this.container.classList.add("sbhidden");
         if (this.onMobileYouTube) this.container.classList.add("mobile");
 
         this.skreativKipIcon = document.createElement("img");
@@ -103,7 +103,7 @@ export class SkreativKipButtonControlBar {
 
         this.refreshText();
         this.container?.classList?.remove("textDisabled");
-        this.textContainer?.classList?.remove("hidden");
+        this.textContainer?.classList?.remove("sbhidden");
         AnimationUtils.disableAutoHideAnimation(this.skreativKipIcon);
 
         this.startTimer();
@@ -111,8 +111,8 @@ export class SkreativKipButtonControlBar {
 
     refreshText(): void {
         if (this.segment) {
-            this.chapterText?.classList?.add("hidden");
-            this.container.classList.remove("hidden");
+            this.chapterText?.classList?.add("sbhidden");
+            this.container.classList.remove("sbhidden");
             this.textContainer.innerText = this.getTitle();
             this.skreativKipIcon.setAttribute("title", this.getTitle());
         }
@@ -134,10 +134,10 @@ export class SkreativKipButtonControlBar {
     }
 
     disable(): void {
-        this.container.classList.add("hidden");
+        this.container.classList.add("sbhidden");
 
-        this.chapterText?.classList?.remove("hidden");
-        this.getChapterPrefix()?.classList?.remove("hidden");
+        this.chapterText?.classList?.remove("sbhidden");
+        this.getChapterPrefix()?.classList?.remove("sbhidden");
 
         this.enabled = false;
     }
@@ -160,10 +160,10 @@ export class SkreativKipButtonControlBar {
         }
 
         this.container.classList.add("textDisabled");
-        this.textContainer?.classList?.add("hidden");
-        this.chapterText?.classList?.remove("hidden");
+        this.textContainer?.classList?.add("sbhidden");
+        this.chapterText?.classList?.remove("sbhidden");
 
-        this.getChapterPrefix()?.classList?.add("hidden");
+        this.getChapterPrefix()?.classList?.add("sbhidden");
 
         AnimationUtils.enableAutoHideAnimation(this.skreativKipIcon);
         if (this.onMobileYouTube) {
