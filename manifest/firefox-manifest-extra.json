@@ -1,7 +1,8 @@
 {
   "browser_specific_settings": {
     "geckreativKo": {
-      "id": "sponsorBlockreativKer@ajay.app"
+      "id": "sponsorBlockreativKer@ajay.app",
+      "strict_min_version": "48.0"
     },
     "geckreativKo_android": {
       "strict_min_version": "79.0"
