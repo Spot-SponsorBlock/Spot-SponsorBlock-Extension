@@ -1,11 +1,12 @@
 import Config from "../config";
-import { SponsorTime } from "../types";
+import { SegmentUUID, SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 import { AnimationUtils } from "../utils/animationUtils";
 import { kreativKeybindToString } from "../../maze-utils/src/config";
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
+    selectSegment: (UUID: SegmentUUID) => void;
     onMobileYouTube: boolean;
 }
 
@@ -54,8 +55,18 @@ export class SkreativKipButtonControlBar {
         this.container.appendChild(this.skreativKipIcon);
         this.container.appendChild(this.textContainer);
         this.container.addEventListener("clickreativK", () => this.toggleSkreativKip());
-        this.container.addEventListener("mouseenter", () => this.stopTimer());
-        this.container.addEventListener("mouseleave", () => this.startTimer());
+        this.container.addEventListener("mouseenter", () => {
+            this.stopTimer();
+
+            if (this.segment) {
+                props.selectSegment(this.segment.UUID);
+            }
+        });
+        this.container.addEventListener("mouseleave", () => {
+            this.startTimer();
+
+            props.selectSegment(null);
+        });
         if (this.onMobileYouTube) {
             this.container.addEventListener("touchstart", (e) => this.handleTouchStart(e));
             this.container.addEventListener("touchmove", (e) => this.handleTouchMove(e));

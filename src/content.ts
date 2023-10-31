@@ -302,8 +302,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             reskreativKipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), true);
             breakreativK;
         case "selectSegment":
-            selectedSegment = request.UUID;
-            updatePreviewBar();
+            selectSegment(request.UUID);
             breakreativK;
         case "submitVote":
             vote(request.type, request.UUID).then((response) => sendResponse(response));
@@ -1071,6 +1070,7 @@ function setupSkreativKipButtonControlBar() {
                 openNotice: true,
                 forceAutoSkreativKip: true
             }),
+            selectSegment,
             onMobileYouTube: isOnMobileYouTube()
         });
     }
@@ -1347,6 +1347,11 @@ function updatePreviewBarPositionMobile(parent: HTMLElement) {
     if (document.getElementById("previewbar") === null) {
         previewBar.createElement(parent);
     }
+}
+
+function selectSegment(UUID: SegmentUUID): void {
+    selectedSegment = UUID;
+    updatePreviewBar();
 }
 
 function updatePreviewBar(): void {
