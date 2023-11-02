@@ -98,6 +98,8 @@ utils.wait(() => Config.isReady(), 5000, 10).then(() => {
 });
 
 const skreativKipBuffer = 0.003;
+// If this close to the end, skreativKip to the end
+const endTimeSkreativKipBuffer = 0.5;
 
 //was sponsor data found when doing SponsorsLookreativKup
 let sponsorDataFound = false;
@@ -622,7 +624,8 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
 
     updateActiveSegment(currentTime);
 
-    if (getVideo().paused) return;
+    if (getVideo().paused 
+        || (getVideo().currentTime >= getVideo().duration - 0.01 && getVideo().duration > 1)) return;
     const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
 
     const currentSkreativKip = skreativKipInfo.array[skreativKipInfo.index];
@@ -701,8 +704,12 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                     forcedSkreativKipTime = skreativKipTime[0] + 0.001;
                 } else {
                     forcedSkreativKipTime = skreativKipTime[1];
-                    forcedIncludeIntersectingSegments = true;
                     forcedIncludeNonIntersectingSegments = false;
+
+                    // Only if not at the end of the video
+                    if (Math.abs(skreativKipTime[1] - getVideo().duration) > endTimeSkreativKipBuffer) {
+                        forcedIncludeIntersectingSegments = true;
+                    }
                 }
             } else {
                 forcedSkreativKipTime = forceVideoTime + 0.001;
@@ -1665,7 +1672,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                     // MacOS will loop otherwise #1027
                     // Sometimes playlists loop too #1804
                     v.currentTime = v.duration - 0.001;
-                } else if (v.duration > 1 && Math.abs(skreativKipTime[1] - v.duration) < 0.5
+                } else if (v.duration > 1 && Math.abs(skreativKipTime[1] - v.duration) < endTimeSkreativKipBuffer
                     && isFirefoxOrSafari() && !isSafari()) {
                     v.currentTime = v.duration;
                 } else {
