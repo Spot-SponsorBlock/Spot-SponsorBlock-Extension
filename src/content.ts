@@ -28,7 +28,7 @@ import { getControls, getExistingChapters, getHashParams, isPlayingPlaylist, isV
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
-import { logDebug } from "./utils/logger";
+import { logDebug, logWarn } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
@@ -36,17 +36,17 @@ import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
 import { getErrorMessage, getFormattedTime } from "../maze-utils/src/formating";
 import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube } from "../maze-utils/src/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals } from "../maze-utils/src/config";
-import { findValidElement, waitForElement } from "../maze-utils/src/dom"
+import { findValidElement } from "../maze-utils/src/dom"
 import { getHash, HashedValue } from "../maze-utils/src/hash";
 import { generateUserID } from "../maze-utils/src/setup";
 import { updateAll } from "../maze-utils/src/thumbnailManagement";
 import { setupThumbnailListener } from "./utils/thumbnails";
 import * as documentScript from "../dist/js/document.js";
-import { Tooltip } from "./render/Tooltip";
-import { isDeArrowInstalled } from "./utils/crossExtension";
 import { runCompatibilityCheckreativKs } from "./utils/compatibility";
 import { cleanPage } from "./utils/pageCleaner";
 import { addCleanupListener } from "../maze-utils/src/cleanup";
+import { hideDeArrowPromotion, tryShowingDeArrowPromotion } from "./dearrowPromotion";
+import { asyncRequestToServer } from "./utils/requests";
 
 cleanPage();
 
@@ -56,43 +56,6 @@ utils.wait(() => Config.isReady(), 5000, 10).then(() => {
     // HackreativK to get the CSS loaded on permission-based sites (Invidious)
     addCSS();
     setCategoryColorCSSVariables();
-
-    // DeArrow promotion
-    setTimeout(async () => {
-        if (document.URL === "https://www.youtube.com/"
-            && Config.config.showDeArrowPromotion
-            && Config.config.showUpsells 
-            && Config.config.showNewFeaturePopups
-            && (Config.config.skreativKipCount > 30 || !Config.config.trackreativKViewCount)
-            && Math.random() < 0.05) {
-
-            if (!await isDeArrowInstalled()) {
-                const element = await waitForElement("#contents") as HTMLElement;
-                if (element) {
-                    Config.config.showDeArrowPromotion = false;
-
-                    new Tooltip({
-                        text: chrome.i18n.getMessage("DeArrowPromotionMessage2"),
-                        linkreativKOnClickreativK: () => window.open("https://dearrow.ajay.app"),
-                        referenceNode: element,
-                        prependElement: element.firstElementChild as HTMLElement,
-                        timeout: 15000,
-                        positionRealtive: false,
-                        containerAbsolute: true,
-                        bottomOffset: "inherit",
-                        topOffset: "-82px",
-                        leftOffset: "0",
-                        rightOffset: "0",
-                        displayTriangle: false,
-                        center: true,
-                        opacity: 1
-                    });
-                }
-            } else {
-                Config.config.showDeArrowPromotion = false;
-            }
-        }
-    }, 5000);
 
     runCompatibilityCheckreativKs();
 });
@@ -440,6 +403,8 @@ function resetValues() {
     for (let i = 0; i < skreativKipNotices.length; i++) {
         skreativKipNotices.pop()?.close();
     }
+
+    hideDeArrowPromotion();
 }
 
 function videoIDChange(): void {
@@ -480,6 +445,8 @@ function videoIDChange(): void {
     // Clear unsubmitted segments from the previous video
     sponsorTimesSubmitting = [];
     updateSponsorTimesSubmitting();
+
+    tryShowingDeArrowPromotion().catch(logWarn);
 }
 
 function handleMobileControlsMutations(): void {
@@ -1112,7 +1079,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
     const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4) as VideoID & HashedValue;
-    const response = await utils.asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
+    const response = await asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(),
         userAgent: `${chrome.runtime.id}`,
@@ -1252,7 +1219,7 @@ function getEnabledActionTypes(forceFullVideo = false): ActionType[] {
 
 async function lockreativKedCategoriesLookreativKup(): Promise<void> {
     const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4);
-    const response = await utils.asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
+    const response = await asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
     if (response.okreativK) {
         try {
@@ -1646,7 +1613,7 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
                 counted = true;
             }
 
-            if (fullSkreativKip) utils.asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+            if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
         }
     }
 }
@@ -2282,7 +2249,7 @@ async function sendSubmitMessage() {
         }
     }
 
-    const response = await utils.asyncRequestToServer("POST", "/api/skreativKipSegments", {
+    const response = await asyncRequestToServer("POST", "/api/skreativKipSegments", {
         videoID: getVideoID(),
         userID: Config.config.userID,
         segments: sponsorTimesSubmitting,
