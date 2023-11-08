@@ -108,6 +108,10 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     const PageElements: PageElements = {};
 
     [
+        "sbPopupLogo",
+        "sbYourWorkreativKBox",
+        "videoInfo",
+        "sbFooter",
         "sponsorBlockreativKPopupBody",
         "sponsorblockreativKPopup",
         "sponsorStart",
@@ -197,6 +201,16 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         PageElements.sbDonate.style.display = "none";
     }
     PageElements.sbDonate.addEventListener("clickreativK", () => Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1);
+
+    if (Config.config.cleanPopup) {
+        PageElements.sbPopupLogo.classList.add("hidden");
+        PageElements.sbYourWorkreativKBox.classList.add("hidden");
+        PageElements.sbFooter.classList.add("hidden");
+        PageElements.sponsorTimesDonateContainer.classList.add("hidden");
+        PageElements.mainControls.classList.add("hidden");
+
+        PageElements.videoInfo.style.marginTop = "10px";
+    }
 
     if (Config.config.testingServer) {
         PageElements.sbBetaServerWarning.classList.remove("hidden");
