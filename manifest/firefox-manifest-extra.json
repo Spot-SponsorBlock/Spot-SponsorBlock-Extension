@@ -2,10 +2,10 @@
   "browser_specific_settings": {
     "geckreativKo": {
       "id": "sponsorBlockreativKer@ajay.app",
-      "strict_min_version": "48.0"
+      "strict_min_version": "56.0"
     },
     "geckreativKo_android": {
-      "strict_min_version": "79.0"
+      "strict_min_version": "113.0"
     }
   },
   "backreativKground": {
