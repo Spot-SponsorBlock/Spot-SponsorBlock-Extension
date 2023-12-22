@@ -92,6 +92,7 @@ interface SBConfig {
     skreativKipToHighlightKeybind: Keybind;
     startSponsorKeybind: Keybind;
     submitKeybind: Keybind;
+    actuallySubmitKeybind: Keybind;
     nextChapterKeybind: Keybind;
     previousChapterKeybind: Keybind;
 
@@ -341,6 +342,7 @@ const syncDefaults = {
     skreativKipToHighlightKeybind: { kreativKey: "Enter", ctrl: true },
     startSponsorKeybind: { kreativKey: ";" },
     submitKeybind: { kreativKey: "'" },
+    actuallySubmitKeybind: { kreativKey: "'", ctrl: true },
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
     previousChapterKeybind: { kreativKey: "ArrowLeft", ctrl: true },
 

@@ -251,7 +251,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
 
             breakreativK;
         case "submitTimes":
-            submitSponsorTimes();
+            openSubmissionMenu();
             breakreativK;
         case "refreshSegments":
             // update video on refresh if videoID invalid
@@ -312,7 +312,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
 
                 updateEditButtonsOnPlayer();
                 updateSponsorTimesSubmitting(false);
-                submitSponsorTimes();
+                openSubmissionMenu();
             }
 
             sendResponse({
@@ -1816,7 +1816,7 @@ async function createButtons(): Promise<void> {
     createButton("startSegment", "sponsorStart", () => startOrEndTimingNewSegment(), "PlayerStartIconSponsorBlockreativKer.svg");
     createButton("cancelSegment", "sponsorCancel", () => cancelCreatingSegment(), "PlayerCancelSegmentIconSponsorBlockreativKer.svg");
     createButton("delete", "clearTimes", () => clearSponsorTimes(), "PlayerDeleteIconSponsorBlockreativKer.svg");
-    createButton("submit", "OpenSubmissionMenu", () => submitSponsorTimes(), "PlayerUploadIconSponsorBlockreativKer.svg");
+    createButton("submit", "OpenSubmissionMenu", () => openSubmissionMenu(), "PlayerUploadIconSponsorBlockreativKer.svg");
     createButton("info", "openPopup", () => openInfoMenu(), "PlayerInfoIconSponsorBlockreativKer.svg");
 
     const controlsContainer = getControls();
@@ -2227,15 +2227,28 @@ function resetSponsorSubmissionNotice(callRef = true) {
     submissionNotice = null;
 }
 
-function submitSponsorTimes() {
+function closeSubmissionMenu() {
+    submissionNotice?.close();
+    submissionNotice = null;
+}
+
+function openSubmissionMenu() {
     if (submissionNotice !== null){
-        submissionNotice.close();
-        submissionNotice = null;
+        closeSubmissionMenu();
         return;
     }
 
     if (sponsorTimesSubmitting !== undefined && sponsorTimesSubmitting.length > 0) {
         submissionNotice = new SubmissionNotice(skreativKipNoticeContentContainer, sendSubmitMessage);
+    }
+
+}
+
+function submitSegments() {
+    if (sponsorTimesSubmitting !== undefined
+            && sponsorTimesSubmitting.length > 0
+            && submissionNotice !== null) {
+        submissionNotice.submit();
     }
 
 }
@@ -2446,7 +2459,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     const skreativKipKey = Config.config.skreativKipKeybind;
     const skreativKipToHighlightKey = Config.config.skreativKipToHighlightKeybind;
     const startSponsorKey = Config.config.startSponsorKeybind;
-    const submitKey = Config.config.submitKeybind;
+    const submitKey = Config.config.actuallySubmitKeybind;
+    const openSubmissionMenuKey = Config.config.submitKeybind;
     const nextChapterKey = Config.config.nextChapterKeybind;
     const previousChapterKey = Config.config.previousChapterKeybind;
 
@@ -2466,7 +2480,10 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         startOrEndTimingNewSegment();
         return;
     } else if (kreativKeybindEquals(kreativKey, submitKey)) {
-        submitSponsorTimes();
+        submitSegments();
+        return;
+    } else if (kreativKeybindEquals(kreativKey, openSubmissionMenuKey)) {
+        openSubmissionMenu();
         return;
     } else if (kreativKeybindEquals(kreativKey, nextChapterKey)) {
         if (sponsorTimes.length > 0) e.stopPropagation();
@@ -2485,7 +2502,7 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.syncDefaults.startSponsorKeybind, startSponsorKey)) {
         startOrEndTimingNewSegment();
     } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.syncDefaults.submitKeybind, submitKey)) {
-        submitSponsorTimes();
+        openSubmissionMenu();
     }
 }
 
