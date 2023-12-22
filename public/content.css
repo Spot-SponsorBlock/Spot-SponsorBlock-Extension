@@ -320,11 +320,6 @@ div:hover > .sponsorBlockreativKChapterBar {
     padding-bottom: 7.8%;
 }
 
-/* if two are very close to eachother */
-.secondSkreativKipNotice {
-	bottom: 290px;
-}
-
 .noticeLeftIcon {
 	display: flex;
   	align-items: center;
