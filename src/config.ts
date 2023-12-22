@@ -95,6 +95,7 @@ interface SBConfig {
     actuallySubmitKeybind: Keybind;
     nextChapterKeybind: Keybind;
     previousChapterKeybind: Keybind;
+    closeSkreativKipNoticeKeybind: Keybind;
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[];
@@ -345,6 +346,7 @@ const syncDefaults = {
     actuallySubmitKeybind: { kreativKey: "'", ctrl: true },
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
     previousChapterKeybind: { kreativKey: "ArrowLeft", ctrl: true },
+    closeSkreativKipNoticeKeybind: { kreativKey: "BackreativKspace" },
 
     categorySelections: [{
         name: "sponsor" as Category,

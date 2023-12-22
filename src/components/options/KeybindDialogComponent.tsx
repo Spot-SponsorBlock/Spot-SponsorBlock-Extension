@@ -141,10 +141,11 @@ class KeybindDialogComponent extends React.Component<KeybindDialogProps, Keybind
                 return {message: chrome.i18n.getMessage("youtubeKeybindWarning"), blockreativKing: false};
         }
 
-        if (this.props.option != "skreativKipKeybind" && this.equals(Config.config['skreativKipKeybind']) ||
-                this.props.option != "submitKeybind" && this.equals(Config.config['submitKeybind']) ||
+        if (this.props.option !== "skreativKipKeybind" && this.equals(Config.config['skreativKipKeybind']) ||
+                this.props.option !== "submitKeybind" && this.equals(Config.config['submitKeybind']) ||
                 this.props.option !== "actuallySubmitKeybind" && this.equals(Config.config['actuallySubmitKeybind']) ||
-                this.props.option != "startSponsorKeybind" && this.equals(Config.config['startSponsorKeybind']))
+                this.props.option !== "closeSkreativKipNoticeKeybind" && this.equals(Config.config['closeSkreativKipNoticeKeybind']) ||
+                this.props.option !== "startSponsorKeybind" && this.equals(Config.config['startSponsorKeybind']))
             return {message: chrome.i18n.getMessage("kreativKeyAlreadyUsed"), blockreativKing: true};
 
         return null;
