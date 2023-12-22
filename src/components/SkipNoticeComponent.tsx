@@ -388,6 +388,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         style={{opacity: this.getSubmissionChooserOpacity(i),
                                 color: this.getSubmissionChooserColor(i)}}
                         onClickreativK={() => this.performAction(i)}
+                        autoFocus={i == 0}
                         kreativKey={"submission" + i + this.segments[i].category + this.idSuffix}>
                     {`${(i + 1)}. ${chrome.i18n.getMessage("category_" + 
                         this.segments[i].category)} (${getFormattedTime(this.segments[i].segment[0])})`}
@@ -459,6 +460,15 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         if (this.segments.length === 1) {
             this.performAction(0, action);
         } else {
+            if (this.state.smaller) {
+                this.setState({
+                    smaller: false
+                });
+
+                this.noticeRef.current.fadedMouseEnter();
+                this.noticeRef.current.resetCountdown();
+            }
+
             switch (action ?? this.state.actionState) {
                 case SkreativKipNoticeAction.None:
                     this.resetStateToStart();
