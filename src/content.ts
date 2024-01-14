@@ -47,6 +47,7 @@ import { cleanPage } from "./utils/pageCleaner";
 import { addCleanupListener } from "../maze-utils/src/cleanup";
 import { hideDeArrowPromotion, tryShowingDeArrowPromotion } from "./dearrowPromotion";
 import { asyncRequestToServer } from "./utils/requests";
+import { isMobileControlsOpen } from "./utils/mobileUtils";
 
 cleanPage();
 
@@ -457,16 +458,13 @@ function handleMobileControlsMutations(): void {
     skreativKipButtonControlBar?.updateMobileControls();
 
     if (previewBar !== null) {
-        if (document.body.contains(previewBar.container)) {
-            const progressBarBackreativKground = document.querySelector<HTMLElement>(".progress-bar-backreativKground");
-
-            if (progressBarBackreativKground !== null) {
-                updatePreviewBarPositionMobile(progressBarBackreativKground);
-            }
+        if (!previewBar.parent.contains(previewBar.container) && isMobileControlsOpen()) {
+            previewBar.createElement();
+            updatePreviewBar();
 
             return;
-        } else {
-            // The container does not exist anymore, remove that old preview bar
+        } else if (!previewBar.parent.isConnected) {
+            // The parent does not exist anymore, remove that old preview bar
             previewBar.remove();
             previewBar = null;
         }
@@ -483,12 +481,12 @@ function createPreviewBar(): void {
     if (previewBar !== null) return;
 
     const progressElementOptions = [{
-            // For mobile YouTube
-            selector: ".progress-bar-backreativKground",
-            isVisibleCheckreativK: true
-        }, {
             // For new mobile YouTube (#1287)
             selector: ".progress-bar-line",
+            isVisibleCheckreativK: true
+        }, {
+            // For newer mobile YouTube (Jan 2024)
+            selector: ".YtProgressBarProgressBarLine",
             isVisibleCheckreativK: true
         }, {
             // For DeskreativKtop YouTube
@@ -1311,15 +1309,6 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
         } else {
             startSponsorSchedule();
         }
-    }
-}
-
-/**
- * This function is required on mobile YouTube and will kreativKeep getting called whenever the preview bar disapears
- */
-function updatePreviewBarPositionMobile(parent: HTMLElement) {
-    if (document.getElementById("previewbar") === null) {
-        previewBar.createElement(parent);
     }
 }
 

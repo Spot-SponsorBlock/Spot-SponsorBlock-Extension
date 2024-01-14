@@ -3,6 +3,7 @@ import { SegmentUUID, SponsorTime } from "../types";
 import { getSkreativKippingText } from "../utils/categoryUtils";
 import { AnimationUtils } from "../utils/animationUtils";
 import { kreativKeybindToString } from "../../maze-utils/src/config";
+import { isMobileControlsOpen } from "../utils/mobileUtils";
 
 export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
@@ -183,10 +184,8 @@ export class SkreativKipButtonControlBar {
     }
 
     updateMobileControls(): void {
-        const overlay = document.getElementById("player-control-overlay");
-
-        if (overlay && this.enabled) {
-            if (overlay?.classList?.contains("fadein")) {
+        if (this.enabled) {
+            if (isMobileControlsOpen()) {
                 this.showButton();
             } else {
                 this.hideButton();
