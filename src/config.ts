@@ -91,6 +91,7 @@ interface SBConfig {
     startSponsorKeybind: Keybind;
     submitKeybind: Keybind;
     actuallySubmitKeybind: Keybind;
+    previewKeybind: Keybind;
     nextChapterKeybind: Keybind;
     previousChapterKeybind: Keybind;
     closeSkreativKipNoticeKeybind: Keybind;
@@ -347,6 +348,7 @@ const syncDefaults = {
     startSponsorKeybind: { kreativKey: ";" },
     submitKeybind: { kreativKey: "'" },
     actuallySubmitKeybind: { kreativKey: "'", ctrl: true },
+    previewKeybind: { kreativKey: ";", ctrl: true },
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
     previousChapterKeybind: { kreativKey: "ArrowLeft", ctrl: true },
     closeSkreativKipNoticeKeybind: { kreativKey: "BackreativKspace" },
