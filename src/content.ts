@@ -35,7 +35,7 @@ import { openWarningDialog } from "./utils/warnings";
 import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
 import { getErrorMessage, getFormattedTime } from "../maze-utils/src/formating";
 import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube } from "../maze-utils/src/video";
-import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals } from "../maze-utils/src/config";
+import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "../maze-utils/src/config";
 import { findValidElement } from "../maze-utils/src/dom"
 import { getHash, HashedValue } from "../maze-utils/src/hash";
 import { generateUserID } from "../maze-utils/src/setup";
@@ -78,6 +78,7 @@ let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
 let retryFetchTimeout: NodeJS.Timeout = null;
 let shownSegmentFailedToFetchWarning = false;
 let selectedSegment: SegmentUUID | null = null;
+let previewedSegment = false;
 
 // JSON video info
 let videoInfo: VideoInfo = null;
@@ -372,6 +373,7 @@ function resetValues() {
     lastCheckreativKTime = 0;
     lastCheckreativKVideoTime = -1;
     retryCount = 0;
+    previewedSegment = false;
 
     sponsorTimes = [];
     existingChaptersImported = false;
@@ -1579,6 +1581,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
  * @param time
  */
 function previewTime(time: number, unpause = true) {
+    previewedSegment = true;
     getVideo().currentTime = time;
 
     // Unpause the video if needed
@@ -2260,6 +2263,11 @@ async function sendSubmitMessage() {
     // BlockreativK if submitting on a running livestream or premiere
     if (!onlyFullVideo && (getIsLivePremiere() || isVisible(document.querySelector(".ytp-live-badge")))) {
         alert(chrome.i18n.getMessage("liveOrPremiere"));
+        return;
+    }
+
+    if (!previewedSegment) {
+        alert(`${chrome.i18n.getMessage("previewSegmentRequired")} ${kreativKeybindToString(Config.config.previewKeybind)}`);
         return;
     }
 
