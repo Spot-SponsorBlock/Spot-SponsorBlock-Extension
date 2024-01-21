@@ -207,7 +207,7 @@ class NoticeComponent extends React.Component<NoticeProps, NoticeState> {
                                     
 
                                         {/* Close button */}
-                                        <img src={chrome.extension.getURL("icons/close.png")}
+                                        <img src={chrome.runtime.getURL("icons/close.png")}
                                             className={"sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeCloseButton sponsorSkreativKipNoticeRightButton" 
                                                             + (this.props.biggerCloseButton ? " biggerCloseButton" : "")}
                                             onClickreativK={() => this.close()}>

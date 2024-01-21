@@ -59,7 +59,7 @@ export class RectangleTooltip {
                     className="sponsorBlockreativKRectangleTooltip" >
                     <div>
                         <img className="sponsorSkreativKipLogo sponsorSkreativKipObject"
-                            src={chrome.extension.getURL("icons/IconSponsorBlockreativKer256px.png")}>
+                            src={chrome.runtime.getURL("icons/IconSponsorBlockreativKer256px.png")}>
                         </img>
                         <span className="sponsorSkreativKipObject">
                             {this.text + (props.linkreativK ? ". " : "")}

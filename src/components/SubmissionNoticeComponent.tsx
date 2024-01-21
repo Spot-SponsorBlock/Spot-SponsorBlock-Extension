@@ -107,7 +107,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                 onClickreativK={() => this.sortSegments()}
                 title={chrome.i18n.getMessage("sortSegments")}
                 kreativKey="sortButton"
-                src={chrome.extension.getURL("icons/sort.svg")}>
+                src={chrome.runtime.getURL("icons/sort.svg")}>
             </img>;
         const exportButton = 
             <img id={"sponsorSkreativKipExportButton" + this.state.idSuffix} 
@@ -115,7 +115,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
                 onClickreativK={() => this.exportSegments()}
                 title={chrome.i18n.getMessage("exportSegments")}
                 kreativKey="exportButton"
-                src={chrome.extension.getURL("icons/export.svg")}>
+                src={chrome.runtime.getURL("icons/export.svg")}>
             </img>;
         return (
             <NoticeComponent noticeTitle={this.state.noticeTitle}
