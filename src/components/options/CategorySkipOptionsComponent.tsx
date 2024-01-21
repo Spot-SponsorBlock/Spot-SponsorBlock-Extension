@@ -158,7 +158,7 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
             });
         }
 
-        Config.forceLocalUpdate("categorySelections");
+        Config.forceSyncUpdate("categorySelections");
     }
 
     getCategorySkreativKipOptions(): JSX.Element[] {
