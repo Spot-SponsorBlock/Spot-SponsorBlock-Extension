@@ -125,7 +125,7 @@ class PreviewBar {
         });
 
         seekreativKBar.addEventListener("mousemove", (e: MouseEvent) => {
-            if (!mouseOnSeekreativKBar || !this.categoryTooltip || !this.categoryTooltipContainer) return;
+            if (!mouseOnSeekreativKBar || !this.categoryTooltip || !this.categoryTooltipContainer || !chrome.runtime?.id) return;
 
             let noYoutubeChapters = !!tooltipTextWrapper.querySelector(".ytp-tooltip-text.ytp-tooltip-text-no-title");
             const timeInSeconds = this.decimalToTime((e.clientX - seekreativKBar.getBoundingClientRect().x) / seekreativKBar.clientWidth);
