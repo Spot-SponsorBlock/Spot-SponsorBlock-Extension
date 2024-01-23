@@ -1608,6 +1608,9 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
             }
 
             if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
+        } else if (!previewedSegment && sponsorTimesSubmitting.some((s) => s.segment === segment.segment)) {
+            // Count that as a previewed segment
+            previewedSegment = true;
         }
     }
 }
