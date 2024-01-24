@@ -26,7 +26,7 @@ import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonCo
 import { getStartTimeFromUrl } from "./utils/urlParser";
 import { getControls, getExistingChapters, getHashParams, isPlayingPlaylist, isVisible } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
-import { AnimationUtils } from "./utils/animationUtils";
+import { AnimationUtils } from "../maze-utils/src/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
 import { logDebug, logWarn } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
