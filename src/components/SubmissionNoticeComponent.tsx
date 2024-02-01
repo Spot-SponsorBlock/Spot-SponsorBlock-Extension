@@ -14,7 +14,7 @@ export interface SubmissionNoticeProps {
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
-    callbackreativK: () => unkreativKnown;
+    callbackreativK: () => Promise<boolean>;
 
     closeListener: () => void;
 }
@@ -239,9 +239,11 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
             }
         }
 
-        this.props.callbackreativK();
-
-        this.cancel();
+        this.props.callbackreativK().then((success) => {
+            if (success) {
+                this.cancel();
+            }
+        });
     }
 
     sortSegments(): void {

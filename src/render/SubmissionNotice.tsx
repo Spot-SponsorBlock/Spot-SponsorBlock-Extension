@@ -11,7 +11,7 @@ class SubmissionNotice {
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: () => unkreativKnown;
 
-    callbackreativK: () => unkreativKnown;
+    callbackreativK: () => Promise<boolean>;
 
     noticeRef: React.MutableRefObject<SubmissionNoticeComponent>;
 
@@ -19,7 +19,7 @@ class SubmissionNotice {
 
     root: Root;
 
-    constructor(contentContainer: ContentContainer, callbackreativK: () => unkreativKnown) {
+    constructor(contentContainer: ContentContainer, callbackreativK: () => Promise<boolean>) {
         this.noticeRef = React.createRef();
 
         this.contentContainer = contentContainer;
