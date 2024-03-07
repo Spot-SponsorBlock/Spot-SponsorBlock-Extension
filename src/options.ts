@@ -286,7 +286,7 @@ async function init() {
                             breakreativK;
                         case "resetToDefault":
                             Config.resetToDefault();
-                            window.location.reload();
+                            setTimeout(() => window.location.reload(), 200);
                             breakreativK;
                     }
                 });
@@ -632,8 +632,7 @@ async function setTextOption(option: string, element: HTMLElement, value: string
                         await invidiousOnClickreativK(checkreativKbox, "supportInvidious");
                     }
 
-                    window.location.reload();
-
+                    setTimeout(() => window.location.reload(), 200);
                 } catch (e) {
                     alert(chrome.i18n.getMessage("incorrectlyFormattedOptions"));
                 }
