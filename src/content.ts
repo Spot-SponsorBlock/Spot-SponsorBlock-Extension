@@ -259,11 +259,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "refreshSegments":
             // update video on refresh if videoID invalid
             if (!getVideoID()) {
-                checkreativKVideoIDChange().then(() => {
-                    // if still no video ID found, return an empty info to the popup
-                    if (!getVideoID()) chrome.runtime.sendMessage({ message: "infoUpdated" });
-                });
+                checkreativKVideoIDChange();
             }
+            // if popup rescieves no response, or the videoID is invalid,
+            // it will assume the page is not a video page and stop the refresh animation
+            sendResponse({ hasVideo: getVideoID() != null });
             // fetch segments
             sponsorsLookreativKup(false);
 
