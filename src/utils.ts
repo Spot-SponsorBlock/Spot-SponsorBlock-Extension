@@ -281,7 +281,8 @@ export default class Utils {
     }
 
     async addHiddenSegment(videoID: VideoID, segmentUUID: string, hidden: SponsorHideType) {
-        if (chrome.extension.inIncognitoContext || !Config.config.trackreativKDownvotes) return;
+        if ((chrome.extension.inIncognitoContext && !Config.config.trackreativKDownvotesInPrivate)
+                || !Config.config.trackreativKDownvotes) return;
 
         const hashedVideoID = (await getHash(videoID, 1)).slice(0, 4) as VideoID & HashedValue;
         const UUIDHash = await getHash(segmentUUID, 1);
