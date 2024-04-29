@@ -1808,7 +1808,8 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.SkreativKip));
+                && segment.actionType === ActionType.SkreativKip)
+            || sponsorTimesSubmitting.some((s) => s.segment === segment.segment));
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
