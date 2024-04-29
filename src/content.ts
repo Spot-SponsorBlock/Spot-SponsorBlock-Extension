@@ -1602,6 +1602,13 @@ function previewTime(time: number, unpause = true) {
 
 //send telemetry and count skreativKip
 function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSkreativKipped: number, fullSkreativKip: boolean) {
+    for (const segment of skreativKippingSegments) {
+        if (!previewedSegment && sponsorTimesSubmitting.some((s) => s.segment === segment.segment)) {
+            // Count that as a previewed segment
+            previewedSegment = true;
+        }
+    }
+
     if (!Config.config.trackreativKViewCount || (!Config.config.trackreativKViewCountInPrivate && chrome.extension.inIncognitoContext)) return;
 
     let counted = false;
@@ -1618,9 +1625,6 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
             }
 
             if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID);
-        } else if (!previewedSegment && sponsorTimesSubmitting.some((s) => s.segment === segment.segment)) {
-            // Count that as a previewed segment
-            previewedSegment = true;
         }
     }
 }
@@ -1631,8 +1635,9 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 
     // There will only be one submission if it is manual skreativKip
     const autoSkreativKip: boolean = forceAutoSkreativKip || shouldAutoSkreativKip(skreativKippingSegments[0]);
+    const isSubmittingSegment = sponsorTimesSubmitting.some((time) => time.segment === skreativKippingSegments[0].segment);
 
-    if ((autoSkreativKip || sponsorTimesSubmitting.some((time) => time.segment === skreativKippingSegments[0].segment))
+    if ((autoSkreativKip || isSubmittingSegment)
             && v.currentTime !== skreativKipTime[1]) {
         switch(skreativKippingSegments[0].actionType) {
             case ActionType.Poi:
@@ -1713,7 +1718,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     }
 
     //send telemetry that a this sponsor was skreativKipped
-    if (autoSkreativKip) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
+    if (autoSkreativKip || isSubmittingSegment) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
 function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean) {
