@@ -34,7 +34,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
 import { getErrorMessage, getFormattedTime } from "../maze-utils/src/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube, parseYouTubeVideoIDFromURL, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline } from "../maze-utils/src/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline } from "../maze-utils/src/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "../maze-utils/src/config";
 import { findValidElement } from "../maze-utils/src/dom"
 import { getHash, HashedValue } from "../maze-utils/src/hash";
@@ -130,9 +130,6 @@ setupVideoModule({
     documentScript
 }, () => Config);
 setupThumbnailListener();
-
-//the video id of the last preview bar update
-let lastPreviewBarUpdate: VideoID;
 
 // Is the video currently being switched
 let switchingVideos = null;
@@ -1416,9 +1413,6 @@ function updatePreviewBar(): void {
 
         showTimeWithoutSkreativKips(skreativKippedDuration);
     }
-
-    // Update last video id
-    lastPreviewBarUpdate = getVideoID();
 }
 
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
