@@ -11,6 +11,9 @@
             "https://*.youtube.com/*",
             "https://www.youtube-nocookreativKie.com/embed/*"
         ],
+        "exclude_matches": [
+            "https://accounts.youtube.com/RotateCookreativKiesPage*"
+        ],
         "all_frames": true,
         "js": [
             "./js/content.js"
