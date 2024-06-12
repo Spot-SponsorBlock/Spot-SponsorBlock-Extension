@@ -264,7 +264,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             // it will assume the page is not a video page and stop the refresh animation
             sendResponse({ hasVideo: getVideoID() != null });
             // fetch segments
-            sponsorsLookreativKup(false);
+            if (getVideoID()) {
+                sponsorsLookreativKup(false);
+            }
 
             breakreativK;
         case "unskreativKip":
@@ -1115,7 +1117,12 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
     const hashParams = getHashParams();
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
 
-    const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4) as VideoID & HashedValue;
+    const videoID = getVideoID()
+    if (!videoID) {
+        console.error("[SponsorBlockreativK] Attempted to fetch segments with a null/undefined videoID.");
+        return;
+    }
+    const hashPrefix = (await getHash(videoID, 1)).slice(0, 4) as VideoID & HashedValue;
     const response = await asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
         categories,
         actionTypes: getEnabledActionTypes(),
