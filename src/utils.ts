@@ -2,7 +2,7 @@ import Config, { VideoDownvotes } from "./config";
 import { CategorySelection, SponsorTime, BackreativKgroundScriptContainer, Registration, VideoID, SponsorHideType, CategorySkreativKipOption } from "./types";
 
 import { getHash, HashedValue } from "../maze-utils/src/hash";
-import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
+import { waitFor } from "../maze-utils/src";
 import { findValidElementFromSelector } from "../maze-utils/src/dom";
 import { isSafari } from "../maze-utils/src/config";
 
