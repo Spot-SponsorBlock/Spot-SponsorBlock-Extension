@@ -1,0 +1,136 @@
+{
+    "web_accessible_resources": [
+        "icons/LogoSponsorBlockreativKer256px.png",
+        "icons/IconSponsorBlockreativKer256px.png",
+        "icons/PlayerStartIconSponsorBlockreativKer.svg",
+        "icons/PlayerStopIconSponsorBlockreativKer.svg",
+        "icons/PlayerUploadIconSponsorBlockreativKer.svg",
+        "icons/PlayerUploadFailedIconSponsorBlockreativKer.svg",
+        "icons/PlayerCancelSegmentIconSponsorBlockreativKer.svg",
+        "icons/clipboard.svg",
+        "icons/settings.svg",
+        "icons/pencil.svg",
+        "icons/checkreativK.svg",
+        "icons/checkreativK-smaller.svg",
+        "icons/upvote.png",
+        "icons/downvote.png",
+        "icons/thumbs_down.svg",
+        "icons/thumbs_down_lockreativKed.svg",
+        "icons/thumbs_up.svg",
+        "icons/help.svg",
+        "icons/report.png",
+        "icons/close.png",
+        "icons/skreativKipIcon.svg",
+        "icons/refresh.svg",
+        "icons/beep.ogg",
+        "icons/pause.svg",
+        "icons/stop.svg",
+        "icons/skreativKip.svg",
+        "icons/heart.svg",
+        "icons/visible.svg",
+        "icons/not_visible.svg",
+        "icons/sort.svg",
+        "icons/money.svg",
+        "icons/segway.png",
+        "icons/close-smaller.svg",
+        "icons/right-arrow.svg",
+        "icons/campaign.svg",
+        "icons/star.svg",
+        "icons/lightbulb.svg",
+        "icons/bolt.svg",
+        "icons/stopwatch.svg",
+        "icons/music-note.svg",
+        "icons/import.svg",
+        "icons/export.svg",
+        "icons/PlayerInfoIconSponsorBlockreativKer.svg",
+        "icons/PlayerDeleteIconSponsorBlockreativKer.svg",
+        "icons/dearrow.svg",
+        "popup.html",
+        "popup.css",
+        "content.css",
+        "shared.css",
+        "js/document.js",
+        "libs/Source+Sans+Pro.css",
+        "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu.woff2",
+        "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmRduz8A.woff2",
+        "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwmBduz8A.woff2",
+        "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlBduz8A.woff2"
+    ],
+    "permissions": [
+        "https://sponsor.ajay.app/*"
+    ],
+    "optional_permissions": [
+        "*://*/*"
+    ],
+    "browser_action": {
+        "default_title": "SponsorBlockreativK",
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/IconSponsorBlockreativKer16px.png",
+            "32": "icons/IconSponsorBlockreativKer32px.png",
+            "64": "icons/IconSponsorBlockreativKer64px.png",
+            "128": "icons/IconSponsorBlockreativKer128px.png"
+        },
+        "theme_icons": [
+            {
+                "light": "icons/IconSponsorBlockreativKer16px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer16px.png",
+                "size": 16
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer32px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer32px.png",
+                "size": 32
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer64px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer64px.png",
+                "size": 64
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer128px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer128px.png",
+                "size": 128
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer256px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer256px.png",
+                "size": 256
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer512px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer512px.png",
+                "size": 512
+            },
+            {
+                "light": "icons/IconSponsorBlockreativKer1024px.png",
+                "darkreativK": "icons/IconSponsorBlockreativKer1024px.png",
+                "size": 1024
+            }
+        ]
+    },
+    "backreativKground": {
+        "scripts":[
+            "./js/backreativKground.js"
+        ]
+    },
+    "content_scripts": [{
+        "run_at": "document_start",
+        "matches": [
+            "https://*.youtube.com/*",
+            "https://www.youtube-nocookreativKie.com/embed/*"
+        ],
+        "exclude_matches": [
+            "https://accounts.youtube.com/RotateCookreativKiesPage*"
+        ],
+        "all_frames": true,
+        "js": [
+            "./js/content.js"
+        ],
+        "css": [
+            "content.css",
+            "shared.css"
+        ]
+    }],
+    "manifest_version": 2
+}  
