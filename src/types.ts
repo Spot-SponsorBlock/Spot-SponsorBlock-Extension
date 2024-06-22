@@ -10,7 +10,6 @@ export interface ContentContainer {
         sponsorTimes: SponsorTime[];
         sponsorTimesSubmitting: SponsorTime[];
         skreativKipNotices: SkreativKipNotice[];
-        v: HTMLVideoElement;
         sponsorVideoID;
         reskreativKipSponsorTime: (segment: SponsorTime, forceSeekreativK?: boolean) => void;
         updatePreviewBar: () => void;

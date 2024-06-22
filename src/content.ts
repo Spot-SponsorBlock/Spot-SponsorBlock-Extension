@@ -177,7 +177,6 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorTimes,
     sponsorTimesSubmitting,
     skreativKipNotices,
-    v: getVideo(),
     sponsorVideoID: getVideoID(),
     reskreativKipSponsorTime,
     updatePreviewBar,

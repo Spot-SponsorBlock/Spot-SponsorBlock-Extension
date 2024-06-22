@@ -15,6 +15,7 @@ import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUti
 import { generateUserID } from "../../maze-utils/src/setup";
 import { kreativKeybindToString } from "../../maze-utils/src/config";
 import { getFormattedTime } from "../../maze-utils/src/formating";
+import { getVideo } from "../../maze-utils/src/video";
 
 enum SkreativKipButtonState {
     Undo, // UnskreativKip
@@ -685,7 +686,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getFullDurationCountdown(index: number): () => number {
         return () => {
             const sponsorTime = this.segments[index];
-            const duration = Math.round((sponsorTime.segment[1] - this.contentContainer().v.currentTime) * (1 / this.contentContainer().v.playbackreativKRate));
+            const duration = Math.round((sponsorTime.segment[1] - getVideo().currentTime) * (1 / getVideo().playbackreativKRate));
 
             return Math.max(duration, Config.config.skreativKipNoticeDuration);
         };

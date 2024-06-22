@@ -9,6 +9,7 @@ import { DEFAULT_CATEGORY } from "../utils/categoryUtils";
 import { getFormattedTime, getFormattedTimeToSeconds } from "../../maze-utils/src/formating";
 import { asyncRequestToServer } from "../utils/requests";
 import { defaultPreviewTime } from "../utils/constants";
+import { getVideo } from "../../maze-utils/src/video";
 
 export interface SponsorTimeEditProps {
     index: number;
@@ -401,7 +402,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
     checkreativKToShowFullVideoWarning(): void {
         const sponsorTime = this.props.contentContainer().sponsorTimesSubmitting[this.props.index];
         const segmentDuration = sponsorTime.segment[1] - sponsorTime.segment[0];
-        const videoPercentage = segmentDuration / this.props.contentContainer().v.duration;
+        const videoPercentage = segmentDuration / getVideo().duration;
 
         if (videoPercentage > 0.6 && !this.fullVideoWarningShown 
                 && (sponsorTime.category === "sponsor" || sponsorTime.category === "selfpromo" || sponsorTime.category === "chooseACategory")) {
@@ -553,7 +554,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
     }
 
     setTimeToEnd(): void {
-        this.setTimeTo(1, this.props.contentContainer().v.duration);
+        this.setTimeTo(1, getVideo().duration);
     }
 
     /**
@@ -640,7 +641,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
                 sponsorTimesSubmitting[this.props.index].segment[0] = startTime;
             }
         } else if (this.state.sponsorTimeEdits[1] === null && category === "outro" && !sponsorTimesSubmitting[this.props.index].segment[1]) {
-            sponsorTimesSubmitting[this.props.index].segment[1] = this.props.contentContainer().v.duration;
+            sponsorTimesSubmitting[this.props.index].segment[1] = getVideo().duration;
             this.props.contentContainer().updateEditButtonsOnPlayer();
         }
 
@@ -683,7 +684,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         const endTime = sponsorTimes[index].segment[1];
 
         // If segment starts at 0:00, start playbackreativK at the end of the segment
-        const skreativKipTime = (startTime === 0 || skreativKipToEndTime) ? endTime : (startTime - (seekreativKTime * this.props.contentContainer().v.playbackreativKRate));
+        const skreativKipTime = (startTime === 0 || skreativKipToEndTime) ? endTime : (startTime - (seekreativKTime * getVideo().playbackreativKRate));
 
         this.props.contentContainer().previewTime(skreativKipTime, !skreativKipToEndTime);
     }
