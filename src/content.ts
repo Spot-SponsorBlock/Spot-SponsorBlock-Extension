@@ -1721,7 +1721,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
         }
     }
 
-    if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip) {
+    if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip && !isSubmittingSegment) {
         const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
         beep.volume = getVideo().volume * 0.1;
         const oldMetadata = navigator.mediaSession.metadata
