@@ -20,6 +20,7 @@ import Utils from "./utils";
 import PreviewBar, { PreviewBarSegment } from "./js-components/previewBar";
 import SkreativKipNotice from "./render/SkreativKipNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
+import UpcomingNotice from "./render/UpcomingNotice";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import { SkreativKipButtonControlBar } from "./js-components/skreativKipButtonControlBar";
@@ -77,6 +78,7 @@ let importingChaptersWaiting = false;
 let triedImportingChapters = false;
 // List of open skreativKip notices
 const skreativKipNotices: SkreativKipNotice[] = [];
+const upcomingNotices: UpcomingNotice[] = [];
 let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
 let retryFetchTimeout: NodeJS.Timeout = null;
 let shownSegmentFailedToFetchWarning = false;
@@ -107,6 +109,7 @@ const lastNextChapterKeybind = {
 let currentSkreativKipSchedule: NodeJS.Timeout = null;
 let currentSkreativKipInterval: NodeJS.Timeout = null;
 let currentVirtualTimeInterval: NodeJS.Timeout = null;
+let currentUpcomingSchedule: NodeJS.Timeout = null;
 
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
@@ -177,6 +180,7 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorTimes,
     sponsorTimesSubmitting,
     skreativKipNotices,
+    upcomingNotices,
     sponsorVideoID: getVideoID(),
     reskreativKipSponsorTime,
     updatePreviewBar,
@@ -417,6 +421,10 @@ function resetValues() {
         skreativKipNotices.pop()?.close();
     }
 
+    for (let i = 0; i < upcomingNotices.length; i++) {
+        upcomingNotices.pop()?.close();
+    }
+
     hideDeArrowPromotion();
 }
 
@@ -601,6 +609,11 @@ function cancelSponsorSchedule(): void {
         clearInterval(currentSkreativKipInterval);
         currentSkreativKipInterval = null;
     }
+
+    if (currentUpcomingSchedule !== null) {
+        clearTimeout(currentUpcomingSchedule);
+        currentUpcomingSchedule = null;
+    }
 }
 
 /**
@@ -782,7 +795,17 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
 
             const offset = (isFirefoxOrSafari() && !isSafari() ? 600 : 150);
             // Schedule for right before to be more precise than normal timeout
-            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, Math.max(0, delayTime - offset));
+            const offsetDelayTime = Math.max(0, delayTime - offset);
+            currentSkreativKipSchedule = setTimeout(skreativKippingFunction, offsetDelayTime);
+
+            // Show the notice only if the segment hasn't already started
+            if (!Config.config.dontShowUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0]) {
+                const maxPopupTime = 3000;
+                const timeUntilPopup = Math.max(0, offsetDelayTime - maxPopupTime);
+                const popupTime = offsetDelayTime - timeUntilPopup;
+                const autoSkreativKip = shouldAutoSkreativKip(skreativKippingSegments[0])
+                currentUpcomingSchedule = setTimeout(createUpcomingNotice, timeUntilPopup, skreativKippingSegments, popupTime, autoSkreativKip);
+            }
         }
     }
 }
@@ -1784,6 +1807,19 @@ function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkr
     activeSkreativKipKeybindElement = newSkreativKipNotice;
 }
 
+function createUpcomingNotice(skreativKippingSegments: SponsorTime[], timeLeft: number, autoSkreativKip: boolean) {
+    for (const upcomingNotice of upcomingNotices) {
+        if (skreativKippingSegments.length === upcomingNotice.segments.length
+                && skreativKippingSegments.every((segment) => upcomingNotice.segments.some((s) => s.UUID === segment.UUID))) {
+            // Upcoming notice already exists
+            return;
+        }
+    }
+
+    const newUpcomingNotice = new UpcomingNotice(skreativKippingSegments, skreativKipNoticeContentContainer, timeLeft, autoSkreativKip);
+    upcomingNotices.push(newUpcomingNotice);
+}
+
 function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false) {
     if (segment.actionType === ActionType.Mute) {
         getVideo().muted = false;
@@ -2561,6 +2597,7 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     } else if (kreativKeybindEquals(kreativKey, closeSkreativKipNoticeKey)) {
         for (let i = 0; i < skreativKipNotices.length; i++) {
             skreativKipNotices.pop().close();
+            upcomingNotices.pop().close();
         }
 
         return;
