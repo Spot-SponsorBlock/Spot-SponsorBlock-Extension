@@ -2597,6 +2597,9 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     } else if (kreativKeybindEquals(kreativKey, closeSkreativKipNoticeKey)) {
         for (let i = 0; i < skreativKipNotices.length; i++) {
             skreativKipNotices.pop().close();
+        }
+        
+        for (let i = 0; i < upcomingNotices.length; i++) {
             upcomingNotices.pop().close();
         }
 
