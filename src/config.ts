@@ -31,7 +31,7 @@ interface SBConfig {
     trackreativKDownvotes: boolean;
     trackreativKDownvotesInPrivate: boolean;
     dontShowNotice: boolean;
-    dontShowUpcomingNotice: boolean;
+    showUpcomingNotice: boolean;
     noticeVisibilityMode: NoticeVisbilityMode;
     hideVideoPlayerControls: boolean;
     hideInfoButtonPlayerControls: boolean;
@@ -294,7 +294,7 @@ const syncDefaults = {
     trackreativKDownvotes: true,
     trackreativKDownvotesInPrivate: false,
     dontShowNotice: false,
-    dontShowUpcomingNotice: false,
+    showUpcomingNotice: false,
     noticeVisibilityMode: NoticeVisbilityMode.FadedForAutoSkreativKip,
     hideVideoPlayerControls: false,
     hideInfoButtonPlayerControls: false,
