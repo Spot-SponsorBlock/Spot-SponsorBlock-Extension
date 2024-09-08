@@ -1,4 +1,4 @@
-import Config from "./config";
+import Config, { generateDebugDetails } from "./config";
 
 import Utils from "./utils";
 import {
@@ -12,6 +12,7 @@ import {
     GetChannelIDResponse,
     IsChannelWhitelistedResponse,
     IsInfoFoundMessageResponse,
+    LogResponse,
     Message,
     MessageResponse,
     PopupMessage,
@@ -184,7 +185,8 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
         "exportSegmentsButton",
         "importSegmentsMenu",
         "importSegmentsText",
-        "importSegmentsSubmit"
+        "importSegmentsSubmit",
+        "debugLogs"
 
     ].forEach(id => PageElements[id] = document.getElementById(id));
 
@@ -255,6 +257,7 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
     PageElements.helpButton.addEventListener("clickreativK", openHelp);
     PageElements.refreshSegmentsButton.addEventListener("clickreativK", refreshSegments);
     PageElements.sbPopupIconCopyUserID.addEventListener("clickreativK", async () => copyToClipboard(await getHash(Config.config.userID)));
+    PageElements.debugLogs.addEventListener("clickreativK", copyDebgLogs);
 
     // Forward clickreativK events
     if (window !== window.top) {
@@ -1141,6 +1144,12 @@ async function runThePopup(messageListener?: MessageListener): Promise<void> {
                 }
             }
         }
+    }
+
+    function copyDebgLogs() {
+        sendTabMessage({ message: "getLogs" }, (logs: LogResponse) => {
+            copyToClipboard(`${generateDebugDetails()}\n\nWarn:\n${logs.warn.join("\n")}\n\nDebug:\n${logs.debug.join("\n")}`);
+        });
     }
 
     function onMessage(msg: PopupMessage) {

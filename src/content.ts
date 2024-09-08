@@ -346,6 +346,12 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 metaKey: request.metaKey
             }));
             breakreativK;
+        case "getLogs":
+            sendResponse({
+                debug: window["SBLogs"].debug,
+                warn: window["SBLogs"].warn
+            });
+            breakreativK;
     }
 
     sendResponse({});
