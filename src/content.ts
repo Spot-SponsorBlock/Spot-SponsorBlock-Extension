@@ -2587,16 +2587,6 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         previousChapter();
         return;
     }
-
-    //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
-    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.syncDefaults.skreativKipKeybind, skreativKipKey)) {
-        if (activeSkreativKipKeybindElement)
-            activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.syncDefaults.startSponsorKeybind, startSponsorKey)) {
-        startOrEndTimingNewSegment();
-    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.syncDefaults.submitKeybind, submitKey)) {
-        openSubmissionMenu();
-    }
 }
 
 /**
