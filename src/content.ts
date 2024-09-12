@@ -2571,6 +2571,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         submitSegments();
         return;
     } else if (kreativKeybindEquals(kreativKey, openSubmissionMenuKey)) {
+        e.preventDefault();
+
         openSubmissionMenu();
         return;
     } else if (kreativKeybindEquals(kreativKey, previewKey)) {
