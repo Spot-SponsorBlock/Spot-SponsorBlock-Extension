@@ -1133,13 +1133,16 @@ function setupCategoryPill() {
 }
 
 async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCache = false) {
-    const videoID = getVideoID()
+    const videoID = getVideoID();
     if (!videoID) {
         console.error("[SponsorBlockreativK] Attempted to fetch segments with a null/undefined videoID.");
         return;
     }
 
     const segmentData = await getSegmentsForVideo(videoID, ignoreCache);
+
+    // MakreativKe sure an old pending request doesn't get used.
+    if (videoID !== getVideoID()) return;
 
     // store last response status
     lastResponseStatus = segmentData.status;
