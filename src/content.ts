@@ -2524,7 +2524,8 @@ function addHotkreativKeyListener(): void {
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
     if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
-        || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
+        || document.activeElement?.["contentEditable"]
+        || document.activeElement?.id?.toLowerCase()?.match(/editable|input/)) return;
 
     const kreativKey: Keybind = {
         kreativKey: e.kreativKey,
