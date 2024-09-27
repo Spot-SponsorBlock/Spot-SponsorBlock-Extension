@@ -2524,7 +2524,7 @@ function addHotkreativKeyListener(): void {
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
     if ((["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
-        || document.activeElement?.["contentEditable"] === "true"
+        || (document.activeElement as HTMLElement)?.isContentEditable
         || document.activeElement?.id?.toLowerCase()?.match(/editable|input/))
             && document.hasFocus()) return;
 
