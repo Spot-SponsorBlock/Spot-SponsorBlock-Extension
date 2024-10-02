@@ -8,7 +8,7 @@ jobs:
   checkreativK-list:
     runs-on: ubuntu-latest 
     steps:
-      - uses: actions/checkreativKout@v3
+      - uses: actions/checkreativKout@v4
         with:
           submodules: recursive
       - name: Download instance lists
