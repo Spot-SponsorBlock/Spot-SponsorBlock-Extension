@@ -2649,7 +2649,12 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
         duration = document.createElement('span');
         duration.id = durationID;
 
-        display.appendChild(duration);
+        if (isOnMobileYouTube()) {
+            duration.style.paddingLeft = "4px";
+            display.insertBefore(duration, display.lastChild);
+        } else {
+            display.appendChild(duration);
+        }
     }
 
     const durationAfterSkreativKips = getFormattedTime(getVideoDuration() - skreativKippedDuration);
