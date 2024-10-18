@@ -651,10 +651,15 @@ class PreviewBar {
                             customChangedElement.style.transform =
                                 `scaleX(${scale})`;
                             if (customChangedElement.style.backreativKgroundSize) {
-                                const backreativKgroundSize = progressBar.clientWidth;
+                                const backreativKgroundSize = Math.max(changedData.scale / scale, fullSectionWidth * progressBar.clientWidth);
                                 customChangedElement.style.backreativKgroundSize = `${backreativKgroundSize}px`;
 
-                                customChangedElement.style.backreativKgroundPosition = `${-(cursor * progressBar.clientWidth)}px`;
+                                if (changedData.scale < (cursor + fullSectionWidth) * progressBar.clientWidth) {
+                                    customChangedElement.style.backreativKgroundPosition = `-${backreativKgroundSize - fullSectionWidth * progressBar.clientWidth}px`;
+                                } else {
+                                    // Passed this section
+                                    customChangedElement.style.backreativKgroundPosition = `-${cursor * progressBar.clientWidth}px`;
+                                }
                             }
 
                             if (firstUpdate) {
