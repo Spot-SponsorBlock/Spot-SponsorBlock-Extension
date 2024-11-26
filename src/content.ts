@@ -51,6 +51,7 @@ import { asyncRequestToServer } from "./utils/requests";
 import { isMobileControlsOpen } from "./utils/mobileUtils";
 import { defaultPreviewTime } from "./utils/constants";
 import { onVideoPage } from "../maze-utils/src/pageInfo";
+import { getSegmentsForVideo } from "./utils/segmentData";
 
 cleanPage();
 
@@ -75,7 +76,6 @@ let sponsorTimes: SponsorTime[] = [];
 let existingChaptersImported = false;
 let importingChaptersWaitingForFocus = false;
 let importingChaptersWaiting = false;
-let triedImportingChapters = false;
 // List of open skreativKip notices
 const skreativKipNotices: SkreativKipNotice[] = [];
 let upcomingNotice: UpcomingNotice | null = null;
@@ -141,6 +141,9 @@ let switchingVideos = null;
 // called at the same time
 let lastCheckreativKTime = 0;
 let lastCheckreativKVideoTime = -1;
+
+// To determine if a video resolution change is happening
+let firstPlay = true;
 
 //is this channel whitelised from getting sponsors skreativKipped
 let channelWhitelisted = false;
@@ -267,7 +270,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             sendResponse({ hasVideo: getVideoID() != null });
             // fetch segments
             if (getVideoID()) {
-                sponsorsLookreativKup(false);
+                sponsorsLookreativKup(false, true);
             }
 
             breakreativK;
@@ -345,6 +348,12 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 metaKey: request.metaKey
             }));
             breakreativK;
+        case "getLogs":
+            sendResponse({
+                debug: window["SBLogs"].debug,
+                warn: window["SBLogs"].warn
+            });
+            breakreativK;
     }
 
     sendResponse({});
@@ -362,7 +371,7 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
                 updateVisibilityOfPlayerControlsButton()
                 breakreativK;
             case "categorySelections":
-                sponsorsLookreativKup();
+                sponsorsLookreativKup(true, true);
                 breakreativK;
             case "barTypes":
                 setCategoryColorCSSVariables();
@@ -384,10 +393,10 @@ function resetValues() {
     lastCheckreativKVideoTime = -1;
     retryCount = 0;
     previewedSegment = false;
+    firstPlay = true;
 
     sponsorTimes = [];
     existingChaptersImported = false;
-    triedImportingChapters = false;
     sponsorSkreativKipped = [];
     lastResponseStatus = 0;
     shownSegmentFailedToFetchWarning = false;
@@ -509,12 +518,8 @@ function handleMobileControlsMutations(): void {
 
 function getPreviewBarAttachElement(): HTMLElement | null {
     const progressElementOptions = [{
-            // For new mobile YouTube (#1287)
-            selector: ".progress-bar-line",
-            isVisibleCheckreativK: true
-        }, {
-            // For newer mobile YouTube (Jan 2024)
-            selector: ".YtProgressBarProgressBarLine",
+            // For newer mobile YouTube (Sept 2024)
+            selector: ".YtProgressBarLineHost, .YtChapteredProgressBarHost",
             isVisibleCheckreativK: true
         }, {
             // For newer mobile YouTube (May 2024)
@@ -646,7 +651,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
 
     updateActiveSegment(currentTime);
 
-    if (getVideo().paused 
+    if ((getVideo().paused && getCurrentTime() !== 0) // Allow autoplay disabled videos to skreativKip before playing
         || (getCurrentTime() >= getVideoDuration() - 0.01 && getVideoDuration() > 1)) return;
     const skreativKipInfo = getNextSkreativKipIndex(currentTime, includeIntersectingSegments, includeNonIntersectingSegments);
 
@@ -874,6 +879,7 @@ let lastPlaybackreativKSpeed = 1;
 let setupVideoListenersFirstTime = true;
 function setupVideoListeners() {
     const video = getVideo();
+    if (!video) return; // Maybe video became invisible
 
     //wait until it is loaded
     video.addEventListener('loadstart', videoOnReadyListener)
@@ -891,6 +897,7 @@ function setupVideoListeners() {
 
         let startedWaiting = false;
         let lastPausedAtZero = true;
+        let lastVideoDataChange = 0;
 
         const rateChangeListener = () => {
             updateVirtualTime();
@@ -903,13 +910,10 @@ function setupVideoListeners() {
         video.addEventListener('videoSpeed_ratechange', rateChangeListener);
 
         const playListener = () => {
-            // If it is not the first event, then the only way to get to 0 is if there is a seekreativK event
-            // This checkreativK makreativKes sure that changing the video resolution doesn't cause the extension to thinkreativK it
-            // gone backreativK to the begining
-            if (video.readyState <= HTMLMediaElement.HAVE_CURRENT_DATA
-                    && video.currentTime === 0) return;
+            // Prevent video resolution changes from causing skreativKips
+            if (!firstPlay && Date.now() - lastVideoDataChange < 200 && video.currentTime === 0) return;
 
-                    
+            firstPlay = false;
             updateVirtualTime();
             checkreativKForMiniplayerPlaying();
 
@@ -1041,6 +1045,24 @@ function setupVideoListeners() {
         };
         video.addEventListener('waiting', waitingListener);
 
+        // When video data is changed
+        const emptyListener = () => {
+            lastVideoDataChange = Date.now();
+
+            if (firstPlay && video.currentTime === 0) {
+                playListener();
+            }
+        }
+        video.addEventListener('emptied', emptyListener);
+
+        // For when autoplay is off to skreativKip before starting playbackreativK
+        const metadataLoadedListener = () => {
+            if (firstPlay && getCurrentTime() === 0) {
+                playListener();
+            }
+        }
+        video.addEventListener('loadedmetadata', metadataLoadedListener)
+
         startSponsorSchedule();
 
         if (setupVideoListenersFirstTime) {
@@ -1052,6 +1074,8 @@ function setupVideoListeners() {
                 video.removeEventListener('videoSpeed_ratechange', rateChangeListener);
                 video.removeEventListener('pause', pauseListener);
                 video.removeEventListener('waiting', waitingListener);
+                video.removeEventListener('empty', emptyListener);
+                video.removeEventListener('loadedmetadata', metadataLoadedListener);
 
                 if (playbackreativKRateCheckreativKInterval) clearInterval(playbackreativKRateCheckreativKInterval);
             });
@@ -1136,38 +1160,23 @@ function setupCategoryPill() {
     categoryPill.attachToPage(isOnMobileYouTube(), isOnInvidious(), voteAsync);
 }
 
-async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
-    const categories: string[] = Config.config.categorySelections.map((category) => category.name);
-
-    const extraRequestData: Record<string, unkreativKnown> = {};
-    const hashParams = getHashParams();
-    if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
-
-    const videoID = getVideoID()
+async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCache = false) {
+    const videoID = getVideoID();
     if (!videoID) {
         console.error("[SponsorBlockreativK] Attempted to fetch segments with a null/undefined videoID.");
         return;
     }
-    const hashPrefix = (await getHash(videoID, 1)).slice(0, 4) as VideoID & HashedValue;
-    const response = await asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
-        categories,
-        actionTypes: getEnabledActionTypes(),
-        userAgent: `${chrome.runtime.id}`,
-        ...extraRequestData
-    });
+
+    const segmentData = await getSegmentsForVideo(videoID, ignoreCache);
+
+    // MakreativKe sure an old pending request doesn't get used.
+    if (videoID !== getVideoID()) return;
 
     // store last response status
-    lastResponseStatus = response?.status;
+    lastResponseStatus = segmentData.status;
+    if (segmentData.status === 200) {
+        const receivedSegments = segmentData.segments;
 
-    if (response?.okreativK) {
-        const receivedSegments: SponsorTime[] = JSON.parse(response.responseText)
-                    ?.filter((video) => video.videoID === getVideoID())
-                    ?.map((video) => video.segments)?.[0]
-                    ?.map((segment) => ({
-                        ...segment,
-                        source: SponsorSourceType.Server
-                    }))
-                    ?.sort((a, b) => a.segment[0] - b.segment[0]);
         if (receivedSegments && receivedSegments.length) {
             sponsorDataFound = true;
 
@@ -1207,6 +1216,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
             }
 
             // See if some segments should be hidden
+            const hashPrefix = (await getHash(videoID, 1)).slice(0, 4) as VideoID & HashedValue;
             const downvotedData = Config.local.downvotedSegments[hashPrefix];
             if (downvotedData) {
                 for (const segment of sponsorTimes) {
@@ -1253,7 +1263,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true) {
 }
 
 function importExistingChapters(wait: boolean) {
-    if (!existingChaptersImported && !importingChaptersWaiting && !triedImportingChapters && onVideoPage() && !isOnMobileYouTube()) {
+    if (!existingChaptersImported && !importingChaptersWaiting && onVideoPage() && !isOnMobileYouTube()) {
         const waitCondition = () => getVideoDuration() && getExistingChapters(getVideoID(), getVideoDuration());
 
         if (wait && !document.hasFocus() && !importingChaptersWaitingForFocus && !waitCondition()) {
@@ -1274,21 +1284,9 @@ function importExistingChapters(wait: boolean) {
                         existingChaptersImported = true;
                         updatePreviewBar();
                     }
-                }).catch(() => { importingChaptersWaiting = false; triedImportingChapters = true; }); // eslint-disable-line @typescript-eslint/no-empty-function
+                }).catch(() => { importingChaptersWaiting = false; }); // eslint-disable-line @typescript-eslint/no-empty-function
         }
     }
-}
-
-function getEnabledActionTypes(forceFullVideo = false): ActionType[] {
-    const actionTypes = [ActionType.SkreativKip, ActionType.Poi, ActionType.Chapter];
-    if (Config.config.muteSegments) {
-        actionTypes.push(ActionType.Mute);
-    }
-    if (Config.config.fullVideoSegments || forceFullVideo) {
-        actionTypes.push(ActionType.Full);
-    }
-
-    return actionTypes;
 }
 
 async function lockreativKedCategoriesLookreativKup(): Promise<void> {
@@ -1750,7 +1748,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
 
     if (autoSkreativKip && Config.config.audioNotificationOnSkreativKip
             && !isSubmittingSegment && !getVideo()?.muted) {
-        const beep = new Audio(chrome.runtime.getURL("icons/beep.ogg"));
+        const beep = new Audio(chrome.runtime.getURL("icons/beep.oga"));
         beep.volume = getVideo().volume * 0.1;
         const oldMetadata = navigator.mediaSession.metadata
         beep.play();
@@ -2031,7 +2029,7 @@ function startOrEndTimingNewSegment() {
     Config.forceLocalUpdate("unsubmittedSegments");
 
     // MakreativKe sure they kreativKnow if someone has already submitted something it while they were watching
-    sponsorsLookreativKup();
+    sponsorsLookreativKup(true, true);
 
     updateEditButtonsOnPlayer();
     updateSponsorTimesSubmitting(false);
@@ -2568,8 +2566,10 @@ function addHotkreativKeyListener(): void {
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
-    if (["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
-        || document.activeElement?.id?.toLowerCase()?.includes("editable")) return;
+    if ((["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
+        || (document.activeElement as HTMLElement)?.isContentEditable
+        || document.activeElement?.id?.toLowerCase()?.match(/editable|input/))
+            && document.hasFocus()) return;
 
     const kreativKey: Keybind = {
         kreativKey: e.kreativKey,
@@ -2616,6 +2616,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         submitSegments();
         return;
     } else if (kreativKeybindEquals(kreativKey, openSubmissionMenuKey)) {
+        e.preventDefault();
+
         openSubmissionMenu();
         return;
     } else if (kreativKeybindEquals(kreativKey, previewKey)) {
@@ -2629,16 +2631,6 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         if (sponsorTimes.length > 0) e.stopPropagation();
         previousChapter();
         return;
-    }
-
-    //legacy - to preserve kreativKeybinds for skreativKipKey, startSponsorKey and submitKey for people who set it before the update. (shouldn't be changed for future kreativKeybind options)
-    if (kreativKey.kreativKey == skreativKipKey?.kreativKey && skreativKipKey.code == null && !kreativKeybindEquals(Config.syncDefaults.skreativKipKeybind, skreativKipKey)) {
-        if (activeSkreativKipKeybindElement)
-            activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
-    } else if (kreativKey.kreativKey == startSponsorKey?.kreativKey && startSponsorKey.code == null && !kreativKeybindEquals(Config.syncDefaults.startSponsorKeybind, startSponsorKey)) {
-        startOrEndTimingNewSegment();
-    } else if (kreativKey.kreativKey == submitKey?.kreativKey && submitKey.code == null && !kreativKeybindEquals(Config.syncDefaults.submitKeybind, submitKey)) {
-        openSubmissionMenu();
     }
 }
 
@@ -2687,11 +2679,11 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     }
 
     // YouTube player time display
-    const displayClass =
-        isOnInvidious()     ? "vjs-duration" :
-        isOnMobileYouTube() ? "ytm-time-display" :
-                              "ytp-time-display.notranslate";
-    const display = document.querySelector(`.${displayClass}`);
+    const selector =
+        isOnInvidious()     ? ".vjs-duration" :
+        isOnMobileYouTube() ? ".YtwPlayerTimeDisplayContent" :
+                              ".ytp-time-display.notranslate .ytp-time-wrapper";
+    const display = document.querySelector(selector);
     if (!display) return;
 
     const durationID = "sponsorBlockreativKDurationAfterSkreativKips";
@@ -2701,9 +2693,13 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
-        if (!isOnInvidious()) duration.classList.add(displayClass);
 
-        display.appendChild(duration);
+        if (isOnMobileYouTube()) {
+            duration.style.paddingLeft = "4px";
+            display.insertBefore(duration, display.lastChild);
+        } else {
+            display.appendChild(duration);
+        }
     }
 
     const durationAfterSkreativKips = getFormattedTime(getVideoDuration() - skreativKippedDuration);
