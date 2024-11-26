@@ -20,7 +20,7 @@ class SkreativKipNotice {
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
     root: Root;
 
-    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, unskreativKipTime: number = null, startReskreativKip = false) {
+    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, componentDidMount: () => void, unskreativKipTime: number = null, startReskreativKip = false, upcomingNoticeShown: boolean) {
         this.skreativKipNoticeRef = React.createRef();
 
         this.segments = segments;
@@ -53,7 +53,9 @@ class SkreativKipNotice {
                 closeListener={() => this.close()}
                 smaller={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAll 
                     || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAutoSkreativKip && autoSkreativKip)}
-                unskreativKipTime={unskreativKipTime} />
+                fadeIn={!upcomingNoticeShown}
+                unskreativKipTime={unskreativKipTime}
+                componentDidMount={componentDidMount} />
         );
     }
 

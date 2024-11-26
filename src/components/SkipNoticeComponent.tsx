@@ -6,7 +6,7 @@ import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
-import { getSkreativKippingText } from "../utils/categoryUtils";
+import { getSkreativKippingText, getUpcomingText } from "../utils/categoryUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
@@ -28,12 +28,16 @@ export interface SkreativKipNoticeProps {
 
     autoSkreativKip: boolean;
     startReskreativKip?: boolean;
+    upcomingNotice?: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
     closeListener: () => void;
     showKeybindHint?: boolean;
     smaller: boolean;
+    fadeIn: boolean;
+
+    componentDidMount?: () => void;
 
     unskreativKipTime?: number;
 }
@@ -97,9 +101,9 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
 
-        const noticeTitle = getSkreativKippingText(this.segments, this.props.autoSkreativKip);
+        const noticeTitle = !this.props.upcomingNotice ? getSkreativKippingText(this.segments, this.props.autoSkreativKip) : getUpcomingText(this.segments);
 
-        const previousSkreativKipNotices = document.getElementsByClassName("sponsorSkreativKipNoticeParent");
+        const previousSkreativKipNotices = document.querySelectorAll(".sponsorSkreativKipNoticeParent:not(.sponsorSkreativKipUpcomingNotice)");
         this.amountOfPreviousNotices = previousSkreativKipNotices.length;
         // If there is at least one already in the first slot
         this.showInSecondSlot = previousSkreativKipNotices.length > 0 && [...previousSkreativKipNotices].some(notice => !notice.classList.contains("secondSkreativKipNotice"));
@@ -171,12 +175,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
             noticeStyle.transform = "scale(0.8) translate(10%, 10%)";
         }
 
-        // If it started out as smaller, always kreativKeep the
-        // skreativKip button there
-        const showFirstSkreativKipButton = this.props.smaller || this.segments[0].actionType === ActionType.Mute;
-        const firstColumn = showFirstSkreativKipButton ? (
-            this.getSkreativKipButton(0)
-        ) : null;
+        const firstColumn = this.getSkreativKipButton(0);
 
         return (
             <NoticeComponent 
@@ -184,7 +183,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 amountOfPreviousNotices={this.amountOfPreviousNotices}
                 showInSecondSlot={this.showInSecondSlot}
                 idSuffix={this.idSuffix}
-                fadeIn={true}
+                fadeIn={this.props.fadeIn}
+                fadeOut={!this.props.upcomingNotice}
                 startFaded={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAll
                     || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAutoSkreativKip && this.autoSkreativKip)}
                 timed={true}
@@ -197,10 +197,18 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 logoFill={Config.config.barTypes[this.segments[0].category].color}
                 limitWidth={true}
                 firstColumn={firstColumn}
+                dontPauseCountdown={!!this.props.upcomingNotice}
                 bottomRow={[...this.getMessageBoxes(), ...this.getBottomRow() ]}
+                extraClass={this.props.upcomingNotice ? "sponsorSkreativKipUpcomingNotice" : ""}
                 onMouseEnter={() => this.onMouseEnter() } >
             </NoticeComponent>
         );
+    }
+
+    componentDidMount(): void {
+        if (this.props.componentDidMount) {
+            this.props.componentDidMount();
+        }
     }
 
     getBottomRow(): JSX.Element[] {
@@ -365,8 +373,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 style.minWidth = "100px";
             }
 
+            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
+
             return (
-                <span className="sponsorSkreativKipNoticeUnskreativKipSection">
+                <span className="sponsorSkreativKipNoticeUnskreativKipSection" style={{ visibility: !showSkreativKipButton ? "hidden" : null }}>
                     <button id={"sponsorSkreativKipUnskreativKipButton" + this.idSuffix}
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
@@ -420,7 +430,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     onMouseEnter(): void {
-        if (this.state.smaller) {
+        if (this.state.smaller && !this.props.upcomingNotice) {
             this.setState({
                 smaller: false
             });

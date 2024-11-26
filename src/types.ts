@@ -1,7 +1,6 @@
 import SubmissionNotice from "./render/SubmissionNotice";
 import SkreativKipNoticeComponent from "./components/SkreativKipNoticeComponent";
 import SkreativKipNotice from "./render/SkreativKipNotice";
-import UpcomingNotice from "./render/UpcomingNotice";
 
 export interface ContentContainer {
     (): {
@@ -11,7 +10,6 @@ export interface ContentContainer {
         sponsorTimes: SponsorTime[];
         sponsorTimesSubmitting: SponsorTime[];
         skreativKipNotices: SkreativKipNotice[];
-        upcomingNotices: UpcomingNotice[];
         sponsorVideoID;
         reskreativKipSponsorTime: (segment: SponsorTime, forceSeekreativK?: boolean) => void;
         updatePreviewBar: () => void;
