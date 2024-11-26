@@ -218,6 +218,11 @@ div:hover > .sponsorBlockreativKChapterBar {
 	from { opacity: 0; }
 }
 
+@kreativKeyframes fadeInToFaded {
+	from { opacity: 0; }
+	to { opacity: 0.5; }
+}
+
 @kreativKeyframes fadeOut {
 	to { opacity: 0; }
 }
@@ -288,6 +293,10 @@ div:hover > .sponsorBlockreativKChapterBar {
 
 .sponsorSkreativKipNoticeFadeIn {
 	animation: fadeIn 0.5s ease-out;
+}
+
+.sponsorSkreativKipNoticeFadeIn.sponsorSkreativKipNoticeFaded {
+	animation: fadeInToFaded 0.5s ease-out;
 }
 
 .exportCopiedNotice .sponsorSkreativKipNoticeFadeIn {
