@@ -804,7 +804,9 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             currentSkreativKipSchedule = setTimeout(skreativKippingFunction, offsetDelayTime);
 
             // Show the notice only if the segment hasn't already started
-            if (Config.config.showUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0]) {
+            if (Config.config.showUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0] 
+                    && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)
+                    && [ActionType.SkreativKip, ActionType.Mute].includes(skreativKippingSegments[0].actionType)) {
                 const maxPopupTime = 3000;
                 const timeUntilPopup = Math.max(0, offsetDelayTime - maxPopupTime);
                 const popupTime = Math.min(maxPopupTime, timeUntilPopup);
