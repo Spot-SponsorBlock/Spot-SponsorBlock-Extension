@@ -877,8 +877,7 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
 let playbackreativKRateCheckreativKInterval: NodeJS.Timeout | null = null;
 let lastPlaybackreativKSpeed = 1;
 let setupVideoListenersFirstTime = true;
-function setupVideoListeners() {
-    const video = getVideo();
+function setupVideoListeners(video: HTMLVideoElement) {
     if (!video) return; // Maybe video became invisible
 
     //wait until it is loaded
@@ -1460,10 +1459,10 @@ async function channelIDChange(channelIDInfo: ChannelIDInfo) {
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
 }
 
-function videoElementChange(newVideo: boolean): void {
+function videoElementChange(newVideo: boolean, video: HTMLVideoElement): void {
     waitFor(() => Config.isReady()).then(() => {
         if (newVideo) {
-            setupVideoListeners();
+            setupVideoListeners(video);
             setupSkreativKipButtonControlBar();
             setupCategoryPill();
         }
