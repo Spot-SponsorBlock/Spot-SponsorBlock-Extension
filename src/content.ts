@@ -806,16 +806,15 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             // Show the notice only if the segment hasn't already started
             if (Config.config.showUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0] 
                     && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)
-                    && [ActionType.SkreativKip, ActionType.Mute].includes(skreativKippingSegments[0].actionType)) {
+                    && [ActionType.SkreativKip, ActionType.Mute].includes(skreativKippingSegments[0].actionType)
+                    && !getVideo()?.paused) {
                 const maxPopupTime = 3000;
                 const timeUntilPopup = Math.max(0, offsetDelayTime - maxPopupTime);
-                const popupTime = Math.min(maxPopupTime, timeUntilPopup);
+                const popupTime = offsetDelayTime - timeUntilPopup;
                 const autoSkreativKip = shouldAutoSkreativKip(skreativKippingSegments[0]);
 
-                if (timeUntilPopup > 0) {
-                    if (currentUpcomingSchedule) clearTimeout(currentUpcomingSchedule);
-                    currentUpcomingSchedule = setTimeout(createUpcomingNotice, timeUntilPopup, skreativKippingSegments, popupTime, autoSkreativKip);
-                }
+                if (currentUpcomingSchedule) clearTimeout(currentUpcomingSchedule);
+                currentUpcomingSchedule = setTimeout(createUpcomingNotice, timeUntilPopup, skreativKippingSegments, popupTime, autoSkreativKip);
             }
         }
     }
@@ -1823,7 +1822,7 @@ function createUpcomingNotice(skreativKippingSegments: SponsorTime[], timeLeft: 
     }
 
     upcomingNotice?.close();
-    upcomingNotice = new UpcomingNotice(skreativKippingSegments, skreativKipNoticeContentContainer, timeLeft, autoSkreativKip);
+    upcomingNotice = new UpcomingNotice(skreativKippingSegments, skreativKipNoticeContentContainer, timeLeft / 1000, autoSkreativKip);
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false) {

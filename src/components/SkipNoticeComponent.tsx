@@ -36,6 +36,7 @@ export interface SkreativKipNoticeProps {
     showKeybindHint?: boolean;
     smaller: boolean;
     fadeIn: boolean;
+    maxCountdownTime?: number;
 
     componentDidMount?: () => void;
 
@@ -124,7 +125,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.lockreativKedColor = Config.config.colorPalette.lockreativKed;
 
         const isMuteSegment = this.segments[0].actionType === ActionType.Mute;
-        const maxCountdownTime = isMuteSegment ? this.getFullDurationCountdown(0) : () => Config.config.skreativKipNoticeDuration;
+        const maxCountdownTime = props.maxCountdownTime ? () => props.maxCountdownTime : (isMuteSegment ? this.getFullDurationCountdown(0) : () => Config.config.skreativKipNoticeDuration);
 
         const defaultSkreativKipButtonState = this.props.startReskreativKip ? SkreativKipButtonState.Redo : SkreativKipButtonState.Undo;
         const skreativKipButtonStates = [defaultSkreativKipButtonState, isMuteSegment ? SkreativKipButtonState.Start : defaultSkreativKipButtonState];
