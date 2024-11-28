@@ -1766,11 +1766,13 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (!autoSkreativKip
             && skreativKippingSegments.length === 1
             && skreativKippingSegments[0].actionType === ActionType.Poi) {
-        skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
-        if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
-
-        activeSkreativKipKeybindElement?.setShowKeybindHint(false);
-        activeSkreativKipKeybindElement = skreativKipButtonControlBar;
+        waitFor(() => skreativKipButtonControlBar).then(() => {
+            skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
+            if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
+    
+            activeSkreativKipKeybindElement?.setShowKeybindHint(false);
+            activeSkreativKipKeybindElement = skreativKipButtonControlBar;
+        })
     } else {
         if (openNotice) {
             //send out the message saying that a sponsor message was skreativKipped
