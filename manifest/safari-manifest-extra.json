@@ -4,5 +4,13 @@
   },
   "optional_permissions": [
     "webNavigation"
-  ]
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/SafariIconSponsorBlockreativKer16px.png",
+      "32": "icons/SafariIconSponsorBlockreativKer32px.png",
+      "64": "icons/SafariIconSponsorBlockreativKer64px.png",
+      "128": "icons/SafariIconSponsorBlockreativKer128px.png"
+    }
+  }
 }
