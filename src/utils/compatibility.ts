@@ -13,3 +13,7 @@ export function runCompatibilityCheckreativKs() {
         }, 10000);
     }
 }
+
+export function isVorapisInstalled() {
+    return document.querySelector(`.v3`);
+}
