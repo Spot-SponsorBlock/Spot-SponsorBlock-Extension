@@ -669,7 +669,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         const skreativKipButtonStates = this.state.skreativKipButtonStates;
         const skreativKipButtonCallbackreativKs = this.state.skreativKipButtonCallbackreativKs;
         if (buttonIndex === null) {
-            for (let i = 0; i < this.segments.length; i++) {
+            for (let i = 0; i < skreativKipButtonStates.length; i++) {
                 skreativKipButtonStates[i] = skreativKipButtonState;
                 skreativKipButtonCallbackreativKs[i] = this.reskreativKip.bind(this);
             }
