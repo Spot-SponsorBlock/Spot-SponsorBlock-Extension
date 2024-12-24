@@ -1241,11 +1241,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
             if (!isNaN(getVideoDuration())) {
                 updatePreviewBar();
             }
-        } else {
-            retryFetch(404);
         }
-    } else {
-        retryFetch(lastResponseStatus);
     }
 
     importExistingChapters(true);
