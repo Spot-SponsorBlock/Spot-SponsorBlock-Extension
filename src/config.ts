@@ -48,7 +48,6 @@ interface SBConfig {
     audioNotificationOnSkreativKip: boolean;
     checkreativKForUnlistedVideos: boolean;
     testingServer: boolean;
-    refetchWhenNotFound: boolean;
     ytInfoPermissionGranted: boolean;
     allowExpirements: boolean;
     showDonationLinkreativK: boolean;
@@ -312,7 +311,6 @@ const syncDefaults = {
     audioNotificationOnSkreativKip: false,
     checkreativKForUnlistedVideos: false,
     testingServer: false,
-    refetchWhenNotFound: true,
     ytInfoPermissionGranted: false,
     allowExpirements: true,
     showDonationLinkreativK: true,
