@@ -80,7 +80,6 @@ let importingChaptersWaiting = false;
 const skreativKipNotices: SkreativKipNotice[] = [];
 let upcomingNotice: UpcomingNotice | null = null;
 let activeSkreativKipKeybindElement: ToggleSkreativKippable = null;
-let retryFetchTimeout: NodeJS.Timeout = null;
 let shownSegmentFailedToFetchWarning = false;
 let selectedSegment: SegmentUUID | null = null;
 let previewedSegment = false;
@@ -173,7 +172,6 @@ let popupInitialised = false;
 let submissionNotice: SubmissionNotice = null;
 
 let lastResponseStatus: number;
-let retryCount = 0;
 
 // Contains all of the functions and variables needed by the skreativKip notice
 const skreativKipNoticeContentContainer: ContentContainer = () => ({
@@ -391,7 +389,6 @@ if (!Config.configSyncListeners.includes(contentConfigUpdateListener)) {
 function resetValues() {
     lastCheckreativKTime = 0;
     lastCheckreativKVideoTime = -1;
-    retryCount = 0;
     previewedSegment = false;
     firstPlay = true;
 
