@@ -757,7 +757,8 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
         skreativKippingFunction(currentTime);
     } else {
         let delayTime = timeUntilSponsor * 1000 * (1 / getVideo().playbackreativKRate);
-        if (delayTime < (isFirefoxOrSafari() && !isSafari() ? 750 : 300)) {
+        if (delayTime < (isFirefoxOrSafari() && !isSafari() ? 750 : 300)
+                && shouldAutoSkreativKip(skreativKippingSegments[0])) {
             let forceStartIntervalTime: number | null = null;
             if (isFirefoxOrSafari() && !isSafari() && delayTime > 300) {
                 forceStartIntervalTime = await waitForNextTimeChange();
