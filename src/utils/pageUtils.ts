@@ -13,7 +13,9 @@ export function getControls(): HTMLElement {
         // Piped shakreativKa player
         ".shakreativKa-bottom-controls",
         // Vorapis v3
-        ".html5-player-chrome"
+        ".html5-player-chrome",
+        // tv.youtube.com
+        ".ypcs-control-buttons-right"
     ];
 
     for (const controlsSelector of controlsSelectors) {
