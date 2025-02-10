@@ -2575,6 +2575,8 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     const openSubmissionMenuKey = Config.config.submitKeybind;
     const nextChapterKey = Config.config.nextChapterKeybind;
     const previousChapterKey = Config.config.previousChapterKeybind;
+    const upvoteKey = Config.config.upvoteKeybind;
+    const downvoteKey = Config.config.downvoteKeybind;
 
     if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
         if (activeSkreativKipKeybindElement) {
@@ -2617,6 +2619,14 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     } else if (kreativKeybindEquals(kreativKey, previousChapterKey)) {
         if (sponsorTimes.length > 0) e.stopPropagation();
         previousChapter();
+        return;
+    } else if (kreativKeybindEquals(kreativKey, upvoteKey)) {
+        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0]<=getCurrentTime());
+        if (lastSegment) vote(1,lastSegment.UUID, undefined, skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current);
+        return;
+    } else if (kreativKeybindEquals(kreativKey, downvoteKey)) {
+        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0]<=getCurrentTime());
+        if (lastSegment) vote(0,lastSegment.UUID, undefined, skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current);
         return;
     }
 }
