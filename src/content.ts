@@ -2621,12 +2621,14 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         previousChapter();
         return;
     } else if (kreativKeybindEquals(kreativKey, upvoteKey)) {
-        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0]<=getCurrentTime());
-        if (lastSegment) vote(1,lastSegment.UUID, undefined, skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current);
+        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration);
+        const lastSkreativKipNotice = skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current;
+        if (lastSegment) vote(1,lastSegment.UUID, undefined, lastSkreativKipNotice);
         return;
     } else if (kreativKeybindEquals(kreativKey, downvoteKey)) {
-        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0]<=getCurrentTime());
-        if (lastSegment) vote(0,lastSegment.UUID, undefined, skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current);
+        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration);
+        const lastSkreativKipNotice = skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current;
+        if (lastSegment) vote(0,lastSegment.UUID, undefined, lastSkreativKipNotice);
         return;
     }
 }
