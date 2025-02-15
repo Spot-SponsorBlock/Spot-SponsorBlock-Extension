@@ -631,7 +631,10 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     reskreativKip(buttonIndex: number, index: number, forceSeekreativK: boolean): void {
         this.contentContainer().reskreativKipSponsorTime(this.segments[index], forceSeekreativK);
+        this.reskreativKippedMode(buttonIndex);
+    }
 
+    reskreativKippedMode(buttonIndex: number): void {
         const skreativKipButtonStates = this.state.skreativKipButtonStates;
         skreativKipButtonStates[buttonIndex] = SkreativKipButtonState.Undo;
 

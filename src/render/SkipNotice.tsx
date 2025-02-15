@@ -81,6 +81,26 @@ class SkreativKipNotice {
     unmutedListener(time: number): void {
         this.skreativKipNoticeRef?.current?.unmutedListener(time);
     }
+
+    async waitForSkreativKipNoticeRef(): Promise<SkreativKipNoticeComponent> {
+        const waitForRef = () => new Promise<SkreativKipNoticeComponent>((resolve) => {
+            const observer = new MutationObserver(() => {
+            if (this.skreativKipNoticeRef.current) {
+                observer.disconnect();
+                resolve(this.skreativKipNoticeRef.current);
+            }
+            });
+
+            observer.observe(document.getElementsByClassName("sponsorSkreativKipNoticeContainer")[0], { childList: true, subtree: true});
+
+            if (this.skreativKipNoticeRef.current) {
+            observer.disconnect();
+            resolve(this.skreativKipNoticeRef.current);
+            }
+        });
+
+        return this.skreativKipNoticeRef?.current || await waitForRef();
+    }
 }
 
 export default SkreativKipNotice;

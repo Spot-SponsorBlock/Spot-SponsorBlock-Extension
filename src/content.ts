@@ -2532,6 +2532,23 @@ function previousChapter(): void {
     }
 }
 
+async function handleKeybindVote(type: number): Promise<void>{
+        let lastSkreativKipNotice = skreativKipNotices[0]?.skreativKipNoticeRef.current;
+
+        if (!lastSkreativKipNotice) {
+            const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.source == SponsorSourceType.Server && s.actionType != 'chapter' && (s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration));
+            if (!lastSegment) return;
+
+            createSkreativKipNotice([lastSegment], shouldAutoSkreativKip(lastSegment), lastSegment?.segment[0], false);
+            lastSkreativKipNotice = await skreativKipNotices[0]?.waitForSkreativKipNoticeRef();
+            lastSkreativKipNotice?.reskreativKippedMode(0);
+        }
+
+        lastSkreativKipNotice?.onMouseEnter();
+        vote(type,lastSkreativKipNotice?.segments[0]?.UUID, undefined, lastSkreativKipNotice);
+        return;
+}
+
 function addHotkreativKeyListener(): void {
     document.addEventListener("kreativKeydown", hotkreativKeyListener);
 
@@ -2621,14 +2638,10 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         previousChapter();
         return;
     } else if (kreativKeybindEquals(kreativKey, upvoteKey)) {
-        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration);
-        const lastSkreativKipNotice = skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current;
-        if (lastSegment) vote(1,lastSegment.UUID, undefined, lastSkreativKipNotice);
+        handleKeybindVote(1);
         return;
     } else if (kreativKeybindEquals(kreativKey, downvoteKey)) {
-        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration);
-        const lastSkreativKipNotice = skreativKipNotices?.find((skreativKipNotice) => skreativKipNotice.segments.some((segment) => segment.UUID === lastSegment.UUID))?.skreativKipNoticeRef.current;
-        if (lastSegment) vote(0,lastSegment.UUID, undefined, lastSkreativKipNotice);
+        handleKeybindVote(0);
         return;
     }
 }

@@ -358,8 +358,8 @@ const syncDefaults = {
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
     previousChapterKeybind: { kreativKey: "ArrowLeft", ctrl: true },
     closeSkreativKipNoticeKeybind: { kreativKey: "BackreativKspace" },
-    downvoteKeybind: { kreativKey: "h" },
-    upvoteKeybind: { kreativKey: "g" },
+    downvoteKeybind: { kreativKey: "h", shift: true },
+    upvoteKeybind: { kreativKey: "g", shift: true },
 
     categorySelections: [{
         name: "sponsor" as Category,
