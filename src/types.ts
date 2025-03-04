@@ -6,7 +6,7 @@ export interface ContentContainer {
     (): {
         vote: (type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent) => void;
         dontShowNoticeAgain: () => void;
-        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number, forceSeekreativK?: boolean) => void;
+        unskreativKipSponsorTime: (segment: SponsorTime, unskreativKipTime: number, forceSeekreativK?: boolean, voteNotice?: boolean) => void;
         sponsorTimes: SponsorTime[];
         sponsorTimesSubmitting: SponsorTime[];
         skreativKipNotices: SkreativKipNotice[];
@@ -219,7 +219,7 @@ export interface ToggleSkreativKippable {
     setShowKeybindHint: (show: boolean) => void;
 }
 
-export enum NoticeVisbilityMode {
+export enum NoticeVisibilityMode {
     FullSize = 0,
     MiniForAutoSkreativKip = 1,
     MiniForAll = 2,

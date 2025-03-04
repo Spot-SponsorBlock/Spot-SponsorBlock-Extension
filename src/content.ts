@@ -1778,7 +1778,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
     if (autoSkreativKip || isSubmittingSegment) sendTelemetryAndCount(skreativKippingSegments, skreativKipTime[1] - skreativKipTime[0], true);
 }
 
-function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean) {
+function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkreativKip: boolean, unskreativKipTime: number, startReskreativKip: boolean, voteNotice = false) {
     for (const skreativKipNotice of skreativKipNotices) {
         if (skreativKippingSegments.length === skreativKipNotice.segments.length
                 && skreativKippingSegments.every((segment) => skreativKipNotice.segments.some((s) => s.UUID === segment.UUID))) {
@@ -1792,7 +1792,7 @@ function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkr
     const newSkreativKipNotice = new SkreativKipNotice(skreativKippingSegments, autoSkreativKip, skreativKipNoticeContentContainer, () => {
         upcomingNotice?.close();
         upcomingNotice = null;
-    }, unskreativKipTime, startReskreativKip, upcomingNoticeShown);
+    }, unskreativKipTime, startReskreativKip, upcomingNoticeShown, voteNotice);
     if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
     skreativKipNotices.push(newSkreativKipNotice);
 
@@ -1811,13 +1811,13 @@ function createUpcomingNotice(skreativKippingSegments: SponsorTime[], timeLeft: 
     upcomingNotice = new UpcomingNotice(skreativKippingSegments, skreativKipNoticeContentContainer, timeLeft / 1000, autoSkreativKip);
 }
 
-function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false) {
+function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false, voteNotice = false) {
     if (segment.actionType === ActionType.Mute) {
         getVideo().muted = false;
         videoMuted = false;
     }
 
-    if (forceSeekreativK || segment.actionType === ActionType.SkreativKip) {
+    if (forceSeekreativK || segment.actionType === ActionType.SkreativKip || voteNotice) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         setCurrentTime(unskreativKipTime ?? segment.segment[0] + 0.001);
     }
@@ -2533,20 +2533,20 @@ function previousChapter(): void {
 }
 
 async function handleKeybindVote(type: number): Promise<void>{
-        let lastSkreativKipNotice = skreativKipNotices[0]?.skreativKipNoticeRef.current;
+    let lastSkreativKipNotice = skreativKipNotices[0]?.skreativKipNoticeRef.current;
+    lastSkreativKipNotice?.onMouseEnter();
 
-        if (!lastSkreativKipNotice) {
-            const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.source == SponsorSourceType.Server && s.actionType != 'chapter' && (s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration));
-            if (!lastSegment) return;
+    if (!lastSkreativKipNotice) {
+        const lastSegment = [...sponsorTimes].reverse()?.find((s) => s.source == SponsorSourceType.Server && (s.segment[0] <= getCurrentTime() && getCurrentTime() - (s.segment[1] || s.segment[0]) <= Config.config.skreativKipNoticeDuration));
+        if (!lastSegment) return;
 
-            createSkreativKipNotice([lastSegment], shouldAutoSkreativKip(lastSegment), lastSegment?.segment[0], false);
-            lastSkreativKipNotice = await skreativKipNotices[0]?.waitForSkreativKipNoticeRef();
-            lastSkreativKipNotice?.reskreativKippedMode(0);
-        }
+        createSkreativKipNotice([lastSegment], shouldAutoSkreativKip(lastSegment), lastSegment?.segment[0] + 0.001,false, true);
+        lastSkreativKipNotice = await skreativKipNotices[0].waitForSkreativKipNoticeRef();
+        lastSkreativKipNotice?.reskreativKippedMode(0);
+    }
 
-        lastSkreativKipNotice?.onMouseEnter();
-        vote(type,lastSkreativKipNotice?.segments[0]?.UUID, undefined, lastSkreativKipNotice);
-        return;
+    vote(type,lastSkreativKipNotice?.segments[0]?.UUID, undefined, lastSkreativKipNotice);
+    return;
 }
 
 function addHotkreativKeyListener(): void {
