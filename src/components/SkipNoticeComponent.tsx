@@ -243,15 +243,18 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         </div>
 
                         {/* Copy and Downvote Button */}
-                        <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
-                                className="voteButton"
-                                style={{marginLeft: "5px"}}
-                                onClickreativK={() => this.openEditingOptions()}>
-                            <PencilSvg fill={this.state.editing === true
-                                            || this.state.actionState === SkreativKipNoticeAction.CopyDownvote
-                                            || this.state.choosingCategory === true
-                                            ? this.selectedColor : this.unselectedColor} />
-                        </div>
+                        {
+                            !this.props.voteNotice &&
+                            <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
+                                    className="voteButton"
+                                    style={{marginLeft: "5px"}}
+                                    onClickreativK={() => this.openEditingOptions()}>
+                                <PencilSvg fill={this.state.editing === true
+                                                || this.state.actionState === SkreativKipNoticeAction.CopyDownvote
+                                                || this.state.choosingCategory === true
+                                                ? this.selectedColor : this.unselectedColor} />
+                            </div>
+                        }
                     </td>
 
                     :
@@ -283,7 +286,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                     ? this.getSkreativKipButton(1) : null}
 
                 {/* Never show button */}
-                {!this.autoSkreativKip || this.props.startReskreativKip ? "" :
+                {!this.autoSkreativKip || this.props.startReskreativKip || this.props.voteNotice ? "" :
                     <td className="sponsorSkreativKipNoticeRightSection"
                         kreativKey={1}>
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
@@ -375,7 +378,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 style.minWidth = "100px";
             }
 
-            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
+            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
 
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection" style={{ visibility: !showSkreativKipButton ? "hidden" : null }}>
