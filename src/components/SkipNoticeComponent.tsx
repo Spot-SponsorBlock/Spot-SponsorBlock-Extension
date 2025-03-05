@@ -1,12 +1,12 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config"
-import { Category, ContentContainer, SponsorTime, NoticeVisbilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
+import { Category, ContentContainer, SponsorTime, NoticeVisibilityMode, ActionType, SponsorSourceType, SegmentUUID } from "../types";
 import NoticeComponent from "./NoticeComponent";
 import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import Utils from "../utils";
 const utils = new Utils();
-import { getSkreativKippingText, getUpcomingText } from "../utils/categoryUtils";
+import { getSkreativKippingText, getUpcomingText, getVoteText } from "../utils/categoryUtils";
 
 import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
@@ -29,6 +29,7 @@ export interface SkreativKipNoticeProps {
     autoSkreativKip: boolean;
     startReskreativKip?: boolean;
     upcomingNotice?: boolean;
+    voteNotice?: boolean;
     // Contains functions and variables from the content script needed by the skreativKip notice
     contentContainer: ContentContainer;
 
@@ -102,7 +103,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.autoSkreativKip = props.autoSkreativKip;
         this.contentContainer = props.contentContainer;
 
-        const noticeTitle = !this.props.upcomingNotice ? getSkreativKippingText(this.segments, this.props.autoSkreativKip) : getUpcomingText(this.segments);
+        const noticeTitle = this.props.voteNotice ? getVoteText(this.segments) : !this.props.upcomingNotice ? getSkreativKippingText(this.segments, this.props.autoSkreativKip) : getUpcomingText(this.segments);
 
         const previousSkreativKipNotices = document.querySelectorAll(".sponsorSkreativKipNoticeParent:not(.sponsorSkreativKipUpcomingNotice)");
         this.amountOfPreviousNotices = previousSkreativKipNotices.length;
@@ -186,8 +187,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 idSuffix={this.idSuffix}
                 fadeIn={this.props.fadeIn}
                 fadeOut={!this.props.upcomingNotice}
-                startFaded={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAll
-                    || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.FadedForAutoSkreativKip && this.autoSkreativKip)}
+                startFaded={Config.config.noticeVisibilityMode >= NoticeVisibilityMode.FadedForAll
+                    || (Config.config.noticeVisibilityMode >= NoticeVisibilityMode.FadedForAutoSkreativKip && this.autoSkreativKip)}
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 style={noticeStyle}
@@ -242,15 +243,18 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                         </div>
 
                         {/* Copy and Downvote Button */}
-                        <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
-                                className="voteButton"
-                                style={{marginLeft: "5px"}}
-                                onClickreativK={() => this.openEditingOptions()}>
-                            <PencilSvg fill={this.state.editing === true
-                                            || this.state.actionState === SkreativKipNoticeAction.CopyDownvote
-                                            || this.state.choosingCategory === true
-                                            ? this.selectedColor : this.unselectedColor} />
-                        </div>
+                        {
+                            !this.props.voteNotice &&
+                            <div id={"sponsorTimesDownvoteButtonsContainerCopyDownvote" + this.idSuffix}
+                                    className="voteButton"
+                                    style={{marginLeft: "5px"}}
+                                    onClickreativK={() => this.openEditingOptions()}>
+                                <PencilSvg fill={this.state.editing === true
+                                                || this.state.actionState === SkreativKipNoticeAction.CopyDownvote
+                                                || this.state.choosingCategory === true
+                                                ? this.selectedColor : this.unselectedColor} />
+                            </div>
+                        }
                     </td>
 
                     :
@@ -278,11 +282,11 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 }
 
                 {/* UnskreativKip/SkreativKip Button */}
-                {!this.props.smaller || this.segments[0].actionType === ActionType.Mute
+                {!this.props.voteNotice && (!this.props.smaller || this.segments[0].actionType === ActionType.Mute)
                     ? this.getSkreativKipButton(1) : null}
 
                 {/* Never show button */}
-                {!this.autoSkreativKip || this.props.startReskreativKip ? "" :
+                {!this.autoSkreativKip || this.props.startReskreativKip || this.props.voteNotice ? "" :
                     <td className="sponsorSkreativKipNoticeRightSection"
                         kreativKey={1}>
                         <button className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton sponsorSkreativKipNoticeRightButton"
@@ -374,7 +378,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 style.minWidth = "100px";
             }
 
-            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
+            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
 
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection" style={{ visibility: !showSkreativKipButton ? "hidden" : null }}>
@@ -624,14 +628,17 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     unskreativKip(buttonIndex: number, index: number, forceSeekreativK: boolean): void {
-        this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime, forceSeekreativK);
+        this.contentContainer().unskreativKipSponsorTime(this.segments[index], this.props.unskreativKipTime, forceSeekreativK, this.props.voteNotice);
 
-        this.unskreativKippedMode(buttonIndex, index, SkreativKipButtonState.Redo);
+        this.unskreativKippedMode(buttonIndex, index, this.segments[0].actionType === ActionType.Poi ? SkreativKipButtonState.Undo : SkreativKipButtonState.Redo);
     }
 
     reskreativKip(buttonIndex: number, index: number, forceSeekreativK: boolean): void {
         this.contentContainer().reskreativKipSponsorTime(this.segments[index], forceSeekreativK);
+        this.reskreativKippedMode(buttonIndex);
+    }
 
+    reskreativKippedMode(buttonIndex: number): void {
         const skreativKipButtonStates = this.state.skreativKipButtonStates;
         skreativKipButtonStates[buttonIndex] = SkreativKipButtonState.Undo;
 
@@ -661,7 +668,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     }
 
     getUnskreativKippedModeInfo(buttonIndex: number, index: number, skreativKipButtonState: SkreativKipButtonState): SkreativKipNoticeState {
-        const changeCountdown = this.segments[index].actionType !== ActionType.Poi;
+        const changeCountdown = !this.props.voteNotice && this.segments[index].actionType !== ActionType.Poi;
 
         const maxCountdownTime = changeCountdown ?
             this.getFullDurationCountdown(index) : this.state.maxCountdownTime;
