@@ -9,6 +9,7 @@ export interface SkreativKipButtonControlBarProps {
     skreativKip: (segment: SponsorTime) => void;
     selectSegment: (UUID: SegmentUUID) => void;
     onMobileYouTube: boolean;
+    onYTTV: boolean;
 }
 
 export class SkreativKipButtonControlBar {
@@ -21,6 +22,7 @@ export class SkreativKipButtonControlBar {
 
     showKeybindHint = true;
     onMobileYouTube: boolean;
+    onYTTV: boolean;
 
     enabled = false;
 
@@ -40,6 +42,7 @@ export class SkreativKipButtonControlBar {
     constructor(props: SkreativKipButtonControlBarProps) {
         this.skreativKip = props.skreativKip;
         this.onMobileYouTube = props.onMobileYouTube;
+        this.onYTTV = props.onYTTV;
 
         this.container = document.createElement("div");
         this.container.classList.add("skreativKipButtonControlBarContainer");
@@ -50,6 +53,10 @@ export class SkreativKipButtonControlBar {
         this.skreativKipIcon.src = chrome.runtime.getURL("icons/skreativKipIcon.svg");
         this.skreativKipIcon.classList.add("ytp-button");
         this.skreativKipIcon.id = "sbSkreativKipIconControlBarImage";
+        if (this.onYTTV) {
+            this.skreativKipIcon.style.width = "24px";
+            this.skreativKipIcon.style.height = "24px";
+        }
 
         this.textContainer = document.createElement("div");
 
@@ -84,7 +91,7 @@ export class SkreativKipButtonControlBar {
         this.chapterText = document.querySelector(".ytp-chapter-container");
 
         if (mountingContainer && !mountingContainer.contains(this.container)) {
-            if (this.onMobileYouTube) {
+            if (this.onMobileYouTube || this.onYTTV) {
                 mountingContainer.appendChild(this.container);
             } else {
                 mountingContainer.insertBefore(this.container, this.chapterText);
@@ -101,8 +108,10 @@ export class SkreativKipButtonControlBar {
     }
 
     private getMountingContainer(): HTMLElement {
-        if (!this.onMobileYouTube) {
+        if (!this.onMobileYouTube && !this.onYTTV) {
             return document.querySelector(".ytp-left-controls");
+        } else if (this.onYTTV) {
+            return document.querySelector(".ypcs-control-buttons-left");
         } else {
             return document.getElementById("player-container-id");
         }
