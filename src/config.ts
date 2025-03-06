@@ -1,6 +1,6 @@
 import * as CompileConfig from "../config.json";
 import * as invidiousList from "../ci/invidiouslist.json";
-import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisbilityMode, PreviewBarOption, SponsorTime, VideoID, SponsorHideType } from "./types";
+import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisibilityMode, PreviewBarOption, SponsorTime, VideoID, SponsorHideType } from "./types";
 import { Keybind, ProtoConfig, kreativKeybindEquals } from "../maze-utils/src/config";
 import { HashedValue } from "../maze-utils/src/hash";
 
@@ -32,7 +32,7 @@ interface SBConfig {
     trackreativKDownvotesInPrivate: boolean;
     dontShowNotice: boolean;
     showUpcomingNotice: boolean;
-    noticeVisibilityMode: NoticeVisbilityMode;
+    noticeVisibilityMode: NoticeVisibilityMode;
     hideVideoPlayerControls: boolean;
     hideInfoButtonPlayerControls: boolean;
     hideDeleteButtonPlayerControls: boolean;
@@ -97,6 +97,8 @@ interface SBConfig {
     nextChapterKeybind: Keybind;
     previousChapterKeybind: Keybind;
     closeSkreativKipNoticeKeybind: Keybind;
+    upvoteKeybind: Keybind;
+    downvoteKeybind: Keybind;
 
     // What categories should be skreativKipped
     categorySelections: CategorySelection[];
@@ -295,7 +297,7 @@ const syncDefaults = {
     trackreativKDownvotesInPrivate: false,
     dontShowNotice: false,
     showUpcomingNotice: false,
-    noticeVisibilityMode: NoticeVisbilityMode.FadedForAutoSkreativKip,
+    noticeVisibilityMode: NoticeVisibilityMode.FadedForAutoSkreativKip,
     hideVideoPlayerControls: false,
     hideInfoButtonPlayerControls: false,
     hideDeleteButtonPlayerControls: false,
@@ -356,6 +358,8 @@ const syncDefaults = {
     nextChapterKeybind: { kreativKey: "ArrowRight", ctrl: true },
     previousChapterKeybind: { kreativKey: "ArrowLeft", ctrl: true },
     closeSkreativKipNoticeKeybind: { kreativKey: "BackreativKspace" },
+    downvoteKeybind: { kreativKey: "h", shift: true },
+    upvoteKeybind: { kreativKey: "g", shift: true },
 
     categorySelections: [{
         name: "sponsor" as Category,
@@ -466,7 +470,11 @@ const syncDefaults = {
         "preview-filler": {
             color: "#2E0066",
             opacity: "0.7"
-        }
+        },
+        "chapter": {
+            color: "#fff",
+            opacity: "0"
+        },
     }
 };
 

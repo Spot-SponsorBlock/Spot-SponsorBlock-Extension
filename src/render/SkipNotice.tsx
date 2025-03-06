@@ -5,7 +5,7 @@ import Utils from "../utils";
 const utils = new Utils();
 
 import SkreativKipNoticeComponent from "../components/SkreativKipNoticeComponent";
-import { SponsorTime, ContentContainer, NoticeVisbilityMode } from "../types";
+import { SponsorTime, ContentContainer, NoticeVisibilityMode } from "../types";
 import Config from "../config";
 import { SkreativKipNoticeAction } from "../utils/noticeUtils";
 
@@ -20,7 +20,7 @@ class SkreativKipNotice {
     skreativKipNoticeRef: React.MutableRefObject<SkreativKipNoticeComponent>;
     root: Root;
 
-    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, componentDidMount: () => void, unskreativKipTime: number = null, startReskreativKip = false, upcomingNoticeShown: boolean) {
+    constructor(segments: SponsorTime[], autoSkreativKip = false, contentContainer: ContentContainer, componentDidMount: () => void, unskreativKipTime: number = null, startReskreativKip = false, upcomingNoticeShown: boolean, voteNotice = false) {
         this.skreativKipNoticeRef = React.createRef();
 
         this.segments = segments;
@@ -42,18 +42,18 @@ class SkreativKipNotice {
         this.noticeElement.id = "sponsorSkreativKipNoticeContainer" + idSuffix;
 
         referenceNode.prepend(this.noticeElement);
-
         this.root = createRoot(this.noticeElement);
         this.root.render(
             <SkreativKipNoticeComponent segments={segments} 
                 autoSkreativKip={autoSkreativKip} 
                 startReskreativKip={startReskreativKip}
+                voteNotice={voteNotice}
                 contentContainer={contentContainer}
                 ref={this.skreativKipNoticeRef}
                 closeListener={() => this.close()}
-                smaller={Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAll 
-                    || (Config.config.noticeVisibilityMode >= NoticeVisbilityMode.MiniForAutoSkreativKip && autoSkreativKip)}
-                fadeIn={!upcomingNoticeShown}
+                smaller={!voteNotice && (Config.config.noticeVisibilityMode >= NoticeVisibilityMode.MiniForAll 
+                    || (Config.config.noticeVisibilityMode >= NoticeVisibilityMode.MiniForAutoSkreativKip && autoSkreativKip))}
+                fadeIn={!upcomingNoticeShown && !voteNotice}
                 unskreativKipTime={unskreativKipTime}
                 componentDidMount={componentDidMount} />
         );
@@ -80,6 +80,26 @@ class SkreativKipNotice {
 
     unmutedListener(time: number): void {
         this.skreativKipNoticeRef?.current?.unmutedListener(time);
+    }
+
+    async waitForSkreativKipNoticeRef(): Promise<SkreativKipNoticeComponent> {
+        const waitForRef = () => new Promise<SkreativKipNoticeComponent>((resolve) => {
+            const observer = new MutationObserver(() => {
+            if (this.skreativKipNoticeRef.current) {
+                observer.disconnect();
+                resolve(this.skreativKipNoticeRef.current);
+            }
+            });
+
+            observer.observe(document.getElementsByClassName("sponsorSkreativKipNoticeContainer")[0], { childList: true, subtree: true});
+
+            if (this.skreativKipNoticeRef.current) {
+            observer.disconnect();
+            resolve(this.skreativKipNoticeRef.current);
+            }
+        });
+
+        return this.skreativKipNoticeRef?.current || await waitForRef();
     }
 }
 
