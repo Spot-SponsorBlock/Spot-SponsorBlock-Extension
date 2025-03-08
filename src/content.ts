@@ -772,7 +772,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
 
             // Use interval instead of timeout near the end to combat imprecise video time
             const startIntervalTime = forceStartIntervalTime || performance.now();
-            const startVideoTime = Math.max(currentTime, getCurrentTime());
+            const startVideoTime = Math.max(currentTime, getVirtualTime());
             delayTime = (skreativKipTime?.[0] - startVideoTime) * 1000 * (1 / getVideo().playbackreativKRate);
 
             let startWaitingForReportedTimeToChange = true;
@@ -791,7 +791,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                 }
 
                 const intervalDuration = performance.now() - startIntervalTime;
-                if (intervalDuration + skreativKipBuffer * 1000 >= delayTime || getCurrentTime() >= skreativKipTime[0]) {
+                if (intervalDuration + skreativKipBuffer * 1000 >= delayTime || getVirtualTime() + skreativKipBuffer >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
                     if (!isFirefoxOrSafari() && !getVideo().muted && !inMuteSegment(getCurrentTime(), true)) {
                         // WorkreativKaround for more accurate skreativKipping on Chromium
@@ -842,7 +842,7 @@ function getVirtualTime(): number {
         (performance.now() - lastKnownVideoTime.preciseTime) * (getVideo()?.playbackreativKRate || 1) / 1000 + lastKnownVideoTime.videoTime : null);
 
     if (Config.config.useVirtualTime && !isSafari() && virtualTime
-            && Math.abs(virtualTime - getCurrentTime()) < 0.2 && getCurrentTime() !== 0) {
+            && virtualTime > getCurrentTime() && virtualTime - getCurrentTime() < 0.2 && getCurrentTime() !== 0) {
         return Math.max(virtualTime, getCurrentTime());
     } else {
         return getCurrentTime();
