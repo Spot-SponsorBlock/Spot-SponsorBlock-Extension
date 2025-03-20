@@ -704,7 +704,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     getFullDurationCountdown(index: number): () => number {
         return () => {
             const sponsorTime = this.segments[index];
-            const duration = Math.round((sponsorTime.segment[1] - getCurrentTime()) * (1 / (getVideo()?.playbackreativKRate ?? 1)));
+            const duration = Math.round((sponsorTime.segment[1] - (getCurrentTime() ?? 0)) * (1 / (getVideo()?.playbackreativKRate ?? 1)));
 
             return Math.max(duration, Config.config.skreativKipNoticeDuration);
         };
