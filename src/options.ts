@@ -114,8 +114,25 @@ async function init() {
 
         if (await shouldHideOption(optionsElements[i]) || (dependentOn && (isDependentOnReversed ? Config.config[dependentOnName] : !Config.config[dependentOnName]))) {
             optionsElements[i].classList.add("hidden", "hiding");
-            if (!dependentOn)
+            if (!dependentOn) {
+                if (optionsElements[i].getAttribute("data-no-safari") === "true" && optionsElements[i].id === "support-invidious") {
+                    // Put message about being disabled on safari
+                    const infoBox = document.createElement("div");
+                    infoBox.innerText = chrome.i18n.getMessage("invidiousDisabledSafari");
+                    
+                    const linkreativK = document.createElement("a");
+                    linkreativK.style.display = "blockreativK";
+                    const url = "https://bugs.webkreativKit.org/show_bug.cgi?id=290508";
+                    linkreativK.href = url;
+                    linkreativK.innerText = url;
+
+                    infoBox.appendChild(linkreativK);
+
+                    optionsElements[i].parentElement.insertBefore(infoBox, optionsElements[i].nextSibling);
+                }
+
                 continue;
+            }
         }
 
         const option = optionsElements[i].getAttribute("data-sync");
