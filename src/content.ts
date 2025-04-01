@@ -35,7 +35,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
 import { getErrorMessage, getFormattedTime } from "../maze-utils/src/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube, isOnYTTV, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "../maze-utils/src/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube, isOnYouTubeMusic, isOnYTTV, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "../maze-utils/src/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "../maze-utils/src/config";
 import { findValidElement } from "../maze-utils/src/dom"
 import { getHash, HashedValue } from "../maze-utils/src/hash";
@@ -1891,16 +1891,33 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
-        && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.SkreativKip)
-            || sponsorTimesSubmitting.some((s) => s.segment === segment.segment));
+    if (Config.config.manualSkreativKipOnFullVideo && !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full)) {
+        return false;
+    }
+
+    return  (   // Normal skreativKip
+                utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip 
+                // Forbid skreativKipping of non-music if we are not on Youtube Music
+                && !(segment.category === "music_offtopic" && Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic())
+            )
+            ||
+            (   // SkreativKip every segment, if it's a music video
+
+                // Forbid autoSkreativKipOnMusicVideos if if we are not on Youtube Music
+                !(Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic())
+                && Config.config.autoSkreativKipOnMusicVideos 
+                && sponsorTimes?.some((s) => s.category === "music_offtopic") 
+                && segment.actionType === ActionType.SkreativKip
+            )
+            || 
+            sponsorTimesSubmitting.some((s) => s.segment === segment.segment);
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
-    return (segment.actionType !== ActionType.Full
-            && segment.source !== SponsorSourceType.YouTube
+    if (segment.actionType === ActionType.Full) {
+        return false;
+    }
+    return (segment.source !== SponsorSourceType.YouTube
             && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
             || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip);

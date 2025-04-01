@@ -243,6 +243,9 @@ class CategorySkreativKipOptionsComponent extends React.Component<CategorySkreat
                 return [{
                     configKey: "autoSkreativKipOnMusicVideos",
                     label: chrome.i18n.getMessage("autoSkreativKipOnMusicVideos"),
+                }, {
+                    configKey: "skreativKipNonMusicOnlyOnYoutubeMusic",
+                    label: chrome.i18n.getMessage("skreativKipNonMusicOnlyOnYoutubeMusic"),
                 }];
             default:
                 return [];
