@@ -57,6 +57,7 @@ interface SBConfig {
     donateClickreativKed: number;
     autoHideInfoButton: boolean;
     autoSkreativKipOnMusicVideos: boolean;
+    skreativKipNonMusicOnlyOnYoutubeMusic: boolean;
     colorPalette: {
         red: string;
         white: string;
@@ -322,6 +323,7 @@ const syncDefaults = {
     donateClickreativKed: 0,
     autoHideInfoButton: true,
     autoSkreativKipOnMusicVideos: false,
+    skreativKipNonMusicOnlyOnYoutubeMusic: false,
     scrollToEditTimeUpdate: false, // false means the tooltip will be shown
     categoryPillUpdate: false,
     showChapterInfoMessage: true,
