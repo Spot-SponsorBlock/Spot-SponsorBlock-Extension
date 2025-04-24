@@ -1895,22 +1895,15 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
         return false;
     }
 
-    return  (   // Normal skreativKip
-                utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip 
-                // Forbid skreativKipping of non-music if we are not on Youtube Music
-                && !(segment.category === "music_offtopic" && Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic())
-            )
-            ||
-            (   // SkreativKip every segment, if it's a music video
+    if (segment.category === "music_offtopic" && Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic()) {
+        return false;
+    }
 
-                // Forbid autoSkreativKipOnMusicVideos if if we are not on Youtube Music
-                !(Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic())
-                && Config.config.autoSkreativKipOnMusicVideos 
-                && sponsorTimes?.some((s) => s.category === "music_offtopic") 
-                && segment.actionType === ActionType.SkreativKip
-            )
-            || 
-            sponsorTimesSubmitting.some((s) => s.segment === segment.segment);
+    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
+        && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
+                && segment.actionType === ActionType.SkreativKip)
+            || sponsorTimesSubmitting.some((s) => s.segment === segment.segment));
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
