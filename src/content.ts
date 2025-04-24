@@ -1926,10 +1926,6 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    if (Config.config.manualSkreativKipOnFullVideo && !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full)) {
-        return false;
-    }
-
     if (segment.category === "music_offtopic" && Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic()) {
         return false;
     }
