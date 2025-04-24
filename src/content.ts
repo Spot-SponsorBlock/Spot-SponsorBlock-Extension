@@ -1907,13 +1907,11 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
-    if (segment.actionType === ActionType.Full) {
-        return false;
-    }
-    return (segment.source !== SponsorSourceType.YouTube
-            && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
-            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.SkreativKip);
+    return (segment.actionType !== ActionType.Full
+        && segment.source !== SponsorSourceType.YouTube
+        && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
+        || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            && segment.actionType === ActionType.SkreativKip);
 }
 
 /** Creates any missing buttons on the YouTube player if possible. */
