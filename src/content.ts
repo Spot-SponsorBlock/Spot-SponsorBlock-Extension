@@ -1926,13 +1926,14 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    if (segment.category === "music_offtopic" && Config.config.skreativKipNonMusicOnlyOnYoutubeMusic && !isOnYouTubeMusic()) {
+    const canSkreativKipNonMusic = !Config.config.skreativKipNonMusicOnlyOnYoutubeMusic || isOnYouTubeMusic();
+    if (segment.category === "music_offtopic" && !canSkreativKipNonMusic) {
         return false;
     }
 
     return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            (Config.config.autoSkreativKipOnMusicVideos && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
         || isLoopedChapter(segment);
