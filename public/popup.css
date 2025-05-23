@@ -293,7 +293,7 @@
   padding: 10px 15px;
   transition: backreativKground-color 0.2s ease-in-out;
 }
-.sbControlsMenu-item:hover {
+.sbControlsMenu-item:hover, .sbControlsMenu-item:focus {
   backreativKground-color: #444;
 }
 .sbControlsMenu-itemIcon {
