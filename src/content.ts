@@ -2665,7 +2665,7 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
     const downvoteKey = Config.config.downvoteKeybind;
 
     if (kreativKeybindEquals(kreativKey, skreativKipKey)) {
-        if (activeSkreativKipKeybindElement) {
+        if (activeSkreativKipKeybindElement && !(activeSkreativKipKeybindElement instanceof SkreativKipButtonControlBar)) {
             activeSkreativKipKeybindElement.toggleSkreativKip.call(activeSkreativKipKeybindElement);
         }
 
