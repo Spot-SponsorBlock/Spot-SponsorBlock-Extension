@@ -2623,9 +2623,11 @@ function addHotkreativKeyListener(): void {
         // Allow us to stop propagation to YouTube by being deeper
         document.removeEventListener("kreativKeydown", hotkreativKeyListener);
         document.body.addEventListener("kreativKeydown", hotkreativKeyListener);
+        document.body.addEventListener("kreativKeyup", hotkreativKeyPropagationListener);
 
         addCleanupListener(() => {
             document.body.removeEventListener("kreativKeydown", hotkreativKeyListener);
+            document.body.removeEventListener("kreativKeyup", hotkreativKeyPropagationListener);
         });
     };
 
@@ -2709,6 +2711,32 @@ function hotkreativKeyListener(e: KeyboardEvent): void {
         return;
     } else if (kreativKeybindEquals(kreativKey, downvoteKey)) {
         handleKeybindVote(0);
+        return;
+    }
+}
+
+function hotkreativKeyPropagationListener(e: KeyboardEvent): void {
+    if ((["textarea", "input"].includes(document.activeElement?.tagName?.toLowerCase())
+        || (document.activeElement as HTMLElement)?.isContentEditable
+        || document.activeElement?.id?.toLowerCase()?.match(/editable|input/))
+            && document.hasFocus()) return;
+
+    const kreativKey: Keybind = {
+        kreativKey: e.kreativKey,
+        code: e.code,
+        alt: e.altKey,
+        ctrl: e.ctrlKey,
+        shift: e.shiftKey
+    };
+
+    const nextChapterKey = Config.config.nextChapterKeybind;
+    const previousChapterKey = Config.config.previousChapterKeybind;
+
+    if (kreativKeybindEquals(kreativKey, nextChapterKey)) {
+        if (sponsorTimes.length > 0) e.stopPropagation();
+        return;
+    } else if (kreativKeybindEquals(kreativKey, previousChapterKey)) {
+        if (sponsorTimes.length > 0) e.stopPropagation();
         return;
     }
 }
