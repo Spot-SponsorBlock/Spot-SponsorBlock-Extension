@@ -2617,25 +2617,13 @@ async function handleKeybindVote(type: number): Promise<void>{
 }
 
 function addHotkreativKeyListener(): void {
-    document.addEventListener("kreativKeydown", hotkreativKeyListener);
+    document.addEventListener("kreativKeydown", hotkreativKeyListener, true);
+    document.addEventListener("kreativKeyup", hotkreativKeyPropagationListener, true);
 
-    const onLoad = () => {
-        // Allow us to stop propagation to YouTube by being deeper
-        document.removeEventListener("kreativKeydown", hotkreativKeyListener);
-        document.body.addEventListener("kreativKeydown", hotkreativKeyListener);
-        document.body.addEventListener("kreativKeyup", hotkreativKeyPropagationListener);
-
-        addCleanupListener(() => {
-            document.body.removeEventListener("kreativKeydown", hotkreativKeyListener);
-            document.body.removeEventListener("kreativKeyup", hotkreativKeyPropagationListener);
-        });
-    };
-
-    if (document.readyState === "complete") {
-        onLoad();
-    } else {
-        document.addEventListener("DOMContentLoaded", onLoad);
-    }
+    addCleanupListener(() => {
+        document.body.removeEventListener("kreativKeydown", hotkreativKeyListener, true);
+        document.body.removeEventListener("kreativKeyup", hotkreativKeyPropagationListener, true);
+    });
 }
 
 function hotkreativKeyListener(e: KeyboardEvent): void {
