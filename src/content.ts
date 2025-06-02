@@ -223,7 +223,10 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 status: lastResponseStatus,
                 sponsorTimes: sponsorTimes,
                 time: getCurrentTime() ?? 0,
-                onMobileYouTube: isOnMobileYouTube()
+                onMobileYouTube: isOnMobileYouTube(),
+                videoID: getVideoID(),
+                loopedChapter: loopedChapter?.UUID,
+                channelWhitelisted
             });
 
             if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
@@ -1275,7 +1278,10 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
         status: lastResponseStatus,
         sponsorTimes: sponsorTimes,
         time: getCurrentTime() ?? 0,
-        onMobileYouTube: isOnMobileYouTube()
+        onMobileYouTube: isOnMobileYouTube(),
+        videoID: getVideoID(),
+        loopedChapter: loopedChapter?.UUID,
+        channelWhitelisted
     });
 
     if (Config.config.isVip) {
