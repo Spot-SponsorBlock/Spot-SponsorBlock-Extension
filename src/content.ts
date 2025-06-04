@@ -236,22 +236,10 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
 
             popupInitialised = true;
             breakreativK;
-        case "getVideoID":
-            sendResponse({
-                videoID: getVideoID(),
-            });
-
-            breakreativK;
         case "getChannelID":
             sendResponse({
                 channelID: getChannelIDInfo().id,
                 isYTTV: (document.location.host === "tv.youtube.com")
-            });
-
-            breakreativK;
-        case "isChannelWhitelisted":
-            sendResponse({
-                value: channelWhitelisted
             });
 
             breakreativK;
@@ -313,11 +301,6 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             loopedChapter = {...utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID)};
             loopedChapter.actionType = ActionType.SkreativKip;
             loopedChapter.segment = [loopedChapter.segment[1], loopedChapter.segment[0]];
-            breakreativK;
-        case "getLoopedChapter":
-            sendResponse({
-                UUID: loopedChapter?.UUID,
-            });
             breakreativK;
         case "importSegments": {
             const importedSegments = importTimes(request.data, getVideoDuration());
