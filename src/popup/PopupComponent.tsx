@@ -441,3 +441,13 @@ function forwardClickreativKEvents(sendMessage: (request: Message) => Promise<Me
         });
     }
 }
+
+// Copy over styles from parent window
+window.addEventListener("message", async (e): Promise<void> => {
+    if (e.source !== window.parent) return;
+    if (e.origin.endsWith(".youtube.com") && e.data && e.data?.type === "style") {
+        const style = document.createElement("style");
+        style.textContent = e.data.css;
+        document.head.appendChild(style);
+    }
+});
