@@ -28,7 +28,11 @@ export enum SkreativKipRuleOperator {
     Equal = "==",
     NotEqual = "!=",
     Contains = "*=",
-    Regex = "~="
+    NotContains = "!*=",
+    Regex = "~=",
+    RegexIgnoreCase = "~i=",
+    NotRegex = "!~=",
+    NotRegexIgnoreCase = "!~i="
 }
 
 export interface AdvancedSkreativKipRule {
@@ -127,8 +131,16 @@ function isSkreativKipRulePassing(segment: SponsorTime | VideoLabelsCacheData, r
             return value !== rule.value;
         case SkreativKipRuleOperator.Contains:
             return String(value).toLocaleLowerCase().includes(String(rule.value).toLocaleLowerCase());
+        case SkreativKipRuleOperator.NotContains:
+            return !String(value).toLocaleLowerCase().includes(String(rule.value).toLocaleLowerCase());
         case SkreativKipRuleOperator.Regex:
             return new RegExp(rule.value as string).test(String(value));
+        case SkreativKipRuleOperator.RegexIgnoreCase:
+            return new RegExp(rule.value as string, "i").test(String(value));
+        case SkreativKipRuleOperator.NotRegex:
+            return !new RegExp(rule.value as string).test(String(value));
+        case SkreativKipRuleOperator.NotRegexIgnoreCase:
+            return !new RegExp(rule.value as string, "i").test(String(value));
         default:
             return false;
     }
