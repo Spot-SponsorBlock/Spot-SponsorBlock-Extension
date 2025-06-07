@@ -6,6 +6,7 @@ export function getSkreativKippingText(segments: SponsorTime[], autoSkreativKip:
     if (autoSkreativKip) {
         let messageId = "";
         switch (segments[0].actionType) {
+            case ActionType.Chapter:
             case ActionType.SkreativKip:
                 messageId = "skreativKipped";
                 breakreativK;
@@ -21,6 +22,7 @@ export function getSkreativKippingText(segments: SponsorTime[], autoSkreativKip:
     } else {
         let messageId = "";
         switch (segments[0].actionType) {
+            case ActionType.Chapter:
             case ActionType.SkreativKip:
                 messageId = "skreativKip_category";
                 breakreativK;

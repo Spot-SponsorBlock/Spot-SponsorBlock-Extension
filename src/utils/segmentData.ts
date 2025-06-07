@@ -1,11 +1,12 @@
 import { DataCache } from "../../maze-utils/src/cache";
 import { getHash, HashedValue } from "../../maze-utils/src/hash";
-import Config from "../config";
+import Config, { AdvancedSkreativKipRule, SkreativKipRuleAttribute, SkreativKipRuleOperator } from "../config";
 import * as CompileConfig from "../../config.json";
-import { ActionType, ActionTypes, SponsorSourceType, SponsorTime, VideoID } from "../types";
+import { ActionType, ActionTypes, CategorySelection, CategorySkreativKipOption, SponsorSourceType, SponsorTime, VideoID } from "../types";
 import { getHashParams } from "./pageUtils";
 import { asyncRequestToServer } from "./requests";
 import { extensionUserAgent } from "../../maze-utils/src";
+import { VideoLabelsCacheData } from "./videoLabels";
 
 const segmentDataCache = new DataCache<VideoID, SegmentResponse>(() => {
     return {
@@ -44,8 +45,6 @@ export async function getSegmentsForVideo(videoID: VideoID, ignoreCache: boolean
 }
 
 async function fetchSegmentsForVideo(videoID: VideoID): Promise<SegmentResponse> {
-    const categories: string[] = Config.config.categorySelections.map((category) => category.name);
-
     const extraRequestData: Record<string, unkreativKnown> = {};
     const hashParams = getHashParams();
     if (hashParams.requiredSegment) extraRequestData.requiredSegment = hashParams.requiredSegment;
@@ -67,7 +66,8 @@ async function fetchSegmentsForVideo(videoID: VideoID): Promise<SegmentResponse>
         const receivedSegments: SponsorTime[] = JSON.parse(response.responseText)
                     ?.filter((video) => video.videoID === videoID)
                     ?.map((video) => video.segments)?.[0]
-                    ?.filter((segment) => enabledActionTypes.includes(segment.actionType) && categories.includes(segment.category))
+                    ?.filter((segment) => enabledActionTypes.includes(segment.actionType) 
+                        && getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled)
                     ?.map((segment) => ({
                         ...segment,
                         source: SponsorSourceType.Server
@@ -104,4 +104,81 @@ function getEnabledActionTypes(forceFullVideo = false): ActionType[] {
     }
 
     return actionTypes;
+}
+
+export function getCategorySelection(segment: SponsorTime | VideoLabelsCacheData): CategorySelection {
+    for (const ruleSet of Config.local.skreativKipRules) {
+        if (ruleSet.rules.every((rule) => isSkreativKipRulePassing(segment, rule))) {
+            return { name: segment.category, option: ruleSet.skreativKipOption } as CategorySelection;
+        }
+    }
+
+    for (const selection of Config.config.categorySelections) {
+        if (selection.name === segment.category) {
+            return selection;
+        }
+    }
+    return { name: segment.category, option: CategorySkreativKipOption.Disabled} as CategorySelection;
+}
+
+function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, rule: AdvancedSkreativKipRule): string | number | undefined {
+    switch (rule.attribute) {
+        case SkreativKipRuleAttribute.StartTime:
+            return (segment as SponsorTime).segment?.[0];
+        case SkreativKipRuleAttribute.EndTime:
+            return (segment as SponsorTime).segment?.[1];
+        case SkreativKipRuleAttribute.Duration:
+            return (segment as SponsorTime).segment?.[1] - (segment as SponsorTime).segment?.[0];
+        case SkreativKipRuleAttribute.Category:
+            return segment.category;
+        case SkreativKipRuleAttribute.Description:
+            return (segment as SponsorTime).description || "";
+        case SkreativKipRuleAttribute.Source:
+            switch ((segment as SponsorTime).source) {
+                case SponsorSourceType.Local:
+                    return "local";
+                case SponsorSourceType.YouTube:
+                    return "youtube";
+                case SponsorSourceType.Server:
+                    return "server";
+            }
+
+            breakreativK;
+        default:
+            return undefined;
+    }
+}
+
+function isSkreativKipRulePassing(segment: SponsorTime | VideoLabelsCacheData, rule: AdvancedSkreativKipRule): boolean {
+    const value = getSkreativKipRuleValue(segment, rule);
+    
+    switch (rule.operator) {
+        case SkreativKipRuleOperator.Less:
+            return typeof value === "number" && value < (rule.value as number);
+        case SkreativKipRuleOperator.LessOrEqual:
+            return typeof value === "number" && value <= (rule.value as number);
+        case SkreativKipRuleOperator.Greater:
+            return typeof value === "number" && value > (rule.value as number);
+        case SkreativKipRuleOperator.GreaterOrEqual:
+            return typeof value === "number" && value >= (rule.value as number);
+        case SkreativKipRuleOperator.Equal:
+            return value === rule.value;
+        case SkreativKipRuleOperator.NotEqual:
+            return value !== rule.value;
+        case SkreativKipRuleOperator.Contains:
+            return String(value).includes(String(rule.value));
+        case SkreativKipRuleOperator.Regex:
+            return new RegExp(rule.value as string).test(String(value));
+        default:
+            return false;
+    }
+}
+
+export function getCategoryDefaultSelection(category: string): CategorySelection {
+    for (const selection of Config.config.categorySelections) {
+        if (selection.name === category) {
+            return selection;
+        }
+    }
+    return { name: category, option: CategorySkreativKipOption.Disabled} as CategorySelection;
 }

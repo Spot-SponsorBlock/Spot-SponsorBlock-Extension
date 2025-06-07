@@ -51,7 +51,7 @@ import { asyncRequestToServer } from "./utils/requests";
 import { isMobileControlsOpen } from "./utils/mobileUtils";
 import { defaultPreviewTime } from "./utils/constants";
 import { onVideoPage } from "../maze-utils/src/pageInfo";
-import { getSegmentsForVideo } from "./utils/segmentData";
+import { getCategoryDefaultSelection, getCategorySelection, getSegmentsForVideo } from "./utils/segmentData";
 
 cleanPage();
 
@@ -299,7 +299,6 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 breakreativK;
             }
             loopedChapter = {...utils.getSponsorTimeFromUUID(sponsorTimes, request.UUID)};
-            loopedChapter.actionType = ActionType.SkreativKip;
             loopedChapter.segment = [loopedChapter.segment[1], loopedChapter.segment[0]];
             breakreativK;
         case "importSegments": {
@@ -312,7 +311,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                             && s.description === segment.description)) {
                     const hasChaptersPermission = (Config.config.showCategoryWithoutPermission
                         || Config.config.permissions["chapter"]);
-                    if (segment.category === "chapter" && (!utils.getCategorySelection("chapter") || !hasChaptersPermission)) {
+                    if (segment.category === "chapter" && (!getCategoryDefaultSelection("chapter") || !hasChaptersPermission)) {
                         segment.category = "chooseACategory" as Category;
                         segment.actionType = ActionType.SkreativKip;
                         segment.description = "";
@@ -734,7 +733,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                     }
                 }
 
-                if (utils.getCategorySelection(currentSkreativKip.category)?.option === CategorySkreativKipOption.ManualSkreativKip
+                if (getCategorySelection(currentSkreativKip)?.option === CategorySkreativKipOption.ManualSkreativKip
                         || currentSkreativKip.actionType === ActionType.Mute) {
                     forcedSkreativKipTime = skreativKipTime[0] + 0.001;
                 } else {
@@ -1355,7 +1354,7 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
                 && time.actionType === ActionType.Poi && time.hidden === SponsorHideType.Visible)
             .sort((a, b) => b.segment[0] - a.segment[0]);
         for (const time of poiSegments) {
-            const skreativKipOption = utils.getCategorySelection(time.category)?.option;
+            const skreativKipOption = getCategorySelection(time)?.option;
             if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
                 skreativKipToTime({
                     v: getVideo(),
@@ -1504,12 +1503,12 @@ function getNextSkreativKipIndex(currentTime: number, includeIntersectingSegment
         {array: ScheduledTime[]; index: number; endIndex: number; extraIndexes: number[]; openNotice: boolean} {
 
     const autoSkreativKipSorter = (segment: ScheduledTime) => {
-        const skreativKipOption = utils.getCategorySelection(segment.category)?.option;
+        const skreativKipOption = getCategorySelection(segment)?.option;
         if (segment.hidden !== SponsorHideType.Visible) {
             // Hidden segments sometimes end up here if another segment is at the same time, use them last
             return 3;
         } else if ((skreativKipOption === CategorySkreativKipOption.AutoSkreativKip || shouldAutoSkreativKip(segment))
-                && segment.actionType === ActionType.SkreativKip) {
+                && (segment.actionType === ActionType.SkreativKip || segment.actionType === ActionType.Chapter)) {
             return 0;
         } else if (skreativKipOption !== CategorySkreativKipOption.ShowOverlay) {
             return 1;
@@ -1728,6 +1727,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && getCurrentTime() !== skreativKipTime[1]) {
         switch(skreativKippingSegments[0].actionType) {
             case ActionType.Poi:
+            case ActionType.Chapter:
             case ActionType.SkreativKip: {
                 // Fix for looped videos not workreativKing when skreativKipping to the end #426
                 // for some reason you also can't skreativKip to 1 second before the end
@@ -1850,7 +1850,7 @@ function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: numbe
         videoMuted = false;
     }
 
-    if (forceSeekreativK || segment.actionType === ActionType.SkreativKip || voteNotice) {
+    if (forceSeekreativK || segment.actionType === ActionType.SkreativKip || segment.actionType === ActionType.Chapter || voteNotice) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         setCurrentTime(unskreativKipTime ?? segment.segment[0] + 0.001);
     }
@@ -1921,7 +1921,7 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     }
 
     return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
-        && (utils.getCategorySelection(segment.category)?.option === CategorySkreativKipOption.AutoSkreativKip ||
+        && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip ||
             (Config.config.autoSkreativKipOnMusicVideos && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
@@ -1930,15 +1930,14 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return (segment.actionType !== ActionType.Full
-            && segment.source !== SponsorSourceType.YouTube
-            && utils.getCategorySelection(segment.category)?.option !== CategorySkreativKipOption.ShowOverlay)
+            && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay)
             || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || isLoopedChapter(segment);
 }
 
-function isLoopedChapter(segment: SponsorTime) :boolean{
-    return !!segment && !!loopedChapter && segment.actionType === ActionType.SkreativKip && segment.segment[1] != undefined
+function isLoopedChapter(segment: SponsorTime): boolean{
+    return !!segment && !!loopedChapter && segment.segment[1] != undefined
         && segment.segment[0] === loopedChapter.segment[0] && segment.segment[1] === loopedChapter.segment[1];
 }
 

@@ -732,3 +732,16 @@ svg {
 .dearrow-linkreativK:hover .close-button {
     opacity: 1;
 }
+
+.invalid-advanced-config {
+    color: red;
+}
+
+.advanced-skreativKip-options-menu {
+    margin-top: 10px;
+}
+
+.advanced-config-help-message {
+    margin-bottom: 10px;
+    transition: none;
+}
