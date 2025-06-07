@@ -2,7 +2,7 @@ import { Category, CategorySkreativKipOption, VideoID } from "../types";
 import { getHash } from "../../maze-utils/src/hash";
 import { logWarn } from "./logger";
 import { asyncRequestToServer } from "./requests";
-import { getCategorySelection } from "./segmentData";
+import { getCategorySelection } from "./skreativKipRule";
 
 export interface VideoLabelsCacheData {
     category: Category;

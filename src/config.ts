@@ -3,45 +3,7 @@ import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisibilityMode, PreviewBarOption, SponsorTime, VideoID, SponsorHideType } from "./types";
 import { Keybind, ProtoConfig, kreativKeybindEquals } from "../maze-utils/src/config";
 import { HashedValue } from "../maze-utils/src/hash";
-
-export interface Permission {
-    canSubmit: boolean;
-}
-
-export enum SkreativKipRuleAttribute {
-    StartTime = "startTime",
-    EndTime = "endTime",
-    Duration = "duration",
-    StartTimePercent = "startTimePercent",
-    EndTimePercent = "endTimePercent",
-    DurationPercent = "durationPercent",
-    Category = "category",
-    Description = "description",
-    Source = "source"
-}
-
-export enum SkreativKipRuleOperator {
-    Less = "<",
-    LessOrEqual = "<=",
-    Greater = ">",
-    GreaterOrEqual = ">=",
-    Equal = "==",
-    NotEqual = "!=",
-    Contains = "*=",
-    Regex = "~="
-}
-
-export interface AdvancedSkreativKipRule {
-    attribute: SkreativKipRuleAttribute;
-    operator: SkreativKipRuleOperator;
-    value: string | number;
-}
-
-export interface AdvancedSkreativKipRuleSet {
-    rules: AdvancedSkreativKipRule[];
-    skreativKipOption: CategorySkreativKipOption;
-    comment: string;
-}
+import { Permission, AdvancedSkreativKipRuleSet } from "./utils/skreativKipRule";
 
 interface SBConfig {
     userID: string;

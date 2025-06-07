@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as CompileConfig from "../../../config.json";
 
-import Config, { AdvancedSkreativKipRuleSet, SkreativKipRuleAttribute, SkreativKipRuleOperator } from "../../config";
+import Config from "../../config";
+import { AdvancedSkreativKipRuleSet, SkreativKipRuleAttribute, SkreativKipRuleOperator } from "../../utils/skreativKipRule";
 import { CategorySkreativKipOption } from "../../types";
 
 let configSaveTimeout: NodeJS.Timeout | null = null;
