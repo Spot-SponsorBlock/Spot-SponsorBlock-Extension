@@ -166,7 +166,7 @@ function isSkreativKipRulePassing(segment: SponsorTime | VideoLabelsCacheData, r
         case SkreativKipRuleOperator.NotEqual:
             return value !== rule.value;
         case SkreativKipRuleOperator.Contains:
-            return String(value).includes(String(rule.value));
+            return String(value).toLocaleLowerCase().includes(String(rule.value).toLocaleLowerCase());
         case SkreativKipRuleOperator.Regex:
             return new RegExp(rule.value as string).test(String(value));
         default:
