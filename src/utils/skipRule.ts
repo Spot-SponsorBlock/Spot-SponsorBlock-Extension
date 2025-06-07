@@ -15,6 +15,7 @@ export enum SkreativKipRuleAttribute {
     EndTimePercent = "endTimePercent",
     DurationPercent = "durationPercent",
     Category = "category",
+    ActionType = "actionType",
     Description = "description",
     Source = "source"
 }
@@ -86,6 +87,8 @@ function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, ru
         }
         case SkreativKipRuleAttribute.Category:
             return segment.category;
+        case SkreativKipRuleAttribute.ActionType:
+            return (segment as SponsorTime).actionType;
         case SkreativKipRuleAttribute.Description:
             return (segment as SponsorTime).description || "";
         case SkreativKipRuleAttribute.Source:
