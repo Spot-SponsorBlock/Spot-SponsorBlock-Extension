@@ -7,6 +7,7 @@ import { getHashParams } from "./pageUtils";
 import { asyncRequestToServer } from "./requests";
 import { extensionUserAgent } from "../../maze-utils/src";
 import { VideoLabelsCacheData } from "./videoLabels";
+import { getVideoDuration } from "../../maze-utils/src/video";
 
 const segmentDataCache = new DataCache<VideoID, SegmentResponse>(() => {
     return {
@@ -129,6 +130,25 @@ function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, ru
             return (segment as SponsorTime).segment?.[1];
         case SkreativKipRuleAttribute.Duration:
             return (segment as SponsorTime).segment?.[1] - (segment as SponsorTime).segment?.[0];
+        case SkreativKipRuleAttribute.StartTimePercent: {
+            const startTime = (segment as SponsorTime).segment?.[0];
+            if (startTime === undefined) return undefined;
+
+            return startTime / getVideoDuration() * 100;
+        }
+        case SkreativKipRuleAttribute.EndTimePercent: {
+            const endTime = (segment as SponsorTime).segment?.[1];
+            if (endTime === undefined) return undefined;
+
+            return endTime / getVideoDuration() * 100;
+        }
+        case SkreativKipRuleAttribute.DurationPercent: {
+            const startTime = (segment as SponsorTime).segment?.[0];
+            const endTime = (segment as SponsorTime).segment?.[1];
+            if (startTime === undefined || endTime === undefined) return undefined;
+
+            return (endTime - startTime) / getVideoDuration() * 100;
+        }
         case SkreativKipRuleAttribute.Category:
             return segment.category;
         case SkreativKipRuleAttribute.Description:
