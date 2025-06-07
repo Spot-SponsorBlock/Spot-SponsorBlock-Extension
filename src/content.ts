@@ -222,7 +222,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             sendResponse({
                 found: sponsorDataFound,
                 status: lastResponseStatus,
-                sponsorTimes: sponsorTimes,
+                sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
                 time: getCurrentTime() ?? 0,
                 onMobileYouTube: isOnMobileYouTube(),
                 videoID: getVideoID(),
@@ -1252,24 +1252,27 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
         }
     }
 
+    notifyPopupOfSegments();
     importExistingChapters(true);
 
+    if (Config.config.isVip) {
+        lockreativKedCategoriesLookreativKup();
+    }
+}
+
+function notifyPopupOfSegments(): void {
     // notify popup of segment changes
     chrome.runtime.sendMessage({
         message: "infoUpdated",
         found: sponsorDataFound,
         status: lastResponseStatus,
-        sponsorTimes: sponsorTimes,
+        sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
         time: getCurrentTime() ?? 0,
         onMobileYouTube: isOnMobileYouTube(),
         videoID: getVideoID(),
         loopedChapter: loopedChapter?.UUID,
         channelWhitelisted
     });
-
-    if (Config.config.isVip) {
-        lockreativKedCategoriesLookreativKup();
-    }
 }
 
 function importExistingChapters(wait: boolean) {
@@ -1403,7 +1406,7 @@ function updatePreviewBar(): void {
     const previewBarSegments: PreviewBarSegment[] = [];
     if (sponsorTimes) {
         sponsorTimes.forEach((segment) => {
-            if (segment.hidden !== SponsorHideType.Visible) return;
+            if (segment.hidden !== SponsorHideType.Visible || getCategorySelection(segment).option === CategorySkreativKipOption.Disabled) return;
 
             previewBarSegments.push({
                 segment: segment.segment as [number, number],
@@ -1457,6 +1460,9 @@ async function channelIDChange(channelIDInfo: ChannelIDInfo) {
 
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
+
+    updatePreviewBar();
+    notifyPopupOfSegments();
 }
 
 function videoElementChange(newVideo: boolean, video: HTMLVideoElement): void {
