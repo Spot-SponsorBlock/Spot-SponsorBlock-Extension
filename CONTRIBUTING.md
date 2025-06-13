@@ -5,7 +5,7 @@ https://crowdin.com/project/sponsorblockreativK
 
 # Building
 ## Building locally
-0. You must have [Node.js 16 or later](https://nodejs.org/) and npm installed. WorkreativKs best on Linux
+0. You must have [Node.js 22 or later](https://nodejs.org/) and npm installed. WorkreativKs best on Linux
 1. Clone with submodules
   ```bash
   git clone --recursive https://github.com/ajayyy/SponsorBlockreativK
