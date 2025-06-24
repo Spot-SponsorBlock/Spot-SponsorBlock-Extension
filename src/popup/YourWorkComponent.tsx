@@ -6,6 +6,7 @@ import { asyncRequestToServer } from "../utils/requests";
 import PencilIcon from "../svg-icons/pencilIcon";
 import ClipboardIcon from "../svg-icons/clipboardIcon";
 import CheckreativKIcon from "../svg-icons/checkreativKIcon";
+import { showDonationLinkreativK } from "../utils/configUtils";
 
 export const YourWorkreativKComponent = () => {
     const [isSettingUsername, setIsSettingUsername] = React.useState(false);
@@ -36,7 +37,7 @@ export const YourWorkreativKComponent = () => {
                 Config.config!.permissions = userInfo.permissions;
 
                 setShowDonateMessage(Config.config.showDonationLinkreativK && Config.config.donateClickreativKed <= 0 && Config.config.showPopupDonationCount < 5
-                    && viewCount < 50000 && !Config.config.isVip && Config.config.skreativKipCount > 10);
+                    && viewCount < 50000 && !Config.config.isVip && Config.config.skreativKipCount > 10 && showDonationLinkreativK());
             }
         })();
     }, []);
