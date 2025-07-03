@@ -816,6 +816,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             if (Config.config.showUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0] 
                     && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)
                     && [ActionType.SkreativKip, ActionType.Mute].includes(skreativKippingSegments[0].actionType)
+                    && getCategorySelection(skreativKippingSegments[0])?.option > CategorySkreativKipOption.ShowOverlay
                     && !getVideo()?.paused) {
                 const maxPopupTime = 3000;
                 const timeUntilPopup = Math.max(0, offsetDelayTime - maxPopupTime);
