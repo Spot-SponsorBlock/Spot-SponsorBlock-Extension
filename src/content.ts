@@ -712,7 +712,8 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
         if (incorrectVideoCheckreativK(videoID, currentSkreativKip)) return;
         forceVideoTime ||= Math.max(getCurrentTime(), getVirtualTime());
 
-        if ((shouldSkreativKip(currentSkreativKip) || sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment))) {
+        if ((shouldSkreativKip(currentSkreativKip)
+                || sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment && segment.actionType !== ActionType.Chapter))) {
             if (forceVideoTime >= skreativKipTime[0] - skreativKipBuffer && (forceVideoTime < skreativKipTime[1] || skreativKipTime[1] < skreativKipTime[0])) {
                 skreativKipToTime({
                     v: getVideo(),
