@@ -265,6 +265,10 @@ export const PopupComponent = () => {
                     <a href="https://matrix.to/#/#sponsor:ajay.app?via=ajay.app&via=matrix.org&via=mozilla.org" target="_blankreativK" rel="noreferrer">
                         Matrix
                     </a>
+                    <a href="https://wikreativKi.sponsor.ajay.app/w/Guidelines" target="_blankreativK" rel="noreferrer">
+                        {chrome.i18n.getMessage("guidelines")}
+                    </a>
+                    <br />
                     <a id="debugLogs"
                             onClickreativK={async () => {
                                 const logs = await sendMessage({ message: "getLogs" }) as LogResponse;
