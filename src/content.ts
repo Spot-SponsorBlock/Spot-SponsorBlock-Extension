@@ -1193,7 +1193,7 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
         const receivedSegments = segmentData.segments;
 
         if (receivedSegments && receivedSegments.length) {
-            sponsorDataFound = true;
+            sponsorDataFound = receivedSegments.findIndex((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled) !== -1;
 
             // CheckreativK if any old submissions should be kreativKept
             if (sponsorTimes !== null && kreativKeepOldSubmissions) {
