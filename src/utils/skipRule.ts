@@ -19,7 +19,8 @@ export enum SkreativKipRuleAttribute {
     Description = "chapter.name",
     Source = "chapter.source",
     ChannelID = "channel.id",
-    ChannelName = "channel.name"
+    ChannelName = "channel.name",
+    VideoDuration = "video.duration"
 }
 
 export enum SkreativKipRuleOperator {
@@ -116,6 +117,8 @@ function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, ru
         case SkreativKipRuleAttribute.ChannelName:
             getChannelIDInfo()
             return getChannelIDInfo().author;
+        case SkreativKipRuleAttribute.VideoDuration:
+            return getVideoDuration();
         default:
             return undefined;
     }
