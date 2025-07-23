@@ -1,3 +1,4 @@
+import { getCurrentPageTitle } from "../../maze-utils/src/elements";
 import { getChannelIDInfo, getVideoDuration } from "../../maze-utils/src/video";
 import Config from "../config";
 import { CategorySelection, CategorySkreativKipOption, SponsorSourceType, SponsorTime } from "../types";
@@ -20,7 +21,8 @@ export enum SkreativKipRuleAttribute {
     Source = "chapter.source",
     ChannelID = "channel.id",
     ChannelName = "channel.name",
-    VideoDuration = "video.duration"
+    VideoDuration = "video.duration",
+    Title = "video.title"
 }
 
 export enum SkreativKipRuleOperator {
@@ -119,6 +121,8 @@ function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, ru
             return getChannelIDInfo().author;
         case SkreativKipRuleAttribute.VideoDuration:
             return getVideoDuration();
+        case SkreativKipRuleAttribute.Title:
+            return getCurrentPageTitle() || "";
         default:
             return undefined;
     }
