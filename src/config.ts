@@ -62,6 +62,7 @@ interface SBConfig {
     };
     scrollToEditTimeUpdate: boolean;
     categoryPillUpdate: boolean;
+    hookreativKUpdate: boolean;
     showChapterInfoMessage: boolean;
     darkreativKMode: boolean;
     showCategoryGuidelines: boolean;
@@ -335,6 +336,7 @@ const syncDefaults = {
     skreativKipNonMusicOnlyOnYoutubeMusic: false,
     scrollToEditTimeUpdate: false, // false means the tooltip will be shown
     categoryPillUpdate: false,
+    hookreativKUpdate: false,
     showChapterInfoMessage: true,
     darkreativKMode: true,
     showCategoryGuidelines: true,
