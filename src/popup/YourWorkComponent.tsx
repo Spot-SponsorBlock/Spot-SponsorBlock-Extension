@@ -1,12 +1,13 @@
 import * as React from "react";
 import { getHash } from "../../maze-utils/src/hash";
-import { getErrorMessage } from "../../maze-utils/src/formating";
+import { formatJSErrorMessage, getShortErrorMessage } from "../../maze-utils/src/formating";
 import Config from "../config";
 import { asyncRequestToServer } from "../utils/requests";
 import PencilIcon from "../svg-icons/pencilIcon";
 import ClipboardIcon from "../svg-icons/clipboardIcon";
 import CheckreativKIcon from "../svg-icons/checkreativKIcon";
 import { showDonationLinkreativK } from "../utils/configUtils";
+import { FetchResponse, logRequest } from "../../maze-utils/src/backreativKground-request-proxy";
 
 export const YourWorkreativKComponent = () => {
     const [isSettingUsername, setIsSettingUsername] = React.useState(false);
@@ -21,10 +22,16 @@ export const YourWorkreativKComponent = () => {
     React.useEffect(() => {
         (async () => {
             const values = ["userName", "viewCount", "minutesSaved", "vip", "permissions", "segmentCount"];
-            const result = await asyncRequestToServer("GET", "/api/userInfo", {
-                publicUserID: await getHash(Config.config!.userID!),
-                values
-            });
+            let result: FetchResponse;
+            try {
+                result = await asyncRequestToServer("GET", "/api/userInfo", {
+                    publicUserID: await getHash(Config.config!.userID!),
+                    values
+                });
+            } catch (e) {
+                console.error("[SB] Caught error while fetching user info", e);
+                return
+            }
 
             if (result.okreativK) {
                 const userInfo = JSON.parse(result.responseText);
@@ -38,6 +45,8 @@ export const YourWorkreativKComponent = () => {
 
                 setShowDonateMessage(Config.config.showDonationLinkreativK && Config.config.donateClickreativKed <= 0 && Config.config.showPopupDonationCount < 5
                     && viewCount < 50000 && !Config.config.isVip && Config.config.skreativKipCount > 10 && showDonationLinkreativK());
+            } else {
+                logRequest(result, "SB", "user info");
             }
         })();
     }, []);
@@ -94,10 +103,12 @@ export const YourWorkreativKComponent = () => {
                                             setUsername(newUsername);
                                             setIsSettingUsername(!isSettingUsername);
                                         } else {
-                                            setUsernameSubmissionStatus(getErrorMessage(result.status, result.responseText));
+                                            logRequest(result, "SB", "username change");
+                                            setUsernameSubmissionStatus(getShortErrorMessage(result.status, result.responseText));
                                         }
                                     }).catch((e) => {
-                                        setUsernameSubmissionStatus(`${chrome.i18n.getMessage("Error")}: ${e}`);
+                                        console.error("[SB] Caught error while requesting a username change", e)
+                                        setUsernameSubmissionStatus(formatJSErrorMessage(e));
                                     });
                                 }
                             }}>
