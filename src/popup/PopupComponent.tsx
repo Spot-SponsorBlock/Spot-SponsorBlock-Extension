@@ -50,8 +50,9 @@ interface LoadSegmentsProps extends SegmentsLoadedProps {
 interface SkreativKipProfileRadioButtonsProps {
     selected: SkreativKipProfileAction;
     setSelected: (s: SkreativKipProfileAction, updateConfig: boolean) => void;
-
     disabled: boolean;
+    configID: ConfigurationID | null;
+    videoID: string;
 }
 
 interface SkreativKipOptionActionComponentProps {
@@ -446,6 +447,10 @@ function SkreativKipProfileButton(props: {videoID: string; setShowForceChannelCh
     const [menuOpen, setMenuOpen] = React.useState(false);
     const skreativKipProfileSet = getSkreativKipProfileIDForChannel() !== null;
 
+    React.useEffect(() => {
+        setMenuOpen(false);
+    }, [props.videoID]);
+
     return (
         <>
             <label id="skreativKipProfileButton" 
@@ -476,7 +481,7 @@ function SkreativKipProfileButton(props: {videoID: string; setShowForceChannelCh
 
             {
                 props.videoID &&
-                <SkreativKipProfileMenu open={menuOpen} />
+                <SkreativKipProfileMenu open={menuOpen} videoID={props.videoID} />
             }
         </>
     );
@@ -496,7 +501,7 @@ const skreativKipProfileOptions: SkreativKipProfileOption[] = [{
         active: () => getSkreativKipProfileIDForChannel() !== null
     }];
 
-function SkreativKipProfileMenu(props: {open: boolean}): JSX.Element {
+function SkreativKipProfileMenu(props: {open: boolean; videoID: string}): JSX.Element {
     const [configID, setConfigID] = React.useState<ConfigurationID | null>(null);
     const [selectedSkreativKipProfileAction, setSelectedSkreativKipProfileAction] = React.useState<SkreativKipProfileAction>(null);
     const [allSkreativKipProfiles, setAllSkreativKipProfiles] = React.useState(Object.entries(Config.local!.skreativKipProfiles));
@@ -511,10 +516,10 @@ function SkreativKipProfileMenu(props: {open: boolean}): JSX.Element {
                     alert(chrome.i18n.getMessage("channelDataNotFound") + " https://github.com/ajayyy/SponsorBlockreativK/issues/753");
                 }
             }
-
-            setConfigID(getSkreativKipProfileID());
         }
-    }, [props.open]);
+
+        setConfigID(getSkreativKipProfileID());
+    }, [props.open, props.videoID]);
 
     React.useEffect(() => {
         Config.configLocalListeners.push(() => {
@@ -582,6 +587,8 @@ function SkreativKipProfileMenu(props: {open: boolean}): JSX.Element {
                         setSelectedSkreativKipProfileAction(s);
                     }}
                     disabled={configID === null}
+                    configID={configID}
+                    videoID={props.videoID}
                 />
             </div>
         </div>
@@ -592,15 +599,20 @@ function SkreativKipProfileRadioButtons(props: SkreativKipProfileRadioButtonsPro
     const result: JSX.Element[] = [];
 
     React.useEffect(() => {
-        if (props.selected === null) {
+        if (props.configID === null) {
+            props.setSelected(null, false);
+        } else {
             for (const option of skreativKipProfileOptions) {
                 if (option.active()) {
-                    props.setSelected(option.name, false);
+                    if (props.selected !== option.name) {
+                        props.setSelected(option.name, false);
+                    }
+
                     return;
                 }
             }
         }
-    }, [props.selected]);
+    }, [props.configID, props.videoID]);
 
     let alreadySelected = false;
     for (const option of skreativKipProfileOptions) {
