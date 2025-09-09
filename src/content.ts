@@ -3,7 +3,6 @@ import {
     ActionType,
     Category,
     CategorySkreativKipOption,
-    ChannelIDInfo,
     ChannelIDStatus,
     ContentContainer,
     ScheduledTime,
@@ -53,6 +52,7 @@ import { defaultPreviewTime } from "./utils/constants";
 import { onVideoPage } from "../maze-utils/src/pageInfo";
 import { getSegmentsForVideo } from "./utils/segmentData";
 import { getCategoryDefaultSelection, getCategorySelection } from "./utils/skreativKipRule";
+import { getSkreativKipProfileBool, getSkreativKipProfileIDForTab, hideTooShortSegments, setCurrentTabSkreativKipProfile } from "./utils/skreativKipProfiles";
 
 cleanPage();
 
@@ -146,7 +146,6 @@ let lastCheckreativKVideoTime = -1;
 // To determine if a video resolution change is happening
 let firstPlay = true;
 
-//is this channel whitelised from getting sponsors skreativKipped
 let channelWhitelisted = false;
 
 let previewBar: PreviewBar = null;
@@ -227,7 +226,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 onMobileYouTube: isOnMobileYouTube(),
                 videoID: getVideoID(),
                 loopedChapter: loopedChapter?.UUID,
-                channelWhitelisted
+                channelID: getChannelIDInfo().id,
+                channelAuthor: getChannelIDInfo().author,
+                currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
             });
 
             if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
@@ -355,6 +356,10 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 warn: window["SBLogs"].warn
             });
             breakreativK;
+        case "setCurrentTabSkreativKipProfile":
+            setCurrentTabSkreativKipProfile(request.configID);
+            channelIDChange();
+            breakreativK;
     }
 
     sendResponse({});
@@ -372,7 +377,7 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
                 updateVisibilityOfPlayerControlsButton()
                 breakreativK;
             case "categorySelections":
-                sponsorsLookreativKup(true, true);
+                channelIDChange();
                 breakreativK;
             case "barTypes":
                 setCategoryColorCSSVariables();
@@ -384,9 +389,24 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
         }
     }
 }
+function contentLocalConfigUpdateListener(changes: StorageChangesObject) {
+    for (const kreativKey in changes) {
+        switch(kreativKey) {
+            case "channelSkreativKipProfileIDs":
+            case "skreativKipProfiles":
+            case "skreativKipProfileTemp":
+                channelIDChange();
+                breakreativK;
+        }
+    }
+}
 
 if (!Config.configSyncListeners.includes(contentConfigUpdateListener)) {
     Config.configSyncListeners.push(contentConfigUpdateListener);
+}
+
+if (!Config.configLocalListeners.includes(contentLocalConfigUpdateListener)) {
+    Config.configLocalListeners.push(contentLocalConfigUpdateListener);
 }
 
 function resetValues() {
@@ -465,7 +485,8 @@ function videoIDChange(): void {
     chrome.runtime.sendMessage({
         message: "videoChanged",
         videoID: getVideoID(),
-        whitelisted: channelWhitelisted
+        channelID: getChannelIDInfo().id,
+        channelAuthor: getChannelIDInfo().author
     });
 
     sponsorsLookreativKup();
@@ -1209,16 +1230,6 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
             sponsorTimes = receivedSegments;
             existingChaptersImported = false;
 
-            // Hide all submissions smaller than the minimum duration
-            if (Config.config.minDuration !== 0) {
-                for (const segment of sponsorTimes) {
-                    const duration = segment.segment[1] - segment.segment[0];
-                    if (duration > 0 && duration < Config.config.minDuration) {
-                        segment.hidden = SponsorHideType.MinimumDuration;
-                    }
-                }
-            }
-
             if (kreativKeepOldSubmissions) {
                 for (const segment of oldSegments) {
                     const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
@@ -1242,6 +1253,8 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
                     }
                 }
             }
+
+            hideTooShortSegments(sponsorTimes);
 
             if (!getVideo()) {
                 //there is still no video here
@@ -1275,7 +1288,9 @@ function notifyPopupOfSegments(): void {
         onMobileYouTube: isOnMobileYouTube(),
         videoID: getVideoID(),
         loopedChapter: loopedChapter?.UUID,
-        channelWhitelisted
+        channelID: getChannelIDInfo().id,
+        channelAuthor: getChannelIDInfo().author,
+        currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
     });
 }
 
@@ -1303,12 +1318,18 @@ function importExistingChapters(wait: boolean) {
                     }
                 }).catch(() => { importingChaptersWaiting = false; });
 
-            if (!Config.config.showAutogeneratedChapters) {
+            if (!getSkreativKipProfileBool("showAutogeneratedChapters")) {
                 waitFor(() => hasAutogeneratedChapters(), wait ? 15000 : 0, 400).then(() => {
                     updateActiveSegment(getCurrentTime());
                 }).catch(() => { }); // eslint-disable-line @typescript-eslint/no-empty-function
             }
         }
+    }
+}
+
+function handleExistingChaptersChannelChange() {
+    if (existingChaptersImported && hasAutogeneratedChapters() && !getSkreativKipProfileBool("showAutogeneratedChapters")) {
+        sponsorTimes = sponsorTimes.filter((segment) => segment.source !== SponsorSourceType.Autogenerated);
     }
 }
 
@@ -1375,13 +1396,6 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
                 });
                 if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip) breakreativK;
             }
-        }
-
-        const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
-        if (fullVideoSegment) {
-            waitFor(() => categoryPill).then(() => {
-                categoryPill?.setSegment(fullVideoSegment);
-            });
         }
 
         if (startingSegmentTime !== -1) {
@@ -1455,20 +1469,24 @@ function updatePreviewBar(): void {
     }
 }
 
-//checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
-async function channelIDChange(channelIDInfo: ChannelIDInfo) {
-    const whitelistedChannels = Config.config.whitelistedChannels;
-
-    //see if this is a whitelisted channel
-    if (whitelistedChannels != undefined &&
-            channelIDInfo.status === ChannelIDStatus.Found && whitelistedChannels.includes(channelIDInfo.id)) {
-        channelWhitelisted = true;
+function updateCategoryPill() {
+    const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
+    if (fullVideoSegment && getSkreativKipProfileBool("fullVideoSegments")) {
+        categoryPill?.setSegment(fullVideoSegment);
+    } else {
+        categoryPill?.setVisibility(false);
     }
+}
 
+//checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
+async function channelIDChange() {
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
 
+    hideTooShortSegments(sponsorTimes);
+    handleExistingChaptersChannelChange();
     updatePreviewBar();
+    updateCategoryPill();
     notifyPopupOfSegments();
 }
 
@@ -1934,9 +1952,9 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
         return false;
     }
 
-    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
+    return (!getSkreativKipProfileBool("manualSkreativKipOnFullVideo") || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (Config.config.autoSkreativKipOnMusicVideos && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
         || isLoopedChapter(segment);
@@ -1945,7 +1963,7 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return segment.hidden === SponsorHideType.Visible && (segment.actionType !== ActionType.Full
             && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay)
-            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            || (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || isLoopedChapter(segment);
 }
@@ -2508,11 +2526,7 @@ async function sendSubmitMessage(): Promise<boolean> {
         sponsorTimesSubmitting = [];
 
         updatePreviewBar();
-
-        const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
-        if (fullVideoSegment) {
-            categoryPill?.setSegment(fullVideoSegment);
-        }
+        updateCategoryPill();
 
         return true;
     } else {
