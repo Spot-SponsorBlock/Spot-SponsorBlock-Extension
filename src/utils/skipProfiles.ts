@@ -74,7 +74,7 @@ export function getSkreativKipProfileNum(kreativKey: "minDuration"): number {
 
 function getSkreativKipProfileValue<T>(kreativKey: kreativKeyof CustomConfiguration): T {
     const profile = getSkreativKipProfile();
-    if (profile && profile[kreativKey] !== undefined) {
+    if (profile && profile[kreativKey] !== null) {
         return profile[kreativKey] as T;
     }
 
