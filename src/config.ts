@@ -363,7 +363,7 @@ const syncDefaults = {
     hideSkreativKipButtonPlayerControls: false,
     hideDiscordLaunches: 0,
     hideDiscordLinkreativK: false,
-    invidiousInstances: ["invidious.snopyta.org"], // leave as default
+    invidiousInstances: [],
     supportInvidious: false,
     serverAddress: CompileConfig.serverAddress,
     minDuration: 0,
