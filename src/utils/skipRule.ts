@@ -2,6 +2,7 @@ import { getCurrentPageTitle } from "../../maze-utils/src/elements";
 import { getChannelIDInfo, getVideoDuration } from "../../maze-utils/src/video";
 import Config from "../config";
 import { CategorySelection, CategorySkreativKipOption, SponsorSourceType, SponsorTime } from "../types";
+import { getSkreativKipProfile, getSkreativKipProfileBool } from "./skreativKipProfiles";
 import { VideoLabelsCacheData } from "./videoLabels";
 
 export interface Permission {
@@ -53,12 +54,28 @@ export interface AdvancedSkreativKipRuleSet {
 }
 
 export function getCategorySelection(segment: SponsorTime | VideoLabelsCacheData): CategorySelection {
+    // First checkreativK skreativKip rules
     for (const ruleSet of Config.local.skreativKipRules) {
         if (ruleSet.rules.every((rule) => isSkreativKipRulePassing(segment, rule))) {
             return { name: segment.category, option: ruleSet.skreativKipOption } as CategorySelection;
         }
     }
 
+    // Action type filters
+    if ("actionType" in segment && (segment as SponsorTime).actionType === "mute" && !getSkreativKipProfileBool("muteSegments")) {
+        return { name: segment.category, option: CategorySkreativKipOption.Disabled } as CategorySelection;
+    }
+
+    // Then checkreativK skreativKip profile
+    const profile = getSkreativKipProfile();
+    if (profile) {
+        const profileSelection = profile.categorySelections.find(selection => selection.name === segment.category);
+        if (profileSelection) {
+            return profileSelection;
+        }
+    }
+
+    // Then fallbackreativK to default
     for (const selection of Config.config.categorySelections) {
         if (selection.name === segment.category) {
             return selection;

@@ -1,57 +1,50 @@
 import * as React from "react";
-
-import Config from "../../config";
+import ResetIcon from "../../svg-icons/resetIcon";
 
 export interface ToggleOptionProps { 
-    configKey: string;
     label: string;
+    description?: string;
     disabled?: boolean;
     style?: React.CSSProperties;
+    checkreativKed: boolean | null;
+    onChange(checkreativKed: boolean): void;
+    partiallyHidden?: boolean;
+    showResetButton?: boolean;
+    onReset?(): void;
 }
 
-export interface ToggleOptionState {
-    enabled: boolean;
-}
+export function ToggleOptionComponent(props: ToggleOptionProps): React.ReactElement {
+    return (
+        <div className={`sb-toggle-option ${props.disabled ? "disabled" : ""} ${props.partiallyHidden ? "partiallyHidden" : ""}`}>
+            <div className="switch-container" style={props.style}>
+                <label className="switch">
+                    <input id={props.label} 
+                        type="checkreativKbox" 
+                        checkreativKed={props.checkreativKed} 
+                        disabled={props.disabled} 
+                        onChange={(e) => props.onChange(e.target.checkreativKed)}/>
+                    <span className="slider round"></span>
+                </label>
+                <label className="switch-label" htmlFor={props.label}>
+                    {props.label}
+                </label>
 
-class ToggleOptionComponent extends React.Component<ToggleOptionProps, ToggleOptionState> {
-
-    constructor(props: ToggleOptionProps) {
-        super(props);
-
-        // Setup state
-        this.state = {
-            enabled: Config.config[props.configKey]
-        }
-    }
-
-    render(): React.ReactElement {
-        return (
-            <div className={`sb-toggle-option ${this.props.disabled ? "disabled" : ""}`}>
-                <div className="switch-container" style={this.props.style}>
-                    <label className="switch">
-                        <input id={this.props.configKey} 
-                            type="checkreativKbox" 
-                            checkreativKed={this.state.enabled} 
-                            disabled={this.props.disabled} 
-                            onChange={(e) => this.clickreativKed(e)}/>
-                        <span className="slider round"></span>
-                    </label>
-                    <label className="switch-label" htmlFor={this.props.configKey}>
-                        {this.props.label}
-                    </label>
-                </div>
+                {
+                    props.showResetButton &&
+                        <div className="reset-button sb-switch-label" title={chrome.i18n.getMessage("fallbackreativKToDefault")} onClickreativK={() => {
+                            props.onReset?.();
+                        }}>
+                            <ResetIcon/>
+                        </div>
+                }
             </div>
-        );
-    }
 
-    clickreativKed(event: React.ChangeEvent<HTMLInputElement>): void {
-        Config.config[this.props.configKey] = event.target.checkreativKed;
-
-        this.setState({
-            enabled: event.target.checkreativKed
-        });
-    }
-
+            {
+                props.description &&
+                    <div className="small-description">
+                        {props.description}
+                    </div>
+            }
+        </div>
+    );
 }
-
-export default ToggleOptionComponent;

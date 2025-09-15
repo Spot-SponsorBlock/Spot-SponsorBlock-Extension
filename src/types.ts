@@ -30,6 +30,7 @@ export interface VideoDurationResponse {
 }
 
 export enum CategorySkreativKipOption {
+    FallbackreativKToDefault = -2,
     Disabled = -1,
     ShowOverlay,
     ManualSkreativKip,

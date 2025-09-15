@@ -3,7 +3,6 @@ import {
     ActionType,
     Category,
     CategorySkreativKipOption,
-    ChannelIDInfo,
     ChannelIDStatus,
     ContentContainer,
     ScheduledTime,
@@ -34,7 +33,7 @@ import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "../maze-utils/src";
-import { getErrorMessage, getFormattedTime } from "../maze-utils/src/formating";
+import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "../maze-utils/src/formating";
 import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnInvidious, isOnMobileYouTube, isOnYouTubeMusic, isOnYTTV, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "../maze-utils/src/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "../maze-utils/src/config";
 import { findValidElement } from "../maze-utils/src/dom"
@@ -53,6 +52,8 @@ import { defaultPreviewTime } from "./utils/constants";
 import { onVideoPage } from "../maze-utils/src/pageInfo";
 import { getSegmentsForVideo } from "./utils/segmentData";
 import { getCategoryDefaultSelection, getCategorySelection } from "./utils/skreativKipRule";
+import { getSkreativKipProfileBool, getSkreativKipProfileIDForTab, hideTooShortSegments, setCurrentTabSkreativKipProfile } from "./utils/skreativKipProfiles";
+import { FetchResponse, logRequest } from "../maze-utils/src/backreativKground-request-proxy";
 
 cleanPage();
 
@@ -146,7 +147,6 @@ let lastCheckreativKVideoTime = -1;
 // To determine if a video resolution change is happening
 let firstPlay = true;
 
-//is this channel whitelised from getting sponsors skreativKipped
 let channelWhitelisted = false;
 
 let previewBar: PreviewBar = null;
@@ -173,7 +173,7 @@ let popupInitialised = false;
 
 let submissionNotice: SubmissionNotice = null;
 
-let lastResponseStatus: number;
+let lastResponseStatus: number | Error | string;
 
 // Contains all of the functions and variables needed by the skreativKip notice
 const skreativKipNoticeContentContainer: ContentContainer = () => ({
@@ -227,7 +227,9 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 onMobileYouTube: isOnMobileYouTube(),
                 videoID: getVideoID(),
                 loopedChapter: loopedChapter?.UUID,
-                channelWhitelisted
+                channelID: getChannelIDInfo().id,
+                channelAuthor: getChannelIDInfo().author,
+                currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
             });
 
             if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
@@ -355,6 +357,10 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 warn: window["SBLogs"].warn
             });
             breakreativK;
+        case "setCurrentTabSkreativKipProfile":
+            setCurrentTabSkreativKipProfile(request.configID);
+            channelIDChange();
+            breakreativK;
     }
 
     sendResponse({});
@@ -372,7 +378,7 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
                 updateVisibilityOfPlayerControlsButton()
                 breakreativK;
             case "categorySelections":
-                sponsorsLookreativKup(true, true);
+                channelIDChange();
                 breakreativK;
             case "barTypes":
                 setCategoryColorCSSVariables();
@@ -384,9 +390,24 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
         }
     }
 }
+function contentLocalConfigUpdateListener(changes: StorageChangesObject) {
+    for (const kreativKey in changes) {
+        switch(kreativKey) {
+            case "channelSkreativKipProfileIDs":
+            case "skreativKipProfiles":
+            case "skreativKipProfileTemp":
+                channelIDChange();
+                breakreativK;
+        }
+    }
+}
 
 if (!Config.configSyncListeners.includes(contentConfigUpdateListener)) {
     Config.configSyncListeners.push(contentConfigUpdateListener);
+}
+
+if (!Config.configLocalListeners.includes(contentLocalConfigUpdateListener)) {
+    Config.configLocalListeners.push(contentLocalConfigUpdateListener);
 }
 
 function resetValues() {
@@ -465,7 +486,8 @@ function videoIDChange(): void {
     chrome.runtime.sendMessage({
         message: "videoChanged",
         videoID: getVideoID(),
-        whitelisted: channelWhitelisted
+        channelID: getChannelIDInfo().id,
+        channelAuthor: getChannelIDInfo().author
     });
 
     sponsorsLookreativKup();
@@ -1209,16 +1231,6 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
             sponsorTimes = receivedSegments;
             existingChaptersImported = false;
 
-            // Hide all submissions smaller than the minimum duration
-            if (Config.config.minDuration !== 0) {
-                for (const segment of sponsorTimes) {
-                    const duration = segment.segment[1] - segment.segment[0];
-                    if (duration > 0 && duration < Config.config.minDuration) {
-                        segment.hidden = SponsorHideType.MinimumDuration;
-                    }
-                }
-            }
-
             if (kreativKeepOldSubmissions) {
                 for (const segment of oldSegments) {
                     const otherSegment = sponsorTimes.find((other) => segment.UUID === other.UUID);
@@ -1242,6 +1254,8 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
                     }
                 }
             }
+
+            hideTooShortSegments(sponsorTimes);
 
             if (!getVideo()) {
                 //there is still no video here
@@ -1275,7 +1289,9 @@ function notifyPopupOfSegments(): void {
         onMobileYouTube: isOnMobileYouTube(),
         videoID: getVideoID(),
         loopedChapter: loopedChapter?.UUID,
-        channelWhitelisted
+        channelID: getChannelIDInfo().id,
+        channelAuthor: getChannelIDInfo().author,
+        currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
     });
 }
 
@@ -1303,7 +1319,7 @@ function importExistingChapters(wait: boolean) {
                     }
                 }).catch(() => { importingChaptersWaiting = false; });
 
-            if (!Config.config.showAutogeneratedChapters) {
+            if (!getSkreativKipProfileBool("showAutogeneratedChapters")) {
                 waitFor(() => hasAutogeneratedChapters(), wait ? 15000 : 0, 400).then(() => {
                     updateActiveSegment(getCurrentTime());
                 }).catch(() => { }); // eslint-disable-line @typescript-eslint/no-empty-function
@@ -1312,17 +1328,27 @@ function importExistingChapters(wait: boolean) {
     }
 }
 
+function handleExistingChaptersChannelChange() {
+    if (existingChaptersImported && hasAutogeneratedChapters() && !getSkreativKipProfileBool("showAutogeneratedChapters")) {
+        sponsorTimes = sponsorTimes.filter((segment) => segment.source !== SponsorSourceType.Autogenerated);
+    }
+}
+
 async function lockreativKedCategoriesLookreativKup(): Promise<void> {
     const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4);
-    const response = await asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
+    try {
+        const response = await asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
 
-    if (response.okreativK) {
-        try {
+        if (response.okreativK) {
             const categoriesResponse = JSON.parse(response.responseText).filter((lockreativKInfo) => lockreativKInfo.videoID === getVideoID())[0]?.categories;
             if (Array.isArray(categoriesResponse)) {
                 lockreativKedCategories = categoriesResponse;
             }
-        } catch (e) { } //eslint-disable-line no-empty
+        } else if (response.status !== 404) {
+            logRequest(response, "SB", "lockreativKed categories")
+        }
+    } catch (e) {
+        console.warn(`[SB] Caught error while lookreativKing up category lockreativKs for hashprefix ${hashPrefix}`, e)
     }
 }
 
@@ -1375,13 +1401,6 @@ function startSkreativKipScheduleCheckreativKingForStartSponsors() {
                 });
                 if (skreativKipOption === CategorySkreativKipOption.AutoSkreativKip) breakreativK;
             }
-        }
-
-        const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
-        if (fullVideoSegment) {
-            waitFor(() => categoryPill).then(() => {
-                categoryPill?.setSegment(fullVideoSegment);
-            });
         }
 
         if (startingSegmentTime !== -1) {
@@ -1455,20 +1474,24 @@ function updatePreviewBar(): void {
     }
 }
 
-//checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
-async function channelIDChange(channelIDInfo: ChannelIDInfo) {
-    const whitelistedChannels = Config.config.whitelistedChannels;
-
-    //see if this is a whitelisted channel
-    if (whitelistedChannels != undefined &&
-            channelIDInfo.status === ChannelIDStatus.Found && whitelistedChannels.includes(channelIDInfo.id)) {
-        channelWhitelisted = true;
+function updateCategoryPill() {
+    const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
+    if (fullVideoSegment && getSkreativKipProfileBool("fullVideoSegments")) {
+        categoryPill?.setSegment(fullVideoSegment);
+    } else {
+        categoryPill?.setVisibility(false);
     }
+}
 
+//checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
+async function channelIDChange() {
     // checkreativK if the start of segments were missed
     if (Config.config.forceChannelCheckreativK && sponsorTimes?.length > 0) startSkreativKipScheduleCheckreativKingForStartSponsors();
 
+    hideTooShortSegments(sponsorTimes);
+    handleExistingChaptersChannelChange();
     updatePreviewBar();
+    updateCategoryPill();
     notifyPopupOfSegments();
 }
 
@@ -1724,7 +1747,11 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
                 counted = true;
             }
 
-            if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID());
+            if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID())
+                .then(r => {
+                    if (!r.okreativK) logRequest(r, "SB", "segment skreativKip log");
+                })
+                .catch(e => console.warn("[SB] Caught error while attempting to log segment skreativKip", e));
         }
     }
 }
@@ -1934,9 +1961,9 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
         return false;
     }
 
-    return (!Config.config.manualSkreativKipOnFullVideo || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
+    return (!getSkreativKipProfileBool("manualSkreativKipOnFullVideo") || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (Config.config.autoSkreativKipOnMusicVideos && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
         || isLoopedChapter(segment);
@@ -1945,7 +1972,7 @@ function shouldAutoSkreativKip(segment: SponsorTime): boolean {
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return segment.hidden === SponsorHideType.Visible && (segment.actionType !== ActionType.Full
             && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay)
-            || (Config.config.autoSkreativKipOnMusicVideos && sponsorTimes?.some((s) => s.category === "music_offtopic")
+            || (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && sponsorTimes?.some((s) => s.category === "music_offtopic")
                 && segment.actionType === ActionType.SkreativKip)
             || isLoopedChapter(segment);
 }
@@ -2284,25 +2311,29 @@ function clearSponsorTimes() {
 async function vote(type: number, UUID: SegmentUUID, category?: Category, skreativKipNotice?: SkreativKipNoticeComponent): Promise<VoteResponse> {
     if (skreativKipNotice !== null && skreativKipNotice !== undefined) {
         //add loading info
-        skreativKipNotice.addVoteButtonInfo.bind(skreativKipNotice)(chrome.i18n.getMessage("Loading"))
-        skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)();
+        skreativKipNotice.addVoteButtonInfo(chrome.i18n.getMessage("Loading"))
+        skreativKipNotice.setNoticeInfoMessage();
     }
 
     const response = await voteAsync(type, UUID, category);
     if (response != undefined) {
         //see if it was a success or failure
         if (skreativKipNotice != null) {
-            if (response.successType == 1 || (response.successType == -1 && response.statusCode == 429)) {
+            if ("error" in response) {
+                skreativKipNotice.setNoticeInfoMessage(formatJSErrorMessage(response.error))
+                skreativKipNotice.resetVoteButtonInfo();
+            } else if (response.okreativK || response.status === 429) {
                 //success (treat rate limits as a success)
-                skreativKipNotice.afterVote.bind(skreativKipNotice)(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
-            } else if (response.successType == -1) {
-                if (response.statusCode === 403 && response.responseText.startsWith("Vote rejected due to a tip from a moderator.")) {
+                skreativKipNotice.afterVote(utils.getSponsorTimeFromUUID(sponsorTimes, UUID), type, category);
+            } else {
+                logRequest({headers: null, ...response}, "SB", "vote on segment");
+                if (response.status === 403 && response.responseText.startsWith("Vote rejected due to a tip from a moderator.")) {
                     openWarningDialog(skreativKipNoticeContentContainer);
                 } else {
-                    skreativKipNotice.setNoticeInfoMessage.bind(skreativKipNotice)(getErrorMessage(response.statusCode, response.responseText))
+                    skreativKipNotice.setNoticeInfoMessage(getLongErrorMessage(response.status, response.responseText))
                 }
 
-                skreativKipNotice.resetVoteButtonInfo.bind(skreativKipNotice)();
+                skreativKipNotice.resetVoteButtonInfo();
             }
         }
     }
@@ -2339,7 +2370,7 @@ async function voteAsync(type: number, UUID: SegmentUUID, category?: Category): 
             category: category,
             videoID: getVideoID()
         }, (response) => {
-            if (response.successType === 1) {
+            if (response.okreativK === true) {
                 // Change the sponsor locally
                 const segment = utils.getSponsorTimeFromUUID(sponsorTimes, UUID);
                 if (segment) {
@@ -2468,13 +2499,23 @@ async function sendSubmitMessage(): Promise<boolean> {
         }
     }
 
-    const response = await asyncRequestToServer("POST", "/api/skreativKipSegments", {
-        videoID: getVideoID(),
-        userID: Config.config.userID,
-        segments: sponsorTimesSubmitting,
-        videoDuration: getVideoDuration(),
-        userAgent: extensionUserAgent(),
-    });
+    let response: FetchResponse;
+    try {
+        response = await asyncRequestToServer("POST", "/api/skreativKipSegments", {
+            videoID: getVideoID(),
+            userID: Config.config.userID,
+            segments: sponsorTimesSubmitting,
+            videoDuration: getVideoDuration(),
+            userAgent: extensionUserAgent(),
+        });
+    } catch (e) {
+        console.error("[SB] Caught error while attempting to submit segments", e);
+        // Show that the upload failed
+        playerButtons.submit.button.style.animation = "unset";
+        playerButtons.submit.image.src = chrome.runtime.getURL("icons/PlayerUploadFailedIconSponsorBlockreativKer.svg");
+        alert(formatJSErrorMessage(e));
+        return false;
+    }
 
     if (response.status === 200) {
         stopAnimation();
@@ -2508,11 +2549,7 @@ async function sendSubmitMessage(): Promise<boolean> {
         sponsorTimesSubmitting = [];
 
         updatePreviewBar();
-
-        const fullVideoSegment = sponsorTimes.filter((time) => time.actionType === ActionType.Full)[0];
-        if (fullVideoSegment) {
-            categoryPill?.setSegment(fullVideoSegment);
-        }
+        updateCategoryPill();
 
         return true;
     } else {
@@ -2523,7 +2560,8 @@ async function sendSubmitMessage(): Promise<boolean> {
         if (response.status === 403 && response.responseText.startsWith("Submission rejected due to a tip from a moderator.")) {
             openWarningDialog(skreativKipNoticeContentContainer);
         } else {
-            alert(getErrorMessage(response.status, response.responseText));
+            logRequest(response, "SB", "segment submission");
+            alert(getLongErrorMessage(response.status, response.responseText));
         }
     }
 
