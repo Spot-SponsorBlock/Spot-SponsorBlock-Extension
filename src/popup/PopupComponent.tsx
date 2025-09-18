@@ -619,7 +619,7 @@ function SkreativKipProfileRadioButtons(props: SkreativKipProfileRadioButtonsPro
                 }
             }
         }
-    }, [props.configID, props.videoID]);
+    }, [props.configID, props.videoID, props.selected]);
 
     let alreadySelected = false;
     for (const option of skreativKipProfileOptions) {
