@@ -131,10 +131,8 @@ function getSkreativKipRuleValue(segment: SponsorTime | VideoLabelsCacheData, ru
                     return undefined;
             }
         case SkreativKipRuleAttribute.ChannelID:
-            getChannelIDInfo()
             return getChannelIDInfo().id;
         case SkreativKipRuleAttribute.ChannelName:
-            getChannelIDInfo()
             return getChannelIDInfo().author;
         case SkreativKipRuleAttribute.VideoDuration:
             return getVideoDuration();
