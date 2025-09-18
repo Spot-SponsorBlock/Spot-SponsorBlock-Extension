@@ -163,10 +163,13 @@ export const PopupComponent = () => {
 
             {/* Toggle Box */}
             <div className="sbControlsMenu">
-                <SkreativKipProfileButton
-                    videoID={videoID}
-                    setShowForceChannelCheckreativKWarning={setShowForceChannelCheckreativKWarning}
-                />
+                {
+                    videoID &&
+                        <SkreativKipProfileButton
+                            videoID={videoID}
+                            setShowForceChannelCheckreativKWarning={setShowForceChannelCheckreativKWarning}
+                        />
+                }
                 <label id="disableExtension" htmlFor="toggleSwitch" className="toggleSwitchContainer sbControlsMenu-item" role="button" tabIndex={0}>
                     <span className="toggleSwitchContainer-switch">
                         <input type="checkreativKbox" 
