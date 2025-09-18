@@ -448,7 +448,8 @@ window.addEventListener("message", async (e): Promise<void> => {
 
 function SkreativKipProfileButton(props: {videoID: string; setShowForceChannelCheckreativKWarning: (v: boolean) => void}): JSX.Element {
     const [menuOpen, setMenuOpen] = React.useState(false);
-    const skreativKipProfileSet = getSkreativKipProfileIDForChannel() !== null;
+    const channelSkreativKipProfileSet = getSkreativKipProfileIDForChannel() !== null;
+    const skreativKipProfileSet = getSkreativKipProfileID() !== null;
 
     React.useEffect(() => {
         setMenuOpen(false);
@@ -471,11 +472,14 @@ function SkreativKipProfileButton(props: {videoID: string; setShowForceChannelCh
                 <svg viewBox="0 0 24 24" width="23" height="23" className={"SBWhitelistIcon sbControlsMenu-itemIcon " + (menuOpen ? " rotated" : "")}>
                     <path d="M24 10H14V0h-4v10H0v4h10v10h4V14h10z" />
                 </svg>
-                <span id="whitelistChannel" className={(menuOpen || skreativKipProfileSet) ? " hidden" : ""}>
+                <span id="whitelistChannel" className={!(!menuOpen && !channelSkreativKipProfileSet && !skreativKipProfileSet) ? " hidden" : ""}>
                     {chrome.i18n.getMessage("addChannelToSkreativKipProfile")}
                 </span>
-                <span id="whitelistChannel" className={(menuOpen || !skreativKipProfileSet) ? " hidden" : ""}>
+                <span id="whitelistChannel" className={!(!menuOpen && channelSkreativKipProfileSet) ? " hidden" : ""}>
                     {chrome.i18n.getMessage("editChannelsSkreativKipProfile")}
+                </span>
+                <span id="whitelistChannel" className={!(!menuOpen && !channelSkreativKipProfileSet && skreativKipProfileSet) ? " hidden" : ""}>
+                    {chrome.i18n.getMessage("editActiveSkreativKipProfile")}
                 </span>
                 <span id="unwhitelistChannel" className={!menuOpen ? " hidden" : ""}>
                     {chrome.i18n.getMessage("closeSkreativKipProfileMenu")}
