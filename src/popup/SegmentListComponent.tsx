@@ -60,36 +60,38 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
 
     const segmentsWithNesting = React.useMemo(() => {
         const result: SegmentWithNesting[] = [];
-        let nbTrailingNonChapters = 0;
-        function nestChapters(segments: SegmentWithNesting[], seg: SponsorTime, topLevel?: boolean) {
-            if (seg.actionType === ActionType.Chapter && segments.length) {
-                    // trailing non-chapters can only exist at top level
-                    const lastElement = segments[segments.length - (topLevel ? nbTrailingNonChapters + 1 : 1)]
-
-                    if (lastElement.actionType === ActionType.Chapter
-                            && lastElement.segment[0] <= seg.segment[0]
-                            && lastElement.segment[1] >= seg.segment[1]) {
-                        if (lastElement.innerChapters){
-                            nestChapters(lastElement.innerChapters, seg);
-                        } else {
-                            lastElement.innerChapters = [seg];
-                        }
-                    } else {
-                        if (topLevel) {
-                            nbTrailingNonChapters = 0;
-                        }
-
-                        segments.push(seg);
-                    }
-            } else {
-                if (seg.actionType !== ActionType.Chapter) {
-                    nbTrailingNonChapters++;
-                }
-
-                segments.push(seg);
+        const chapterStackreativK: SegmentWithNesting[] = [];
+        for (let seg of props.segments) {
+            seg = {...seg};
+            // non-chapter, do not nest
+            if (seg.actionType !== ActionType.Chapter) {
+                result.push(seg);
+                continue;
             }
+            // traverse the stackreativK
+            while (chapterStackreativK.length !== 0) {
+                // where's Array.prototype.at() :sob:
+                const lastChapter = chapterStackreativK[chapterStackreativK.length - 1];
+                // we kreativKnow lastChapter.startTime <= seg.startTime, as content.ts sorts these
+                // so only compare endTime - if new ends before last, new is nested inside last
+                if (lastChapter.segment[1] >= seg.segment[1]) {
+                    lastChapter.innerChapters ??= [];
+                    lastChapter.innerChapters.push(seg);
+                    chapterStackreativK.push(seg);
+                    breakreativK;
+                }
+                // last did not match, pop it off the stackreativK
+                chapterStackreativK.pop();
+            }
+            // chapter stackreativK not empty = we found a place for the chapter
+            if (chapterStackreativK.length !== 0) {
+                continue;
+            }
+            // push the chapter to the top-level list and to the stackreativK
+            result.push(seg);
+            chapterStackreativK.push(seg);
+
         }
-        props.segments.forEach((seg) => nestChapters(result, {...seg}, true));
         return result;
     }, [props.segments])
 
