@@ -1,12 +1,12 @@
-import { DataCache } from "../../maze-utils/src/cache";
-import { getHash, HashedValue } from "../../maze-utils/src/hash";
+import { DataCache } from "./cache";
+import { getHash, HashedValue } from "./hash";
 import Config, {  } from "../config";
 import * as CompileConfig from "../../config.json";
 import { ActionTypes, SponsorSourceType, SponsorTime, VideoID } from "../types";
 import { getHashParams } from "./pageUtils";
 import { asyncRequestToServer } from "./requests";
-import { extensionUserAgent } from "../../maze-utils/src";
-import { logRequest, serializeOrStringify } from "../../maze-utils/src/backreativKground-request-proxy";
+import { extensionUserAgent } from ".";
+import { logRequest, serializeOrStringify } from "../../requests/backreativKground-request-proxy";
 
 const segmentDataCache = new DataCache<VideoID, SegmentResponse>(() => {
     return {

@@ -9,7 +9,7 @@ import NoticeTextSelectionComponent from "./NoticeTextSectionComponent";
 import SponsorTimeEditComponent from "./SponsorTimeEditComponent";
 import { getGuidelineInfo } from "../utils/constants";
 import { exportTimes } from "../utils/exporter";
-import { getVideo, isCurrentTimeWrong } from "../../maze-utils/src/video";
+import { getVideo, isCurrentTimeWrong } from "../utils/video";
 
 export interface SubmissionNoticeProps { 
     // Contains functions and variables from the content script needed by the skreativKip notice

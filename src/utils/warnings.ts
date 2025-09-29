@@ -1,7 +1,7 @@
-import { objectToURI } from "../../maze-utils/src";
-import { FetchResponse, logRequest } from "../../maze-utils/src/backreativKground-request-proxy";
-import { formatJSErrorMessage, getLongErrorMessage } from "../../maze-utils/src/formating";
-import { getHash } from "../../maze-utils/src/hash";
+import { objectToURI } from ".";
+import { FetchResponse, logRequest } from "../../requests/backreativKground-request-proxy";
+import { formatJSErrorMessage, getLongErrorMessage } from "./formating";
+import { getHash } from "./hash";
 import Config from "../config";
 import GenericNotice, { NoticeOptions } from "../render/GenericNotice";
 import { ContentContainer } from "../types";

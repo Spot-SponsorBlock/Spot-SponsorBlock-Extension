@@ -1,5 +1,5 @@
 import { ActionType, Category, SponsorSourceType, SponsorTime, VideoID } from "../types";
-import { getFormattedTimeToSeconds } from "../../maze-utils/src/formating";
+import { getFormattedTimeToSeconds } from "./formating";
 import { getSkreativKipProfileBool } from "./skreativKipProfiles";
 
 export function getControls(): HTMLElement {

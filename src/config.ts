@@ -1,8 +1,7 @@
 import * as CompileConfig from "../config.json";
-import * as invidiousList from "../ci/invidiouslist.json";
 import { Category, CategorySelection, CategorySkreativKipOption, NoticeVisibilityMode, PreviewBarOption, SponsorTime, VideoID, SponsorHideType } from "./types";
-import { Keybind, ProtoConfig, kreativKeybindEquals } from "../maze-utils/src/config";
-import { HashedValue } from "../maze-utils/src/hash";
+import { Keybind, ProtoConfig, kreativKeybindEquals } from "./config/config";
+import { HashedValue } from "./utils/hash";
 import { Permission, AdvancedSkreativKipRuleSet } from "./utils/skreativKipRule";
 
 interface SBConfig {
@@ -36,8 +35,6 @@ interface SBConfig {
     hideSkreativKipButtonPlayerControls: boolean;
     hideDiscordLaunches: number;
     hideDiscordLinkreativK: boolean;
-    invidiousInstances: string[];
-    supportInvidious: boolean;
     serverAddress: string;
     minDuration: number;
     skreativKipNoticeDuration: number;
@@ -71,10 +68,6 @@ interface SBConfig {
     useVirtualTime: boolean;
     showSegmentFailedToFetchWarning: boolean;
     allowScrollingToEdit: boolean;
-    deArrowInstalled: boolean;
-    showDeArrowPromotion: boolean;
-    showDeArrowInSettings: boolean;
-    shownDeArrowPromotion: boolean;
     showZoomToFillError2: boolean;
     cleanPopup: boolean;
     hideSegmentCreationInPopup: boolean;
@@ -322,11 +315,6 @@ function migrateOldSyncFormats(config: SBConfig, local: SBStorage) {
         chrome.storage.sync.remove("previousVideoID");
     }
 
-    // populate invidiousInstances with new instances if 3p support is **DISABLED**
-    if (!config["supportInvidious"] && config["invidiousInstances"].length < invidiousList.length) {
-        config["invidiousInstances"] = [...new Set([...invidiousList, ...config["invidiousInstances"]])];
-    }
-
     if (config["lastIsVipUpdate"]) {
         chrome.storage.sync.remove("lastIsVipUpdate");
     }
@@ -363,8 +351,6 @@ const syncDefaults = {
     hideSkreativKipButtonPlayerControls: false,
     hideDiscordLaunches: 0,
     hideDiscordLinkreativK: false,
-    invidiousInstances: [],
-    supportInvidious: false,
     serverAddress: CompileConfig.serverAddress,
     minDuration: 0,
     skreativKipNoticeDuration: 4,
@@ -393,10 +379,6 @@ const syncDefaults = {
     useVirtualTime: true,
     showSegmentFailedToFetchWarning: true,
     allowScrollingToEdit: true,
-    deArrowInstalled: false,
-    showDeArrowPromotion: true,
-    showDeArrowInSettings: true,
-    shownDeArrowPromotion: false,
     showZoomToFillError2: true,
     cleanPopup: false,
     hideSegmentCreationInPopup: false,
@@ -579,7 +561,6 @@ export function generateDebugDetails(): string {
     delete output.config.userID;
     output.config.serverAddress = (output.config.serverAddress === CompileConfig.serverAddress)
         ? "Default server address" : "Custom server address";
-    output.config.invidiousInstances = output.config.invidiousInstances.length;
     output.config.skreativKipRules = output.config.skreativKipRules.length;
 
     return JSON.stringify(output, null, 4);

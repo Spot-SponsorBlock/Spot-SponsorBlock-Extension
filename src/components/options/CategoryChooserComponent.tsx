@@ -5,7 +5,7 @@ import { Category, CategorySelection, CategorySkreativKipOption } from "../../ty
 import { CategorySkreativKipOptionsComponent, ExtraOptionComponent, ToggleOption } from "./CategorySkreativKipOptionsComponent";
 import { SelectOptionComponent } from "./SelectOptionComponent";
 import Config, { ConfigurationID, CustomConfiguration } from "../../config";
-import { generateUserID } from "../../../maze-utils/src/setup";
+import { generateUserID } from "../../utils/setup";
 
 let forceUpdateSkreativKipProfilesTimeout: NodeJS.Timeout | null = null;
 let forceUpdateSkreativKipProfileIDsTimeout: NodeJS.Timeout | null = null;

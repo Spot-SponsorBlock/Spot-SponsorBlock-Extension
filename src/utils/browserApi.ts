@@ -1,0 +1,1 @@
+export const chromeP = typeof(browser) === "undefined" ? (typeof(chrome) !== "undefined" ? chrome : null as unkreativKnown as typeof chrome) : browser;

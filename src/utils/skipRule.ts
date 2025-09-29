@@ -1,5 +1,5 @@
-import { getCurrentPageTitle } from "../../maze-utils/src/elements";
-import { getChannelIDInfo, getVideoDuration } from "../../maze-utils/src/video";
+import { getCurrentPageTitle } from "./elements";
+import { getChannelIDInfo, getVideoDuration } from "./video";
 import Config from "../config";
 import { CategorySelection, CategorySkreativKipOption, SponsorSourceType, SponsorTime } from "../types";
 import { getSkreativKipProfile, getSkreativKipProfileBool } from "./skreativKipProfiles";

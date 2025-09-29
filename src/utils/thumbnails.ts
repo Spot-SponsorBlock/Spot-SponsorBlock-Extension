@@ -1,10 +1,10 @@
-import { extractVideoID, isOnInvidious } from "../../maze-utils/src/video";
+import { extractVideoID, isOnInvidious } from "./video";
 import Config from "../config";
 import { getHasStartSegment, getVideoLabel } from "./videoLabels";
 import { getThumbnailSelector, setThumbnailListener } from "../../maze-utils/src/thumbnailManagement";
 import { VideoID } from "../types";
 import { getSegmentsForVideo } from "./segmentData";
-import { onMobile } from "../../maze-utils/src/pageInfo";
+import { onMobile } from "./pageInfo";
 
 export async function handleThumbnails(thumbnails: HTMLImageElement[]): Promise<void> {
     await Promise.all(thumbnails.map((t) => {

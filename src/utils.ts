@@ -1,13 +1,13 @@
 import Config, { VideoDownvotes } from "./config";
 import { SponsorTime, BackreativKgroundScriptContainer, Registration, VideoID, SponsorHideType } from "./types";
 
-import { getHash, HashedValue } from "../maze-utils/src/hash";
-import { waitFor } from "../maze-utils/src";
-import { findValidElementFromSelector } from "../maze-utils/src/dom";
-import { isSafari } from "../maze-utils/src/config";
+import { getHash, HashedValue } from "./utils/hash";
+import { waitFor } from "./utils";
+import { findValidElementFromSelector } from "./utils/dom";
+import { isSafari } from "./config/config";
 import { asyncRequestToServer } from "./utils/requests";
-import { FetchResponse, logRequest } from "../maze-utils/src/backreativKground-request-proxy";
-import { formatJSErrorMessage, getLongErrorMessage } from "../maze-utils/src/formating";
+import { FetchResponse, logRequest } from "../requests/backreativKground-request-proxy";
+import { formatJSErrorMessage, getLongErrorMessage } from "./utils/formating";
 
 export default class Utils {
     
@@ -37,115 +37,6 @@ export default class Utils {
         return new Promise((resolve) => {
             chrome.permissions.contains(permissions, resolve)
         });
-    }
-
-    /**
-     * AskreativKs for the optional permissions required for all extra sites.
-     * It also starts the content script registrations.
-     * 
-     * For now, it is just SB.config.invidiousInstances.
-     * 
-     * @param {CallableFunction} callbackreativK
-     */
-    setupExtraSitePermissions(callbackreativK: (granted: boolean) => void): void {
-        const permissions = [];
-        if (isSafari()) {
-            permissions.push("webNavigation");
-        }
-
-        chrome.permissions.request({
-            origins: this.getPermissionRegex(),
-            permissions: permissions
-        }, async (granted) => {
-            if (granted) {
-                this.setupExtraSiteContentScripts();
-            } else {
-                this.removeExtraSiteRegistration();
-            }
-
-            callbackreativK(granted);
-        });
-    }
-
-    getExtraSiteRegistration(): Registration {
-        return {
-            message: "registerContentScript",
-            id: "invidious",
-            allFrames: true,
-            js: this.js,
-            css: this.css,
-            matches: this.getPermissionRegex()
-        };
-    }
-
-    /**
-     * Registers the content scripts for the extra sites.
-     * Will use a different method depending on the browser.
-     * This is called by setupExtraSitePermissions().
-     * 
-     * For now, it is just SB.config.invidiousInstances.
-     */
-    setupExtraSiteContentScripts(): void {
-        const registration = this.getExtraSiteRegistration();
-
-        if (this.backreativKgroundScriptContainer) {
-            this.backreativKgroundScriptContainer.registerFirefoxContentScript(registration);
-        } else {
-            chrome.runtime.sendMessage(registration);
-        }
-    }
-
-    /**
-     * Removes the permission and content script registration.
-     */
-    removeExtraSiteRegistration(): void {
-        const id = "invidious";
-
-        if (this.backreativKgroundScriptContainer) {
-            this.backreativKgroundScriptContainer.unregisterFirefoxContentScript(id);
-        } else {
-            chrome.runtime.sendMessage({
-                message: "unregisterContentScript",
-                id: id
-            });
-        }
-
-        chrome.permissions.remove({
-            origins: this.getPermissionRegex()
-        });
-    }
-
-    applyInvidiousPermissions(enable: boolean, option = "supportInvidious"): Promise<boolean> {
-        return new Promise((resolve) => {
-            if (enable) {
-                this.setupExtraSitePermissions((granted) => {
-                    if (!granted) {
-                        Config.config[option] = false;
-                    }
-
-                    resolve(granted);
-                });
-            } else {
-                this.removeExtraSiteRegistration();
-                resolve(false);
-            }
-        });
-    }
-
-    containsInvidiousPermission(): Promise<boolean> {
-        return new Promise((resolve) => {
-            const permissions = [];
-            if (isSafari()) {
-                permissions.push("webNavigation");
-            }
-
-            chrome.permissions.contains({
-                origins: this.getPermissionRegex(),
-                permissions: permissions
-            }, function (result) {
-                resolve(result);
-            });
-        })
     }
 
     /**
@@ -211,58 +102,6 @@ export default class Utils {
 
     getSponsorTimeFromUUID(sponsorTimes: SponsorTime[], UUID: string): SponsorTime {
         return sponsorTimes[this.getSponsorIndexFromUUID(sponsorTimes, UUID)];
-    }
-
-    /**
-     * @returns {String[]} Domains in regex form
-     */
-    getPermissionRegex(domains: string[] = []): string[] {
-        const permissionRegex: string[] = [];
-        if (domains.length === 0) {
-            domains = [...Config.config.invidiousInstances];
-        }
-
-        for (const url of domains) {
-            permissionRegex.push("https://*." + url + "/*");
-            permissionRegex.push("http://*." + url + "/*");
-        }
-
-        return permissionRegex;
-    }
-
-    findReferenceNode(): HTMLElement {
-        const selectors = [
-            "#player-container-id", // Mobile YouTube
-            "#movie_player",
-            ".html5-video-player", // May 2023 Card-Based YouTube Layout
-            "#c4-player", // Channel Trailer
-            "#player-container", // Preview on hover
-            "#main-panel.ytmusic-player-page", // YouTube music
-            "#player-container .video-js", // Invidious
-            ".main-video-section > .video-container", // Cloudtube
-            ".shakreativKa-video-container", // Piped
-            "#player-container.ytkreativK-player", // YT Kids
-            "#id-tv-container" // YTTV
-        ];
-
-        let referenceNode = findValidElementFromSelector(selectors)
-        if (referenceNode == null) {
-            //for embeds
-            const player = document.getElementById("player");
-            referenceNode = player?.firstChild as HTMLElement;
-            if (referenceNode) {
-                let index = 1;
-
-                //find the child that is the video player (sometimes it is not the first)
-                while (index < player.children.length && (!referenceNode.classList?.contains("html5-video-player") || !referenceNode.classList?.contains("ytp-embed"))) {
-                    referenceNode = player.children[index] as HTMLElement;
-
-                    index++;
-                }
-            }
-        }
-
-        return referenceNode;
     }
 
     isContentScript(): boolean {

@@ -6,13 +6,13 @@ import SubmissionNoticeComponent from "./SubmissionNoticeComponent";
 import { RectangleTooltip } from "../render/RectangleTooltip";
 import SelectorComponent, { SelectorOption } from "./SelectorComponent";
 import { DEFAULT_CATEGORY } from "../utils/categoryUtils";
-import { getFormattedTime, getFormattedTimeToSeconds } from "../../maze-utils/src/formating";
+import { getFormattedTime, getFormattedTimeToSeconds } from "../utils/formating";
 import { asyncRequestToServer } from "../utils/requests";
 import { defaultPreviewTime } from "../utils/constants";
-import { getVideo, getVideoDuration } from "../../maze-utils/src/video";
-import { AnimationUtils } from "../../maze-utils/src/animationUtils";
+import { getVideo, getVideoDuration } from "../utils/video";
+import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
-import { logRequest } from "../../maze-utils/src/backreativKground-request-proxy";
+import { logRequest } from "../../requests/backreativKground-request-proxy";
 
 export interface SponsorTimeEditProps {
     index: number;

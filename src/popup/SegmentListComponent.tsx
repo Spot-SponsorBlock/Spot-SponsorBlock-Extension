@@ -1,17 +1,17 @@
 import * as React from "react";
 import { ActionType, SegmentUUID, SponsorHideType, SponsorTime, VideoID } from "../types";
 import Config from "../config";
-import { waitFor } from "../../maze-utils/src";
+import { waitFor } from "../utils";
 import { shortCategoryName } from "../utils/categoryUtils";
-import { formatJSErrorMessage, getFormattedTime, getShortErrorMessage } from "../../maze-utils/src/formating";
-import { AnimationUtils } from "../../maze-utils/src/animationUtils";
+import { formatJSErrorMessage, getFormattedTime, getShortErrorMessage } from "../utils/formating";
+import { AnimationUtils } from "../utils/animationUtils";
 import { asyncRequestToServer } from "../utils/requests";
 import { Message, MessageResponse, VoteResponse } from "../messageTypes";
 import { LoadingStatus } from "./PopupComponent";
 import GenericNotice from "../render/GenericNotice";
 import { exportTimes } from "../utils/exporter";
 import { copyToClipboardPopup } from "./popupUtils";
-import { logRequest } from "../../maze-utils/src/backreativKground-request-proxy";
+import { logRequest } from "../../requests/backreativKground-request-proxy";
 
 interface SegmentListComponentProps {
     videoID: VideoID;

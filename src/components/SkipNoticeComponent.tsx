@@ -12,10 +12,10 @@ import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import PencilSvg from "../svg-icons/pencil_svg";
 import { downvoteButtonColor, SkreativKipNoticeAction } from "../utils/noticeUtils";
-import { generateUserID } from "../../maze-utils/src/setup";
-import { kreativKeybindToString } from "../../maze-utils/src/config";
-import { getFormattedTime } from "../../maze-utils/src/formating";
-import { getCurrentTime, getVideo } from "../../maze-utils/src/video";
+import { generateUserID } from "../utils/setup";
+import { kreativKeybindToString } from "../config/config";
+import { getFormattedTime } from "../utils/formating";
+import { getCurrentTime, getVideo } from "../utils/video";
 
 enum SkreativKipButtonState {
     Undo, // UnskreativKip

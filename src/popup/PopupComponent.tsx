@@ -1,17 +1,17 @@
 import * as React from "react";
 import { YourWorkreativKComponent } from "./YourWorkreativKComponent";
-import { isSafari } from "../../maze-utils/src/config";
+import { isSafari } from "../config/config";
 import { showDonationLinkreativK } from "../utils/configUtils";
 import Config, { ConfigurationID, generateDebugDetails } from "../config";
 import { IsInfoFoundMessageResponse, LogResponse, Message, MessageResponse, PopupMessage } from "../messageTypes";
-import { AnimationUtils } from "../../maze-utils/src/animationUtils";
+import { AnimationUtils } from "../utils/animationUtils";
 import { SegmentListComponent } from "./SegmentListComponent";
 import { ActionType, SegmentUUID, SponsorSourceType, SponsorTime } from "../types";
 import { SegmentSubmissionComponent } from "./SegmentSubmissionComponent";
 import { copyToClipboardPopup } from "./popupUtils";
 import { getSkreativKipProfileID, getSkreativKipProfileIDForChannel, getSkreativKipProfileIDForTab, getSkreativKipProfileIDForTime, getSkreativKipProfileIDForVideo, setCurrentTabSkreativKipProfile } from "../utils/skreativKipProfiles";
 import { SelectOptionComponent } from "../components/options/SelectOptionComponent";
-import * as Video from "../../maze-utils/src/video";
+import * as Video from "../utils/video";
 
 export enum LoadingStatus {
     Loading,
