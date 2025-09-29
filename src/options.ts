@@ -2,7 +2,6 @@ import * as React from "react";
 import { createRoot } from 'react-dom/client';
 
 import Config, { generateDebugDetails } from "./config";
-import * as invidiousList from "../ci/invidiouslist.json";
 
 // Make the config public for debugging purposes
 window.SB = Config;
@@ -12,11 +11,10 @@ import CategoryChooser from "./render/CategoryChooser";
 import UnsubmittedVideos from "./render/UnsubmittedVideos";
 import KeybindComponent from "./components/options/KeybindComponent";
 import { showDonationLink } from "./utils/configUtils";
-import { localizeHtmlPage } from "../maze-utils/src/setup";
-import { StorageChangesObject } from "../maze-utils/src/config";
-import { getHash } from "../maze-utils/src/hash";
-import { isFirefoxOrSafari } from "../maze-utils/src";
-import { isDeArrowInstalled } from "./utils/crossExtension";
+import { localizeHtmlPage } from "./utils/setup";
+import { StorageChangesObject } from "./config/config";
+import { getHash } from "./utils/hash";
+import { isFirefoxOrSafari } from "./utils";
 import { asyncRequestToServer } from "./utils/requests";
 import AdvancedSkipOptions from "./render/AdvancedSkipOptions";
 const utils = new Utils();
@@ -78,27 +76,6 @@ async function init() {
         donate.classList.add("hidden");
     }
 
-    // DeArrow promotion
-    if (Config.config.showNewFeaturePopups && Config.config.showUpsells && Config.config.showDeArrowInSettings) {
-        isDeArrowInstalled().then((installed) => {
-            if (!installed) {
-                const deArrowPromotion = document.getElementById("deArrowPromotion");
-                deArrowPromotion.classList.remove("hidden");
-
-                deArrowPromotion.addEventListener("click", () => Config.config.showDeArrowPromotion = false);
-
-                const closeButton = deArrowPromotion.querySelector(".close-button");
-                closeButton.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    
-                    deArrowPromotion.classList.add("hidden");
-                    Config.config.showDeArrowPromotion = false;
-                    Config.config.showDeArrowInSettings = false;
-                });
-            }
-        });
-    }
-
     const skipToHighlightKeybind = document.querySelector(`[data-sync="skipToHighlightKeybind"] .optionLabel`) as HTMLElement;
     skipToHighlightKeybind.innerText = `${chrome.i18n.getMessage("skip_to_category").replace("{0}", chrome.i18n.getMessage("category_poi_highlight")).replace("?", "")}:`;
 
@@ -112,29 +89,6 @@ async function init() {
         let isDependentOnReversed = false;
         if (dependentOn)
             isDependentOnReversed = dependentOn.getAttribute("data-toggle-type") === "reverse" || optionsElements[i].getAttribute("data-dependent-on-inverted") === "true";
-
-        if (await shouldHideOption(optionsElements[i]) || (dependentOn && (isDependentOnReversed ? Config.config[dependentOnName] : !Config.config[dependentOnName]))) {
-            optionsElements[i].classList.add("hidden", "hiding");
-            if (!dependentOn) {
-                if (optionsElements[i].getAttribute("data-no-safari") === "true" && optionsElements[i].id === "support-invidious") {
-                    // Put message about being disabled on safari
-                    const infoBox = document.createElement("div");
-                    infoBox.innerText = chrome.i18n.getMessage("invidiousDisabledSafari");
-                    
-                    const link = document.createElement("a");
-                    link.style.display = "block";
-                    const url = "https://bugs.webkit.org/show_bug.cgi?id=290508";
-                    link.href = url;
-                    link.innerText = url;
-
-                    infoBox.appendChild(link);
-
-                    optionsElements[i].parentElement.insertBefore(infoBox, optionsElements[i].nextSibling);
-                }
-
-                continue;
-            }
-        }
 
         const option = optionsElements[i].getAttribute("data-sync");
 
@@ -151,13 +105,6 @@ async function init() {
                 if (optionResult != undefined)
                     checkbox.checked =  reverse ? !optionResult : optionResult;
 
-                // See if anything extra should be run first time
-                switch (option) {
-                    case "supportInvidious":
-                        invidiousInit(checkbox, option);
-                        break;
-                }
-
                 // Add click listener
                 checkbox.addEventListener("click", async () => {
                     // Confirm if required
@@ -171,9 +118,6 @@ async function init() {
 
                     // See if anything extra must be run
                     switch (option) {
-                        case "supportInvidious":
-                            invidiousOnClick(checkbox, option);
-                            break;
                         case "disableAutoSkip":
                             if (!checkbox.checked) {
                                 // Enable the notice
@@ -281,11 +225,6 @@ async function init() {
                 }
 
                 const privateTextChangeOption = optionsElements[i].getAttribute("data-sync");
-                // See if anything extra must be done
-                switch (privateTextChangeOption) {
-                    case "invidiousInstances":
-                        invidiousInstanceAddInit(<HTMLElement> optionsElements[i], privateTextChangeOption);
-                }
 
                 break;
             }
@@ -444,109 +383,6 @@ function updateDisplayElement(element: HTMLElement) {
     const displayOption = element.getAttribute("data-sync")
     const displayText = Config.config[displayOption];
     element.innerText = displayText;
-
-    // See if anything extra must be run
-    switch (displayOption) {
-        case "invidiousInstances": {
-            element.innerText = displayText.join(', ');
-            let allEquals = displayText.length == invidiousList.length;
-            for (let i = 0; i < invidiousList.length && allEquals; i++) {
-                if (displayText[i] != invidiousList[i])
-                    allEquals = false;
-            }
-            if (!allEquals) {
-                const resetButton = element.parentElement.querySelector(".invidious-instance-reset");
-                resetButton.classList.remove("hidden");
-            }
-            break;
-        }
-    }
-}
-
-/**
- * Initializes the option to add Invidious instances
- *
- * @param element
- * @param option
- */
-function invidiousInstanceAddInit(element: HTMLElement, option: string) {
-    const textBox = <HTMLInputElement> element.querySelector(".option-text-box");
-    const button = element.querySelector(".trigger-button");
-
-    const setButton = element.querySelector(".text-change-set");
-    const cancelButton = element.querySelector(".text-change-reset");
-    const resetButton = element.querySelector(".invidious-instance-reset");
-    setButton.addEventListener("click", async function() {
-        if (textBox.value == "" || textBox.value.includes("/") || textBox.value.includes("http")) {
-            alert(chrome.i18n.getMessage("addInvidiousInstanceError"));
-        } else {
-            // Add this
-            let instanceList = Config.config[option];
-            if (!instanceList) instanceList = [];
-
-            let domain = textBox.value.trim().toLowerCase();
-            if (domain.includes(":")) {
-                domain = domain.split(":")[0];
-            }
-
-            instanceList.push(domain);
-
-            Config.config[option] = instanceList;
-
-            const checkbox = <HTMLInputElement> document.querySelector("#support-invidious input");
-            checkbox.checked = true;
-
-            invidiousOnClick(checkbox, "supportInvidious");
-
-            resetButton.classList.remove("hidden");
-
-            // Hide this section again
-            textBox.value = "";
-            element.querySelector(".option-hidden-section").classList.add("hidden");
-            button.classList.remove("disabled");
-        }
-    });
-
-    cancelButton.addEventListener("click", async function() {
-        textBox.value = "";
-        element.querySelector(".option-hidden-section").classList.add("hidden");
-        button.classList.remove("disabled");
-    });
-
-    resetButton.addEventListener("click", function() {
-        if (confirm(chrome.i18n.getMessage("resetInvidiousInstanceAlert"))) {
-            // Set to CI populated list
-            Config.config[option] = invidiousList;
-            resetButton.classList.add("hidden");
-        }
-    });
-}
-
-/**
- * Run when the invidious button is being initialized
- *
- * @param checkbox
- * @param option
- */
-function invidiousInit(checkbox: HTMLInputElement, option: string) {
-    utils.containsInvidiousPermission().then((result) => {
-        if (result != checkbox.checked) {
-            Config.config[option] = result;
-
-            checkbox.checked = result;
-        }
-    });
-}
-
-/**
- * Run whenever the invidious checkbox is clicked
- *
- * @param checkbox
- * @param option
- */
-async function invidiousOnClick(checkbox: HTMLInputElement, option: string): Promise<void> {
-    const enabled = await utils.applyInvidiousPermissions(checkbox.checked, option);
-    checkbox.checked = enabled;
 }
 
 /**
@@ -563,13 +399,6 @@ function activatePrivateTextChange(element: HTMLElement) {
     const textBox = <HTMLInputElement> element.querySelector(".option-text-box");
     const option = element.getAttribute("data-sync");
     const optionType = element.getAttribute("data-sync-type");
-
-    // See if anything extra must be done
-    switch (option) {
-        case "invidiousInstances":
-            element.querySelector(".option-hidden-section").classList.remove("hidden");
-            return;
-    }
 
     let result = Config.config[option];
     // See if anything extra must be done
@@ -639,13 +468,6 @@ async function setTextOption(option: string, element: HTMLElement, value: string
                         } else {
                             Config.config[key] = newConfig[key];
                         }
-                    }
-
-                    if (optionType !== "local" && newConfig.supportInvidious) {
-                        const checkbox = <HTMLInputElement> document.querySelector("#support-invidious > div > label > input");
-
-                        checkbox.checked = true;
-                        await invidiousOnClick(checkbox, "supportInvidious");
                     }
 
                     setTimeout(() => window.location.reload(), 200);
