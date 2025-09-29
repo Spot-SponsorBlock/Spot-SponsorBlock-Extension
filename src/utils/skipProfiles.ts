@@ -1,4 +1,4 @@
-import { getChannelIDInfo, getVideoID } from "../../maze-utils/src/video";
+import { getChannelIDInfo, getVideoID } from "./video";
 import Config, { ConfigurationID, CustomConfiguration } from "../config";
 import { SponsorHideType, SponsorTime } from "../types";
 

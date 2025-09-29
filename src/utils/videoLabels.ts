@@ -1,9 +1,9 @@
 import { Category, CategorySkipOption, VideoID } from "../types";
-import { getHash } from "../../maze-utils/src/hash";
+import { getHash } from "./hash";
 import { logWarn } from "./logger";
 import { asyncRequestToServer } from "./requests";
 import { getCategorySelection } from "./skipRule";
-import { FetchResponse, logRequest } from "../../maze-utils/src/background-request-proxy";
+import { FetchResponse, logRequest } from "../../requests/background-request-proxy";
 
 export interface VideoLabelsCacheData {
     category: Category;

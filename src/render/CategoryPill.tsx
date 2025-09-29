@@ -5,8 +5,8 @@ import Config from "../config";
 import { VoteResponse } from "../messageTypes";
 import { Category, SegmentUUID, SponsorTime } from "../types";
 import { Tooltip } from "./Tooltip";
-import { waitFor } from "../../maze-utils/src";
-import { getYouTubeTitleNode } from "../../maze-utils/src/elements";
+import { waitFor } from "../utils";
+import { getYouTubeTitleNode } from "../utils/elements";
 import { addCleanupListener } from "../../maze-utils/src/cleanup";
 
 const id = "categoryPill";
@@ -33,10 +33,7 @@ export class CategoryPill {
         });
     }
 
-    async attachToPage(onMobileYouTube: boolean, onInvidious: boolean,
-            vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>): Promise<void> {
-        this.onMobileYouTube = onMobileYouTube;
-        this.onInvidious = onInvidious;
+    async attachToPage(vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>): Promise<void> {
         this.vote = vote;
 
         this.attachToPageInternal();

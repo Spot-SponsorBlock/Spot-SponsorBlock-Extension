@@ -1,13 +1,13 @@
 import * as React from "react";
-import { getHash } from "../../maze-utils/src/hash";
-import { formatJSErrorMessage, getShortErrorMessage } from "../../maze-utils/src/formating";
+import { getHash } from "../utils/hash";
+import { formatJSErrorMessage, getShortErrorMessage } from "../utils/formating";
 import Config from "../config";
 import { asyncRequestToServer } from "../utils/requests";
 import PencilIcon from "../svg-icons/pencilIcon";
 import ClipboardIcon from "../svg-icons/clipboardIcon";
 import CheckIcon from "../svg-icons/checkIcon";
 import { showDonationLink } from "../utils/configUtils";
-import { FetchResponse, logRequest } from "../../maze-utils/src/background-request-proxy";
+import { FetchResponse, logRequest } from "../../requests/background-request-proxy";
 
 export const YourWorkComponent = () => {
     const [isSettingUsername, setIsSettingUsername] = React.useState(false);

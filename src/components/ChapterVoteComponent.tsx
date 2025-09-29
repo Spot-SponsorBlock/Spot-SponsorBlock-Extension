@@ -6,10 +6,10 @@ import ThumbsUpSvg from "../svg-icons/thumbs_up_svg";
 import ThumbsDownSvg from "../svg-icons/thumbs_down_svg";
 import { downvoteButtonColor, SkipNoticeAction } from "../utils/noticeUtils";
 import { VoteResponse } from "../messageTypes";
-import { AnimationUtils } from "../../maze-utils/src/animationUtils";
+import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
-import { formatJSErrorMessage, getLongErrorMessage } from "../../maze-utils/src/formating";
-import { logRequest } from "../../maze-utils/src/background-request-proxy";
+import { formatJSErrorMessage, getLongErrorMessage } from "../utils/formating";
+import { logRequest } from "../../requests/background-request-proxy";
 
 export interface ChapterVoteProps {
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;
