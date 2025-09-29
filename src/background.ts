@@ -3,16 +3,15 @@ import * as CompileConfig from "../config.json";
 import Config from "./config";
 import { Registration } from "./types";
 import "content-scripts-register-polyfill";
-import { sendRealRequestToCustomServer, serializeOrStringify, setupBackgroundRequestProxy } from "../maze-utils/src/background-request-proxy";
-import { setupTabUpdates } from "../maze-utils/src/tab-updates";
-import { generateUserID } from "../maze-utils/src/setup";
+import { sendRealRequestToCustomServer, serializeOrStringify } from "../requests/background-request-proxy";
+import { setupTabUpdates } from "./utils/tab-updates";
+import { generateUserID } from "./utils/setup";
 
 import Utils from "./utils";
-import { getExtensionIdsToImportFrom } from "./utils/crossExtension";
-import { isFirefoxOrSafari, waitFor } from "../maze-utils/src";
-import { injectUpdatedScripts } from "../maze-utils/src/cleanup";
+import { isFirefoxOrSafari, waitFor } from "./utils/index";
+import { injectUpdatedScripts } from "./utils/cleanup";
 import { logWarn } from "./utils/logger";
-import { chromeP } from "../maze-utils/src/browserApi";
+import { chromeP } from "./utils/browserApi";
 const utils = new Utils({
     registerFirefoxContentScript,
     unregisterFirefoxContentScript
@@ -22,11 +21,6 @@ const popupPort: Record<string, chrome.runtime.Port> = {};
 
 // Used only on Firefox, which does not support non persistent background pages.
 const contentScriptRegistrations = {};
-
-// Register content script if needed
-utils.wait(() => Config.isReady()).then(function() {
-    if (Config.config.supportInvidious) utils.setupExtraSiteContentScripts();
-});
 
 setupBackgroundRequestProxy();
 setupTabUpdates(Config);
@@ -84,20 +78,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, callback) {
 	}
 });
 
-chrome.runtime.onMessageExternal.addListener((request, sender, callback) => {
-    if (getExtensionIdsToImportFrom().includes(sender.id)) {
-        if (request.message === "requestConfig") {
-            callback({
-                userID: Config.config.userID,
-                allowExpirements: Config.config.allowExpirements,
-                showDonationLink: Config.config.showDonationLink,
-                showUpsells: Config.config.showUpsells,
-                darkMode: Config.config.darkMode,
-            })
-        }
-    }
-});
-
 chrome.runtime.onConnect.addListener((port) => {
     if (port.name === "popup") {
         chrome.tabs.query({
@@ -130,25 +110,7 @@ chrome.runtime.onInstalled.addListener(function () {
             // Don't show update notification
             Config.config.categoryPillUpdate = true;
         }
-
-        if (Config.config.supportInvidious) {
-            if (!(await utils.containsInvidiousPermission())) {
-                chrome.tabs.create({url: chrome.runtime.getURL("/permissions/index.html")});
-            }
-        }
     }, 1500);
-
-    if (!isFirefoxOrSafari()) {
-        injectUpdatedScripts().catch(logWarn);
-
-        waitFor(() => Config.isReady()).then(() => {
-            if (Config.config.supportInvidious) {
-                injectUpdatedScripts([
-                    utils.getExtraSiteRegistration()
-                ])
-            }
-        }).catch(logWarn);
-    }
 });
 
 /**
@@ -246,4 +208,52 @@ async function asyncRequestToServer(type: string, address: string, data = {}) {
     const serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
 
     return await (sendRealRequestToCustomServer(type, serverAddress + address, data));
+}
+
+function setupBackgroundRequestProxy() {
+    chrome.runtime.onMessage.addListener((request, sender, callback) => {
+        if (request.message === "sendRequest") {
+            sendRealRequestToCustomServer(request.type, request.url, request.data, request.headers).then(async (response) => {
+                const buffer = request.binary 
+                    ? ((isFirefoxOrSafari() && !isSafari())
+                        ? await response.blob()
+                        : Array.from(new Uint8Array(await response.arrayBuffer())))
+                    : null;
+
+                callback({
+                    responseText: !request.binary ? await response.text() : "",
+                    responseBinary: buffer,
+                    headers: (request.returnHeaders && response.headers)
+                            ? [...response.headers.entries()].reduce((acc, [key, value]) => {
+                                acc[key] = value;
+                                return acc;
+                            }
+                        , {})
+                        : null,
+                    status: response.status,
+                    ok: response.ok
+                });
+            }).catch(error => {
+                console.error("Proxied request failed:", error)
+                callback({
+                    error: serializeOrStringify(error),
+                });
+            });
+
+            return true;
+        }
+
+        if (request.message === "getHash") {
+            getHash(request.value, request.times).then(callback).catch((e) => {
+                console.error("Hash request failed:", e)
+                callback({
+                    error: serializeOrStringify(e),
+                });
+            });
+
+            return true;
+        }
+
+        return false;
+    });
 }

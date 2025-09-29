@@ -1,15 +1,12 @@
 import Config from "../config";
 import { SegmentUUID, SponsorTime } from "../types";
 import { getSkippingText } from "../utils/categoryUtils";
-import { AnimationUtils } from "../../maze-utils/src/animationUtils";
-import { keybindToString } from "../../maze-utils/src/config";
-import { isMobileControlsOpen } from "../utils/mobileUtils";
+import { AnimationUtils } from "../utils/animationUtils";
+import { keybindToString } from "../config/config";
 
 export interface SkipButtonControlBarProps {
     skip: (segment: SponsorTime) => void;
     selectSegment: (UUID: SegmentUUID) => void;
-    onMobileYouTube: boolean;
-    onYTTV: boolean;
 }
 
 export class SkipButtonControlBar {
@@ -21,9 +18,6 @@ export class SkipButtonControlBar {
     segment: SponsorTime;
 
     showKeybindHint = true;
-    onMobileYouTube: boolean;
-    onYTTV: boolean;
-
     enabled = false;
 
     timeout: NodeJS.Timeout;
@@ -31,32 +25,21 @@ export class SkipButtonControlBar {
 
     skip: (segment: SponsorTime) => void;
 
-    // Used if on mobile page
-    hideButton: () => void;
-    showButton: () => void;
-
     // Used by mobile only for swiping away
     left = 0;
     swipeStart = 0;
 
     constructor(props: SkipButtonControlBarProps) {
         this.skip = props.skip;
-        this.onMobileYouTube = props.onMobileYouTube;
-        this.onYTTV = props.onYTTV;
 
         this.container = document.createElement("div");
         this.container.classList.add("skipButtonControlBarContainer");
         this.container.classList.add("sbhidden");
-        if (this.onMobileYouTube) this.container.classList.add("mobile");
 
         this.skipIcon = document.createElement("img");
         this.skipIcon.src = chrome.runtime.getURL("icons/skipIcon.svg");
         this.skipIcon.classList.add("ytp-button");
         this.skipIcon.id = "sbSkipIconControlBarImage";
-        if (this.onYTTV) {
-            this.skipIcon.style.width = "24px";
-            this.skipIcon.style.height = "24px";
-        }
 
         this.textContainer = document.createElement("div");
 
@@ -75,11 +58,6 @@ export class SkipButtonControlBar {
 
             props.selectSegment(null);
         });
-        if (this.onMobileYouTube) {
-            this.container.addEventListener("touchstart", (e) => this.handleTouchStart(e));
-            this.container.addEventListener("touchmove", (e) => this.handleTouchMove(e));
-            this.container.addEventListener("touchend", () => this.handleTouchEnd());
-        }
     }
 
     getElement(): HTMLElement {
@@ -91,30 +69,13 @@ export class SkipButtonControlBar {
         this.chapterText = document.querySelector(".ytp-chapter-container");
 
         if (mountingContainer && !mountingContainer.contains(this.container)) {
-            if (this.onMobileYouTube || this.onYTTV) {
-                mountingContainer.appendChild(this.container);
-            } else {
-                mountingContainer.insertBefore(this.container, this.chapterText);
-            }
-
-            if (!this.onMobileYouTube) {
-                AnimationUtils.setupAutoHideAnimation(this.skipIcon, mountingContainer, false, false);
-            } else {
-                const { hide, show } = AnimationUtils.setupCustomHideAnimation(this.skipIcon, mountingContainer, false, false);
-                this.hideButton = hide;
-                this.showButton = show;
-            }
+            mountingContainer.insertBefore(this.container, this.chapterText);
+            AnimationUtils.setupAutoHideAnimation(this.skipIcon, mountingContainer, false, false);
         }
     }
 
     private getMountingContainer(): HTMLElement {
-        if (!this.onMobileYouTube && !this.onYTTV) {
-            return document.querySelector(".ytp-left-controls");
-        } else if (this.onYTTV) {
-            return document.querySelector(".ypcs-control-buttons-left");
-        } else {
-            return document.getElementById("player-container-id");
-        }
+        return document.querySelector(".ytp-left-controls");
     }
 
     enable(segment: SponsorTime, duration?: number): void {
@@ -187,19 +148,6 @@ export class SkipButtonControlBar {
         this.getChapterPrefix()?.classList?.add("sbhidden");
 
         AnimationUtils.enableAutoHideAnimation(this.skipIcon);
-        if (this.onMobileYouTube) {
-            this.hideButton();
-        }
-    }
-
-    updateMobileControls(): void {
-        if (this.enabled) {
-            if (isMobileControlsOpen()) {
-                this.showButton();
-            } else {
-                this.hideButton();
-            }
-        }
     }
 
     private getTitle(): string {
@@ -208,37 +156,5 @@ export class SkipButtonControlBar {
 
     private getChapterPrefix(): HTMLElement {
         return document.querySelector(".ytp-chapter-title-prefix");
-    }
-
-    // Swiping away on mobile
-    private handleTouchStart(event: TouchEvent): void {
-        this.swipeStart = event.touches[0].clientX;
-    }
-
-    // Swiping away on mobile
-    private handleTouchMove(event: TouchEvent): void {
-        const distanceMoved = this.swipeStart - event.touches[0].clientX;
-        this.left = Math.min(-distanceMoved, 0);
-
-        this.updateLeftStyle();
-    }
-
-    // Swiping away on mobile
-    private handleTouchEnd(): void {
-        if (this.left < -this.container.offsetWidth / 2) {
-            this.disableText();
-
-            // Don't let animation play
-            this.skipIcon.style.display = "none";
-            setTimeout(() => this.skipIcon.style.removeProperty("display"), 200);
-        }
-
-        this.left = 0;
-        this.updateLeftStyle();
-    }
-
-    // Swiping away on mobile
-    private updateLeftStyle() {
-        this.container.style.left = this.left + "px";
     }
 }

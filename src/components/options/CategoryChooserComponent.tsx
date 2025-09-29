@@ -5,7 +5,7 @@ import { Category, CategorySelection, CategorySkipOption } from "../../types";
 import { CategorySkipOptionsComponent, ExtraOptionComponent, ToggleOption } from "./CategorySkipOptionsComponent";
 import { SelectOptionComponent } from "./SelectOptionComponent";
 import Config, { ConfigurationID, CustomConfiguration } from "../../config";
-import { generateUserID } from "../../../maze-utils/src/setup";
+import { generateUserID } from "../../utils/setup";
 
 let forceUpdateSkipProfilesTimeout: NodeJS.Timeout | null = null;
 let forceUpdateSkipProfileIDsTimeout: NodeJS.Timeout | null = null;
