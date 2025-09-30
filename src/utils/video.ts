@@ -1,7 +1,6 @@
-import { waitFor } from "../utils";
+import { waitFor } from "../utils/index";
 import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/config";
 import { getElement, isVisible, waitForElement } from "./dom";
-import { newThumbnails } from "../../maze-utils/src/thumbnailManagement";
 import { YT_DOMAINS } from "./const";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
@@ -27,14 +26,6 @@ export interface ChannelIDInfo {
     id: ChannelID | null;
     author: string | null;
     status: ChannelIDStatus;
-}
-export interface ParsedVideoURL {
-    videoID: VideoID | null;
-    onInvidious: boolean;
-    onMobileYouTube: boolean;
-    onYTTV: boolean;
-    onYouTubeMusic: boolean;
-    callLater: boolean;
 }
 
 interface VideoModuleParams {
@@ -67,10 +58,6 @@ let isAdPlaying = false;
 let isLivePremiere: boolean
 
 let videoID: VideoID | null = null;
-let onInvidious: boolean | null = null;
-let onMobileYouTube = false;
-let onYTTV = false;
-let onYouTubeMusic = false;
 let pageType: PageType = PageType.Unknown;
 let channelIDInfo: ChannelIDInfo = {
     status: ChannelIDStatus.Fetching,
@@ -124,7 +111,7 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
     if (navigationApiAvailable) {
         // TODO: Remove type cast once type declarations are updated
         const navigationListener = (e) =>
-            void videoIDChange(getYouTubeVideoID((e as unknown as Record<string, Record<string, string>>).destination.url));
+            void videoIDChange(getYouTubeVideoID());
         (window as unknown as { navigation: EventTarget }).navigation.addEventListener("navigate", navigationListener);
 
         addCleanupListener(() => {
@@ -235,149 +222,22 @@ function resetValues() {
     }, "/");
 }
 
-export function getYouTubeVideoID(url?: string): VideoID | null {
-    url ||= document?.URL;
-    // pageType shortcut
-    if (pageType === PageType.Channel) return getYouTubeVideoIDFromDocument(true, PageType.Channel);
-    // clips should never skip, going from clip to full video has no indications.
-    if (!params.allowClipPage && url.includes("youtube.com/clip/")) return null;
-    // skip to document and don't hide if on /embed/
-    if (url.includes("/embed/") && url.includes("youtube.com")) return getYouTubeVideoIDFromDocument(false, PageType.Embed);
-    // skip to URL if matches youtube watch or invidious or matches youtube pattern
-    if ((!url.includes("youtube.com")) || url.match(/\/watch|\/shorts\/|playlist|\/live\//)) return getYouTubeVideoIDFromURL(url);
-    // skip to document if matches pattern
-    if (isOnChannelPage()) return getYouTubeVideoIDFromDocument(true, PageType.Channel);
-    // not sure, try URL then document
-    return getYouTubeVideoIDFromURL(url) || getYouTubeVideoIDFromDocument(false);
-}
-
-function getYouTubeVideoIDFromDocument(hideIcon = true, pageHint = PageType.Watch): VideoID | null {
-    // get ID from document (channel trailer / embedded playlist)
-    const element = pageHint === PageType.Embed ? document.querySelector(embedTitleSelector)
-        : (pageHint === PageType.Channel ? document.querySelector(channelTrailerTitleSelector)
-            : video?.parentElement?.parentElement?.querySelector(embedTitleSelector));
-    const videoURL = element?.getAttribute("href");
-    if (videoURL) {
-        onInvidious = hideIcon;
-        // if href found, hint was correct
-        pageType = pageHint;
-        return getYouTubeVideoIDFromURL(videoURL);
-    } else {
-        return null;
-    }
+export function getYouTubeVideoID(): VideoID | null {
+    return getEpisodeIDFromDOM();
 }
 
 /**
- * Parse with side effects
+ * Find episode id from the page anchors.
  */
-function getYouTubeVideoIDFromURL(url: string): VideoID | null {
-    const result = parseYouTubeVideoIDFromURL(url);
-
-    if (result.callLater) {
-        // Call this later, in case this is an Invidious tab
-        void waitFor(() => getConfig().isReady()).then(() => videoIDChange(getYouTubeVideoIDFromURL(url)));
-
-        return null;
-    }
-
-    onInvidious = result.onInvidious;
-    onMobileYouTube = result.onMobileYouTube;
-    onYTTV = result.onYTTV;
-    onYouTubeMusic = result.onYouTubeMusic;
-
-    return result.videoID;
-}
-
-/**
- * Parse without side effects
- */
-export function parseYouTubeVideoIDFromURL(url: string): ParsedVideoURL {
-    if (url.startsWith("https://www.youtube.com/tv#/")) url = url.replace("#", "");
-    if (url.startsWith("https://www.youtube.com/tv?")) url = url.replace(/\?[^#]+#/, "");
-    let onInvidious = false;
-    let onMobileYouTube = false;
-    let onYTTV = false;
-    let onYouTubeMusic = false;
-
-    //Attempt to parse url
-    let urlObject: URL | null = null;
-    try {
-        urlObject = new URL(url);
-    } catch (e) {
-        console.error("[SB] Unable to parse URL: " + url);
-        return {
-            videoID: null,
-            onInvidious,
-            onMobileYouTube,
-            onYTTV,
-            onYouTubeMusic,
-            callLater: false
-        };
-    }
-
-    // Check if valid hostname
-    if (YT_DOMAINS.includes(urlObject.host)) {
-        // on YouTube
-        if (urlObject.host === "m.youtube.com") onMobileYouTube = true;
-        if (urlObject.host === "tv.youtube.com") onYTTV = true;
-        if (urlObject.host === "music.youtube.com") onYouTubeMusic = true;
-        onInvidious = false;
-    } else if (getConfig().isReady() && getConfig().config!.invidiousInstances?.includes(urlObject.hostname)) {
-        onInvidious = true;
-    } else { // fail to invidious
-        return {
-            videoID: null,
-            onInvidious,
-            onMobileYouTube,
-            onYTTV,
-            onYouTubeMusic,
-            callLater: !getConfig().isReady() // Might be an Invidious tab
-        };
-    }
-
-    //Get ID from searchParam
-    if (urlObject.searchParams.has("v") && ["/watch", "/watch/"].includes(urlObject.pathname) || urlObject.pathname.startsWith("/tv/watch")) {
-        const id = urlObject.searchParams.get("v");
-        return {
-            videoID: id?.length == 11 ? id as VideoID : null,
-            onInvidious,
-            onMobileYouTube,
-            onYTTV,
-            onYouTubeMusic,
-            callLater: false
-        };
-    } else if (urlObject.pathname.match(/^\/embed\/|^\/shorts\/|^\/live\//) || (urlObject.host === "tv.youtube.com" && urlObject.pathname.startsWith("/watch/"))) {
-        try {
-            const id = urlObject.pathname.split("/")[2]
-            if (id?.length >= 11 ) return {
-                videoID: id.slice(0, 11) as VideoID,
-                onInvidious,
-                onMobileYouTube,
-                onYTTV,
-                onYouTubeMusic,
-                callLater: false
-            };
-        } catch (e) {
-            console.error("[SB] Video ID not valid for " + url);
-            return {
-                videoID: null,
-                onInvidious,
-                onMobileYouTube,
-                onYTTV,
-                onYouTubeMusic,
-                callLater: false
-            };
-        }
-    }
-
-    return {
-        videoID: null,
-        onInvidious,
-        onMobileYouTube,
-        onYTTV,
-        onYouTubeMusic,
-        callLater: false
-    };
+export function getEpisodeIDFromDOM(): VideoID | null {
+    const episodeHrefRegex = /\/episode\/([A-Za-z0-9]+)(?:[\/?]|$)/;
+    const anchors = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-testid="context-item-link"]'));
+    for (const a of anchors) {
+        const href = a.getAttribute('href') || '';
+        const match = href.match(episodeHrefRegex);
+        if (match && match[1]) return match[1] as VideoID;
+    } 
+    return null;
 }
 
 //checks if this channel is whitelisted, should be done only after the channelID has been loaded
@@ -415,7 +275,6 @@ export async function whitelistCheck(videoID: VideoID) {
         // Try fallback
         channelIDFallback ??= (document.querySelector("a.ytd-video-owner-renderer") // YouTube
             ?? document.querySelector("a.ytp-title-channel-logo") // YouTube Embed
-            ?? document.querySelector(".channel-profile #channel-name")?.parentElement?.parentElement // Invidious
             ?? document.querySelector("a.slim-owner-icon-and-title")) // Mobile YouTube
                 ?.getAttribute("href")?.match(/\/(?:(?:channel|c|user|)\/|@)(UC[a-zA-Z0-9_-]{22}|[a-zA-Z0-9_-]+)/)?.[1];
         
@@ -443,8 +302,7 @@ export async function whitelistCheck(videoID: VideoID) {
 let lastMutationListenerCheck = 0;
 let checkTimeout: NodeJS.Timeout | null = null;
 function setupVideoMutationListener() {
-    if (!onInvidious 
-            && (videoMutationObserver === null || !isVisible(videoMutationListenerElement!.parentElement))) {
+    if ((videoMutationObserver === null || !isVisible(videoMutationListenerElement!.parentElement))) {
 
         // Delay it if it was checked recently
         if (checkTimeout) clearTimeout(checkTimeout);
@@ -578,10 +436,6 @@ function windowListenerHandler(event: MessageEvent): void {
     if (data.source !== "sponsorblock"
         || (!params.allowClipPage && document?.URL?.includes("youtube.com/clip/"))) return;
 
-    if (dataType === "navigation") {
-        newThumbnails();
-    }
-
     if (dataType === "navigation" && data.videoID) {
         pageType = data.pageType;
 
@@ -612,8 +466,6 @@ function windowListenerHandler(event: MessageEvent): void {
         void videoIDChange(data.videoID, data.isInline);
 
         isLivePremiere = data.isLive || data.isPremiere
-    } else if (dataType === "newElement") {
-        newThumbnails();
     } else if (dataType === "videoIDsLoaded") {
         params.newVideosLoaded?.(data.videoIDs);
     } else if (dataType === "adDuration") {
@@ -722,8 +574,7 @@ let lastRefresh = 0;
 export function getVideo(): HTMLVideoElement | null {
     setupVideoMutationListener();
 
-    if ((!isVisible(video)
-            || (onMobileYouTube && video && isNaN(video.duration)))
+    if ((!isVisible(video))
             && Date.now() - lastRefresh > 500) {
         lastRefresh = Date.now();
         if (!isVisible(video) && !isVinegarActive()) video = null;
@@ -770,22 +621,6 @@ export function setCurrentTime(time: number): void {
     if (getVideo()) {
         getVideo()!.currentTime = time + adDuration;
     }
-}
-
-export function isOnInvidious(): boolean | null {
-    return onInvidious;
-}
-
-export function isOnMobileYouTube(): boolean {
-    return onMobileYouTube;
-}
-
-export function isOnYouTubeMusic(): boolean {
-    return onYouTubeMusic;
-}
-
-export function isOnYTTV(): boolean {
-    return onYTTV;
 }
 
 export function getWaitingForChannelID(): boolean {
