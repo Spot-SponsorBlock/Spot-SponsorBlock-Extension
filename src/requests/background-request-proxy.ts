@@ -1,7 +1,7 @@
-import { isFirefoxOrSafari, objectToURI } from "../src/utils/index";
-import { isSafari } from "../src/config/config";
-import { isBodyGarbage } from "../src/utils/formating";
-import { getHash } from "../src/utils/hash";
+import { isFirefoxOrSafari, objectToURI } from "../utils/index";
+import { isSafari } from "../config/config";
+import { isBodyGarbage } from "../utils/formating";
+import { getHash } from "../utils/hash";
 
 export interface FetchResponse {
     responseText: string;

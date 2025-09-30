@@ -11,7 +11,7 @@ import { LoadingStatus } from "./PopupComponent";
 import GenericNotice from "../render/GenericNotice";
 import { exportTimes } from "../utils/exporter";
 import { copyToClipboardPopup } from "./popupUtils";
-import { logRequest } from "../../requests/background-request-proxy";
+import { logRequest } from "../requests/background-request-proxy";
 
 interface SegmentListComponentProps {
     videoID: VideoID;

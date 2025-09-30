@@ -6,7 +6,7 @@ import { waitFor } from "./utils/index";
 import { findValidElementFromSelector } from "./utils/dom";
 import { isSafari } from "./config/config";
 import { asyncRequestToServer } from "./utils/requests";
-import { FetchResponse, logRequest } from "../requests/background-request-proxy";
+import { FetchResponse, logRequest } from "./requests/background-request-proxy";
 import { formatJSErrorMessage, getLongErrorMessage } from "./utils/formating";
 
 export default class Utils {
