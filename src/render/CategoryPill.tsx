@@ -5,9 +5,9 @@ import Config from "../config";
 import { VoteResponse } from "../messageTypes";
 import { Category, SegmentUUID, SponsorTime } from "../types";
 import { Tooltip } from "./Tooltip";
-import { waitFor } from "../utils";
+import { waitFor } from "../utils/index";
 import { getYouTubeTitleNode } from "../utils/elements";
-import { addCleanupListener } from "../../maze-utils/src/cleanup";
+import { addCleanupListener } from "../utils/cleanup";
 
 const id = "categoryPill";
 

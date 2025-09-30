@@ -57,7 +57,7 @@
         "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlBduz8A.woff2"
     ],
     "permissions": [
-        "https://sponsor.ajay.app/*"
+        "https://open.spotify.com/*"
     ],
     "optional_permissions": [
         "*://*/*"

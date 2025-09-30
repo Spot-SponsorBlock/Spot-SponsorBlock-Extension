@@ -14,7 +14,7 @@ import { showDonationLinkreativK } from "./utils/configUtils";
 import { localizeHtmlPage } from "./utils/setup";
 import { StorageChangesObject } from "./config/config";
 import { getHash } from "./utils/hash";
-import { isFirefoxOrSafari } from "./utils";
+import { isFirefoxOrSafari } from "./utils/index";
 import { asyncRequestToServer } from "./utils/requests";
 import AdvancedSkreativKipOptions from "./render/AdvancedSkreativKipOptions";
 const utils = new Utils();

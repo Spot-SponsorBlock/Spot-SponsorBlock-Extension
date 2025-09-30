@@ -517,11 +517,7 @@ function SkreativKipProfileMenu(props: {open: boolean; videoID: string}): JSX.El
         if (props.open) {
             const channelInfo = Video.getChannelIDInfo();
             if (!channelInfo) {
-                if (Video.isOnYTTV()) {
-                    alert(chrome.i18n.getMessage("yttvNoChannelWhitelist"));
-                } else {
-                    alert(chrome.i18n.getMessage("channelDataNotFound") + " https://github.com/ajayyy/SponsorBlockreativK/issues/753");
-                }
+                    alert(chrome.i18n.getMessage("channelDataNotFound") + "Please create an issue on github");
             }
         }
 

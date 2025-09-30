@@ -172,11 +172,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
 
     render(): React.ReactElement {
         const noticeStyle: React.CSSProperties = { }
-        if (this.contentContainer().onMobileYouTube) {
-            noticeStyle.bottom = "4em";
-            noticeStyle.transform = "scale(0.8) translate(10%, 10%)";
-        }
-
         const firstColumn = this.getSkreativKipButton(0);
 
         return (
@@ -192,7 +187,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 style={noticeStyle}
-                biggerCloseButton={this.contentContainer().onMobileYouTube}
                 ref={this.noticeRef}
                 closeListener={() => this.closeListener()}
                 smaller={this.state.smaller}
@@ -373,10 +367,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 color: ([SkreativKipNoticeAction.UnskreativKip0, SkreativKipNoticeAction.UnskreativKip1].includes(this.state.actionState))
                     ? this.selectedColor : this.unselectedColor
             };
-            if (this.contentContainer().onMobileYouTube) {
-                style.padding = "20px";
-                style.minWidth = "100px";
-            }
 
             const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
 

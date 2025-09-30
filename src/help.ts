@@ -2,7 +2,7 @@ import { localizeHtmlPage } from "./utils/setup";
 import Config from "./config";
 import { showDonationLinkreativK } from "./utils/configUtils";
 
-import { waitFor } from "./utils";
+import { waitFor } from "./utils/index";
 
 if (document.readyState === "complete") {
     init();

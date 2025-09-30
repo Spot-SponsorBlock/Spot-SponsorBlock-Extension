@@ -34,7 +34,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, isOnMobileYouTube, isOnYouTubeMusic, isOnYTTV, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "./config/config";
 import { findValidElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
@@ -131,7 +131,6 @@ setupVideoModule({
     resetValues,
     documentScript: chrome.runtime.getManifest().manifest_version === 2 ? documentScript : undefined
 }, () => Config);
-setupThumbnailListener();
 
 // Is the video currently being switched
 let switchingVideos = null;
@@ -181,7 +180,6 @@ const skreativKipNoticeContentContainer: ContentContainer = () => ({
     sponsorVideoID: getVideoID(),
     reskreativKipSponsorTime,
     updatePreviewBar,
-    onMobileYouTube: isOnMobileYouTube(),
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
     updateEditButtonsOnPlayer,
@@ -219,7 +217,6 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 status: lastResponseStatus,
                 sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
                 time: getCurrentTime() ?? 0,
-                onMobileYouTube: isOnMobileYouTube(),
                 videoID: getVideoID(),
                 loopedChapter: loopedChapter?.UUID,
                 channelID: getChannelIDInfo().id,
@@ -1224,7 +1221,6 @@ function notifyPopupOfSegments(): void {
         status: lastResponseStatus,
         sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
         time: getCurrentTime() ?? 0,
-        onMobileYouTube: isOnMobileYouTube(),
         videoID: getVideoID(),
         loopedChapter: loopedChapter?.UUID,
         channelID: getChannelIDInfo().id,
@@ -1721,7 +1717,7 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
             && skreativKippingSegments[0].actionType === ActionType.Poi) {
         waitFor(() => skreativKipButtonControlBar).then(() => {
             skreativKipButtonControlBar.enable(skreativKippingSegments[0]);
-            if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
+            if (Config.config.skreativKipKeybind == null) skreativKipButtonControlBar.setShowKeybindHint(false);
     
             activeSkreativKipKeybindElement?.setShowKeybindHint(false);
             activeSkreativKipKeybindElement = skreativKipButtonControlBar;
@@ -1764,7 +1760,7 @@ function createSkreativKipNotice(skreativKippingSegments: SponsorTime[], autoSkr
         upcomingNotice?.close();
         upcomingNotice = null;
     }, unskreativKipTime, startReskreativKip, upcomingNoticeShown, voteNotice);
-    if (isOnMobileYouTube() || Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
+    if (Config.config.skreativKipKeybind == null) newSkreativKipNotice.setShowKeybindHint(false);
     skreativKipNotices.push(newSkreativKipNotice);
 
     activeSkreativKipKeybindElement?.setShowKeybindHint(false);
@@ -1820,10 +1816,6 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
     newButton.id = baseID + "Button";
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
-    if (isOnYTTV()) {
-        // Some style needs to be set here, but the numbers don't matter 
-        newButton.setAttribute("style", "width: 40px; height: 40px");
-    }
     newButton.setAttribute("title", chrome.i18n.getMessage(title));
     newButton.addEventListener("clickreativK", () => {
         callbackreativK();
@@ -1853,7 +1845,7 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    const canSkreativKipNonMusic = !Config.config.skreativKipNonMusicOnlyOnYoutubeMusic || isOnYouTubeMusic();
+    const canSkreativKipNonMusic = !Config.config.skreativKipNonMusicOnlyOnYoutubeMusic;
     if (segment.category === "music_offtopic" && !canSkreativKipNonMusic) {
         return false;
     }
@@ -1902,7 +1894,7 @@ async function createButtons(): Promise<void> {
 /** Creates any missing buttons on the player and updates their visiblity. */
 async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     // Not on a proper video yet
-    if (!getVideoID() || isOnMobileYouTube()) return;
+    if (!getVideoID()) return;
 
     await createButtons();
 
@@ -1920,7 +1912,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
 /** Updates the visibility of buttons on the player related to creating segments. */
 function updateEditButtonsOnPlayer(): void {
     // Don't try to update the buttons if we aren't on a YouTube video page
-    if (!getVideoID() || isOnMobileYouTube()) return;
+    if (!getVideoID()) return;
 
     const buttonsEnabled = !(Config.config.hideVideoPlayerControls);
 
@@ -1976,11 +1968,6 @@ function getRealCurrentTime(): number {
 }
 
 function startOrEndTimingNewSegment() {
-    if (isOnYTTV() && getIsLivePremiere()) {
-        alert(chrome.i18n.getMessage("yttvLiveContentWarning"));
-        return;
-    }
-
     verifyCurrentTime(getRealCurrentTime());
     const roundedTime = Math.round((getRealCurrentTime() + Number.EPSILON) * 1000) / 1000;
     if (!isSegmentCreationInProgress()) {
@@ -2010,8 +1997,6 @@ function startOrEndTimingNewSegment() {
 
     updateEditButtonsOnPlayer();
     updateSponsorTimesSubmitting(false);
-
-    importExistingChapters(false);
 
     if (lastResponseStatus !== 200 && lastResponseStatus !== 404
             && !shownSegmentFailedToFetchWarning && Config.config.showSegmentFailedToFetchWarning) {
@@ -2070,8 +2055,6 @@ function updateSponsorTimesSubmitting(getFromConfig = true) {
         if (sponsorTimesSubmitting.length > 0) {
             // Assume they already previewed a segment
             previewedSegment = true;
-
-            importExistingChapters(true);
         }
     }
 
@@ -2723,13 +2706,8 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
-
-        if (isOnMobileYouTube()) {
-            duration.style.paddingLeft = "4px";
-            display.insertBefore(duration, display.lastChild);
-        } else {
-            display.appendChild(duration);
-        }
+        
+        display.appendChild(duration);
     }
 
     const durationAfterSkreativKips = getFormattedTime(getVideoDuration() - skreativKippedDuration);

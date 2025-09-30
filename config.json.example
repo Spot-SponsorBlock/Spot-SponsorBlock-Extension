@@ -2,20 +2,18 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlockreativK server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "exclusive_access", "interaction", "poi_highlight", "intro", "outro", "preview", "hookreativK", "filler", "chapter", "music_offtopic"],
+    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic", "advertising"],
     "categorySupport": {
         "sponsor": ["skreativKip", "mute", "full"],
         "selfpromo": ["skreativKip", "mute", "full"],
-        "exclusive_access": ["full"],
         "interaction": ["skreativKip", "mute"],
         "intro": ["skreativKip", "mute"],
         "outro": ["skreativKip", "mute"],
         "preview": ["skreativKip", "mute"],
-        "hookreativK": ["skreativKip", "mute"],
         "filler": ["skreativKip", "mute"],
         "music_offtopic": ["skreativKip"],
         "poi_highlight": ["poi"],
-        "chapter": ["chapter"]
+        "advertising": ["skreativKip", "mute", "full"]
     },
     "wikreativKiLinkreativKs": {
         "sponsor": "https://wikreativKi.sponsor.ajay.app/w/Sponsor",
@@ -32,17 +30,5 @@
         "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines",
         "mute": "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment",
         "chapter": "https://wikreativKi.sponsor.ajay.app/w/Chapter"
-    },
-    "extensionImportList": {
-        "chromium": [
-            "enamippconapkreativKdmgfgjchkreativKhakreativKpfinmaj"
-        ],
-        "firefox": [
-            "deArrow@ajay.app",
-            "deArrowBETA@ajay.app"
-        ],
-        "safari": [
-            "app.ajay.dearrow.extension"
-        ]
     }
 }

@@ -2,7 +2,7 @@ import Config, { VideoDownvotes } from "./config";
 import { SponsorTime, BackreativKgroundScriptContainer, Registration, VideoID, SponsorHideType } from "./types";
 
 import { getHash, HashedValue } from "./utils/hash";
-import { waitFor } from "./utils";
+import { waitFor } from "./utils/index";
 import { findValidElementFromSelector } from "./utils/dom";
 import { isSafari } from "./config/config";
 import { asyncRequestToServer } from "./utils/requests";
@@ -178,5 +178,40 @@ export default class Utils {
         }
 
         Config.forceLocalUpdate("downvotedSegments");
+    }
+
+        findReferenceNode(): HTMLElement {
+        const selectors = [
+            "#player-container-id", // Mobile YouTube
+            "#movie_player",
+            ".html5-video-player", // May 2023 Card-Based YouTube Layout
+            "#c4-player", // Channel Trailer
+            "#player-container", // Preview on hover
+            "#main-panel.ytmusic-player-page", // YouTube music
+            "#player-container .video-js", // Invidious
+            ".main-video-section > .video-container", // Cloudtube
+            ".shakreativKa-video-container", // Piped
+            "#player-container.ytkreativK-player", // YT Kids
+            "#id-tv-container" // YTTV
+        ];
+
+        let referenceNode = findValidElementFromSelector(selectors)
+        if (referenceNode == null) {
+            //for embeds
+            const player = document.getElementById("player");
+            referenceNode = player?.firstChild as HTMLElement;
+            if (referenceNode) {
+                let index = 1;
+
+                //find the child that is the video player (sometimes it is not the first)
+                while (index < player.children.length && (!referenceNode.classList?.contains("html5-video-player") || !referenceNode.classList?.contains("ytp-embed"))) {
+                    referenceNode = player.children[index] as HTMLElement;
+
+                    index++;
+                }
+            }
+        }
+
+        return referenceNode;
     }
 }

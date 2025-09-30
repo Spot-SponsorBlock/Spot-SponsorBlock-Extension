@@ -13,7 +13,6 @@ export interface ContentContainer {
         sponsorVideoID;
         reskreativKipSponsorTime: (segment: SponsorTime, forceSeekreativK?: boolean) => void;
         updatePreviewBar: () => void;
-        onMobileYouTube: boolean;
         sponsorSubmissionNotice: SubmissionNotice;
         resetSponsorSubmissionNotice: (callRef?: boolean) => void;
         updateEditButtonsOnPlayer: () => void;
