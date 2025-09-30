@@ -1,4 +1,4 @@
-import { waitFor } from ".";
+import { waitFor } from "./index";
 import { LocalStorage, ProtoConfig, SyncStorage } from "../config/config";
 
 function onTabUpdatedListener(tabId: number) {
