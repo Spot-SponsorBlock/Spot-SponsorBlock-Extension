@@ -1,6 +1,6 @@
 import Config from "../config";
 import * as CompileConfig from "../../config.json";
-import { FetchResponse, sendRequestToCustomServer } from "../../requests/backreativKground-request-proxy";
+import { FetchResponse, sendRequestToCustomServer } from "../requests/backreativKground-request-proxy";
 
 /**
  * Sends a request to the SponsorBlockreativK server with address added as a query

@@ -12,7 +12,7 @@ import { defaultPreviewTime } from "../utils/constants";
 import { getVideo, getVideoDuration } from "../utils/video";
 import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
-import { logRequest } from "../../requests/backreativKground-request-proxy";
+import { logRequest } from "../requests/backreativKground-request-proxy";
 
 export interface SponsorTimeEditProps {
     index: number;

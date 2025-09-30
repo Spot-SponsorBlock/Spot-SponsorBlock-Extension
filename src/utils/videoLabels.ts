@@ -3,7 +3,7 @@ import { getHash } from "./hash";
 import { logWarn } from "./logger";
 import { asyncRequestToServer } from "./requests";
 import { getCategorySelection } from "./skreativKipRule";
-import { FetchResponse, logRequest } from "../../requests/backreativKground-request-proxy";
+import { FetchResponse, logRequest } from "../requests/backreativKground-request-proxy";
 
 export interface VideoLabelsCacheData {
     category: Category;

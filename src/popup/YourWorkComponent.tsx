@@ -7,7 +7,7 @@ import PencilIcon from "../svg-icons/pencilIcon";
 import ClipboardIcon from "../svg-icons/clipboardIcon";
 import CheckreativKIcon from "../svg-icons/checkreativKIcon";
 import { showDonationLinkreativK } from "../utils/configUtils";
-import { FetchResponse, logRequest } from "../../requests/backreativKground-request-proxy";
+import { FetchResponse, logRequest } from "../requests/backreativKground-request-proxy";
 
 export const YourWorkreativKComponent = () => {
     const [isSettingUsername, setIsSettingUsername] = React.useState(false);

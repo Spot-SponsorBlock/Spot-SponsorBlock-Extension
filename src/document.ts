@@ -4,8 +4,6 @@
 */
 
 import { PageType } from "./utils/video";
-import { YT_DOMAINS } from "./utils/const";
-import { onMobile, onYouTubeCableTV } from "./utils/pageInfo";
 import { isVisible } from "./utils/dom";
 
 interface StartMessage {
@@ -19,17 +17,9 @@ interface FinishMessage extends StartMessage {
     channelTitle: string;
 }
 
-interface AdMessage {
-    type: "ad";
-    playing: boolean;
-}
-
 interface VideoData {
     type: "data";
     videoID: string;
-    isLive: boolean;
-    isPremiere: boolean;
-    isInline: boolean; // Hover play
 }
 
 interface ElementCreated {
@@ -42,18 +32,13 @@ interface VideoIDsLoadedCreated {
     videoIDs: string[];
 }
 
-interface AdDurationMessage {
-    type: "adDuration";
-    duration: number;
-}
-
 interface CurrentTimeWrongMessage {
     type: "currentTimeWrong";
     playerTime: number;
     expectedTime: number;
 }
 
-type WindowMessage = StartMessage | FinishMessage | AdMessage | VideoData | ElementCreated | VideoIDsLoadedCreated | AdDurationMessage | CurrentTimeWrongMessage;
+type WindowMessage = StartMessage | FinishMessage | VideoData | ElementCreated | VideoIDsLoadedCreated | CurrentTimeWrongMessage;
 
 declare const ytInitialData: Record<string, string> | undefined;
 
@@ -106,8 +91,6 @@ function setupPlayerClient(e: CustomEvent): void {
     if (oldPlayerClient) {
         return; // No need to setup listeners
     }
-    playerClient.addEventListener('onAdStart', () => sendMessage({ type: "ad", playing: true } as AdMessage));
-    playerClient.addEventListener('onAdFinish', () => sendMessage({ type: "ad", playing: false } as AdMessage));
 }
 
 function navigationParser(event: CustomEvent): StartMessage | null {
