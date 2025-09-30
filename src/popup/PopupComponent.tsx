@@ -517,11 +517,7 @@ function SkipProfileMenu(props: {open: boolean; videoID: string}): JSX.Element {
         if (props.open) {
             const channelInfo = Video.getChannelIDInfo();
             if (!channelInfo) {
-                if (Video.isOnYTTV()) {
-                    alert(chrome.i18n.getMessage("yttvNoChannelWhitelist"));
-                } else {
-                    alert(chrome.i18n.getMessage("channelDataNotFound") + " https://github.com/ajayyy/SponsorBlock/issues/753");
-                }
+                    alert(chrome.i18n.getMessage("channelDataNotFound") + "Please create an issue on github");
             }
         }
 

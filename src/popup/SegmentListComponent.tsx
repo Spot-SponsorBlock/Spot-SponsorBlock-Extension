@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ActionType, SegmentUUID, SponsorHideType, SponsorTime, VideoID } from "../types";
 import Config from "../config";
-import { waitFor } from "../utils";
+import { waitFor } from "../utils/index";
 import { shortCategoryName } from "../utils/categoryUtils";
 import { formatJSErrorMessage, getFormattedTime, getShortErrorMessage } from "../utils/formating";
 import { AnimationUtils } from "../utils/animationUtils";

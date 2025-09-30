@@ -12,6 +12,8 @@ import { isFirefoxOrSafari, waitFor } from "./utils/index";
 import { injectUpdatedScripts } from "./utils/cleanup";
 import { logWarn } from "./utils/logger";
 import { chromeP } from "./utils/browserApi";
+import { getHash } from "./utils/hash";
+import { isSafari } from "./config/config";
 const utils = new Utils({
     registerFirefoxContentScript,
     unregisterFirefoxContentScript
