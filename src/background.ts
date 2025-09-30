@@ -3,7 +3,7 @@ import * as CompileConfig from "../config.json";
 import Config from "./config";
 import { Registration } from "./types";
 import "content-scripts-register-polyfill";
-import { sendRealRequestToCustomServer, serializeOrStringify } from "../requests/background-request-proxy";
+import { sendRealRequestToCustomServer, serializeOrStringify } from "./requests/background-request-proxy";
 import { setupTabUpdates } from "./utils/tab-updates";
 import { generateUserID } from "./utils/setup";
 

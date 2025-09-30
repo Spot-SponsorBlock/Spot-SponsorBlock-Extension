@@ -7,7 +7,7 @@ import PencilIcon from "../svg-icons/pencilIcon";
 import ClipboardIcon from "../svg-icons/clipboardIcon";
 import CheckIcon from "../svg-icons/checkIcon";
 import { showDonationLink } from "../utils/configUtils";
-import { FetchResponse, logRequest } from "../../requests/background-request-proxy";
+import { FetchResponse, logRequest } from "../requests/background-request-proxy";
 
 export const YourWorkComponent = () => {
     const [isSettingUsername, setIsSettingUsername] = React.useState(false);
