@@ -44,6 +44,7 @@ interface VideoModuleParams {
 
 const embedTitleSelector = "a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
 const channelTrailerTitleSelector = "ytd-channel-video-player-renderer a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
+const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-link']"
 
 let video: HTMLVideoElement | null = null;
 let videoWidth: string | null = null;
@@ -93,18 +94,10 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
 
     addPageListeners();
 
-    // Direct Links after the config is loaded
-    void waitFor(() => getConfig().isReady(), 1000, 1).then(() => videoIDChange(getYouTubeVideoID()));
-
-    // If on embed, or on channel page and the extension just reloaded
-    if (YT_DOMAINS.includes(location.host) 
-            && (document.URL.includes("/embed/") || (document.readyState === "complete" && isOnChannelPage()))) {
-        waitForElement(isOnChannelPage() ? channelTrailerTitleSelector : embedTitleSelector)
-            .then((e) => waitFor(() => e.getAttribute("href")))
-            .then(() => videoIDChange(getYouTubeVideoID()))
-            // Ignore if not an embed
-            .catch(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
-    }
+    // Direct Links after the element is loaded, will continue waiting if no media is played
+    void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then((element) => {
+        videoIDChange(getYouTubeVideoID());
+    })
 
     // Register listener for URL change via Navigation API
     const navigationApiAvailable = "navigation" in window;
@@ -223,6 +216,7 @@ function resetValues() {
 }
 
 export function getYouTubeVideoID(): VideoID | null {
+    console.log(getEpisodeIDFromDOM()); // Remove later
     return getEpisodeIDFromDOM();
 }
 
@@ -230,14 +224,17 @@ export function getYouTubeVideoID(): VideoID | null {
  * Find episode id from the page anchors.
  */
 export function getEpisodeIDFromDOM(): VideoID | null {
-    const episodeHrefRegex = /\/episode\/([A-Za-z0-9]+)(?:[\/?]|$)/;
-    const anchors = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-testid="context-item-link"]'));
-    for (const a of anchors) {
-        const href = a.getAttribute('href') || '';
-        const match = href.match(episodeHrefRegex);
-        if (match && match[1]) return match[1] as VideoID;
-    } 
-    return null;
+    const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
+    const href = document.querySelector(episodeIDSelector)?.getAttribute("href");
+    const match = href.match(HrefRegex);
+    if(!match) return null;
+
+    const [, contentType, id] = match;
+    if (contentType == "episode") {
+        return id as VideoID;
+    } else {
+        return null;
+    }
 }
 
 //checks if this channel is whitelisted, should be done only after the channelID has been loaded

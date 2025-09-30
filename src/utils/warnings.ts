@@ -1,5 +1,5 @@
 import { objectToURI } from ".";
-import { FetchResponse, logRequest } from "../../requests/background-request-proxy";
+import { FetchResponse, logRequest } from "../requests/background-request-proxy";
 import { formatJSErrorMessage, getLongErrorMessage } from "./formating";
 import { getHash } from "./hash";
 import Config from "../config";

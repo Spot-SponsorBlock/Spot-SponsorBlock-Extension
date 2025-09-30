@@ -1,7 +1,6 @@
 import { DataCache } from "./cache";
 import { addCleanupListener } from "./cleanup";
 import { isSafari } from "../config/config";
-import { onMobile } from "./pageInfo";
 import { ChannelID, VideoID } from "./video";
 
 export interface PlaybackUrl {
@@ -160,7 +159,7 @@ export async function fetchVideoMetadata(videoID: VideoID, ignoreCache: boolean,
             let metadata = await fetchVideoDataDesktopClient(videoID).catch(() => null);
 
             // Don't retry for LOGIN_REQUIRED, they will never have urls
-            if (!onMobile() && (!metadata 
+            if ((!metadata 
                     || (metadata.formats.length === 0 && metadata.playabilityStatus !== "LOGIN_REQUIRED"))) metadata = await fetchVideoDataDesktopClient(videoID).catch(() => null);
 
             if (metadata) {
@@ -232,102 +231,6 @@ export async function fetchVideoMetadata(videoID: VideoID, ignoreCache: boolean,
         channelID: null,
         author: null,
         playbackUrls: [],
-        isLive: null,
-        isUpcoming: null
-    };
-}
-
-export async function fetchVideoDataAndroidClient(videoID: VideoID): Promise<InnerTubeMetadata> {
-    const innertubeDetails = {
-        apiKey: "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w",
-        clientVersion: "17.31.35",
-        clientName: "3",
-        androidVersion: "12"
-    }
-
-    const context = {
-        client: {
-            clientName: "ANDROID",
-            clientVersion: innertubeDetails.clientVersion,
-            androidSdkVersion: 31,
-            osName: "Android",
-            osVersion: innertubeDetails.androidVersion,
-            hl: "en",
-            gl: "US"
-        }
-    }
-
-    const url = `https://www.youtube.com/youtubei/v1/player?key=${innertubeDetails.apiKey}`;
-    const data = {
-        context: context,
-        videoId: videoID,
-        params: "8AEB",
-        playbackContext: {
-            contentPlaybackContext: {
-                html5Preference: "HTML5_PREF_WANTS"
-            }
-        },
-        contentCheckOk: true,
-        racyCheckOk: true
-    }
-
-    try {
-        const result = await fetch(url, {
-            body: JSON.stringify(data),
-            headers: {
-                "X-Youtube-Client-Name": innertubeDetails.clientName,
-                "X-Youtube-Client-Version": innertubeDetails.clientVersion,
-                "User-Agent": `com.google.android.youtube/${innertubeDetails.clientVersion} (Linux; U; Android ${innertubeDetails.androidVersion}) gzip`,
-                "Content-Type": "application/json",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                "Accept-Language": "en-us,en;q=0.5",
-                "Sec-Fetch-Mode": "navigate",
-                "Connection": "close"
-            },
-            method: "POST"
-        });
-
-        if (result.ok) {
-            const response = await result.json();
-            const newVideoID = response?.videoDetails?.videoId ?? null;
-            if (newVideoID !== videoID) {
-                return {
-                    formats: [],
-                    duration: null,
-                    channelID: null,
-                    author: null,
-                    isLive: null,
-                    isUpcoming: null
-                };
-            }
-
-            const formats = response?.streamingData?.adaptiveFormats as InnerTubeFormat[];
-            const duration = response?.videoDetails?.lengthSeconds ? parseInt(response.videoDetails.lengthSeconds) : null;
-            const channelId = response?.videoDetails?.channelId ?? null;
-            const author = response?.videoDetails?.author ?? null;
-            const isLive = response?.videoDetails?.isLive ?? null;
-            const isUpcoming = response?.videoDetails?.isUpcoming ?? null;
-            const playabilityStatus = response?.playabilityStatus?.status ?? null;
-            if (formats) {
-                return {
-                    formats,
-                    duration,
-                    channelID: channelId,
-                    author,
-                    isLive,
-                    isUpcoming,
-                    playabilityStatus
-                };
-            }
-        }
-
-    } catch (e) { } //eslint-disable-line no-empty
-
-    return {
-        formats: [],
-        duration: null,
-        channelID: null,
-        author: null,
         isLive: null,
         isUpcoming: null
     };
