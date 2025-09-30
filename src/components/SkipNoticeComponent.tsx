@@ -172,11 +172,6 @@ class SkipNoticeComponent extends React.Component<SkipNoticeProps, SkipNoticeSta
 
     render(): React.ReactElement {
         const noticeStyle: React.CSSProperties = { }
-        if (this.contentContainer().onMobileYouTube) {
-            noticeStyle.bottom = "4em";
-            noticeStyle.transform = "scale(0.8) translate(10%, 10%)";
-        }
-
         const firstColumn = this.getSkipButton(0);
 
         return (
@@ -192,7 +187,6 @@ class SkipNoticeComponent extends React.Component<SkipNoticeProps, SkipNoticeSta
                 timed={true}
                 maxCountdownTime={this.state.maxCountdownTime}
                 style={noticeStyle}
-                biggerCloseButton={this.contentContainer().onMobileYouTube}
                 ref={this.noticeRef}
                 closeListener={() => this.closeListener()}
                 smaller={this.state.smaller}
@@ -373,10 +367,6 @@ class SkipNoticeComponent extends React.Component<SkipNoticeProps, SkipNoticeSta
                 color: ([SkipNoticeAction.Unskip0, SkipNoticeAction.Unskip1].includes(this.state.actionState))
                     ? this.selectedColor : this.unselectedColor
             };
-            if (this.contentContainer().onMobileYouTube) {
-                style.padding = "20px";
-                style.minWidth = "100px";
-            }
 
             const showSkipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
 

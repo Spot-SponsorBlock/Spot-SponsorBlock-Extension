@@ -3,13 +3,9 @@
   This script is used to get the details from the page and make them available for the content script by being injected directly into the page
 */
 
-import { versionHigher } from "./utils/versionHigher";
 import { PageType } from "./utils/video";
-import { version } from "../maze-utils/src/version.json";
 import { YT_DOMAINS } from "./utils/const";
-import { getThumbnailElementsToListenFor } from "../maze-utils/src/thumbnail-selectors";
 import { onMobile, onYouTubeCableTV } from "./utils/pageInfo";
-import { resetLastArtworkSrc, resetMediaSessionThumbnail, setMediaSessionInfo } from "../maze-utils/src/injected/mediaSession";
 import { isVisible } from "./utils/dom";
 
 interface StartMessage {
@@ -68,7 +64,6 @@ let lastVideo = "";
 let lastInline = false;
 let lastLive = false;
 const id = "sponsorblock";
-const elementsToListenFor = getThumbnailElementsToListenFor();
 
 // From BlockTube https://github.com/amitbl/blocktube/blob/9dc6dcee1847e592989103b0968092eb04f04b78/src/scripts/seed.js#L52-L58
 const fetchUrlsToRead = [
@@ -197,13 +192,7 @@ function findAllVideoIds(data: Record<string, unknown>): Set<string> {
 
 function windowMessageListener(message: MessageEvent) {
     if (message.data?.source) {
-        if (message.data?.source === "dearrow-media-session") {
-            setMediaSessionInfo(message.data.data);
-        } else if (message.data?.source === "dearrow-reset-media-session-thumbnail") {
-            resetMediaSessionThumbnail();
-        } else if (message.data?.source === "sb-reset-media-session-link") {
-            resetLastArtworkSrc();
-        } else if (message.data?.source === "sb-verify-time") {
+        if (message.data?.source === "sb-verify-time") {
             // If time is different and it is paused and no seek occurred since the message was sent
             const video = [...document.querySelectorAll("video")].filter((v) => isVisible(v))[0];
             if (playerClient 
@@ -233,101 +222,6 @@ let thumbnailMutationObserver: MutationObserver | null = null;
 // WARNING: Putting any parameters here will not work because SponsorBlock and the clickbait extension share document scripts
 // Only one will exist on the page at a time
 export function init(): void {
-    // Should it teardown an old copy of the script, to replace it if it is a newer version (two extensions installed at once)
-    const shouldTearDown = document.querySelector("#sponsorblock-document-script")?.getAttribute?.("teardown") === "true";
-    const versionBetter = (window["versionCB"] && 
-        (!window["versionCB"] || versionHigher(version, window["versionCB"])));
-    if (shouldTearDown || versionBetter) {
-        window["teardownCB"]?.();
-    } else if (window["versionCB"] && !versionHigher(version, window["versionCB"])) {
-        // Leave the other script be then
-        return;
-    }
-
-    window["versionCB"] = version;
-    window["teardownCB"] = teardown;
-
-    // For compatibility with older versions of the document script;
-    if (!document.querySelector("#sponsorblock-document-script")) {
-        const fakeDocScript = document.createElement("div");
-        fakeDocScript.id = "sponsorblock-document-script";
-        fakeDocScript.setAttribute("version", version)
-        const head = (document.head || document.documentElement);
-        head.appendChild(fakeDocScript);
-    }
-
-    document.addEventListener("yt-player-updated", setupPlayerClient);
-    document.addEventListener("yt-navigate-start", navigationStartSend);
-    document.addEventListener("yt-navigate-finish", navigateFinishSend);
-
-    if (document.location.host === "tv.youtube.com") {
-        document.addEventListener("yt-navigate", navigateFinishSend);
-        document.addEventListener("ytu.app.lib.player.interaction-event", setupPlayerClient);
-        if (document.getElementById("#movie_player")) {
-            setupPlayerClient({target: (document.getElementById("#movie_player")?.parentElement as unknown as EventTarget)} as CustomEvent);
-            sendVideoData();
-        }
-    }
-
-    if (onMobile()) {
-        window.addEventListener("state-navigateend", navigateFinishSend);
-    }
-
-    if (YT_DOMAINS.includes(window.location.host) && !onMobile() && !onYouTubeCableTV()) {
-        if (!window.customElements) {
-            // Old versions of Chrome that don't support "world" option for content scripts
-            createMutationObserver();
-        } else {
-            setTimeout(() => {
-                if (!hasSetupCustomElementListener) {
-                    createMutationObserver();
-                }
-            }, 2000);
-
-            // If customElement.define() is native, we will be given a class constructor and should extend it.
-            // If it is not native, we will be given a function and should wrap it.
-            const realCustomElementDefine = window.customElements.define.bind(window.customElements);
-            savedSetup.customElementDefine = realCustomElementDefine;
-            Object.defineProperty(window.customElements, "define", {
-                configurable: true,
-                enumerable: false,
-                writable: true,
-                value: (name: string, constructor: CustomElementConstructor, options: ElementDefinitionOptions) => {
-                    let replacedConstructor: CallableFunction = constructor;
-                    if (elementsToListenFor.includes(name)) {
-                        hasSetupCustomElementListener = true;
-                        if (thumbnailMutationObserver) {
-                            thumbnailMutationObserver.disconnect();
-                            thumbnailMutationObserver = null;
-                        }
-
-                        if (constructor.toString().startsWith("class")) {
-                            class WrappedThumbnail extends constructor {
-                                constructor() {
-                                    super();
-                                    sendMessage({ type: "newElement", name })
-                                }
-                            }
-                            replacedConstructor = WrappedThumbnail;
-                        } else {
-                            // based on https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target#new.target_using_reflect.construct
-                            // clearly marked as bad practice, but it works lol
-                            replacedConstructor = function () {
-                                constructor.call(this);
-                                sendMessage({ type: "newElement", name })
-                            };
-                            Object.setPrototypeOf(replacedConstructor.prototype, constructor.prototype);
-                            Object.setPrototypeOf(replacedConstructor, constructor);
-                        }
-                    }
-    
-                    realCustomElementDefine(name, replacedConstructor, options);
-                }
-            });
-        }
-
-    }
-
     // Hijack fetch to know when new videoIDs are loaded
     const browserFetch = window.fetch;
     savedSetup.browserFetch = browserFetch;
@@ -360,128 +254,5 @@ export function init(): void {
         });
     }
 
-    let lastSentDuration = 0;
-    const wrapper = (target, thisArg, args) => {
-        if (
-            args[0] 
-            && args[0] !== window
-            && typeof args[0].start === 'number'
-            && args[0].end
-            && args[0].namespace === 'ssap'
-            && args[0].id
-        ) {
-            const videoData = args[0];
-            if (videoData) {
-                const adDuration = videoData.start;
-                if (adDuration !== 0) {
-                    if (lastSentDuration !== adDuration) {
-                        lastSentDuration = adDuration;
-
-                        sendMessage({
-                            type: "adDuration",
-                            duration: adDuration / 1000
-                        })
-                    }
-                }
-            }
-        }
-        return Reflect.apply(target, thisArg, args);
-    };
-    const handler = {
-        apply: wrapper
-    };
-    savedSetup.browserPush = window.Array.prototype.push;
-    window.Array.prototype.push = new Proxy(window.Array.prototype.push, handler);
-
     window.addEventListener("message", windowMessageListener);
-
-    if (typeof(ytInitialData) !== "undefined") {
-        onNewVideoIds(ytInitialData);
-    } else {
-        // Wait until it is loaded in
-        const waitingInterval = setInterval(() => {
-            if (typeof(ytInitialData) !== "undefined") {
-                onNewVideoIds(ytInitialData);
-                clearInterval(waitingInterval);
-            }
-        }, 1);
-
-        savedSetup.waitingInterval = waitingInterval;
-    }
-
-    // Detect incompatible user script
-    setTimeout(() => {
-        if (setInterval.toString().includes("console.log(SCRIPTID, 'original interval:', interval, location.href)")) {
-            alert("Warning: You have the user script \"YouTube CPU Tamer\". This causes performance issues with SponsorBlock, and does not actually improve CPU performance. Please uninstall this user script.")
-        }
-    }, 1000);
-}
-
-function teardown() {
-    document.removeEventListener("yt-player-updated", setupPlayerClient);
-    document.removeEventListener("yt-navigate-start", navigationStartSend);
-    document.removeEventListener("yt-navigate-finish", navigateFinishSend);
-
-    if (document.location.host === "tv.youtube.com") {
-        document.removeEventListener("yt-navigate", navigateFinishSend);
-        document.removeEventListener("ytu.app.lib.player.interaction-event", setupPlayerClient);
-    }
-
-
-    if (onMobile()) {
-        window.removeEventListener("state-navigateend", navigateFinishSend);
-    }
-
-    if (savedSetup.browserFetch) {
-        window.fetch = savedSetup.browserFetch;
-    }
-
-    if (savedSetup.browserPush) {
-        window.Array.prototype.push = savedSetup.browserPush;
-    }
-
-    if (savedSetup.customElementDefine) {
-        window.customElements.define = savedSetup.customElementDefine;
-    }
-
-    if (savedSetup.waitingInterval) {
-        clearInterval(savedSetup.waitingInterval);
-    }
-
-    window.removeEventListener("message", windowMessageListener);
-
-    window["teardownCB"] = null;
-
-    hasSetupCustomElementListener = true;
-    thumbnailMutationObserver?.disconnect?.();
-}
-
-function createMutationObserver() {
-    if (thumbnailMutationObserver) {
-        thumbnailMutationObserver.disconnect();
-    }
-
-    thumbnailMutationObserver = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-            for (const node of mutation.addedNodes) {
-                if (node instanceof HTMLElement) {
-                    for (const name of elementsToListenFor) {
-                        if (node.tagName.toLowerCase() === name || node.querySelector(name)) {
-                            sendMessage({ type: "newElement", name });
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    thumbnailMutationObserver.observe(document.documentElement, { childList: true, subtree: true });
-
-    // In case new elements appeared before falling back
-    for (const name of elementsToListenFor) {
-        if (document.querySelector(name)) {
-            sendMessage({ type: "newElement", name });
-        }
-    }
 }

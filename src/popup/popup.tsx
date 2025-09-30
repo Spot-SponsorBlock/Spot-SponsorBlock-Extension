@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { PopupComponent } from "./PopupComponent";
-import { waitFor } from "../utils";
+import { waitFor } from "../utils/index";
 import Config from "../config";
 
 

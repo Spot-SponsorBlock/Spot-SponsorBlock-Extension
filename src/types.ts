@@ -13,7 +13,6 @@ export interface ContentContainer {
         sponsorVideoID;
         reskipSponsorTime: (segment: SponsorTime, forceSeek?: boolean) => void;
         updatePreviewBar: () => void;
-        onMobileYouTube: boolean;
         sponsorSubmissionNotice: SubmissionNotice;
         resetSponsorSubmissionNotice: (callRef?: boolean) => void;
         updateEditButtonsOnPlayer: () => void;

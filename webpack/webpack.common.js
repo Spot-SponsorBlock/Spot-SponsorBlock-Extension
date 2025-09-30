@@ -99,7 +99,6 @@ module.exports = env => {
             options: path.join(__dirname, srcDir + 'options.ts'),
             help: path.join(__dirname, srcDir + 'help.ts'),
             permissions: path.join(__dirname, srcDir + 'permissions.ts'),
-            document: path.join(__dirname, srcDir + 'document.ts'),
         },
         output: {
             path: path.join(__dirname, '../dist/js'),
@@ -190,7 +189,8 @@ module.exports = env => {
             new BuildManifest({
                 browser: env.browser,
                 pretty: env.mode === "production",
-                stream: env.stream
+                stream: env.stream,
+                autoupdate: env.autoupdate,
             }),
             new configDiffPlugin()
         ],
