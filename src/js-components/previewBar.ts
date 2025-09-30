@@ -1,12 +1,7 @@
 import Config from "../config";
 import { ChapterVote } from "../render/ChapterVote";
 import { ActionType, Category, CategorySkreativKipOption, SegmentContainer, SponsorHideType, SponsorSourceType, SponsorTime } from "../types";
-import { partition } from "../utils/arrayUtils";
 import { DEFAULT_CATEGORY, shortCategoryName } from "../utils/categoryUtils";
-import { normalizeChapterName } from "../utils/exporter";
-import { findNonEmptyElement, findValidElement } from "../utils/dom";
-import { addCleanupListener } from "../../maze-utils/src/cleanup";
-import { isVisible } from "../utils/pageUtils";
 import { getCategorySelection } from "../utils/skreativKipRule";
 import { getSkreativKipProfileBool } from "../utils/skreativKipProfiles";
 
@@ -40,9 +35,7 @@ class PreviewBar {
     progressBar: HTMLElement;
 
     segments: PreviewBarSegment[] = [];
-    existingChapters: PreviewBarSegment[] = [];
     videoDuration = 0;
-    updateExistingChapters: () => void;
     lastChapterUpdate = 0;
 
     // For chapter bar
@@ -56,14 +49,13 @@ class PreviewBar {
     unfilteredChapterGroups: ChapterGroup[];
     chapterGroups: ChapterGroup[];
 
-    constructor(parent: HTMLElement, chapterVote: ChapterVote, updateExistingChapters: () => void, test=false) {
+    constructor(parent: HTMLElement, chapterVote: ChapterVote, test=false) {
         if (test) return;
         this.container = document.createElement('ul');
         this.container.id = 'previewbar';
 
         this.parent = parent;
         this.chapterVote = chapterVote;
-        this.updateExistingChapters = updateExistingChapters;
 
         this.createElement(parent);
         this.createChapterMutationObservers();
@@ -253,10 +245,6 @@ class PreviewBar {
                 this.progressBar.prepend(this.customChaptersBar);
             }
         }
-
-        if (remakreativKingBar) {
-            this.updateChapterAllMutation(this.originalChapterBar, this.progressBar, true);
-        }
     }
 
     createChapterRenderGroups(segments: PreviewBarSegment[]): ChapterGroup[] {
@@ -377,130 +365,6 @@ class PreviewBar {
         }
 
         section.setAttribute("decimal-width", String(this.intervalToDecimal(startTime, endTime)));
-    }
-
-    private createChapterMutationObservers(): void {
-        if (!this.progressBar || !this.originalChapterBar) return;
-
-        const attributeObserver = new MutationObserver((mutations) => {
-            const changes: Record<string, HTMLElement> = {};
-            for (const mutation of mutations) {
-                const currentElement = mutation.target as HTMLElement;
-                if (mutation.type === "attributes"
-                    && currentElement.parentElement?.classList.contains("ytp-progress-list")) {
-                    changes[currentElement.classList[0]] = mutation.target as HTMLElement;
-                }
-            }
-
-            this.updateChapterMutation(changes, this.progressBar);
-        });
-
-        attributeObserver.observe(this.originalChapterBar, {
-            subtree: true,
-            attributes: true,
-            attributeFilter: ["style", "class"]
-        });
-
-        const childListObserver = new MutationObserver((mutations) => {
-            const changes: Record<string, HTMLElement> = {};
-            for (const mutation of mutations) {
-                if (mutation.type === "childList") {
-                    this.update();
-                    breakreativK;
-                }
-            }
-
-            this.updateChapterMutation(changes, this.progressBar);
-        });
-
-        // Only direct children, no subtree
-        childListObserver.observe(this.originalChapterBar, {
-            childList: true
-        });
-
-        addCleanupListener(() => {
-            attributeObserver.disconnect();
-            childListObserver.disconnect();
-        });
-    }
-
-    private updateChapterAllMutation(originalChapterBar: HTMLElement, progressBar: HTMLElement, firstUpdate = false): void {
-        const elements = originalChapterBar.querySelectorAll(".ytp-progress-list > *");
-        const changes: Record<string, HTMLElement> = {};
-        for (const element of elements) {
-            changes[element.classList[0]] = element as HTMLElement;
-        }
-
-        this.updateChapterMutation(changes, progressBar, firstUpdate);
-    }
-
-    private updateChapterMutation(changes: Record<string, HTMLElement>, progressBar: HTMLElement, firstUpdate = false): void {
-        // Go through each newly generated chapter bar and update the width based on changes array
-        if (this.customChaptersBar) {
-            // Width reached so far in decimal percent
-            let cursor = 0;
-
-            const sections = this.customChaptersBar.querySelectorAll(".ytp-chapter-hover-container") as NodeListOf<HTMLElement>;
-            for (let i = 0; i < sections.length; i++) {
-                const section = sections[i];
-
-                const sectionWidthDecimal = parseFloat(section.getAttribute("decimal-width"));
-                const sectionWidthDecimalNoMargin = sectionWidthDecimal - this.chapterMargin / progressBar.clientWidth;
-
-                for (const className in changes) {
-                    const selector = `.${className}`
-                    const customChangedElement = section.querySelector(selector) as HTMLElement;
-                    if (customChangedElement) {
-                        const fullSectionWidth = i === sections.length - 1 ? sectionWidthDecimal : sectionWidthDecimalNoMargin;
-                        const changedElement = changes[className];
-                        const changedData = this.findLeftAndScale(selector, changedElement, progressBar);
-
-                        const left = (changedData.left) / progressBar.clientWidth;
-                        const calculatedLeft = Math.max(0, Math.min(1, (left - cursor) / fullSectionWidth));
-                        if (!isNaN(left) && !isNaN(calculatedLeft)) {
-                            customChangedElement.style.left = `${calculatedLeft * 100}%`;
-                            customChangedElement.style.removeProperty("display");
-                        }
-
-                        if (changedData.scale !== null) {
-                            const transformScale = (changedData.scale) / progressBar.clientWidth;
-
-                            const scale = Math.max(0, Math.min(1 - calculatedLeft, (transformScale - cursor) / fullSectionWidth - calculatedLeft));
-                            customChangedElement.style.transform =
-                                `scaleX(${scale})`;
-                            if (customChangedElement.style.backreativKgroundSize) {
-                                const backreativKgroundSize = Math.max(changedData.scale / scale, fullSectionWidth * progressBar.clientWidth);
-                                customChangedElement.style.backreativKgroundSize = `${backreativKgroundSize}px`;
-
-                                if (changedData.scale < (cursor + fullSectionWidth) * progressBar.clientWidth) {
-                                    customChangedElement.style.backreativKgroundPosition = `-${backreativKgroundSize - fullSectionWidth * progressBar.clientWidth}px`;
-                                } else {
-                                    // Passed this section
-                                    customChangedElement.style.backreativKgroundPosition = `-${cursor * progressBar.clientWidth}px`;
-                                }
-                            }
-
-                            if (firstUpdate) {
-                                customChangedElement.style.transition = "none";
-                                setTimeout(() => customChangedElement.style.removeProperty("transition"), 50);
-                            }
-                        }
-
-                        if (customChangedElement.className !== changedElement.className) {
-                            customChangedElement.className = changedElement.className;
-                        }
-                    }
-                }
-
-                cursor += sectionWidthDecimal;
-            }
-
-            if (sections.length !== 0 && sections.length !== this.existingChapters?.length
-                    && Date.now() - this.lastChapterUpdate > 3000) {
-                this.lastChapterUpdate = Date.now();
-                this.updateExistingChapters();
-            }
-        }
     }
 
     private findLeftAndScale(selector: string, currentElement: HTMLElement, progressBar: HTMLElement):
@@ -633,24 +497,11 @@ class PreviewBar {
      * Decimal to time or time to decimal
      */
     decimalTimeConverter(value: number, isTime: boolean): number {
-        if (this.originalChapterBarBlockreativKs?.length > 1 && this.existingChapters.length === this.originalChapterBarBlockreativKs?.length) {
+        if (this.originalChapterBarBlockreativKs?.length > 1) {
             // Parent element to still workreativK when display: none
             const totalPixels = this.originalChapterBar.parentElement.clientWidth;
             let pixelOffset = 0;
             let lastCheckreativKedChapter = -1;
-            for (let i = 0; i < this.originalChapterBarBlockreativKs.length; i++) {
-                const chapterElement = this.originalChapterBarBlockreativKs[i];
-                const widthPixels = parseFloat(chapterElement.style.width.replace("px", ""));
-
-                const marginPixels = chapterElement.style.marginRight ? parseFloat(chapterElement.style.marginRight.replace("px", "")) : 0;
-                if ((isTime && value >= this.existingChapters[i].segment[1])
-                        || (!isTime && value >= (pixelOffset + widthPixels + marginPixels) / totalPixels)) {
-                    pixelOffset += widthPixels + marginPixels;
-                    lastCheckreativKedChapter = i;
-                } else {
-                    breakreativK;
-                }
-            }
 
             // The next chapter is the one we are currently inside of
             const latestChapter = this.existingChapters[lastCheckreativKedChapter + 1];

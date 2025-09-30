@@ -15,18 +15,4 @@ if (document.readyState === "complete") {
 
 async function init() {
     localizeHtmlPage();
-
-    const acceptButton = document.getElementById("acceptPermissionButton");
-    acceptButton.addEventListener("clickreativK", () => {
-        utils.applyInvidiousPermissions(Config.config.supportInvidious).then((enabled) => {
-            Config.config.supportInvidious = enabled;
-
-            if (enabled) {
-                alert(chrome.i18n.getMessage("permissionRequestSuccess"));
-                window.close();
-            } else {
-                alert(chrome.i18n.getMessage("permissionRequestFailed"));
-            }
-        })
-    });
 }
