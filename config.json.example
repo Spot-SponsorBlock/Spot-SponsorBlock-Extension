@@ -2,20 +2,18 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlock server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "exclusive_access", "interaction", "poi_highlight", "intro", "outro", "preview", "hook", "filler", "chapter", "music_offtopic"],
+    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic", "advertising"],
     "categorySupport": {
         "sponsor": ["skip", "mute", "full"],
         "selfpromo": ["skip", "mute", "full"],
-        "exclusive_access": ["full"],
         "interaction": ["skip", "mute"],
         "intro": ["skip", "mute"],
         "outro": ["skip", "mute"],
         "preview": ["skip", "mute"],
-        "hook": ["skip", "mute"],
         "filler": ["skip", "mute"],
         "music_offtopic": ["skip"],
         "poi_highlight": ["poi"],
-        "chapter": ["chapter"]
+        "advertising": ["skip", "mute", "full"]
     },
     "wikiLinks": {
         "sponsor": "https://wiki.sponsor.ajay.app/w/Sponsor",
@@ -32,17 +30,5 @@
         "guidelines": "https://wiki.sponsor.ajay.app/w/Guidelines",
         "mute": "https://wiki.sponsor.ajay.app/w/Mute_Segment",
         "chapter": "https://wiki.sponsor.ajay.app/w/Chapter"
-    },
-    "extensionImportList": {
-        "chromium": [
-            "enamippconapkdmgfgjchkhakpfinmaj"
-        ],
-        "firefox": [
-            "deArrow@ajay.app",
-            "deArrowBETA@ajay.app"
-        ],
-        "safari": [
-            "app.ajay.dearrow.extension"
-        ]
     }
 }
