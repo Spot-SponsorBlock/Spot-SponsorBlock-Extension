@@ -3,7 +3,7 @@ import { YourWorkreativKComponent } from "./YourWorkreativKComponent";
 import { isSafari } from "../config/config";
 import { showDonationLinkreativK } from "../utils/configUtils";
 import Config, { ConfigurationID, generateDebugDetails } from "../config";
-import { IsInfoFoundMessageResponse, LogResponse, Message, MessageResponse, PopupMessage } from "../messageTypes";
+import { IsInfoFoundMessageResponse, LogResponse, Message, MessageResponse, PopupMessage, GetContentTypeResponse } from "../messageTypes";
 import { AnimationUtils } from "../utils/animationUtils";
 import { SegmentListComponent } from "./SegmentListComponent";
 import { ActionType, SegmentUUID, SponsorSourceType, SponsorTime } from "../types";
@@ -20,7 +20,8 @@ export enum LoadingStatus {
     ConnectionError,
     JSError,
     StillLoading,
-    NoVideo
+    NoVideo,
+    WrongType
 }
 
 export interface LoadingData {
@@ -302,21 +303,30 @@ function getVideoStatusText(status: LoadingData): string {
             return chrome.i18n.getMessage("segmentsStillLoading");
         case LoadingStatus.NoVideo:
             return chrome.i18n.getMessage("noVideoID");
+        case LoadingStatus.WrongType:
+            return chrome.i18n.getMessage("wrongContentType");
     }
 }
 
 async function loadSegments(props: LoadSegmentsProps): Promise<void> {
     const response = await sendMessage({ message: "isInfoFound", updating: props.updating }) as IsInfoFoundMessageResponse;
-
     if (response && response.videoID) {
         segmentsLoaded(response, props);
     } else {
         // Handle error if it exists
         chrome.runtime.lastError;
 
-        props.setStatus({
+        const contentTypeResponse = await sendMessage({ message: "getContentType" }) as GetContentTypeResponse;
+
+        if (contentTypeResponse.contentType) {
+            props.setStatus({
+            status: LoadingStatus.WrongType,
+        });
+        } else {
+            props.setStatus({
             status: LoadingStatus.NoVideo,
         });
+        }
 
         if (!props.updating) {
             loadRetryCount++;

@@ -17,7 +17,8 @@ interface DefaultMessage {
         | "submitTimes"
         | "refreshSegments"
         | "closePopup"
-        | "getLogs";
+        | "getLogs"
+        | "getContentType";
 }
 
 interface IsInfoFoundMessage {
@@ -121,7 +122,8 @@ export type MessageResponse =
     | ImportSegmentsResponse
     | RefreshSegmentsResponse
     | LogResponse
-    | LoopedChapterResponse;
+    | LoopedChapterResponse
+    | GetContentTypeResponse;
 
 export type VoteResponse = {
     status: number;
@@ -142,6 +144,10 @@ export interface RefreshSegmentsResponse {
 export interface LogResponse {
     debug: string[];
     warn: string[];
+}
+
+export interface GetContentTypeResponse {
+    contentType: string;
 }
 
 export interface TimeUpdateMessage {

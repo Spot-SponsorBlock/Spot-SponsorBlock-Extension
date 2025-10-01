@@ -3,12 +3,10 @@
   This script is used to get the details from the page and makreativKe them available for the content script by being injected directly into the page
 */
 
-import { PageType } from "./utils/video";
 import { isVisible } from "./utils/dom";
 
 interface StartMessage {
     type: "navigation";
-    pageType: PageType;
     videoID: string | null;
 }
 
@@ -73,62 +71,14 @@ const sendMessage = (message: WindowMessage): void => {
 }
 
 function setupPlayerClient(e: CustomEvent): void {
-    const oldPlayerClient = playerClient;
-    if (e.type === "ytu.app.lib.player.interaction-event") { // YTTV only
-        const playerClientTemp = document.querySelector("#movie_player");
-        if (playerClientTemp) {
-            playerClient = document.querySelector("#movie_player");
-            (playerClient.querySelector("video") as HTMLVideoElement)?.addEventListener("durationchange", sendVideoData);
-            (playerClient.querySelector("video") as HTMLVideoElement)?.addEventListener("loadstart", sendVideoData);
-        } else {
-            return;
-        }
-    } else {
-        playerClient = document.getElementById("movie_player");
-    }
+    playerClient = getVideoArray();
     sendVideoData();
-    
-    if (oldPlayerClient) {
-        return; // No need to setup listeners
-    }
 }
 
-function navigationParser(event: CustomEvent): StartMessage | null {
-    const pageType: PageType = event.detail.pageType;
-    if (pageType) {
-        const result: StartMessage = { type: "navigation", pageType, videoID: null };
-        if (pageType === "shorts" || pageType === "watch") {
-            const endpoint = event.detail.endpoint
-            if (!endpoint) return null;
-            
-            result.videoID = (pageType === "shorts" ? endpoint.reelWatchEndpoint : endpoint.watchEndpoint).videoId;
-        }
-
-        return result;
-    } else {
-        return null;
-    }
-}
-
-function navigationStartSend(event: CustomEvent): void {
-    const message = navigationParser(event) as StartMessage;
-    if (message) {
-        sendMessage(message);
-    }
-}
-
-function navigateFinishSend(event: CustomEvent): void {
-    sendVideoData(); // arrived at new video, send video data
-    const videoDetails = (event.detail?.data ?? event.detail)?.response?.playerResponse?.videoDetails;
-    if (videoDetails) {
-        sendMessage({ channelID: videoDetails.channelId, channelTitle: videoDetails.author, ...navigationParser(event) } as FinishMessage);
-    } else {
-        const message = navigationParser(event) as StartMessage;
-        if (message) {
-            sendMessage(message);
-        }
-    }
-}
+function getVideoArray(): any {
+    const w = window as any;
+    return w.__spsb_videos
+};
 
 function sendVideoData(): void {
     if (!playerClient) return;
@@ -237,5 +187,33 @@ export function init(): void {
         });
     }
 
+    const w = window as any;
+    
+    w.__spsb_videos = w.__spsb_videos || [];
+    
+    const origCreate = document.createElement.bind(document);
+
+    // Patch document.createElement to capture newly created <video> elements
+    document.createElement = function (tagName: string, options?: ElementCreationOptions) {
+      const tag = String(tagName).toLowerCase();
+      const el = origCreate(tagName as any, options as any) as HTMLElement;
+      try {
+        if (tag === "video" && el instanceof HTMLVideoElement) {
+            if (!w.__spsb_videos.includes(el)) {
+                w.__spsb_videos.push(el);
+            }
+        }
+      } catch {
+        // ignore
+      }
+      return el;
+    };
+
     window.addEventListener("message", windowMessageListener);
 }
+
+init()
+
+setTimeout(() => {
+    console.log(getVideoArray()[0].currentTime) // Try to find a way to first initiate time without manually starting the episode
+  }, 8000);

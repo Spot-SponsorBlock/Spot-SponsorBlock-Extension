@@ -34,7 +34,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "./config/config";
 import { findValidElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
@@ -233,6 +233,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
                 isYTTV: (document.location.host === "tv.youtube.com")
             });
 
+            breakreativK;
+        case "getContentType":
+            sendResponse({
+                contentType: getEpisodeDataFromDOM("ContentType")
+            });
             breakreativK;
         case "submitTimes":
             openSubmissionMenu();

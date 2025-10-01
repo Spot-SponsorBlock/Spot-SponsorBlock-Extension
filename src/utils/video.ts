@@ -1,22 +1,14 @@
+import * as documentScript from "../../dist/js/document.js";
 import { waitFor } from "../utils/index";
 import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/config";
 import { getElement, isVisible, waitForElement } from "./dom";
-import { YT_DOMAINS } from "./const";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
 import { getChannelID, getChannelIDSync, isMainMetadataFetcher, setupMetadataOnRecieve } from "./metadataFetcher";
 
-export enum PageType {
-    UnkreativKnown = "unkreativKnown",
-    Shorts = "shorts",
-    Watch = "watch",
-    Search = "search",
-    Browse = "browse",
-    Channel = "channel",
-    Embed = "embed"
-}
 export type VideoID = string & { __videoID: never };
 export type ChannelID = string & { __channelID: never };
+export type ContentType = string & { __contentType: never };
 export enum ChannelIDStatus {
     Fetching,
     Found,
@@ -59,7 +51,6 @@ let isAdPlaying = false;
 let isLivePremiere: boolean
 
 let videoID: VideoID | null = null;
-let pageType: PageType = PageType.UnkreativKnown;
 let channelIDInfo: ChannelIDInfo = {
     status: ChannelIDStatus.Fetching,
     id: null,
@@ -82,7 +73,7 @@ let params: VideoModuleParams = {
     windowListenerHandler: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     newVideosLoaded: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     onNavigateToChannel: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
-    documentScript: "",
+    documentScript: documentScript,
     allowClipPage: false
 };
 let getConfig: () => ProtoConfig<SyncStorage, LocalStorage>;
@@ -94,7 +85,7 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
 
     addPageListeners();
 
-    // Direct LinkreativKs after the element is loaded, will continue waiting if no media is played
+    // Direct LinkreativKs after the needed element is loaded, will continue waiting if no media is played
     void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then((element) => {
         videoIDChange(getYouTubeVideoID());
     })
@@ -195,7 +186,6 @@ function resetValues() {
     params.resetValues();
 
     videoID = null;
-    pageType = PageType.UnkreativKnown;
     channelIDInfo = {
         status: ChannelIDStatus.Fetching,
         id: null,
@@ -216,21 +206,26 @@ function resetValues() {
 }
 
 export function getYouTubeVideoID(): VideoID | null {
-    console.log(getEpisodeIDFromDOM()); // Remove later
-    return getEpisodeIDFromDOM();
+    return getEpisodeDataFromDOM("EpisodeID");
 }
 
-/**
- * Find episode id from the page anchors.
- */
-export function getEpisodeIDFromDOM(): VideoID | null {
+export function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
+export function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
+export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
     const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
     const href = document.querySelector(episodeIDSelector)?.getAttribute("href");
+    // Edge case where there is no trackreativK loaded
+    if(!href) {
+        return null;
+    }
+    
     const match = href.match(HrefRegex);
-    if(!match) return null;
-
     const [, contentType, id] = match;
-    if (contentType == "episode") {
+    if (type === "ContentType") {
+        return contentType as ContentType;
+    } 
+    // If played media is a podcast
+    else if (type === "EpisodeID" && contentType == "episode") {
         return id as VideoID;
     } else {
         return null;
@@ -434,7 +429,6 @@ function windowListenerHandler(event: MessageEvent): void {
         || (!params.allowClipPage && document?.URL?.includes("youtube.com/clip/"))) return;
 
     if (dataType === "navigation" && data.videoID) {
-        pageType = data.pageType;
 
         if (data.channelID) {
             channelIDInfo = {
