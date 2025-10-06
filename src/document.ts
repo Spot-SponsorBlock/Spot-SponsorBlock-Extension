@@ -36,7 +36,12 @@ interface CurrentTimeWrongMessage {
     expectedTime: number;
 }
 
-type WindowMessage = StartMessage | FinishMessage | VideoData | ElementCreated | VideoIDsLoadedCreated | CurrentTimeWrongMessage;
+interface GetVideoMessage {
+    type: "getVideo";
+    video: HTMLVideoElement;
+}
+
+type WindowMessage = StartMessage | FinishMessage | VideoData | ElementCreated | VideoIDsLoadedCreated | CurrentTimeWrongMessage | GetVideoMessage;
 
 declare const ytInitialData: Record<string, string> | undefined;
 
@@ -76,8 +81,8 @@ function setupPlayerClient(e: CustomEvent): void {
 }
 
 function getVideoArray(): any {
-    const w = window as any;
-    return w.__spsb_videos
+    const vc = document.getElementById("__spsb_video_container");
+    return vc
 };
 
 function sendVideoData(): void {
@@ -124,6 +129,7 @@ function findAllVideoIds(data: Record<string, unknown>): Set<string> {
 }
 
 function windowMessageListener(message: MessageEvent) {
+    var video = getVideoArray();
     if (message.data?.source) {
         if (message.data?.source === "sb-verify-time") {
             // If time is different and it is paused and no seek occurred since the message was sent
@@ -138,6 +144,12 @@ function windowMessageListener(message: MessageEvent) {
                         expectedTime: message.data?.time
                     });
             }
+        } else if (message.data?.source === "sb-get-video") {
+            console.log ("videooon", video)
+            sendMessage({
+                type: "getVideo",
+                video: video
+            });
         }
     }
 }
@@ -152,44 +164,11 @@ const savedSetup = {
 let hasSetupCustomElementListener = false;
 let thumbnailMutationObserver: MutationObserver | null = null;
 
-// WARNING: Putting any parameters here will not work because SponsorBlock and the clickbait extension share document scripts
-// Only one will exist on the page at a time
 export function init(): void {
-    // Hijack fetch to know when new videoIDs are loaded
-    const browserFetch = window.fetch;
-    savedSetup.browserFetch = browserFetch;
-    window.fetch = (resource, init=undefined) => {
-        if (!(resource instanceof Request) || !fetchUrlsToRead.some(u => resource.url.includes(u))) {
-            return browserFetch(resource, init);
-        }
-
-        if (resource.url.includes("/youtubei/v1/next")) {
-            // Scrolling for more recommended videos
-            setTimeout(() => sendMessage({ type: "newElement", name: "" }), 1000);
-            setTimeout(() => sendMessage({ type: "newElement", name: "" }), 2500);
-            setTimeout(() => sendMessage({ type: "newElement", name: "" }), 8000);
-        }
-
-        // eslint-disable-next-line @typescript-eslint/no-misused-promises, no-async-promise-executor
-        return new Promise(async (resolve, reject) => {
-            try {
-                const response = await browserFetch(resource, init=init);
-                //   const url = new URL(resource.url);
-                const json = await response!.json();
-
-                // A new response has to be made because the body can only be read once
-                resolve(new Response(JSON.stringify(json), response!));
-
-                onNewVideoIds(json);
-            } catch (e) {
-                reject(e);
-            }
-        });
-    }
-
-    const w = window as any;
-    
-    w.__spsb_videos = w.__spsb_videos || [];
+    const container = document.createElement('div');
+    container.id = '__sb_video_container';
+    container.style.display = 'none';
+    document.documentElement.appendChild(container);
     
     const origCreate = document.createElement.bind(document);
 
@@ -199,8 +178,8 @@ export function init(): void {
       const el = origCreate(tagName as any, options as any) as HTMLElement;
       try {
         if (tag === "video" && el instanceof HTMLVideoElement) {
-            if (!w.__spsb_videos.includes(el)) {
-                w.__spsb_videos.push(el);
+            if (!container.querySelector('video')) {
+                container.appendChild(el);
             }
         }
       } catch {
@@ -215,5 +194,5 @@ export function init(): void {
 init()
 
 setTimeout(() => {
-    console.log(getVideoArray()[0].currentTime) // Try to find a way to first initiate time without manually starting the episode
-  }, 8000);
+           
+  }, 4000);

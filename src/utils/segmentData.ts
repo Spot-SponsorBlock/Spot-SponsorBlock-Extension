@@ -5,7 +5,7 @@ import * as CompileConfig from "../../config.json";
 import { ActionTypes, SponsorSourceType, SponsorTime, VideoID } from "../types";
 import { getHashParams } from "./pageUtils";
 import { asyncRequestToServer } from "./requests";
-import { extensionUserAgent } from ".";
+import { extensionUserAgent } from "./index";
 import { logRequest, serializeOrStringify } from "../requests/background-request-proxy";
 
 const segmentDataCache = new DataCache<VideoID, SegmentResponse>(() => {
