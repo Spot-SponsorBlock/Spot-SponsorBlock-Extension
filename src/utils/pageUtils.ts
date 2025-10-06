@@ -4,8 +4,8 @@ import { getSkipProfileBool } from "./skipProfiles";
 
 export function getControls(): HTMLElement {
     const controlsSelectors = [
-        // New YouTube (2025 April)
-        ".ytp-right-controls-right",
+        // Spotify
+        ".bCCN4Fy0V1eENMKmu7pM",
         // YouTube
         ".ytp-right-controls",
         // Mobile YouTube
@@ -21,7 +21,7 @@ export function getControls(): HTMLElement {
     ];
 
     for (const controlsSelector of controlsSelectors) {
-        const controls = Array.from(document.querySelectorAll(controlsSelector)).filter(el => !isInPreviewPlayer(el));
+        const controls = Array.from(document.querySelectorAll(controlsSelector));
 
         if (controls.length > 0) {
             return <HTMLElement> controls[controls.length - 1];
@@ -29,10 +29,6 @@ export function getControls(): HTMLElement {
     }
 
     return null;
-}
-
-export function isInPreviewPlayer(element: Element): boolean {
-    return !!element.closest("#inline-preview-player");
 }
 
 export function isVisible(element: HTMLElement): boolean {

@@ -4,20 +4,14 @@ import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/conf
 import { getElement, isVisible, waitForElement } from "./dom";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
-import { getChannelID, getChannelIDSync, isMainMetadataFetcher, setupMetadataOnRecieve } from "./metadataFetcher";
 
 export type VideoID = string & { __videoID: never };
 export type ChannelID = string & { __channelID: never };
 export type ContentType = string & { __contentType: never };
-export enum ChannelIDStatus {
-    Fetching,
-    Found,
-    Failed
-}
+
 export interface ChannelIDInfo {
     id: ChannelID | null;
     author: string | null;
-    status: ChannelIDStatus;
 }
 
 interface VideoModuleParams {
@@ -29,14 +23,13 @@ interface VideoModuleParams {
     resetValues: () => void;
     windowListenerHandler?: (event: MessageEvent) => void;
     newVideosLoaded?: (videoIDs: VideoID[]) => void; // Used to pre-cache data for videos
-    onNavigateToChannel?: () => void;
     documentScript: string;
-    allowClipPage?: boolean;
 }
 
 const embedTitleSelector = "a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
 const channelTrailerTitleSelector = "ytd-channel-video-player-renderer a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
 const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-link']"
+const channelIDSelector = "a[data-testid='context-item-info-show']"
 
 let video: HTMLVideoElement | null = null;
 let videoWidth: string | null = null;
@@ -47,16 +40,12 @@ const videosSetup: HTMLVideoElement[] = [];
 let waitingForNewVideo = false;
 
 let isAdPlaying = false;
-// if video is live or premiere
-let isLivePremiere: boolean
 
 let videoID: VideoID | null = null;
 let channelIDInfo: ChannelIDInfo = {
-    status: ChannelIDStatus.Fetching,
     id: null,
     author: null
 };
-let waitingForChannelID = false;
 let lastNonInlineVideoID: VideoID | null = null;
 let isInline = false;
 // For server-side rendered ads
@@ -72,9 +61,7 @@ let params: VideoModuleParams = {
     resetValues: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     windowListenerHandler: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     newVideosLoaded: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
-    onNavigateToChannel: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     documentScript: documentScript,
-    allowClipPage: false
 };
 let getConfig: () => ProtoConfig<SyncStorage, LocalStorage>;
 export function setupVideoModule(moduleParams: VideoModuleParams, config: () => ProtoConfig<SyncStorage, LocalStorage>) {
@@ -139,8 +126,7 @@ export async function triggerVideoIDChange(id: VideoID): Promise<boolean> {
 
 async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise<boolean> {
     // don't switch to invalid value
-    if (!id && videoID &&
-            (params.allowClipPage || !document?.URL?.includes("youtube.com/clip/"))) {
+    if (!id && videoID) {
         return false;
     }
 
@@ -151,11 +137,6 @@ async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise
 
     //if the id has not changed return unless the video element has changed
     if (videoID === id && (isVisible(video) || !video)) {
-        if (isOnChannelPage()) {
-            if (videoID) {
-                params.onNavigateToChannel?.();
-            }
-        }
         return false;
     }
 
@@ -175,7 +156,7 @@ async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise
     await waitFor(() => getConfig().isReady(), 5000, 1);
 
     // Update whitelist data when the video data is loaded
-    void whitelistCheck(id);
+    void whitelistCheck();
 
     params.videoIDChange(id);
 
@@ -187,11 +168,9 @@ function resetValues() {
 
     videoID = null;
     channelIDInfo = {
-        status: ChannelIDStatus.Fetching,
         id: null,
         author: null
     };
-    isLivePremiere = false;
     isInline = false;
     adDuration = 0;
     currentTimeWrong = false;
@@ -213,11 +192,9 @@ export function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
 export function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
 export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
     const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
-    const href = document.querySelector(episodeIDSelector)?.getAttribute("href");
+    const href = document.querySelector(episodeIDSelector).getAttribute("href");
     // Edge case where there is no track loaded
-    if(!href) {
-        return null;
-    }
+    if (!href) return null;
     
     const match = href.match(HrefRegex);
     const [, contentType, id] = match;
@@ -225,69 +202,31 @@ export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoI
         return contentType as ContentType;
     } 
     // If played media is a podcast
-    else if (type === "EpisodeID" && contentType == "episode") {
+    else if (type === "EpisodeID" && contentType === "episode") {
         return id as VideoID;
     } else {
         return null;
     }
 }
 
+export function getChannelID(): ChannelIDInfo | null{
+    const element = document.querySelector<HTMLAnchorElement>(channelIDSelector)
+    if (!element) return null;
+
+    const href = element.getAttribute("href");
+    const match = href.match(/\/show\/([^/]+)/);
+    
+    const author = element.textContent.trim();
+    const channelID = match[1];
+    return {
+        id: channelID,
+        author: author
+    } as ChannelIDInfo;
+}
+
 //checks if this channel is whitelisted, should be done only after the channelID has been loaded
-export async function whitelistCheck(videoID: VideoID) {
-    try {
-        waitingForChannelID = true;
-        
-        const channelIDPromises = [
-            waitFor(() => channelIDInfo.status === ChannelIDStatus.Found, 6000, 20),
-            getChannelID(videoID, !isMainMetadataFetcher())
-        ];
-
-        await Promise.race(channelIDPromises);
-
-        if (channelIDInfo.status !== ChannelIDStatus.Found) {
-            const channelInfo = getChannelIDSync(videoID);
-
-            if (channelInfo) {
-                channelIDInfo = {
-                    status: ChannelIDStatus.Found,
-                    id: channelInfo.channelID as ChannelID,
-                    author: channelInfo.author
-                }
-            }
-        }
-
-        // If found, continue on, it was set by the listener
-    } catch (e) {
-        const videoButtonHref = (document.querySelector("#social-links yt-button-shape a"))?.getAttribute("href")
-        let channelIDFallback: string | null | undefined = null;
-        if (videoButtonHref && videoButtonHref.includes("/channel/")) {
-            channelIDFallback = videoButtonHref.match(/\/channel\/(UC[a-zA-Z0-9_-]{22})/)?.[1] as ChannelID;
-        }
-
-        // Try fallback
-        channelIDFallback ??= (document.querySelector("a.ytd-video-owner-renderer") // YouTube
-            ?? document.querySelector("a.ytp-title-channel-logo") // YouTube Embed
-            ?? document.querySelector("a.slim-owner-icon-and-title")) // Mobile YouTube
-                ?.getAttribute("href")?.match(/\/(?:(?:channel|c|user|)\/|@)(UC[a-zA-Z0-9_-]{22}|[a-zA-Z0-9_-]+)/)?.[1];
-        
-        const authorFallback = (document.querySelector("ytd-channel-name a.yt-formatted-string") as HTMLElement)?.innerText
-
-        if (channelIDFallback) {
-            channelIDInfo = {
-                status: ChannelIDStatus.Found,
-                id: channelIDFallback as ChannelID,
-                author: authorFallback
-            };
-        } else {
-            channelIDInfo = {
-                status: ChannelIDStatus.Failed,
-                id: null,
-                author: null
-            };
-        }
-    }
-
-    waitingForChannelID = false;
+export async function whitelistCheck() {
+    channelIDInfo = getChannelID();
     params.channelIDChange(channelIDInfo);
 }
 
@@ -304,10 +243,8 @@ function setupVideoMutationListener() {
         }
 
         lastMutationListenerCheck = Date.now();
-        const mainVideoObject = getElement("#movie_player", true);
-        if (!mainVideoObject) return;
 
-        const videoContainer = mainVideoObject.querySelector(".html5-video-container") as HTMLElement;
+        const videoContainer = document.getElementById("__sb_video_container") as HTMLElement;
         if (!videoContainer) return;
 
         if (videoMutationObserver) videoMutationObserver.disconnect();
@@ -425,23 +362,11 @@ function windowListenerHandler(event: MessageEvent): void {
     const data = event.data;
     const dataType = data.type;
 
-    if (data.source !== "sponsorblock"
-        || (!params.allowClipPage && document?.URL?.includes("youtube.com/clip/"))) return;
+    if (data.source !== "sponsorblock") return;
 
     if (dataType === "navigation" && data.videoID) {
-
-        if (data.channelID) {
-            channelIDInfo = {
-                id: data.channelID,
-                author: data.channelTitle,
-                status: ChannelIDStatus.Found
-            };
-
-            if (!waitingForChannelID) {
-                void whitelistCheck(data.videoID);
-            }
-        }
-
+        channelIDInfo = getChannelID();
+        void whitelistCheck();
         void videoIDChange(data.videoID);
     } else if (dataType === "ad") {
         if (isAdPlaying != data.playing) {
@@ -456,7 +381,6 @@ function windowListenerHandler(event: MessageEvent): void {
 
         void videoIDChange(data.videoID, data.isInline);
 
-        isLivePremiere = data.isLive || data.isPremiere
     } else if (dataType === "videoIDsLoaded") {
         params.newVideosLoaded?.(data.videoIDs);
     } else if (dataType === "adDuration") {
@@ -495,70 +419,6 @@ function addPageListeners(): void {
         window.removeEventListener("playerInit", playerInitListener);
         window.removeEventListener("message", windowListenerHandler);
     });
-
-    setupMetadataOnRecieve();
-}
-
-export async function extractVideoID(link: HTMLAnchorElement) {
-    const videoIDRegex = link.href?.match?.(/(?:\?|&)v=(\S{11})|\/shorts\/(\S{11})/);
-    let videoID = (videoIDRegex?.[1] || videoIDRegex?.[2]) as VideoID;
-
-    if (!videoID) {
-        const imgBackground = link.querySelector(".ytp-tooltip-bg") as HTMLElement;
-        if (imgBackground) {
-            const href = imgBackground.style.backgroundImage?.match(/url\("(.+)"\)/)?.[1];
-            if (href) {
-                videoID = href.match(/\/vi\/(\S{11})/)?.[1] as VideoID;
-            }
-        } else {
-            const image = link.querySelector(`yt-image img, img.video-thumbnail-img, yt-img-shadow:not([id="avatar"]) img`) as HTMLImageElement;
-            if (image) {
-                let href = image.getAttribute("src");
-                if (!href) {
-                    // wait source to be setup
-                    await waitForImageSrc(image);
-                    href = image.getAttribute("src");
-                }
-    
-                if (href) {
-                    videoID = href.match(/\/vi\/(\S{11})/)?.[1] as VideoID;
-                }
-            }
-        }
-    }
-
-    return videoID;
-}
-
-const imagesWaitingFor = new Map<HTMLImageElement, Promise<void>>();
-function waitForImageSrc(image: HTMLImageElement): Promise<void> {
-    const existingPromise = imagesWaitingFor.get(image);
-    if (existingPromise === undefined) {
-        const result = new Promise<void>((resolve) => {
-            const observer = new MutationObserver((mutations) => {
-                if (!chrome.runtime?.id) return;
-
-                for (const mutation of mutations) {
-                    if (mutation.attributeName === "src"
-                            && image.src !== "") {
-                        observer.disconnect();
-                        resolve();
-
-                        imagesWaitingFor.delete(image);
-                        break;
-                    }
-                }
-            });
-
-            observer.observe(image, { attributes: true });
-        });
-
-        imagesWaitingFor.set(image, result);
-
-        return result;
-    }
-
-    return existingPromise;
 }
 
 let lastRefresh = 0;
@@ -614,17 +474,12 @@ export function setCurrentTime(time: number): void {
     }
 }
 
-export function getWaitingForChannelID(): boolean {
-    return waitingForChannelID;
-}
-
 export function getChannelIDInfo(): ChannelIDInfo {
     return channelIDInfo;
 }
 
 export function setChanelIDInfo(id: string, author: string): void {
     channelIDInfo = {
-        status: ChannelIDStatus.Found,
         id: id as ChannelID,
         author
     };
@@ -636,10 +491,6 @@ export function getIsAdPlaying(): boolean {
 
 export function setIsAdPlaying(value: boolean): void {
     isAdPlaying = value;
-}
-
-export function getIsLivePremiere(): boolean {
-    return isLivePremiere;
 }
 
 export function getLastNonInlineVideoID(): VideoID | null {
