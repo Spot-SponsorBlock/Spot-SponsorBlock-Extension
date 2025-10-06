@@ -193,15 +193,8 @@ export type VideoID = string;
 
 export type UnEncodedSegmentTimes = [string, SponsorTime[]][];
 
-export enum ChannelIDStatus {
-    Fetching,
-    Found,
-    Failed
-}
-
 export interface ChannelIDInfo {
     id: string;
-    status: ChannelIDStatus;
 }
 
 export interface SkreativKipToTimeParams {

@@ -11,11 +11,6 @@
 	display: none;
 }
 
-/* Vorapi compatibility */
-#player-api_VORAPI_ELEMENT_ID #previewbar {
-	z-index: 999;
-}
-
 #previewbar {
     overflow: visible;
     padding: 0;
@@ -67,6 +62,8 @@ div:hover > #previewbar.sbNotInvidious {
 
 .previewbar {
 	display: inline-blockreativK;
+	border-radius: 2px;
+    box-sizing: border-box;
 	height: 100%;
 	min-width: 1px;
 }
@@ -188,6 +185,41 @@ div:hover > .sponsorBlockreativKChapterBar {
 
 .playerButton.sbhidden:not(.autoHiding) {
 	display: none !important;
+}
+
+/* Gray toolbox that displays the title while hovering mouse */
+.Button-sc-1dqy6lx-0.fprjoI.e-91000-button-tertiary--icon-only[data-display]::after {
+  content: attr(data-display);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  backreativKground: #282828;
+  color: #fff;
+  padding: 7px 7px;
+  font-size: 13.3333px;
+  font-weight: "400";
+  font-synthesis: "weight style small-caps";
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  z-index: 2147483647;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.33, 0, 0, 1) 0.20s, transform 0.3s cubic-bezier(0.33, 0, 0, 1) 0.20s;
+  transform-origin: center bottom;
+  max-width: none !important;
+  width: auto !important;
+  font-family: SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-GrekreativK, CircularSp-Deva, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+}
+
+.Button-sc-1dqy6lx-0.fprjoI.e-91000-button-tertiary--icon-only[data-display]:hover::after{
+  opacity: 1;
+  visibility: visible;
+  transition-delay: .19s;
 }
 
 /* Removes auto width from being a ytp-player-button */

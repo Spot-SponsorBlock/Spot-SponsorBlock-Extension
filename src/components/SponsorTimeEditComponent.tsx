@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as CompileConfig from "../../config.json";
 import Config from "../config";
-import { ActionType, Category, ChannelIDStatus, ContentContainer, SponsorHideType, SponsorTime } from "../types";
+import { ActionType, Category, ContentContainer, SponsorHideType, SponsorTime } from "../types";
 import SubmissionNoticeComponent from "./SubmissionNoticeComponent";
 import { RectangleTooltip } from "../render/RectangleTooltip";
 import SelectorComponent, { SelectorOption } from "./SelectorComponent";
@@ -779,7 +779,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
     }
 
     async fetchSuggestions(description: string): Promise<void> {
-        if (this.props.contentContainer().channelIDInfo.status !== ChannelIDStatus.Found) return;
+        if (!this.props.contentContainer().channelIDInfo) return;
 
         this.fetchingSuggestions = true;
         try {

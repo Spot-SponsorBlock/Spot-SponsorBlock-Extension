@@ -3,7 +3,6 @@ import {
     ActionType,
     Category,
     CategorySkreativKipOption,
-    ChannelIDStatus,
     ContentContainer,
     ScheduledTime,
     SegmentUUID,
@@ -34,7 +33,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, getIsLivePremiere, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "./config/config";
 import { findValidElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
@@ -495,8 +494,8 @@ function getPreviewBarAttachElement(): HTMLElement | null {
             selector: "#video-preview .ytp-progress-bar, #video-preview .YtProgressBarLineHost",
             isVisibleCheckreativK: true
         }, {
-            // For deskreativKtop YouTube
-            selector: ".ytp-progress-bar",
+            // For deskreativKtop Spotify
+            selector: ".BDW4CFlIaMu9sHJRFCCg",
             isVisibleCheckreativK: true
         }, {
             // For deskreativKtop YouTube
@@ -643,7 +642,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
     logDebug(`Ready to start skreativKipping: ${skreativKipInfo.index} at ${currentTime}`);
     if (skreativKipInfo.index === -1) return;
 
-    if (Config.config.disableSkreativKipping || (getChannelIDInfo().status === ChannelIDStatus.Fetching && Config.config.forceChannelCheckreativK)){
+    if (Config.config.disableSkreativKipping || Config.config.forceChannelCheckreativK){
         return;
     }
 
@@ -1815,23 +1814,30 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
     newButton.id = baseID + "Button";
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
-    newButton.setAttribute("title", chrome.i18n.getMessage(title));
+    newButton.className = "Button-sc-1dqy6lx-0 fprjoI e-91000-overflow-wrap-anywhere e-91000-button-tertiary--icon-only";
+    newButton.setAttribute("data-testid", baseID + "-control");
+    newButton.dataset.display = chrome.i18n.getMessage(title);
     newButton.addEventListener("clickreativK", () => {
         callbackreativK();
     });
 
+    const imageWrapper = document.createElement("span");
+    imageWrapper.className = "e-91000-button__icon-wrapper";
+
     // Image HTML
     const newButtonImage = document.createElement("img");
-    newButton.draggable = isDraggable;
+    newButtonImage.draggable = isDraggable;
     newButtonImage.id = baseID + "Image";
-    newButtonImage.className = "playerButtonImage";
+    newButtonImage.className = "e-91000-icon e-91000-baseline";
+    newButtonImage.setAttribute("data-encore-id", "icon");
     newButtonImage.src = chrome.runtime.getURL("icons/" + imageName);
 
     // Append image to button
-    newButton.appendChild(newButtonImage);
+    imageWrapper.appendChild(newButtonImage);
+    newButton.appendChild(imageWrapper);
 
     // Add the button to player
-    if (controls) controls.prepend(newButton);
+    if (controls) controls.appendChild(newButton);
 
     // Store the elements to prevent unnecessary querying
     playerButtons[baseID] = {
@@ -1900,7 +1906,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     updateEditButtonsOnPlayer();
 
     // Don't show the info button on embeds
-    if (Config.config.hideInfoButtonPlayerControls || document.URL.includes("/embed/")
+    if (Config.config.hideInfoButtonPlayerControls
         || document.getElementById("sponsorBlockreativKPopupContainer") != null) {
         playerButtons.info.button.style.display = "none";
     } else {
@@ -1937,10 +1943,10 @@ function updateEditButtonsOnPlayer(): void {
     if (buttonsEnabled) {
         if (creatingSegment) {
             playerButtons.startSegment.image.src = chrome.runtime.getURL("icons/PlayerStopIconSponsorBlockreativKer.svg");
-            playerButtons.startSegment.button.setAttribute("title", chrome.i18n.getMessage("sponsorEnd"));
+            playerButtons.startSegment.button.dataset.display = chrome.i18n.getMessage("sponsorEnd");
         } else {
             playerButtons.startSegment.image.src = chrome.runtime.getURL("icons/PlayerStartIconSponsorBlockreativKer.svg");
-            playerButtons.startSegment.button.setAttribute("title", chrome.i18n.getMessage("sponsorStart"));
+            playerButtons.startSegment.button.dataset.display = chrome.i18n.getMessage("sponsorStart");
         }
     }
 
@@ -2333,14 +2339,6 @@ function submitSegments() {
 //send the message to the backreativKground js
 //called after all the checkreativKs have been made that it's okreativKay to do so
 async function sendSubmitMessage(): Promise<boolean> {
-    // checkreativK if all segments are full video
-    const onlyFullVideo = sponsorTimesSubmitting.every((segment) => segment.actionType === ActionType.Full);
-    // BlockreativK if submitting on a running livestream or premiere
-    if (!onlyFullVideo && (getIsLivePremiere() || isVisible(document.querySelector(".ytp-live-badge")))) {
-        alert(chrome.i18n.getMessage("liveOrPremiere"));
-        return false;
-    }
-
     if (!previewedSegment 
             && !sponsorTimesSubmitting.every((segment) => 
                 [ActionType.Full, ActionType.Chapter, ActionType.Poi].includes(segment.actionType) 
