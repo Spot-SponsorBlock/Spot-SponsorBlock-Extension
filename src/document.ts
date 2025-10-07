@@ -129,7 +129,6 @@ function findAllVideoIds(data: Record<string, unknown>): Set<string> {
 }
 
 function windowMessageListener(message: MessageEvent) {
-    var video = getVideoArray();
     if (message.data?.source) {
         if (message.data?.source === "sb-verify-time") {
             // If time is different and it is paused and no seek occurred since the message was sent
@@ -144,12 +143,6 @@ function windowMessageListener(message: MessageEvent) {
                         expectedTime: message.data?.time
                     });
             }
-        } else if (message.data?.source === "sb-get-video") {
-            console.log ("videooon", video)
-            sendMessage({
-                type: "getVideo",
-                video: video
-            });
         }
     }
 }
@@ -187,6 +180,109 @@ export function init(): void {
       }
       return el;
     };
+    
+    // Remove "file_urls_external" properties from JSON objects
+    function stripFileUrls(root: any) {
+        if (!root || typeof root !== "object") return;
+        const stack = [root];
+        while (stack.length) {
+            const node = stack.pop();
+            if (!node || typeof node !== "object") continue;
+            
+            if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
+                try { delete node.file_urls_external; } catch {}
+            }
+            
+            if (Array.isArray(node)) {
+                for (let i = node.length - 1; i >= 0; i--) {
+                    const v = node[i];
+                    if (v && typeof v === "object") stack.push(v);
+                }
+            } else {
+                for (const k in node) {
+                    if (Object.prototype.hasOwnProperty.call(node, k)) {
+                        const v = node[k];
+                        if (v && typeof v === "object") stack.push(v);
+                    }
+                }
+            }
+        }
+    }
+    
+    try {
+        const win: any = window;
+        
+        // Patch WebSocket onmessage to sanitize dealer.spotify.com messages
+        const NativeWS = win.WebSocket as typeof WebSocket | undefined;
+        if (NativeWS) {
+            const proto: any = NativeWS.prototype;
+            const origDesc = Object.getOwnPropertyDescriptor(proto, "onmessage");
+            
+            Object.defineProperty(proto, "onmessage", {
+                configurable: true,
+                enumerable: true,
+                get: function () {
+                    return origDesc && origDesc.get ? origDesc.get.call(this) : (this as any).__sb_injected_onmessage;
+                },
+                set: function (handler: any) {
+                    if (typeof handler !== "function") {
+                        if (origDesc && origDesc.set) origDesc.set.call(this, handler);
+                        else (this as any).__sb_injected_onmessage = handler;
+                        return;
+                    }
+                    
+                    // wrap the handler to intercept dealer websocket payloads
+                    const self = this;
+                    const wrapped = function (ev: MessageEvent) {
+                        try {
+                            if (typeof ev.data === "string") {
+                                const url = (self as any).url || "";
+                                if (typeof url === "string" && url.includes("dealer.spotify.com")) {
+                                    try {
+                                        const parsed = JSON.parse(ev.data);
+                                        stripFileUrls(parsed);
+                                        return handler.call(self, new MessageEvent("message", { data: JSON.stringify(parsed) }));
+                                    } catch { /* not JSON or manipulation failed - fall through */ }
+                                }
+                            }
+                        } catch { /* ignore errors and fall through */ }
+                        return handler.call(self, ev);
+                    };
+                    
+                    (this as any).__sb_injected_onmessage = wrapped;
+                    if (origDesc && origDesc.set) origDesc.set.call(this, wrapped);
+                    else this.addEventListener("message", wrapped);
+                }
+            });
+        }
+    } catch { /* ignore */ }
+    
+    try {
+        const win: any = window;
+        if (win.fetch) {
+            const origFetch = win.fetch.bind(win);
+            // patch fetch to sanitize spclient.spotify.com JSON responses
+            win.fetch = async (input: any, init?: any) => {
+                const url = typeof input === "string" ? input : (input && input.url) || "";
+                const isSpclient = typeof url === "string" && url.includes("spclient.spotify.com");
+                const res = await origFetch(input, init);
+                if (!isSpclient) return res;
+                try {
+                    const text = await res.clone().text();
+                     const parsed = JSON.parse(text);
+                     if (parsed && typeof parsed === "object") {
+                        stripFileUrls(parsed);
+                        return new Response(JSON.stringify(parsed), {
+                            status: res.status,
+                            statusText: res.statusText,
+                            headers: res.headers
+                        });
+                    }
+                } catch { /* parsing/manipulation failed - return original response */ }
+                return res;
+            };
+        }
+    } catch { /* ignore */ }
 
     window.addEventListener("message", windowMessageListener);
 }
