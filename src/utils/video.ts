@@ -4,6 +4,7 @@ import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/conf
 import { getElement, isVisible, waitForElement } from "./dom";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
+import { cleanPage } from "./pageCleaner";
 
 export type VideoID = string & { __videoID: never };
 export type ChannelID = string & { __channelID: never };
@@ -125,8 +126,12 @@ export async function triggerVideoIDChange(id: VideoID): Promise<boolean> {
 }
 
 async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise<boolean> {
-    // don't switch to invalid value
+    if (!id && !videoID) return false;
+    
+    //when content is no longer podcast
     if (!id && videoID) {
+        resetValues();
+        cleanPage();
         return false;
     }
 
@@ -176,12 +181,6 @@ function resetValues() {
     currentTimeWrong = false;
 
     isAdPlaying = false;
-
-    // Reset the last media session link
-    window.postMessage({
-        source: "sb-reset-media-session-link",
-        videoID: null
-    }, "/");
 }
 
 export function getYouTubeVideoID(): VideoID | null {
