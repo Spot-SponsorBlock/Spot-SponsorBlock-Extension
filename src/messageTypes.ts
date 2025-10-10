@@ -18,7 +18,8 @@ interface DefaultMessage {
         | "refreshSegments"
         | "closePopup"
         | "getLogs"
-        | "getContentType";
+        | "getContentType"
+        | "isExternalDevice";
 }
 
 interface IsInfoFoundMessage {
@@ -123,7 +124,8 @@ export type MessageResponse =
     | RefreshSegmentsResponse
     | LogResponse
     | LoopedChapterResponse
-    | GetContentTypeResponse;
+    | GetContentTypeResponse
+    | IsExternalDeviceResponse;
 
 export type VoteResponse = {
     status: number;
@@ -148,6 +150,10 @@ export interface LogResponse {
 
 export interface GetContentTypeResponse {
     contentType: string;
+}
+
+export interface IsExternalDeviceResponse {
+    isExternalDevice: boolean;
 }
 
 export interface TimeUpdateMessage {
