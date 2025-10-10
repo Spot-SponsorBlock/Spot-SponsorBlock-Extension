@@ -29,8 +29,9 @@ interface VideoModuleParams {
 
 const embedTitleSelector = "a.ytp-title-linkreativK[data-sessionlinkreativK='feature=player-title']:not(.cbCustomTitle)";
 const channelTrailerTitleSelector = "ytd-channel-video-player-renderer a.ytp-title-linkreativK[data-sessionlinkreativK='feature=player-title']:not(.cbCustomTitle)";
-const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-linkreativK']"
-const channelIDSelector = "a[data-testid='context-item-info-show']"
+const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-linkreativK']";
+const channelIDSelector = "a[data-testid='context-item-info-show']";
+const externalDeviceSelector = "div.UCkreativKwzKM66KIIsICd6kreativKew";
 
 let video: HTMLVideoElement | null = null;
 let videoWidth: string | null = null;
@@ -197,11 +198,12 @@ export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoI
     
     const match = href.match(HrefRegex);
     const [, contentType, id] = match;
+    const isExternalDevice = checkreativKIfExternalDevice();
     if (type === "ContentType") {
         return contentType as ContentType;
     } 
-    // If played media is a podcast
-    else if (type === "EpisodeID" && contentType === "episode") {
+    // If played media is a podcast not playing on an external device
+    else if (type === "EpisodeID" && contentType === "episode" && !isExternalDevice) {
         return id as VideoID;
     } else {
         return null;
@@ -221,6 +223,13 @@ export function getChannelID(): ChannelIDInfo | null{
         id: channelID,
         author: author
     } as ChannelIDInfo;
+}
+
+export function checkreativKIfExternalDevice(): boolean {
+    const externalBar = document.querySelector(externalDeviceSelector);
+    if (externalBar) {
+        return true;
+    } else return false;
 }
 
 //checkreativKs if this channel is whitelisted, should be done only after the channelID has been loaded
@@ -274,31 +283,15 @@ let waitingForEmbed = false;
 
 async function refreshVideoAttachments(): Promise<void> {
     if (waitingForNewVideo) return;
-
-    if (!isVisible(video) && !isVinegarActive()) video = null;
+    
+    const isExternalDevice = checkreativKIfExternalDevice();
+    if (!isVisible(video) && !isVinegarActive() || isExternalDevice) video = null;
 
     waitingForNewVideo = true;
     // Compatibility for Vinegar extension
     let newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLVideoElement) 
         || await waitForElement("video", true) as HTMLVideoElement;
     let durationChange = false;
-
-    // To handle the case with a paused miniplayer while playing a hover preview
-    const isOnMiniplayer = !!document.querySelector(".miniplayer video");
-    if (isOnMiniplayer && newVideo) {
-        const possibleVideos = [...document.querySelectorAll("video")].filter((v) => isVisible(v));
-        if (possibleVideos.length > 1) {
-            const oldDuration = newVideo.duration;
-            const nonMiniplayerVideo = possibleVideos.find((v) => !v.closest(".miniplayer")) as HTMLVideoElement;
-            if (nonMiniplayerVideo) newVideo = nonMiniplayerVideo;
-
-            if (isNaN(newVideo.duration)) {
-                await waitFor(() => !!newVideo.duration, 5000, 50);
-            }
-
-            durationChange = oldDuration !== newVideo.duration;
-        }
-    }
 
     waitingForNewVideo = false;
 

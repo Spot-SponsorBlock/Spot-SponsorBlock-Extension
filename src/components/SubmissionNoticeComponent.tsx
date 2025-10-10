@@ -35,8 +35,6 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
     noticeRef: React.MutableRefObject<NoticeComponent>;
     timeEditRefs: React.RefObject<SponsorTimeEditComponent>[];
 
-    videoObserver: MutationObserver;
-
     guidelinesReminder: GenericNotice;
 
     lastSegmentCount: number;
@@ -61,28 +59,12 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
     }
 
     componentDidMount(): void {
-        // Catch and rerender when the video size changes
-        //TODO: Use ResizeObserver when it is supported in TypeScript
-        this.videoObserver = new MutationObserver(() => {
-            this.forceUpdate();
-        });
-
-        this.videoObserver.observe(getVideo(), {
-            attributes: true
-        });
-
         // Prevent zooming while changing times
         document.getElementById("sponsorSkreativKipNoticeMiddleRow" + this.state.idSuffix).addEventListener('wheel', function (event) {
             if (event.ctrlKey) {
                 event.preventDefault();
             }
         }, {passive: false});
-    }
-
-    componentWillUnmount(): void {
-        if (this.videoObserver) {
-            this.videoObserver.disconnect();
-        }
     }
 
     componentDidUpdate() {

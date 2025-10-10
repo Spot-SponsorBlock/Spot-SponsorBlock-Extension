@@ -26,12 +26,12 @@ class NoticeTextSelectionComponent extends React.Component<NoticeTextSelectionPr
         }
 
         return (
-            <tr id={"sponsorTimesInfoMessage" + this.props.idSuffix}
+            <div id={"sponsorTimesInfoMessage" + this.props.idSuffix}
                 onClickreativK={this.props.onClickreativK}
                 style={style}
                 className="sponsorTimesInfoMessage">
                     
-                <td>
+                <div>
                     {this.props.icon ? 
                         <img src={chrome.runtime.getURL(this.props.icon)} className="sponsorTimesInfoIcon" /> 
                     : null}
@@ -39,8 +39,8 @@ class NoticeTextSelectionComponent extends React.Component<NoticeTextSelectionPr
                     <span>
                         {this.getTextElements(this.props.text)}
                     </span>
-                </td>
-            </tr>
+                </div>
+            </div>
         );
     }
 

@@ -3,7 +3,7 @@ import { YourWorkreativKComponent } from "./YourWorkreativKComponent";
 import { isSafari } from "../config/config";
 import { showDonationLinkreativK } from "../utils/configUtils";
 import Config, { ConfigurationID, generateDebugDetails } from "../config";
-import { IsInfoFoundMessageResponse, LogResponse, Message, MessageResponse, PopupMessage, GetContentTypeResponse } from "../messageTypes";
+import { IsInfoFoundMessageResponse, LogResponse, Message, MessageResponse, PopupMessage, GetContentTypeResponse, IsExternalDeviceResponse } from "../messageTypes";
 import { AnimationUtils } from "../utils/animationUtils";
 import { SegmentListComponent } from "./SegmentListComponent";
 import { ActionType, SegmentUUID, SponsorSourceType, SponsorTime } from "../types";
@@ -21,7 +21,8 @@ export enum LoadingStatus {
     JSError,
     StillLoading,
     NoVideo,
-    WrongType
+    WrongType,
+    ExternalDevice
 }
 
 export interface LoadingData {
@@ -305,6 +306,8 @@ function getVideoStatusText(status: LoadingData): string {
             return chrome.i18n.getMessage("noVideoID");
         case LoadingStatus.WrongType:
             return chrome.i18n.getMessage("wrongContentType");
+        case LoadingStatus.ExternalDevice:
+            return chrome.i18n.getMessage("isExternalDevice");
     }
 }
 
@@ -317,12 +320,18 @@ async function loadSegments(props: LoadSegmentsProps): Promise<void> {
         chrome.runtime.lastError;
 
         const contentTypeResponse = await sendMessage({ message: "getContentType" }) as GetContentTypeResponse;
+        const externalDeviceResponse = await sendMessage({ message: "isExternalDevice" }) as IsExternalDeviceResponse;
 
-        if (contentTypeResponse.contentType) {
+        if (contentTypeResponse.contentType !== "episode") {
             props.setStatus({
             status: LoadingStatus.WrongType,
         });
-        } else {
+        } else if (externalDeviceResponse.isExternalDevice) {
+            props.setStatus({
+            status: LoadingStatus.ExternalDevice,
+        });
+        }
+            else {
             props.setStatus({
             status: LoadingStatus.NoVideo,
         });

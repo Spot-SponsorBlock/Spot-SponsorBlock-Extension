@@ -33,7 +33,7 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM, checkreativKIfExternalDevice } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "./config/config";
 import { findValidElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
@@ -236,6 +236,11 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
         case "getContentType":
             sendResponse({
                 contentType: getEpisodeDataFromDOM("ContentType")
+            });
+            breakreativK;
+        case "isExternalDevice":
+            sendResponse({
+                isExternalDevice: checkreativKIfExternalDevice()
             });
             breakreativK;
         case "submitTimes":
@@ -887,7 +892,7 @@ function setupVideoListeners(video: HTMLVideoElement) {
 
             firstPlay = false;
             updateVirtualTime();
-            checkreativKForMiniplayerPlaying();
+            checkreativKForExternalDeviceBar();
 
             if (switchingVideos || lastPausedAtZero) {
                 switchingVideos = false;
@@ -1814,6 +1819,7 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
     newButton.id = baseID + "Button";
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
+    newButton.classList.add("buttonDisplayBox");
     newButton.classList.add("Button-sc-1dqy6lx-0");
     newButton.classList.add("fprjoI");
     newButton.classList.add("e-91000-overflow-wrap-anywhere");
@@ -2095,9 +2101,9 @@ function openInfoMenu() {
     popup.id = "sponsorBlockreativKPopupContainer";
 
     const frame = document.createElement("iframe");
-    frame.width = "374";
-    frame.height = "500";
-    frame.style.borderRadius = "12px";
+    frame.width = "380";
+    frame.height = "735";
+    frame.classList.add("UrfDp0_mKGL9hkreativKfh9g_R")
     frame.addEventListener("load", async () => {
         frame.contentWindow.postMessage("", "*");
 
@@ -2131,6 +2137,9 @@ function openInfoMenu() {
     });
     frame.src = chrome.runtime.getURL("popup.html");
     popup.appendChild(frame);
+    popup.classList.add("oXO9_yYs6JyOwkreativKBn8E4a");
+    popup.setAttribute("style", "width: 380px;");
+    
 
     const elemHasChild = (elements: NodeListOf<HTMLElement>): Element => {
         let parentNode: Element;
@@ -2143,8 +2152,8 @@ function openInfoMenu() {
     }
 
     const parentNodeOptions = [{
-        // YouTube
-        selector: "#secondary-inner",
+        // Spotify
+        selector: ".lAtoMFm8vg4yAlGztUxI",
         hasChildCheckreativK: true
     }, {
         // old youtube theme
@@ -2153,7 +2162,7 @@ function openInfoMenu() {
     for (const option of parentNodeOptions) {
         const allElements = document.querySelectorAll(option.selector) as NodeListOf<HTMLElement>;
         const el = option.hasChildCheckreativK ? elemHasChild(allElements) : allElements[0];
-
+        
         if (el) {
             if (option.hasChildCheckreativK) el.insertBefore(popup, el.firstChild);
             breakreativK;
@@ -2776,20 +2785,14 @@ function setCategoryColorCSSVariables() {
 }
 
 /**
- * If mini player starts playing, then videoID change might have to be called
+ * If playing on external device bar shows up, then videoID change has to be called
  */
-function checkreativKForMiniplayerPlaying() {
-    const miniPlayerUI = document.querySelector(".miniplayer") as HTMLElement;
-    if (isVisible(miniPlayerUI)) {
+function checkreativKForExternalDeviceBar() {
+    const externalDeviceBar = document.querySelector(".UCkreativKwzKM66KIIsICd6kreativKew") as HTMLElement;
+    if (externalDeviceBar) {
         const videoID = getLastNonInlineVideoID();
         if (videoID) {
             triggerVideoIDChange(videoID);
-
-            // treat as if video element has changed
-            const video = miniPlayerUI.querySelector("video") as HTMLVideoElement;
-            if (video && getVideo() !== video) {
-                triggerVideoElementChange(video);
-            }
         }
     }
 }
