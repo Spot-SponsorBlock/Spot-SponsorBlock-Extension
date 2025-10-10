@@ -46,7 +46,11 @@ class UpcomingNotice {
     }
 
     close(): void {
-        this.root.unmount();
+        // avoid unmounting while React is rendering
+        queueMicrotask(() => {
+            this.root.unmount();
+        });
+
         this.noticeElement.remove();
 
         this.closed = true;

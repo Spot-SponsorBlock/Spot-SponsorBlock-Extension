@@ -182,7 +182,7 @@ export default class Utils {
 
         findReferenceNode(): HTMLElement {
         const selectors = [
-            "#player-container-id", // Mobile YouTube
+            ".Root", // Spotify
             "#movie_player",
             ".html5-video-player", // May 2023 Card-Based YouTube Layout
             "#c4-player", // Channel Trailer

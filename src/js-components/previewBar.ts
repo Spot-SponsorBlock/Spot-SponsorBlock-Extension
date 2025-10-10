@@ -1,6 +1,7 @@
 import Config from "../config";
 import { ChapterVote } from "../render/ChapterVote";
 import { ActionType, Category, CategorySkipOption, SegmentContainer, SponsorHideType, SponsorSourceType, SponsorTime } from "../types";
+import { partition } from "../utils/arrayUtils";
 import { DEFAULT_CATEGORY, shortCategoryName } from "../utils/categoryUtils";
 import { getCategorySelection } from "../utils/skipRule";
 
@@ -24,6 +25,8 @@ interface ChapterGroup extends SegmentContainer {
 
 class PreviewBar {
     container: HTMLUListElement;
+    categoryTooltip?: HTMLDivElement;
+    categoryTooltipContainer?: HTMLElement;
 
     lastSmallestSegment: Record<string, {
         index: number;
@@ -57,15 +60,54 @@ class PreviewBar {
         this.chapterVote = chapterVote;
 
         this.createElement(parent);
+
+        this.setupTooltip();
+    }
+
+    setupTooltip(): void {
+        const seekBar = (document.querySelector(".NP0jD9fPfkH_VmIJ4hEg"));
+        if (!seekBar) return;
+
+        let mouseOnSeekBar = false;
+
+        seekBar.addEventListener("mouseenter", () => {
+            mouseOnSeekBar = true;
+        });
+
+        seekBar.addEventListener("mouseleave", () => {
+            mouseOnSeekBar = false;
+        });
+
+        seekBar.addEventListener("mousemove", (e: MouseEvent) => {
+            if (!mouseOnSeekBar || !chrome.runtime?.id) return;
+
+            const timeInSeconds = this.decimalToTime((e.clientX - seekBar.getBoundingClientRect().x) / seekBar.clientWidth);
+
+            // Find the segment at that location, using the shortest if multiple found
+            const [normalSegments] =
+                partition(this.segments,
+                    (segment) => segment.actionType !== ActionType.Chapter);
+            let mainSegment = this.getSmallestSegment(timeInSeconds, normalSegments, "normal");
+            
+            if (mainSegment === null) {
+                return;
+            } else {
+                const barElement = this.findPreviewBarBySegment(mainSegment.segment);
+                const title = this.getTooltipTitle(mainSegment);
+                if (title) {
+                    barElement.dataset.display = title;
+                }
+            }
+        });
     }
 
     private getTooltipTitle(segment: PreviewBarSegment): string {
-            const name = segment.description || shortCategoryName(segment.category);
-            if (segment.unsubmitted) {
-                return chrome.i18n.getMessage("unsubmitted") + " " + name;
-            } else {
-                return name;
-            }
+        const name = segment.description || shortCategoryName(segment.category);
+        if (segment.unsubmitted) {
+            return chrome.i18n.getMessage("unsubmitted") + " " + name;
+        } else {
+            return name;
+        }
     }
 
     createElement(parent?: HTMLElement): void {
@@ -124,6 +166,7 @@ class PreviewBar {
 
         const bar = document.createElement('li');
         bar.classList.add('previewbar');
+        bar.classList.add("chapterDisplayBox");
         if (barSegment.requiredSegment) bar.classList.add("requiredSegment");
         bar.innerHTML = showLarger ? '&nbsp;&nbsp;' : '&nbsp;';
 
@@ -134,12 +177,13 @@ class PreviewBar {
         bar.style.backgroundColor = `var(--sb-category-${fullCategoryName})`;
         bar.style.opacity = Config.config.barTypes[fullCategoryName]?.opacity;
 
+        // Used to find element
+        bar.dataset.segment = JSON.stringify(segment);
+
         bar.style.position = "absolute";
         const duration = Math.min(segment[1], this.videoDuration) - segment[0];
         const startTime = segment[1] ? Math.min(this.videoDuration, segment[0]) : segment[0];
         const endTime = Math.min(this.videoDuration, segment[1]);
-        const displayName = this.getTooltipTitle(barSegment)
-        bar.dataset.display = displayName;
         bar.style.left = this.timeToPercentage(startTime);
 
         if (duration > 0) {
@@ -197,50 +241,23 @@ class PreviewBar {
             }];
         }
 
-        // Create it from cloning
-        let createFromScratch = false;
         if (!this.customChaptersBar || !this.progressBar.contains(this.customChaptersBar)) {
             // Clear anything remaining
             document.querySelectorAll(".sponsorBlockChapterBar").forEach((element) => element.remove());
 
-            createFromScratch = true;
             this.customChaptersBar = this.originalChapterBar.cloneNode(true) as HTMLElement;
             this.customChaptersBar.classList.add("sponsorBlockChapterBar");
         }
 
         this.customChaptersBar.style.display = "none";
-        const originalSections = this.customChaptersBar.querySelectorAll(".ytp-chapter-hover-container");
-        const originalSection = originalSections[0];
-
-        // For switching to a video with less chapters
-        if (originalSections.length > this.chapterGroups.length) {
-            for (let i = originalSections.length - 1; i >= this.chapterGroups.length; i--) {
-                this.customChaptersBar.removeChild(originalSections[i]);
-            }
-        }
-
-        // Modify it to have sections for each segment
-        for (let i = 0; i < this.chapterGroups.length; i++) {
-            const chapter = this.chapterGroups[i].segment;
-            let newSection = originalSections[i] as HTMLElement;
-            if (!newSection) {
-                newSection = originalSection.cloneNode(true) as HTMLElement;
-
-                this.customChaptersBar.appendChild(newSection);
-            }
-
-            this.setupChapterSection(newSection, chapter[0], chapter[1], i !== this.chapterGroups.length - 1);
-        }
 
         // Hide old bar
         this.customChaptersBar.style.removeProperty("display");
 
-        if (createFromScratch) {
-            if (this.container?.parentElement === this.progressBar) {
-                this.progressBar.insertBefore(this.customChaptersBar, this.container.nextSibling);
-            } else {
-                this.progressBar.prepend(this.customChaptersBar);
-            }
+        if (this.container?.parentElement === this.progressBar) {
+            this.progressBar.insertBefore(this.customChaptersBar, this.container.nextSibling);
+        } else {
+            this.progressBar.prepend(this.customChaptersBar);
         }
     }
 
@@ -351,94 +368,27 @@ class PreviewBar {
         }
     }
 
-    private setupChapterSection(section: HTMLElement, startTime: number, endTime: number, addMargin: boolean): void {
-        const sizePercent = this.intervalToPercentage(startTime, endTime);
-        if (addMargin) {
-            section.style.marginRight = `${this.chapterMargin}px`;
-            section.style.width = `calc(${sizePercent} - ${this.chapterMargin}px)`;
-        } else {
-            section.style.marginRight = "0";
-            section.style.width = sizePercent;
+    private findPreviewBarBySegment(segment: [number, number]): HTMLLIElement | null {
+    const allBars = document.querySelectorAll<HTMLLIElement>('.previewbar');
+
+    for (const bar of allBars) {
+        const data = bar.dataset.segment;
+        if (!data) continue;
+
+        let barSegment: [number, number];
+        try {
+            barSegment = JSON.parse(data);
+        } catch {
+            continue;
         }
 
-        section.setAttribute("decimal-width", String(this.intervalToDecimal(startTime, endTime)));
-    }
-
-    private findLeftAndScale(selector: string, currentElement: HTMLElement, progressBar: HTMLElement):
-            { left: number; scale: number } {
-        const sections = currentElement.parentElement.parentElement.parentElement.children;
-        let currentWidth = 0;
-        let lastWidth = 0;
-
-        let left = 0;
-        let leftPosition = 0;
-
-        let scale = null;
-        let scalePosition = 0;
-        let scaleWidth = 0;
-        let lastScalePosition = 0;
-
-        for (let i = 0; i < sections.length; i++) {
-            const section = sections[i] as HTMLElement;
-            const checkElement = section.querySelector(selector) as HTMLElement;
-            const currentSectionWidthNoMargin = this.getPartialChapterSectionStyle(section, "width") ?? progressBar.clientWidth;
-            const currentSectionWidth = currentSectionWidthNoMargin
-                + this.getPartialChapterSectionStyle(section, "marginRight");
-
-            // First check for left
-            const checkLeft = parseFloat(checkElement.style.left.replace("px", ""));
-            if (checkLeft !== 0) {
-                left = checkLeft;
-                leftPosition = currentWidth;
-            }
-
-            // Then check for scale
-            const transformMatch = checkElement.style.transform.match(/scaleX\(([0-9.]+?)\)/);
-            if (transformMatch) {
-                const transformScale = parseFloat(transformMatch[1]);
-                const endPosition = transformScale + checkLeft / currentSectionWidthNoMargin;
-
-                if (lastScalePosition > 0.99999 && endPosition === 0) {
-                    // Last one was an end section that was fully filled
-                    scalePosition = currentWidth - lastWidth;
-                    break;
-                }
-
-                lastScalePosition = endPosition;
-
-                scale = transformScale;
-                scaleWidth = currentSectionWidthNoMargin;
-
-                if ((i === sections.length - 1 || endPosition < 0.99999) && endPosition > 0) {
-                    // reached the end of this section for sure
-                    // if the scale is always zero, then it will go through all sections but still return 0
-
-                    scalePosition = currentWidth;
-                    if (checkLeft !== 0) {
-                        scalePosition += left;
-                    }
-                    break;
-                }
-            }
-
-            lastWidth = currentSectionWidth;
-            currentWidth += lastWidth;
-        }
-
-        return {
-            left: left + leftPosition,
-            scale: scale !== null ? scale * scaleWidth + scalePosition : null
-        };
-    }
-
-    private getPartialChapterSectionStyle(element: HTMLElement, param: string): number {
-        const data = element.style[param];
-        if (data?.includes("%")) {
-            return this.customChaptersBar.clientWidth * (parseFloat(data.replace("%", "")) / 100);
-        } else {
-            return parseInt(element.style[param].match(/\d+/g)?.[0]) || 0;
+        if (barSegment[0] === segment[0] && barSegment[1] === segment[1]) {
+            return bar;
         }
     }
+
+    return null;
+}
 
     updateChapterText(segments: SponsorTime[], submittingSegments: SponsorTime[], currentTime: number): SponsorTime[] {
         segments ??= [];

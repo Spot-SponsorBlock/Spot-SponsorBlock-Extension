@@ -20,41 +20,17 @@
 	pointer-events: none;
 
 	height: 100%;
-	transform: scaleY(0.6) translateY(-30%) translateY(1.5px);
 	z-index: 42;
-
-	transition: transform .1s cubic-bezier(0,0,0.2,1);
 }
 
 ytu-time-bar.ytu-storyboard {
 	text-align: center;
 }
 
-/* May 2024 hover preview */
-.YtPlayerProgressBarProgressBar #previewbar {
-	transform: none;
-}
-
-.ytp-big-mode #previewbar {
-	transform: scaleY(0.625) translateY(-30%) translateY(1.5px);
-}
-
-.ytp-big-mode .sponsorTwoTooltips .sponsorCategoryTooltip {
-	top: 75px !important;
-}
-
 .progress-bar-line > #previewbar {
 	height: 3px;
 }
 
-div:hover > #previewbar.sbNotInvidious {
-	transform: scaleY(1);
-}
-
-/* Vorapis */
-.v3 #previewbar.sbNotInvidious {
-	transform: scaleY(1);
-}
 .sponsorCategoryTooltipVisible.ytp-progress-tooltip {
 	width: 216px !important;
   	/* left: 264.308px !important; */
@@ -66,16 +42,37 @@ div:hover > #previewbar.sbNotInvidious {
     box-sizing: border-box;
 	height: 100%;
 	min-width: 1px;
+
+	transition: opacity 0.3s ease;
+}
+
+.previewbar:hover {
+  opacity: 1 !important;
+}
+
+/* Make hitbox larger */
+.previewbar::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    bottom: -3px;
+    left: 0;
+    right: 0;
+    pointer-events: auto;
 }
 
 .previewbar.requiredSegment {
-	transform: scaleY(3);
+	opacity: 1 !important;
 }
 
 .previewbar.selectedSegment {
 	opacity: 1 !important;
 	z-index: 100;
-	transform: scaleY(1.5);
+}
+
+/* make chapters hoverable through the player circle */
+.A9z4_R9gegKhgs_3D7Os.ZqyJFPlr4PaabYeOC1jP {
+	pointer-events: none;
 }
 
 /* Make sure settings are upfront */
@@ -187,20 +184,21 @@ div:hover > .sponsorBlockChapterBar {
 	display: none !important;
 }
 
-/* Gray toolbox that displays the title while hovering mouse */
-.Button-sc-1dqy6lx-0.fprjoI.e-91000-button-tertiary--icon-only[data-display]::after {
+/* Gray boxes that display text while hovering mouse */
+
+.buttonDisplayBox[data-display]::after {
   content: attr(data-display);
   position: absolute;
   left: 50%;
   bottom: calc(100% + 9px);
   transform: translateX(-50%);
   white-space: nowrap;
-  background: #282828;
-  color: #fff;
+  background: rgb(40, 40, 40);
+  color: rgb(255, 255, 255);
   padding: 7px 7px;
   font-size: 13.3333px;
-  font-weight: "400";
-  font-synthesis: "weight style small-caps";
+  font-weight: 400;
+  font-synthesis: weight style small-caps;
   line-height: 0.9;
   letter-spacing: 0.01em;
   border-radius: 4px;
@@ -216,10 +214,41 @@ div:hover > .sponsorBlockChapterBar {
   font-family: SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", Helvetica, Arial, sans-serif;;
 }
 
-.Button-sc-1dqy6lx-0.fprjoI.e-91000-button-tertiary--icon-only[data-display]:hover::after{
-  opacity: 1;
+.buttonDisplayBox[data-display]:hover::after {
+  opacity: 1 !important;
   visibility: visible;
   transition-delay: .19s;
+}
+
+.chapterDisplayBox[data-display]::after {
+  content: attr(data-display);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 9px);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(40, 40, 40, 0.9);
+  color: rgb(255, 255, 255);
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 400;
+  font-synthesis: weight style small-caps;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  border-radius: 4px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  z-index: 2147483647;
+  pointer-events: none;
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.33, 0, 0, 1) 0.20s;
+  transform-origin: center bottom;
+  max-width: none !important;
+  width: auto !important;
+  font-family: SpotifyMixUI, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+}
+
+.chapterDisplayBox[data-display]:hover::after {
+	visibility: visible;
 }
 
 /* Removes auto width from being a ytp-player-button */
