@@ -42,13 +42,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 # Credit
 
-Forked from the amazing [SponsorBlock](https://github.com/NDevTK/YTSponsorSkip).
+Forked from the amazing [SponsorBlock](https://github.com/ajayyy/SponsorBlock).
 
 Icons made by:
 * <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 * <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 * <a href="https://iconmonstr.com/about/#creator">Alexander Kahlkopf</a> from <a href="https://iconmonstr.com/">iconmonstr.com</a> and are licensed by <a href="https://iconmonstr.com/license/">iconmonstr License</a>
-* <a href="https://dazzleui.gumroad.com/l/dazzleiconsfree?ref=svgrepo.com" title="Dazzle Ui">Dazzle Ui</a> from <a href="https://www.svgrepo.com/" target="SVG Repo">SVG Repo</a> and are licensed by <a href="https://creativecommons.org/licenses/by/4.0/" title="Creative Commons BY 4.0" target="_blank">CC 4.0 BY</a>
+* <a href="https://dazzleui.gumroad.com/l/dazzleiconsfree/" title="Dazzle Ui">Dazzle Ui</a> from <a href="https://www.svgrepo.com/" target="SVG Repo">SVG Repo</a> and are licensed by <a href="https://creativecommons.org/licenses/by/4.0/" title="Creative Commons BY 4.0" target="_blank">CC 4.0 BY</a>
 
 
 ### License
