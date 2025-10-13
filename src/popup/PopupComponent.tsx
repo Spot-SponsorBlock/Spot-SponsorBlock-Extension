@@ -128,7 +128,7 @@ export const PopupComponent = () => {
             <header className={"sbPopupLogo " + (Config.config.cleanPopup ? "hidden" : "")}>
                 <img src="icons/IconSponsorBlocker256px.png" alt="SponsorBlock Logo" width="40" height="40" id="sponsorBlockPopupLogo"/>
                 <p className="u-mZ">
-                    SponsorBlock
+                    Spot SponsorBlock
                 </p>
             </header>
 

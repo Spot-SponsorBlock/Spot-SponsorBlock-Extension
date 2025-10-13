@@ -129,7 +129,7 @@ export async function triggerVideoIDChange(id: VideoID): Promise<boolean> {
 async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise<boolean> {
     if (!id && !videoID) return false;
     
-    //when content is no longer podcast
+    //when content is no longer podcast or playing on an external device
     if (!id && videoID) {
         resetValues();
         cleanPage();
@@ -192,9 +192,10 @@ export function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
 export function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
 export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
     const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
-    const href = document.querySelector(episodeIDSelector).getAttribute("href");
+    const element = document.querySelector(episodeIDSelector);
     // Edge case where there is no track loaded
-    if (!href) return null;
+    if (!element) return null;
+    const href = element.getAttribute("href");
     
     const match = href.match(HrefRegex);
     const [, contentType, id] = match;
@@ -295,11 +296,8 @@ async function refreshVideoAttachments(): Promise<void> {
 
     waitingForNewVideo = false;
 
-    // Width used because sometimes video element is copied to a new place
-    if (video === newVideo && videoWidth === newVideo.style.width && !durationChange) return;
-
+    if (video === newVideo) return;
     video = newVideo;
-    videoWidth = newVideo.style.width;
     const isNewVideo = !videosSetup.includes(video);
 
     if (isNewVideo) {
