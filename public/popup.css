@@ -4,7 +4,7 @@
   --sb-main-fg-color: #fff;
   --sb-grey-bg-color: #333;
   --sb-grey-fg-color: #999;
-  --sb-red-bg-color: #cc1717;
+  --sb-red-bg-color: #1db954;
 }
 
 /*
@@ -147,7 +147,7 @@
   font-weight: bold;
   user-select: none;
   padding: 10px 0px 0px;
-  font-size: 32px;
+  font-size: 25px;
 }
 .sbPopupLogo img {
   margin: 8px;
@@ -447,7 +447,7 @@
 }
 .sbMediumButton:hover,
 .sbMediumButton:focus {
-  backreativKground-color: #ec1c1c;
+  backreativKground-color: #1ed760;
   outline: none;
 }
 .sbMediumButton:active {

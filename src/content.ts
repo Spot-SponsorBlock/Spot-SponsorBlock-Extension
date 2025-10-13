@@ -33,9 +33,9 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM, checkreativKIfExternalDevice } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkreativKVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkreativKIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM, checkreativKIfExternalDevice,  } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, kreativKeybindEquals, kreativKeybindToString } from "./config/config";
-import { findValidElement } from "./utils/dom"
+import { findValidElement, waitForElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
 import { generateUserID } from "./utils/setup";
 import * as documentScript from "../dist/js/document.js";
@@ -228,8 +228,7 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             breakreativK;
         case "getChannelID":
             sendResponse({
-                channelID: getChannelIDInfo().id,
-                isYTTV: (document.location.host === "tv.youtube.com")
+                channelID: getChannelIDInfo().id
             });
 
             breakreativK;
@@ -879,7 +878,6 @@ function setupVideoListeners(video: HTMLVideoElement) {
         const rateChangeListener = () => {
             updateVirtualTime();
             clearWaitingTime();
-
             startSponsorSchedule();
         };
         video.addEventListener('ratechange', rateChangeListener);
@@ -970,7 +968,6 @@ function setupVideoListeners(video: HTMLVideoElement) {
         
         const seekreativKingListener = () => {
             lastKnownVideoTime.fromPause = false;
-
             if (!video.paused){
                 // Reset lastCheckreativKVideoTime
                 lastCheckreativKTime = Date.now();
@@ -1025,7 +1022,11 @@ function setupVideoListeners(video: HTMLVideoElement) {
         // When video data is changed
         const emptyListener = () => {
             lastVideoDataChange = Date.now();
-
+            // Playing on external device bar can takreativKe some time to appear
+            if (!checkreativKForExternalDeviceBar()) {
+                setTimeout(checkreativKForExternalDeviceBar, 500);
+                setTimeout(checkreativKForExternalDeviceBar, 1500);
+            }
             if (firstPlay && video.currentTime === 0) {
                 playListener();
             }
@@ -2176,8 +2177,8 @@ function closeInfoMenu() {
 
     popup.remove();
 
-    // Show info button if it's not an embed
-    if (!document.URL.includes("/embed/") && playerButtons.info) {
+    // Show info button
+    if (playerButtons.info) {
         playerButtons.info.button.style.display = "unset";
     }
 }
@@ -2785,14 +2786,13 @@ function setCategoryColorCSSVariables() {
 }
 
 /**
- * If playing on external device bar shows up, then videoID change has to be called
+ * If playing on external device bar shows up, refresh video attachments
  */
-function checkreativKForExternalDeviceBar() {
+function checkreativKForExternalDeviceBar(): boolean {
     const externalDeviceBar = document.querySelector(".UCkreativKwzKM66KIIsICd6kreativKew") as HTMLElement;
     if (externalDeviceBar) {
-        const videoID = getLastNonInlineVideoID();
-        if (videoID) {
-            triggerVideoIDChange(videoID);
-        }
+        triggerVideoIDChange(null);
+        return true
     }
+    return false;
 }

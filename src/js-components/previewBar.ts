@@ -94,7 +94,7 @@ class PreviewBar {
             } else {
                 const barElement = this.findPreviewBarBySegment(mainSegment.segment);
                 const title = this.getTooltipTitle(mainSegment);
-                if (title) {
+                if (barElement && title) {
                     barElement.dataset.display = title;
                 }
             }
