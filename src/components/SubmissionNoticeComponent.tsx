@@ -270,8 +270,7 @@ class SubmissionNoticeComponent extends React.Component<SubmissionNoticeProps, S
 
     categoryChangeListener(index: number, category: Category): void {
         const dialogWidth = this.noticeRef?.current?.getElement()?.current?.offsetWidth;
-        if (category !== "chooseACategory" && Config.config.showCategoryGuidelines
-                && getVideo().offsetWidth > dialogWidth * 2) {
+        if (category !== "chooseACategory" && Config.config.showCategoryGuidelines) {
             const options = {
                 title:  chrome.i18n.getMessage(`category_${category}`),
                 textBoxes: getGuidelineInfo(category),
