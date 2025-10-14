@@ -20,7 +20,6 @@ export class CategoryPill {
 
     mutationObserver?: MutationObserver;
     onMobileYouTube: boolean;
-    onInvidious: boolean;
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;
     
     constructor() {
@@ -43,17 +42,12 @@ export class CategoryPill {
         let referenceNode =
             await waitFor(() => getYouTubeTitleNode());
 
-        // Experimental YouTube layout with description on right
-        const isOnDescriptionOnRightLayout = document.querySelector("#title #description");
-        if (isOnDescriptionOnRightLayout) {
-            referenceNode = referenceNode.parentElement;
-        }
-
         if (referenceNode && !referenceNode.contains(this.container)) {
             if (!this.container) {
                 this.container = document.createElement('span');
                 this.container.id = id;
-                this.container.style.display = "relative";
+                this.container.style.display = "flex";
+                this.container.style.alignItems = "center";
 
                 this.root = createRoot(this.container);
                 this.ref = React.createRef();
@@ -86,17 +80,8 @@ export class CategoryPill {
                     this.ref.current?.setState(this.lastState);
                 });
             }
-
-            // Use a parent because YouTube does weird things to the top level object
-            // react would have to rerender if container was the top level
-            const parent = document.createElement("span");
-            parent.id = "categoryPillParent";
-            parent.appendChild(this.container);
-
-            referenceNode.prepend(parent);
-            if (!isOnDescriptionOnRightLayout) {
-                referenceNode.style.display = "flex";
-            }
+            
+            referenceNode.prepend(this.container);
         }
     }
 

@@ -1,6 +1,6 @@
 export function getYouTubeTitleNodeSelector(): string {
     // Spotify desktop
-    return "div[data-testid='context-item-info-title'] a[data-testid='context-item-link']";
+    return ".GcbM2tnkJCvKOjRfp8RQ";
 }
 
 export function getYouTubeTitleNode(): HTMLElement {
