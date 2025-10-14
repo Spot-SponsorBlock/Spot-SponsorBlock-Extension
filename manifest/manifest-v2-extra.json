@@ -57,13 +57,13 @@
         "libs/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlBduz8A.woff2"
     ],
     "permissions": [
-        "https://open.spotify.com/*"
+        "https://sponsor.ajay.app/*"
     ],
     "optional_permissions": [
         "*://*/*"
     ],
     "browser_action": {
-        "default_title": "SponsorBlockreativK",
+        "default_title": "Spot SponsorBlockreativK",
         "default_popup": "popup.html",
         "default_icon": {
             "16": "icons/IconSponsorBlockreativKer16px.png",
@@ -117,11 +117,7 @@
     "content_scripts": [{
         "run_at": "document_start",
         "matches": [
-            "https://*.youtube.com/*",
-            "https://www.youtube-nocookreativKie.com/embed/*"
-        ],
-        "exclude_matches": [
-            "https://accounts.youtube.com/RotateCookreativKiesPage*"
+            "https://open.spotify.com/*"
         ],
         "all_frames": true,
         "js": [

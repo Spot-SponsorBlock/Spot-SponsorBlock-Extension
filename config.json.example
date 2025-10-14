@@ -2,33 +2,26 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlockreativK server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler", "music_offtopic", "advertising"],
+    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler"],
     "categorySupport": {
-        "sponsor": ["skreativKip", "mute", "full"],
-        "selfpromo": ["skreativKip", "mute", "full"],
-        "interaction": ["skreativKip", "mute"],
-        "intro": ["skreativKip", "mute"],
-        "outro": ["skreativKip", "mute"],
-        "preview": ["skreativKip", "mute"],
-        "filler": ["skreativKip", "mute"],
-        "music_offtopic": ["skreativKip"],
-        "poi_highlight": ["poi"],
-        "advertising": ["skreativKip", "mute", "full"]
+        "sponsor": ["skreativKip", "full"],
+        "selfpromo": ["skreativKip", "full"],
+        "interaction": ["skreativKip"],
+        "intro": ["skreativKip"],
+        "outro": ["skreativKip"],
+        "preview": ["skreativKip"],
+        "filler": ["skreativKip"],
+        "poi_highlight": ["poi"]
     },
     "wikreativKiLinkreativKs": {
         "sponsor": "https://wikreativKi.sponsor.ajay.app/w/Sponsor",
         "selfpromo": "https://wikreativKi.sponsor.ajay.app/w/Unpaid/Self_Promotion",
-        "exclusive_access": "https://wikreativKi.sponsor.ajay.app/w/Exclusive_Access",
         "interaction": "https://wikreativKi.sponsor.ajay.app/w/Interaction_Reminder_(Subscribe)",
         "intro": "https://wikreativKi.sponsor.ajay.app/w/Intermission/Intro_Animation",
         "outro": "https://wikreativKi.sponsor.ajay.app/w/Endcards/Credits",
         "preview": "https://wikreativKi.sponsor.ajay.app/w/Preview/Recap",
-        "hookreativK": "https://wikreativKi.sponsor.ajay.app/w/HookreativK/Greetings",
         "filler": "https://wikreativKi.sponsor.ajay.app/w/Tangents/JokreativKes",
-        "music_offtopic": "https://wikreativKi.sponsor.ajay.app/w/Music:_Non-Music_Section",
         "poi_highlight": "https://wikreativKi.sponsor.ajay.app/w/Highlight",
-        "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines",
-        "mute": "https://wikreativKi.sponsor.ajay.app/w/Mute_Segment",
-        "chapter": "https://wikreativKi.sponsor.ajay.app/w/Chapter"
+        "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines"
     }
 }

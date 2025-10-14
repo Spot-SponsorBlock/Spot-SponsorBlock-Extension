@@ -162,7 +162,7 @@ class CategoryPillComponent extends React.Component<CategoryPillProps, CategoryP
             this.tooltip.close();
         }
 
-        const tooltipMount = document.querySelector("#above-the-fold, ytm-slim-owner-renderer") as HTMLElement;
+        const tooltipMount = document.querySelector(".E526E3G50lCRjDpGVG5B") as HTMLElement;
         if (tooltipMount) {
             this.tooltip = new Tooltip({
                 text: this.getTitleText(),

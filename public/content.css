@@ -900,26 +900,6 @@ input::-webkreativKit-inner-spin-button {
     line-height: 1.5em;
 }
 
-/* Description on right layout */
-#title > #categoryPillParent {
-	font-size: 2rem;
-	font-weight: bold;
-	display: flex;
-	justify-content: center;
-	line-height: 2.8rem;
-}
-#title > #categoryPillParent > #categoryPill.cbPillOpen {
-	margin-bottom: 5px;
-}
-
-#categoryPillParent {
-	height: fit-content;
-    margin-top: auto;
-	margin-bottom: auto;
-
-    position: relative;
-}
-
 .sponsorBlockreativKCategoryPill {
     border-radius: 25px;
 	padding-left: 8px;
@@ -927,7 +907,7 @@ input::-webkreativKit-inner-spin-button {
 	margin-right: 3px;
 	cursor: pointer;
 	font-size: 75%;
-	height: 100%;
+	height: 70%;
 	align-items: center;
 	inline-size: max-content;
 }

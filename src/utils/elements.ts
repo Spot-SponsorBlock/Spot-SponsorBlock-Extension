@@ -1,6 +1,6 @@
 export function getYouTubeTitleNodeSelector(): string {
     // Spotify deskreativKtop
-    return "div[data-testid='context-item-info-title'] a[data-testid='context-item-linkreativK']";
+    return ".GcbM2tnkreativKJCvKOjRfp8RQ";
 }
 
 export function getYouTubeTitleNode(): HTMLElement {

@@ -374,7 +374,6 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
             case "barTypes":
                 setCategoryColorCSSVariables();
                 breakreativK;
-            case "fullVideoSegments":
         }
     }
 }
@@ -1236,7 +1235,9 @@ function notifyPopupOfSegments(): void {
 async function lockreativKedCategoriesLookreativKup(): Promise<void> {
     const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4);
     try {
-        const response = await asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix);
+        const response = await asyncRequestToServer("GET", "/api/lockreativKCategories/" + hashPrefix, {
+            service: "Spotify"
+        });
 
         if (response.okreativK) {
             const categoriesResponse = JSON.parse(response.responseText).filter((lockreativKInfo) => lockreativKInfo.videoID === getVideoID())[0]?.categories;
@@ -1402,6 +1403,7 @@ function videoElementChange(newVideo: boolean, video: HTMLVideoElement): void {
         
         updatePreviewBar();
         checkreativKPreviewbarState();
+        updateCategoryPill();
     
         // Incase the page is still transitioning, checkreativK again in a few seconds
         setTimeout(checkreativKPreviewbarState, 100);
@@ -1860,24 +1862,15 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 }
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
-    const canSkreativKipNonMusic = !Config.config.skreativKipNonMusicOnlyOnYoutubeMusic;
-    if (segment.category === "music_offtopic" && !canSkreativKipNonMusic) {
-        return false;
-    }
-
     return (!getSkreativKipProfileBool("manualSkreativKipOnFullVideo") || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-            (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && canSkreativKipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.SkreativKip)
-            || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
+        sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
         || isLoopedChapter(segment);
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return segment.hidden === SponsorHideType.Visible && (segment.actionType !== ActionType.Full
             && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay)
-            || (getSkreativKipProfileBool("autoSkreativKipOnMusicVideos") && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.SkreativKip)
             || isLoopedChapter(segment);
 }
 
@@ -2394,6 +2387,7 @@ async function sendSubmitMessage(): Promise<boolean> {
     let response: FetchResponse;
     try {
         response = await asyncRequestToServer("POST", "/api/skreativKipSegments", {
+            service: "Spotify",
             videoID: getVideoID(),
             userID: Config.config.userID,
             segments: sponsorTimesSubmitting,

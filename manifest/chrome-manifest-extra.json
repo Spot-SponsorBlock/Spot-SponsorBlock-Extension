@@ -73,7 +73,7 @@
             "./js/document.js"
         ],
         "matches": [
-            "https://*.spotify.com/*"
+            "https://open.spotify.com/*"
         ],
         "all_frames": true,
         "run_at": "document_start"
@@ -88,7 +88,7 @@
         "shared.css"
       ],
       "matches": [
-          "https://*.spotify.com/*"
+          "https://open.spotify.com/*"
       ],
       "all_frames": true,
       "run_at": "document_start"

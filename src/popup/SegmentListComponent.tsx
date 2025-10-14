@@ -256,6 +256,7 @@ function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, 
                                     copyToClipboardPopup(segment.UUID, sendMessage);
                                 } else {
                                     const segmentIDData = await asyncRequestToServer("GET", "/api/segmentID", {
+                                        service: "Spotify",
                                         UUID: segment.UUID,
                                         videoID: videoID
                                     });

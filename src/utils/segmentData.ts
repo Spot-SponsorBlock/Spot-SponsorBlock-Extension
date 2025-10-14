@@ -62,6 +62,7 @@ async function fetchSegmentsForVideo(videoID: VideoID): Promise<SegmentResponse>
     const hashPrefix = (await getHash(videoID, 1)).slice(0, 5) as VideoID & HashedValue;
     const hasDownvotedSegments = !!Config.local.downvotedSegments[hashPrefix.slice(0, 4)];
     const response = await asyncRequestToServer('GET', "/api/skreativKipSegments/" + hashPrefix, {
+        service: "Spotify",
         categories: CompileConfig.categoryList,
         actionTypes: ActionTypes,
         trimUUIDs: hasDownvotedSegments ? null : 5,

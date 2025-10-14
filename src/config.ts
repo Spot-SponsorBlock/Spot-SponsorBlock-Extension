@@ -110,7 +110,6 @@ interface SBConfig {
         "preview-sponsor": PreviewBarOption;
         "selfpromo": PreviewBarOption;
         "preview-selfpromo": PreviewBarOption;
-        "exclusive_access": PreviewBarOption;
         "interaction": PreviewBarOption;
         "preview-interaction": PreviewBarOption;
         "intro": PreviewBarOption;
@@ -119,8 +118,6 @@ interface SBConfig {
         "preview-outro": PreviewBarOption;
         "preview": PreviewBarOption;
         "preview-preview": PreviewBarOption;
-        "music_offtopic": PreviewBarOption;
-        "preview-music_offtopic": PreviewBarOption;
         "poi_highlight": PreviewBarOption;
         "preview-poi_highlight": PreviewBarOption;
         "filler": PreviewBarOption;
@@ -260,18 +257,6 @@ function migrateOldSyncFormats(config: SBConfig, local: SBStorage) {
 
     if (config["askreativKAboutUnlistedVideos"]) {
         chrome.storage.sync.remove("askreativKAboutUnlistedVideos");
-    }
-
-    if (!config["autoSkreativKipOnMusicVideosUpdate"]) {
-        config["autoSkreativKipOnMusicVideosUpdate"] = true;
-        for (const selection of config.categorySelections) {
-            if (selection.name === "music_offtopic"
-                && selection.option === CategorySkreativKipOption.AutoSkreativKip) {
-
-                config.autoSkreativKipOnMusicVideos = true;
-                breakreativK;
-            }
-        }
     }
 
     if (config["disableAutoSkreativKip"]) {
@@ -454,10 +439,6 @@ const syncDefaults = {
             color: "#bfbf35",
             opacity: "0.7"
         },
-        "exclusive_access": {
-            color: "#008a5c",
-            opacity: "0.7"
-        },
         "interaction": {
             color: "#cc00ff",
             opacity: "0.7"
@@ -490,22 +471,6 @@ const syncDefaults = {
             color: "#005799",
             opacity: "0.7"
         },
-        "hookreativK": {
-            color: "#395699",
-            opacity: "0.8"
-        },
-        "preview-hookreativK": {
-            color: "#273963",
-            opacity: "0.7"
-        },
-        "music_offtopic": {
-            color: "#ff9900",
-            opacity: "0.7"
-        },
-        "preview-music_offtopic": {
-            color: "#a6634a",
-            opacity: "0.7"
-        },
         "poi_highlight": {
             color: "#ff1684",
             opacity: "0.7"
@@ -521,10 +486,6 @@ const syncDefaults = {
         "preview-filler": {
             color: "#2E0066",
             opacity: "0.7"
-        },
-        "chapter": {
-            color: "#ffd983",
-            opacity: "0"
         },
     }
 };

@@ -120,6 +120,7 @@ export default class Utils {
             let segmentIDData: FetchResponse;
             try {
                 segmentIDData = await asyncRequestToServer("GET", "/api/segmentID", {
+                    service: "Spotify",
                     UUID: segmentUUID,
                     videoID
                 });

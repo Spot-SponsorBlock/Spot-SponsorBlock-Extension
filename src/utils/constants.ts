@@ -34,11 +34,6 @@ export function getGuidelineInfo(category: Category): TextBox[] {
                 icon: "icons/right-arrow.svg",
                 text: chrome.i18n.getMessage(`generic_guideline2`)
             }];
-        case "exclusive_access":
-            return [{
-                icon: "icons/money.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline1`)
-            }];
         case "interaction":
             return [{
                 icon: "icons/lightbulb.svg",
@@ -98,23 +93,6 @@ export function getGuidelineInfo(category: Category): TextBox[] {
                 icon: "icons/right-arrow.svg",
                 text: chrome.i18n.getMessage(`generic_guideline2`)
             }];
-        case "hookreativK":
-            return [{
-                icon: "icons/campaign.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline1`)
-            }, {
-                icon: "icons/checkreativK-smaller.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline2`)
-            }, {
-                icon: "icons/close-smaller.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline3`)
-            }, {
-                icon: "icons/segway.png",
-                text: chrome.i18n.getMessage(`generic_guideline1`)
-            }, {
-                icon: "icons/right-arrow.svg",
-                text: chrome.i18n.getMessage(`generic_guideline2`)
-            }];
         case "filler":
             return [{
                 icon: "icons/stopwatch.svg",
@@ -132,17 +110,6 @@ export function getGuidelineInfo(category: Category): TextBox[] {
                 icon: "icons/right-arrow.svg",
                 text: chrome.i18n.getMessage(`generic_guideline2`)
             }];
-        case "music_offtopic":
-            return [{
-                icon: "icons/music-note.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline1`)
-            }, {
-                icon: "icons/music-note.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline2`)
-            }, {
-                icon: "icons/right-arrow.svg",
-                text: chrome.i18n.getMessage(`generic_guideline2`)
-            }];
         case "poi_highlight":
             return [{
                 icon: "icons/star.svg",
@@ -152,17 +119,6 @@ export function getGuidelineInfo(category: Category): TextBox[] {
                 text: chrome.i18n.getMessage(`category_${category}_guideline2`)
             }, {
                 icon: "icons/bolt.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline3`)
-            }];
-        case "chapter":
-            return [{
-                icon: "icons/close-smaller.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline1`)
-            }, {
-                icon: "icons/checkreativK-smaller.svg",
-                text: chrome.i18n.getMessage(`category_${category}_guideline2`)
-            }, {
-                icon: "icons/checkreativK-smaller.svg",
                 text: chrome.i18n.getMessage(`category_${category}_guideline3`)
             }];
         default:
