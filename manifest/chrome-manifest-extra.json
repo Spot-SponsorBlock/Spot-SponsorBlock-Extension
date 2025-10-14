@@ -1,7 +1,7 @@
 {
   "host_permissions": [
     "https://open.spotify.com/*",
-    "http://localhost:8080/*"
+    "https://sponsor.ajay.app/*"
   ],
   "optional_host_permissions": [
     "*://*/*"
