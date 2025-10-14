@@ -772,36 +772,6 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
         }, () => {
             this.saveEditTimes();
         });
-
-        if (!this.fetchingSuggestions) {
-            this.fetchSuggestions(description);
-        }
-    }
-
-    async fetchSuggestions(description: string): Promise<void> {
-        if (!this.props.contentContainer().channelIDInfo) return;
-
-        this.fetchingSuggestions = true;
-        try {
-            const result = await asyncRequestToServer("GET", "/api/chapterNames", {
-                description,
-                channelID: this.props.contentContainer().channelIDInfo.id
-            });
-            if (result.ok) {
-                const names = JSON.parse(result.responseText) as {description: string}[];
-                this.setState({
-                    suggestedNames: names.map(n => ({
-                        label: n.description
-                    }))
-                });
-            } else if (result.status !== 404) {
-                logRequest(result, "SB", "chapter suggestion")
-            }
-        } catch (e) {
-            console.warn("[SB] Caught error while fetching chapter suggestions", e);
-        } finally {
-            this.fetchingSuggestions = false;
-        }
     }
 
     configUpdate(): void {

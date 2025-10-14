@@ -374,7 +374,6 @@ function contentConfigUpdateListener(changes: StorageChangesObject) {
             case "barTypes":
                 setCategoryColorCSSVariables();
                 break;
-            case "fullVideoSegments":
         }
     }
 }
@@ -1236,7 +1235,9 @@ function notifyPopupOfSegments(): void {
 async function lockedCategoriesLookup(): Promise<void> {
     const hashPrefix = (await getHash(getVideoID(), 1)).slice(0, 4);
     try {
-        const response = await asyncRequestToServer("GET", "/api/lockCategories/" + hashPrefix);
+        const response = await asyncRequestToServer("GET", "/api/lockCategories/" + hashPrefix, {
+            service: "Spotify"
+        });
 
         if (response.ok) {
             const categoriesResponse = JSON.parse(response.responseText).filter((lockInfo) => lockInfo.videoID === getVideoID())[0]?.categories;
@@ -1402,6 +1403,7 @@ function videoElementChange(newVideo: boolean, video: HTMLVideoElement): void {
         
         updatePreviewBar();
         checkPreviewbarState();
+        updateCategoryPill();
     
         // Incase the page is still transitioning, check again in a few seconds
         setTimeout(checkPreviewbarState, 100);
@@ -1860,24 +1862,15 @@ function createButton(baseID: string, title: string, callback: () => void, image
 }
 
 function shouldAutoSkip(segment: SponsorTime): boolean {
-    const canSkipNonMusic = !Config.config.skipNonMusicOnlyOnYoutubeMusic;
-    if (segment.category === "music_offtopic" && !canSkipNonMusic) {
-        return false;
-    }
-
     return (!getSkipProfileBool("manualSkipOnFullVideo") || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
         && (getCategorySelection(segment)?.option === CategorySkipOption.AutoSkip ||
-            (getSkipProfileBool("autoSkipOnMusicVideos") && canSkipNonMusic && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.Skip)
-            || sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
+        sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
         || isLoopedChapter(segment);
 }
 
 function shouldSkip(segment: SponsorTime): boolean {
     return segment.hidden === SponsorHideType.Visible && (segment.actionType !== ActionType.Full
             && getCategorySelection(segment)?.option > CategorySkipOption.ShowOverlay)
-            || (getSkipProfileBool("autoSkipOnMusicVideos") && sponsorTimes?.some((s) => s.category === "music_offtopic")
-                && segment.actionType === ActionType.Skip)
             || isLoopedChapter(segment);
 }
 
@@ -2394,6 +2387,7 @@ async function sendSubmitMessage(): Promise<boolean> {
     let response: FetchResponse;
     try {
         response = await asyncRequestToServer("POST", "/api/skipSegments", {
+            service: "Spotify",
             videoID: getVideoID(),
             userID: Config.config.userID,
             segments: sponsorTimesSubmitting,
