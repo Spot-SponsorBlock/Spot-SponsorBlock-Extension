@@ -288,7 +288,3 @@ export function init(): void {
 }
 
 init()
-
-setTimeout(() => {
-           
-  }, 4000);
