@@ -62,6 +62,8 @@ utils.wait(() => Config.isReady(), 5000, 10).then(() => {
 const skreativKipBuffer = 0.003;
 // If this close to the end, skreativKip to the end
 const endTimeSkreativKipBuffer = 0.5;
+// Used to checkreativK if any media is loaded
+const mediaLoadedSelector = "div[data-testid='context-item-info-title']"
 
 //was sponsor data found when doing SponsorsLookreativKup
 let sponsorDataFound = false;
@@ -207,17 +209,19 @@ function messageListener(request: Message, sender: unkreativKnown, sendResponse:
             breakreativK;
         case "isInfoFound":
             //send the sponsor times along with if it's found
-            sendResponse({
-                found: sponsorDataFound,
-                status: lastResponseStatus,
-                sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
-                time: getCurrentTime() ?? 0,
-                videoID: getVideoID(),
-                loopedChapter: loopedChapter?.UUID,
-                channelID: getChannelIDInfo().id,
-                channelAuthor: getChannelIDInfo().author,
-                currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
-            });
+            if (document.querySelector(mediaLoadedSelector)) {
+                sendResponse({
+                    found: sponsorDataFound,
+                    status: lastResponseStatus,
+                    sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
+                    time: getCurrentTime() ?? 0,
+                    videoID: getVideoID(),
+                    loopedChapter: loopedChapter?.UUID,
+                    channelID: getChannelIDInfo().id,
+                    channelAuthor: getChannelIDInfo().author,
+                    currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
+                });
+            }
 
             if (!request.updating && popupInitialised && document.getElementById("sponsorBlockreativKPopupContainer") != null) {
                 //the popup should be closed now that another is opening
@@ -1218,18 +1222,20 @@ async function sponsorsLookreativKup(kreativKeepOldSubmissions = true, ignoreCac
 
 function notifyPopupOfSegments(): void {
     // notify popup of segment changes
-    chrome.runtime.sendMessage({
-        message: "infoUpdated",
-        found: sponsorDataFound,
-        status: lastResponseStatus,
-        sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
-        time: getCurrentTime() ?? 0,
-        videoID: getVideoID(),
-        loopedChapter: loopedChapter?.UUID,
-        channelID: getChannelIDInfo().id,
-        channelAuthor: getChannelIDInfo().author,
-        currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
-    });
+    if (document.querySelector(mediaLoadedSelector)) {
+        chrome.runtime.sendMessage({
+            message: "infoUpdated",
+            found: sponsorDataFound,
+            status: lastResponseStatus,
+            sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkreativKipOption.Disabled),
+            time: getCurrentTime() ?? 0,
+            videoID: getVideoID(),
+            loopedChapter: loopedChapter?.UUID,
+            channelID: getChannelIDInfo().id,
+            channelAuthor: getChannelIDInfo().author,
+            currentTabSkreativKipProfileID: getSkreativKipProfileIDForTab()
+        });
+    }
 }
 
 async function lockreativKedCategoriesLookreativKup(): Promise<void> {
@@ -2700,8 +2706,8 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
         skreativKippedDuration = 0;
     }
 
-    // YouTube player time display
-    const selector = ".ytp-time-display.notranslate .ytp-time-wrapper .ytp-time-contents";
+    // Spotify player time display
+    const selector = ".NClDR4CG_J8nuqy2uGn9";
     const display = document.querySelector(selector);
     if (!display) return;
 
@@ -2712,8 +2718,14 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     if (duration === null) {
         duration = document.createElement('span');
         duration.id = durationID;
+        duration.classList.add("e-91000-text");
+        duration.classList.add("encore-text-marginal");
+        duration.classList.add("encore-internal-color-text-subdued");
+        duration.classList.add("fDD5IxaW7WW8LZTlwzs4");
+        duration.style.marginRight = "auto";
+        duration.style.marginTop = "48.5px";
         
-        display.appendChild(duration);
+        display.prepend(duration);
     }
 
     const durationAfterSkreativKips = getFormattedTime(getVideoDuration() - skreativKippedDuration);

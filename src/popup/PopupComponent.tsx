@@ -318,23 +318,28 @@ async function loadSegments(props: LoadSegmentsProps): Promise<void> {
     } else {
         // Handle error if it exists
         chrome.runtime.lastError;
-
-        const contentTypeResponse = await sendMessage({ message: "getContentType" }) as GetContentTypeResponse;
-        const externalDeviceResponse = await sendMessage({ message: "isExternalDevice" }) as IsExternalDeviceResponse;
-
-        if (contentTypeResponse.contentType !== "episode") {
+        
+        try {
+            const contentTypeResponse = await sendMessage({ message: "getContentType" }) as GetContentTypeResponse;
+            const externalDeviceResponse = await sendMessage({ message: "isExternalDevice" }) as IsExternalDeviceResponse;
+            
+            if (!contentTypeResponse.contentType) {
+                props.setStatus({
+                    status: LoadingStatus.NoVideo,
+                });
+            } else if (contentTypeResponse.contentType !== "episode") {
+                props.setStatus({
+                    status: LoadingStatus.WrongType,
+                });
+            } else if (externalDeviceResponse.isExternalDevice) {
+                props.setStatus({
+                    status: LoadingStatus.ExternalDevice,
+                });
+            }
+        } catch {
             props.setStatus({
-            status: LoadingStatus.WrongType,
-        });
-        } else if (externalDeviceResponse.isExternalDevice) {
-            props.setStatus({
-            status: LoadingStatus.ExternalDevice,
-        });
-        }
-            else {
-            props.setStatus({
-            status: LoadingStatus.NoVideo,
-        });
+                status: LoadingStatus.NoVideo,
+            });
         }
 
         if (!props.updating) {
@@ -355,7 +360,7 @@ function segmentsLoaded(response: IsInfoFoundMessageResponse, props: SegmentsLoa
         props.setStatus({
             status: LoadingStatus.JSError,
             error: response.status,
-        })
+        });
     } else if (response.status === 404 || response.status === 200) {
         props.setStatus({
             status: LoadingStatus.NoSegmentsFound

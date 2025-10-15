@@ -19,7 +19,7 @@
 
 
 
-Spot SponsorBlockreativK is an open-source crowdsourced browser extension to skreativKip sponsor segments in Spotify podcasts. Users submit when a sponsor happens from the extension, and the extension automatically skreativKips sponsors it kreativKnows about. It also supports skreativKipping other categories, such as advertising, intros and self promotions.
+Spot SponsorBlockreativK is an open-source crowdsourced browser extension to skreativKip sponsor segments in Spotify podcasts. Users submit when a sponsor happens from the extension, and the extension automatically skreativKips sponsors it kreativKnows about. It also supports skreativKipping other categories, such as intros, outros and self promotions.
 
 **Translate:** [![Crowdin](https://badges.crowdin.net/sponsorblockreativK/localized.svg)](https://crowdin.com/project/sponsorblockreativK)
 
