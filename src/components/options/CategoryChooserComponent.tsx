@@ -2,7 +2,7 @@ import * as React from "react";
 
 import * as CompileConfig from "../../../config.json";
 import { Category, CategorySelection, CategorySkipOption } from "../../types";
-import { CategorySkipOptionsComponent, ExtraOptionComponent, ToggleOption } from "./CategorySkipOptionsComponent";
+import { CategorySkipOptionsComponent, ToggleOption } from "./CategorySkipOptionsComponent";
 import { SelectOptionComponent } from "./SelectOptionComponent";
 import Config, { ConfigurationID, CustomConfiguration } from "../../config";
 import { generateUserID } from "../../utils/setup";
@@ -328,15 +328,7 @@ function ExtraOptionsComponent(props: {selectedConfigurationID: ConfigurationID}
 
     for (const optionGroup of options) {
         const groupResult: JSX.Element[] = [];
-        for (const option of optionGroup) {
-            groupResult.push(
-                <ExtraOptionComponent
-                    option={option}
-                    selectedConfigurationID={props.selectedConfigurationID}
-                    key={option.configKey}/>
-            );
-        }
-
+        
         result.push(
             <div className="extraOptionGroup" key={optionGroup.map(o => o.configKey).join("-")}>
                 {groupResult}

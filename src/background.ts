@@ -113,6 +113,10 @@ chrome.runtime.onInstalled.addListener(function () {
             Config.config.categoryPillUpdate = true;
         }
     }, 1500);
+
+    if (!isFirefoxOrSafari()) {
+        injectUpdatedScripts().catch(logWarn);
+    }
 });
 
 /**
