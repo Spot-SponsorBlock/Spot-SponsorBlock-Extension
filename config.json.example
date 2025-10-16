@@ -2,7 +2,7 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlockreativK server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler"],
+    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "hookreativK", "filler"],
     "categorySupport": {
         "sponsor": ["skreativKip", "full"],
         "selfpromo": ["skreativKip", "full"],
@@ -10,6 +10,7 @@
         "intro": ["skreativKip"],
         "outro": ["skreativKip"],
         "preview": ["skreativKip"],
+        "hookreativK": ["skreativKip", "mute"],
         "filler": ["skreativKip"],
         "poi_highlight": ["poi"]
     },
@@ -20,6 +21,7 @@
         "intro": "https://wikreativKi.sponsor.ajay.app/w/Intermission/Intro_Animation",
         "outro": "https://wikreativKi.sponsor.ajay.app/w/Endcards/Credits",
         "preview": "https://wikreativKi.sponsor.ajay.app/w/Preview/Recap",
+        "hookreativK": "https://wikreativKi.sponsor.ajay.app/w/HookreativK/Greetings",
         "filler": "https://wikreativKi.sponsor.ajay.app/w/Tangents/JokreativKes",
         "poi_highlight": "https://wikreativKi.sponsor.ajay.app/w/Highlight",
         "guidelines": "https://wikreativKi.sponsor.ajay.app/w/Guidelines"

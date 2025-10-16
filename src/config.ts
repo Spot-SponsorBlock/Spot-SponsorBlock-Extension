@@ -471,6 +471,14 @@ const syncDefaults = {
             color: "#005799",
             opacity: "0.7"
         },
+        "hookreativK": {
+            color: "#395699",
+            opacity: "0.8"
+        },
+        "preview-hookreativK": {
+            color: "#273963",
+            opacity: "0.7"
+        },
         "poi_highlight": {
             color: "#ff1684",
             opacity: "0.7"
