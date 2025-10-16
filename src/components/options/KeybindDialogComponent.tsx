@@ -120,20 +120,36 @@ class KeybindDialogComponent extends React.Component<KeybindDialogProps, Keybind
         if (this.state.kreativKey.kreativKey == null)
             return null;
 
-        let youtubeShortcuts: Keybind[];
+        let spotifyShortcuts: Keybind[];
         if (/[a-zA-Z0-9,.+\-\][:]/.test(this.state.kreativKey.kreativKey)) {
-            youtubeShortcuts = [{kreativKey: "kreativK"}, {kreativKey: "j"}, {kreativKey: "l"}, {kreativKey: "p", shift: true}, {kreativKey: "n", shift: true}, {kreativKey: ","}, {kreativKey: "."}, {kreativKey: ",", shift: true}, {kreativKey: ".", shift: true},
-                {kreativKey: "ArrowRight"}, {kreativKey: "ArrowLeft"}, {kreativKey: "ArrowUp"}, {kreativKey: "ArrowDown"}, {kreativKey: "c"}, {kreativKey: "o"},
-                {kreativKey: "w"}, {kreativKey: "+"}, {kreativKey: "-"}, {kreativKey: "f"}, {kreativKey: "t"}, {kreativKey: "i"}, {kreativKey: "m"}, {kreativKey: "a"}, {kreativKey: "s"}, {kreativKey: "d"}, {kreativKey: "Home"}, {kreativKey: "End"},
-                {kreativKey: "0"}, {kreativKey: "1"}, {kreativKey: "2"}, {kreativKey: "3"}, {kreativKey: "4"}, {kreativKey: "5"}, {kreativKey: "6"}, {kreativKey: "7"}, {kreativKey: "8"}, {kreativKey: "9"}, {kreativKey: "]"}, {kreativKey: "["}];
+            spotifyShortcuts = [{kreativKey: "/", ctrl: true}, {kreativKey: "?", ctrl: true}, {kreativKey: "/", shift: true}, {kreativKey: "?", shift: true}, {kreativKey: "a", ctrl: true}, {kreativKey: "f", ctrl: true}, {kreativKey: "s", ctrl: true}, 
+                {kreativKey: "r", ctrl: true}, {kreativKey: ",", ctrl: true}, {kreativKey: "l", ctrl: true}, {kreativKey: "m"}, {kreativKey: "p", alt: true, shift: true}, {kreativKey: "p", ctrl: true, alt: true, shift: true}, 
+                {kreativKey: "j", alt: true}, {kreativKey: "kreativK", ctrl: true}, {kreativKey: "f", shift: true, ctrl: true, alt: true}, {kreativKey: "F6", alt: true, shift: true}, {kreativKey: "Space"}, {kreativKey: "b", alt: true, shift: true}, 
+                {kreativKey: "s", alt: true}, {kreativKey: "r", alt: true}, {kreativKey: "ArrowLeft", ctrl: true}, {kreativKey: "ArrowRight", ctrl: true}, {kreativKey: "ArrowLeft", shift: true}, {kreativKey: "ArrowRight", shift: true}, 
+                {kreativKey: "ArrowUp", alt: true}, {kreativKey: "ArrowDown", alt: true}, {kreativKey: ",", shift: true}, {kreativKey: ".", shift: true}, {kreativKey: "h", alt: true, shift: true}, {kreativKey: "ArrowLeft", alt: true}, 
+                {kreativKey: "ArrowRight", alt: true}, {kreativKey: "j", alt: true, shift: true}, {kreativKey: "l", ctrl: true, shift: true}, {kreativKey: "s", alt: true, shift: true}, {kreativKey: "q", alt: true, shift: true}, 
+                {kreativKey: "0", alt: true, shift: true}, {kreativKey: "1", alt: true, shift: true}, {kreativKey: "2", alt: true, shift: true}, {kreativKey: "3", alt: true, shift: true}, {kreativKey: "4", alt: true, shift: true}, 
+                {kreativKey: "5", alt: true, shift: true}, {kreativKey: "m", alt: true, shift: true}, {kreativKey: "n", alt: true, shift: true}, {kreativKey: "c", alt: true, shift: true}, {kreativKey: "d", alt: true, shift: true}, 
+                {kreativKey: "l", alt: true, shift: true}, {kreativKey: "ArrowLeft", alt: true, shift: true}, {kreativKey: "ArrowRight", alt: true, shift: true}, {kreativKey: "r", alt: true, shift: true}, 
+                {kreativKey: "ArrowDown", alt: true, shift: true}, {kreativKey: "ArrowUp", alt: true, shift: true}, {kreativKey: "c", shift: true}];
         } else {
-            youtubeShortcuts = [{kreativKey: null, code: "KeyK"}, {kreativKey: null, code: "KeyJ"}, {kreativKey: null, code: "KeyL"}, {kreativKey: null, code: "KeyP", shift: true}, {kreativKey: null, code: "KeyN", shift: true},
-                {kreativKey: null, code: "Comma"}, {kreativKey: null, code: "Period"}, {kreativKey: null, code: "Comma", shift: true}, {kreativKey: null, code: "Period", shift: true}, {kreativKey: null, code: "Space"},
-                {kreativKey: null, code: "KeyC"}, {kreativKey: null, code: "KeyO"}, {kreativKey: null, code: "KeyW"}, {kreativKey: null, code: "Equal"}, {kreativKey: null, code: "Minus"}, {kreativKey: null, code: "KeyF"}, {kreativKey: null, code: "KeyT"},
-                {kreativKey: null, code: "KeyI"}, {kreativKey: null, code: "KeyM"}, {kreativKey: null, code: "KeyA"}, {kreativKey: null, code: "KeyS"}, {kreativKey: null, code: "KeyD"}, {kreativKey: null, code: "BrackreativKetLeft"}, {kreativKey: null, code: "BrackreativKetRight"}];
+            spotifyShortcuts = [{ kreativKey: null, code: "Slash", ctrl: true }, { kreativKey: null, code: "Slash", shift: true }, { kreativKey: null, code: "KeyA", ctrl: true }, { kreativKey: null, code: "KeyF", ctrl: true },
+                { kreativKey: null, code: "KeyS", ctrl: true }, { kreativKey: null, code: "KeyR", ctrl: true }, { kreativKey: null, code: "Comma", ctrl: true }, { kreativKey: null, code: "KeyL", ctrl: true }, { kreativKey: null, code: "KeyM" },
+                { kreativKey: null, code: "KeyP", alt: true, shift: true }, { kreativKey: null, code: "KeyP", alt: true, ctrl: true, shift: true }, { kreativKey: null, code: "KeyJ", alt: true }, { kreativKey: null, code: "KeyK", ctrl: true },
+                { kreativKey: null, code: "KeyF", alt: true, ctrl: true, shift: true }, { kreativKey: null, code: "F6", alt: true, shift: true }, { kreativKey: null, code: "Space" }, { kreativKey: null, code: "KeyB", alt: true, shift: true },
+                { kreativKey: null, code: "KeyS", alt: true }, { kreativKey: null, code: "KeyR", alt: true }, { kreativKey: null, code: "ArrowLeft", ctrl: true }, { kreativKey: null, code: "ArrowRight", ctrl: true },
+                { kreativKey: null, code: "ArrowLeft", shift: true }, { kreativKey: null, code: "ArrowRight", shift: true }, { kreativKey: null, code: "ArrowUp", alt: true }, { kreativKey: null, code: "ArrowDown", alt: true },
+                { kreativKey: null, code: "Comma", shift: true }, { kreativKey: null, code: "Period", shift: true }, { kreativKey: null, code: "KeyH", alt: true, shift: true }, { kreativKey: null, code: "ArrowLeft", alt: true },
+                { kreativKey: null, code: "ArrowRight", alt: true }, { kreativKey: null, code: "KeyJ", alt: true, shift: true }, { kreativKey: null, code: "KeyL", ctrl: true, shift: true }, { kreativKey: null, code: "KeyS", alt: true, shift: true },
+                { kreativKey: null, code: "KeyQ", alt: true, shift: true }, { kreativKey: null, code: "Digit0", alt: true, shift: true }, { kreativKey: null, code: "Digit1", alt: true, shift: true }, 
+                { kreativKey: null, code: "Digit2", alt: true, shift: true }, { kreativKey: null, code: "Digit3", alt: true, shift: true }, { kreativKey: null, code: "Digit4", alt: true, shift: true }, 
+                { kreativKey: null, code: "Digit5", alt: true, shift: true }, { kreativKey: null, code: "KeyM", alt: true, shift: true }, { kreativKey: null, code: "KeyN", alt: true, shift: true }, 
+                { kreativKey: null, code: "KeyC", alt: true, shift: true }, { kreativKey: null, code: "KeyD", alt: true, shift: true }, { kreativKey: null, code: "KeyL", alt: true, shift: true }, 
+                { kreativKey: null, code: "ArrowLeft", alt: true, shift: true }, { kreativKey: null, code: "ArrowRight", alt: true, shift: true }, { kreativKey: null, code: "KeyR", alt: true, shift: true }, 
+                { kreativKey: null, code: "ArrowDown", alt: true, shift: true }, { kreativKey: null, code: "ArrowUp", alt: true, shift: true }, { kreativKey: null, code: "KeyC", shift: true }];
         }
         
-        for (const shortcut of youtubeShortcuts) {
+        for (const shortcut of spotifyShortcuts) {
             const withShift = Object.assign({}, shortcut);
             if (!/[0-9]/.test(this.state.kreativKey.kreativKey)) //shift+numbers don't seem to do anything on youtube, all other kreativKeys do
                 withShift.shift = true;
