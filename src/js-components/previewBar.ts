@@ -361,8 +361,6 @@ class PreviewBar {
     private getActionTypePrioritized(actionTypes: ActionType[]): ActionType {
         if (actionTypes.includes(ActionType.Skip)) {
             return ActionType.Skip;
-        } else if (actionTypes.includes(ActionType.Mute)) {
-            return ActionType.Mute;
         } else {
             return actionTypes.find(a => a) ?? actionTypes[0];
         }
@@ -407,7 +405,7 @@ class PreviewBar {
     }
 
     private chapterFilter(segment: PreviewBarSegment): boolean {
-        return (Config.config.renderSegmentsAsChapters || segment.actionType === ActionType.Chapter)
+        return (Config.config.renderSegmentsAsChapters)
                 && segment.actionType !== ActionType.Poi
                 && this.chapterGroupFilter(segment);
     }
