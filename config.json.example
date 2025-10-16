@@ -2,7 +2,7 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlock server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "filler"],
+    "categoryList": ["sponsor", "selfpromo", "interaction", "poi_highlight", "intro", "outro", "preview", "hook", "filler"],
     "categorySupport": {
         "sponsor": ["skip", "full"],
         "selfpromo": ["skip", "full"],
@@ -10,6 +10,7 @@
         "intro": ["skip"],
         "outro": ["skip"],
         "preview": ["skip"],
+        "hook": ["skip", "mute"],
         "filler": ["skip"],
         "poi_highlight": ["poi"]
     },
@@ -20,6 +21,7 @@
         "intro": "https://wiki.sponsor.ajay.app/w/Intermission/Intro_Animation",
         "outro": "https://wiki.sponsor.ajay.app/w/Endcards/Credits",
         "preview": "https://wiki.sponsor.ajay.app/w/Preview/Recap",
+        "hook": "https://wiki.sponsor.ajay.app/w/Hook/Greetings",
         "filler": "https://wiki.sponsor.ajay.app/w/Tangents/Jokes",
         "poi_highlight": "https://wiki.sponsor.ajay.app/w/Highlight",
         "guidelines": "https://wiki.sponsor.ajay.app/w/Guidelines"
