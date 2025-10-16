@@ -120,20 +120,36 @@ class KeybindDialogComponent extends React.Component<KeybindDialogProps, Keybind
         if (this.state.key.key == null)
             return null;
 
-        let youtubeShortcuts: Keybind[];
+        let spotifyShortcuts: Keybind[];
         if (/[a-zA-Z0-9,.+\-\][:]/.test(this.state.key.key)) {
-            youtubeShortcuts = [{key: "k"}, {key: "j"}, {key: "l"}, {key: "p", shift: true}, {key: "n", shift: true}, {key: ","}, {key: "."}, {key: ",", shift: true}, {key: ".", shift: true},
-                {key: "ArrowRight"}, {key: "ArrowLeft"}, {key: "ArrowUp"}, {key: "ArrowDown"}, {key: "c"}, {key: "o"},
-                {key: "w"}, {key: "+"}, {key: "-"}, {key: "f"}, {key: "t"}, {key: "i"}, {key: "m"}, {key: "a"}, {key: "s"}, {key: "d"}, {key: "Home"}, {key: "End"},
-                {key: "0"}, {key: "1"}, {key: "2"}, {key: "3"}, {key: "4"}, {key: "5"}, {key: "6"}, {key: "7"}, {key: "8"}, {key: "9"}, {key: "]"}, {key: "["}];
+            spotifyShortcuts = [{key: "/", ctrl: true}, {key: "?", ctrl: true}, {key: "/", shift: true}, {key: "?", shift: true}, {key: "a", ctrl: true}, {key: "f", ctrl: true}, {key: "s", ctrl: true}, 
+                {key: "r", ctrl: true}, {key: ",", ctrl: true}, {key: "l", ctrl: true}, {key: "m"}, {key: "p", alt: true, shift: true}, {key: "p", ctrl: true, alt: true, shift: true}, 
+                {key: "j", alt: true}, {key: "k", ctrl: true}, {key: "f", shift: true, ctrl: true, alt: true}, {key: "F6", alt: true, shift: true}, {key: "Space"}, {key: "b", alt: true, shift: true}, 
+                {key: "s", alt: true}, {key: "r", alt: true}, {key: "ArrowLeft", ctrl: true}, {key: "ArrowRight", ctrl: true}, {key: "ArrowLeft", shift: true}, {key: "ArrowRight", shift: true}, 
+                {key: "ArrowUp", alt: true}, {key: "ArrowDown", alt: true}, {key: ",", shift: true}, {key: ".", shift: true}, {key: "h", alt: true, shift: true}, {key: "ArrowLeft", alt: true}, 
+                {key: "ArrowRight", alt: true}, {key: "j", alt: true, shift: true}, {key: "l", ctrl: true, shift: true}, {key: "s", alt: true, shift: true}, {key: "q", alt: true, shift: true}, 
+                {key: "0", alt: true, shift: true}, {key: "1", alt: true, shift: true}, {key: "2", alt: true, shift: true}, {key: "3", alt: true, shift: true}, {key: "4", alt: true, shift: true}, 
+                {key: "5", alt: true, shift: true}, {key: "m", alt: true, shift: true}, {key: "n", alt: true, shift: true}, {key: "c", alt: true, shift: true}, {key: "d", alt: true, shift: true}, 
+                {key: "l", alt: true, shift: true}, {key: "ArrowLeft", alt: true, shift: true}, {key: "ArrowRight", alt: true, shift: true}, {key: "r", alt: true, shift: true}, 
+                {key: "ArrowDown", alt: true, shift: true}, {key: "ArrowUp", alt: true, shift: true}, {key: "c", shift: true}];
         } else {
-            youtubeShortcuts = [{key: null, code: "KeyK"}, {key: null, code: "KeyJ"}, {key: null, code: "KeyL"}, {key: null, code: "KeyP", shift: true}, {key: null, code: "KeyN", shift: true},
-                {key: null, code: "Comma"}, {key: null, code: "Period"}, {key: null, code: "Comma", shift: true}, {key: null, code: "Period", shift: true}, {key: null, code: "Space"},
-                {key: null, code: "KeyC"}, {key: null, code: "KeyO"}, {key: null, code: "KeyW"}, {key: null, code: "Equal"}, {key: null, code: "Minus"}, {key: null, code: "KeyF"}, {key: null, code: "KeyT"},
-                {key: null, code: "KeyI"}, {key: null, code: "KeyM"}, {key: null, code: "KeyA"}, {key: null, code: "KeyS"}, {key: null, code: "KeyD"}, {key: null, code: "BracketLeft"}, {key: null, code: "BracketRight"}];
+            spotifyShortcuts = [{ key: null, code: "Slash", ctrl: true }, { key: null, code: "Slash", shift: true }, { key: null, code: "KeyA", ctrl: true }, { key: null, code: "KeyF", ctrl: true },
+                { key: null, code: "KeyS", ctrl: true }, { key: null, code: "KeyR", ctrl: true }, { key: null, code: "Comma", ctrl: true }, { key: null, code: "KeyL", ctrl: true }, { key: null, code: "KeyM" },
+                { key: null, code: "KeyP", alt: true, shift: true }, { key: null, code: "KeyP", alt: true, ctrl: true, shift: true }, { key: null, code: "KeyJ", alt: true }, { key: null, code: "KeyK", ctrl: true },
+                { key: null, code: "KeyF", alt: true, ctrl: true, shift: true }, { key: null, code: "F6", alt: true, shift: true }, { key: null, code: "Space" }, { key: null, code: "KeyB", alt: true, shift: true },
+                { key: null, code: "KeyS", alt: true }, { key: null, code: "KeyR", alt: true }, { key: null, code: "ArrowLeft", ctrl: true }, { key: null, code: "ArrowRight", ctrl: true },
+                { key: null, code: "ArrowLeft", shift: true }, { key: null, code: "ArrowRight", shift: true }, { key: null, code: "ArrowUp", alt: true }, { key: null, code: "ArrowDown", alt: true },
+                { key: null, code: "Comma", shift: true }, { key: null, code: "Period", shift: true }, { key: null, code: "KeyH", alt: true, shift: true }, { key: null, code: "ArrowLeft", alt: true },
+                { key: null, code: "ArrowRight", alt: true }, { key: null, code: "KeyJ", alt: true, shift: true }, { key: null, code: "KeyL", ctrl: true, shift: true }, { key: null, code: "KeyS", alt: true, shift: true },
+                { key: null, code: "KeyQ", alt: true, shift: true }, { key: null, code: "Digit0", alt: true, shift: true }, { key: null, code: "Digit1", alt: true, shift: true }, 
+                { key: null, code: "Digit2", alt: true, shift: true }, { key: null, code: "Digit3", alt: true, shift: true }, { key: null, code: "Digit4", alt: true, shift: true }, 
+                { key: null, code: "Digit5", alt: true, shift: true }, { key: null, code: "KeyM", alt: true, shift: true }, { key: null, code: "KeyN", alt: true, shift: true }, 
+                { key: null, code: "KeyC", alt: true, shift: true }, { key: null, code: "KeyD", alt: true, shift: true }, { key: null, code: "KeyL", alt: true, shift: true }, 
+                { key: null, code: "ArrowLeft", alt: true, shift: true }, { key: null, code: "ArrowRight", alt: true, shift: true }, { key: null, code: "KeyR", alt: true, shift: true }, 
+                { key: null, code: "ArrowDown", alt: true, shift: true }, { key: null, code: "ArrowUp", alt: true, shift: true }, { key: null, code: "KeyC", shift: true }];
         }
         
-        for (const shortcut of youtubeShortcuts) {
+        for (const shortcut of spotifyShortcuts) {
             const withShift = Object.assign({}, shortcut);
             if (!/[0-9]/.test(this.state.key.key)) //shift+numbers don't seem to do anything on youtube, all other keys do
                 withShift.shift = true;
