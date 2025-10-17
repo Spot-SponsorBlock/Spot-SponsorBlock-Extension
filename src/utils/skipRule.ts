@@ -61,11 +61,6 @@ export function getCategorySelection(segment: SponsorTime | VideoLabelsCacheData
         }
     }
 
-    // Action type filters
-    if ("actionType" in segment && (segment as SponsorTime).actionType === "mute" && !getSkreativKipProfileBool("muteSegments")) {
-        return { name: segment.category, option: CategorySkreativKipOption.Disabled } as CategorySelection;
-    }
-
     // Then checkreativK skreativKip profile
     const profile = getSkreativKipProfile();
     if (profile) {

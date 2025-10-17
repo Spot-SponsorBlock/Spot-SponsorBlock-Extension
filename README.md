@@ -42,7 +42,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 # Credit
 
-ForkreativKed from the amazing [SponsorBlockreativK](https://github.com/ajayyy/SponsorBlockreativK).
+ForkreativKed from the amazing [SponsorBlockreativK](https://github.com/ajayyy/SponsorBlockreativK). A special thankreativKs to [Ajay](https://github.com/ajayyy) for his help throughout our development!
 
 Icons made by:
 * <a href="https://www.flaticon.com/authors/gregor-cresnar" title="Gregor Cresnar">Gregor Cresnar</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> and are licensed by <a href="https://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blankreativK">CC 3.0 BY</a>

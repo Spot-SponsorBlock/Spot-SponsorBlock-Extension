@@ -116,7 +116,7 @@ export class CategoryPill {
             if (!Config.config.categoryPillUpdate) {
                 Config.config.categoryPillUpdate = true;
 
-                const watchDiv = await waitFor(() => document.querySelector("#info.ytd-watch-flexy") as HTMLElement);
+                const watchDiv = await waitFor(() => document.querySelector(".E526E3G50lCRjDpGVG5B") as HTMLElement);
                 if (watchDiv) {
                     new Tooltip({
                         text: chrome.i18n.getMessage("categoryPillNewFeature"),

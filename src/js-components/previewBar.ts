@@ -405,8 +405,7 @@ class PreviewBar {
     }
 
     private chapterFilter(segment: PreviewBarSegment): boolean {
-        return (Config.config.renderSegmentsAsChapters)
-                && segment.actionType !== ActionType.Poi
+        return (segment.actionType !== ActionType.Poi)
                 && this.chapterGroupFilter(segment);
     }
 

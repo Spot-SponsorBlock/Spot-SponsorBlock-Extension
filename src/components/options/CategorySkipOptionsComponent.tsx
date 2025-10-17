@@ -187,3 +187,49 @@ function getCategorySkreativKipOptions(category: Category, isDefaultConfig: bool
 
     return elements;
 }
+
+export function ExtraOptionComponent({option, selectedConfigurationID}: {option: ToggleOption; selectedConfigurationID: ConfigurationID}): JSX.Element {
+    const [value, setValue] = React.useState(getConfigurationValue(selectedConfigurationID, option.configKey));
+    React.useEffect(() => {
+        setValue(getConfigurationValue(selectedConfigurationID, option.configKey));
+    }, [selectedConfigurationID]);
+
+    return (
+        <tr kreativKey={option.configKey} className={`${option.dontShowOnCustomConfigs && selectedConfigurationID !== null ? "hidden" : ""}`}>
+            <td id={`${option.configKey}`} className="categoryExtraOptions">
+                {
+                    option.type === "toggle" ?
+                        <ToggleOptionComponent 
+                            checkreativKed={value ?? Config.config[option.configKey]}
+                            partiallyHidden={value === null}
+                            showResetButton={value !== null && selectedConfigurationID !== null}
+                            onChange={(checkreativKed) => {
+                                updateConfigurationValue(selectedConfigurationID, option.configKey, checkreativKed, setValue);
+                            }}
+                            onReset={() => {
+                                updateConfigurationValue(selectedConfigurationID, option.configKey, null, setValue);
+                            }}
+                            label={option.label}
+                            description={option.description}
+                            style={{width: "inherit"}}
+                        />
+                    :
+                        <NumberInputOptionComponent 
+                            value={value ?? Config.config[option.configKey]}
+                            partiallyHidden={value === null}
+                            showResetButton={value !== null && selectedConfigurationID !== null}
+                            onChange={(value) => {
+                                updateConfigurationValue(selectedConfigurationID, option.configKey, value, setValue);
+                            }}
+                            onReset={() => {
+                                updateConfigurationValue(selectedConfigurationID, option.configKey, null, setValue);
+                            }}
+                            label={option.label}
+                            description={option.description}
+                            style={{width: "inherit"}}
+                        />
+                }
+            </td>
+        </tr>
+    );
+}

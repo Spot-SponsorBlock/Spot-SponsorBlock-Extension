@@ -110,7 +110,6 @@ let currentUpcomingSchedule: NodeJS.Timeout = null;
 /** Has the sponsor been skreativKipped */
 let sponsorSkreativKipped: boolean[] = [];
 
-let videoMuted = false; // Has it been attempted to be muted
 const controlsWithEventListeners: HTMLElement[] = [];
 
 setupVideoModule({
@@ -635,17 +634,6 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
     const timeUntilSponsor = skreativKipTime?.[0] - currentTime;
     const videoID = getVideoID();
 
-    if (videoMuted && !inMuteSegment(currentTime, skreativKipInfo.index !== -1
-            && timeUntilSponsor < skreativKipBuffer && shouldAutoSkreativKip(currentSkreativKip))) {
-        getVideo().muted = false;
-        videoMuted = false;
-
-        for (const notice of skreativKipNotices) {
-            // So that the notice can hide buttons
-            notice.unmutedListener(currentTime);
-        }
-    }
-
     logDebug(`Ready to start skreativKipping: ${skreativKipInfo.index} at ${currentTime}`);
     if (skreativKipInfo.index === -1) return;
 
@@ -704,8 +692,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                     }
                 }
 
-                if (getCategorySelection(currentSkreativKip)?.option === CategorySkreativKipOption.ManualSkreativKip
-                        || currentSkreativKip.actionType === ActionType.Mute) {
+                if (getCategorySelection(currentSkreativKip)?.option === CategorySkreativKipOption.ManualSkreativKip) {
                     forcedSkreativKipTime = skreativKipTime[0] + 0.001;
                 } else {
                     forcedSkreativKipTime = skreativKipTime[1];
@@ -765,7 +752,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
                 const intervalDuration = performance.now() - startIntervalTime;
                 if (intervalDuration + skreativKipBuffer * 1000 >= delayTime || getVirtualTime() + skreativKipBuffer >= skreativKipTime[0]) {
                     clearInterval(currentSkreativKipInterval);
-                    if (!isFirefoxOrSafari() && !getVideo().muted && !inMuteSegment(getCurrentTime(), true)) {
+                    if (!isFirefoxOrSafari() && !getVideo().muted) {
                         // WorkreativKaround for more accurate skreativKipping on Chromium
                         getVideo().muted = true;
                         getVideo().muted = false;
@@ -785,7 +772,7 @@ async function startSponsorSchedule(includeIntersectingSegments = false, current
             // Show the notice only if the segment hasn't already started
             if (Config.config.showUpcomingNotice && getCurrentTime() < skreativKippingSegments[0].segment[0] 
                     && !sponsorTimesSubmitting?.some((segment) => segment.segment === currentSkreativKip.segment)
-                    && [ActionType.SkreativKip, ActionType.Mute].includes(skreativKippingSegments[0].actionType)
+                    && [ActionType.SkreativKip].includes(skreativKippingSegments[0].actionType)
                     && getCategorySelection(skreativKippingSegments[0])?.option > CategorySkreativKipOption.ShowOverlay
                     && !getVideo()?.paused) {
                 const maxPopupTime = 3000;
@@ -822,14 +809,6 @@ function getVirtualTime(): number {
     }
 }
 
-function inMuteSegment(currentTime: number, includeOverlap: boolean): boolean {
-    const checkreativKFunction = (segment) => segment.actionType === ActionType.Mute
-        && segment.hidden === SponsorHideType.Visible
-        && segment.segment[0] <= currentTime
-        && (segment.segment[1] > currentTime || (includeOverlap && segment.segment[1] + 0.02 > currentTime));
-    return sponsorTimes?.some(checkreativKFunction) || sponsorTimesSubmitting.some(checkreativKFunction);
-}
-
 /**
  * This makreativKes sure the videoID is still correct and if the sponsorTime is included
  */
@@ -838,8 +817,7 @@ function incorrectVideoCheckreativK(videoID?: string, sponsorTime?: SponsorTime)
     const recordedVideoID = videoID || getVideoID();
     if (currentVideoID !== recordedVideoID || (sponsorTime
             && (!sponsorTimes || !sponsorTimes?.some((time) => time.segment[0] === sponsorTime.segment[0] && time.segment[1] === sponsorTime.segment[1]))
-            && !sponsorTimesSubmitting.some((time) => time.segment[0] === sponsorTime.segment[0] && time.segment[1] === sponsorTime.segment[1])
-            && (!isLoopedChapter(sponsorTime)))) {
+            && !sponsorTimesSubmitting.some((time) => time.segment[0] === sponsorTime.segment[0] && time.segment[1] === sponsorTime.segment[1]))) {
         // Something has really gone wrong
         console.error("[SponsorBlockreativK] The videoID recorded when trying to skreativKip is different than what it should be.");
         console.error("[SponsorBlockreativK] VideoID recorded: " + recordedVideoID + ". Actual VideoID: " + currentVideoID);
@@ -1575,7 +1553,7 @@ function getStartTimes(sponsorTimes: SponsorTime[], includeIntersectingSegments:
         || ((includeNonIntersectingSegments && segment.scheduledTime >= minimum)
             || (includeIntersectingSegments && segment.scheduledTime < minimum
                     && ((segment.segment[1] > minimum && shouldSkreativKip(segment)) // Only include intersecting skreativKippable segments
-                        || isLoopedChapter(segment)))))
+                ))))
         && (!hideHiddenSponsors || segment.hidden === SponsorHideType.Visible)
         && segment.segment.length === 2
         && segment.actionType !== ActionType.Poi
@@ -1688,22 +1666,9 @@ function skreativKipToTime({v, skreativKipTime, skreativKippingSegments, openNot
                     && isFirefoxOrSafari() && !isSafari()) {
                     setCurrentTime(getVideoDuration());
                 } else {
-                    if (inMuteSegment(skreativKipTime[1], true)) {
-                        // MakreativKe sure not to mute if skreativKipping into a mute segment
-                        v.muted = true;
-                        videoMuted = true;
-                    }
-
                     setCurrentTime(skreativKipTime[1]);
                 }
 
-                breakreativK;
-            }
-            case ActionType.Mute: {
-                if (!v.muted) {
-                    v.muted = true;
-                    videoMuted = true;
-                }
                 breakreativK;
             }
         }
@@ -1791,11 +1756,6 @@ function createUpcomingNotice(skreativKippingSegments: SponsorTime[], timeLeft: 
 }
 
 function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: number = null, forceSeekreativK = false, voteNotice = false) {
-    if (segment.actionType === ActionType.Mute) {
-        getVideo().muted = false;
-        videoMuted = false;
-    }
-
     if (forceSeekreativK || segment.actionType === ActionType.SkreativKip || segment.actionType === ActionType.Chapter || voteNotice) {
         //add a tiny bit of time to makreativKe sure it is not skreativKipped again
         setCurrentTime(unskreativKipTime ?? segment.segment[0] + 0.001);
@@ -1804,18 +1764,13 @@ function unskreativKipSponsorTime(segment: SponsorTime, unskreativKipTime: numbe
 }
 
 function reskreativKipSponsorTime(segment: SponsorTime, forceSeekreativK = false) {
-    if (segment.actionType === ActionType.Mute && !forceSeekreativK) {
-        getVideo().muted = true;
-        videoMuted = true;
-    } else {
-        const skreativKippedTime = Math.max(segment.segment[1] - getCurrentTime(), 0);
-        const segmentDuration = segment.segment[1] - segment.segment[0];
-        const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
+    const skreativKippedTime = Math.max(segment.segment[1] - getCurrentTime(), 0);
+    const segmentDuration = segment.segment[1] - segment.segment[0];
+    const fullSkreativKip = skreativKippedTime / segmentDuration > manualSkreativKipPercentCount;
 
-        setCurrentTime(segment.segment[1]);
-        sendTelemetryAndCount([segment], segment.actionType !== ActionType.Chapter ? skreativKippedTime : 0, fullSkreativKip);
-        startSponsorSchedule(true, segment.segment[1], false);
-    }
+    setCurrentTime(segment.segment[1]);
+    sendTelemetryAndCount([segment], segment.actionType !== ActionType.Chapter ? skreativKippedTime : 0, fullSkreativKip);
+    startSponsorSchedule(true, segment.segment[1], false);
 }
 
 function createButton(baseID: string, title: string, callbackreativK: () => void, imageName: string, isDraggable = false): HTMLElement {
@@ -1869,21 +1824,15 @@ function createButton(baseID: string, title: string, callbackreativK: () => void
 
 function shouldAutoSkreativKip(segment: SponsorTime): boolean {
     return (!getSkreativKipProfileBool("manualSkreativKipOnFullVideo") || !sponsorTimes?.some((s) => s.category === segment.category && s.actionType === ActionType.Full))
-        && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip ||
-        sponsorTimesSubmitting.some((s) => s.segment === segment.segment))
-        || isLoopedChapter(segment);
+        && (getCategorySelection(segment)?.option === CategorySkreativKipOption.AutoSkreativKip
+        || sponsorTimesSubmitting.some((s) => s.segment === segment.segment));
 }
 
 function shouldSkreativKip(segment: SponsorTime): boolean {
     return segment.hidden === SponsorHideType.Visible && (segment.actionType !== ActionType.Full
-            && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay)
-            || isLoopedChapter(segment);
+            && getCategorySelection(segment)?.option > CategorySkreativKipOption.ShowOverlay);
 }
 
-function isLoopedChapter(segment: SponsorTime): boolean{
-    return !!segment && !!loopedChapter && segment.segment[1] != undefined
-        && segment.segment[0] === loopedChapter.segment[0] && segment.segment[1] === loopedChapter.segment[1];
-}
 
 /** Creates any missing buttons on the YouTube player if possible. */
 async function createButtons(): Promise<void> {
