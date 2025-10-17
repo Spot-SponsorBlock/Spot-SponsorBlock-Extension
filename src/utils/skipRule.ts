@@ -61,11 +61,6 @@ export function getCategorySelection(segment: SponsorTime | VideoLabelsCacheData
         }
     }
 
-    // Action type filters
-    if ("actionType" in segment && (segment as SponsorTime).actionType === "mute" && !getSkipProfileBool("muteSegments")) {
-        return { name: segment.category, option: CategorySkipOption.Disabled } as CategorySelection;
-    }
-
     // Then check skip profile
     const profile = getSkipProfile();
     if (profile) {
