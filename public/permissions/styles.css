@@ -222,12 +222,12 @@ body {
     transition: font-size 0.4s;
 }
 
-.profilepic {
+.logo {
     background-color: #636363 !important;
     vertical-align: middle;
 }
 
-.profilepiccircle {
+.logosquare {
     vertical-align: middle;
     overflow: hidden;
     border-radius: 50%;
