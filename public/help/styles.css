@@ -6,7 +6,7 @@
   --dialog-border: white;
   --text: #c4c4c4;
   --title: #dad8d8;
-  --disabled: #520000;
+  --disabled: #00520e;
   --black: black;
   --white: white;
 }
@@ -19,7 +19,7 @@
   --dialog-border: #282828;
   --text: #262626;
   --title: #707070;
-  --disabled: #ffcaca;
+  --disabled: #d5ffca;
   --black: white;
   --white: black;
 }
@@ -113,15 +113,15 @@ body {
   transition: font-size 0.4s;
 }
 
-.profilepic {
+.logo {
   background-color: #636363 !important;
   vertical-align: middle;
 }
 
-.profilepiccircle {
+.logosquare {
   vertical-align: middle;
   overflow: hidden;
-  border-radius: 50%;
+  border-radius: 15%;
 }
 
 a {
@@ -336,7 +336,7 @@ svg {
 
 #change-keybind-error {
   margin-bottom: 15px;
-  color: red;
+  color: green;
   font-weight: bold;
 }
 
@@ -353,7 +353,7 @@ svg {
 .option-button {
   cursor: pointer;
 
-  background-color: #c00000;
+  background-color: #20c000;
   padding: 10px;
   color: white;
   border-radius: 5px;
