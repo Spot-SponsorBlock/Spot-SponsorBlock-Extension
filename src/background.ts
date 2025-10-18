@@ -190,7 +190,9 @@ async function submitVote(type: number, UUID: string, category: string, videoID:
     const typeSection = (type !== undefined) ? "&type=" + type : "&category=" + category;
 
     try {
-        const response = await asyncRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&videoID=" + videoID + "&userID=" + userID + typeSection);
+        const response = await asyncRequestToServer("POST", "/api/voteOnSponsorTime?UUID=" + UUID + "&videoID=" + videoID + "&userID=" + userID + typeSection, {
+            service: "Spotify"
+        });
 
         return {
             status: response.status,

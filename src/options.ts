@@ -425,6 +425,7 @@ function activatePrivateTextChange(element: HTMLElement) {
         case "userID":
             if (Config.config[option]) {
                 asyncRequestToServer("GET", "/api/userInfo", {
+                    service: "Spotify",
                     publicUserID: getHash(Config.config[option]),
                     values: ["warnings", "banned"]
                 }).then((result) => {
