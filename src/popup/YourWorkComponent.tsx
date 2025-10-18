@@ -25,6 +25,7 @@ export const YourWorkComponent = () => {
             let result: FetchResponse;
             try {
                 result = await asyncRequestToServer("GET", "/api/userInfo", {
+                    service: "Spotify",
                     publicUserID: await getHash(Config.config!.userID!),
                     values
                 });
@@ -96,7 +97,9 @@ export const YourWorkComponent = () => {
                             onClick={() => {
                                 if (newUsername.length > 0) {
                                     setUsernameSubmissionStatus(chrome.i18n.getMessage("Loading"));
-                                    asyncRequestToServer("POST", `/api/setUsername?userID=${Config.config!.userID}&username=${newUsername}`)
+                                    asyncRequestToServer("POST", `/api/setUsername?userID=${Config.config!.userID}&username=${newUsername}`, {
+                                        service: "Spotify"
+                                    })
                                     .then((result) => {
                                         if (result.ok) {
                                             setUsernameSubmissionStatus("");
