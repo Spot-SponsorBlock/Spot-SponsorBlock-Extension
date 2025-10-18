@@ -1,4 +1,3 @@
-import * as documentScript from "../../dist/js/document.js";
 import { waitFor } from "../utils/index";
 import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/config";
 import { getElement, isVisible, waitForElement } from "./dom";
@@ -63,7 +62,7 @@ let params: VideoModuleParams = {
     resetValues: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     windowListenerHandler: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
     newVideosLoaded: () => {}, // eslint-disable-line @typescript-eslint/no-empty-function
-    documentScript: documentScript,
+    documentScript: ""
 };
 let getConfig: () => ProtoConfig<SyncStorage, LocalStorage>;
 export function setupVideoModule(moduleParams: VideoModuleParams, config: () => ProtoConfig<SyncStorage, LocalStorage>) {

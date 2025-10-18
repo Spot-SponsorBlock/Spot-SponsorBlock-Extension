@@ -27,7 +27,9 @@ async function getLabelHashBlock(hashPrefix: string): Promise<LabelCacheEntry | 
 
     let response: FetchResponse;
     try {
-        response = await asyncRequestToServer("GET", `/api/videoLabels/${hashPrefix}?hasStartSegment=true`);
+        response = await asyncRequestToServer("GET", `/api/videoLabels/${hashPrefix}?hasStartSegment=true`, {
+            service: "Spotify"
+        });
     } catch (e) {
         console.error("[SB] Caught error while fetching video labels", e)
         return null;

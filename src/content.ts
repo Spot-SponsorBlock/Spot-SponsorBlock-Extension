@@ -38,7 +38,7 @@ import { Keybind, StorageChangesObject, isSafari, keybindEquals, keybindToString
 import { findValidElement, waitForElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
 import { generateUserID } from "./utils/setup";
-import * as documentScript from "../dist/js/document.js";
+
 import { cleanPage } from "./utils/pageCleaner";
 import { addCleanupListener } from "./utils/cleanup";
 import { asyncRequestToServer } from "./utils/requests";
@@ -125,7 +125,7 @@ setupVideoModule({
         updateVisibilityOfPlayerControlsButton();
     },
     resetValues,
-    documentScript: chrome.runtime.getManifest().manifest_version === 2 ? documentScript : undefined
+    documentScript: chrome.runtime.getManifest().manifest_version === 2 ? "js/document.js" : undefined
 }, () => Config);
 
 // Is the video currently being switched
@@ -233,7 +233,6 @@ function messageListener(request: Message, sender: unknown, sendResponse: (respo
             sendResponse({
                 channelID: getChannelIDInfo().id
             });
-
             break;
         case "getContentType":
             sendResponse({
@@ -1630,7 +1629,9 @@ function sendTelemetryAndCount(skippingSegments: SponsorTime[], secondsSkipped: 
                 counted = true;
             }
 
-            if (fullSkip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID())
+            if (fullSkip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID(), {
+                service: "Spotify"
+            })
                 .then(r => {
                     if (!r.ok) logRequest(r, "SB", "segment skip log");
                 })

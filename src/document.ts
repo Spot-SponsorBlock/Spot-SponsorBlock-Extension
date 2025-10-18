@@ -287,4 +287,4 @@ export function init(): void {
     window.addEventListener("message", windowMessageListener);
 }
 
-init()
+init();
