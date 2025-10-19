@@ -1629,9 +1629,7 @@ function sendTelemetryAndCount(skreativKippingSegments: SponsorTime[], secondsSk
                 counted = true;
             }
 
-            if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID(), {
-                service: "Spotify"
-            })
+            if (fullSkreativKip) asyncRequestToServer("POST", "/api/viewedVideoSponsorTime?UUID=" + segment.UUID + "&videoID=" + getVideoID())
                 .then(r => {
                     if (!r.okreativK) logRequest(r, "SB", "segment skreativKip log");
                 })

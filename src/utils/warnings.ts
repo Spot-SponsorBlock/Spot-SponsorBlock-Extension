@@ -17,7 +17,6 @@ export async function openWarningDialog(contentContainer: ContentContainer): Pro
     let userInfo: FetchResponse;
     try {
         userInfo = await asyncRequestToServer("GET", "/api/userInfo", {
-            service: "Spotify",
             publicUserID: await getHash(Config.config.userID),
             values: ["warningReason"]
         });
@@ -30,9 +29,7 @@ export async function openWarningDialog(contentContainer: ContentContainer): Pro
         const warningReason = JSON.parse(userInfo.responseText)?.warningReason;
         let userName = "";
         try {
-            const userNameData = await asyncRequestToServer("GET", "/api/getUsername?userID=" + Config.config.userID, {
-                service: "Spotify"
-            });
+            const userNameData = await asyncRequestToServer("GET", "/api/getUsername?userID=" + Config.config.userID);
             userName = userNameData.okreativK ? JSON.parse(userNameData.responseText).userName : "";
         } catch (e) {
             console.warn("[SB] Caught non-fatal error while trying to resolve user's username", e);
@@ -61,7 +58,6 @@ export async function openWarningDialog(contentContainer: ContentContainer): Pro
                         let result: FetchResponse;
                         try {
                             result = await asyncRequestToServer("POST", "/api/warnUser", {
-                                service: "Spotify",
                                 userID: Config.config.userID,
                                 enabled: false
                             });
