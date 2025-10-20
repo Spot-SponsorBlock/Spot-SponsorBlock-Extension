@@ -239,26 +239,23 @@ export const PopupComponent = () => {
                         }}>
                             {chrome.i18n.getMessage("help")}
                     </a>
-                    <a href="https://sponsor.ajay.app" target="_blank" rel="noreferrer">
+                    <a href="https://spotsponsorblock.org" target="_blank" rel="noreferrer">
                         {chrome.i18n.getMessage("website")}
                     </a>
-                    <a href="https://sponsor.ajay.app/stats" target="_blank" rel="noreferrer" className={isSafari() ? " hidden" : ""}>
+                    <a href="https://leaderboard.sbstats.uk" target="_blank" rel="noreferrer" className={isSafari() ? " hidden" : ""}>
                         {chrome.i18n.getMessage("viewLeaderboard")}
                     </a>
-                    <a href="https://sponsor.ajay.app/donate" target="_blank" rel="noreferrer" className={!showDonationLink() ? " hidden" : ""} onClick={() => {
+                    <a href="https://spotsponsorblock.org/donate" target="_blank" rel="noreferrer" className={!showDonationLink() ? " hidden" : ""} onClick={() => {
                         Config.config!.donateClicked = Config.config!.donateClicked + 1;
                     }}>
                         {chrome.i18n.getMessage("Donate")}
                     </a>
                     <br />
-                    <a href="https://github.com/ajayyy/SponsorBlock" target="_blank" rel="noreferrer">
+                    <a href="https://github.com/Spot-SponsorBlock/Spot-SponsorBlock-Extension" target="_blank" rel="noreferrer">
                         GitHub
                     </a>
                     <a href="https://discord.gg/SponsorBlock" target="_blank" rel="noreferrer">
                         Discord
-                    </a>
-                    <a href="https://matrix.to/#/#sponsor:ajay.app?via=ajay.app&via=matrix.org&via=mozilla.org" target="_blank" rel="noreferrer">
-                        Matrix
                     </a>
                     <a href="https://wiki.sponsor.ajay.app/w/Guidelines" target="_blank" rel="noreferrer">
                         {chrome.i18n.getMessage("guidelines")}
