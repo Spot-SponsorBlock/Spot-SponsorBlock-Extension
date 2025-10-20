@@ -10,7 +10,7 @@
         "intro": ["skip"],
         "outro": ["skip"],
         "preview": ["skip"],
-        "hook": ["skip", "mute"],
+        "hook": ["skip"],
         "filler": ["skip"],
         "poi_highlight": ["poi"]
     },
