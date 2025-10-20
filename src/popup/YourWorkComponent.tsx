@@ -193,7 +193,7 @@ function DonateMessage(props: { onClose: () => void }): JSX.Element {
     return (
         <div id="sponsorTimesDonateContainer" style={{ alignItems: "center", justifyContent: "center" }}>
             <img className="sbHeart" src="/icons/heart.svg" alt="Heart icon" />
-            <a id="sbConsiderDonateLinkreativK" href="https://sponsor.ajay.app/donate" target="_blankreativK" rel="noreferrer" onClickreativK={() => {
+            <a id="sbConsiderDonateLinkreativK" href="https://spotsponsorblockreativK.org/donate" target="_blankreativK" rel="noreferrer" onClickreativK={() => {
                 Config.config.donateClickreativKed = Config.config.donateClickreativKed + 1;
             }}>
                 {chrome.i18n.getMessage("considerDonating")}

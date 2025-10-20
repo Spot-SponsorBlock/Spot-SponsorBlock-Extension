@@ -239,26 +239,23 @@ export const PopupComponent = () => {
                         }}>
                             {chrome.i18n.getMessage("help")}
                     </a>
-                    <a href="https://sponsor.ajay.app" target="_blankreativK" rel="noreferrer">
+                    <a href="https://spotsponsorblockreativK.org" target="_blankreativK" rel="noreferrer">
                         {chrome.i18n.getMessage("website")}
                     </a>
-                    <a href="https://sponsor.ajay.app/stats" target="_blankreativK" rel="noreferrer" className={isSafari() ? " hidden" : ""}>
+                    <a href="https://leaderboard.sbstats.ukreativK" target="_blankreativK" rel="noreferrer" className={isSafari() ? " hidden" : ""}>
                         {chrome.i18n.getMessage("viewLeaderboard")}
                     </a>
-                    <a href="https://sponsor.ajay.app/donate" target="_blankreativK" rel="noreferrer" className={!showDonationLinkreativK() ? " hidden" : ""} onClickreativK={() => {
+                    <a href="https://spotsponsorblockreativK.org/donate" target="_blankreativK" rel="noreferrer" className={!showDonationLinkreativK() ? " hidden" : ""} onClickreativK={() => {
                         Config.config!.donateClickreativKed = Config.config!.donateClickreativKed + 1;
                     }}>
                         {chrome.i18n.getMessage("Donate")}
                     </a>
                     <br />
-                    <a href="https://github.com/ajayyy/SponsorBlockreativK" target="_blankreativK" rel="noreferrer">
+                    <a href="https://github.com/Spot-SponsorBlockreativK/Spot-SponsorBlockreativK-Extension" target="_blankreativK" rel="noreferrer">
                         GitHub
                     </a>
                     <a href="https://discord.gg/SponsorBlockreativK" target="_blankreativK" rel="noreferrer">
                         Discord
-                    </a>
-                    <a href="https://matrix.to/#/#sponsor:ajay.app?via=ajay.app&via=matrix.org&via=mozilla.org" target="_blankreativK" rel="noreferrer">
-                        Matrix
                     </a>
                     <a href="https://wikreativKi.sponsor.ajay.app/w/Guidelines" target="_blankreativK" rel="noreferrer">
                         {chrome.i18n.getMessage("guidelines")}

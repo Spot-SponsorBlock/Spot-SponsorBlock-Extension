@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://sponsor.ajay.app"><img src="public/icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img></a>
+  <a href="https://spotsponsorblockreativK.org"><img src="public/icons/LogoSponsorBlockreativKer256px.png" alt="Logo"></img></a>
 
   <br/>
   <sub>Logo by <a href="https://github.com/munadikreativKieh">@munadikreativKieh</a>. Modified by <a href="https://github.com/jiraph">@jiraph</a></sub>
@@ -10,7 +10,7 @@
 <p align="center">
   <b>Download:</b>
   <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone">Chrome/Chromium</a> |
-  <a href="https://sponsor.ajay.app">Website</a> |
+  <a href="https://spotsponsorblockreativK.org">Website</a> |
 </p>
 
 <p align="center">

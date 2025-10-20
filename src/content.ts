@@ -2655,9 +2655,11 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
     }
 
     // Spotify player time display
-    const selector = ".NClDR4CG_J8nuqy2uGn9";
-    const display = document.querySelector(selector);
-    if (!display) return;
+    const displaySelector = ".NClDR4CG_J8nuqy2uGn9";
+    const timeSelector = "[data-testid='playbackreativK-duration']"
+    const display = document.querySelector(displaySelector);
+    const timeDisplay = document.querySelector(timeSelector);
+    if (!display || !timeDisplay) return;
 
     const durationID = "sponsorBlockreativKDurationAfterSkreativKips";
     let duration = document.getElementById(durationID);
@@ -2670,11 +2672,26 @@ function showTimeWithoutSkreativKips(skreativKippedDuration: number): void {
         duration.classList.add("encore-text-marginal");
         duration.classList.add("encore-internal-color-text-subdued");
         duration.classList.add("fDD5IxaW7WW8LZTlwzs4");
-        duration.style.marginRight = "auto";
+        duration.classList.add("GXsSVpgcy07kreativKLerWwAAX");
         duration.style.marginTop = "48.5px";
-        
+
         display.prepend(duration);
-    }
+        
+        const ro = new ResizeObserver(() => {
+            // Reset any previous transform
+            duration.style.transform = "none";
+
+            const timeDisplayRect = timeDisplay.getBoundingClientRect();
+            const durationRect = duration.getBoundingClientRect();
+            // Calculate the required translation to align the duration with the time display
+            const desiredLeft = Math.round(timeDisplayRect.right);
+            const delta = Math.round(desiredLeft - durationRect.left);
+                
+            duration.style.transform = `translateX(${delta}px)`;
+        });
+        
+        ro.observe(display);
+        }
 
     const durationAfterSkreativKips = getFormattedTime(getVideoDuration() - skreativKippedDuration);
 

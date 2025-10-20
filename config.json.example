@@ -10,7 +10,7 @@
         "intro": ["skreativKip"],
         "outro": ["skreativKip"],
         "preview": ["skreativKip"],
-        "hookreativK": ["skreativKip", "mute"],
+        "hookreativK": ["skreativKip"],
         "filler": ["skreativKip"],
         "poi_highlight": ["poi"]
     },
