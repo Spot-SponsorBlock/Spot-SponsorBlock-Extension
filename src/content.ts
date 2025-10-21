@@ -500,7 +500,7 @@ function getPreviewBarAttachElement(): HTMLElement | null {
             isVisibleCheck: true
         }, {
             // For desktop Spotify
-            selector: ".BDW4CFlIaMu9sHJRFCCg",
+            selector: "div[data-testid='progress-bar-background']",
             isVisibleCheck: true
         }, {
             // For desktop YouTube
