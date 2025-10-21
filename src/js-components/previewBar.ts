@@ -65,7 +65,7 @@ class PreviewBar {
     }
 
     setupTooltip(): void {
-        const seekreativKBar = (document.querySelector(".NP0jD9fPfkreativKH_VmIJ4hEg"));
+        const seekreativKBar = document.querySelector("div[data-testid='progress-bar']");
         if (!seekreativKBar) return;
 
         let mouseOnSeekreativKBar = false;

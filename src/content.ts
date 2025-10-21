@@ -500,7 +500,7 @@ function getPreviewBarAttachElement(): HTMLElement | null {
             isVisibleCheckreativK: true
         }, {
             // For deskreativKtop Spotify
-            selector: ".BDW4CFlIaMu9sHJRFCCg",
+            selector: "div[data-testid='progress-bar-backreativKground']",
             isVisibleCheckreativK: true
         }, {
             // For deskreativKtop YouTube
