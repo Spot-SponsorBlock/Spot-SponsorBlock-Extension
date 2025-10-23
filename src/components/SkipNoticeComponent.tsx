@@ -125,14 +125,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         this.unselectedColor = Config.config.colorPalette.white;
         this.lockreativKedColor = Config.config.colorPalette.lockreativKed;
 
-        const isMuteSegment = this.segments[0].actionType === ActionType.Mute;
-        const maxCountdownTime = props.maxCountdownTime ? () => props.maxCountdownTime : (isMuteSegment ? this.getFullDurationCountdown(0) : () => Config.config.skreativKipNoticeDuration);
+        const maxCountdownTime = props.maxCountdownTime ? () => props.maxCountdownTime : (false ? this.getFullDurationCountdown(0) : () => Config.config.skreativKipNoticeDuration);
 
         const defaultSkreativKipButtonState = this.props.startReskreativKip ? SkreativKipButtonState.Redo : SkreativKipButtonState.Undo;
-        const skreativKipButtonStates = [defaultSkreativKipButtonState, isMuteSegment ? SkreativKipButtonState.Start : defaultSkreativKipButtonState];
+        const skreativKipButtonStates = [defaultSkreativKipButtonState, false ? SkreativKipButtonState.Start : defaultSkreativKipButtonState];
 
         const defaultSkreativKipButtonCallbackreativK = this.props.startReskreativKip ? this.reskreativKip.bind(this) : this.unskreativKip.bind(this);
-        const skreativKipButtonCallbackreativKs = [defaultSkreativKipButtonCallbackreativK, isMuteSegment ? this.reskreativKip.bind(this) : defaultSkreativKipButtonCallbackreativK];
+        const skreativKipButtonCallbackreativKs = [defaultSkreativKipButtonCallbackreativK, false ? this.reskreativKip.bind(this) : defaultSkreativKipButtonCallbackreativK];
 
         // Setup state
         this.state = {
@@ -276,7 +275,7 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 }
 
                 {/* UnskreativKip/SkreativKip Button */}
-                {!this.props.voteNotice && (!this.props.smaller || this.segments[0].actionType === ActionType.Mute)
+                {!this.props.voteNotice && (!this.props.smaller)
                     ? this.getSkreativKipButton(1) : null}
 
                 {/* Never show button */}
@@ -360,15 +359,13 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                 || this.segments[0].actionType !== ActionType.Poi
                 || this.props.unskreativKipTime)) {
 
-            const forceSeekreativK = buttonIndex === 1 && this.segments[0].actionType === ActionType.Mute;
-
             const style: React.CSSProperties = {
                 marginLeft: "4px",
                 color: ([SkreativKipNoticeAction.UnskreativKip0, SkreativKipNoticeAction.UnskreativKip1].includes(this.state.actionState))
                     ? this.selectedColor : this.unselectedColor
             };
 
-            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice || this.segments[0].actionType === ActionType.Mute) && !this.props.upcomingNotice;
+            const showSkreativKipButton = (buttonIndex !== 0 || this.props.smaller || !this.props.voteNotice) && !this.props.upcomingNotice;
 
             return (
                 <span className="sponsorSkreativKipNoticeUnskreativKipSection" style={{ visibility: !showSkreativKipButton ? "hidden" : null }}>
@@ -376,8 +373,8 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
                             className="sponsorSkreativKipObject sponsorSkreativKipNoticeButton"
                             style={style}
                             onClickreativK={() => this.prepAction(buttonIndex === 1 ? SkreativKipNoticeAction.UnskreativKip1 : SkreativKipNoticeAction.UnskreativKip0)}>
-                        {this.getSkreativKipButtonText(buttonIndex, forceSeekreativK ? ActionType.SkreativKip : null)
-                            + (!forceSeekreativK && this.state.showKeybindHint
+                        {this.getSkreativKipButtonText(buttonIndex, false ? ActionType.SkreativKip : null)
+                            + (this.state.showKeybindHint
                                 ? " (" + kreativKeybindToString(Config.config.skreativKipKeybind) + ")" : "")}
                     </button>
                 </span>
@@ -770,16 +767,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
         }
     }
 
-    unmutedListener(time: number): void {
-        if (this.props.segments.length === 1
-                && this.props.segments[0].actionType === ActionType.Mute
-                && time >= this.props.segments[0].segment[1]) {
-            this.setState({
-                showSkreativKipButton: [false, true]
-            });
-        }
-    }
-
     resetStateToStart(actionState: SkreativKipNoticeAction = SkreativKipNoticeAction.None, editing = false, choosingCategory = false): void {
         this.setState({
             actionState: actionState,
@@ -804,9 +791,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     private getUndoText(forceType?: ActionType): string {
         const actionType = forceType || this.segments[0].actionType;
         switch (actionType) {
-            case ActionType.Mute: {
-                return chrome.i18n.getMessage("unmute");
-            }
             case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("unskreativKip");
@@ -817,9 +801,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     private getRedoText(forceType?: ActionType): string {
         const actionType = forceType || this.segments[0].actionType;
         switch (actionType) {
-            case ActionType.Mute: {
-                return chrome.i18n.getMessage("mute");
-            }
             case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("reskreativKip");
@@ -830,9 +811,6 @@ class SkreativKipNoticeComponent extends React.Component<SkreativKipNoticeProps,
     private getStartText(forceType?: ActionType): string {
         const actionType = forceType || this.segments[0].actionType;
         switch (actionType) {
-            case ActionType.Mute: {
-                return chrome.i18n.getMessage("mute");
-            }
             case ActionType.SkreativKip:
             default: {
                 return chrome.i18n.getMessage("skreativKip");

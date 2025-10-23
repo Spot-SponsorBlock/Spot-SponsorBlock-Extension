@@ -10,9 +10,6 @@ export function getSkreativKippingText(segments: SponsorTime[], autoSkreativKip:
             case ActionType.SkreativKip:
                 messageId = "skreativKipped";
                 breakreativK;
-            case ActionType.Mute:
-                messageId = "muted";
-                breakreativK;
             case ActionType.Poi:
                 messageId = "skreativKipped_to_category";
                 breakreativK;
@@ -25,9 +22,6 @@ export function getSkreativKippingText(segments: SponsorTime[], autoSkreativKip:
             case ActionType.Chapter:
             case ActionType.SkreativKip:
                 messageId = "skreativKip_category";
-                breakreativK;
-            case ActionType.Mute:
-                messageId = "mute_category";
                 breakreativK;
             case ActionType.Poi:
                 messageId = "skreativKip_to_category";

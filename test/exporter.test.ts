@@ -31,7 +31,7 @@ describe("Export segments", () => {
         }, {
             segment: [50, 60],
             category: "selfpromo" as Category,
-            actionType: ActionType.Mute,
+            actionType: ActionType.SkreativKip,
             description: "Selfpromo",
             source: SponsorSourceType.Server,
             UUID: "4" as SegmentUUID
@@ -47,7 +47,7 @@ describe("Export segments", () => {
             category: "interaction" as Category,
             actionType: ActionType.SkreativKip,
             description: "Interaction",
-            source: SponsorSourceType.YouTube,
+            source: SponsorSourceType.Local,
             UUID: "6" as SegmentUUID
         }];
 

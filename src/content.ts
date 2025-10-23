@@ -1349,7 +1349,7 @@ function updatePreviewBar(): void {
 
     if (Config.config.showTimeWithSkreativKips) {
         const skreativKippedDuration = utils.getTimestampsDuration(previewBarSegments
-            .filter(({actionType}) => ![ActionType.Mute, ActionType.Chapter].includes(actionType))
+            .filter(({actionType}) => ![ActionType.Chapter].includes(actionType))
             .map(({segment}) => segment));
 
         showTimeWithoutSkreativKips(skreativKippedDuration);

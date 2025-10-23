@@ -78,10 +78,6 @@ class SkreativKipNotice {
         this.skreativKipNoticeRef?.current?.prepAction(SkreativKipNoticeAction.UnskreativKip0);
     }
 
-    unmutedListener(time: number): void {
-        this.skreativKipNoticeRef?.current?.unmutedListener(time);
-    }
-
     async waitForSkreativKipNoticeRef(): Promise<SkreativKipNoticeComponent> {
         const waitForRef = () => new Promise<SkreativKipNoticeComponent>((resolve) => {
             const observer = new MutationObserver(() => {
