@@ -15,7 +15,7 @@ const chapterNames = CompileConfig.categoryList.filter((code) => code !== "chapt
 export function exportTimes(segments: SponsorTime[]): string {
     let result = "";
     for (const segment of segments) {
-        if (![ActionType.Full, ActionType.Mute].includes(segment.actionType)) {
+        if (![ActionType.Full].includes(segment.actionType)) {
             result += exportTime(segment) + "\n";
         }
     }

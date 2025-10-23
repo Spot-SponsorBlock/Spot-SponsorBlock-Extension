@@ -33,7 +33,6 @@ xtest("Selenium Chrome test", async () => {
         await setSegmentCategory(driver, 0, 1, false);
         await setSegmentActionType(driver, 0, 1, false);
         await editSegments(driver, 0, "0:05.000", "0:13.211", "5", "7.5", "0:05.000 to 0:07.500", false);
-        await muteSkipSegment(driver, 5, 7.5);
 
         // Full video
         await setSegmentActionType(driver, 0, 2, false);
@@ -58,7 +57,6 @@ xtest("Selenium Chrome test", async () => {
 async function setup(): Promise<WebDriver> {
     const options = new Chrome.Options();
     options.addArguments("--load-extension=" + Path.join(__dirname, "../dist/"));
-    options.addArguments("--mute-audio");
     options.addArguments("--disable-features=PreloadMediaEngagementData, MediaEngagementBypassAutoplayPolicies");
     options.addArguments("--headless=new");
     options.addArguments("--window-size=1920,1080");
@@ -189,21 +187,6 @@ async function autoskipSegment(driver: WebDriver, startTime: number, endTime: nu
 
     await driver.sleep(1300);
     expect(parseFloat(await video.getAttribute("currentTime"))).toBeGreaterThan(endTime);
-    await driver.executeScript("document.querySelector('video').pause()");
-}
-
-async function muteSkipSegment(driver: WebDriver, startTime: number, endTime: number): Promise<void> {
-    const duration = endTime - startTime;
-    const video = await driver.findElement(By.css("video"));
-
-    await driver.executeScript("document.querySelector('video').currentTime = " + (startTime - 0.5));
-    await driver.executeScript("document.querySelector('video').play()");
-
-    await driver.sleep(1300);
-    expect(await video.getAttribute("muted")).toEqual("true");
-
-    await driver.sleep(duration * 1000 + 300);
-    expect(await video.getAttribute("muted")).toBeNull(); // Default is null for some reason
     await driver.executeScript("document.querySelector('video').pause()");
 }
 

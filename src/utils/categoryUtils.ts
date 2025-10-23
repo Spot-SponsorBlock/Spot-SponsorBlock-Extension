@@ -10,9 +10,6 @@ export function getSkippingText(segments: SponsorTime[], autoSkip: boolean): str
             case ActionType.Skip:
                 messageId = "skipped";
                 break;
-            case ActionType.Mute:
-                messageId = "muted";
-                break;
             case ActionType.Poi:
                 messageId = "skipped_to_category";
                 break;
@@ -25,9 +22,6 @@ export function getSkippingText(segments: SponsorTime[], autoSkip: boolean): str
             case ActionType.Chapter:
             case ActionType.Skip:
                 messageId = "skip_category";
-                break;
-            case ActionType.Mute:
-                messageId = "mute_category";
                 break;
             case ActionType.Poi:
                 messageId = "skip_to_category";

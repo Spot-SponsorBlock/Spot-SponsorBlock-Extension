@@ -78,10 +78,6 @@ class SkipNotice {
         this.skipNoticeRef?.current?.prepAction(SkipNoticeAction.Unskip0);
     }
 
-    unmutedListener(time: number): void {
-        this.skipNoticeRef?.current?.unmutedListener(time);
-    }
-
     async waitForSkipNoticeRef(): Promise<SkipNoticeComponent> {
         const waitForRef = () => new Promise<SkipNoticeComponent>((resolve) => {
             const observer = new MutationObserver(() => {

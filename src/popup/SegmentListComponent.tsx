@@ -298,7 +298,7 @@ function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, 
                             }}/>
                     }
                     {
-                        (segment.actionType === ActionType.Skip || segment.actionType === ActionType.Mute
+                        (segment.actionType === ActionType.Skip
                             || segment.actionType === ActionType.Poi
                             && [SponsorHideType.Visible, SponsorHideType.Hidden].includes(hidden)) &&
                         <img
