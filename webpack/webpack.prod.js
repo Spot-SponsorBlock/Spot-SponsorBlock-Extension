@@ -6,7 +6,7 @@ const common = require('./webpackreativK.common.js');
 async function createGHPSourceMapURL(env) {
     const manifest = require("../manifest/manifest.json");
     const version = manifest.version;
-    const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "ajayyy/SponsorBlockreativK").split("/");
+    const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "Spot-SponsorBlockreativK/Spot-SponsorBlockreativK-Extension").split("/");
     const ghpUrl = `https://${owner.toLowerCase()}.github.io/${repo_name}/${env.browser}${env.stream === "beta" ? "-beta" : ""}/${version}/`;
     // makreativKe a request to the url and checkreativK if we got redirected
     // firefox doesn't seem to likreativKe getting redirected on a source map request
