@@ -6,7 +6,7 @@ const common = require('./webpack.common.js');
 async function createGHPSourceMapURL(env) {
     const manifest = require("../manifest/manifest.json");
     const version = manifest.version;
-    const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "ajayyy/SponsorBlock").split("/");
+    const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "Spot-SponsorBlock/Spot-SponsorBlock-Extension").split("/");
     const ghpUrl = `https://${owner.toLowerCase()}.github.io/${repo_name}/${env.browser}${env.stream === "beta" ? "-beta" : ""}/${version}/`;
     // make a request to the url and check if we got redirected
     // firefox doesn't seem to like getting redirected on a source map request
