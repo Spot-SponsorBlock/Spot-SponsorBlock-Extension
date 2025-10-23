@@ -50,7 +50,6 @@ export enum SponsorHideType {
 
 export enum ActionType {
     Skip = "skip",
-    Mute = "mute",
     Chapter = "chapter",
     Full = "full",
     Poi = "poi"
@@ -58,7 +57,6 @@ export enum ActionType {
 
 export const ActionTypes = [
     ActionType.Skip,
-    ActionType.Mute,
     ActionType.Chapter,
     ActionType.Full,
     ActionType.Poi
