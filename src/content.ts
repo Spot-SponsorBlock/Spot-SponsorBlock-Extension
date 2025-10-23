@@ -22,7 +22,6 @@ import UpcomingNotice from "./render/UpcomingNotice";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import { SkipButtonControlBar } from "./js-components/skipButtonControlBar";
-import { getStartTimeFromUrl } from "./utils/urlParser";
 import { getControls, getHashParams, isPlayingPlaylist, isVisible } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
@@ -1244,7 +1243,7 @@ function startSkipScheduleCheckingForStartSponsors() {
 	// switchingVideos is ignored in Safari due to event fire order. See #1142
     if ((!switchingVideos || isSafari()) && sponsorTimes) {
         // See if there are any starting sponsors
-        let startingSegmentTime = getStartTimeFromUrl(document.URL) || -1;
+        let startingSegmentTime = -1;
         let found = false;
         for (const time of sponsorTimes) {
             if (time.segment[0] <= getCurrentTime() && time.segment[0] > startingSegmentTime && time.segment[1] > getCurrentTime()
