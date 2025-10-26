@@ -8,9 +8,7 @@ import { setupTabUpdates } from "./utils/tab-updates";
 import { generateUserID } from "./utils/setup";
 
 import Utils from "./utils";
-import { isFirefoxOrSafari, waitFor } from "./utils/index";
-import { injectUpdatedScripts } from "./utils/cleanup";
-import { logWarn } from "./utils/logger";
+import { isFirefoxOrSafari } from "./utils/index";
 import { chromeP } from "./utils/browserApi";
 import { getHash } from "./utils/hash";
 import { isSafari } from "./config/config";
