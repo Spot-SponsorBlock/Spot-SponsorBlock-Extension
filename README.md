@@ -9,19 +9,21 @@
 
 <p align="center">
   <b>Download:</b>
-  <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone">Chrome/Chromium</a> |
-  <a href="https://spotsponsorblock.org">Website</a> |
+  <a href="https://chromewebstore.google.com/detail/apoddhkbbnbfkhpjhpfdjachfifbedbk">Chrome/Chromium</a> |
+  <a href="https://addons.mozilla.org/addon/spot-sponsorblock/?src=external-github">Firefox</a> |
+  <a href="">Edge</a> |
+  <a href="">Opera</a> |
+  <a href="https://spotsponsorblock.org">Website</a>
 </p>
 
 <p align="center">
-    <a href="https://chrome.google.com/webstore/detail/mnjggcdmjocbbbhaepdhchncahnbgone"><img src="https://img.shields.io/chrome-web-store/users/mnjggcdmjocbbbhaepdhchncahnbgone?label=Chrome%20Users" alt="Badge"></img></a>
+    <a href="https://addons.mozilla.org/addon/spot-sponsorblock/?src=external-github"><img src="https://img.shields.io/amo/users/spot-sponsorblock?label=Firefox%20Users" alt="Badge"></img></a>
+    <a href="https://chromewebstore.google.com/detail/apoddhkbbnbfkhpjhpfdjachfifbedbk"><img src="https://img.shields.io/chrome-web-store/users/apoddhkbbnbfkhpjhpfdjachfifbedbk?label=Chrome%20Users" alt="Badge"></img></a>
 </p>
 
 
 
 Spot SponsorBlock is an open-source crowdsourced browser extension to skip sponsor segments in Spotify podcasts. Users submit when a sponsor happens from the extension, and the extension automatically skips sponsors it knows about. It also supports skipping other categories, such as intros, outros and self promotions.
-
-**Translate:** [![Crowdin](https://badges.crowdin.net/sponsorblock/localized.svg)](https://crowdin.com/project/sponsorblock)
 
 # Important Links
 
