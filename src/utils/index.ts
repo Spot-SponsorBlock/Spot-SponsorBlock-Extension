@@ -66,6 +66,10 @@ export function isFirefoxOrSafari(): boolean {
     return typeof(browser) !== "undefined";
 }
 
+export function isOpera(): boolean {
+    return document.querySelector("#operaUserStyle") !== null;
+}
+
 let cachedUserAgent: string;
 export function extensionUserAgent(): string {
     cachedUserAgent ??= `${chrome.runtime.id}/v${chrome.runtime.getManifest().version}`;

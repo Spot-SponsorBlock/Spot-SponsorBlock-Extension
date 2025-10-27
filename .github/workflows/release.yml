@@ -125,6 +125,27 @@ jobs:
           path: ./builds/SafariExtension.zip
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+      # Create Opera artifacts
+      - name: Clear dist for Opera
+        run: rm -rf ./dist
+      - name: Create Opera artifacts
+        run: npm run build:opera -- --env ghpSourceMaps
+      - name: Move Opera source maps to source map repo
+        run: |
+          VERSION=`jq -r '.version' ./dist/manifest.json`
+          mkdir -p "./source-maps/opera/$VERSION/"
+          mv -v ./dist/**/*.js.map "./source-maps/opera/$VERSION/"
+          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/opera/$VERSION/"
+      - name: Zip Artifacts
+        run: cd ./dist ; zip -r ../builds/OperaExtension.zip *
+      - name: Upload OperaExtension to release
+        uses: Shopify/upload-to-release@07611424e04f1475ddf550e1c0dd650b867d5467
+        with:
+          args: builds/OperaExtension.zip
+          name: OperaExtension.zip
+          path: ./builds/OperaExtension.zip
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       # Create Beta artifacts (Builds with the name changed to beta)
       - name: Create Chrome Beta artifacts
         run: npm run build:chrome -- --env stream=beta --env ghpSourceMaps
@@ -236,7 +257,7 @@ jobs:
           def only_sourcemaps(cur, ls):
             if '/' in cur:
               return []
-            return set(ls) - {"chrome", "chrome-beta", "edge", "firefox", "firefox-beta", "safari"}
+            return set(ls) - {"chrome", "chrome-beta", "edge", "firefox", "firefox-beta", "safari", "opera"}
           shutil.copytree("source-maps", ghp_dir, ignore=only_sourcemaps, dirs_exist_ok=True)
 
       - name: Upload new github pages deployment

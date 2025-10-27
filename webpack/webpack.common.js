@@ -138,7 +138,7 @@ module.exports = env => {
                         from: '.',
                         to: '../',
                         globOptions: {
-                            ignore: ['manifest.json', '**/.git/**', '**/crowdin.yml'],
+                            ignore: ['manifest.json', '**/.git/**', '**/crowdin.yml', '**/icons/beep.*'],
                         },
                         context: './public',
                         filter: async (path) => {
@@ -183,6 +183,16 @@ module.exports = env => {
 
                             return content;
                         }
+                    },
+                    // Opera doesn't support .oga audio files
+                    env.browser.toLowerCase() === "opera" ? {
+                        from: 'icons/beep.mp3',
+                        to: '../icons',
+                        context: './public'
+                    } : {
+                        from: 'icons/beep.oga',
+                        to: '../icons',
+                        context: './public'
                     }
                 ]
             }),
