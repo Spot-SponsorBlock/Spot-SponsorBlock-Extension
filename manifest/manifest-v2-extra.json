@@ -59,9 +59,6 @@
     "permissions": [
         "https://sponsor.ajay.app/*"
     ],
-    "optional_permissions": [
-        "*://*/*"
-    ],
     "browser_action": {
         "default_title": "Spot SponsorBlock",
         "default_popup": "popup.html",
