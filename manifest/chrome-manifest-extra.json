@@ -3,8 +3,8 @@
     "https://open.spotify.com/*",
     "https://sponsor.ajay.app/*"
   ],
-  "optional_host_permissions": [
-    "*://*/*"
+  "permissions": [
+    "scripting"
   ],
   "web_accessible_resources": [{
     "resources": [

@@ -12,6 +12,8 @@ const safariManifestExtra = require("../manifest/safari-manifest-extra.json");
 const betaManifestExtra = require("../manifest/beta-manifest-extra.json");
 const firefoxBetaManifestExtra = require("../manifest/firefox-beta-manifest-extra.json");
 const manifestV2ManifestExtra = require("../manifest/manifest-v2-extra.json");
+const operaManifestExtra = require("../manifest/opera-manifest-extra.json");
+
 
 // schema for options object
 const schema = {
@@ -42,7 +44,7 @@ class BuildManifest {
     apply() {
         const distFolder = path.resolve(__dirname, "../dist/");
         const distManifestFile = path.resolve(distFolder, "manifest.json");
-        const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "ajayyy/SponsorBlock").split("/");
+        const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "Spot-SponsorBlock/SponsorBlock").split("/");
 
         // Add missing manifest elements
         if (this.options.browser.toLowerCase() === "firefox") {
@@ -56,6 +58,9 @@ class BuildManifest {
             mergeObjects(manifest, manifestV2ManifestExtra);
             mergeObjects(manifest, safariManifestExtra);
             manifest.optional_permissions = manifest.optional_permissions.filter((a) => a !== "*://*/*");
+        }  else if (this.options.browser.toLowerCase() === "opera") {
+            mergeObjects(manifest, manifestV2ManifestExtra);
+            mergeObjects(manifest, operaManifestExtra);
         }
 
         if (this.options.stream === "beta") {

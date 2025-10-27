@@ -30,7 +30,7 @@ import { logDebug, logWarn } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
-import { extensionUserAgent, isFirefoxOrSafari, waitFor } from "./utils/index";
+import { extensionUserAgent, isFirefoxOrSafari, isOpera, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
 import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM, checkIfExternalDevice,  } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, keybindEquals, keybindToString } from "./config/config";
@@ -1674,8 +1674,15 @@ function skipToTime({v, skipTime, skippingSegments, openNotice, forceAutoSkip, u
 
     if (autoSkip && Config.config.audioNotificationOnSkip
             && !isSubmittingSegment && !getVideo()?.muted) {
-        const beep = new Audio(chrome.runtime.getURL("icons/beep.oga"));
-        beep.volume = getVideo().volume * 0.1;
+        let beep: HTMLAudioElement;
+        // Opera doesn't support .oga audio files
+        if (isOpera()) {
+            beep = new Audio(chrome.runtime.getURL("icons/beep.mp3"));
+        } else {
+            beep = new Audio(chrome.runtime.getURL("icons/beep.oga"));
+        }
+
+        beep.volume = getVideo().volume * 0.2;
         const oldMetadata = navigator.mediaSession.metadata
         beep.play();
         beep.addEventListener("ended", () => {
