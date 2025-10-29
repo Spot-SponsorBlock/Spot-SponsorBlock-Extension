@@ -11,7 +11,7 @@
   <b>Download:</b>
   <a href="https://chromewebstore.google.com/detail/apoddhkbbnbfkhpjhpfdjachfifbedbk">Chrome/Chromium</a> |
   <a href="https://addons.mozilla.org/addon/spot-sponsorblock/?src=external-github">Firefox</a> |
-  <a href="">Edge</a> |
+  <a href="https://microsoftedge.microsoft.com/addons/detail/sponsorblock-for-spotify-/fekacklpnbdokmiljhjbmaclgpdegpcd">Edge</a> |
   <a href="">Opera</a> |
   <a href="https://spotsponsorblock.org">Website</a>
 </p>
