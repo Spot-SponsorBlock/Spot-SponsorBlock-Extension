@@ -4,160 +4,81 @@
 */
 
 import { isVisible } from "./utils/dom";
+import { checkIfOnMobileSpotify, checkIfExternalDevice } from "./utils/video";
 
-interface StartMessage {
-    type: "navigation";
-    videoID: string | null;
+interface ChangeEpisodeDataMessage {
+    type: "changeEpisodeData";
+    episodeID: string;
+    showID: string;
+    showTitle: string;
+    contentType: string;
 }
 
-interface FinishMessage extends StartMessage {
-    channelID: string;
-    channelTitle: string;
+type WindowMessage = ChangeEpisodeDataMessage;
+
+interface episodeData {
+    episodeID: string;
+    episodeTitle: string;
+    showID: string;
+    showTitle: string;
+    contentType: string;
 }
 
-interface VideoData {
-    type: "data";
-    videoID: string;
-}
-
-interface ElementCreated {
-    type: "newElement";
-    name: string;
-}
-
-interface VideoIDsLoadedCreated {
-    type: "videoIDsLoaded";
-    videoIDs: string[];
-}
-
-interface CurrentTimeWrongMessage {
-    type: "currentTimeWrong";
-    playerTime: number;
-    expectedTime: number;
-}
-
-interface GetVideoMessage {
-    type: "getVideo";
-    video: HTMLVideoElement;
-}
-
-type WindowMessage = StartMessage | FinishMessage | VideoData | ElementCreated | VideoIDsLoadedCreated | CurrentTimeWrongMessage | GetVideoMessage;
-
-declare const ytInitialData: Record<string, string> | undefined;
-
-// global playerClient - too difficult to type
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let playerClient: any;
-let lastVideo = "";
-let lastInline = false;
-let lastLive = false;
+const episodeDataList: episodeData[] = [];
 const id = "sponsorblock";
 
-// From BlockTube https://github.com/amitbl/blocktube/blob/9dc6dcee1847e592989103b0968092eb04f04b78/src/scripts/seed.js#L52-L58
-const fetchUrlsToRead = [
-    "/youtubei/v1/search",
-    "/youtubei/v1/guide",
-    "/youtubei/v1/browse",
-    "/youtubei/v1/next",
-    "/youtubei/v1/player"
-];
-
-// To not get update data for the current videoID, that is already
-// collected using other methods
-const ytInfoKeysToIgnore = [
-    "videoDetails",
-    "videoPrimaryInfoRenderer",
-    "videoSecondaryInfoRenderer",
-    "currentVideoEndpoint"
-];
+let firstTime = true;
+let onMobileSpotify = false;
 
 const sendMessage = (message: WindowMessage): void => {
     window.postMessage({ source: id, ...message }, "/");
 }
 
-function setupPlayerClient(e: CustomEvent): void {
-    playerClient = getVideoArray();
-    sendVideoData();
-}
+const titleObserver = new MutationObserver(() => {
+    sendEpisodeData();
+});
 
-function getVideoArray(): any {
-    const vc = document.getElementById("__spsb_video_container");
-    return vc
-};
-
-function sendVideoData(): void {
-    if (!playerClient) return;
-    const videoData = playerClient.getVideoData();
-    const isInline = playerClient.isInline();
-
-    // Inline videos should always send event even if the same video
-    //  because that means the hover player was closed and reopened
-    // Otherwise avoid sending extra messages
-    if (videoData && (videoData.video_id !== lastVideo || lastLive !== videoData.isLive || lastInline !== isInline || isInline)) {
-        lastVideo = videoData.video_id;
-        lastInline = isInline;
-        lastLive = videoData.isLive; // YTTV doesn't immediately populate this on page load
-        sendMessage({
-            type: "data",
-            videoID: videoData.video_id,
-            isLive: videoData.isLive,
-            isPremiere: videoData.isPremiere,
-            isInline
-        } as VideoData);
+const fullScreenObserver = new MutationObserver(() => {
+    const fullScreenTitleElement = getFullScreenTitleElement();
+    if (fullScreenTitleElement) {
+        fullScreenTitleObserver.observe(fullScreenTitleElement, {
+            childList: true,
+            subtree: true
+        });
     }
-}
+});
 
-function onNewVideoIds(data: Record<string, unknown>) {
+const fullScreenTitleObserver = new MutationObserver(() => {
+    sendEpisodeData();
+});
+
+function sendEpisodeData() {
+    if (checkIfExternalDevice()) {
+        return;
+    } else if (firstTime) {
+        firstTime = false;
+    }
+
+    const title = getTitleElement().textContent;
+    const episode = episodeDataList.find(
+    data => data.episodeTitle === title
+    );
+
+    if (!episode) {
+        setTimeout(sendEpisodeData, 1000);
+        return;
+    }
+
     sendMessage({
-        type: "videoIDsLoaded",
-        videoIDs: Array.from(findAllVideoIds(data))
+        type: "changeEpisodeData",
+        episodeID: episode.episodeID,
+        showID: episode.showID,
+        showTitle: episode.showTitle,
+        contentType: episode.contentType
     });
-}
-
-function findAllVideoIds(data: Record<string, unknown>): Set<string> {
-    const videoIds: Set<string> = new Set();
-    
-    for (const key in data) {
-        if (key === "videoId") {
-            videoIds.add(data[key] as string);
-        } else if (typeof(data[key]) === "object" && !ytInfoKeysToIgnore.includes(key)) {
-            findAllVideoIds(data[key] as Record<string, unknown>).forEach(id => videoIds.add(id));
-        }
-    }
-
-    return videoIds;
-}
-
-function windowMessageListener(message: MessageEvent) {
-    if (message.data?.source) {
-        if (message.data?.source === "sb-verify-time") {
-            // If time is different and it is paused and no seek occurred since the message was sent
-            const video = [...document.querySelectorAll("video")].filter((v) => isVisible(v))[0];
-            if (playerClient 
-                && message.data?.rawTime === video?.currentTime
-                && Math.abs(playerClient.getCurrentTime() - message.data?.time) > 0.1
-                && playerClient.getPlayerState() === 2) {
-                    sendMessage({
-                        type: "currentTimeWrong",
-                        playerTime: playerClient.getCurrentTime(),
-                        expectedTime: message.data?.time
-                    });
-            }
-        }
-    }
-}
-
-const savedSetup = {
-    browserFetch: null as ((input: RequestInfo | URL, init?: RequestInit | undefined) => Promise<Response>) | null,
-    browserPush: null as ((...items: any[]) => number) | null,
-    customElementDefine: null as ((name: string, constructor: CustomElementConstructor, options?: ElementDefinitionOptions | undefined) => void) | null,
-    waitingInterval: null as NodeJS.Timer | null
 };
 
-let hasSetupCustomElementListener = false;
-let thumbnailMutationObserver: MutationObserver | null = null;
-
-export function init(): void {
+function hijackVideoElement() {
     const container = document.createElement('div');
     container.id = '__sb_video_container';
     container.style.display = 'none';
@@ -165,55 +86,27 @@ export function init(): void {
     
     const origCreate = document.createElement.bind(document);
 
-    // Patch document.createElement to capture newly created <video> elements
+    // Patch document.createElement to capture newly created video or audio elements
     document.createElement = function (tagName: string, options?: ElementCreationOptions) {
       const tag = String(tagName).toLowerCase();
       const el = origCreate(tagName as any, options as any) as HTMLElement;
       try {
-        if (tag === "video" && el instanceof HTMLVideoElement) {
-            if (!container.querySelector('video')) {
-                container.appendChild(el);
-            }
+        if (tag === "video" && el instanceof HTMLVideoElement && !onMobileSpotify) {
+            container.appendChild(el);
+            document.createElement = origCreate;
+        } else if (tag === "audio" && el instanceof HTMLAudioElement && onMobileSpotify) {
+            container.appendChild(el);
+            document.createElement = origCreate;
         }
-      } catch {
-        // ignore
-      }
+      } catch { /* ignore */ }
       return el;
     };
-    
-    // Remove "file_urls_external" properties from JSON objects
-    function stripFileUrls(root: any) {
-        if (!root || typeof root !== "object") return;
-        const stack = [root];
-        while (stack.length) {
-            const node = stack.pop();
-            if (!node || typeof node !== "object") continue;
-            
-            if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
-                try { delete node.file_urls_external; } catch {}
-            }
-            
-            if (Array.isArray(node)) {
-                for (let i = node.length - 1; i >= 0; i--) {
-                    const v = node[i];
-                    if (v && typeof v === "object") stack.push(v);
-                }
-            } else {
-                for (const k in node) {
-                    if (Object.prototype.hasOwnProperty.call(node, k)) {
-                        const v = node[k];
-                        if (v && typeof v === "object") stack.push(v);
-                    }
-                }
-            }
-        }
-    }
-    
+}
+
+function patchWebSocket() {
     try {
-        const win: any = window;
-        
         // Patch WebSocket onmessage to sanitize dealer.spotify.com messages
-        const NativeWS = win.WebSocket as typeof WebSocket | undefined;
+        const NativeWS = window.WebSocket as typeof WebSocket | undefined;
         if (NativeWS) {
             const proto: any = NativeWS.prototype;
             const origDesc = Object.getOwnPropertyDescriptor(proto, "onmessage");
@@ -242,10 +135,10 @@ export function init(): void {
                                         const parsed = JSON.parse(ev.data);
                                         stripFileUrls(parsed);
                                         return handler.call(self, new MessageEvent("message", { data: JSON.stringify(parsed) }));
-                                    } catch { /* not JSON or manipulation failed - fall through */ }
+                                    } catch { /* ignore */ }
                                 }
                             }
-                        } catch { /* ignore errors and fall through */ }
+                        } catch { /* ignore */ }
                         return handler.call(self, ev);
                     };
                     
@@ -256,13 +149,14 @@ export function init(): void {
             });
         }
     } catch { /* ignore */ }
-    
+}
+
+function patchFetch() {
     try {
-        const win: any = window;
-        if (win.fetch) {
-            const origFetch = win.fetch.bind(win);
+        if (window.fetch) {
+            const origFetch = window.fetch.bind(window);
             // patch fetch to sanitize spclient.spotify.com JSON responses
-            win.fetch = async (input: any, init?: any) => {
+            window.fetch = async (input: any, init?: any) => {
                 const url = typeof input === "string" ? input : (input && input.url) || "";
                 const isSpclient = typeof url === "string" && url.includes("spclient.spotify.com");
                 const res = await origFetch(input, init);
@@ -272,19 +166,140 @@ export function init(): void {
                      const parsed = JSON.parse(text);
                      if (parsed && typeof parsed === "object") {
                         stripFileUrls(parsed);
+                        // Can't get episodeID from DOM on mobile
+                        if (onMobileSpotify) {
+                            getEpisodesFromResponse(parsed);
+                        }
                         return new Response(JSON.stringify(parsed), {
                             status: res.status,
                             statusText: res.statusText,
                             headers: res.headers
                         });
                     }
-                } catch { /* parsing/manipulation failed - return original response */ }
+                } catch { /* ignore */ }
                 return res;
             };
         }
     } catch { /* ignore */ }
+}
 
-    window.addEventListener("message", windowMessageListener);
+// Remove "file_urls_external" properties from JSON objects
+function stripFileUrls(root: any) {
+    if (!root || typeof root !== "object") return;
+    const stack = [root];
+    while (stack.length) {
+        const node = stack.pop();
+        if (!node || typeof node !== "object") continue;
+        
+        if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
+            try { delete node.file_urls_external; } catch {}
+        }
+            
+        if (Array.isArray(node)) {
+            for (let i = node.length - 1; i >= 0; i--) {
+                const v = node[i];
+                if (v && typeof v === "object") stack.push(v);
+            }
+        } else {
+            for (const k in node) {
+                if (Object.prototype.hasOwnProperty.call(node, k)) {
+                    const v = node[k];
+                    if (v && typeof v === "object") stack.push(v);
+                }
+            }
+        }
+    }
+}
+
+function createMobileObservers() {
+    const titleObserverElement = document.querySelector(".qLJjpgM6PzjjQFiwsHlN");
+    const fullScreenObserverElement = document.querySelector(".Yg_FlRTSnjxmfwyAvnFJ");
+    
+    if (titleObserverElement && fullScreenObserverElement) {
+        titleObserver.observe(titleObserverElement, {
+            childList: true,
+            subtree: true
+        });
+        fullScreenObserver.observe(fullScreenObserverElement, {
+            childList: true
+        });
+    } else {
+        setTimeout(createMobileObservers, 1000);
+    }
+}
+
+function getFullScreenTitleElement(): Element {
+    const selectors = document.querySelectorAll<HTMLAnchorElement>("a[draggable='false']");
+    const fullScreenTitleElement = Array.from(selectors).find(element => {
+        return element.parentElement?.classList.contains("encore-text-title-small");
+    });
+    return fullScreenTitleElement;
+}
+
+function getTitleElement(): Element | null {
+    const fullScreenTitleElement = getFullScreenTitleElement();
+    if (fullScreenTitleElement) {
+        return fullScreenTitleElement;
+    } else {
+        const elements = document.querySelectorAll(".TlTafCeV78wyT2Ms8dQW .h05f1NscpvztXBs2ptHa");
+        const titleElement = Array.from(elements).find(el => isVisible(el as HTMLElement));
+        return titleElement || null;
+    }
+}
+
+function getEpisodesFromResponse(root: any) {
+    if (!root || typeof root !== "object") return;
+    try {
+        if (root.state_machine.tracks) {
+            for (const track of root.state_machine.tracks) {
+                const episodeTitle = track.metadata.name;
+                const existing = episodeDataList.find(
+                    data => data.episodeTitle === episodeTitle
+                );
+                if (existing) continue;
+            
+                const uri = track.metadata.uri;
+                const split = uri.split(":");
+            
+                let showID;
+                let showTitle;
+                const episodeID = split[2];
+                const contentType = split[1];
+                if (contentType === "episode") {
+                    const showUri = track.metadata.context_uri;
+                    const showSplit = showUri.split(":");
+                    
+                    showID = showSplit[2];
+                    showTitle = track.metadata.context_description;
+                }
+                
+                const episode: episodeData = {
+                    episodeID,
+                    episodeTitle,
+                    showID,
+                    showTitle,
+                    contentType
+                };
+
+                episodeDataList.push(episode);
+                if (firstTime) {
+                    sendEpisodeData();
+                }
+            }
+        }
+    } catch { /* ignore */ }
+}
+
+function init(): void {
+    onMobileSpotify = checkIfOnMobileSpotify();
+    hijackVideoElement();
+    patchWebSocket();
+    patchFetch();
+    
+    if (onMobileSpotify) {
+        createMobileObservers();
+    }
+
 }
 
 init();

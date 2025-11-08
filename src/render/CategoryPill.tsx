@@ -19,7 +19,7 @@ export class CategoryPill {
     lastState: CategoryPillState;
 
     mutationObserver?: MutationObserver;
-    onMobileYouTube: boolean;
+    onMobileSpotify: boolean;
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;
     
     constructor() {
@@ -32,7 +32,9 @@ export class CategoryPill {
         });
     }
 
-    async attachToPage(vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>): Promise<void> {
+    async attachToPage(onMobileSpotify: boolean,
+        vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>): Promise<void> {
+        this.onMobileSpotify = onMobileSpotify;
         this.vote = vote;
 
         this.attachToPageInternal();
@@ -54,10 +56,10 @@ export class CategoryPill {
                 this.root.render(<CategoryPillComponent 
                         ref={this.ref}
                         vote={this.vote} 
-                        showTextByDefault={!this.onMobileYouTube}
-                        showTooltipOnClick={this.onMobileYouTube} />);
+                        showTextByDefault={!this.onMobileSpotify}
+                        showTooltipOnClick={this.onMobileSpotify} />);
 
-                if (this.onMobileYouTube) {
+                if (this.onMobileSpotify) {
                     if (this.mutationObserver) {
                         this.mutationObserver.disconnect();
                     }
@@ -131,7 +133,7 @@ export class CategoryPill {
             }
         }
 
-        if (this.onMobileYouTube && !document.contains(this.container)) {
+        if (this.onMobileSpotify && !document.contains(this.container)) {
             this.attachToPageInternal();
         }
     }

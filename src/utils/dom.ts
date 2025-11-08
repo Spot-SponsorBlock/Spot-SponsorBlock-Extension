@@ -4,9 +4,15 @@ export function isVisible(element: HTMLElement | null, ignoreWidth = false): boo
     }
 
     // Special case for when a video is first loaded, and the main video element is technically hidden
-    if (element.tagName === "VIDEO" 
+    if (element.tagName === "video" 
         && [...document.querySelectorAll("video")].filter((v) => v.duration).length === 1
         && (element as HTMLVideoElement).duration) {
+        return true;
+    }
+
+    if (element.tagName === "audio" 
+        && [...document.querySelectorAll("audio")].filter((v) => v.duration).length === 1
+        && (element as HTMLAudioElement).duration) {
         return true;
     }
     
@@ -29,16 +35,6 @@ export function isVisible(element: HTMLElement | null, ignoreWidth = false): boo
             || (!!elementAtPoint && element.contains(elementAtPoint))
             || (!!elementAtPoint && elementAtPoint.contains(element))) {
         return true;
-    }
-
-    // Hover previews will have their controls appear on top, go back to the nearest player
-    //   to make sure this is the correct element.
-    // If a hover preview is inactive, it will instead have the thumbnail as the top element, which
-    //   is at a different tree to the video player, so it will properly return false for this.
-    // In newer players, it will instead have the "playing-mode" class
-    if (element.tagName === "VIDEO") {
-        return !!elementAtPoint?.closest(".html5-video-player")?.contains(element)
-            || !!element?.closest("#inline-preview-player")?.classList?.contains("playing-mode");
     }
 
     return false;

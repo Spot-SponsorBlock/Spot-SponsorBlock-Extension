@@ -34,6 +34,7 @@ class PreviewBar {
     }> = {};
 
     parent: HTMLElement;
+    onMobileSpotify: boolean;
     progressBar: HTMLElement;
 
     segments: PreviewBarSegment[] = [];
@@ -51,12 +52,13 @@ class PreviewBar {
     unfilteredChapterGroups: ChapterGroup[];
     chapterGroups: ChapterGroup[];
 
-    constructor(parent: HTMLElement, chapterVote: ChapterVote, test=false) {
+    constructor(parent: HTMLElement, onMobileSpotify: boolean, chapterVote: ChapterVote, test=false) {
         if (test) return;
         this.container = document.createElement('ul');
         this.container.id = 'previewbar';
 
         this.parent = parent;
+        this.onMobileSpotify = onMobileSpotify;
         this.chapterVote = chapterVote;
 
         this.createElement(parent);
@@ -112,7 +114,13 @@ class PreviewBar {
 
     createElement(parent?: HTMLElement): void {
         if (parent) this.parent = parent;
-        this.container.classList.add("sbNotInvidious");
+        
+        if (this.onMobileSpotify) {
+            this.container.style.transform = "none";
+        } else {
+            this.container.classList.add("sbNotInvidious");
+        }
+
         this.parent.prepend(this.container);
     }
 
@@ -175,7 +183,7 @@ class PreviewBar {
 
         // Handled by setCategoryColorCSSVariables() of content.ts
         bar.style.backgroundColor = `var(--sb-category-${fullCategoryName})`;
-        bar.style.opacity = Config.config.barTypes[fullCategoryName]?.opacity;
+        if (!this.onMobileSpotify) bar.style.opacity = Config.config.barTypes[fullCategoryName]?.opacity;
 
         // Used to find element
         bar.dataset.segment = JSON.stringify(segment);
