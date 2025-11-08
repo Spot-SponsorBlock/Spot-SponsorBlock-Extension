@@ -6,18 +6,8 @@ export function getControls(): HTMLElement {
     const controlsSelectors = [
         // Spotify
         ".bCCN4Fy0V1eENMKmu7pM",
-        // YouTube
-        ".ytp-right-controls",
-        // Mobile YouTube
-        ".player-controls-top",
-        // Invidious/videojs video element's controls element
-        ".vjs-control-bar",
-        // Piped shaka player
-        ".shaka-bottom-controls",
-        // Vorapis v3
-        ".html5-player-chrome",
-        // tv.youtube.com
-        ".ypcs-control-buttons-right"
+        // Mobile Spotify
+        ".s6rbLMK3UuwpqmmtNUzk"
     ];
 
     for (const controlsSelector of controlsSelectors) {
@@ -25,6 +15,27 @@ export function getControls(): HTMLElement {
 
         if (controls.length > 0) {
             return <HTMLElement> controls[controls.length - 1];
+        }
+    }
+
+    return null;
+}
+
+export function getExternalDeviceBar(): HTMLElement {
+    const deviceBarSelectors = [
+        // Spotify
+        "div.UCkwzKM66KIIsICd6kew",
+        // Mobile Spotify
+        "span.weq1sklEuYjtdUrUZpYI",
+        // Mobile Spotify fullscreen
+        "div.twxeF9JMxAWvyaczn6eX"
+    ];
+
+    for (const deviceBarSelector of deviceBarSelectors) {
+        const deviceBar = document.querySelector(deviceBarSelector);
+
+        if (deviceBar) {
+            return <HTMLElement> deviceBar;
         }
     }
 

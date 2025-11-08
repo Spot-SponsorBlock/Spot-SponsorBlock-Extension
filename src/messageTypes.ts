@@ -83,7 +83,7 @@ export interface IsInfoFoundMessageResponse {
     status: number | string | Error;
     sponsorTimes: SponsorTime[];
     time: number;
-    onMobileYouTube: boolean;
+    onMobileSpotify: boolean;
     videoID: VideoID;
     loopedChapter: SegmentUUID | null;
     channelID: string;

@@ -13,6 +13,7 @@ export interface ContentContainer {
         sponsorVideoID;
         reskipSponsorTime: (segment: SponsorTime, forceSeek?: boolean) => void;
         updatePreviewBar: () => void;
+        onMobileSpotify: boolean;
         sponsorSubmissionNotice: SubmissionNotice;
         resetSponsorSubmissionNotice: (callRef?: boolean) => void;
         updateEditButtonsOnPlayer: () => void;
@@ -196,7 +197,7 @@ export interface ChannelIDInfo {
 }
 
 export interface SkipToTimeParams {
-    v: HTMLVideoElement; 
+    v: HTMLMediaElement; 
     skipTime: number[]; 
     skippingSegments: SponsorTime[]; 
     openNotice: boolean; 

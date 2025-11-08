@@ -22,7 +22,7 @@ import UpcomingNotice from "./render/UpcomingNotice";
 import SubmissionNotice from "./render/SubmissionNotice";
 import { Message, MessageResponse, VoteResponse } from "./messageTypes";
 import { SkipButtonControlBar } from "./js-components/skipButtonControlBar";
-import { getControls, getHashParams, isPlayingPlaylist, isVisible } from "./utils/pageUtils";
+import { getControls, getHashParams, isPlayingPlaylist, getExternalDeviceBar } from "./utils/pageUtils";
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
@@ -32,16 +32,15 @@ import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
 import { extensionUserAgent, isFirefoxOrSafari, isOpera, waitFor } from "./utils/index";
 import { formatJSErrorMessage, getFormattedTime, getLongErrorMessage } from "./utils/formating";
-import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkIfNewVideoID, getLastNonInlineVideoID, triggerVideoIDChange, triggerVideoElementChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, verifyCurrentTime, waitForVideo, getEpisodeDataFromDOM, checkIfExternalDevice,  } from "./utils/video";
+import { getChannelIDInfo, getVideo, getIsAdPlaying, setIsAdPlaying, checkVideoIDChange, getVideoID, getYouTubeVideoID, setupVideoModule, checkIfNewVideoID, isOnMobileSpotify, triggerVideoIDChange, getIsInline, getCurrentTime, setCurrentTime, getVideoDuration, waitForVideo, getContentType, checkIfExternalDevice } from "./utils/video";
 import { Keybind, StorageChangesObject, isSafari, keybindEquals, keybindToString } from "./config/config";
-import { findValidElement, waitForElement } from "./utils/dom"
+import { findValidElement } from "./utils/dom"
 import { getHash, HashedValue } from "./utils/hash";
 import { generateUserID } from "./utils/setup";
 
 import { cleanPage } from "./utils/pageCleaner";
 import { addCleanupListener } from "./utils/cleanup";
 import { asyncRequestToServer } from "./utils/requests";
-import { isMobileControlsOpen } from "./utils/mobileUtils";
 import { defaultPreviewTime } from "./utils/constants";
 import { getSegmentsForVideo } from "./utils/segmentData";
 import { getCategoryDefaultSelection, getCategorySelection } from "./utils/skipRule";
@@ -63,6 +62,7 @@ const skipBuffer = 0.003;
 const endTimeSkipBuffer = 0.5;
 // Used to check if any media is loaded
 const mediaLoadedSelector = "div[data-testid='context-item-info-title']"
+const mediaLoadedSelectorMobile = "div[data-testid='floating-now-playing-bar']"
 
 //was sponsor data found when doing SponsorsLookup
 let sponsorDataFound = false;
@@ -175,6 +175,7 @@ const skipNoticeContentContainer: ContentContainer = () => ({
     sponsorVideoID: getVideoID(),
     reskipSponsorTime,
     updatePreviewBar,
+    onMobileSpotify: isOnMobileSpotify(),
     sponsorSubmissionNotice: submissionNotice,
     resetSponsorSubmissionNotice,
     updateEditButtonsOnPlayer,
@@ -207,12 +208,13 @@ function messageListener(request: Message, sender: unknown, sendResponse: (respo
             break;
         case "isInfoFound":
             //send the sponsor times along with if it's found
-            if (document.querySelector(mediaLoadedSelector)) {
+            if (document.querySelector(mediaLoadedSelector) || isOnMobileSpotify() && document.querySelector(mediaLoadedSelectorMobile)) {
                 sendResponse({
                     found: sponsorDataFound,
                     status: lastResponseStatus,
                     sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkipOption.Disabled),
                     time: getCurrentTime() ?? 0,
+                    onMobileSpotify: isOnMobileSpotify(),
                     videoID: getVideoID(),
                     loopedChapter: loopedChapter?.UUID,
                     channelID: getChannelIDInfo().id,
@@ -235,7 +237,7 @@ function messageListener(request: Message, sender: unknown, sendResponse: (respo
             break;
         case "getContentType":
             sendResponse({
-                contentType: getEpisodeDataFromDOM("ContentType")
+                contentType: getContentType()
             });
             break;
         case "isExternalDevice":
@@ -449,7 +451,22 @@ function resetValues() {
 function videoIDChange(): void {
     //setup the preview bar
     if (previewBar === null) {
-        utils.wait(getControls).then(createPreviewBar);
+        if (isOnMobileSpotify()) {
+            // Mobile Spotify workaround
+            const observer = new MutationObserver(handleMobileControlsMutations);
+            let controlsContainer = null;
+
+            utils.wait(() => {
+                controlsContainer = document.querySelector(".Yg_FlRTSnjxmfwyAvnFJ")
+                return controlsContainer !== null
+            }).then(() => {
+                observer.observe(document.querySelector(".Yg_FlRTSnjxmfwyAvnFJ"), {
+                    childList: true
+                });
+            }).catch();
+        } else {
+            utils.wait(getControls).then(createPreviewBar);
+        }
     }
 
     // Notify the popup about the video change
@@ -481,56 +498,35 @@ function videoIDChange(): void {
     }
 }
 
+function handleMobileControlsMutations(): void {
+    // Don't update while scrubbing or when playing on external device
+    if (!chrome.runtime?.id || checkIfExternalDevice()) return;
+
+    updateVisibilityOfPlayerControlsButton();
+
+    skipButtonControlBar?.updateMobileControls();
+
+    previewBar.remove();
+    previewBar = null;
+
+    createPreviewBar();
+}
+
 function getPreviewBarAttachElement(): HTMLElement | null {
     const progressElementOptions = [{
-            // For newer mobile YouTube (Sept 2024)
-            selector: ".ytChapteredProgressBarHost, .ytProgressBarLineHost, .YtProgressBarLineHost, .YtChapteredProgressBarHost",
-            isVisibleCheck: true
-        }, {
-            // For newer mobile YouTube (May 2024)
-            selector: ".YtmProgressBarProgressBarLine",
-            isVisibleCheck: true
-        }, {
-            // For desktop YouTube hover play
-            // Priority is given to the hover play progress bar over the main progress bar
-            //   for miniplayer + hover preview case
-            // Second is new hover play selector
-            selector: "#video-preview .ytp-progress-bar, #video-preview .YtProgressBarLineHost",
-            isVisibleCheck: true
-        }, {
-            // For desktop Spotify
+            // For desktop Spotify and mobile fullscreen
             selector: "div[data-testid='progress-bar-background']",
+            isVisibleCheck: false
+        }, {
+            // For mobile Spotify
+            selector: ".Rz9oSefgImSW_pAPLmCg",
             isVisibleCheck: true
-        }, {
-            // For desktop YouTube
-            selector: ".no-model.cue-range-marker",
-            isVisibleCheck: true
-        }, {
-            // For Invidious/VideoJS
-            selector: ".vjs-progress-holder",
-            isVisibleCheck: false
-        }, {
-            // For Youtube Music and YTKids
-            // there are two sliders, one for volume and one for progress - both called #progressContainer
-            selector: "#progress-bar>#sliderContainer>div>#sliderBar>#progressContainer",
-        }, {
-            // For piped
-            selector: ".shaka-ad-markers",
-            isVisibleCheck: false
-        }, {
-            // For Vorapis v3
-            selector: ".ytp-progress-bar-container > .html5-progress-bar > .ytp-progress-list"
-        }, {
-            // For YTTV
-            selector: ".yssi-slider > div.ytu-ss-timeline-container",
-            isVisibleCheck: false
         }
     ];
-
+   
     for (const option of progressElementOptions) {
         const allElements = document.querySelectorAll(option.selector) as NodeListOf<HTMLElement>;
         const el = option.isVisibleCheck ? findValidElement(allElements) : allElements[0];
-
         if (el) {
             return el;
         }
@@ -549,7 +545,7 @@ function createPreviewBar(): void {
 
     if (el) {
         const chapterVote = new ChapterVote(voteAsync);
-        previewBar = new PreviewBar(el, chapterVote);
+        previewBar = new PreviewBar(el, isOnMobileSpotify(), chapterVote);
 
         updatePreviewBar();
     }
@@ -598,6 +594,7 @@ function cancelSponsorSchedule(): void {
  */
 async function startSponsorSchedule(includeIntersectingSegments = false, currentTime?: number, includeNonIntersectingSegments = true): Promise<void> {
     cancelSponsorSchedule();
+    if (checkIfExternalDevice()) return;
 
     // Don't skip if advert playing and reset last checked time
     if (getIsAdPlaying()) {
@@ -833,7 +830,7 @@ function incorrectVideoCheck(videoID?: string, sponsorTime?: SponsorTime): boole
 let playbackRateCheckInterval: NodeJS.Timeout | null = null;
 let lastPlaybackSpeed = 1;
 let setupVideoListenersFirstTime = true;
-function setupVideoListeners(video: HTMLVideoElement) {
+function setupVideoListeners(video: HTMLMediaElement) {
     if (!video) return; // Maybe video became invisible
 
     //wait until it is loaded
@@ -1056,6 +1053,12 @@ function updateVirtualTime() {
         let lastPerformanceTime = performance.now();
 
         currentVirtualTimeInterval = setInterval(() => {
+            // Avoid infinite recursion when playing on external device
+            if (checkIfExternalDevice()) {
+                checkForExternalDeviceBar();
+                return;
+            }
+
             const frameTime = performance.now() - lastPerformanceTime;
             if (lastTime !== getCurrentTime()) {
                 rawCount++;
@@ -1083,7 +1086,7 @@ function updateVirtualTime() {
     }
 }
 
-function updateWaitingTime(video: HTMLVideoElement): void {
+function updateWaitingTime(video: HTMLMediaElement): void {
     lastTimeFromWaitingEvent = video.currentTime;
 }
 
@@ -1102,6 +1105,7 @@ function setupSkipButtonControlBar() {
                 forceAutoSkip: true
             }),
             selectSegment,
+            onMobileSpotify: isOnMobileSpotify(),
         });
     }
 
@@ -1113,7 +1117,7 @@ function setupCategoryPill() {
         categoryPill = new CategoryPill();
     }
 
-    categoryPill.attachToPage(voteAsync);
+    categoryPill.attachToPage(isOnMobileSpotify(), voteAsync);
 }
 
 async function sponsorsLookup(keepOldSubmissions = true, ignoreCache = false) {
@@ -1198,13 +1202,14 @@ async function sponsorsLookup(keepOldSubmissions = true, ignoreCache = false) {
 
 function notifyPopupOfSegments(): void {
     // notify popup of segment changes
-    if (document.querySelector(mediaLoadedSelector)) {
+    if (document.querySelector(mediaLoadedSelector) || isOnMobileSpotify() && document.querySelector(mediaLoadedSelectorMobile)) {
         chrome.runtime.sendMessage({
             message: "infoUpdated",
             found: sponsorDataFound,
             status: lastResponseStatus,
             sponsorTimes: sponsorTimes.filter((segment) => getCategorySelection(segment).option !== CategorySkipOption.Disabled),
             time: getCurrentTime() ?? 0,
+            onMobileSpotify: isOnMobileSpotify(),
             videoID: getVideoID(),
             loopedChapter: loopedChapter?.UUID,
             channelID: getChannelIDInfo().id,
@@ -1375,7 +1380,7 @@ async function channelIDChange() {
     notifyPopupOfSegments();
 }
 
-function videoElementChange(newVideo: boolean, video: HTMLVideoElement): void {
+function videoElementChange(newVideo: boolean, video: HTMLMediaElement): void {
     waitFor(() => Config.isReady()).then(() => {
         if (newVideo) {
             setupVideoListeners(video);
@@ -1402,7 +1407,6 @@ function checkPreviewbarState(): void {
             checkingPreviewbarAgain = false;
             checkPreviewbarState();
         }, 500);
-
         return;
     }
 
@@ -1699,7 +1703,7 @@ function skipToTime({v, skipTime, skippingSegments, openNotice, forceAutoSkip, u
             && skippingSegments[0].actionType === ActionType.Poi) {
         waitFor(() => skipButtonControlBar).then(() => {
             skipButtonControlBar.enable(skippingSegments[0]);
-            if (Config.config.skipKeybind == null) skipButtonControlBar.setShowKeybindHint(false);
+            if (isOnMobileSpotify() || Config.config.skipKeybind == null) skipButtonControlBar.setShowKeybindHint(false);
     
             activeSkipKeybindElement?.setShowKeybindHint(false);
             activeSkipKeybindElement = skipButtonControlBar;
@@ -1742,7 +1746,7 @@ function createSkipNotice(skippingSegments: SponsorTime[], autoSkip: boolean, un
         upcomingNotice?.close();
         upcomingNotice = null;
     }, unskipTime, startReskip, upcomingNoticeShown, voteNotice);
-    if (Config.config.skipKeybind == null) newSkipNotice.setShowKeybindHint(false);
+    if (isOnMobileSpotify() || Config.config.skipKeybind == null) newSkipNotice.setShowKeybindHint(false);
     skipNotices.push(newSkipNotice);
 
     activeSkipKeybindElement?.setShowKeybindHint(false);
@@ -1864,7 +1868,7 @@ async function createButtons(): Promise<void> {
 /** Creates any missing buttons on the player and updates their visiblity. */
 async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
     // Not on a proper video yet
-    if (!getVideoID()) return;
+    if (!getVideoID() || isOnMobileSpotify()) return;
 
     await createButtons();
 
@@ -1882,7 +1886,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
 /** Updates the visibility of buttons on the player related to creating segments. */
 function updateEditButtonsOnPlayer(): void {
     // Don't try to update the buttons if we aren't on a YouTube video page
-    if (!getVideoID()) return;
+    if (!getVideoID() || isOnMobileSpotify()) return;
 
     const buttonsEnabled = !(Config.config.hideVideoPlayerControls);
 
@@ -1938,7 +1942,6 @@ function getRealCurrentTime(): number {
 }
 
 function startOrEndTimingNewSegment() {
-    verifyCurrentTime(getRealCurrentTime());
     const roundedTime = Math.round((getRealCurrentTime() + Number.EPSILON) * 1000) / 1000;
     if (!isSegmentCreationInProgress()) {
         sponsorTimesSubmitting.push({
@@ -2766,10 +2769,12 @@ function setCategoryColorCSSVariables() {
  * If playing on external device bar shows up, refresh video attachments
  */
 function checkForExternalDeviceBar(): boolean {
-    const externalDeviceBar = document.querySelector(".UCkwzKM66KIIsICd6kew") as HTMLElement;
+    const externalDeviceBar = getExternalDeviceBar();
     if (externalDeviceBar) {
         triggerVideoIDChange(null);
-        return true
+        cancelSponsorSchedule();
+        clearInterval(currentVirtualTimeInterval);
+        return true;
     }
     return false;
 }

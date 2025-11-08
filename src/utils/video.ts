@@ -1,9 +1,10 @@
 import { waitFor } from "../utils/index";
 import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/config";
-import { getElement, isVisible, waitForElement } from "./dom";
+import { isVisible, waitForElement } from "./dom";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
 import { cleanPage } from "./pageCleaner";
+import { getExternalDeviceBar } from "./pageUtils";
 
 export type VideoID = string & { __videoID: never };
 export type ChannelID = string & { __channelID: never };
@@ -17,7 +18,7 @@ export interface ChannelIDInfo {
 interface VideoModuleParams {
     videoIDChange: (videoID: VideoID) => void;
     channelIDChange: (channelIDInfo: ChannelIDInfo) => void;
-    videoElementChange?: (newVideo: boolean, video: HTMLVideoElement | null) => void;
+    videoElementChange?: (newVideo: boolean, video: HTMLMediaElement | null) => void;
     playerInit?: () => void;
     updatePlayerBar?: () => void;
     resetValues: () => void;
@@ -26,27 +27,29 @@ interface VideoModuleParams {
     documentScript: string;
 }
 
-const embedTitleSelector = "a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
-const channelTrailerTitleSelector = "ytd-channel-video-player-renderer a.ytp-title-link[data-sessionlink='feature=player-title']:not(.cbCustomTitle)";
 const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-link']";
 const channelIDSelector = "a[data-testid='context-item-info-show']";
-const externalDeviceSelector = "div.UCkwzKM66KIIsICd6kew";
 
-let video: HTMLVideoElement | null = null;
+let video: HTMLMediaElement | null = null;
 let videoWidth: string | null = null;
 let videoMutationObserver: MutationObserver | null = null;
 let videoMutationListenerElement: HTMLElement | null = null;
 // What videos have run through setup so far
-const videosSetup: HTMLVideoElement[] = [];
+const videosSetup: HTMLMediaElement[] = [];
 let waitingForNewVideo = false;
 
 let isAdPlaying = false;
 
 let videoID: VideoID | null = null;
+
+let onMobileSpotify = false;
+let firstMobileTrigger = true;
 let channelIDInfo: ChannelIDInfo = {
     id: null,
     author: null
 };
+let contentType: ContentType | null = null;
+
 let lastNonInlineVideoID: VideoID | null = null;
 let isInline = false;
 // For server-side rendered ads
@@ -73,10 +76,17 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
 
     addPageListeners();
 
-    // Direct Links after the needed element is loaded, will continue waiting if no media is played
-    void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then((element) => {
-        videoIDChange(getYouTubeVideoID());
-    })
+    if (!checkIfOnMobileSpotify()) {
+        // Direct Links after the needed element is loaded, will continue waiting if no media is played
+        void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then((element) => {
+            videoIDChange(getYouTubeVideoID());
+        })
+    } else {
+        onMobileSpotify = true;
+        void waitFor(() => document.querySelector("#__sb_video_container audio"), undefined, 100, (el) => el !== null).then((element) => {
+        video = element as HTMLMediaElement;
+        })
+    }
 
     // Register listener for URL change via Navigation API
     const navigationApiAvailable = "navigation" in window;
@@ -126,7 +136,9 @@ export async function triggerVideoIDChange(id: VideoID): Promise<boolean> {
 }
 
 async function videoIDChange(id: VideoID | null, isInlineParam = false): Promise<boolean> {
-    if (!id && !videoID) return false;
+    if (!id && !videoID) {
+        return false;
+    }
     
     //when content is no longer podcast or playing on an external device
     if (!id && videoID) {
@@ -184,12 +196,26 @@ function resetValues() {
 }
 
 export function getYouTubeVideoID(): VideoID | null {
-    return getEpisodeDataFromDOM("EpisodeID");
+    if (onMobileSpotify && getContentType() === "episode" && !checkIfExternalDevice()) {
+        return videoID;
+    } else if (onMobileSpotify) {
+        return null;
+    } else {
+        return getEpisodeDataFromDOM("EpisodeID");
+    }
 }
 
-export function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
-export function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
-export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
+export function getContentType(): ContentType | null {
+    if (onMobileSpotify) {
+        return contentType;
+    } else {
+        return getEpisodeDataFromDOM("ContentType");
+    }
+}
+
+function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
+function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
+function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
     const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
     const element = document.querySelector(episodeIDSelector);
     // Edge case where there is no track loaded
@@ -197,13 +223,12 @@ export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoI
     const href = element.getAttribute("href");
     
     const match = href.match(HrefRegex);
-    const [, contentType, id] = match;
-    const isExternalDevice = checkIfExternalDevice();
+    const [, DOMContentType, id] = match;
     if (type === "ContentType") {
-        return contentType as ContentType;
+        return DOMContentType as ContentType;
     } 
     // If played media is a podcast not playing on an external device
-    else if (type === "EpisodeID" && contentType === "episode" && !isExternalDevice) {
+    else if (type === "EpisodeID" && DOMContentType === "episode" && !checkIfExternalDevice()) {
         return id as VideoID;
     } else {
         return null;
@@ -211,6 +236,9 @@ export function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoI
 }
 
 export function getChannelID(): ChannelIDInfo | null{
+    if (onMobileSpotify) {
+        return channelIDInfo;
+    }
     const element = document.querySelector<HTMLAnchorElement>(channelIDSelector)
     if (!element) return null;
 
@@ -225,11 +253,13 @@ export function getChannelID(): ChannelIDInfo | null{
     } as ChannelIDInfo;
 }
 
+export function checkIfOnMobileSpotify(): boolean {
+    return document.querySelector(".mobile-web-player") !== null;
+}
+
 export function checkIfExternalDevice(): boolean {
-    const externalBar = document.querySelector(externalDeviceSelector);
-    if (externalBar) {
-        return true;
-    } else return false;
+    const externalDeviceBar = getExternalDeviceBar();
+    return externalDeviceBar !== null;
 }
 
 //checks if this channel is whitelisted, should be done only after the channelID has been loaded
@@ -241,7 +271,7 @@ export async function whitelistCheck() {
 let lastMutationListenerCheck = 0;
 let checkTimeout: NodeJS.Timeout | null = null;
 function setupVideoMutationListener() {
-    if ((videoMutationObserver === null || !isVisible(videoMutationListenerElement!.parentElement))) {
+    if (videoMutationObserver === null) {
 
         // Delay it if it was checked recently
         if (checkTimeout) clearTimeout(checkTimeout);
@@ -255,7 +285,6 @@ function setupVideoMutationListener() {
         const videoContainer = document.getElementById("__sb_video_container") as HTMLElement;
         if (!videoContainer) return;
 
-        if (videoMutationObserver) videoMutationObserver.disconnect();
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         videoMutationObserver = new MutationObserver(refreshVideoAttachments);
         videoMutationListenerElement = videoContainer;
@@ -268,8 +297,8 @@ function setupVideoMutationListener() {
     }
 }
 
-const waitingForVideoListeners: Array<(video: HTMLVideoElement) => void> = [];
-export function waitForVideo(): Promise<HTMLVideoElement> {
+const waitingForVideoListeners: Array<(video: HTMLMediaElement) => void> = [];
+export function waitForVideo(): Promise<HTMLMediaElement> {
     if (video) return Promise.resolve(video);
 
     return new Promise((resolve) => {
@@ -277,21 +306,14 @@ export function waitForVideo(): Promise<HTMLVideoElement> {
     });
 }
 
-// Used only for embeds to wait until the url changes
-let embedLastUrl = "";
-let waitingForEmbed = false;
-
 async function refreshVideoAttachments(): Promise<void> {
     if (waitingForNewVideo) return;
-    
-    const isExternalDevice = checkIfExternalDevice();
-    if (!isVisible(video) && !isVinegarActive() || isExternalDevice) video = null;
 
     waitingForNewVideo = true;
     // Compatibility for Vinegar extension
-    let newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLVideoElement) 
-        || await waitForElement("video", true) as HTMLVideoElement;
-    let durationChange = false;
+    let newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLMediaElement) 
+        || (onMobileSpotify && document.querySelector('#__sb_video_container audio') as HTMLMediaElement) 
+        || document.querySelector('#__sb_video_container video') as HTMLMediaElement;
 
     waitingForNewVideo = false;
 
@@ -308,24 +330,8 @@ async function refreshVideoAttachments(): Promise<void> {
     waitingForVideoListeners.length = 0;
 
     setupVideoMutationListener();
-
-    if (document.URL.includes("/embed/")) {
-        if (waitingForEmbed) {
-            return;
-        }
-        waitingForEmbed = true;
-
-        const waiting = waitForElement(embedTitleSelector)
-            .then((e) => waitFor(() => e, undefined, undefined, (e) => e.getAttribute("href") !== embedLastUrl 
-                && !!e.getAttribute("href") && !!e.textContent));
-
-        void waiting.catch(() => waitingForEmbed = false);
-        void waiting.then((e) => embedLastUrl = e.getAttribute("href")!)
-            .then(() => waitingForEmbed = false)
-            .then(() => videoIDChange(getYouTubeVideoID()));
-    } else {
-        void videoIDChange(getYouTubeVideoID());
-    }
+    
+    void videoIDChange(getYouTubeVideoID());
 }
 
 /**
@@ -335,16 +341,20 @@ function isVinegarActive(): boolean {
     return isSafari() && !!document.querySelector('video[vinegared="true"]');
 }
 
-export function triggerVideoElementChange(newVideo: HTMLVideoElement): void {
+export function triggerVideoElementChange(newVideo: HTMLMediaElement, mobile?: boolean): void {
     video = newVideo;
-    videoWidth = newVideo.style.width;
     const isNewVideo = !videosSetup.includes(video);
 
     if (isNewVideo) {
         videosSetup.push(video);
     }
 
-    params.videoElementChange?.(isNewVideo, video);
+    if (mobile && firstMobileTrigger) {
+        firstMobileTrigger = false;
+        params.videoElementChange?.(true, video);
+    } else {
+        params.videoElementChange?.(isNewVideo, video);
+    }
 }
 
 function windowListenerHandler(event: MessageEvent): void {
@@ -378,6 +388,18 @@ function windowListenerHandler(event: MessageEvent): void {
         currentTimeWrong = true;
 
         alert(`${chrome.i18n.getMessage("submissionFailedServerSideAds")}\n\nInclude the following:\n${data.playerTime}\n${data.expectedTime}`);
+    } else if (dataType === "changeEpisodeData") {
+        contentType = data.contentType;
+        videoID = data.episodeID;
+        videoIDChange(getYouTubeVideoID());
+        channelIDInfo = {
+            id: data.showID,
+            author: data.showTitle
+        };
+
+        if (firstMobileTrigger) {
+            triggerVideoElementChange(video);
+        }
     }
 
     params.windowListenerHandler?.(event);
@@ -411,13 +433,11 @@ function addPageListeners(): void {
 }
 
 let lastRefresh = 0;
-export function getVideo(): HTMLVideoElement | null {
+export function getVideo(): HTMLMediaElement | null {
     setupVideoMutationListener();
-
-    if ((!isVisible(video))
+    if ((!video)
             && Date.now() - lastRefresh > 500) {
         lastRefresh = Date.now();
-        if (!isVisible(video) && !isVinegarActive()) video = null;
         void refreshVideoAttachments();
     }
 
@@ -445,22 +465,14 @@ export function getCurrentTime(): number | undefined {
     }
 }
 
-// Called when creating time to verify there aren't any
-//   undetected server-side ads causing issues
-export function verifyCurrentTime(time?: number): void {
-    if (getVideo() && getVideo()!.paused) {
-        window.postMessage({
-            source: "sb-verify-time",
-            time: time ?? getCurrentTime(),
-            rawTime: getVideo()!.currentTime
-        }, "/");
-    }
-}
-
 export function setCurrentTime(time: number): void {
     if (getVideo()) {
         getVideo()!.currentTime = time + adDuration;
     }
+}
+
+export function isOnMobileSpotify(): boolean {
+    return onMobileSpotify;
 }
 
 export function getChannelIDInfo(): ChannelIDInfo {
