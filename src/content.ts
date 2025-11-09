@@ -1054,8 +1054,7 @@ function updateVirtualTime() {
 
         currentVirtualTimeInterval = setInterval(() => {
             // Avoid infinite recursion when playing on external device
-            if (checkIfExternalDevice()) {
-                checkForExternalDeviceBar();
+            if (checkForExternalDeviceBar()) {
                 return;
             }
 
@@ -2775,6 +2774,7 @@ function checkForExternalDeviceBar(): boolean {
         cancelSponsorSchedule();
         clearInterval(currentVirtualTimeInterval);
         return true;
+    } else {
+        return false;
     }
-    return false;
 }
