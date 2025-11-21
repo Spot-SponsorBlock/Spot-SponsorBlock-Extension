@@ -998,22 +998,26 @@ input::-webkit-inner-spin-button {
 
 /* Pride theme */
 
-.playerButton.prideTheme:nth-of-type(1) {
+.playerButton.prideTheme {
+	background: none;
+}
+
+.playerButton.prideTheme:nth-of-type(3) .e-91000-button__icon-wrapper {
 	filter: brightness(50%) sepia(100) saturate(100);
 }
 
-.playerButton.prideTheme:nth-of-type(2) {
+.playerButton.prideTheme:nth-of-type(4) .e-91000-button__icon-wrapper {
 	filter: sepia(100) saturate(100) hue-rotate(0deg);
 }
 
-.playerButton.prideTheme:nth-of-type(3) {
+.playerButton.prideTheme:nth-of-type(5) .e-91000-button__icon-wrapper {
 	filter: sepia(100) saturate(100) hue-rotate(45deg);
 }
 
-.playerButton.prideTheme:nth-of-type(4) {
+.playerButton.prideTheme:nth-of-type(6) .e-91000-button__icon-wrapper {
 	filter: sepia(100) saturate(100) invert() hue-rotate(5deg);
 }
 
-.playerButton.prideTheme:nth-of-type(5) {
+.playerButton.prideTheme:nth-of-type(7) .e-91000-button__icon-wrapper {
 	filter: sepia(100) saturate(100) invert() hue-rotate(35deg);
 }
