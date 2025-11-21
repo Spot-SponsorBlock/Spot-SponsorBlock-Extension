@@ -23,6 +23,12 @@ export function CategoryChooserComponent() {
 
         updateChannelList(setChannelListText, selectedConfigurationID!);
         setSelections(getConfigurationValue<CategorySelection[]>(selectedConfigurationID, "categorySelections"));
+
+        if (selectedConfigurationID === null) {
+            document.querySelectorAll(".hide-when-skip-profile").forEach((e) => e.classList.remove("hidden"));
+        } else {
+            document.querySelectorAll(".hide-when-skip-profile").forEach((e) => e.classList.add("hidden"));
+        }
     }, [selectedConfigurationID]);
 
     const createNewConfig = () => {
@@ -88,6 +94,7 @@ export function CategoryChooserComponent() {
                         id="configurationName"
                         value={configurationName}
                         placeholder={chrome.i18n.getMessage("ConfigurationName")}
+                        style={{width: document.getElementById("channelProfiles")?.clientWidth ?? null}}
                         onChange={(e) => {
                             const newName = e.target.value;
                             getConfig(selectedConfigurationID)!.name = newName;
@@ -140,6 +147,10 @@ export function CategoryChooserComponent() {
                                     }
                                 }
                                 forceUpdateConfigurationIDs();
+
+                                if (Config.local.skipProfileTemp && Config.local.skipProfileTemp.configID === selectedConfigurationID) {
+                                    Config.local.skipProfileTemp = null;
+                                }
 
                                 setConfigurations(Config.local!.skipProfiles);
                                 const newID = Object.keys(Config.local!.skipProfiles)[0] as ConfigurationID;

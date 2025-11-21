@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ActionType, SegmentUUID, SponsorHideType, SponsorTime, VideoID } from "../types";
+import { ActionType, SegmentListDefaultTab, SegmentUUID, SponsorHideType, SponsorTime, VideoID } from "../types";
 import Config from "../config";
 import { waitFor } from "../utils/index";
 import { shortCategoryName } from "../utils/categoryUtils";
@@ -32,6 +32,14 @@ interface SegmentWithNesting extends SponsorTime {
     innerChapters?: (SegmentWithNesting|SponsorTime)[];
 }
 
+function isSegment(segment) {
+    return segment.actionType !== ActionType.Chapter;
+}
+
+function isChapter(segment) {
+    return segment.actionType === ActionType.Chapter;
+}
+
 export const SegmentListComponent = (props: SegmentListComponentProps) => {
     const [tab, setTab] = React.useState(SegmentListTab.Segments);
     const [isVip, setIsVip] = React.useState(Config.config?.isVip ?? false);
@@ -46,17 +54,28 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
         }
     }, []);
 
-    React.useEffect(() => {
-        setTab(SegmentListTab.Segments);
-    }, [props.videoID]);
+    const [hasSegments, hasChapters] = React.useMemo(() => {
+        const hasSegments = Boolean(props.segments.find(isSegment))
+        const hasChapters = Boolean(props.segments.find(isChapter))
+        return [hasSegments, hasChapters];
+    }, [props.segments]);
 
-    const tabFilter = (segment: SponsorTime) => {
-        if (tab === SegmentListTab.Chapter) {
-            return segment.actionType === ActionType.Chapter;
+    React.useEffect(() => {
+        const setTabBasedOnConfig = () => {
+            const preferChapters = Config.config.segmentListDefaultTab === SegmentListDefaultTab.Chapters;
+            if (preferChapters) {
+                setTab(hasChapters ? SegmentListTab.Chapter : SegmentListTab.Segments);
+            } else {
+                setTab(hasSegments ? SegmentListTab.Segments : SegmentListTab.Chapter);
+            }
+        };
+
+        if (Config.isReady()) {
+            setTabBasedOnConfig();
         } else {
-            return segment.actionType !== ActionType.Chapter;
+            waitFor(() => Config.isReady()).then(setTabBasedOnConfig);
         }
-    };
+    }, [props.videoID, hasSegments, hasChapters]);
 
     const segmentsWithNesting = React.useMemo(() => {
         const result: SegmentWithNesting[] = [];
@@ -98,7 +117,7 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
 
     return (
         <div id="issueReporterContainer">
-            <div id="issueReporterTabs" className={props.segments && props.segments.find(s => s.actionType === ActionType.Chapter) ? "" : "hidden"}>
+            <div id="issueReporterTabs" className={hasSegments && hasChapters ? "" : "hidden"}>
                 <span id="issueReporterTabSegments" className={tab === SegmentListTab.Segments ? "sbSelected" : ""} onClick={() => {
                     setTab(SegmentListTab.Segments);
                 }}>
@@ -125,7 +144,7 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
                             isVip={isVip}
                             loopedChapter={props.loopedChapter} // UUID instead of boolean so it can be passed down to nested chapters 
 
-                            tabFilter={tabFilter}
+                            tabFilter={tab === SegmentListTab.Chapter ? isChapter : isSegment}
                             sendMessage={props.sendMessage}
                         />
                     ))

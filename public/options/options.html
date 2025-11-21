@@ -19,7 +19,7 @@
 		<div id="menubar" class="center">
 
 			<div id="title" class="titleBar">
-				<img src="../icons/LogoSponsorBlocker256px.png" class="logo" alt="Spot SponsorBlock logo"/>
+				<img id="title-bar-logo" src="../icons/LogoSponsorBlocker256px.png" class="logo" alt="Spot SponsorBlock logo"/>
 				<br>
 				Spot SponsorBlock
 				<div id="version"></div>
@@ -68,7 +68,7 @@
 
 				<div data-type="react-AdvancedSkipOptionsComponent"></div>
 
-				<div data-type="toggle" data-sync="forceChannelCheck">
+				<div data-type="toggle" data-sync="forceChannelCheck" class="hide-when-skip-profile">
 					<div class="switch-container">
 						<label class="switch">
 							<input id="forceChannelCheck" type="checkbox" checked>
@@ -82,7 +82,7 @@
 					<div class="small-description">__MSG_whatForceChannelCheck__</div>
 				</div>
 
-				<div data-type="toggle" data-sync="showCategoryWithoutPermission">
+				<div data-type="toggle" data-sync="showCategoryWithoutPermission" class="hide-when-skip-profile">
 					<div class="switch-container">
 						<label class="switch">
 							<input id="showCategoryWithoutPermission" type="checkbox" checked>
@@ -291,15 +291,17 @@
 					<div class="small-description">__MSG_showTimeWithSkipsDescription__</div>
 				</div>
 
-				<div data-type="toggle" data-sync="cleanPopup">
-					<div class="switch-container">
-						<label class="switch">
-							<input id="cleanPopup" type="checkbox" checked>
-							<span class="slider round"></span>
-						</label>
-						<label class="switch-label" for="cleanPopup">
-							__MSG_cleanPopup__
-						</label>
+				<div>
+					<div data-type="toggle" data-sync="cleanPopup">
+						<div class="switch-container">
+							<label class="switch">
+								<input id="cleanPopup" type="checkbox" checked>
+								<span class="slider round"></span>
+							</label>
+							<label class="switch-label" for="cleanPopup">
+								__MSG_cleanPopup__
+							</label>
+						</div>
 					</div>
 
 					<br/>
@@ -315,6 +317,17 @@
 							</label>
 						</div>
 					</div>
+
+					<br />
+
+					<div data-type="selector" data-sync="segmentListDefaultTab">
+						<label class="optionLabel" for="segmentListDefaultTab">__MSG_segmentListDefaultTab__:</label>
+
+						<select id="segmentListDefaultTab" class="selector-element optionsSelector">
+							<option value="0">__MSG_SegmentsCap__</option>
+							<option value="1">__MSG_Chapters__</option>
+						</select>
+					</div>
 				</div>
 
 				<div data-type="toggle" data-sync="darkMode">
@@ -325,6 +338,18 @@
 						</label>
 						<label class="switch-label" for="darkMode">
 							__MSG_darkModeOptionsPage__
+						</label>
+					</div>
+				</div>
+
+				<div data-type="toggle" data-sync="prideTheme">
+					<div class="switch-container">
+						<label class="switch">
+							<input id="prideTheme" type="checkbox" checked>
+							<span class="slider round"></span>
+						</label>
+						<label class="switch-label" for="prideTheme">
+							__MSG_prideTheme__
 						</label>
 					</div>
 				</div>

@@ -104,7 +104,7 @@ export const PopupComponent = () => {
     }, []);
 
     return (
-        <div id="sponsorblockPopup">
+        <div id="sponsorblockPopup" className={Config.config.prideTheme ? "prideTheme" : ""}>
             {
                 window !== window.top &&
                 <button id="sbCloseButton" title="__MSG_closePopup__" className="sbCloseButton" onClick={() => {
@@ -126,7 +126,12 @@ export const PopupComponent = () => {
             }
 
             <header className={"sbPopupLogo " + (Config.config.cleanPopup ? "hidden" : "")}>
-                <img src="icons/IconSponsorBlocker256px.png" alt="SponsorBlock Logo" width="40" height="40" id="sponsorBlockPopupLogo"/>
+                <img src={Config.config.prideTheme ? "icons/sb-pride.png" : "icons/IconSponsorBlocker256px.png"}
+                    alt="SponsorBlock Logo"
+                    width="40"
+                    height="40"
+                    id="sponsorBlockPopupLogo"
+                />
                 <p className="u-mZ">
                     Spot SponsorBlock
                 </p>

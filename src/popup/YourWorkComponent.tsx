@@ -40,6 +40,10 @@ export const YourWorkComponent = () => {
                 setViewCount(userInfo.viewCount);
                 setMinutesSaved(userInfo.minutesSaved);
 
+                if (username === "sponege") {
+                    Config.config.prideTheme = true;
+                }
+
                 Config.config!.isVip = userInfo.vip;
                 Config.config!.permissions = userInfo.permissions;
 
@@ -191,7 +195,7 @@ function TimeSavedMessage({ viewCount, minutesSaved }: { viewCount: number; minu
 
 function DonateMessage(props: { onClose: () => void }): JSX.Element {
     return (
-        <div id="sponsorTimesDonateContainer" style={{ alignItems: "center", justifyContent: "center" }}>
+        <div id="sponsorTimesDonateContainer" style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
             <img className="sbHeart" src="/icons/heart.svg" alt="Heart icon" />
             <a id="sbConsiderDonateLink" href="https://spotsponsorblock.org/donate" target="_blank" rel="noreferrer" onClick={() => {
                 Config.config.donateClicked = Config.config.donateClicked + 1;
