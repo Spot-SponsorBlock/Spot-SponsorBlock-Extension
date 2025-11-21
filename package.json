@@ -81,6 +81,10 @@
     {
       "type": "github",
       "url": "https://github.com/sponsors/Spot-SponsorBlock"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/SpotSponsorBlock"
     }
   ],
   "repository": {
