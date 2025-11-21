@@ -14,8 +14,6 @@ jobs:
       # Initialization
       - name: Checkout release branch w/submodules
         uses: actions/checkout@v5
-      - name: Checkout release branch w/submodules
-        uses: actions/checkout@v5
         with:
           submodules: recursive
       - uses: actions/setup-node@v4
@@ -46,28 +44,12 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Checkout source maps branch
-        uses: actions/checkout@v5
-        with:
-          path: source-maps
-          ref: source-maps
-      - name: Set up committer info
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - run: npm ci
 
       # Create Firefox artifacts
       - name: Create Firefox artifacts
         run: npm run build:firefox -- --env ghpSourceMaps
-        run: npm run build:firefox -- --env ghpSourceMaps
       - run: mkdir ./builds
-      - name: Move Firefox source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/firefox/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/firefox/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/firefox/$VERSION/"
       - name: Move Firefox source maps to source map repo
         run: |
           VERSION=`jq -r '.version' ./dist/manifest.json`
@@ -86,13 +68,6 @@ jobs:
       
       # Create Chrome artifacts
       - name: Create Chrome artifacts
-        run: npm run build:chrome -- --env ghpSourceMaps
-      - name: Move Chrome source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/chrome/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/chrome/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/chrome/$VERSION/"
         run: npm run build:chrome -- --env ghpSourceMaps
       - name: Move Chrome source maps to source map repo
         run: |
@@ -121,13 +96,6 @@ jobs:
           mkdir -p "./source-maps/edge/$VERSION/"
           mv -v ./dist/**/*.js.map "./source-maps/edge/$VERSION/"
           cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/edge/$VERSION/"
-        run: npm run build:edge -- --env ghpSourceMaps
-      - name: Move Edge source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/edge/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/edge/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/edge/$VERSION/"
       - name: Zip Artifacts
         run: cd ./dist ; zip -r ../builds/EdgeExtension.zip *
       - name: Upload EdgeExtension to release
@@ -140,13 +108,6 @@ jobs:
 
       # Create Safari artifacts
       - name: Create Safari artifacts
-        run: npm run build:safari -- --env ghpSourceMaps
-      - name: Move Safari source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/safari/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/safari/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/safari/$VERSION/"
         run: npm run build:safari -- --env ghpSourceMaps
       - name: Move Safari source maps to source map repo
         run: |
@@ -194,13 +155,6 @@ jobs:
           mkdir -p "./source-maps/chrome-beta/$VERSION/"
           mv -v ./dist/**/*.js.map "./source-maps/chrome-beta/$VERSION/"
           cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/chrome-beta/$VERSION/"
-        run: npm run build:chrome -- --env stream=beta --env ghpSourceMaps
-      - name: Move Chrome Beta source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/chrome-beta/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/chrome-beta/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/chrome-beta/$VERSION/"
       - name: Zip Artifacts
         run: cd ./dist ; zip -r ../builds/ChromeExtensionBeta.zip *
       - name: Upload ChromeExtensionBeta to release
@@ -214,17 +168,10 @@ jobs:
       # Firefox Beta
       - name: Create Firefox Beta artifacts
         run: npm run build:firefox -- --env stream=beta --env autoupdate --env ghpSourceMaps
-        run: npm run build:firefox -- --env stream=beta --env autoupdate --env ghpSourceMaps
       - uses: actions/upload-artifact@v4
         with:
           name: FirefoxExtensionBeta
           path: dist
-      - name: Move Firefox Beta source maps to source map repo
-        run: |
-          VERSION=`jq -r '.version' ./dist/manifest.json`
-          mkdir -p "./source-maps/firefox-beta/$VERSION/"
-          mv -v ./dist/**/*.js.map "./source-maps/firefox-beta/$VERSION/"
-          cp -v ./dist/**/*.js.LICENSE.txt "./source-maps/firefox-beta/$VERSION/"
       - name: Move Firefox Beta source maps to source map repo
         run: |
           VERSION=`jq -r '.version' ./dist/manifest.json`
@@ -241,7 +188,6 @@ jobs:
           WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
           WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
       - name: Rename signed file
-        run: mv ./web-ext-artifacts/* ./web-ext-artifacts/FirefoxSignedInstaller.xpi
         run: mv ./web-ext-artifacts/* ./web-ext-artifacts/FirefoxSignedInstaller.xpi
       - uses: actions/upload-artifact@v4
         with:
