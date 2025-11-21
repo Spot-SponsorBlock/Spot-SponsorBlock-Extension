@@ -44,7 +44,7 @@ class BuildManifest {
     apply() {
         const distFolder = path.resolve(__dirname, "../dist/");
         const distManifestFile = path.resolve(distFolder, "manifest.json");
-        const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "Spot-SponsorBlock/SponsorBlock").split("/");
+        const [owner, repo_name] = (process.env.GITHUB_REPOSITORY ?? "Spot-SponsorBlock/Spot-SponsorBlock-Extension").split("/");
 
         // Add missing manifest elements
         if (this.options.browser.toLowerCase() === "firefox") {
