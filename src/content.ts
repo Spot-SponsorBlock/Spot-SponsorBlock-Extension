@@ -1793,12 +1793,10 @@ function createButton(baseID: string, title: string, callback: () => void, image
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
     newButton.classList.add("buttonDisplayBox");
-    newButton.classList.add("Button-sc-1dqy6lx-0");
     newButton.classList.add("fprjoI");
-    newButton.classList.add("e-91000-overflow-wrap-anywhere");
     newButton.classList.add("e-91000-button-tertiary--icon-only");
     if (Config.config.prideTheme) newButton.classList.add("prideTheme");
-    newButton.setAttribute("data-testid", baseID + "-control");
+
     newButton.dataset.display = chrome.i18n.getMessage(title);
     newButton.addEventListener("click", () => {
         callback();
@@ -1857,12 +1855,10 @@ async function createButtons(): Promise<void> {
 
     const controlsContainer = getControls();
     if (Config.config.autoHideInfoButton && controlsContainer
-            && playerButtons["info"]?.button) {
+            && playerButtons["info"]?.button && !controlsWithEventListeners.includes(controlsContainer)) {
+        controlsWithEventListeners.push(controlsContainer);
+
         AnimationUtils.setupAutoHideAnimation(playerButtons["info"].button, controlsContainer);
-        
-        if (!controlsWithEventListeners.includes(controlsContainer)) {
-            controlsWithEventListeners.push(controlsContainer);
-        }
     }
 }
 
@@ -1880,7 +1876,7 @@ async function updateVisibilityOfPlayerControlsButton(): Promise<void> {
         || document.getElementById("sponsorBlockPopupContainer") != null) {
         playerButtons.info.button.style.display = "none";
     } else {
-        playerButtons.info.button.style.removeProperty("display");
+        playerButtons.info.button.style.display = "unset";
     }
 }
 
