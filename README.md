@@ -25,6 +25,8 @@
 
 Spot SponsorBlock is an open-source crowdsourced browser extension to skip sponsor segments in Spotify podcasts. Users submit when a sponsor happens from the extension, and the extension automatically skips sponsors it knows about. It also supports skipping other categories, such as intros, outros and self promotions.
 
+**Translate:** [![Crowdin](https://badges.crowdin.net/spot-sponsorblock/localized.svg)](https://crowdin.com/project/spot-sponsorblock)
+
 # Important Links
 
 See the [Wiki](https://github.com/ajayyy/SponsorBlock/wiki) for important links.

@@ -1,3 +1,6 @@
-[submodule "public/_locales"]
-	path = public/_locales
+[submodule "public/_locales-sources/upstream"]
+	path = public/_locales-sources/upstream
+	url = https://github.com/ajayyy/ExtensionTranslations
+[submodule "public/_locales-sources/overrides"]
+	path = public/_locales-sources/overrides
 	url = https://github.com/Spot-SponsorBlock/ExtensionTranslations

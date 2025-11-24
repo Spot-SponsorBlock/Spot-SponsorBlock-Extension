@@ -8,6 +8,7 @@ const srcDir = '../src/';
 const fs = require("fs");
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const configDiffPlugin = require('./configDiffPlugin');
+const MergeLocalesPlugin = require('./mergeLocalesPlugin');
 
 const edgeLanguages = [
     "de",
@@ -131,6 +132,8 @@ module.exports = env => {
             new DocumentScriptCompiler(),
             // fork TS checker
             new ForkTsCheckerWebpackPlugin(),
+            // merge locale files from upstream and overrides
+            new MergeLocalesPlugin(),
             // exclude locale files in moment
             new CopyPlugin({
                 patterns: [
@@ -138,7 +141,7 @@ module.exports = env => {
                         from: '.',
                         to: '../',
                         globOptions: {
-                            ignore: ['manifest.json', '**/.git/**', '**/crowdin.yml', '**/icons/beep.*'],
+                            ignore: ['manifest.json', '**/.git/**', '**/crowdin.yml', '**/icons/beep.*', '**/_locales-sources/**'],
                         },
                         context: './public',
                         filter: async (path) => {
