@@ -53,7 +53,7 @@ const utils = new Utils();
 
 utils.wait(() => Config.isReady(), 5000, 10).then(() => {
     // Hack to get the CSS loaded on permission-based sites
-    addCSS();
+    // addCSS(); // Re-enable when adding support for other sites, modify and re-add "&& Config.config.invidiousInstances.includes(new URL(document.URL).hostname)"
     setCategoryColorCSSVariables();
 });
 
