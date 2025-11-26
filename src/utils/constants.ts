@@ -34,6 +34,11 @@ export function getGuidelineInfo(category: Category): TextBox[] {
                 icon: "icons/right-arrow.svg",
                 text: chrome.i18n.getMessage(`generic_guideline2`)
             }];
+        case "exclusive_access":
+            return [{
+                icon: "icons/money.svg",
+                text: chrome.i18n.getMessage(`category_${category}_guideline1`)
+            }];
         case "interaction":
             return [{
                 icon: "icons/lightbulb.svg",

@@ -98,6 +98,7 @@ interface SBConfig {
         "preview-sponsor": PreviewBarOption;
         "selfpromo": PreviewBarOption;
         "preview-selfpromo": PreviewBarOption;
+        "exclusive_access": PreviewBarOption;
         "interaction": PreviewBarOption;
         "preview-interaction": PreviewBarOption;
         "intro": PreviewBarOption;
@@ -205,7 +206,7 @@ function migrateOldSyncFormats(config: SBConfig, local: SBStorage) {
         local.skipProfiles[skipProfileID] = {
             name: chrome.i18n.getMessage("WhitelistedChannels"),
             categorySelections: config.categorySelections
-                .filter((s) => ![].includes(s.name))
+                .filter((s) => !["exclusive_access"].includes(s.name))
                 .map(s => ({
                     name: s.name,
                     option: CategorySkipOption.ShowOverlay
@@ -247,6 +248,10 @@ function migrateOldSyncFormats(config: SBConfig, local: SBStorage) {
 
             config.categorySelections = config.categorySelections;
         }
+    }
+
+    if (config["exclusive_accessCategoryAdded"] !== undefined) {
+        chrome.storage.sync.remove("exclusive_accessCategoryAdded");
     }
 
     if (config["fillerUpdate"] !== undefined) {
@@ -397,6 +402,9 @@ const syncDefaults = {
     }, {
         name: "poi_highlight" as Category,
         option: CategorySkipOption.ManualSkip
+    }, {
+        name: "exclusive_access" as Category,
+        option: CategorySkipOption.ShowOverlay
     }],
 
     colorPalette: {
@@ -425,6 +433,10 @@ const syncDefaults = {
         },
         "preview-selfpromo": {
             color: "#bfbf35",
+            opacity: "0.7"
+        },
+        "exclusive_access": {
+            color: "#008a5c",
             opacity: "0.7"
         },
         "interaction": {
