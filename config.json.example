@@ -15,15 +15,15 @@
         "poi_highlight": ["poi"]
     },
     "wikiLinks": {
-        "sponsor": "https://wiki.sponsor.ajay.app/w/Sponsor",
-        "selfpromo": "https://wiki.sponsor.ajay.app/w/Unpaid/Self_Promotion",
-        "interaction": "https://wiki.sponsor.ajay.app/w/Interaction_Reminder_(Subscribe)",
-        "intro": "https://wiki.sponsor.ajay.app/w/Intermission/Intro_Animation",
-        "outro": "https://wiki.sponsor.ajay.app/w/Endcards/Credits",
-        "preview": "https://wiki.sponsor.ajay.app/w/Preview/Recap",
-        "hook": "https://wiki.sponsor.ajay.app/w/Hook/Greetings",
-        "filler": "https://wiki.sponsor.ajay.app/w/Tangents/Jokes",
-        "poi_highlight": "https://wiki.sponsor.ajay.app/w/Highlight",
-        "guidelines": "https://wiki.sponsor.ajay.app/w/Guidelines"
+        "sponsor": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Sponsor",
+        "selfpromo": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Unpaid/Self_Promotion",
+        "interaction": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Interaction_Reminder",
+        "intro": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Intermission/Intro",
+        "outro": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Credits/Outro",
+        "preview": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Preview/Recap",
+        "hook": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Hook/Greetings",
+        "filler": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Tangents/Jokes",
+        "poi_highlight": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Highlight",
+        "guidelines": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Guidelines"
     }
 }

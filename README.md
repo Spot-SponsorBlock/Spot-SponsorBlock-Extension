@@ -29,7 +29,7 @@ Spot SponsorBlock is an open-source crowdsourced browser extension to skip spons
 
 # Important Links
 
-See the [Wiki](https://github.com/ajayyy/SponsorBlock/wiki) for important links.
+See the [Wiki](https://github.com/Spot-SponsorBlock/Spot-SponsorBlock-Extension/wiki) for important links.
 
 # Server
 

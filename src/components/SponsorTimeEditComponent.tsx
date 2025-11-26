@@ -225,7 +225,7 @@ class SponsorTimeEditComponent extends React.Component<SponsorTimeEditProps, Spo
 
                     {/* open in new tab */}
                     <a href={CompileConfig.wikiLinks[sponsorTime.category] 
-                            || "https://wiki.sponsor.ajay.app/index.php/Segment_Categories"}
+                            || "https://wiki.sponsor.ajay.app/index.php/Spot_SponsorBlock_Segment_categories"}
                         target="_blank" rel="noreferrer">
                         <img id={"sponsorTimeCategoriesHelpButton" + this.idSuffix}
                             className="helpButton"
