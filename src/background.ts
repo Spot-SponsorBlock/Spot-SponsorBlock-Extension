@@ -3,7 +3,7 @@ import * as CompileConfig from "../config.json";
 import Config from "./config";
 import { Registration } from "./types";
 import "content-scripts-register-polyfill";
-import { sendRealRequestToCustomServer, serializeOrStringify } from "./requests/background-request-proxy";
+import { sendRealRequestToCustomServer, serializeOrStringify, setupBackgroundRequestProxy } from "./background-request-proxy";
 import { setupTabUpdates } from "./utils/tab-updates";
 import { generateUserID } from "./utils/setup";
 
@@ -208,52 +208,4 @@ async function asyncRequestToServer(type: string, address: string, data = {}) {
     const serverAddress = Config.config.testingServer ? CompileConfig.testingServerAddress : Config.config.serverAddress;
 
     return await (sendRealRequestToCustomServer(type, serverAddress + address, data));
-}
-
-function setupBackgroundRequestProxy() {
-    chrome.runtime.onMessage.addListener((request, sender, callback) => {
-        if (request.message === "sendRequest") {
-            sendRealRequestToCustomServer(request.type, request.url, request.data, request.headers).then(async (response) => {
-                const buffer = request.binary 
-                    ? ((isFirefoxOrSafari() && !isSafari())
-                        ? await response.blob()
-                        : Array.from(new Uint8Array(await response.arrayBuffer())))
-                    : null;
-
-                callback({
-                    responseText: !request.binary ? await response.text() : "",
-                    responseBinary: buffer,
-                    headers: (request.returnHeaders && response.headers)
-                            ? [...response.headers.entries()].reduce((acc, [key, value]) => {
-                                acc[key] = value;
-                                return acc;
-                            }
-                        , {})
-                        : null,
-                    status: response.status,
-                    ok: response.ok
-                });
-            }).catch(error => {
-                console.error("Proxied request failed:", error)
-                callback({
-                    error: serializeOrStringify(error),
-                });
-            });
-
-            return true;
-        }
-
-        if (request.message === "getHash") {
-            getHash(request.value, request.times).then(callback).catch((e) => {
-                console.error("Hash request failed:", e)
-                callback({
-                    error: serializeOrStringify(e),
-                });
-            });
-
-            return true;
-        }
-
-        return false;
-    });
 }

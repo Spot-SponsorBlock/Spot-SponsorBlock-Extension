@@ -9,7 +9,7 @@ import { VoteResponse } from "../messageTypes";
 import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
 import { formatJSErrorMessage, getLongErrorMessage } from "../utils/formating";
-import { logRequest } from "../requests/background-request-proxy";
+import { logRequest } from "../background-request-proxy";
 
 export interface CategoryPillProps {
     vote: (type: number, UUID: SegmentUUID, category?: Category) => Promise<VoteResponse>;

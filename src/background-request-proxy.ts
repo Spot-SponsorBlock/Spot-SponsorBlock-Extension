@@ -1,7 +1,7 @@
-import { isFirefoxOrSafari, objectToURI } from "../utils/index";
-import { isSafari } from "../config/config";
-import { isBodyGarbage } from "../utils/formating";
-import { getHash } from "../utils/hash";
+import { isFirefoxOrSafari, objectToURI } from "./utils/index";
+import { isSafari } from "./config/config";
+import { isBodyGarbage } from "./utils/formating";
+import { getHash } from "./utils/hash";
 
 export interface FetchResponse {
     responseText: string;
@@ -81,6 +81,54 @@ export function serializeOrStringify<T>(value: T & MaybeError): T | string {
             ? value.toString()
             : String(value)
         );
+}
+
+export function setupBackgroundRequestProxy() {
+    chrome.runtime.onMessage.addListener((request, sender, callback) => {
+        if (request.message === "sendRequest") {
+            sendRealRequestToCustomServer(request.type, request.url, request.data, request.headers).then(async (response) => {
+                const buffer = request.binary 
+                    ? ((isFirefoxOrSafari() && !isSafari())
+                        ? await response.blob()
+                        : Array.from(new Uint8Array(await response.arrayBuffer())))
+                    : null;
+
+                callback({
+                    responseText: !request.binary ? await response.text() : "",
+                    responseBinary: buffer,
+                    headers: (request.returnHeaders && response.headers)
+                            ? [...response.headers.entries()].reduce((acc, [key, value]) => {
+                                acc[key] = value;
+                                return acc;
+                            }
+                        , {})
+                        : null,
+                    status: response.status,
+                    ok: response.ok
+                });
+            }).catch(error => {
+                console.error("Proxied request failed:", error)
+                callback({
+                    error: serializeOrStringify(error),
+                });
+            });
+
+            return true;
+        }
+
+        if (request.message === "getHash") {
+            getHash(request.value, request.times).then(callback).catch((e) => {
+                console.error("Hash request failed:", e)
+                callback({
+                    error: serializeOrStringify(e),
+                });
+            });
+
+            return true;
+        }
+
+        return false;
+    });
 }
 
 export function sendRequestToCustomServer(type: string, url: string, data = {}, headers = {}): Promise<FetchResponse> {

@@ -1,6 +1,6 @@
 import Config from "../config";
 import * as CompileConfig from "../../config.json";
-import { FetchResponse, sendRequestToCustomServer } from "../requests/background-request-proxy";
+import { FetchResponse, sendRequestToCustomServer } from "../background-request-proxy";
 
 /**
  * Sends a request to the SponsorBlock server with address added as a query

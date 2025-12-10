@@ -45,7 +45,7 @@ import { defaultPreviewTime } from "./utils/constants";
 import { getSegmentsForVideo } from "./utils/segmentData";
 import { getCategoryDefaultSelection, getCategorySelection } from "./utils/skipRule";
 import { getSkipProfileBool, getSkipProfileIDForTab, hideTooShortSegments, setCurrentTabSkipProfile } from "./utils/skipProfiles";
-import { FetchResponse, logRequest } from "./requests/background-request-proxy";
+import { FetchResponse, logRequest } from "./background-request-proxy";
 
 cleanPage();
 

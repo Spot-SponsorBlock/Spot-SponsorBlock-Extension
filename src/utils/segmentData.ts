@@ -6,7 +6,7 @@ import { ActionTypes, SponsorSourceType, SponsorTime, VideoID } from "../types";
 import { getHashParams } from "./pageUtils";
 import { asyncRequestToServer } from "./requests";
 import { extensionUserAgent } from "./index";
-import { logRequest, serializeOrStringify } from "../requests/background-request-proxy";
+import { logRequest, serializeOrStringify } from "../background-request-proxy";
 
 const segmentDataCache = new DataCache<VideoID, SegmentResponse>(() => {
     return {

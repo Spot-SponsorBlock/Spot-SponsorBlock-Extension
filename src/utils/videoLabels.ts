@@ -3,7 +3,7 @@ import { getHash } from "./hash";
 import { logWarn } from "./logger";
 import { asyncRequestToServer } from "./requests";
 import { getCategorySelection } from "./skipRule";
-import { FetchResponse, logRequest } from "../requests/background-request-proxy";
+import { FetchResponse, logRequest } from "../background-request-proxy";
 
 export interface VideoLabelsCacheData {
     category: Category;
