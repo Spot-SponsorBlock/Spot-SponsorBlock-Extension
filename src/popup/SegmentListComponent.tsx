@@ -18,7 +18,6 @@ interface SegmentListComponentProps {
     currentTime: number;
     status: LoadingStatus;
     segments: SponsorTime[];
-    loopedChapter: SegmentUUID | null;
 
     sendMessage: (request: Message) => Promise<MessageResponse>;
 }
@@ -142,7 +141,6 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
                             segment={segment}
                             currentTime={props.currentTime}
                             isVip={isVip}
-                            loopedChapter={props.loopedChapter} // UUID instead of boolean so it can be passed down to nested chapters 
 
                             tabFilter={tab === SegmentListTab.Chapter ? isChapter : isSegment}
                             sendMessage={props.sendMessage}
@@ -160,19 +158,17 @@ export const SegmentListComponent = (props: SegmentListComponentProps) => {
     );
 };
 
-function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, tabFilter, sendMessage }: {
+function SegmentListItem({ segment, videoID, currentTime, isVip, tabFilter, sendMessage }: {
     segment: SegmentWithNesting;
     videoID: VideoID;
     currentTime: number;
     isVip: boolean;
-    loopedChapter: SegmentUUID;
     
     tabFilter: (segment: SponsorTime) => boolean;
     sendMessage: (request: Message) => Promise<MessageResponse>;
 }) {
     const [voteMessage, setVoteMessage] = React.useState<string | null>(null);
     const [hidden, setHidden] = React.useState(segment.hidden ?? SponsorHideType.Visible); // undefined ?? undefined lol
-    const [isLooped, setIsLooped] = React.useState(loopedChapter === segment.UUID);
 
     // Update internal state if the hidden property of the segment changes
     React.useEffect(() => {
@@ -293,30 +289,6 @@ function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, 
 
                         }}/>
                     {
-                        segment.actionType === ActionType.Chapter &&
-                        <img
-                            className="voteButton"
-                            title={isLooped ? chrome.i18n.getMessage("unloopChapter") : chrome.i18n.getMessage("loopChapter")}
-                            src={isLooped ? chrome.runtime.getURL("icons/looped.svg") : chrome.runtime.getURL("icons/loop.svg")}
-                            onClick={(e) => {
-                                if (isLooped) {
-                                    loopChapter({
-                                        segment: null,
-                                        element: e.currentTarget,
-                                        sendMessage
-                                    });
-                                } else {
-                                    loopChapter({
-                                        segment,
-                                        element: e.currentTarget,
-                                        sendMessage
-                                    });
-                                }
-
-                                setIsLooped(!isLooped);
-                            }}/>
-                    }
-                    {
                         (segment.actionType === ActionType.Skip
                             || segment.actionType === ActionType.Poi
                             && [SponsorHideType.Visible, SponsorHideType.Hidden].includes(hidden)) &&
@@ -367,7 +339,6 @@ function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, 
                     videoID={videoID}
                     currentTime={currentTime}
                     isVip={isVip}
-                    loopedChapter={loopedChapter}
                     tabFilter={tabFilter}
                     sendMessage={sendMessage}
                 />
@@ -376,12 +347,11 @@ function SegmentListItem({ segment, videoID, currentTime, isVip, loopedChapter, 
     );
 }
 
-function InnerChapterList({ chapters, videoID, currentTime, isVip, loopedChapter, tabFilter, sendMessage }: {
+function InnerChapterList({ chapters, videoID, currentTime, isVip, tabFilter, sendMessage }: {
     chapters: (SegmentWithNesting)[];
     videoID: VideoID;
     currentTime: number;
     isVip: boolean;
-    loopedChapter: SegmentUUID;
 
     tabFilter: (segment: SponsorTime) => boolean;
     sendMessage: (request: Message) => Promise<MessageResponse>;
@@ -402,7 +372,6 @@ function InnerChapterList({ chapters, videoID, currentTime, isVip, loopedChapter
                         segment={chapter}
                         currentTime={currentTime}
                         isVip={isVip}
-                        loopedChapter={loopedChapter}
 
                         tabFilter={tabFilter}
                         sendMessage={sendMessage}
@@ -482,23 +451,6 @@ function selectSegment({ segment, sendMessage }: {
         message: "selectSegment",
         UUID: segment?.UUID
     });
-}
-
-function loopChapter({ segment, element, sendMessage }: {
-    segment: SponsorTime;
-    element: HTMLElement;
-
-    sendMessage: (request: Message) => Promise<MessageResponse>;
-}): void {
-    sendMessage({
-        message: "loopChapter",
-        UUID: segment?.UUID
-    });
-
-    if (element) {
-        const stopAnimation = AnimationUtils.applyLoadingAnimation(element, 0.3);
-        stopAnimation();
-    }
 }
 
 interface ImportSegmentsProps {

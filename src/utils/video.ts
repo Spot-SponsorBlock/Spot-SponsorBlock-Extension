@@ -88,26 +88,6 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
         })
     }
 
-    // Register listener for URL change via Navigation API
-    const navigationApiAvailable = "navigation" in window;
-    if (navigationApiAvailable) {
-        // TODO: Remove type cast once type declarations are updated
-        const navigationListener = (e) =>
-            void videoIDChange(getYouTubeVideoID());
-        (window as unknown as { navigation: EventTarget }).navigation.addEventListener("navigate", navigationListener);
-
-        addCleanupListener(() => {
-            (window as unknown as { navigation: EventTarget }).navigation.removeEventListener("navigate", navigationListener);
-        });
-    }
-    // Record availability of Navigation API
-    void waitFor(() => config().local !== null).then(() => {
-        if (config().local!.navigationApiAvailable !== navigationApiAvailable) {
-            config().local!.navigationApiAvailable = navigationApiAvailable;
-            config().forceLocalUpdate("navigationApiAvailable");
-        }
-    });
-
     setupVideoMutationListener();
 
     addCleanupListener(() => {

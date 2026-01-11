@@ -42,7 +42,6 @@ interface SegmentsLoadedProps {
     setVideoID: (videoID: string | null) => void;
     setCurrentTime: (time: number) => void;
     setSegments: (segments: SponsorTime[]) => void;
-    setLoopedChapter: (loopedChapter: SegmentUUID | null) => void;
 }
 
 interface LoadSegmentsProps extends SegmentsLoadedProps {
@@ -78,7 +77,6 @@ export const PopupComponent = () => {
 
     const [currentTime, setCurrentTime] = React.useState<number>(0);
     const [segments, setSegments] = React.useState<SponsorTime[]>([]);
-    const [loopedChapter, setLoopedChapter] = React.useState<SegmentUUID | null>(null);
 
     const [videoID, setVideoID] = React.useState<string | null>(null);
 
@@ -88,16 +86,14 @@ export const PopupComponent = () => {
             setStatus,
             setVideoID,
             setCurrentTime,
-            setSegments,
-            setLoopedChapter
+            setSegments
         });
 
         setupComPort({
             setStatus,
             setVideoID,
             setCurrentTime,
-            setSegments,
-            setLoopedChapter
+            setSegments
         });
 
         forwardClickEvents(sendMessage);
@@ -151,8 +147,7 @@ export const PopupComponent = () => {
                         setStatus,
                         setVideoID,
                         setCurrentTime,
-                        setSegments,
-                        setLoopedChapter
+                        setSegments
                     }).then(() => stopAnimation());
                 });
 
@@ -165,7 +160,6 @@ export const PopupComponent = () => {
                 currentTime={currentTime}
                 status={status.status}
                 segments={segments}
-                loopedChapter={loopedChapter}
                 sendMessage={sendMessage} />
 
             {/* Toggle Box */}
@@ -392,7 +386,6 @@ function segmentsLoaded(response: IsInfoFoundMessageResponse, props: SegmentsLoa
         .sort((a, b) => b.segment[1] - a.segment[1])
         .sort((a, b) => a.segment[0] - b.segment[0])
         .sort((a, b) => a.actionType === ActionType.Full ? -1 : b.actionType === ActionType.Full ? 1 : 0));
-    props.setLoopedChapter(response.loopedChapter);
 }
 
 function sendMessage(request: Message): Promise<MessageResponse> {

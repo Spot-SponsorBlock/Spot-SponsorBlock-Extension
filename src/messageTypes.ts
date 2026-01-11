@@ -54,11 +54,6 @@ interface ImportSegmentsMessage {
     data: string;
 }
 
-interface LoopChapterMessage {
-    message: "loopChapter";
-    UUID: SegmentUUID;
-}
-
 interface KeyDownMessage {
     message: "keydown";
     key: string;
@@ -76,7 +71,7 @@ interface SetCurrentTabSkipProfileResponse {
     configID: ConfigurationID | null;
 }
 
-export type Message = BaseMessage & (DefaultMessage | IsInfoFoundMessage | SkipMessage | SubmitVoteMessage | HideSegmentMessage | CopyToClipboardMessage | ImportSegmentsMessage | KeyDownMessage | LoopChapterMessage | SetCurrentTabSkipProfileResponse);
+export type Message = BaseMessage & (DefaultMessage | IsInfoFoundMessage | SkipMessage | SubmitVoteMessage | HideSegmentMessage | CopyToClipboardMessage | ImportSegmentsMessage | KeyDownMessage | SetCurrentTabSkipProfileResponse);
 
 export interface IsInfoFoundMessageResponse {
     found: boolean;
@@ -85,7 +80,6 @@ export interface IsInfoFoundMessageResponse {
     time: number;
     onMobileSpotify: boolean;
     videoID: VideoID;
-    loopedChapter: SegmentUUID | null;
     channelID: string;
     channelAuthor: string;
     currentTabSkipProfileID: ConfigurationID | null;
@@ -107,10 +101,6 @@ export interface IsChannelWhitelistedResponse {
     value: boolean;
 }
 
-export interface LoopedChapterResponse {
-    UUID: SegmentUUID;
-}
-
 export type MessageResponse =
     IsInfoFoundMessageResponse
     | GetVideoIdResponse
@@ -122,7 +112,6 @@ export type MessageResponse =
     | ImportSegmentsResponse
     | RefreshSegmentsResponse
     | LogResponse
-    | LoopedChapterResponse
     | GetContentTypeResponse
     | IsExternalDeviceResponse;
 

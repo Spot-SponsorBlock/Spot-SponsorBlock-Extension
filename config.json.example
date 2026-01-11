@@ -2,7 +2,7 @@
     "serverAddress": "https://sponsor.ajay.app",
     "testingServerAddress": "https://sponsor.ajay.app/test",
     "serverAddressComment": "This specifies the default SponsorBlock server to connect to",
-    "categoryList": ["sponsor", "selfpromo", "exclusive_access", "interaction", "poi_highlight", "intro", "outro", "preview", "hook", "filler"],
+    "categoryList": ["sponsor", "selfpromo", "exclusive_access", "interaction", "poi_highlight", "intro", "outro", "preview", "hook", "filler", "chapter"],
     "categorySupport": {
         "sponsor": ["skip", "full"],
         "selfpromo": ["skip", "full"],
@@ -13,7 +13,8 @@
         "preview": ["skip"],
         "hook": ["skip"],
         "filler": ["skip"],
-        "poi_highlight": ["poi"]
+        "poi_highlight": ["poi"],
+        "chapter": ["chapter"]
     },
     "wikiLinks": {
         "sponsor": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Sponsor",
@@ -26,6 +27,7 @@
         "hook": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Hook/Greetings",
         "filler": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Tangents/Jokes",
         "poi_highlight": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Highlight",
-        "guidelines": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Guidelines"
+        "guidelines": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Guidelines",
+        "chapter": "https://wiki.sponsor.ajay.app/w/Spot_SponsorBlock:Chapter"
     }
 }

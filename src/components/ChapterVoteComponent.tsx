@@ -45,7 +45,7 @@ class ChapterVoteComponent extends React.Component<ChapterVoteProps, ChapterVote
             <>
                 {/* Upvote Button */}
                 <button id={"sponsorTimesDownvoteButtonsContainerUpvoteChapter"}
-                        className={"playerButton sbPlayerUpvote ytp-button " + (!this.state.show ? "sbhidden " : " ") + (document.location.host === "tv.youtube.com" ? "sbButtonYTTV" : "")}
+                        className={"playerButton sbPlayerUpvote ytp-button " + (!this.state.show ? "sbhidden " : " ")}
                         draggable="false"
                         title={chrome.i18n.getMessage("upvoteButtonInfo")}
                         onClick={(e) => this.vote(e, 1)}>
@@ -56,25 +56,25 @@ class ChapterVoteComponent extends React.Component<ChapterVoteProps, ChapterVote
 
                 {/* Downvote Button */}
                 <button id={"sponsorTimesDownvoteButtonsContainerDownvoteChapter"}
-                        className={"playerButton sbPlayerDownvote ytp-button " + (!this.state.show ? "sbhidden " : " ") + (document.location.host === "tv.youtube.com" ? "sbButtonYTTV" : "")}
+                        className={"playerButton sbPlayerDownvote ytp-button " + (!this.state.show ? "sbhidden " : " ")}
                         draggable="false"
                         title={chrome.i18n.getMessage("reportButtonInfo")}
                         onClick={(e) => {
-                            const chapterNode = document.querySelector(".ytp-chapter-container") as HTMLElement;
+                            const chapterNode = document.querySelector(".Kn1rj52CMO51rcLZ_nLt") as HTMLElement;
 
                             if (this.tooltip) {
                                 this.tooltip.close();
                                 this.tooltip = null;
                             } else {
                                 if (this.state.segment?.actionType === ActionType.Chapter) {
-                                    const referenceNode = chapterNode?.parentElement?.parentElement;
+                                    const referenceNode = chapterNode?.parentElement;
                                     if (referenceNode) {
                                         const outerBounding = referenceNode.getBoundingClientRect();
                                         const buttonBounding = (e.target as HTMLElement)?.parentElement?.getBoundingClientRect();
                                         
                                         this.tooltip = new Tooltip({
-                                            referenceNode: chapterNode?.parentElement?.parentElement,
-                                            prependElement: chapterNode?.parentElement,
+                                            referenceNode: chapterNode?.parentElement,
+                                            prependElement: chapterNode,
                                             showLogo: false,
                                             showGotIt: false,
                                             bottomOffset: `${outerBounding.height + 25}px`,

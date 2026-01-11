@@ -4,7 +4,6 @@ import Config from "./config";
 import { Registration } from "./types";
 import "content-scripts-register-polyfill";
 import { sendRealRequestToCustomServer, serializeOrStringify, setupBackgroundRequestProxy } from "./background-request-proxy";
-import { setupTabUpdates } from "./utils/tab-updates";
 import { generateUserID } from "./utils/setup";
 
 import Utils from "./utils";
@@ -23,7 +22,6 @@ const popupPort: Record<string, chrome.runtime.Port> = {};
 const contentScriptRegistrations = {};
 
 setupBackgroundRequestProxy();
-setupTabUpdates(Config);
 
 chrome.runtime.onMessage.addListener(function (request, sender, callback) {
     switch(request.message) {

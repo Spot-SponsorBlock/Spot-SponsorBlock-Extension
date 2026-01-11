@@ -2,7 +2,6 @@ export interface SyncStorage {
 }
 
 export interface LocalStorage {
-    navigationApiAvailable: boolean;
 }
 
 interface StorageObjects<T, U> {
