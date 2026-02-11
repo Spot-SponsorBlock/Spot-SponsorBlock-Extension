@@ -2046,9 +2046,9 @@ function openInfoMenu() {
     popup.id = "sponsorBlockPopupContainer";
 
     const frame = document.createElement("iframe");
-    frame.width = "380";
-    frame.height = "735";
-    frame.classList.add("UrfDp0_mKGL9hkfh9g_R")
+    frame.height = "797";
+    frame.classList.add("eWU4JoxyECcwnSf_")
+    frame.classList.add("sponsorBlockPopupFrame")
     frame.addEventListener("load", async () => {
         frame.contentWindow.postMessage("", "*");
 
@@ -2082,9 +2082,6 @@ function openInfoMenu() {
     });
     frame.src = chrome.runtime.getURL("popup.html");
     popup.appendChild(frame);
-    popup.classList.add("oXO9_yYs6JyOwkBn8E4a");
-    popup.setAttribute("style", "width: 380px;");
-    
 
     const elemHasChild = (elements: NodeListOf<HTMLElement>): Element => {
         let parentNode: Element;
@@ -2098,11 +2095,8 @@ function openInfoMenu() {
 
     const parentNodeOptions = [{
         // Spotify
-        selector: ".lAtoMFm8vg4yAlGztUxI",
+        selector: ".LtqMCWXd5Nkemkym",
         hasChildCheck: true
-    }, {
-        // old youtube theme
-        selector: "#watch7-sidebar-contents",
     }];
     for (const option of parentNodeOptions) {
         const allElements = document.querySelectorAll(option.selector) as NodeListOf<HTMLElement>;
@@ -2652,7 +2646,7 @@ function showTimeWithoutSkips(skippedDuration: number): void {
     }
 
     // Spotify player time display
-    const displaySelector = ".NClDR4CG_J8nuqy2uGn9";
+    const displaySelector = ".vfI4ba4_zTQuZC5K";
     const timeSelector = "[data-testid='playback-duration']"
     const display = document.querySelector(displaySelector);
     const timeDisplay = document.querySelector(timeSelector);
@@ -2668,8 +2662,8 @@ function showTimeWithoutSkips(skippedDuration: number): void {
         duration.classList.add("e-91000-text");
         duration.classList.add("encore-text-marginal");
         duration.classList.add("encore-internal-color-text-subdued");
-        duration.classList.add("fDD5IxaW7WW8LZTlwzs4");
-        duration.classList.add("GXsSVpgcy07kLerWwAAX");
+        duration.classList.add("jYB3Yggec0UDIsZh");
+        duration.classList.add("zIJoncjvzIA4c5M1");
         duration.style.marginTop = "48.5px";
 
         display.prepend(duration);

@@ -158,6 +158,10 @@ div:hover > .sponsorBlockChapterBar {
     height: 500px;
 }
 
+.sponsorBlockPopupFrame {
+	width: 380px !important;
+}
+
 .smallLink {
 	font-size: 10px;
 	text-decoration: underline;
