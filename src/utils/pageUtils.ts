@@ -5,7 +5,7 @@ import { getSkipProfileBool } from "./skipProfiles";
 export function getControls(): HTMLElement {
     const controlsSelectors = [
         // Spotify
-        ".bCCN4Fy0V1eENMKmu7pM",
+        ".O9zMd8LexCQNrpv5",
         // Mobile Spotify
         ".s6rbLMK3UuwpqmmtNUzk"
     ];
@@ -24,7 +24,7 @@ export function getControls(): HTMLElement {
 export function getExternalDeviceBar(): HTMLElement {
     const deviceBarSelectors = [
         // Spotify
-        "div.UCkwzKM66KIIsICd6kew",
+        "div.pggKHkbEjlYCiHC7",
         // Mobile Spotify
         "span.weq1sklEuYjtdUrUZpYI",
         // Mobile Spotify fullscreen

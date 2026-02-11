@@ -1,6 +1,6 @@
 export function getYouTubeTitleNodeSelector(): string {
     // Spotify, Mobile Spotify
-    return ".GcbM2tnkJCvKOjRfp8RQ, .s6rbLMK3UuwpqmmtNUzk";
+    return ".iRGr6yO6lPcAKUoT, .s6rbLMK3UuwpqmmtNUzk";
 }
 
 export function getYouTubeTitleNode(): HTMLElement {

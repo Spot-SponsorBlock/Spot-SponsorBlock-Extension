@@ -27,7 +27,7 @@ interface VideoModuleParams {
     documentScript: string;
 }
 
-const episodeIDSelector = "div[data-testid='context-item-info-title'] a[data-testid='context-item-link']";
+const episodeIDSelector = "span[draggable='true'] a[data-testid='context-item-link']";
 const channelIDSelector = "a[data-testid='context-item-info-show']";
 
 let video: HTMLMediaElement | null = null;
