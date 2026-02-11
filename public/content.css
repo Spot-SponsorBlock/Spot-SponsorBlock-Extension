@@ -224,7 +224,7 @@ div:hover > .sponsorBlockChapterBar {
   content: attr(data-display);
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 9px);
+  bottom: calc(100% + 30px);
   transform: translateX(-50%);
   white-space: nowrap;
   background: rgba(40, 40, 40, 0.9);
