@@ -27,6 +27,8 @@ interface episodeData {
 const episodeDataList: episodeData[] = [];
 const id = "sponsorblock";
 
+let videoElement: HTMLVideoElement | null = null;
+
 let firstTime = true;
 let onMobileSpotify = false;
 
@@ -50,6 +52,14 @@ const fullScreenObserver = new MutationObserver(() => {
 
 const fullScreenTitleObserver = new MutationObserver(() => {
     sendEpisodeData();
+});
+
+const videoContainerObserver = new MutationObserver(() => {
+    if (!document.querySelector(".VideoPlayer__container video")) {
+        const sbContainer = document.querySelector("#__sb_video_container");
+        // Add back videoElement to __sb_video_container if it's no longer under VideoPlayer__container
+        sbContainer.appendChild(videoElement);
+    }
 });
 
 function sendEpisodeData() {
@@ -93,6 +103,8 @@ function hijackVideoElement() {
       try {
         if (tag === "video" && el instanceof HTMLVideoElement && !onMobileSpotify) {
             container.appendChild(el);
+            videoElement = el;
+            createVideoContainerObserver();
             document.createElement = origCreate;
         } else if (tag === "audio" && el instanceof HTMLAudioElement && onMobileSpotify) {
             container.appendChild(el);
@@ -101,6 +113,19 @@ function hijackVideoElement() {
       } catch { /* ignore */ }
       return el;
     };
+}
+
+function createVideoContainerObserver() {
+    const videoContainer = document.querySelector(".VideoPlayer__container");
+
+    if (videoContainer) {
+        // Observe when videoElement is moved from or to VideoPlayer__container (happens when podcast has a viewable video)
+        videoContainerObserver.observe(videoContainer, {
+            childList: true
+        });
+    } else {
+        setTimeout(createVideoContainerObserver, 1000);
+    }
 }
 
 function patchWebSocket() {

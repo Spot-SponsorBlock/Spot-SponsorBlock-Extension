@@ -313,7 +313,8 @@ async function refreshVideoAttachments(): Promise<void> {
     // Compatibility for Vinegar extension
     let newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLMediaElement) 
         || (onMobileSpotify && document.querySelector('#__sb_video_container audio') as HTMLMediaElement) 
-        || document.querySelector('#__sb_video_container video') as HTMLMediaElement;
+        || (document.querySelector('#__sb_video_container video') as HTMLMediaElement)
+        || document.querySelector('video') as HTMLMediaElement;
 
     waitingForNewVideo = false;
 
