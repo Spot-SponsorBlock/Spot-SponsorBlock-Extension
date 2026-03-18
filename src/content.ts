@@ -2048,6 +2048,7 @@ function openInfoMenu() {
     popup.id = "sponsorBlockPopupContainer";
 
     const frame = document.createElement("iframe");
+    frame.allow = "clipboard-write";
     frame.height = "797";
     frame.classList.add("eWU4JoxyECcwnSf_")
     frame.classList.add("sponsorBlockPopupFrame")
