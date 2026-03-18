@@ -58,8 +58,8 @@ export function timeoutPomise<T>(timeout?: number): Promise<T> {
     });
 }
 
-const onFirefoxOrSafari = typeof(chrome) !== "undefined" && !!chrome.runtime.getManifest().browser_specific_settings;
-const onFirefox = typeof(chrome) !== "undefined" && !!chrome.runtime.getManifest().browser_specific_settings?.gecko;
+const onFirefoxOrSafari = typeof(chrome) !== "undefined" && !!chrome.runtime?.getManifest()?.browser_specific_settings;
+const onFirefox = typeof(chrome) !== "undefined" && !!chrome.runtime?.getManifest()?.browser_specific_settings?.gecko;
 export function isFirefox(): boolean {
     return onFirefox;
 }
@@ -73,6 +73,6 @@ export function isOpera(): boolean {
 
 let cachedUserAgent: string;
 export function extensionUserAgent(): string {
-    cachedUserAgent ??= `${chrome.runtime.id}/v${chrome.runtime.getManifest().version}`;
+    cachedUserAgent ??= `${chrome.runtime.id}/v${chrome.runtime?.getManifest()?.version}`;
     return cachedUserAgent;
 }
