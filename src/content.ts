@@ -1793,8 +1793,10 @@ function createButton(baseID: string, title: string, callback: () => void, image
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
     newButton.classList.add("buttonDisplayBox");
-    newButton.classList.add("fprjoI");
-    newButton.classList.add("e-91000-button-tertiary--icon-only");
+    newButton.classList.add("e-10180-legacy-button");
+    newButton.classList.add("e-10180-button-tertiary--icon-only-small");
+    newButton.classList.add("e-10180-legacy-button-tertiary");
+    newButton.classList.add("e-10180-button-tertiary--icon-only");
     if (Config.config.prideTheme) newButton.classList.add("prideTheme");
 
     newButton.dataset.display = chrome.i18n.getMessage(title);
@@ -1803,13 +1805,13 @@ function createButton(baseID: string, title: string, callback: () => void, image
     });
 
     const imageWrapper = document.createElement("span");
-    imageWrapper.className = "e-91000-button__icon-wrapper";
+    imageWrapper.className = "e-10180-button__icon-wrapper";
 
     // Image HTML
     const newButtonImage = document.createElement("img");
     newButtonImage.draggable = isDraggable;
     newButtonImage.id = baseID + "Image";
-    newButtonImage.className = "e-91000-icon e-91000-baseline";
+    newButtonImage.className = "e-10180-icon";
     newButtonImage.setAttribute("data-encore-id", "icon");
     newButtonImage.src = chrome.runtime.getURL("icons/" + imageName);
 
