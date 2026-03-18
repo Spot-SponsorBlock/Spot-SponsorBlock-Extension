@@ -71,7 +71,7 @@ function sendEpisodeData() {
 
     const title = getTitleElement().textContent;
     const episode = episodeDataList.find(
-    data => data.episodeTitle === title
+        data => data.episodeTitle === title
     );
 
     if (!episode) {
@@ -93,25 +93,25 @@ function hijackVideoElement() {
     container.id = '__sb_video_container';
     container.style.display = 'none';
     document.documentElement.appendChild(container);
-    
+
     const origCreate = document.createElement.bind(document);
 
     // Patch document.createElement to capture newly created video or audio elements
     document.createElement = function (tagName: string, options?: ElementCreationOptions) {
-      const tag = String(tagName).toLowerCase();
-      const el = origCreate(tagName as any, options as any) as HTMLElement;
-      try {
-        if (tag === "video" && el instanceof HTMLVideoElement && !onMobileSpotify) {
-            container.appendChild(el);
-            videoElement = el;
-            createVideoContainerObserver();
-            document.createElement = origCreate;
-        } else if (tag === "audio" && el instanceof HTMLAudioElement && onMobileSpotify) {
-            container.appendChild(el);
-            document.createElement = origCreate;
-        }
-      } catch { /* ignore */ }
-      return el;
+        const tag = String(tagName).toLowerCase();
+        const el = origCreate(tagName as any, options as any) as HTMLElement;
+        try {
+            if (tag === "video" && el instanceof HTMLVideoElement && !onMobileSpotify) {
+                container.appendChild(el);
+                videoElement = el;
+                createVideoContainerObserver();
+                document.createElement = origCreate;
+            } else if (tag === "audio" && el instanceof HTMLAudioElement && onMobileSpotify) {
+                container.appendChild(el);
+                document.createElement = origCreate;
+            }
+        } catch { /* ignore */ }
+        return el;
     };
 }
 
@@ -130,12 +130,12 @@ function createVideoContainerObserver() {
 
 function patchWebSocket() {
     try {
-        // Patch WebSocket onmessage to sanitize dealer.spotify.com messages
+        // Patch WebSocket onmessage to sanitize spotify messages
         const NativeWS = window.WebSocket as typeof WebSocket | undefined;
         if (NativeWS) {
             const proto: any = NativeWS.prototype;
             const origDesc = Object.getOwnPropertyDescriptor(proto, "onmessage");
-            
+
             Object.defineProperty(proto, "onmessage", {
                 configurable: true,
                 enumerable: true,
@@ -148,14 +148,13 @@ function patchWebSocket() {
                         else (this as any).__sb_injected_onmessage = handler;
                         return;
                     }
-                    
+
                     // wrap the handler to intercept dealer websocket payloads
                     const self = this;
                     const wrapped = function (ev: MessageEvent) {
                         try {
                             if (typeof ev.data === "string") {
-                                const url = (self as any).url || "";
-                                if (typeof url === "string" && url.includes("dealer.spotify.com")) {
+                                if (ev.data.includes("file_urls_external")) {
                                     try {
                                         const parsed = JSON.parse(ev.data);
                                         stripFileUrls(parsed);
@@ -166,7 +165,7 @@ function patchWebSocket() {
                         } catch { /* ignore */ }
                         return handler.call(self, ev);
                     };
-                    
+
                     (this as any).__sb_injected_onmessage = wrapped;
                     if (origDesc && origDesc.set) origDesc.set.call(this, wrapped);
                     else this.addEventListener("message", wrapped);
@@ -188,8 +187,8 @@ function patchFetch() {
                 if (!isSpclient) return res;
                 try {
                     const text = await res.clone().text();
-                     const parsed = JSON.parse(text);
-                     if (parsed && typeof parsed === "object") {
+                    const parsed = JSON.parse(text);
+                    if (parsed && typeof parsed === "object") {
                         stripFileUrls(parsed);
                         // Can't get episodeID from DOM on mobile
                         if (onMobileSpotify) {
@@ -215,11 +214,11 @@ function stripFileUrls(root: any) {
     while (stack.length) {
         const node = stack.pop();
         if (!node || typeof node !== "object") continue;
-        
+
         if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
-            try { delete node.file_urls_external; } catch {}
+            try { delete node.file_urls_external; } catch { }
         }
-            
+
         if (Array.isArray(node)) {
             for (let i = node.length - 1; i >= 0; i--) {
                 const v = node[i];
@@ -239,7 +238,7 @@ function stripFileUrls(root: any) {
 function createMobileObservers() {
     const titleObserverElement = document.querySelector(".qLJjpgM6PzjjQFiwsHlN");
     const fullScreenObserverElement = document.querySelector(".Yg_FlRTSnjxmfwyAvnFJ");
-    
+
     if (titleObserverElement && fullScreenObserverElement) {
         titleObserver.observe(titleObserverElement, {
             childList: true,
@@ -282,10 +281,10 @@ function getEpisodesFromResponse(root: any) {
                     data => data.episodeTitle === episodeTitle
                 );
                 if (existing) continue;
-            
+
                 const uri = track.metadata.uri;
                 const split = uri.split(":");
-            
+
                 let showID;
                 let showTitle;
                 const episodeID = split[2];
@@ -293,11 +292,11 @@ function getEpisodesFromResponse(root: any) {
                 if (contentType === "episode") {
                     const showUri = track.metadata.context_uri;
                     const showSplit = showUri.split(":");
-                    
+
                     showID = showSplit[2];
                     showTitle = track.metadata.context_description;
                 }
-                
+
                 const episode: episodeData = {
                     episodeID,
                     episodeTitle,
@@ -320,7 +319,7 @@ function init(): void {
     hijackVideoElement();
     patchWebSocket();
     patchFetch();
-    
+
     if (onMobileSpotify) {
         createMobileObservers();
     }
