@@ -196,19 +196,22 @@ function resetValues() {
 }
 
 export function getYouTubeVideoID(): VideoID | null {
-    if (onMobileSpotify && getContentType() === "episode" && !checkIfExternalDevice()) {
+    const currentContentType = getContentType();
+    const isExternalDevice = checkIfExternalDevice();
+    if (onMobileSpotify && currentContentType === "episode" && !isExternalDevice) {
         return videoID;
-    } else if (onMobileSpotify) {
-        return null;
-    } else {
+    } else if (!onMobileSpotify && currentContentType === "episode" && !isExternalDevice) {
         return getEpisodeDataFromDOM("EpisodeID");
+    } else {
+        return null;
     }
 }
 
 export function getContentType(): ContentType | null {
-    if (onMobileSpotify) {
+    if (onMobileSpotify || contentType == "dynamic") {
         return contentType;
     } else {
+        // Get it from DOM if it's not set by the document script
         return getEpisodeDataFromDOM("ContentType");
     }
 }
@@ -228,7 +231,7 @@ function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | nul
         return DOMContentType as ContentType;
     } 
     // If played media is a podcast not playing on an external device
-    else if (type === "EpisodeID" && DOMContentType === "episode" && !checkIfExternalDevice()) {
+    else if (type === "EpisodeID") {
         return id as VideoID;
     } else {
         return null;

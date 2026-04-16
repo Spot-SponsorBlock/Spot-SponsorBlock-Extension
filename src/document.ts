@@ -154,7 +154,16 @@ function patchWebSocket() {
                     const wrapped = function (ev: MessageEvent) {
                         try {
                             if (typeof ev.data === "string") {
-                                if (ev.data.includes("file_urls_external")) {
+                                if (ev.data.includes("replace_state")) {
+                                    // Reset the contentType
+                                    sendMessage({
+                                        type: "changeEpisodeData",
+                                        episodeID: null,
+                                        showID: null,
+                                        showTitle: null,
+                                        contentType: null
+                                    });
+
                                     try {
                                         const parsed = JSON.parse(ev.data);
                                         stripFileUrls(parsed);
@@ -211,12 +220,42 @@ function patchFetch() {
 function stripFileUrls(root: any) {
     if (!root || typeof root !== "object") return;
     const stack = [root];
+    
+    var hasSentResetMessage = false;
+    var hasSentDynamicMessage = false;
+    
     while (stack.length) {
         const node = stack.pop();
         if (!node || typeof node !== "object") continue;
 
         if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
-            try { delete node.file_urls_external; } catch { }
+            if (Object.prototype.hasOwnProperty.call(node, "file_ids_mp4_dual")) {
+                if (!hasSentResetMessage && !hasSentDynamicMessage) {
+                    // Reset the contentType
+                    sendMessage({
+                        type: "changeEpisodeData",
+                        episodeID: null,
+                        showID: null,
+                        showTitle: null,
+                        contentType: null
+                    });
+                    hasSentResetMessage = true;
+                }
+                try { delete node.file_urls_external; } catch { }
+            }
+            else {
+                // If there is no fallback episode on spotify, placeholder as episodeID to remove buttons
+                if (!hasSentDynamicMessage) {
+                    sendMessage({
+                        type: "changeEpisodeData",
+                        episodeID: "placeholder",
+                        showID: null,
+                        showTitle: null,
+                        contentType: "dynamic"
+                    });
+                    hasSentDynamicMessage = true;
+                }
+            }
         }
 
         if (Array.isArray(node)) {

@@ -21,6 +21,7 @@ export enum LoadingStatus {
     JSError,
     StillLoading,
     NoVideo,
+    DynamicEpisode,
     WrongType,
     ExternalDevice
 }
@@ -309,6 +310,8 @@ function getVideoStatusText(status: LoadingData): string {
             return chrome.i18n.getMessage("segmentsStillLoading");
         case LoadingStatus.NoVideo:
             return chrome.i18n.getMessage("noVideoID");
+        case LoadingStatus.DynamicEpisode:
+            return chrome.i18n.getMessage("dynamicEpisode");
         case LoadingStatus.WrongType:
             return chrome.i18n.getMessage("wrongContentType");
         case LoadingStatus.ExternalDevice:
@@ -331,6 +334,10 @@ async function loadSegments(props: LoadSegmentsProps): Promise<void> {
             if (!contentTypeResponse.contentType) {
                 props.setStatus({
                     status: LoadingStatus.NoVideo,
+                });
+            } else if (contentTypeResponse.contentType == "dynamic") {
+                props.setStatus({
+                    status: LoadingStatus.DynamicEpisode,
                 });
             } else if (contentTypeResponse.contentType !== "episode") {
                 props.setStatus({
