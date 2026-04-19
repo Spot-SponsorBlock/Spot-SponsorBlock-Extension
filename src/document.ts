@@ -30,28 +30,35 @@ const id = "sponsorblock";
 let videoElement: HTMLVideoElement | null = null;
 
 let firstTime = true;
+let mobileFirstTime = true;
 let onMobileSpotify = false;
 
 const sendMessage = (message: WindowMessage): void => {
     window.postMessage({ source: id, ...message }, "/");
 }
 
-const titleObserver = new MutationObserver(() => {
-    sendEpisodeData();
+const desktopTitleObserver = new MutationObserver(() => {
+    sendDynamicMessage();
 });
 
-const fullScreenObserver = new MutationObserver(() => {
+const mobileTitleObserver = new MutationObserver(() => {
+    sendEpisodeData();
+    sendDynamicMessage();
+});
+
+const mobileFullScreenObserver = new MutationObserver(() => {
     const fullScreenTitleElement = getFullScreenTitleElement();
     if (fullScreenTitleElement) {
-        fullScreenTitleObserver.observe(fullScreenTitleElement, {
+        mobileFullScreenTitleObserver.observe(fullScreenTitleElement, {
             childList: true,
             subtree: true
         });
     }
 });
 
-const fullScreenTitleObserver = new MutationObserver(() => {
+const mobileFullScreenTitleObserver = new MutationObserver(() => {
     sendEpisodeData();
+    sendDynamicMessage();
 });
 
 const videoContainerObserver = new MutationObserver(() => {
@@ -65,8 +72,8 @@ const videoContainerObserver = new MutationObserver(() => {
 function sendEpisodeData() {
     if (checkIfExternalDevice()) {
         return;
-    } else if (firstTime) {
-        firstTime = false;
+    } else if (mobileFirstTime) {
+        mobileFirstTime = false;
     }
 
     const title = getTitleElement().textContent;
@@ -87,6 +94,42 @@ function sendEpisodeData() {
         contentType: episode.contentType
     });
 };
+
+function sendDynamicMessage() {
+    if (checkIfExternalDevice()) {
+        return;
+    }
+
+    const title = getTitleElement().textContent;
+    const episode = episodeDataList.find(
+        data => data.episodeTitle === title
+    );
+
+    if (!episode) {
+        // 1250 so to be sent later than episodeData on mobile
+        setTimeout(sendDynamicMessage, 1250);
+        return;
+    }
+
+    if (episode && episode.contentType === "dynamic") {
+        // The first time the reset content type message is sent twice and delayed, send it 2 times with delays to make sure it doesn't reset the dynamic content type
+        if (firstTime) {
+            firstTime = false;
+            setTimeout(sendDynamicMessage, 1000);
+            setTimeout(sendDynamicMessage, 3000);
+            return;
+        }
+
+        // If there is no fallback episode on spotify, placeholder as episodeID to remove buttons
+        sendMessage({
+            type: "changeEpisodeData",
+            episodeID: "placeholder",
+            showID: null,
+            showTitle: null,
+            contentType: "dynamic"
+        });
+    }
+}
 
 function hijackVideoElement() {
     const container = document.createElement('div');
@@ -166,6 +209,7 @@ function patchWebSocket() {
 
                                     try {
                                         const parsed = JSON.parse(ev.data);
+                                        getEpisodesFromResponse(parsed);
                                         stripFileUrls(parsed);
                                         return handler.call(self, new MessageEvent("message", { data: JSON.stringify(parsed) }));
                                     } catch { /* ignore */ }
@@ -219,58 +263,55 @@ function patchFetch() {
 // Remove "file_urls_external" properties from JSON objects
 function stripFileUrls(root: any) {
     if (!root || typeof root !== "object") return;
-    const stack = [root];
-    
-    var hasSentResetMessage = false;
-    var hasSentDynamicMessage = false;
-    
+    const stack = [{ node: root, parent: null }];
+
     while (stack.length) {
-        const node = stack.pop();
+        const { node, parent } = stack.pop();
         if (!node || typeof node !== "object") continue;
 
         if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
             if (Object.prototype.hasOwnProperty.call(node, "file_ids_mp4_dual")) {
-                if (!hasSentResetMessage && !hasSentDynamicMessage) {
-                    // Reset the contentType
-                    sendMessage({
-                        type: "changeEpisodeData",
-                        episodeID: null,
-                        showID: null,
-                        showTitle: null,
-                        contentType: null
-                    });
-                    hasSentResetMessage = true;
-                }
                 try { delete node.file_urls_external; } catch { }
-            }
-            else {
-                // If there is no fallback episode on spotify, placeholder as episodeID to remove buttons
-                if (!hasSentDynamicMessage) {
-                    sendMessage({
-                        type: "changeEpisodeData",
-                        episodeID: "placeholder",
-                        showID: null,
-                        showTitle: null,
-                        contentType: "dynamic"
-                    });
-                    hasSentDynamicMessage = true;
-                }
+            } else {
+                const episodeTitle = parent.metadata.name;
+                const existing = episodeDataList.find(
+                    data => data.episodeTitle === episodeTitle
+                );
+
+                existing.contentType = "dynamic";
             }
         }
 
         if (Array.isArray(node)) {
             for (let i = node.length - 1; i >= 0; i--) {
                 const v = node[i];
-                if (v && typeof v === "object") stack.push(v);
+                if (v && typeof v === "object") {
+                    stack.push({ node: v, parent: node });
+                }
             }
         } else {
             for (const k in node) {
                 if (Object.prototype.hasOwnProperty.call(node, k)) {
                     const v = node[k];
-                    if (v && typeof v === "object") stack.push(v);
+                    if (v && typeof v === "object") {
+                        stack.push({ node: v, parent: node });
+                    }
                 }
             }
         }
+    }
+}
+
+function createDesktopObserver() {
+    const titleObserverElement = document.querySelector(".fOSYRD0ZQ7wnd6Y4");
+
+    if (titleObserverElement) {
+        desktopTitleObserver.observe(titleObserverElement, {
+            childList: true,
+            subtree: true
+        });
+    } else {
+        setTimeout(createDesktopObserver, 1000);
     }
 }
 
@@ -279,11 +320,11 @@ function createMobileObservers() {
     const fullScreenObserverElement = document.querySelector(".Yg_FlRTSnjxmfwyAvnFJ");
 
     if (titleObserverElement && fullScreenObserverElement) {
-        titleObserver.observe(titleObserverElement, {
+        mobileTitleObserver.observe(titleObserverElement, {
             childList: true,
             subtree: true
         });
-        fullScreenObserver.observe(fullScreenObserverElement, {
+        mobileFullScreenObserver.observe(fullScreenObserverElement, {
             childList: true
         });
     } else {
@@ -300,21 +341,25 @@ function getFullScreenTitleElement(): Element {
 }
 
 function getTitleElement(): Element | null {
-    const fullScreenTitleElement = getFullScreenTitleElement();
-    if (fullScreenTitleElement) {
-        return fullScreenTitleElement;
+    if (onMobileSpotify) {
+        const fullScreenTitleElement = getFullScreenTitleElement();
+        if (fullScreenTitleElement) {
+            return fullScreenTitleElement;
+        } else {
+            const elements = document.querySelectorAll(".TlTafCeV78wyT2Ms8dQW .h05f1NscpvztXBs2ptHa");
+            const titleElement = Array.from(elements).find(el => isVisible(el as HTMLElement));
+            return titleElement || null;
+        }
     } else {
-        const elements = document.querySelectorAll(".TlTafCeV78wyT2Ms8dQW .h05f1NscpvztXBs2ptHa");
-        const titleElement = Array.from(elements).find(el => isVisible(el as HTMLElement));
-        return titleElement || null;
+        return document.querySelector('a[data-testid="context-item-link"]');
     }
 }
 
 function getEpisodesFromResponse(root: any) {
     if (!root || typeof root !== "object") return;
     try {
-        if (root.state_machine.tracks) {
-            for (const track of root.state_machine.tracks) {
+        if (root.payloads[0].state_machine.tracks) {
+            for (const track of root.payloads[0].state_machine.tracks) {
                 const episodeTitle = track.metadata.name;
                 const existing = episodeDataList.find(
                     data => data.episodeTitle === episodeTitle
@@ -345,8 +390,10 @@ function getEpisodesFromResponse(root: any) {
                 };
 
                 episodeDataList.push(episode);
-                if (firstTime) {
+                if (mobileFirstTime && onMobileSpotify) {
                     sendEpisodeData();
+                } else if (firstTime) {
+                    sendDynamicMessage();
                 }
             }
         }
@@ -361,8 +408,9 @@ function init(): void {
 
     if (onMobileSpotify) {
         createMobileObservers();
+    } else {
+        createDesktopObserver();
     }
-
 }
 
 init();
