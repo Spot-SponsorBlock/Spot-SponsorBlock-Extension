@@ -1786,6 +1786,10 @@ function createButton(baseID: string, title: string, callback: () => void, image
     const existingElement = document.getElementById(baseID + "Button");
     if (existingElement !== null) return existingElement;
 
+    const sourceButton = document.querySelector("button[data-testid='control-button-seek-forward-15']");
+    const sourceWrapper = sourceButton.querySelector("span");
+    const sourceIcon = sourceWrapper.querySelector("svg");
+
     // Button HTML
     const newButton = document.createElement("button");
     newButton.draggable = isDraggable;
@@ -1793,10 +1797,14 @@ function createButton(baseID: string, title: string, callback: () => void, image
     newButton.classList.add("playerButton");
     newButton.classList.add("ytp-button");
     newButton.classList.add("buttonDisplayBox");
-    newButton.classList.add("e-10310-legacy-button");
-    newButton.classList.add("e-10310-button-tertiary--icon-only-small");
-    newButton.classList.add("e-10310-legacy-button-tertiary");
-    newButton.classList.add("e-10310-button-tertiary--icon-only");
+
+    const classesToCopy = [...sourceButton.classList].filter(cls =>
+        cls.includes("legacy-button") ||
+        cls.includes("button-tertiary")
+    );
+
+    newButton.classList.add(...classesToCopy);
+
     if (Config.config.prideTheme) newButton.classList.add("prideTheme");
 
     newButton.dataset.display = chrome.i18n.getMessage(title);
@@ -1805,13 +1813,13 @@ function createButton(baseID: string, title: string, callback: () => void, image
     });
 
     const imageWrapper = document.createElement("span");
-    imageWrapper.className = "e-10310-button__icon-wrapper";
+    imageWrapper.classList.add(...sourceWrapper.classList);
 
     // Image HTML
     const newButtonImage = document.createElement("img");
     newButtonImage.draggable = isDraggable;
     newButtonImage.id = baseID + "Image";
-    newButtonImage.className = "e-10310-icon";
+    newButtonImage.classList.add(...sourceIcon.classList);
     newButtonImage.setAttribute("data-encore-id", "icon");
     newButtonImage.src = chrome.runtime.getURL("icons/" + imageName);
 
