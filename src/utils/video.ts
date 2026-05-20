@@ -31,9 +31,7 @@ const episodeIDSelector = "span[draggable='true'] a[data-testid='context-item-li
 const channelIDSelector = "a[data-testid='context-item-info-show']";
 
 let video: HTMLMediaElement | null = null;
-let videoWidth: string | null = null;
 let videoMutationObserver: MutationObserver | null = null;
-let videoMutationListenerElement: HTMLElement | null = null;
 // What videos have run through setup so far
 const videosSetup: HTMLMediaElement[] = [];
 let waitingForNewVideo = false;
@@ -78,7 +76,7 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
 
     if (!checkIfOnMobileSpotify()) {
         // Direct Links after the needed element is loaded, will continue waiting if no media is played
-        void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then((element) => {
+        void waitFor(() => document.querySelector(episodeIDSelector), undefined, 100, (el) => el !== null).then(() => {
             videoIDChange(getYouTubeVideoID());
         })
     } else {
@@ -92,7 +90,7 @@ export function setupVideoModule(moduleParams: VideoModuleParams, config: () => 
     const navigationApiAvailable = "navigation" in window;
     if (navigationApiAvailable) {
         // TODO: Remove type cast once type declarations are updated
-        const navigationListener = (e) =>
+        const navigationListener = () =>
             void videoIDChange(getYouTubeVideoID());
         (window as unknown as { navigation: EventTarget }).navigation.addEventListener("navigate", navigationListener);
 
@@ -219,7 +217,7 @@ export function getContentType(): ContentType | null {
 function getEpisodeDataFromDOM(type: "ContentType"): ContentType;
 function getEpisodeDataFromDOM(type: "EpisodeID"): VideoID | null;
 function getEpisodeDataFromDOM(type: "ContentType" | "EpisodeID"): VideoID | null | ContentType {
-    const HrefRegex = /\/([^\/]+)\/([A-Za-z0-9]+)(?:[\/?]|$)/;
+    const HrefRegex = /\/([^/]+)\/([A-Za-z0-9]+)(?:[/?]|$)/;
     const element = document.querySelector(episodeIDSelector);
     // Edge case where there is no track loaded
     if (!element) return null;
@@ -290,7 +288,6 @@ function setupVideoMutationListener() {
 
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         videoMutationObserver = new MutationObserver(refreshVideoAttachments);
-        videoMutationListenerElement = videoContainer;
 
         videoMutationObserver.observe(videoContainer, {
             attributes: true,
@@ -314,7 +311,7 @@ async function refreshVideoAttachments(): Promise<void> {
 
     waitingForNewVideo = true;
     // Compatibility for Vinegar extension
-    let newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLMediaElement) 
+    const newVideo = (isSafari() && document.querySelector('video[vinegared="true"]') as HTMLMediaElement) 
         || (onMobileSpotify && document.querySelector('#__sb_video_container audio') as HTMLMediaElement) 
         || (document.querySelector('#__sb_video_container video') as HTMLMediaElement)
         || document.querySelector('video') as HTMLMediaElement;
@@ -336,13 +333,6 @@ async function refreshVideoAttachments(): Promise<void> {
     setupVideoMutationListener();
     
     void videoIDChange(getYouTubeVideoID());
-}
-
-/**
- * To handle compatibility with the Vinegar extension on Safari
- */
-function isVinegarActive(): boolean {
-    return isSafari() && !!document.querySelector('video[vinegared="true"]');
 }
 
 export function triggerVideoElementChange(newVideo: HTMLMediaElement, mobile?: boolean): void {

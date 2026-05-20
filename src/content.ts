@@ -26,7 +26,7 @@ import { getControls, getHashParams, isPlayingPlaylist, getExternalDeviceBar } f
 import { CategoryPill } from "./render/CategoryPill";
 import { AnimationUtils } from "./utils/animationUtils";
 import { GenericUtils } from "./utils/genericUtils";
-import { logDebug, logWarn } from "./utils/logger";
+import { logDebug } from "./utils/logger";
 import { importTimes } from "./utils/exporter";
 import { ChapterVote } from "./render/ChapterVote";
 import { openWarningDialog } from "./utils/warnings";
@@ -68,16 +68,12 @@ const mediaLoadedSelectorMobile = "div[data-testid='floating-now-playing-bar']"
 let sponsorDataFound = false;
 //the actual sponsorTimes if loaded and UUIDs associated with them
 let sponsorTimes: SponsorTime[] = [];
-let existingChaptersImported = false;
-let importingChaptersWaitingForFocus = false;
-let importingChaptersWaiting = false;
 let loopedChapter :SponsorTime = null;
 // List of open skip notices
 const skipNotices: SkipNotice[] = [];
 let upcomingNotice: UpcomingNotice | null = null;
 let activeSkipKeybindElement: ToggleSkippable = null;
 let shownSegmentFailedToFetchWarning = false;
-let selectedSegment: SegmentUUID | null = null;
 let previewedSegment = false;
 
 // JSON video info
@@ -266,10 +262,10 @@ function messageListener(request: Message, sender: unknown, sendResponse: (respo
             unskipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), null, true);
             break;
         case "reskip":
-            reskipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID), true);
+            reskipSponsorTime(sponsorTimes.find((segment) => segment.UUID === request.UUID));
             break;
         case "selectSegment":
-            selectSegment(request.UUID);
+            selectSegment();
             break;
         case "submitVote":
             vote(request.type, request.UUID).then((response) => sendResponse(response));
@@ -410,7 +406,6 @@ function resetValues() {
     firstPlay = true;
 
     sponsorTimes = [];
-    existingChaptersImported = false;
     sponsorSkipped = [];
     loopedChapter = null;
     lastResponseStatus = 0;
@@ -1153,7 +1148,6 @@ async function sponsorsLookup(keepOldSubmissions = true, ignoreCache = false) {
 
             const oldSegments = sponsorTimes || [];
             sponsorTimes = receivedSegments;
-            existingChaptersImported = false;
 
             if (keepOldSubmissions) {
                 for (const segment of oldSegments) {
@@ -1299,8 +1293,7 @@ function startSkipScheduleCheckingForStartSponsors() {
     }
 }
 
-function selectSegment(UUID: SegmentUUID): void {
-    selectedSegment = UUID;
+function selectSegment(): void {
     updatePreviewBar();
 }
 
@@ -1773,7 +1766,7 @@ function unskipSponsorTime(segment: SponsorTime, unskipTime: number = null, forc
 
 }
 
-function reskipSponsorTime(segment: SponsorTime, forceSeek = false) {
+function reskipSponsorTime(segment: SponsorTime) {
     const skippedTime = Math.max(segment.segment[1] - getCurrentTime(), 0);
     const segmentDuration = segment.segment[1] - segment.segment[0];
     const fullSkip = skippedTime / segmentDuration > manualSkipPercentCount;
@@ -2610,33 +2603,6 @@ function hotkeyPropagationListener(e: KeyboardEvent): void {
     } else if (keybindEquals(key, previousChapterKey)) {
         if (sponsorTimes.length > 0) e.stopPropagation();
         return;
-    }
-}
-
-/**
- * Adds the CSS to the page if needed. Required on optional sites with Chrome.
- */
-function addCSS() {
-    if (!isFirefoxOrSafari()) {
-        const onLoad = () => {
-            const head = document.getElementsByTagName("head")[0];
-
-            for (const file of utils.css) {
-                const fileref = document.createElement("link");
-
-                fileref.rel = "stylesheet";
-                fileref.type = "text/css";
-                fileref.href = chrome.runtime.getURL(file);
-
-                head.appendChild(fileref);
-            }
-        };
-
-        if (document.readyState === "complete") {
-            onLoad();
-        } else {
-            document.addEventListener("DOMContentLoaded", onLoad);
-        }
     }
 }
 

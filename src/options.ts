@@ -90,12 +90,6 @@ async function init() {
     const optionsElements = optionsContainer.querySelectorAll("*");
 
     for (let i = 0; i < optionsElements.length; i++) {
-        const dependentOnName = optionsElements[i].getAttribute("data-dependent-on");
-        const dependentOn = optionsContainer.querySelector(`[data-sync='${dependentOnName}']`);
-        let isDependentOnReversed = false;
-        if (dependentOn)
-            isDependentOnReversed = dependentOn.getAttribute("data-toggle-type") === "reverse" || optionsElements[i].getAttribute("data-dependent-on-inverted") === "true";
-
         const option = optionsElements[i].getAttribute("data-sync");
 
         switch (optionsElements[i].getAttribute("data-type")) {
@@ -240,8 +234,6 @@ async function init() {
                     const uploadButton = optionsElements[i].querySelector(".upload-button");
                     uploadButton.addEventListener("change", (e) => uploadConfig(e, optionsElements[i] as HTMLElement));
                 }
-
-                const privateTextChangeOption = optionsElements[i].getAttribute("data-sync");
 
                 break;
             }

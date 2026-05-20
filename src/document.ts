@@ -93,7 +93,7 @@ function sendEpisodeData() {
         showTitle: episode.showTitle,
         contentType: episode.contentType
     });
-};
+}
 
 function sendDynamicMessage() {
     if (checkIfExternalDevice()) {
@@ -271,7 +271,7 @@ function stripFileUrls(root: any) {
 
         if (Object.prototype.hasOwnProperty.call(node, "file_urls_external")) {
             if (Object.prototype.hasOwnProperty.call(node, "file_ids_mp4_dual")) {
-                try { delete node.file_urls_external; } catch { }
+                try { delete node.file_urls_external; } catch { /* ignore */ }
             } else {
                 const episodeTitle = parent.metadata.name;
                 const existing = episodeDataList.find(

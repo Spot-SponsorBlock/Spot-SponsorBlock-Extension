@@ -383,7 +383,7 @@ class SkipNoticeComponent extends React.Component<SkipNoticeProps, SkipNoticeSta
                             className="sponsorSkipObject sponsorSkipNoticeButton"
                             style={style}
                             onClick={() => this.prepAction(buttonIndex === 1 ? SkipNoticeAction.Unskip1 : SkipNoticeAction.Unskip0)}>
-                        {this.getSkipButtonText(buttonIndex, false ? ActionType.Skip : null)
+                        {this.getSkipButtonText(buttonIndex, null)
                             + (this.state.showKeybindHint
                                 ? " (" + keybindToString(Config.config.skipKeybind) + ")" : "")}
                     </button>

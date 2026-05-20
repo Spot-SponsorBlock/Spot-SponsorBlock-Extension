@@ -1,5 +1,5 @@
 import Config, { VideoDownvotes } from "./config";
-import { SponsorTime, BackgroundScriptContainer, Registration, VideoID, SponsorHideType } from "./types";
+import { SponsorTime, BackgroundScriptContainer, VideoID, SponsorHideType } from "./types";
 
 import { getHash, HashedValue } from "./utils/hash";
 import { waitFor } from "./utils/index";

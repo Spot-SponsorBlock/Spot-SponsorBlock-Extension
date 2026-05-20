@@ -89,7 +89,7 @@ class PreviewBar {
             const [normalSegments] =
                 partition(this.segments,
                     (segment) => segment.actionType !== ActionType.Chapter);
-            let mainSegment = this.getSmallestSegment(timeInSeconds, normalSegments, "normal");
+            const mainSegment = this.getSmallestSegment(timeInSeconds, normalSegments, "normal");
             
             if (mainSegment === null) {
                 return;

@@ -1,7 +1,5 @@
 import Config from "./config";
-import Utils from "./utils";
 import { localizeHtmlPage } from "./utils/setup";
-const utils = new Utils();
 
 // This is needed, if Config is not imported before Utils, things break.
 // Probably due to cyclic dependencies
