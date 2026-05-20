@@ -7,7 +7,7 @@ export function getControls(): HTMLElement {
         // Spotify
         ".O9zMd8LexCQNrpv5",
         // Mobile Spotify
-        ".s6rbLMK3UuwpqmmtNUzk"
+        ".pwipyrzfcQcPFmPM"
     ];
 
     for (const controlsSelector of controlsSelectors) {
@@ -26,9 +26,9 @@ export function getExternalDeviceBar(): HTMLElement {
         // Spotify
         "div.pggKHkbEjlYCiHC7",
         // Mobile Spotify
-        "span.weq1sklEuYjtdUrUZpYI",
+        "span.F8gaIrZHVEI3JzUS",
         // Mobile Spotify fullscreen
-        "div.twxeF9JMxAWvyaczn6eX"
+        "div.c6xU6bo_q2Awn7zZ"
     ];
 
     for (const deviceBarSelector of deviceBarSelectors) {
