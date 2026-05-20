@@ -125,13 +125,13 @@ class SkipNoticeComponent extends React.Component<SkipNoticeProps, SkipNoticeSta
         this.unselectedColor = Config.config.colorPalette.white;
         this.lockedColor = Config.config.colorPalette.locked;
 
-        const maxCountdownTime = props.maxCountdownTime ? () => props.maxCountdownTime : (false ? this.getFullDurationCountdown(0) : () => Config.config.skipNoticeDuration);
+        const maxCountdownTime = props.maxCountdownTime ? () => props.maxCountdownTime : () => Config.config.skipNoticeDuration;
 
         const defaultSkipButtonState = this.props.startReskip ? SkipButtonState.Redo : SkipButtonState.Undo;
-        const skipButtonStates = [defaultSkipButtonState, false ? SkipButtonState.Start : defaultSkipButtonState];
+        const skipButtonStates = [defaultSkipButtonState, defaultSkipButtonState];
 
         const defaultSkipButtonCallback = this.props.startReskip ? this.reskip.bind(this) : this.unskip.bind(this);
-        const skipButtonCallbacks = [defaultSkipButtonCallback, false ? this.reskip.bind(this) : defaultSkipButtonCallback];
+        const skipButtonCallbacks = [defaultSkipButtonCallback, defaultSkipButtonCallback];
 
         // Setup state
         this.state = {

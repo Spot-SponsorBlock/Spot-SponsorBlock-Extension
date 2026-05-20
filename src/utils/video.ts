@@ -1,6 +1,6 @@
 import { waitFor } from "../utils/index";
 import { LocalStorage, ProtoConfig, SyncStorage, isSafari } from "../config/config";
-import { isVisible, waitForElement } from "./dom";
+import { isVisible } from "./dom";
 import { addCleanupListener, setupCleanupListener } from "./cleanup";
 import { injectScript } from "./scriptInjector";
 import { cleanPage } from "./pageCleaner";

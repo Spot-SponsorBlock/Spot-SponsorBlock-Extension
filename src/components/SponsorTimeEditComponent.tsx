@@ -7,12 +7,10 @@ import { RectangleTooltip } from "../render/RectangleTooltip";
 import SelectorComponent, { SelectorOption } from "./SelectorComponent";
 import { DEFAULT_CATEGORY } from "../utils/categoryUtils";
 import { getFormattedTime, getFormattedTimeToSeconds } from "../utils/formating";
-import { asyncRequestToServer } from "../utils/requests";
 import { defaultPreviewTime } from "../utils/constants";
 import { getVideo, getVideoDuration } from "../utils/video";
 import { AnimationUtils } from "../utils/animationUtils";
 import { Tooltip } from "../render/Tooltip";
-import { logRequest } from "../background-request-proxy";
 
 export interface SponsorTimeEditProps {
     index: number;

@@ -4,7 +4,6 @@ import { SponsorTime, BackgroundScriptContainer, Registration, VideoID, SponsorH
 import { getHash, HashedValue } from "./utils/hash";
 import { waitFor } from "./utils/index";
 import { findValidElementFromSelector } from "./utils/dom";
-import { isSafari } from "./config/config";
 import { asyncRequestToServer } from "./utils/requests";
 import { FetchResponse, logRequest } from "./background-request-proxy";
 import { formatJSErrorMessage, getLongErrorMessage } from "./utils/formating";

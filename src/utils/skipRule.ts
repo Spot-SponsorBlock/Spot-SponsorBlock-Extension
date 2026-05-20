@@ -2,7 +2,7 @@ import { getCurrentPageTitle } from "./elements";
 import { getChannelIDInfo, getVideoDuration } from "./video";
 import Config from "../config";
 import {ActionType, ActionTypes, CategorySelection, CategorySkipOption, SponsorSourceType, SponsorTime} from "../types";
-import { getSkipProfile, getSkipProfileBool } from "./skipProfiles";
+import { getSkipProfile } from "./skipProfiles";
 import { VideoLabelsCacheData } from "./videoLabels";
 import * as CompileConfig from "../../config.json";
 import { AdvancedSkipCheck, AdvancedSkipPredicate, AdvancedSkipRule, PredicateOperator, SkipRuleAttribute, SkipRuleOperator } from "./skipRule.type";

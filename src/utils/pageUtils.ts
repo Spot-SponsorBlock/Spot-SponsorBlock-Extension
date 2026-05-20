@@ -1,7 +1,3 @@
-import { ActionType, Category, SponsorSourceType, SponsorTime, VideoID } from "../types";
-import { getFormattedTimeToSeconds } from "./formating";
-import { getSkipProfileBool } from "./skipProfiles";
-
 export function getControls(): HTMLElement {
     const controlsSelectors = [
         // Spotify
