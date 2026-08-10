@@ -183,8 +183,8 @@ export default class Utils {
         findReferenceNode(): HTMLElement {
         const selectors = [
             ".Root", // Spotify
-            ".xg5J2eg6xPc1eJTM", // Moible Spotify fullscreen 
-            ".k2L6tcfZUzMVLmxx" // Mobile Spotify
+            ".htl_XexiLPMgKCAdn673", // Mobile Spotify fullscreen 
+            ".giEG7FrPP3m1cvMy4aqY" // Mobile Spotify
         ];
 
         let referenceNode = findValidElementFromSelector(selectors)

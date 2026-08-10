@@ -515,7 +515,7 @@ function getPreviewBarAttachElement(): HTMLElement | null {
             isVisibleCheck: false
         }, {
             // For mobile Spotify
-            selector: ".pHBY_NeeszcLzbFJ",
+            selector: ".rYEjYcK8xscHJgv9GMnT",
             isVisibleCheck: true
         }
     ];

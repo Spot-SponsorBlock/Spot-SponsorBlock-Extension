@@ -316,8 +316,8 @@ function createDesktopObserver() {
 }
 
 function createMobileObservers() {
-    const titleObserverElement = document.querySelector(".tX3YXJJyjE0t2CT7");
-    const fullScreenObserverElement = document.querySelector(".KYEKaIT9i1k2q4uC");
+    const titleObserverElement = document.querySelector(".fr_nmjcUAWURbZNHDjoT");
+    const fullScreenObserverElement = document.querySelector(".modalLayer");
 
     if (titleObserverElement && fullScreenObserverElement) {
         mobileTitleObserver.observe(titleObserverElement, {
@@ -346,7 +346,7 @@ function getTitleElement(): Element | null {
         if (fullScreenTitleElement) {
             return fullScreenTitleElement;
         } else {
-            const elements = document.querySelectorAll(".NjLkY81u3WQeYbL6 .vZIzpwo7tVka5jiK");
+            const elements = document.querySelectorAll(".Fsb4GXcpqhPtCxW8Dlqx .F5CTbbX7zGPEyB5V0orP");
             const titleElement = Array.from(elements).find(el => isVisible(el as HTMLElement));
             return titleElement || null;
         }
