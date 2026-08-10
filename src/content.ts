@@ -2053,8 +2053,8 @@ function openInfoMenu() {
     const frame = document.createElement("iframe");
     frame.allow = "clipboard-write";
     frame.height = "797";
-    frame.classList.add("eWU4JoxyECcwnSf_")
-    frame.classList.add("sponsorBlockPopupFrame")
+    frame.classList.add("QTaJ5aMaWbcGbfG55xdG"); // Rounded corners css
+    frame.classList.add("sponsorBlockPopupFrame");
     frame.addEventListener("load", async () => {
         frame.contentWindow.postMessage("", "*");
 
@@ -2101,7 +2101,7 @@ function openInfoMenu() {
 
     const parentNodeOptions = [{
         // Spotify
-        selector: ".LtqMCWXd5Nkemkym",
+        selector: ".VcWsGHoYggFHIgkGBb63",
         hasChildCheck: true
     }];
     for (const option of parentNodeOptions) {
@@ -2625,7 +2625,7 @@ function showTimeWithoutSkips(skippedDuration: number): void {
     }
 
     // Spotify player time display
-    const displaySelector = ".vfI4ba4_zTQuZC5K";
+    const displaySelector = ".gCt8gWYAxj83pLHYhMoN";
     const timeSelector = "[data-testid='playback-duration']"
     const display = document.querySelector(displaySelector);
     const timeDisplay = document.querySelector(timeSelector);

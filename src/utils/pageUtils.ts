@@ -1,7 +1,7 @@
 export function getControls(): HTMLElement {
     const controlsSelectors = [
         // Spotify
-        ".O9zMd8LexCQNrpv5",
+        ".P0tzYwBLV9gZ3K6JKA5q",
         // Mobile Spotify
         ".pwipyrzfcQcPFmPM"
     ];
