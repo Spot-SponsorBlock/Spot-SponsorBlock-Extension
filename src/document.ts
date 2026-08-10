@@ -303,7 +303,7 @@ function stripFileUrls(root: any) {
 }
 
 function createDesktopObserver() {
-    const titleObserverElement = document.querySelector(".fOSYRD0ZQ7wnd6Y4");
+    const titleObserverElement = document.querySelector(".PvwqB_9gRNsEMZQCMaiL");
 
     if (titleObserverElement) {
         desktopTitleObserver.observe(titleObserverElement, {
